@@ -1,0 +1,244 @@
+/* css 파일 공유 시작  */
+
+.banner-container {
+    overflow-x: hidden;
+    height: 100%;
+    color: #777;
+    font: 16px/1.5 'NanumSquareNeo-dEb', 'notoR', 'Malgun Gothic', '맑은 고딕', '돋움', sans-serif;
+    letter-spacing: -.06em;
+    -webkit-text-size-adjust: none;
+}
+
+.banner * {
+    box-sizing: border-box;
+}
+
+/* 홈비주얼 */
+.banner .home-visual {
+    position: relative;
+    margin: 0 auto;
+
+}
+
+/* 홈비주얼 차일드 */
+.banner .home-visual .imgWrap {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 1920px;
+    height: 640px;
+}
+
+.banner .home-visual .cntWrap {
+    width: 1280px;
+    height: 100%;
+    padding-top: 213px;
+    margin: 0 auto;
+}
+
+/* 이너 */
+.banner .home-visual .cntWrap .inner{
+    position: relative;
+    padding-top: 47px;
+}
+
+
+.banner .home-visual .cntWrap .inner .name {
+    font-size: 40px;
+    color: #222;
+    line-height: 46px;
+}
+
+.banner .home-visual .cntWrap .inner .name > span {
+    display: block;
+}
+
+/* 이너 태그 카드 */
+.banner .home-visual .cntWrap .inner .tag-card {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.banner .home-visual .cntWrap .inner .tag-card > span {
+    display: inline-block;
+    text-align: center;
+    min-width: 49px;
+    height: 24px;
+    line-height: 25px;
+    margin: 0 1px 0 0;
+    padding: 0 8px;
+    background: #222;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0px;
+    vertical-align: -webkit-baseline-middle;
+}
+
+.banner .home-visual .cntWrap .inner .tag-card > span.cardSt_1 {
+    background: #ffff89;
+    color: #222;
+}
+
+.banner .home-visual .cntWrap .inner .tag-card > span.cardSt_2 {
+    background: #222;
+    color: #fff;
+}
+
+
+/* 이너 옵션 */
+.banner .home-visual .cntWrap .inner .option {
+    margin-top: 5px;
+}
+
+.banner  .home-visual .cntWrap .inner .option > span {
+    float: left;
+    margin-right: 8px;
+}
+
+.banner .home-visual .cntWrap .inner .option .banner-price .tCost {
+    font-family: sans-serif;
+    text-decoration: line-through;
+}
+
+.banner .home-visual .cntWrap .inner .option .banner-price .tUnit {
+    font-family: 'roboM';
+    margin-left: 5px;
+}
+
+.banner .home-visual .cntWrap .inner .option .banner-price > em {
+    font-size: 28px;
+    color: #222;
+}
+
+
+/* 버튼 */
+button {
+    overflow: visible;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: inherit;
+    outline: none;
+}
+/* 슬라이드 컨트롤 */
+.banner .home-visual .slideControl {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.banner .home-visual .slideControl .swiper-pagination {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+    top: 590px;
+}
+
+.banner .home-visual .slideControl .inner {
+    position: relative;
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    box-sizing: border-box;
+    bottom: 26px;
+}
+
+
+.banner .home-visual .slideControl .nav_next {
+    position: absolute;
+    top: 315px;
+    right: -110px;
+}
+
+.banner .home-visual .slideControl .nav_prev {
+    position: absolute;
+    top: 315px;
+    left: -110px;
+}
+
+.banner .home-visual .slideControl .next, .banner .home-visual .slideControl .prev {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    /* height: 40px; */
+    font-size: 0;
+}
+
+.banner .home-visual .slideControl .prev::before{
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    border-style: solid;
+    border-width: 0px 0px 2px 2px;
+    z-index: 9;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-color: #fff;
+    outline: none;
+    cursor: pointer;
+    color: transparent;
+    font-size: 0;
+}
+
+.banner .home-visual .slideControl .next::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 17px;
+    border-style: solid;
+    border-width: 2px 2px 0px 0px;
+    z-index: 9;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-color: #fff;
+    outline: none;
+    cursor: pointer;
+    color: transparent;
+    font-size: 0;
+}
+
+.banner .home-visual .slideWrap {
+    position: relative;
+    margin: 0 auto;
+    height: 640px;
+}
+.banner .home-visual .slideWrap .swiper-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1920px;
+    height: 640px;
+    overflow: hidden;
+}
+
+.banner .home-visual .slideControl .swiper-pagination .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 1px solid rgba(18, 182, 96);
+    opacity: 1;
+}
+
+.banner .home-visual .slideControl .swiper-pagination .swiper-pagination-bullet-active {
+    width: 40px;
+    transition: width .5s;
+    border-radius: 5px;
+    background: rgba(18, 182, 96);
+    border: 1px solid transparent;
+    opacity: 1;
+}
+
+.banner .home-visual .slideControl .swiper-pagination .swiper-pagination-progressbar {
+    background-color:solid rgba(18, 182, 96);
+}

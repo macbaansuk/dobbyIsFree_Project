@@ -1,0 +1,85 @@
+.mb-icon  img {
+    position: relative;
+    max-width: 100%;
+    z-index: 2;
+    vertical-align: top;
+    overflow: clip;
+    overflow-clip-margin: content-box;
+    width: 152px;
+    height: 152px;
+}
+.mainMemberShipInfo .contWrap{
+    position: relative;
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 0 auto 9px;
+}
+
+.mainMemberShipInfo .subTitle {
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 96px auto 9px;
+    font-size: 32px;
+}
+
+[class*="subTitle"] {
+    color: #222;
+    font: 32px/1.2 'SDNeoM', 'notoM';
+}
+
+.mainMemberShipInfo .subTxt {
+    font-size: 20px;
+    color: #222;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.mainMemberShipInfo .list {
+
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0 100px;
+}
+
+.mainMemberShipInfo .list li {
+    text-align: center;
+    font-size: 18px;
+    list-style: none;
+}
+
+.mainMemberShipInfo .list .mb-icon {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+
+}
+
+.mainMemberShipInfo .list .tit {
+    font-size: 18px;
+    font-family: 'SDNeoM';
+    display: block;
+    margin-top: 30px;
+    color: #222;
+}
+
+.mainMemberShipInfo .txt {
+    font-size: 14px;
+    color: #777;
+}
+
+.mainMemberShipInfo .pdtMore{
+    position: absolute;
+    padding: 0 30px 1px 0;
+    top: -42px;
+    right: 0;
+    color: #222;
+    background: url('../../img/hoons/icon_more.png') no-repeat 100% 100%;
+
+}
+
+.mainMemberShipInfo p {
+    display: block;
+}

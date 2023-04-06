@@ -1,0 +1,165 @@
+*{
+    margin :0;
+    padding: 0;
+}
+
+/*.test{*/
+/*    color:black;*/
+/*}*/
+.prodlist-header {
+    position: relative;
+}
+
+.prod-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.prod-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.prod-desc pre {
+    font-size: 16px;
+    margin: 0;
+
+}
+
+.prodlist-header img{
+    width:100%
+}
+
+.sort-contents{
+    margin : 15px 0;
+}
+.prodlist-length{
+    margin : 5px 0;
+}
+.prod-sort-click ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.prod-sort-click li {
+    margin-right: 10px; /* 간격 조절 */
+}
+
+.contents{
+    max-width: 1200px; /* 원하는 컨테이너의 최대 폭을 설정하세요 */
+    margin: 0 auto; /* 왼쪽과 오른쪽 마진을 자동으로 설정하여 중앙 정렬 */
+    padding: 20px; /* 필요한 경우 내용물과 컨테이너의 여백을 설정 */
+}
+
+/* ------------------ */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 상품 사이에 동일한 공간 배치 */
+    box-sizing: border-box;
+}
+
+.product-row {
+    display: flex;
+    justify-content: space-between; /* 상품 사이에 동일한 공간 배치 */
+    width: 100%;
+    margin-bottom: 50px; /* 상품 행 아래에 20px 여백 추가 */
+}
+
+.product {
+    width: 200px;
+    box-sizing: border-box;
+    padding: 0;
+    border: none;
+}
+
+
+.product img {
+    position: relative;
+    display: block;
+}
+
+.product-info {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.product-name {
+    display: inline-block;
+    width: 80%;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+}
+
+.price {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.price strong {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 5px;
+}
+
+.discount-rate {
+    font-size: 16px;
+    color: red;
+}
+
+.tag-wrap {
+    margin-bottom: 5px;
+}
+
+.tag-wrap span {
+    background-color: #ddd;
+    color: #333;
+    padding: 2px 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.star-wrap {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+    display: flex;
+    align-items: center;
+}
+
+.star-wrap i {
+    color: green;
+}
+
+.star-rating {
+    margin-left: 5px;
+}
+
+.star-wrap .heart-icon {
+    margin-left: auto;
+}
+
+.star-wrap .heart-icon i {
+    color: #999;
+    font-size: 17px;
+}
