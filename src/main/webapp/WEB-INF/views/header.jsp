@@ -113,7 +113,7 @@
 <body>
 <header>
   <div id="login_menu">
-    <span><a href="cs-notice">고객센터</a></span>
+    <span><a href="/cs-notice/list">고객센터</a></span>
     <span>로그인</span>
     <span>회원가입</span>
     <span><a href="mypage">마이페이지</a></span>
