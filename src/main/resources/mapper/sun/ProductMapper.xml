@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dobby.project.ProductMapper">
+
+
+    <select id="getMainProducts" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE MAI_YN = 'Y'
+        ORDER BY PROD_NM
+        LIMIT 8
+    </select>
+
+    <select id="Products_DC" resultType="ProductDCDto">
+        SELECT
+            P.PROD_ID, P.PROD_NM, P.AMT, PD.DC_TYP, PD.DC_RATE, PD.DC_AMT,
+            (CASE
+                 WHEN  PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE/ 100)
+                 WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
+                 ELSE P.AMT
+                END) AS dc_price
+        FROM
+            Prod AS P
+                LEFT JOIN
+            Prod_DC AS PD
+            ON
+                P.PROD_ID = PD.prod_ID
+        WHERE
+            P.DC_YN = 'y';
+    </select>
+
+    <select id="getSkincareProducts" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE CATE_CD = 'CATE1'
+        ORDER BY REG_DTM
+    </select>
+
+    <select id="getMakeupProducts" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE CATE_CD = 'CATE2'
+        ORDER BY REG_DTM
+    </select>
+
+    <select id="getMenProducts" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE CATE_CD = 'CATE1'
+        ORDER BY REG_DTM
+    </select>
+
+    <select id="getHairBodyProducts" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE CATE_CD = 'CATE4'
+        ORDER BY REG_DTM
+    </select>
+
+
+
+
+</mapper>

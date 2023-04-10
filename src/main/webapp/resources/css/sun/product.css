@@ -1,8 +1,9 @@
-.title h2 {
+.title .line{
     padding: 0 10%;
-    color: #222222;
     margin-bottom: 3%;
     margin-top: 3%;
+    color: black;
+    font-size: 25px;
 
 }
 
@@ -12,6 +13,7 @@
     justify-content: space-between; /* 상품 사이에 동일한 공간 배치 */
     padding: 0 10%; /* 페이지 양옆에 20px 여백 추가 */
     box-sizing: border-box;
+    color: black;
 }
 
 .product-row {
@@ -26,13 +28,17 @@
     box-sizing: border-box;
     padding: 0;
     border: none;
+    margin-bottom: 100px;
 }
 
 
 .product img {
     position: relative;
     display: block;
+    width: 314px;
+    height: 314px;
 }
+
 
 .product-info {
     margin-top: 10px;
@@ -41,12 +47,12 @@
 
 .product-name {
     display: inline-block;
-    width: 80%;
+    width: 100%;
     margin-bottom: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .price {
@@ -55,21 +61,21 @@
 }
 
 .price strong {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: #333;
     margin-right: 5px;
 }
 
 .original-price {
-    font-size: 14px;
+    font-size: 16px;
     color: #999;
     text-decoration: line-through;
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .discount-rate {
-    font-size: 16px;
+    font-size: 18px;
     color: red;
 }
 
@@ -108,5 +114,9 @@
 
 .star-wrap .heart-icon i {
     color: #999;
+    font-size: 24px;
+}
+.star-wrap .cart-icon i {
+    color: #999999;
     font-size: 24px;
 }

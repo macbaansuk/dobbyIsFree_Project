@@ -1,32 +1,49 @@
 package com.dobby.project.sun;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
+@RequestMapping("/product")
 public class ProductController {
-    @RequestMapping("/product-skincare")
-    public String skincare(){
+
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping("/skincare")
+    public String skincare(Model model) throws Exception {
+        List<ProductDto> skincareProducts = productService.getSkincareProducts();
+        model.addAttribute("skincareProducts", skincareProducts);
+
         return "sun/product-skincare";
     }
+    @RequestMapping("/makeup")
+    public String makeup(Model model) throws Exception {
+        List<ProductDto> makeupProducts = productService.getSkincareProducts();
+        model.addAttribute("makeupProducts", makeupProducts);
 
-    @RequestMapping("/product-makeup")
-    public String makeup(){
         return "sun/product-makeup";
     }
 
-    @RequestMapping("/product-men")
-    public String men(){
+    @RequestMapping("/men")
+    public String men(Model model) throws Exception {
+        List<ProductDto> menProducts = productService.getMenProducts();
+        model.addAttribute("menProducts", menProducts);
+
         return "sun/product-men";
     }
+    @RequestMapping("/hair-body")
+    public String hairBody(Model model) throws Exception {
+        List<ProductDto> hairBodyProducts = productService.getHairBodyProducts();
+        model.addAttribute("hairBodyProducts", hairBodyProducts);
+        System.out.println(hairBodyProducts);
 
-    @RequestMapping("/product-hair-body")
-    public String hairBody(){
         return "sun/product-hair-body";
     }
-
-
-
 
 
 
