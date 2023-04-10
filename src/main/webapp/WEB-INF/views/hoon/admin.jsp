@@ -396,7 +396,7 @@
                 </div>
 
                 <div class="mButton">
-                    <a href="#none" class="btnModify" id="eBtnSearch"><span>저장</span></a>
+                    <a href="#none" class="btnModify" id="eBtnModify"><span>저장</span></a>
 <%--                    <a href="#none" class="btnSearch reset" id="eSearchFormInit"><span>초기화</span></a>--%>
                 </div>
 
