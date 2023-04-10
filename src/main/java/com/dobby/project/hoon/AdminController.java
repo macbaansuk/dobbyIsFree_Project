@@ -1,4 +1,4 @@
-package com.dobby.project.controller.hoon;
+package com.dobby.project.hoon;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

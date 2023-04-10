@@ -12,10 +12,14 @@
 		<property name="username" value="Dobby"></property>
 		<property name="password" value="dobby1234!"></property>
 	</bean>
+	<!-- MyBatis 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-<!--		<property name="configLocation"  value="classpath:mybatis-config.xml"/>-->
-<!--		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>-->
+		<property name="configLocation"  value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dobby.project.mapper"/>
 	</bean>
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -27,4 +31,9 @@
 	</bean>
 <!--	<tx:annotation-driven/>-->
 	<context:component-scan base-package="com.dobby.project"/>
+
+
+
+
+
 </beans>
