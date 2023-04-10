@@ -1,6 +1,5 @@
 package com.dobby.project.ming.controller;
 
-
 import com.dobby.project.ming.dao.UserDao;
 import com.dobby.project.ming.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,12 +78,12 @@ public class LoginController {
             return "redirect:" + toURL;
         }
     }
-    private boolean loginCheck(String MBR_ID, String PWD) throws Exception {
-        User user = UserDao.selectUser(MBR_ID);
 
-        if(user==null)   return false; //} //return
-        return user.getPWD().equals(PWD);
-//	  return "abcd".equals(id) && "1234".equals(password);
+    private boolean loginCheck(String MBR_ID, String PWD) {
+     //   User user = UserDao.selectUser(MBR_ID);
+     //   if(user==null)   return false; //} //return
+    //    return user.getPWD().equals(PWD);
+	  return "abcd".equals(MBR_ID) && "1234".equals(PWD);
     }
 
     @RequestMapping("/findID")

@@ -1,6 +1,28 @@
+<%@ page import="java.nio.file.FileStore" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%
+  import javax.servlet.http.HttpSession;
+
+  String login_out="로그인";
+  String cookieId="";
+
+  Cookie[] cookies = request.getCookies(); //쿠키 읽기
+
+  if(cookies != null){
+    for(Cookie c :cookies){
+      String name = c.getName();
+      if("MBR_ID".equals(name))
+        cookieId = c.getValue();
+    }
+  }
+
+  if( session.getAttribute("MBR_ID") != null){
+    login_out = "로그아웃";
+  }
+  %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -114,8 +136,8 @@
 <header>
   <div id="login_menu">
     <span><a href="cs-notice">고객센터</a></span>
-    <span>로그인</span>
-    <span>회원가입</span>
+    <span><a href="/login"><%=login_out%>></a></span>
+    <span><a href="/register">회원가입</a></span>
     <span><a href="mypage">마이페이지</a></span>
     <span>장바구니</span>
     <span id="cart_cnt">0</span>
@@ -139,5 +161,4 @@
   </div>
 </header>
 </body>
-
 </html>

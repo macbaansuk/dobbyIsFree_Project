@@ -13,14 +13,10 @@ integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChi
   <link rel="stylesheet" href="./css/hoon/membership.css"/>
 
   <style>
-
-
     * {
       margin: 0;
       padding:0;
     }
-
-
 
     #membership {
       display: block;

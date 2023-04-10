@@ -98,7 +98,7 @@
       <em><a href="/register">회원가입</a></em>
     </button>
   </div>
-    <%--<script>
+    <script>
         function formCheck(frm) {
             let msg ='';
             if(frm.MBR_ID.value.length==0) {
@@ -118,7 +118,7 @@
                 element.select();
             }
         }
-    </script>--%>
+    </script>
 </section>
 <!--container-->
 </body>

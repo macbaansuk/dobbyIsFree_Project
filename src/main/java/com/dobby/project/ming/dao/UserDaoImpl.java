@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        String sql = "select * from user_info where MBR_ID= ? ";
+        String sql = "select * from member_info where MBR_ID= ? ";
 
         try {
             conn = ds.getConnection();
@@ -74,9 +74,9 @@ public class UserDaoImpl implements UserDao {
                 user.setMBR_PT(rs.getInt(12));
                 user.setMBR_COUPN(rs.getString(13));
                 user.setCOMMENT(rs.getString(14));
-                user.setMBR_SNS(rs.getString(15));
-                user.setSNS_DTM(new Date(rs.getTimestamp(16).getTime()));
-                user.setSNS_YN(rs.getString(17));
+                user.setAGRE_YN(rs.getString(15));
+                user.setSNS_YN(rs.getString(16));
+                user.setSNS_DTM(new Date(rs.getTimestamp(17).getTime()));
                 user.setSUBS_DTM(new Date(rs.getTimestamp(18).getTime()));
                 user.setMBR_GRD_DTM(new Date(rs.getTimestamp(19).getTime()));
                 user.setCONN_TMS(rs.getString(20));
@@ -96,7 +96,6 @@ public class UserDaoImpl implements UserDao {
 //            try { if(conn!=null)  conn.close();  } catch (SQLException e) { e.printStackTrace();}
             close(rs, pstmt, conn);  //     private void close(AutoCloseable... acs) {
         }
-
         return user;
     }
 
@@ -111,7 +110,7 @@ public class UserDaoImpl implements UserDao {
         //insert into member_info (MBR_ID, PWD, MBR_GRD, MBR_TYPE_CD, MBR_STUS_CD, MBR_NM, EMAIL, MPNO, BD, SEX, SNS_YN, SUBS_DTM, MBR_GRD_DTM)
         //values ('test_hwa', '5555', '웰컴', '2', '1', '테스트계정5', 'hwahwa@naver.com', '010-1234-1234', '1995-08-12', 'F', 'N', NOW(), NOW());
 
-        String sql = "insert into member_info values (?, ?, ?, ?, ?, ?, ?, ?, new Date(), ?, ?, new Date(), new Date()) ";
+        String sql = "insert into member_info values (?, ?, ?, ?, ?, ?, ?, ?, new Date(), ?, ?, ?, new Date(), new Date()) ";
 
         try {
             conn = ds.getConnection();
@@ -126,9 +125,10 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(8,user.getMPNO());
             pstmt.setDate(9,new java.sql.Date(user.getBD().getTime()));
             pstmt.setString(10,user.getSEX());
-            pstmt.setString(11,user.getSNS_YN());
-            pstmt.setDate(12,new java.sql.Date(user.getSUBS_DTM().getTime()));
-            pstmt.setDate(13,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
+            pstmt.setString(11,user.getAGRE_YN());
+            pstmt.setString(12,user.getSNS_YN());
+            pstmt.setDate(13,new java.sql.Date(user.getSUBS_DTM().getTime()));
+            pstmt.setDate(14,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
             return pstmt.executeUpdate(); //  insert, delete, update;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -147,7 +147,7 @@ public class UserDaoImpl implements UserDao {
 //        PreparedStatement pstmt = null;
 
         String sql = "update member_info " +
-                "set PWD=?, MBR_GRD=?, MBR_TYPE_CD=?, MBR_STUS_CD=?, MBR_NM =?, EMAIL=?, MPNO=?, BD=?, SEX=?, SNS_YN=?, SUBS_DTM=?, MBR_GRD_DTM=? " +
+                "set PWD=?, MBR_GRD=?, MBR_TYPE_CD=?, MBR_STUS_CD=?, MBR_NM =?, EMAIL=?, MPNO=?, BD=?, SEX=?,AGRE_YN=?, SNS_YN=?, SUBS_DTM=?, MBR_GRD_DTM=? " +
                 "where MBR_ID = ? ";
 
         // try-with-resources - since jdk7
@@ -165,10 +165,11 @@ public class UserDaoImpl implements UserDao {
             pstmt.setDate(8,new java.sql.Date(user.getBD().getTime()));
             pstmt.setString(9,user.getSEX());
             // pstmt.setDate(11, new java.sql.Date(user.getSNS_DTM().getTime()));
-            pstmt.setString(10,user.getSNS_YN());
-            pstmt.setDate(11, new java.sql.Date(user.getSUBS_DTM().getTime()));
-            pstmt.setDate(12,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
-            pstmt.setString(13, user.getMBR_ID());
+            pstmt.setString(10,user.getAGRE_YN());
+            pstmt.setString(11,user.getSNS_YN());
+            pstmt.setDate(12, new java.sql.Date(user.getSUBS_DTM().getTime()));
+            pstmt.setDate(13,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
+            pstmt.setString(14, user.getMBR_ID());
 
             rowCnt = pstmt.executeUpdate();
         } catch (SQLException e) {
