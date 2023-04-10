@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.NoticeMapper">
+
+    <sql id="selectFromNotice">
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM notice
+    </sql>
+
+    <!--  게시물 번호로 게시물 읽기  -->
+    <select id="select" parameterType="int" resultType="NoticeDto">
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
+        WHERE NB_ID = #{NB_ID}
+    </select>
+
+    <!--  게시물 번호, 작성자로 게시물 삭제  -->
+    <delete id="delete" >
+        DELETE FROM NOTICE
+        WHERE NB_ID = #{NB_ID} AND WRTR = #{WRTR}
+    </delete>
+
+    <!--  게시물 목록 모두 불러오기  -->
+    <select id="selectAll" resultType="NoticeDto">
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
+        ORDER BY REG_DTM DESC, NB_ID DESC
+    </select>
+
+    <!--  카테고리별 게시물 목록 불러오기  -->
+    <select id="selectByCate" parameterType="string" resultType="NoticeDto">
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
+        WHERE BBS_CATE=#{BBS_CATE}
+        ORDER BY REG_DTM DESC, NB_ID DESC
+    </select>
+
+    <!--  전체 게시물 개수, INPUT(X)  -->
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM NOTICE
+    </select>
+    
+    <!--  카테고리별 게시물 개수  -->
+    <select id="countByCate" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM NOTICE
+        WHERE BBS_CATE=#{BBS_CATE}
+    </select>
+
+    <!--  게시물 작성  -->
+    <insert id="insert" parameterType="NoticeDto">
+        INSERT INTO NOTICE
+            (BBS_CATE, TTL, CN, WRTR)
+        VALUES
+            (#{BBS_CATE}, #{TTL}, #{CN}, #{WRTR})
+    </insert>
+
+    <!--  게시물 수정  -->
+    <update id="update" parameterType="NoticeDto">
+        UPDATE NOTICE
+        SET BBS_CATE = #{BBS_CATE}
+            , TTL = #{TTL}
+            , CN = #{CN}
+            , WRTR = #{WRTR}
+        WHERE NB_ID = #{NB_ID}
+    </update>
+
+    <!--  게시판 페이지별 게시물  -->
+    <select id="selectPage" parameterType="map" resultType="NoticeDto">
+        <include refid="selectFromNotice"/>
+        order by REG_DTM DESC, NB_ID DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!--  조회수  -->
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE NOTICE
+        SET   VIEWS = VIEWS + 1
+        WHERE NB_ID = #{NB_ID}
+    </update>
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                AND TTL LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                AND WRTR LIKE concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                AND (TTL  LIKE concat('%', #{keyword}, '%')
+                OR   CN LIKE concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="NoticeDto">
+        SELECT NB_ID, BBS_CATE, TTL, WRTR, REG_DTM, VIEWS
+        FROM  NOTICE
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY REG_DTM DESC, NB_ID DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT COUNT(*)
+        FROM  NOTICE
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+
+    
+</mapper>

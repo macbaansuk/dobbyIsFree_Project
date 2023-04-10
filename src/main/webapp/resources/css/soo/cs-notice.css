@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.location {
+    /* background:  rgba(231, 230, 230, 0.673); */
+    padding-top: 10px;
+    padding-left: 17%;
+}
+#container a { text-decoration: none; }
+#container a:visited { text-decoration: none; }
+/*.list a:visited { text-decoration: none; color: black; }*/
+
+#contents {
+    padding-left: 17%;
+    padding-right: 17%;
+}
+
+.page_title {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    font-size: 32px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.tab {
+    box-sizing: border-box;
+    justify-content: center;
+    width: 50%;
+}
+
+.tab ul {
+    list-style-type: none;
+    height: 60px;
+    width: 100%;
+    display: flex;
+
+}
+
+.tab ul li {
+    box-sizing: border-box;
+    height: 100%;
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    border: 0.1px solid rgb(170, 170, 170);
+}
+
+.tab ul li a {
+    color: rgb(95, 95, 95);
+    margin: auto;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.tab ul li.tab-notice {
+    background-color: rgb(18, 182, 96);
+}
+
+.tab ul li.tab-notice a {
+    color: white;
+}
+
+.search_box {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search_box input[type="text"] {
+    display: flex;
+    width: 500px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000000;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.search_box img {
+    position: relative;
+    width: 30px;
+    /* margin-right: 10%; */
+}
+
+.tab2 {
+    box-sizing: border-box;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.tab2 ul {
+    list-style-type: none;
+    height: 40px;
+    width: 100%;
+    background: rgba(231, 230, 230, 0.469);
+    display: flex;
+
+}
+
+.tab2 ul li {
+    box-sizing: border-box;
+    height: 100%;
+    width: 16.66%;
+    display: flex;
+    align-items: center;
+    border: 0.1px solid rgb(204, 204, 204);
+}
+
+.tab2 ul li a {
+    color: rgb(130, 130, 130);
+    margin: auto;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.tab2 ul li.whole {
+    background-color: rgb(18, 182, 96);
+}
+
+.tab2 ul li.whole a {
+    color: white;
+}
+
+.whole {}
+
+.listCnt {
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.list table {
+    width: 100%;
+    border-top: 2px solid rgb(62, 62, 62);
+    padding-bottom: 50px;
+}
+
+.list td {
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    border-bottom: 0.1px solid rgb(204, 204, 204);
+;
+}
+
+.list td.ttl {
+    text-align: left;
+    padding-left: 15px;
+}
+
+.list td.ttl a {
+    color: black;
+    text-decoration: none;
+}
+
+.list td.ttl a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.paging {
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.paging a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.paging a:hover {
+    background-color: #ddd;
+}
+

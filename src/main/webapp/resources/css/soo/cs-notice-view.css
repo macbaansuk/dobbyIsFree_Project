@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.location {
+    /* background:  rgba(231, 230, 230, 0.673); */
+    margin-top: 10px;
+    margin-left: 17%;
+}
+
+#contents {
+    padding-left: 17%;
+    padding-right: 17%;
+}
+
+.page_title {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    font-size: 32px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#container {
+    box-sizing: border-box;
+}
+
+.tab {
+    box-sizing: border-box;
+    justify-content: center;
+    width: 600px;
+}
+
+.tab ul {
+    list-style-type: none;
+    height: 60px;
+    width: 100%;
+    display: flex;
+
+}
+
+.tab ul li {
+    box-sizing: border-box;
+    height: 100%;
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    border: 0.1px solid rgb(170, 170, 170);
+}
+
+.tab ul li a {
+    color: rgb(95, 95, 95);
+    margin: auto;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.tab ul li.tab-notice {
+    background-color: rgb(18, 182, 96);
+}
+
+.tab ul li.tab-notice a {
+    color: white;
+}
+
+.listView {
+    margin-top: 80px;
+    display: block;
+    padding : 10px 10px 10px 10px;
+    /*border-bottom: solid 0.1px rgb(170, 170, 170);*/
+    margin-bottom: 100px;
+}
+
+.listView .listTitle{
+    position: relative;
+    padding : 20px 0px 20px 0px;
+    border-top: 2px solid black;
+    border-bottom: 0.1px solid rgb(170, 170, 170);
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+
+.listTitle .cate {
+    display: inline-block;
+    margin: 0 20px 0 30px;
+    vertical-align: middle;
+    width: 15%;
+    text-align: center;
+}
+
+
+.listTitle .title {
+    display: inline-block;
+    vertical-align: middle;
+    width: 70%;
+}
+.listTitle .date {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 15%;
+}
+
+h3{
+    display: block;
+}
+
+.listView .listCont {
+    display: block;
+    padding: 20px 20px 20px 20px;
+    border-bottom: 0.1px solid rgb(170, 170, 170);
+    min-height: 400px;
+    max-height: 1000px;
+}
+
+
+.listCont p{
+    word-wrap: break-word;
+    line-height: 2;
+
+}
+
+.cont-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cont-img img {
+    max-width: 90%;
+}
+
+.listBtn {
+    text-align: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.listBtn button {
+    background-color: black;
+    color:white;
+    width: 100px;
+    height: 35px;
+}
+

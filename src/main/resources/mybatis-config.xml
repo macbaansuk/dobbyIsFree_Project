@@ -3,7 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+    </settings>
+
     <typeAliases>
         <typeAlias alias="InvDto" type="com.dobby.project.hoon.domain.InvDto"/>
+        <typeAlias alias="NoticeDto" type="com.dobby.project.soo.NoticeDto"/>
+        <typeAlias alias="SearchCondition" type="com.dobby.project.soo.SearchCondition"/>
     </typeAliases>
+
+
 </configuration>
