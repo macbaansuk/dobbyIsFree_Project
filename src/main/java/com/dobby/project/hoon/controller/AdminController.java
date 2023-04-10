@@ -38,6 +38,7 @@ public class AdminController {
             rattr.addFlashAttribute("msg", "MOD_OK");
 
             return "redirect:/admin/list";
+
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(invDto);

@@ -16,7 +16,7 @@ public class InvDto {
     private String NEW_YN;
     private String PROD_STUS;
     private String OPT_YN;
-    private String DESC_1;
+    private String PROD_DESC;
     private String DC_YN;
     private Integer DC_APLY;
     private String MAI_YN;
@@ -44,7 +44,7 @@ public class InvDto {
 //
 //    }
 
-    public InvDto(Integer PROD_ID, String CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String DESC_1, String DC_YN, Integer DC_APLY, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
+    public InvDto(Integer PROD_ID, String CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN, Integer DC_APLY, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
         this.PROD_ID = PROD_ID;
         this.CATE_CD = CATE_CD;
         this.AMT = AMT;
@@ -56,7 +56,7 @@ public class InvDto {
         this.NEW_YN = NEW_YN;
         this.PROD_STUS = PROD_STUS;
         this.OPT_YN = OPT_YN;
-        this.DESC_1 = DESC_1;
+        this.PROD_DESC = PROD_DESC;
         this.DC_YN = DC_YN;
         this.DC_APLY = DC_APLY;
         this.MAI_YN = MAI_YN;
@@ -80,12 +80,12 @@ public class InvDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvDto invDto = (InvDto) o;
-        return Objects.equals(PROD_ID, invDto.PROD_ID) && Objects.equals(CATE_CD, invDto.CATE_CD) && Objects.equals(AMT, invDto.AMT) && Objects.equals(PROD_NM, invDto.PROD_NM) && Objects.equals(REP_IMG, invDto.REP_IMG) && Objects.equals(AVG_ASCR, invDto.AVG_ASCR) && Objects.equals(REVW_NCNT, invDto.REVW_NCNT) && Objects.equals(INV_QTY, invDto.INV_QTY) && Objects.equals(NEW_YN, invDto.NEW_YN) && Objects.equals(PROD_STUS, invDto.PROD_STUS) && Objects.equals(OPT_YN, invDto.OPT_YN) && Objects.equals(DESC_1, invDto.DESC_1) && Objects.equals(DC_YN, invDto.DC_YN) && Objects.equals(DC_APLY, invDto.DC_APLY) && Objects.equals(MAI_YN, invDto.MAI_YN) && Objects.equals(FGIFT_YN, invDto.FGIFT_YN) && Objects.equals(NOTICE, invDto.NOTICE) && Objects.equals(INV_LOC, invDto.INV_LOC) && Objects.equals(SAFE_INV, invDto.SAFE_INV) && Objects.equals(INV_STUS_CD, invDto.INV_STUS_CD) && Objects.equals(FST_REGR_DCMT_NO, invDto.FST_REGR_DCMT_NO) && Objects.equals(LAST_UPDR_DCMT_NO, invDto.LAST_UPDR_DCMT_NO);
+        return Objects.equals(PROD_ID, invDto.PROD_ID) && Objects.equals(CATE_CD, invDto.CATE_CD) && Objects.equals(AMT, invDto.AMT) && Objects.equals(PROD_NM, invDto.PROD_NM) && Objects.equals(REP_IMG, invDto.REP_IMG) && Objects.equals(AVG_ASCR, invDto.AVG_ASCR) && Objects.equals(REVW_NCNT, invDto.REVW_NCNT) && Objects.equals(INV_QTY, invDto.INV_QTY) && Objects.equals(NEW_YN, invDto.NEW_YN) && Objects.equals(PROD_STUS, invDto.PROD_STUS) && Objects.equals(OPT_YN, invDto.OPT_YN) && Objects.equals(PROD_DESC, invDto.PROD_DESC) && Objects.equals(DC_YN, invDto.DC_YN) && Objects.equals(DC_APLY, invDto.DC_APLY) && Objects.equals(MAI_YN, invDto.MAI_YN) && Objects.equals(FGIFT_YN, invDto.FGIFT_YN) && Objects.equals(NOTICE, invDto.NOTICE) && Objects.equals(INV_LOC, invDto.INV_LOC) && Objects.equals(SAFE_INV, invDto.SAFE_INV) && Objects.equals(INV_STUS_CD, invDto.INV_STUS_CD) && Objects.equals(FST_REGR_DCMT_NO, invDto.FST_REGR_DCMT_NO) && Objects.equals(LAST_UPDR_DCMT_NO, invDto.LAST_UPDR_DCMT_NO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(PROD_ID, CATE_CD, AMT, PROD_NM, REP_IMG, AVG_ASCR, REVW_NCNT, INV_QTY, NEW_YN, PROD_STUS, OPT_YN, DESC_1, DC_YN, DC_APLY, MAI_YN, FGIFT_YN, NOTICE, INV_LOC, SAFE_INV, INV_STUS_CD, FST_REGR_DCMT_NO, LAST_UPDR_DCMT_NO);
+        return Objects.hash(PROD_ID, CATE_CD, AMT, PROD_NM, REP_IMG, AVG_ASCR, REVW_NCNT, INV_QTY, NEW_YN, PROD_STUS, OPT_YN, PROD_DESC, DC_YN, DC_APLY, MAI_YN, FGIFT_YN, NOTICE, INV_LOC, SAFE_INV, INV_STUS_CD, FST_REGR_DCMT_NO, LAST_UPDR_DCMT_NO);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class InvDto {
                 ", NEW_YN='" + NEW_YN + '\'' +
                 ", PROD_STUS='" + PROD_STUS + '\'' +
                 ", OPT_YN='" + OPT_YN + '\'' +
-                ", DESC_1='" + DESC_1 + '\'' +
+                ", PROD_DESC='" + PROD_DESC + '\'' +
                 ", DC_YN='" + DC_YN + '\'' +
                 ", DC_APLY=" + DC_APLY +
                 ", MAI_YN='" + MAI_YN + '\'' +
@@ -210,12 +210,12 @@ public class InvDto {
         this.OPT_YN = OPT_YN;
     }
 
-    public String getDESC_1() {
-        return DESC_1;
+    public String getPROD_DESC() {
+        return PROD_DESC;
     }
 
-    public void setDESC_1(String DESC_1) {
-        this.DESC_1 = DESC_1;
+    public void setPROD_DESC(String PROD_DESC) {
+        this.PROD_DESC = PROD_DESC;
     }
 
     public String getDC_YN() {
