@@ -19,8 +19,9 @@
       padding: 0;
     }
 
-    #login_menu span a {text-decoration: none;}
+    #login_menu span a { color: #777777; text-decoration: none;}
     #login_menu span a:visited { color: #777777; text-decoration: none; }
+    #login_menu span a:hover { color: rgb(18, 182, 96); font-weight: bold;}
 
 
     #login_menu {
@@ -113,21 +114,21 @@
 <body>
 <header>
   <div id="login_menu">
-    <span><a href="cs-notice">고객센터</a></span>
+    <span><a href="/cs-notice/list">고객센터</a></span>
     <span>로그인</span>
     <span>회원가입</span>
-    <span><a href="mypage">마이페이지</a></span>
+    <span><a href="/mypage">마이페이지</a></span>
     <span>장바구니</span>
     <span id="cart_cnt">0</span>
   </div>
   <div id="logo_search_box">
     <h1>
-      <a href="#">
-        <img src="./img/main/logo.png" width="250px" />
+      <a href="/">
+        <img src="/img/main/logo.png" width="250px" />
       </a>
       <div id="search_box">
         <input type="text" placeholder="  검색어를 입력하세요.">
-        <img src="./img/main/search.png" />
+        <img src="/img/main/search.png" />
       </div>
     </h1>
   </div>

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,14 +42,14 @@
         #footer .ftsns .btnYoutube {
             width: 40px;
             height: 32px;
-            background-image: url('./img/main/youtube.png');
+            background-image: url('/img/main/youtube.png');
             background-size: contain;
             background-position: center;
         }
         #footer .ftsns .btnInstagram {
             width: 36px;
             height: 42px;
-            background-image: url("./img/main/insta.png");
+            background-image: url("/img/main/insta.png");
             background-size: contain;
             background-position: center;
         }
@@ -58,7 +57,7 @@
         #footer .ftsns .btnNaver {
             width: 40px;
             height: 40px;
-            background-image: url('./img/main/naver.png');
+            background-image: url('/img/main/naver.png');
             background-size: contain;
             background-position: center;
         }
@@ -82,7 +81,7 @@
         #footer .ftinfo .info .lgEscrow em {margin: 3px 0;color: #777;line-height: 1.3;font-family: 'SDNeoL', 'notoL';}
         #footer .ftinfo .info .lgEscrow button {text-decoration: underline;}
         #footer .ftinfo .info .copyRight{margin-top:10px}
-        #footer .ftinfo .info .awards {padding-left:42px;margin-top:12px;line-height:20px;background:url('./img/main/awards_footer.png') no-repeat left top;}
+        #footer .ftinfo .info .awards {padding-left:42px;margin-top:12px;line-height:20px;background:url('/img/main/awards_footer.png') no-repeat left top;}
         .csImg {
             width: 380px;height: 212px; padding:31px 31px;
         }
@@ -97,7 +96,7 @@
 <footer id="footer">
     <div class="menuWrap">
         <div class="menu">
-            <div><img id="ftImg" src='./img/main/logo_black.png'></div>
+            <div><img id="ftImg" src='/img/main/logo_black.png'></div>
             <nav role="navigation" aria-label="Customer service">
                 <a href="#" onclick="termsOpen('이용약관', 'termsService'); return false;">서비스 이용약관</a>
                 <!-- <a href="#" onclick="termsOpen('개인정보처리방침', 'terms17'); return false;"><strong>개인정보처리방침</strong></a> -->
@@ -140,7 +139,7 @@
             <p class="awards">정석어워드 2022 <br> 브랜드부문 통합대상</p>
         </div>
         <div class="info_2">
-            <img class ="csImg" src="./img/main/customer.jpg">
+            <img class ="csImg" src="/img/main/customer.jpg">
         </div>
     </div>
 </footer>
