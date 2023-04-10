@@ -372,7 +372,7 @@
     text-align: left;
 }
 
-.btnSearch span {
+.btnSearch span, .btnModify span {
     display: inline-block;
     position: relative;
     text-align: center;
@@ -386,7 +386,7 @@
     position: relative;
     text-align: center;
 }
-.btnSearch span {
+.btnSearch span , .btnModify span {
     margin-top: 40px;
     margin-bottom: 40px;
     padding: 0 8px;
@@ -410,7 +410,7 @@ body, code {
     background-color: #f4f5f8;
 }
 
-.btnSearch.reset span {
+.btnSearch.reset span, .btnModify.reset span {
     border: 1px solid #aeb4c6;
     color: #1b1e26;
     background-color: #fff;
@@ -671,4 +671,10 @@ tr {
     display: block;
     clear: both;
 }
+
+ /*.clickable {*/
+ /*    cursor: pointer;*/
+ /*    text-decoration: underline;*/
+
+ /*}*/
 

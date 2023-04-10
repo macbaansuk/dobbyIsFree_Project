@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dobby.project.hoon.dao.InvMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM prod
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM prod
+    </delete>
+
+    <delete id="deleteForAdmin" parameterType="map">
+        DELETE FROM prod WHERE PROD_ID = #{PROD_ID}
+    </delete>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM prod WHERE PROD_ID = #{PROD_ID} and PROD_NM = #{PROD_NM}
+    </delete>
+
+    <insert id="insert" parameterType="InvDto">
+        INSERT INTO prod
+            (PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,DESC_1,DC_YN,DC_APLY,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO)
+        VALUES
+            (#{PROD_ID}, #{CATE_CD}, #{AMT}, #{PROD_NM}, #{REP_IMG}, #{AVG_ASCR}, #{REVW_NCNT}, #{INV_QTY}, #{NEW_YN}, #{PROD_STUS}, #{OPT_YN}, #{DESC_1}, #{DC_YN}, #{DC_APLY}, #{MAI_YN}, #{FGIFT_YN}, #{UPD_DTM}, #{REG_DTM}, #{NOTICE}, #{SLE_BGN_DTM}, #{SLE_END_DTM}, #{INV_LOC}, #{SAFE_INV}, #{INV_STUS_CD}, #{FST_REG_DTM}, #{FST_REGR_DCMT_NO}, #{LAST_UPD_DTM}, #{LAST_UPDR_DCMT_NO} )
+    </insert>
+
+    <select id="selectAll" resultType="InvDto">
+        SELECT PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,DESC_1,DC_YN,DC_APLY,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO
+        FROM prod
+        ORDER BY  PROD_ID DESC
+    </select>
+
+    <sql id="selectFromProd">
+        SELECT PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,DESC_1,DC_YN,DC_APLY,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO
+        FROM prod
+    </sql>
+
+    <select id="select" parameterType="int" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        WHERE PROD_ID = #{PROD_ID}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        ORDER BY REG_DTM DESC, PROD_ID DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <update id="update" parameterType="InvDto">
+        UPDATE prod
+        SET CATE_CD = #{CATE_CD},
+            AMT = #{AMT},
+            PROD_NM = #{PROD_NM},
+            REP_IMG = #{REP_IMG},
+            AVG_ASCR = #{AVG_ASCR},
+            REVW_NCNT = #{REVW_NCNT},
+            INV_QTY = #{INV_QTY},
+            NEW_YN = #{NEW_YN},
+            PROD_STUS = #{PROD_STUS},
+            OPT_YN = #{OPT_YN},
+            DESC_1 = #{DESC_1},
+            DC_YN = #{DC_YN},
+            DC_APLY = #{DC_APLY},
+            MAI_YN = #{MAI_YN},
+            FGIFT_YN = #{FGIFT_YN},
+            UPD_DTM = now(),
+            REG_DTM = #{REG_DTM},
+            NOTICE = #{NOTICE},
+            SLE_BGN_DTM = #{SLE_BGN_DTM},
+            SLE_END_DTM = #{SLE_END_DTM},
+            INV_LOC = #{INV_LOC},
+            SAFE_INV = #{SAFE_INV},
+            INV_STUS_CD = #{INV_STUS_CD},
+            FST_REG_DTM = #{FST_REG_DTM},
+            FST_REGR_DCMT_NO = #{FST_REGR_DCMT_NO},
+            LAST_UPD_DTM = now(),
+            LAST_UPDR_DCMT_NO = #{LAST_UPDR_DCMT_NO}
+        WHERE PROD_ID = #{PROD_ID}
+
+    </update>
+
+    <update id="updateCommentCnt" parameterType="map">
+        UPDATE prod
+        SET   comment_cnt = comment_cnt + #{cnt}
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE prod
+        SET   view_cnt = view_cnt + 1
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+</mapper>

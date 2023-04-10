@@ -1,14 +1,18 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
+
 <html>
 <head>
     <title>관리자 페이지</title>
 </head>
 
-<link rel="stylesheet" href="./css/hoon/admin.css"/>
+<link rel="stylesheet" href="/css/hoon/admin.css"/>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
 <body>
-
-
 
 <div class="admin">
     <div class="Header">
@@ -278,12 +282,8 @@
                                 <col style="width:50px">
                                 <col style="width:200px">
                                 <col style="width:75px">
-                                <!-- <col style="width:75px">
-                                <col class="chk"> -->
                                 <col style="width:160px">
-                                <col style="width:130px">
-                                <col style="width:160px">
-                                <col style="width:160px">
+
                                 <col style="width:70px">
                                 <col style="width:70px">
                                 <col style="width:65px">
@@ -296,27 +296,27 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">상품명</th>
-                                <th scope="col">총 재고량</th>
-                                <!-- <th scope="col">묶음선택</th>
-                                <th scope="col"><input type="checkbox" class="allChk"></th> -->
-                                <th scope="col">품목명</th>
-                                <th scope="col">재고관리 사용</th>
-                                <th scope="col">재고관리 등급</th>
-                                <th scope="col"><span>수량체크 기준</span></th>
+                                <th scope="col">총 재고수량</th>
+                                <th scope="col">카테고리명</th>
+
                                 <th scope="col">재고수량</th>
                                 <th scope="col">안전재고</th>
-                                <th scope="col"><span>품절<br>표시</span></th>
-                                <th scope="col">진열상태</th>
-                                <th scope="col">판매상태</th>
-                                <th scope="col"><strong>총 누적<br>판매량</strong></th>
+                                <th scope="col"><span>재고<br>상태</span></th>
+                                <th scope="col">재고위치</th>
+                                <th scope="col">상품상태</th>
+                                <th scope="col"><strong>평균<br>별점</strong></th>
                             </tr>
 
 
                             </thead>
 
                             <tbody class="center" id="eStockManageTable">
+
+                            <c:forEach var="inv" items="${list}">
+
+
                             <tr>
-                                <td rowspan="1">2</td>
+                                <td rowspan="1">${inv.PROD_ID}</td>
                                 <td rowspan="1" class="left">
                                     <div class="gGoods gMedium" style="z-index: 0;">
                                         <div class="mOpen">
@@ -330,128 +330,97 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p><a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">샘플상품 2</a></p>
+                                        <p><a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">${inv.PROD_NM}</a></p>
                                         <p class="txtCode">(P000000J)</p>
                                         <input type="hidden" name="product_no_list[]" value="10">
                                     </div>
                                 </td>
 
 
-                                <td rowspan="1"></td>
-
-
-                                <!-- <td rowspan="1"><button type="button" class="btnIcon icoBunch eBindChk" id="P000000J"><span>묶음선택</span></button></td> -->
-
-                                <!-- <td><input type="checkbox" class="rowChk eItemValueList" id="P000000J" item_code="P000000J000A" product_no="10" value="P000000J000A"></td> -->
+                                <td rowspan="1">${inv.INV_QTY + inv.SAFE_INV}</td>
                                 <td>
-                                    -
-                                    <input type="hidden" class="eStockValue" name="itemCodeList[]" value="P000000J000A">
+                                        ${inv.CATE_CD}
+                                    <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
+                                </td>
+                                <td>
+                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_QTY}</span>
+                                    <input type="number" class="option-number" style="width:60px;" name="stock_number[P000000J000A]" value="${inv.INV_QTY}">
+                                </td>
+                                <td>
+                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.SAFE_INV}</span>
+                                    <input type="number" class="safe-number" style="width:60px;" name="stock_warn_value[P000000J000A]" value="${inv.SAFE_INV}">
+                                </td>
+                                <td>
+                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_STUS_CD}</span>
+                                    <select class="inv-status" name="inv_status[P000000J000A]">
+                                        <option value="여유" ${inv.INV_STUS_CD == '여유' ? 'selected' : ''}>여유</option>
+                                        <option value="부족" ${inv.INV_STUS_CD == '부족' ? 'selected' : ''}>부족</option>
+                                        <option value="품절" ${inv.INV_STUS_CD == '품절' ? 'selected' : ''}>품절</option>
+                                    </select>
                                 </td>
 
 
+
+
+                            <%--                            <td><input type="text" class="option-number" style="width:60px; display:none;" name="stock_number[${inv.INV_QTY}]" value="${inv.INV_QTY}"><span class="ec-use-inventory-display-item">${inv.INV_QTY}]</span></td>--%>
+<%--                                <td><input type="text" class="safe-number" style="width:60px; display:none;" name="stock_warn_value[P000000J000A]" value="0"><span class="ec-use-inventory-display-item">${inv.SAFE_INV}</span></td>--%>
+<%--                                <td><input type="checkbox" class="inv-status" style="display:none;" name="use_soldout[P000000J000A]" value="T"><span class="ec-use-inventory-display-item">${inv.INV_STUS_CD}--%>
+<%--                                <select class="fSelect" name="orderby">--%>
+<%--                                    <option>여유</option>--%>
+<%--                                    <option>부족</option>--%>
+<%--                                    <option>품절</option></select>--%>
+<%--                                </span></td>--%>
                                 <td>
-                                    <select class="fSelect eStockValue eStockValueDisabledControl eUseStock" name="use_stock[P000000J000A]">
-                                        <option value="T">사용함</option>
-                                        <option value="F" selected="selected">사용안함</option>
+                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_LOC}</span>
+                                    <select class="inv-loc" name="inv_loc[P000000J000A]">
+                                        <option value="창고 1(1A-14)" ${inv.INV_LOC == '창고 1(1A-14)' ? 'selected' : ''}>창고 1(1A-14)</option>
+                                        <option value="창고 1(2A-14)" ${inv.INV_LOC == '창고 1(2A-14)' ? 'selected' : ''}>창고 1(2A-14)</option>
+                                        <option value="창고 1(3A-14)" ${inv.INV_LOC == '창고 1(3A-14)' ? 'selected' : ''}>창고 1(3A-14)</option>
                                     </select>
                                 </td>
-                                <td>
-                                    <select class="fSelect eStockValue eStockValueDisabled" name="stock_importance[P000000J000A]" style="display:none;">
-                                        <option value="A" selected="selected">일반재고</option>
-                                        <option value="B">중요재고</option>
-                                    </select>
-                                    <span class="ec-use-inventory-display-item">-</span>                    </td>
-                                <td>
-                                    <select class="fSelect eStockValue eStockValueDisabled" name="stock_checking_type[P000000J000A]" style="display:none;">
-                                        <option value="B" selected="selected">결제기준</option>
-                                        <option value="A">주문기준</option>
-                                    </select>
-                                    <span class="ec-use-inventory-display-item">-</span>                    </td>
-                                <td><input type="text" class="fText right eStockValue eStockValueDisabled" style="width:60px; display:none;" name="stock_number[P000000J000A]" value="0"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td><input type="text" class="fText right eStockValue eStockValueDisabled" style="width:60px; display:none;" name="stock_warn_value[P000000J000A]" value="0"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td><input type="checkbox" class="fChk eStockValue eStockValueDisabled eUseSoldout" style="display:none;" name="use_soldout[P000000J000A]" value="T"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td> - </td>
-                                <td> - </td>
-                                <td>0 (0)</td>
+
+                                <td> ${inv.PROD_STUS}
+<%--                                <td><input type="text" class="option-number" style="width:60px;" name="stock_number[${inv.PROD_ID}]" value="${inv.INV_QTY}"></td>--%>
+<%--                                <td><input type="text" class="safe-number" style="width:60px;" name="stock_warn_value[${inv.PROD_ID}]" value="${inv.SAFE_INV}"></td>--%>
+<%--                                <td><input type="text" style="width:60px;" name="inv_loc[${inv.PROD_ID}]" value="${inv.INV_LOC}"></td>--%>
+
+
+                                </td>
+                                <td>${inv.AVG_ASCR} / 5</td>
                             </tr>
-                            <tr>
-                                <td rowspan="1">1</td>
-                                <td rowspan="1" class="left">
-                                    <div class="gGoods gMedium" style="z-index: 0;">
-                                        <div class="mOpen">
-                                            <span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>
-                                            <div class="open" style="top: 20%; left: 20%; width: 145px; display: none;">
-                                                <div class="wrap">
-                                                    <ul class="default">
-                                                        <li><a href="#none" class="eProductDetail" target="_blank" title="새창 열림" product_no="9">상품 상세보기</a></li>
-                                                        <li><a href="#none" class="eProductDisplayPopup" popup="T" url="https://youngsh92.cafe24.com/product/detail.html?product_no=9">쇼핑몰화면 진열보기</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p><a href="/disp/admin/shop1/product/ProductRegister?product_no=9" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="9">샘플상품 1</a></p>
-                                        <p class="txtCode">(P000000I)</p>
-                                        <input type="hidden" name="product_no_list[]" value="9">
-                                    </div>
-                                </td>
+                            </c:forEach>
 
-
-                                <td rowspan="1"></td>
-
-
-                                <!-- <td rowspan="1"><button type="button" class="btnIcon icoBunch eBindChk" id="P000000I"><span>묶음선택</span></button></td>
-
-                                                    <td><input type="checkbox" class="rowChk eItemValueList" id="P000000I" item_code="P000000I000A" product_no="9" value="P000000I000A"></td> -->
-                                <td>
-                                    -
-                                    <input type="hidden" class="eStockValue" name="itemCodeList[]" value="P000000I000A">
-                                </td>
-
-
-                                <td>
-                                    <select class="fSelect eStockValue eStockValueDisabledControl eUseStock" name="use_stock[P000000I000A]">
-                                        <option value="T">사용함</option>
-                                        <option value="F" selected="selected">사용안함</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="fSelect eStockValue eStockValueDisabled" name="stock_importance[P000000I000A]" style="display:none;">
-                                        <option value="A" selected="selected">일반재고</option>
-                                        <option value="B">중요재고</option>
-                                    </select>
-                                    <span class="ec-use-inventory-display-item">-</span>                    </td>
-                                <td>
-                                    <select class="fSelect eStockValue eStockValueDisabled" name="stock_checking_type[P000000I000A]" style="display:none;">
-                                        <option value="B" selected="selected">결제기준</option>
-                                        <option value="A">주문기준</option>
-                                    </select>
-                                    <span class="ec-use-inventory-display-item">-</span>                    </td>
-                                <td><input type="text" class="fText right eStockValue eStockValueDisabled" style="width:60px; display:none;" name="stock_number[P000000I000A]" value="0"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td><input type="text" class="fText right eStockValue eStockValueDisabled" style="width:60px; display:none;" name="stock_warn_value[P000000I000A]" value="0"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td><input type="checkbox" class="fChk eStockValue eStockValueDisabled eUseSoldout" style="display:none;" name="use_soldout[P000000I000A]" value="T"><span class="ec-use-inventory-display-item">-</span></td>
-                                <td> - </td>
-                                <td> - </td>
-                                <td>0 (0)</td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
+                <div class="mButton">
+                    <a href="#none" class="btnModify" id="eBtnSearch"><span>저장</span></a>
+<%--                    <a href="#none" class="btnSearch reset" id="eSearchFormInit"><span>초기화</span></a>--%>
+                </div>
 
+                <br>
+                <div style="text-align:center; font-size: 1.5em;" >
+                    <c:if test="${ph.showPrev}">
+                        <a href="<c:url value='/admin/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>" >&lt;</a>
+                    </c:if>
 
+                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                        <a href="<c:url value='/admin/list?page=${i}&pageSize=${ph.pageSize}'/>" >${i}</a>
+                    </c:forEach>
 
+                    <c:if test="${ph.showNext}">
+                        <a href="<c:url value='/admin/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>" >&gt;</a>
+                    </c:if>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
 
-</div><!-- //Container// -->
-</div>
 
-
-</div>
 
 
 
@@ -459,6 +428,33 @@
 <div class="admin-footer">
     Copyright ⓒ 2023 됐나욧 All rights reserved.
 </div>
+
+<script>
+    let msg = "${msg}";
+    if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
+    if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
+</script>
+
+<script>
+
+    $("#modifyBtn").on("click", function(){
+        let form = $("#form");
+        let isReadonly = $("input[name=title]").attr('readonly');
+        // 1. 읽기 상태이면, 수정 상태로 변경
+        if(isReadonly=='readonly') {
+            $(".btnModify").html("게시판 수정");
+            $("input[name=title]").attr('readonly', false);
+            $("textarea").attr('readonly', false);
+            // $("#modifyBtn").html("<i class='fa fa-pencil'></i> 등록");
+            return;
+        }
+        // 2. 수정 상태이면, 수정된 내용을 서버로 전송
+        form.attr("action", "<c:url value='/admin/modify?page=${page}&pageSize=${pageSize}'/>");
+        form.attr("method", "post");
+        if(formCheck())
+            form.submit();
+    });
+</script>
 
 </body>
 </html>
