@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -8,181 +7,12 @@
     <title>장바구니 상세</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./css/hwa/cart_real.css"/>
-    <style>
-        .spinner {
-            display: inline-block;
-            position: relative;
-            border: 1px solid #dddee1;
-            background-color: #fff;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .spinner:before, .spinner:after {
-            content: "";
-            display: table;
-        }
-
-        .spinner:after {
-            clear: both;
-        }
-
-        .spinner input, .spinner button {
-            float: left;
-        }
-
-        .spinner input {
-            font-family: "Open Sans", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "돋움", Dotum, Helvetica, Arial, sans-serif;
-            width: 46px;
-            height: 32px;
-            line-height: 32px;
-            color: #000000;
-            padding: 0;
-            font-size: 16px;
-            border: 0;
-            border-right: 1px solid #d5d5d5;
-            border-left: 1px solid #d5d5d5;
-            text-align: center;
-            background-color: #fff;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .spinner input[readonly] {
-            background-color: #fff;
-        }
-
-        .spinner input[readonly]:focus {
-            border-top-color: transparent;
-            border-bottom-color: transparent;
-        }
-
-        .spinner .btn-amount {
-            display: block;
-            width: 32px;
-            height: 32px;
-            border: 0;
-            cursor: pointer;
-            background-color: transparent;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 11px 11px;
-            overflow: hidden;
-            text-indent: -9999px;
-            font-size: 0.01em;
-            color: transparent;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .spinner .btn-amount.minus {
-            border-right: 0;
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
-        }
-
-        .spinner .btn-amount.plus {
-            border-left: 0;
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
-        }
-
-        .spinner.disabled {
-            background-color: #e5e5e5;
-        }
-
-        .spinner.disabled input[type="text"] {
-            color: #c1c1c1;
-        }
-
-        .spinner.disabled button.btn-amount {
-            background-color: #e5e5e5;
-        }
-
-        .spinner.disabled button.minus {
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
-        }
-
-        .spinner.disabled button.plus {
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
-        }
-
-        .spinner.small .btn-amount {
-            width: 24px;
-            height: 24px;
-            background-color: #f9f9f9;
-        }
-
-        .spinner.small input {
-            width: 37px;
-            height: 24px;
-            line-height: 24px;
-            font-size: 14px;
-        }
-
-        .spinner.small.disabled .btn-amount {
-            background-color: #f6f6f6;
-        }
-
-        .spinner.small.disabled .btn-amount.minus {
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
-        }
-
-        .spinner.small.disabled .btn-amount.plus {
-            background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
-        }
-
-        .spinner.small.disabled input {
-            background-color: #f6f6f6;
-        }
-        #cart_header{padding: 30px 0 30px 0;}
-
-        .order_btn {
-            /*       border: 1px solid black; */
-            font-size: 18px;
-            padding: 5px 10px;
-            border: 1px solid #eee;
-            background: #eee;
-
-        }
-
-        .inputArea{padding: 20px 0 20px 0}
-
-        /*변경 버튼*/
-        .btn {
-            position: relative;
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
-            display: inline-block;
-            border-width: 1px;
-            border-style: solid;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            text-decoration: none;
-            -webkit-appearance: none;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-        .btn.slightly {
-            color: #222;
-            border-color: #d5d5d5;
-            background-color: #fff;
-        }
-        .btn.small {
-            padding: 0 15px;
-            height: 40px;
-            line-height: 38px;
-            font-size: 16px;
-            /* font-weight: 400; */
-        }
-        /*변경 버튼 끝*/
-    </style>
 
 
 </head>
 <body>
 <jsp:include page="../header.jsp" />
+
 
 <div id="root">
     <section id="container">
@@ -196,8 +26,8 @@
                         <div class="allCheck">
                             <input type="checkbox" name="allCheck" id="allCheck"/><label for="allCheck">모두 선택</label>
                             <script>
-                                $("#allCheck").click(function () {
-                                    var chk = $("#allCheck").prop("checked");
+                                $("#allCheck").click(function () {  //모두 선택 버튼 체크시
+                                    let chk = $("#allCheck").prop("checked");
                                     if (chk) {
                                         $(".chBox").prop("checked", true);
                                     } else {
@@ -206,7 +36,7 @@
                                 });
                             </script>
                         </div>
-ㄴ                        <div class="delBtn">
+                        <div class="delBtn">
                             <button type="button" class="selectDelete_btn">선택 삭제</button>
 
                             <script>
@@ -245,6 +75,8 @@
                     </li>
                     <c:set var="sum" value="0"/>
                     <c:forEach items="${cartList}" var="cartProdDto">
+                    <!-- 추가코드  할인금액 -->
+
                     <li>
                         <div class="checkBox">
                             <input type="checkbox" name="chBox" class="chBox"
@@ -257,48 +89,84 @@
                         </div>
 
                         <div class="thumb">
-                            <img src="https://images.innisfree.co.kr/upload/product/25936_l1_S_250.jpg?T202304092137"/>
+<%--                            <img src="https://images.innisfree.co.kr/upload/product/25936_l1_S_250.jpg?T202304092137"/>--%>
+                            <img src="${cartProdDto.REP_IMG}"/>
                         </div>
                         <div class="gdsInfo">
                             <p>
-                                <span>상품명</span>${cartProdDto.PROD_NM} <span> |카트ID : ${cartProdDto.CART_ID} </span>
+                                <span>상품명</span>${cartProdDto.PROD_NM} <br/>
                                 <br/>
-                                <span>개당 가격</span>${cartProdDto.AMT} 원<br/>
+                                <span>개당 가격</span>
+                                <c:choose>
+                                <c:when test="${cartProdDto.DC_YN eq 'Y'}">
+                                    <fmt:formatNumber pattern="###,###,###" value="${cartProdDto.AMT * 0.9}" /> 원 <br/>
+                                </c:when>
+                                <c:otherwise>
+                                    <fmt:formatNumber pattern="###,###,###" value="${cartProdDto.AMT}" /> 원 <br/>
+                                </c:otherwise>
+                                </c:choose>
+
+
+
+
                                 <span>구입 수량</span>${cartProdDto.PROD_INDV_QTY}
-                                    <%--                                        ${cartProdDto.PROD_INDV_QTY} 개<br/>--%>
+
 
                                 <!-- 추가 코드 -->
                             <div class="spinner small">
-                                <button type="button" class="btn-amount minus modifyBtn" title="수량감소">수량감소</button>
+                                <button type="button" class="btn-amount minus modifyBtn" title="수량감소" data-cartId = ${cartProdDto.CART_ID}>수량감소</button>
                                 <input type="text" value="${cartProdDto.PROD_INDV_QTY}" maxlength="3" name="ordQty" class="goodsQty">
-                                <button type="button" class="btn-amount plus modifyBtn" title="수량증가">수량증가</button>
+                                <button type="button" class="btn-amount plus modifyBtn" title="수량증가" data-cartId = ${cartProdDto.CART_ID}>수량증가</button>
                                 <input type="hidden" value="1" name="oriOrdQty"/>
                             </div>
                             <a href="javascript:void(0);" class="btn small slightly modifyConfirmBtn" data-target ="1">변경</a>
                             <script>
-                                const decreaseBtn = document.querySelector('.btn-amount.minus');
-                                const increaseBtn = document.querySelector('.btn-amount.plus');
-                                const inputField = document.querySelector('.goodsQty');
 
-                                decreaseBtn.addEventListener('click', () => {
-                                    let currentValue = parseInt(inputField.value);
-                                    if (currentValue > 1) {
-                                        inputField.value = currentValue - 1;
+                                //------------------------------------------------------------------------------------------------------------------------------
+                                // $(".modifyBtn.plus").off().on("click", function(){
+                                //     let quantity = parseInt($(this).parent("div").find("input").val());
+                                //     $(this).parent("div").find("input").val(++quantity);
+                                // });
+                                //
+                                // $(".modifyBtn.minus").off().on("click", function(){
+                                //     let quantity = parseInt($(this).parent("div").find("input").val());
+                                //     if(quantity > 1){
+                                //         $(this).parent("div").find("input").val(--quantity);
+                                //     }
+                                // });
+
+
+
+                                $(".modifyBtn.plus").off().on("click", function(){
+                                    let quantity = parseInt($(this).parent("div").find("input").val());
+                                    if(quantity < 10) {
+                                        $(this).parent("div").find("input").val(++quantity);
+                                    } else {
+                                        alert("10개까지만 담을 수 있네용 아쉽🥺");
                                     }
                                 });
 
-                                increaseBtn.addEventListener('click', () => {
-                                    let currentValue = parseInt(inputField.value);
-                                    inputField.value = currentValue + 1;
+                                $(".modifyBtn.minus").off().on("click", function(){
+                                    let quantity = parseInt($(this).parent("div").find("input").val());
+                                    if(quantity > 1){
+                                        $(this).parent("div").find("input").val(--quantity);
+                                    }
                                 });
 
-                                if(currentValue >=10)
-                                    alert ("10개까지 담으실수 있어용😉")
                             </script>
                             <!--  -->
 
 
-                                <span>최종 가격</span>${cartProdDto.PROD_INDV_QTY * cartProdDto.AMT} 원
+                                <span>최종 가격</span>
+                                    <c:choose>
+                                        <c:when test="${cartProdDto.DC_YN eq 'Y'}">
+                                            <fmt:formatNumber pattern="###,###,###" value="${cartProdDto.PROD_INDV_QTY * cartProdDto.AMT * 0.9}" /> 원 <br/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:formatNumber pattern="###,###,###" value="${cartProdDto.PROD_INDV_QTY * cartProdDto.AMT}" /> 원 <br/>
+                                        </c:otherwise>
+                                    </c:choose>
+
                             </p>
 <%--                        </div>--%>
                         <!-- 삭제 버튼 -->
@@ -344,9 +212,21 @@
         </li>
 
             <%-- 반복할 때마다 sum에 상품 가격*상품 갯수만큼을 더함 --%>
-        <c:set var="sum" value="${sum + (cartProdDto.PROD_INDV_QTY * cartProdDto.AMT)}"/>
+                        <c:choose>
+                            <c:when test="${cartProdDto.DC_YN eq 'Y'}">
+                                 <c:set var="sum" value="${sum + (cartProdDto.PROD_INDV_QTY * cartProdDto.AMT * 0.9)}"/>
+                            </c:when>
+                            <c:otherwise>
+                                 <c:set var="sum" value="${sum + (cartProdDto.PROD_INDV_QTY * cartProdDto.AMT)}"/>
+                            </c:otherwise>
+                        </c:choose>
 
-        </c:forEach>
+
+
+
+
+
+        </c:forEach> <!--전체 반복문 -->
         </ul>
 
         <div class="listResult">

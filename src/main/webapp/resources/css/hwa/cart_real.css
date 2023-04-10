@@ -6,7 +6,6 @@ body {
 }
 
 a {
-    color: #05f;
     text-decoration: none;
 }
 
@@ -264,5 +263,172 @@ section#content div.gdsInfo .delete button {
     clear: both;
 }
 
+.spinner {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #dddee1;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
+.spinner:before, .spinner:after {
+    content: "";
+    display: table;
+}
+
+.spinner:after {
+    clear: both;
+}
+
+.spinner input, .spinner button {
+    float: left;
+}
+
+.spinner input {
+    font-family: "Open Sans", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "돋움", Dotum, Helvetica, Arial, sans-serif;
+    width: 46px;
+    height: 32px;
+    line-height: 32px;
+    color: #000000;
+    padding: 0;
+    font-size: 16px;
+    border: 0;
+    border-right: 1px solid #d5d5d5;
+    border-left: 1px solid #d5d5d5;
+    text-align: center;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.spinner input[readonly] {
+    background-color: #fff;
+}
+
+.spinner input[readonly]:focus {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.spinner .btn-amount {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 11px 11px;
+    overflow: hidden;
+    text-indent: -9999px;
+    font-size: 0.01em;
+    color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.spinner .btn-amount.minus {
+    border-right: 0;
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner .btn-amount.plus {
+    border-left: 0;
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.disabled {
+    background-color: #e5e5e5;
+}
+
+.spinner.disabled input[type="text"] {
+    color: #c1c1c1;
+}
+
+.spinner.disabled button.btn-amount {
+    background-color: #e5e5e5;
+}
+
+.spinner.disabled button.minus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner.disabled button.plus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.small .btn-amount {
+    width: 24px;
+    height: 24px;
+    background-color: #f9f9f9;
+}
+
+.spinner.small input {
+    width: 37px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.spinner.small.disabled .btn-amount {
+    background-color: #f6f6f6;
+}
+
+.spinner.small.disabled .btn-amount.minus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner.small.disabled .btn-amount.plus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.small.disabled input {
+    background-color: #f6f6f6;
+}
+#cart_header{padding: 30px 0 30px 0;}
+
+.order_btn {
+    /*       border: 1px solid black; */
+    font-size: 18px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    background: #eee;
+
+}
+
+.inputArea{padding: 20px 0 20px 0}
+
+/*변경 버튼*/
+.btn {
+    position: relative;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btn.slightly {
+    color: #222;
+    border-color: #d5d5d5;
+    background-color: #fff;
+}
+.btn.small {
+    padding: 0 15px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 16px;
+    /* font-weight: 400; */
+}
+/*변경 버튼 끝*/
 

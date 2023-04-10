@@ -7,16 +7,20 @@ public class CartProdDto {
     private String PROD_NM;
     private Integer AMT;
     private Integer PROD_INDV_QTY;
+    private String REP_IMG;
+    private String DC_YN;
 
-    public CartProdDto(){}
+    public CartProdDto() {}
 
-    public CartProdDto(Integer CART_ID, String MBR_ID, String PROD_NO, String PROD_NM, Integer AMT, Integer PROD_INDV_QTY) {
+    public CartProdDto(Integer CART_ID, String MBR_ID, String PROD_NO, String PROD_NM, Integer AMT, Integer PROD_INDV_QTY, String REP_IMG, String DC_YN) {
         this.CART_ID = CART_ID;
         this.MBR_ID = MBR_ID;
         this.PROD_NO = PROD_NO;
         this.PROD_NM = PROD_NM;
         this.AMT = AMT;
         this.PROD_INDV_QTY = PROD_INDV_QTY;
+        this.REP_IMG = REP_IMG;
+        this.DC_YN = DC_YN;
     }
 
     @Override
@@ -28,9 +32,10 @@ public class CartProdDto {
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", AMT=" + AMT +
                 ", PROD_INDV_QTY=" + PROD_INDV_QTY +
+                ", REP_IMG='" + REP_IMG + '\'' +
+                ", DC_YN='" + DC_YN + '\'' +
                 '}';
     }
-
 
     public Integer getCART_ID() {
         return CART_ID;
@@ -78,5 +83,21 @@ public class CartProdDto {
 
     public void setPROD_INDV_QTY(Integer PROD_INDV_QTY) {
         this.PROD_INDV_QTY = PROD_INDV_QTY;
+    }
+
+    public String getREP_IMG() {
+        return REP_IMG;
+    }
+
+    public void setREP_IMG(String REP_IMG) {
+        this.REP_IMG = REP_IMG;
+    }
+
+    public String getDC_YN() {
+        return DC_YN;
+    }
+
+    public void setDC_YN(String DC_YN) {
+        this.DC_YN = DC_YN;
     }
 }

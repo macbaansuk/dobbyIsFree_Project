@@ -12,7 +12,7 @@ public class CartDaoImpl implements CartDao {
     @Autowired
     private SqlSession session;
 
-    private static String namespace = "com.dobby.project.controller.hwa.cart.CartDao.";
+    private static String namespace = "com.dobby.project.hwa.cart.CartDao.";
 
 
     @Override

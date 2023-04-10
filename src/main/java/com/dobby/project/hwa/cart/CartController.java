@@ -1,5 +1,8 @@
 package com.dobby.project.hwa.cart;
 
+import com.dobby.project.sun.ProductDCDto;
+import com.dobby.project.sun.ProductDto;
+import com.dobby.project.sun.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +13,8 @@ import java.util.List;
 @Controller
 public class CartController {
 
-
     @Autowired
     private CartService cartService;
-
-
 
     @PostMapping("/cart/{key}")
     @ResponseBody
@@ -32,17 +32,24 @@ public class CartController {
         //저장한 상품키를 jsp로 넘긴다
         int rowCnt = cartService.insertCart(key, userKey);
 
+        System.out.println("마지막 post");
         return 1;
 
     }
 
     @GetMapping("/cart")
-    public String selectCart(Model m){
+    public String selectCart(Model m) throws Exception {
         String userKey = "1";
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(userKey);
         m.addAttribute("cartList", cartList);
         System.out.println("여기서 안되는데");
-        System.out.println("list="+ cartList);
+//        System.out.println("list="+ cartList);
+
+
+
+//        System.out.println("여기는 프로덕트 리스트"+ ProductsMain);
+//        System.out.println("여기는 프로덕트 할인 리스트"+ Products_DC);
+
         return "hwa/cart_real";
     }
 
