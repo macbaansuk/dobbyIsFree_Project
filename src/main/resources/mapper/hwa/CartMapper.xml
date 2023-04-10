@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.hwa.cart.CartDao">
+
+    <!-- 카트에 상품넣기 -->
+    <insert id="insert" parameterType="com.dobby.project.hwa.cart.CartDto">
+        INSERT INTO `dobbyisfree`.`cart`
+        (PROD_NO,
+         MBR_ID,
+         PROD_INDV_QTY)
+        VALUES (${PROD_NO}, ${MBR_ID}, ${PROD_INDV_QTY})
+
+    </insert>
+
+    <!-- 카트에  해당 상품담겨있는지 조회 -->
+    <select id="selectCart" resultType="com.dobby.project.hwa.cart.CartDto" parameterType="com.dobby.project.hwa.cart.CartDto">
+        SELECT *
+        FROM `dobbyisfree`.`cart`
+        WHERE MBR_ID = ${MBR_ID}
+        AND PROD_NO = ${PROD_NO}
+
+    </select>
+
+    <!-- 회원id로 카트 목록 조회-->
+    <select id="selectCartItemsByUserKey22" resultType="com.dobby.project.hwa.cart.CartDto">
+        SELECT *
+        FROM `dobbyisfree`.`cart`
+        WHERE MBR_ID = ${userKey}
+    </select>
+
+    <!-- 회원id로 카트 목록 조회 상품테이블과 조인, 상품정보까지-->
+    <select id="selectCartItemsByUserKey" resultType="com.dobby.project.hwa.cart.CartProdDto">
+        SELECT c.CART_ID, c.MBR_ID, c.PROD_NO, p.PROD_NM, p.AMT, c.PROD_INDV_QTY
+        FROM `dobbyisfree`.`cart` c
+                 JOIN `dobbyisfree`.`prod` p ON c.PROD_NO = p.PROD_NO
+        where MBR_ID = ${userKey}
+    </select>
+
+    <!-- 카트수량 1개 증가 -->
+    <update id="update" parameterType="com.dobby.project.hwa.cart.CartDto">
+        UPDATE  `dobbyisfree`.`cart` SET PROD_INDV_QTY = ${PROD_INDV_QTY}
+        WHERE MBR_ID = ${MBR_ID} AND PROD_NO = ${PROD_NO}
+    </update>
+
+    <delete id="deleteCart" parameterType="list">
+        DELETE FROM `dobbyisfree`.`cart`
+        WHERE CART_ID IN
+        <foreach collection="list" item="cartId" open="(" separator="," close=")">
+            #{cartId}
+        </foreach>
+
+    </delete>
+
+
+
+</mapper>
