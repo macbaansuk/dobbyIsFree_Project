@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class ProductDaoImpl implements ProductDao {
     @Autowired
-    private SqlSession sqlSession;
+    private SqlSession session;
     private static String namespace = "com.dobby.project.ProductMapper";
 //    @Override
 //    public List<ProductDto> selectAllProducts() {
@@ -20,34 +20,34 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<ProductDto> getMainProducts() {
-        return sqlSession.selectList("getMainProducts");
+        return session.selectList("getMainProducts");
     }
 
     @Override
     public List<ProductDCDto> Products_DC() throws Exception {
-        return sqlSession.selectList("Products_DC");
+        return session.selectList("Products_DC");
     }
 
     @Override
     public List<ProductDto> getSkincareProducts() {
-        return sqlSession.selectList("getSkincareProducts");
+        return session.selectList("getSkincareProducts");
     }
 
     @Override
     public List<ProductDto> getMakeupProducts() {
-        return sqlSession.selectList("getMakeupProducts");
+        return session.selectList("getMakeupProducts");
     }
 
     @Override
     public List<ProductDto> getMenProducts() {
-        return sqlSession.selectList("getMenProducts");
+        return session.selectList("getMenProducts");
     }
 
     @Override
     public List<ProductDto> getHairBodyProducts() {
-        return sqlSession.selectList("getHairBodyProducts");
+        return session.selectList("getHairBodyProducts");
     }
 
-
+    public int countProducts() { return session.selectOne("countProducts");}
 }
 

@@ -9,5 +9,5 @@ public interface ProductService {
     List<ProductDto> getMakeupProducts();
     List<ProductDto> getMenProducts();
     List<ProductDto> getHairBodyProducts();
-
+    int countProducts();
 }

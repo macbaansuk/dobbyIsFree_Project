@@ -41,4 +41,10 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> getHairBodyProducts() {
         return productDao.getHairBodyProducts();
     }
+
+    @Override
+    public int countProducts() {
+        return productDao.countProducts();
+    }
+
 }

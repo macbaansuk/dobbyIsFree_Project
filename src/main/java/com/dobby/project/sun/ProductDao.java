@@ -10,6 +10,6 @@ public interface ProductDao {
     List<ProductDto> getMakeupProducts();
     List<ProductDto> getMenProducts();
     List<ProductDto> getHairBodyProducts();
-
+    int countProducts();
 
 }
