@@ -102,6 +102,7 @@
         function formCheck(frm) {
             let msg ='';
             if(frm.MBR_ID.value.length==0) {
+
                 setMessage('id를 입력해주세요.', frm.MBR_ID);
                 return false;
             }

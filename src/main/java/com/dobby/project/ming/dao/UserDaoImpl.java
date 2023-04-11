@@ -2,14 +2,12 @@ package com.dobby.project.ming.dao;
 
 import com.dobby.project.ming.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 @Repository
@@ -47,7 +45,7 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(1, MBR_ID);
 
             if (rs.next()) {
-                user = new User();
+                user = new User("test3", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(), "F", "N", new Date(), new Date(), "N");
                 user.setMBR_ID(rs.getString(1));
                 user.setPWD(rs.getString(2));
                 user.setMBR_GRD(rs.getString(3));
@@ -71,7 +69,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int insertUser(User user) throws Exception {
         int rowCnt = 0;
-        String sql = "INSERT INTO user_info VALUES (?,?,?,?,?,?,?,?,now(),?,?,now(),now(),?) ";
+        String sql = "INSERT INTO member_info VALUES ('test1', '1234', '웰컴', '2', '1', '테스트', 'aaa@aaa.com', '010-1234-1234', '2022-02-22', 'F','00000','0','','','Y', NOW(), NOW(),'0', NOW(), NOW(), '', NOW(), '','N',NOW()) ";
 
         try(
                 Connection conn = ds.getConnection();
@@ -101,8 +99,9 @@ public class UserDaoImpl implements UserDao {
         int rowCnt = 0;
 
         String sql = "UPDATE member_info " +
-                "SET PWD = ?, MBR_NM=?, EMAIL=?, BD =?, SNS_YN=?, SUBS_DTM=? " +
-                "WHERE MBR_ID = ? ";
+                "SET PWD = '1234', MBR_NM = '테스트' , EMAIL= 'aaa@aaa.com' , BD = '1994-11-24', SNS_YN= 'Y', SUBS_DTM= '2023-04-11' " +
+                "WHERE MBR_ID = 'test1' ";
+
 
         try (
                 Connection conn = ds.getConnection();

@@ -159,3 +159,5 @@ fabric.properties
 
 # Project exclude paths
 /target/
+
+*.iml

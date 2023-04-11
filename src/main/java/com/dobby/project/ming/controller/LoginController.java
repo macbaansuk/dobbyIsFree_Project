@@ -38,35 +38,26 @@ public class LoginController {
                         HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
         // 1. id와 pwd를 확인
-        if (!loginCheck(MBR_ID, PWD)) {
-            System.out.println("ID="+MBR_ID+", PW="+PWD);
-            System.out.println("로그인 진입 테스트1");
+        if (loginCheck(MBR_ID, PWD)) {
+            System.out.println("로그인 테스트1: ID="+MBR_ID+", PW="+PWD);
             // 2-1   일치하지 않으면, loginForm으로 이동
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 
             return "redirect:/login?msg=" + msg;
         } else {
-            System.out.println("로그인 진입 테스트2");
+            System.out.println("로그인 테스트2: ID="+MBR_ID+", PW="+PWD);
             // 2-2. id와 pwd가 일치하면,
             //  세션 객체를 얻어오기
             HttpSession session = req.getSession();
             //  세션 객체에 id를 저장
             session.setAttribute("MBR_ID", MBR_ID);
 
-            String referer = req.getHeader("Referer");
-            req.getSession().setAttribute("redirectURL", referer);
-            String method = req.getMethod();
-            System.out.println("from: [" + referer + "]-> " + method + " to: [" + req.getRequestURL() + "]");
-
-
             if (saveid) {
-                System.out.println("로그인 진입 테스트3");
                 //     1. 쿠키를 생성
                 Cookie c = new Cookie("MBR_ID", MBR_ID); // ctrl+shift+o 자동 import
 //		       2. 응답에 저장
                 resp.addCookie(c);
             } else {
-                System.out.println("로그인 진입 테스트4");
                 // 1. 쿠키를 삭제
                 Cookie c = new Cookie("MBR_ID", MBR_ID); // ctrl+shift+o 자동 import
                 c.setMaxAge(0); // 쿠키를 삭제
@@ -79,13 +70,13 @@ public class LoginController {
         }
     }
 
-    private boolean loginCheck(String MBR_ID, String PWD) throws Exception {
-     User user = userDao.selectUser(MBR_ID);
+    private boolean loginCheck(String MBR_ID, String PWD) {
+    // User user = userDao.selectUser(MBR_ID);
+        // if(userDao==null)   return false;
 
-        if(user==null)   return false;
+    //  return user.getPWD().equals(PWD);
 
-        return user.getPWD().equals(PWD);
-	  //return "abcd".equals(MBR_ID) && "1234".equals(PWD);
+	  return "abcd".equals(MBR_ID) && "1234".equals(PWD);
     }
 
     @RequestMapping("/findID")

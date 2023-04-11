@@ -1,4 +1,4 @@
-package com.dobby.project.ming.controller;
+package com.dobby.project.ming.domain;
 
 import com.dobby.project.ming.domain.User;
 import org.springframework.validation.Errors;
