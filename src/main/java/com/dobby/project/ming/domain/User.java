@@ -18,9 +18,7 @@ public class User {
     private Integer MBR_PT;
     private String MBR_COUPN;
     private String COMMENT;
-    private String AGRE_YN;
     private String SNS_YN;
-    private Date SNS_DTM;
     private Date SUBS_DTM;
     private Date MBR_GRD_DTM;
     private String CONN_TMS;
@@ -29,9 +27,13 @@ public class User {
     private String FST_REGR_DCMT_NO;
     private Date LAST_UPD_DTM;
     private String LAST_UPDR_DCMT_NO;
+    private String AGRE_YN;
+    private Date SNS_DTM;
 
-    public User(){}
-    public User(String MBR_ID, String PWD, String MBR_GRD, String MBR_TYPE_CD, String MBR_STUS_CD, String MBR_NM, String EMAIL, String MPNO, Date BD, String SEX, String ADDR_ID, Integer MBR_PT, String MBR_COUPN, String COMMENT, String AGRE_YN, String SNS_YN, Date SNS_DTM, Date SUBS_DTM, Date MBR_GRD_DTM, String CONN_TMS, Date LAST_LOGIN_DTM, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
+
+    public User() {}
+
+    public User(String MBR_ID, String PWD, String MBR_GRD, String MBR_TYPE_CD, String MBR_STUS_CD, String MBR_NM, String EMAIL, String MPNO, Date BD, String SEX, String ADDR_ID, Integer MBR_PT, String MBR_COUPN, String COMMENT, String SNS_YN, Date SUBS_DTM, Date MBR_GRD_DTM, String CONN_TMS, Date LAST_LOGIN_DTM, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO, String AGRE_YN, Date SNS_DTM) {
         this.MBR_ID = MBR_ID;
         this.PWD = PWD;
         this.MBR_GRD = MBR_GRD;
@@ -46,9 +48,7 @@ public class User {
         this.MBR_PT = MBR_PT;
         this.MBR_COUPN = MBR_COUPN;
         this.COMMENT = COMMENT;
-        this.AGRE_YN = AGRE_YN;
         this.SNS_YN = SNS_YN;
-        this.SNS_DTM = SNS_DTM;
         this.SUBS_DTM = SUBS_DTM;
         this.MBR_GRD_DTM = MBR_GRD_DTM;
         this.CONN_TMS = CONN_TMS;
@@ -57,6 +57,8 @@ public class User {
         this.FST_REGR_DCMT_NO = FST_REGR_DCMT_NO;
         this.LAST_UPD_DTM = LAST_UPD_DTM;
         this.LAST_UPDR_DCMT_NO = LAST_UPDR_DCMT_NO;
+        this.AGRE_YN = AGRE_YN;
+        this.SNS_DTM = SNS_DTM;
     }
 
     @Override
@@ -64,12 +66,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return MBR_ID.equals(user.MBR_ID) && PWD.equals(user.PWD) && MBR_GRD.equals(user.MBR_GRD) && MBR_TYPE_CD.equals(user.MBR_TYPE_CD) && MBR_STUS_CD.equals(user.MBR_STUS_CD) && MBR_NM.equals(user.MBR_NM) && EMAIL.equals(user.EMAIL) && MPNO.equals(user.MPNO) && BD.equals(user.BD) && SEX.equals(user.SEX) && Objects.equals(ADDR_ID, user.ADDR_ID) && Objects.equals(MBR_PT, user.MBR_PT) && Objects.equals(MBR_COUPN, user.MBR_COUPN) && Objects.equals(COMMENT, user.COMMENT) && AGRE_YN.equals(user.AGRE_YN) && SNS_YN.equals(user.SNS_YN) && Objects.equals(SNS_DTM, user.SNS_DTM) && SUBS_DTM.equals(user.SUBS_DTM) && MBR_GRD_DTM.equals(user.MBR_GRD_DTM) && Objects.equals(CONN_TMS, user.CONN_TMS) && Objects.equals(LAST_LOGIN_DTM, user.LAST_LOGIN_DTM) && Objects.equals(FST_REG_DTM, user.FST_REG_DTM) && Objects.equals(FST_REGR_DCMT_NO, user.FST_REGR_DCMT_NO) && Objects.equals(LAST_UPD_DTM, user.LAST_UPD_DTM) && Objects.equals(LAST_UPDR_DCMT_NO, user.LAST_UPDR_DCMT_NO);
+        return MBR_ID.equals(user.MBR_ID) && PWD.equals(user.PWD) && MBR_GRD.equals(user.MBR_GRD) && MBR_TYPE_CD.equals(user.MBR_TYPE_CD) && MBR_STUS_CD.equals(user.MBR_STUS_CD) && MBR_NM.equals(user.MBR_NM) && EMAIL.equals(user.EMAIL) && MPNO.equals(user.MPNO) && BD.equals(user.BD) && SEX.equals(user.SEX) && Objects.equals(ADDR_ID, user.ADDR_ID) && Objects.equals(MBR_PT, user.MBR_PT) && Objects.equals(MBR_COUPN, user.MBR_COUPN) && Objects.equals(COMMENT, user.COMMENT) && SNS_YN.equals(user.SNS_YN) && SUBS_DTM.equals(user.SUBS_DTM) && MBR_GRD_DTM.equals(user.MBR_GRD_DTM) && Objects.equals(CONN_TMS, user.CONN_TMS) && Objects.equals(LAST_LOGIN_DTM, user.LAST_LOGIN_DTM) && Objects.equals(FST_REG_DTM, user.FST_REG_DTM) && Objects.equals(FST_REGR_DCMT_NO, user.FST_REGR_DCMT_NO) && Objects.equals(LAST_UPD_DTM, user.LAST_UPD_DTM) && Objects.equals(LAST_UPDR_DCMT_NO, user.LAST_UPDR_DCMT_NO) && AGRE_YN.equals(user.AGRE_YN) && Objects.equals(SNS_DTM, user.SNS_DTM);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(MBR_ID, PWD, MBR_GRD, MBR_TYPE_CD, MBR_STUS_CD, MBR_NM, EMAIL, MPNO, BD, SEX, ADDR_ID, MBR_PT, MBR_COUPN, COMMENT, AGRE_YN, SNS_YN, SNS_DTM, SUBS_DTM, MBR_GRD_DTM, CONN_TMS, LAST_LOGIN_DTM, FST_REG_DTM, FST_REGR_DCMT_NO, LAST_UPD_DTM, LAST_UPDR_DCMT_NO);
+        return Objects.hash(MBR_ID, PWD, MBR_GRD, MBR_TYPE_CD, MBR_STUS_CD, MBR_NM, EMAIL, MPNO, BD, SEX, ADDR_ID, MBR_PT, MBR_COUPN, COMMENT, SNS_YN, SUBS_DTM, MBR_GRD_DTM, CONN_TMS, LAST_LOGIN_DTM, FST_REG_DTM, FST_REGR_DCMT_NO, LAST_UPD_DTM, LAST_UPDR_DCMT_NO, AGRE_YN, SNS_DTM);
     }
 
     @Override
@@ -89,9 +91,7 @@ public class User {
                 ", MBR_PT=" + MBR_PT +
                 ", MBR_COUPN='" + MBR_COUPN + '\'' +
                 ", COMMENT='" + COMMENT + '\'' +
-                ", AGRE_YN='" + AGRE_YN + '\'' +
                 ", SNS_YN='" + SNS_YN + '\'' +
-                ", SNS_DTM=" + SNS_DTM +
                 ", SUBS_DTM=" + SUBS_DTM +
                 ", MBR_GRD_DTM=" + MBR_GRD_DTM +
                 ", CONN_TMS='" + CONN_TMS + '\'' +
@@ -100,6 +100,8 @@ public class User {
                 ", FST_REGR_DCMT_NO='" + FST_REGR_DCMT_NO + '\'' +
                 ", LAST_UPD_DTM=" + LAST_UPD_DTM +
                 ", LAST_UPDR_DCMT_NO='" + LAST_UPDR_DCMT_NO + '\'' +
+                ", AGRE_YN='" + AGRE_YN + '\'' +
+                ", SNS_DTM=" + SNS_DTM +
                 '}';
     }
 
@@ -215,28 +217,12 @@ public class User {
         this.COMMENT = COMMENT;
     }
 
-    public String getAGRE_YN() {
-        return AGRE_YN;
-    }
-
-    public void setAGRE_YN(String AGRE_YN) {
-        this.AGRE_YN = AGRE_YN;
-    }
-
     public String getSNS_YN() {
         return SNS_YN;
     }
 
     public void setSNS_YN(String SNS_YN) {
         this.SNS_YN = SNS_YN;
-    }
-
-    public Date getSNS_DTM() {
-        return SNS_DTM;
-    }
-
-    public void setSNS_DTM(Date SNS_DTM) {
-        this.SNS_DTM = SNS_DTM;
     }
 
     public Date getSUBS_DTM() {
@@ -301,5 +287,21 @@ public class User {
 
     public void setLAST_UPDR_DCMT_NO(String LAST_UPDR_DCMT_NO) {
         this.LAST_UPDR_DCMT_NO = LAST_UPDR_DCMT_NO;
+    }
+
+    public String getAGRE_YN() {
+        return AGRE_YN;
+    }
+
+    public void setAGRE_YN(String AGRE_YN) {
+        this.AGRE_YN = AGRE_YN;
+    }
+
+    public Date getSNS_DTM() {
+        return SNS_DTM;
+    }
+
+    public void setSNS_DTM(Date SNS_DTM) {
+        this.SNS_DTM = SNS_DTM;
     }
 }

@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%
-  import javax.servlet.http.HttpSession;
-
   String login_out="로그인";
   String cookieId="";
 
@@ -16,10 +14,6 @@
       if("MBR_ID".equals(name))
         cookieId = c.getValue();
     }
-  }
-
-  if( session.getAttribute("MBR_ID") != null){
-    login_out = "로그아웃";
   }
   %>
 
@@ -136,7 +130,7 @@
 <header>
   <div id="login_menu">
     <span><a href="cs-notice">고객센터</a></span>
-    <span><a href="/login"><%=login_out%>></a></span>
+    <span><a href="/login"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
     <span><a href="mypage">마이페이지</a></span>
     <span>장바구니</span>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.dao.BoardMapper">
+    <select id="select" parameterType="String" resultType="UserDto">
+    select MBR_ID,
+    PWD,
+    MBR_GRD,
+    MBR_TYPE_CD,
+    MBR_STUS_CD,
+    MBR_NM,
+    EMAIL,
+    MPNO,
+    BD,
+    SEX,
+    ADDR_ID,
+    MBR_PT,
+    MBR_COUPN,
+    COMMENT,
+    SNS_YN,
+    SUBS_DTM,
+    MBR_GRD_DTM,
+    CONN_TMS,
+    LAST_LOGIN_DTM,
+    FST_REG_DTM,
+    FST_REGR_DCMT_NO,
+    LAST_UPD_DTM,
+    LAST_UPDR_DCMT_NO,
+    AGRE_YN,
+    SNS_DTM
+    from member_info
+    WHERE MBR_ID = #{MBR_ID};
+</select>
+
+</mapper>

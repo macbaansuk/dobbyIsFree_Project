@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 
-@RequestMapping("/")
 @Controller
+@RequestMapping("/")
 public class LoginController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class LoginController {
         // 2. 홈으로 이동
         return "redirect:/";
     }
-    @PostMapping("/login")
+    @PostMapping("login")
     public String login(String MBR_ID, String PWD, String toURL, boolean saveid,
                         HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
@@ -79,11 +79,13 @@ public class LoginController {
         }
     }
 
-    private boolean loginCheck(String MBR_ID, String PWD) {
-     //   User user = UserDao.selectUser(MBR_ID);
-     //   if(user==null)   return false; //} //return
-    //    return user.getPWD().equals(PWD);
-	  return "abcd".equals(MBR_ID) && "1234".equals(PWD);
+    private boolean loginCheck(String MBR_ID, String PWD) throws Exception {
+     User user = userDao.selectUser(MBR_ID);
+
+        if(user==null)   return false;
+
+        return user.getPWD().equals(PWD);
+	  //return "abcd".equals(MBR_ID) && "1234".equals(PWD);
     }
 
     @RequestMapping("/findID")

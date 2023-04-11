@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.dobby.project.ming.dao.UserDao;
 import com.dobby.project.ming.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.core.convert.ConversionService;
@@ -19,8 +21,13 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Controller // ctrl+shift+o 자동 import
-@RequestMapping("/register")
 public class RegisterController {
+
+    @Autowired
+    UserDao userDao;
+
+    final int FAIL = 0;
+
 
     @InitBinder
     public void toDate(WebDataBinder binder) {
@@ -31,27 +38,29 @@ public class RegisterController {
         //	System.out.println("validatorList="+validatorList);
     }
 
-    @GetMapping("/add")
+    @GetMapping("/register")
     public String register() {
-        return "registerForm"; // WEB-INF/views/registerForm.jsp
+        return "ming/registerForm"; // WEB-INF/views/registerForm.jsp
     }
 
-    @PostMapping("/add")
+    @PostMapping("/register")
     public String save(@Valid User user, BindingResult result, Model m) throws Exception {
-        System.out.println("result="+result);
-        System.out.println("user="+user);
+        System.out.println("result=" + result);
+        System.out.println("user=" + user);
 
         // User객체를 검증한 결과 에러가 있으면, registerForm을 이용해서 에러를 보여줘야 함.
-        if(result.hasErrors()) {
-            return "registerForm";
+        if (!result.hasErrors()) {
+            // 2. DB에 신규회원 정보를 저장
+            int rowCnt = userDao.insertUser(user);
+
+            if (rowCnt == FAIL) {
+                return "ming/registerForm";
+            }
         }
-
-        // 2. DB에 신규회원 정보를 저장
-        return "registerInfo";
+        return "ming/registerForm";
     }
-
     private boolean isValid(User user) {
-        return true;
+    return true;
     }
 }
 
