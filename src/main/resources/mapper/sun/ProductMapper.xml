@@ -49,7 +49,7 @@
     <select id="getMenProducts" resultType="ProductDto">
         SELECT *
         FROM PROD
-        WHERE CATE_CD = 'CATE1'
+        WHERE CATE_CD = 'CATE3'
         ORDER BY REG_DTM
     </select>
 
@@ -58,6 +58,13 @@
         FROM PROD
         WHERE CATE_CD = 'CATE4'
         ORDER BY REG_DTM
+    </select>
+
+<!--일단 이건 보류    -->
+    <select id="countProducts" resultType="int">
+        SELECT COUNT(*)
+        FROM PROD
+        WHERE CATE_CD = #{CATE_CD}
     </select>
 
 
