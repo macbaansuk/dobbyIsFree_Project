@@ -21,7 +21,8 @@
 
     #login_menu span a {text-decoration: none;}
     #login_menu span a:visited { color: #777777; text-decoration: none; }
-
+    #product_cate span a {text-decoration: none;}
+    #product_cate span a:visited { color: black; text-decoration: none; }
 
     #login_menu {
       background-color: rgba(231, 230, 230, 0.673);
@@ -38,7 +39,6 @@
       margin-left: 23px;
       font-size: 14px;
       font-weight: 500;
-
     }
 
     #logo_search_box {
@@ -113,16 +113,16 @@
 <body>
 <header>
   <div id="login_menu">
-    <span><a href="/cs-notice/list">고객센터</a></span>
+    <span><a href="/cs/notice/list">고객센터</a></span>
     <span>로그인</span>
     <span>회원가입</span>
-    <span><a href="mypage">마이페이지</a></span>
+    <span><a href="/mypage">마이페이지</a></span>
     <span>장바구니</span>
     <span id="cart_cnt">0</span>
   </div>
   <div id="logo_search_box">
     <h1>
-      <a href="#">
+      <a href="/">
         <img src="/img/main/logo.png" width="250px" />
       </a>
       <div id="search_box">
