@@ -4,7 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class CartDaoImpl implements CartDao {
@@ -31,23 +33,32 @@ public class CartDaoImpl implements CartDao {
         session.update(namespace + "update", cartDto);
     }
 
-//    @Override
-//    public List<CartDto> selectCartItemsByUserKey(String userKey) {
-//       return session.selectList(namespace + "selectCartItemsByUserKey", userKey);
-//    }
+
    @Override
     public List<CartProdDto> selectCartItemsByUserKey(String userKey) {
        return session.selectList(namespace + "selectCartItemsByUserKey", userKey);
     }
 
 
-
-
     @Override
     public void deleteCart(List<Integer> cartIdList) {
-        System.out.println("delete dao");
+//        System.out.println("delete dao");
         session.delete(namespace + "deleteCart",  cartIdList);
     }
+
+    @Override
+    public void updateCartQty(int cartId, int quantity) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("CART_ID", cartId);
+        map.put("PROD_INDV_QTY", quantity);
+        System.out.println("serviceImp카트아이디 : " + cartId);
+
+      session.update(namespace+"updateCartQty",map);
+
+    }
+
+
 
 
 }

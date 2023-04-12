@@ -27,7 +27,7 @@ ul, lo, li {
 /* ---------- */
 
 div#root {
-    width: 900px;
+    /*width: 900px;*/
     padding-left: 50px;
 }
 
@@ -38,11 +38,14 @@ nav#nav {
 }
 
 section#container {
+    display: inline-block;
 }
 
 section#content {
     float: right;
     width: 700px;
+    padding-left: 100px;
+    padding-top: 20px;
 }
 
 aside#aside {
@@ -58,33 +61,6 @@ section#container::after {
 
 
 
-/*header#header div#header_box {*/
-/*    text-align: center;*/
-/*    padding: 30px 0;*/
-/*}*/
-
-/*header#header div#header_box h1 {*/
-/*    font-size: 50px;*/
-/*}*/
-
-/*header#header div#header_box h1 a {*/
-/*    color: #000;*/
-/*}*/
-
-/*nav#nav div#nav_box {*/
-/*    font-size: 14px;*/
-/*    padding: 10px;*/
-/*    text-align: right;*/
-/*}*/
-
-/*nav#nav div#nav_box li {*/
-/*    display: inline-block;*/
-/*    margin: 0 10px;*/
-/*}*/
-
-/*nav#nav div#nav_box li a {*/
-/*    color: #333;*/
-/*}*/
 
 section#container {
 }
@@ -432,3 +408,115 @@ section#content div.gdsInfo .delete button {
 }
 /*변경 버튼 끝*/
 
+.fee{
+    vertical-align: top;
+    display: inline-block;
+    padding: 100px 50px 0 200px;
+    width: 400px;
+}
+
+
+/* 이니스프리 결제박스*/
+.totalPayment{
+    display: inline-block;
+    padding: 100px;
+    vertical-align: top;
+    width: 350px;
+}
+
+
+.totalPayment .box {
+	padding: 0 18px;
+	border: 2px solid #222;
+    height: 240px;
+}
+.totalPayment .btnType4xl {
+	width: 100%;
+	margin: 16px 0 0;
+}
+.totalPayment .loginTxt {
+	padding: 18px 0 22px;
+	text-align: center;
+	color: #222;
+	border-bottom: 1px solid #222;
+}
+.totalPayment .loginTxt .btnType1s {
+	margin: 15px 0 0;
+	padding: 0 30px;
+}
+.totalPayment .orderPrice {padding: 8px 0 0;}
+.totalPayment .orderPrice .subTitle2 {margin: 10px 0 15px;}
+
+.totalPayment .orderPrice .layerTooltip {
+	top: 30px !important;
+	left: -210px !important;
+	text-align: left;
+	white-space: nowrap;
+}
+.totalPayment .orderPrice dl {
+	position: relative;
+	padding: 8px 0;
+	color: #222;
+	text-align: right;
+}
+.totalPayment .orderPrice dt {float: left;}
+.totalPayment .orderPrice dt.sub {padding-left:10px;}
+.totalPayment .orderPrice dd {display: inline-block;}
+.totalPayment .orderPrice .num {
+    /*font-family: 'roboM';*/
+    font-family:NanumSquareNeo-dEb;
+	letter-spacing: -.04em;
+}
+.totalPayment .orderPrice .totalPrice {
+	margin: 5px 0 0;
+	padding: 10px 0 15px;
+	border-top: 1px solid #dcdcdc;
+
+}
+.totalPayment .orderPrice .totalPrice dt {line-height: 30px;}
+.totalPayment .orderPrice .totalPrice dd {
+	font-size: 22px;
+	color: #d72137;
+}
+.totalPayment .orderPrice .totalPrice dd .num {
+	/*font: 26px/1.2 'roboM';*/
+    font-family: NanumSquareNeo-dEb;
+	vertical-align: middle;
+}
+
+.totalPayment .orderPrice .totalSale .num {color: #d72137;}
+.totalPayment .orderPrice .saleBox {
+	margin: 0 -10px;
+	padding: 10px;
+	background: #f3f3f3;
+}
+.totalPayment .orderPrice .saleBox.noBG {background:transparent;}
+.totalPayment .orderPrice .saleBox dl {
+	padding: 0;
+	color: #777;
+	font: 14px/1.8 'SDNeoL', 'notoL';
+}
+.totalPayment .orderPrice .saleBox dl.saleTit {font-family:'roboR','SDNeoL', 'notoR';color:#222;}
+.totalPayment .orderPrice .saleBox dd .num {font-family: 'roboR';}
+
+.totalPayment .btnType4xl {
+    width: 100%;
+    margin: 16px 0 0;
+}
+.btnType4xl {
+     height: 65px;
+     line-height: 65px;
+     font-size: 22px;
+}
+[class*="btnType4"] {
+    height: 50px;
+    line-height: 40px;
+    padding: 0 30px;
+    background: #d72137;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+
+/* 이니스프리 결제박스 끝*/

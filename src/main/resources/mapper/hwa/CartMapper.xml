@@ -9,7 +9,7 @@
         (PROD_ID,
          MBR_ID,
          PROD_INDV_QTY)
-        VALUES (${PROD_ID}, ${MBR_ID}, ${PROD_INDV_QTY})
+        VALUES (#{PROD_ID}, #{MBR_ID}, #{PROD_INDV_QTY})
 
     </insert>
 
@@ -17,8 +17,8 @@
     <select id="selectCart" resultType="com.dobby.project.hwa.cart.CartDto" parameterType="com.dobby.project.hwa.cart.CartDto">
         SELECT *
         FROM `dobbyisfree`.`cart`
-        WHERE MBR_ID = ${MBR_ID}
-        AND PROD_ID = ${PROD_ID}
+        WHERE MBR_ID = #{MBR_ID}
+        AND PROD_ID = #{PROD_ID}
 
     </select>
 
@@ -26,7 +26,7 @@
     <select id="selectCartItemsByUserKey22" resultType="com.dobby.project.hwa.cart.CartDto">
         SELECT *
         FROM `dobbyisfree`.`cart`
-        WHERE MBR_ID = ${userKey}
+        WHERE MBR_ID = #{userKey}
     </select>
 
     <!-- 회원id로 카트 목록 조회 상품테이블과 조인, 상품정보까지-->
@@ -34,13 +34,13 @@
         SELECT c.CART_ID, c.MBR_ID, c.PROD_ID, p.PROD_NM, p.AMT, c.PROD_INDV_QTY, p.REP_IMG, p.DC_YN
         FROM `dobbyisfree`.`cart` c
                  JOIN `dobbyisfree`.`prod` p ON c.PROD_ID = p.PROD_ID
-        where MBR_ID = ${userKey}
+        where MBR_ID = #{userKey}
     </select>
 
     <!-- 카트수량 1개 증가 -->
     <update id="update" parameterType="com.dobby.project.hwa.cart.CartDto">
-        UPDATE  `dobbyisfree`.`cart` SET PROD_INDV_QTY = ${PROD_INDV_QTY}
-        WHERE MBR_ID = ${MBR_ID} AND PROD_ID = ${PROD_ID}
+        UPDATE  `dobbyisfree`.`cart` SET PROD_INDV_QTY = #{PROD_INDV_QTY}
+        WHERE MBR_ID = #{MBR_ID} AND PROD_ID = #{PROD_ID}
     </update>
 
     <delete id="deleteCart" parameterType="list">
@@ -50,5 +50,12 @@
             #{cartId}
         </foreach>
     </delete>
+
+
+    <update id="updateCartQty" parameterType="map">
+        UPDATE  `dobbyisfree`.`cart` SET PROD_INDV_QTY = #{PROD_INDV_QTY}
+        WHERE CART_ID = #{CART_ID}
+    </update>
+
 
 </mapper>

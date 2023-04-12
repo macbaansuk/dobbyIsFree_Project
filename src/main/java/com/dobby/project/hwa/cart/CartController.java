@@ -32,7 +32,7 @@ public class CartController {
         //저장한 상품키를 jsp로 넘긴다
         int rowCnt = cartService.insertCart(key, userKey);
 
-        System.out.println("마지막 post");
+//        System.out.println("마지막 post");
         return 1;
 
     }
@@ -42,7 +42,7 @@ public class CartController {
         String userKey = "1";
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(userKey);
         m.addAttribute("cartList", cartList);
-        System.out.println("여기서 안되는데");
+//        System.out.println("여기서 안되는데");
 //        System.out.println("list="+ cartList);
 
 
@@ -66,6 +66,21 @@ public class CartController {
         cartService.deleteCart(deleteDto.getCartIdList());
     }
 
+
+    @PostMapping("/cart/update")
+    @ResponseBody
+    public void updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
+        System.out.println("updateController 진입");
+        System.out.println("cartId= "+ cartId);
+        System.out.println("수량 = " + quantity);
+        
+        cartService.updateCartQty(cartId,quantity);
+
+
+
+////        String userKey = "1";
+//        cartService.updateCartQuantity( cartId, quantity);
+    }
 
 
 
