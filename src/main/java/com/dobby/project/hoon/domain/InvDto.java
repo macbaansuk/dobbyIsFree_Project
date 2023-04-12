@@ -34,7 +34,7 @@ public class InvDto {
     private Date LAST_UPD_DTM;
     private String LAST_UPDR_DCMT_NO;
 
-//    public  InvDto() {}
+    public  InvDto() {}
 //    public InvDto(Integer PROD_ID, String CATE_CD, Integer AMT, String PROD_NM, String REP_IMG) {
 //        this.PROD_ID = PROD_ID;
 //        this.CATE_CD = CATE_CD;
