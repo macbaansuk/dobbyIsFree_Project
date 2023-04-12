@@ -54,5 +54,4 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeDao.searchSelectPage(sc);
     }
 
-
 }

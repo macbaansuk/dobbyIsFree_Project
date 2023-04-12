@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>관리자 페이지</title>
+    <title>관리자 공지사항 등록페이지</title>
 </head>
 <link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
