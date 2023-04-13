@@ -3,6 +3,7 @@ package com.dobby.project.ming.domain;
 import java.sql.*;
 
 public class DBConnectionTest {
+//
     public static void main(String[] args) throws Exception {
         // 스키마의 이름(springbasic)이 다른 경우 알맞게 변경해야 함
         String DB_URL = "jdbc:mysql://localhost:3306/springbasic?useUnicode=true&characterEncoding=utf8";
