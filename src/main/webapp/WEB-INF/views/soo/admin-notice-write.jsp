@@ -6,6 +6,7 @@
     <title>관리자 공지사항 등록페이지</title>
 </head>
 <link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
+<%--<link rel="stylesheet" href="../../css/soo/admin-notice-list.css"/>--%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
     section{
@@ -55,13 +56,14 @@
     }
 
 
-    .button writeBtn{
+    #writeBtn{
         position: relative;
         margin-left: 720px;
     }
-    .button writeBtn[type=submit] {
 
-        background-color: #4CAF50;
+    #writeBtn[type=submit] {
+
+        background-color: #00a2ff;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -191,7 +193,7 @@
                                           style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
                             </div>
                             <div>
-                                <button  id="writeBtn" type="submit">등록</button>
+                                <button id="writeBtn" type="submit">등록</button>
                             </div>
                         </form>
                     </section>

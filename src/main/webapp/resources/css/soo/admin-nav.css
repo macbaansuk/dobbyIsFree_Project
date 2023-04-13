@@ -26,7 +26,8 @@
     color: #f8f8f8;
     align-items: center;
     overflow: hidden;
-    min-width: 1920px;
+    /*min-width: 1920px;*/
+    width: 100%;
 
 }
 .Header .span1{
@@ -172,7 +173,7 @@
 .admin-bar {
     position: relative;
     width: 100%;
-    min-width: 1300px;
+    /*min-width: 1300px;*/
     display: inline-block;
     background: url(../../img/main/bg.gif) left top repeat-y;
 }
@@ -273,6 +274,8 @@
 
 .admin-contents {
     padding: 20px 20px 0;
+    width: 1400px;
+
 }
 
 .admin-footer {
@@ -290,8 +293,8 @@
     margin: 0 209px 0 210px;
     overflow: hidden;
     padding: 0 0 50px;
-    min-height: 700px;
-    border-right: 1px solid #adadad;
+    /*min-height: 700px;*/
+    /*border-right: 1px solid #adadad;*/
 }
 
 
@@ -309,11 +312,9 @@
 
 
 .inv-list {
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 20px;
-    /*border: 3px solid #ccc;*/
     padding: 10px;
     display: inline-block;
-    width: 1400px;
-    height: 800px;
+    width: 100%;
 }

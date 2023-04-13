@@ -86,6 +86,11 @@
                         </tbody>
 
                     </table>
+
+                    <div>
+                        <button type="button"><a href="/admin/notice/list">관리자 페이지</a></button>
+                    </div>
+
                 </div>
                 <!-- 페이징 -->
                <div class="paging">

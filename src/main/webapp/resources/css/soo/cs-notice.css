@@ -138,8 +138,12 @@ a {
 
 .whole {}
 
+.listHead{
+    padding-bottom: 30px;
+}
+
 .listCnt {
-    padding-top: 40px;
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 

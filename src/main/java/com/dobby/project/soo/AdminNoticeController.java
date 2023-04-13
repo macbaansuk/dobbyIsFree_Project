@@ -20,6 +20,36 @@ public class AdminNoticeController {
     @Autowired
     NoticeService noticeService;
 
+   @PostMapping("/remove")
+    public String adminNoticeRemove(Integer NB_ID, Integer page, Integer pageSize, Model m) throws Exception {
+        // 나중에 String WRTR 추가하기, 관리자 계정(이름)
+        try {
+            noticeService.remove(NB_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        m.addAttribute("page",page);
+        m.addAttribute("pageSize",pageSize);
+
+        return "redirect:/admin/notice/list";
+    }
+    @GetMapping("/read")
+    public String adminNoticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
+        System.out.println("NoticeController - NB_ID: " + NB_ID);
+
+        try {
+            NoticeDto noticeDto = noticeService.read(NB_ID);
+            m.addAttribute("noticeDto",noticeDto);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "/soo/admin-notice-write";
+    }
+
     @GetMapping("/write")
     public String adminNoticeWriteForm(Model m) {
         NoticeDto noticeDto = new NoticeDto();

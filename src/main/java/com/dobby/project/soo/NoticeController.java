@@ -22,12 +22,14 @@ public class NoticeController {
     NoticeDao noticeDao;
 
     @GetMapping("/read")
-    public String noticeRead(Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
+    public String noticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
         System.out.println("NoticeController - NB_ID: " + NB_ID);
 
         try {
             NoticeDto noticeDto = noticeService.read(NB_ID);
             m.addAttribute("noticeDto",noticeDto);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
 
         } catch (Exception e) {
             e.printStackTrace();

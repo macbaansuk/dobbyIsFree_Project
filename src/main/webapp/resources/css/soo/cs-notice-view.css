@@ -76,6 +76,7 @@ a {
     padding : 10px 10px 10px 10px;
     /*border-bottom: solid 0.1px rgb(170, 170, 170);*/
     margin-bottom: 100px;
+
 }
 
 .listView .listTitle{
@@ -85,6 +86,7 @@ a {
     border-bottom: 0.1px solid rgb(170, 170, 170);
     word-wrap: break-word;
     white-space: nowrap;
+    width: 100%;
 }
 
 .listTitle .cate {
@@ -99,14 +101,15 @@ a {
 .listTitle .title {
     display: inline-block;
     vertical-align: middle;
-    width: 70%;
+    width: 65%;
 }
 .listTitle .date {
     display: inline-block;
-    position: relative;
-    margin-right: 10px;
+    min-width: 80px;
     vertical-align: middle;
-    width: 15%;
+    text-align: left;
+    width: 20%;
+    word-wrap: break-word;
 }
 
 h3{
@@ -137,16 +140,21 @@ h3{
     max-width: 90%;
 }
 
-.listBtn {
+
+.listBtm{
     text-align: right;
-    padding-top: 20px;
-    padding-right: 20px;
+    margin-top: 20px;
 }
 
-.listBtn button {
+#listBtn {
+
+    text-align: center;
+    display: inline-block;
+    float: right;
     background-color: black;
     color:white;
     width: 100px;
     height: 35px;
 }
+
 
