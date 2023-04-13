@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao {
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.dobby.project.ProductMapper";
+    private static String namespace = "com.dobby.project.ProductMapper.";
 //    @Override
 //    public List<ProductDto> selectAllProducts() {
 //        return sqlSession.selectList("selectAllProducts");
@@ -48,6 +48,20 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectList("getHairBodyProducts");
     }
 
-    public int countProducts() { return session.selectOne("countProducts");}
+    @Override
+    public ProductDto getProductById(int id) throws Exception {
+        return session.selectOne(namespace + "getProductById", id);
+    }
+
+
+
+//    public int countProducts() {
+//        return session.selectOne("countProducts");
+//    }
+
+//    @Override
+//    public List<ProductDto> getProductList() {
+//        return session.selectOne("getProductList");
+//    }
 }
 

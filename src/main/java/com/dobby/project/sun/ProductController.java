@@ -3,6 +3,8 @@ package com.dobby.project.sun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/skincare")
+    @GetMapping("/skincare")
     public String skincare(Model model) throws Exception {
         List<ProductDto> skincareProducts = productService.getSkincareProducts();
         List<ProductDCDto> Products_DC = productService.Products_DC();
@@ -27,7 +29,7 @@ public class ProductController {
 
         return "sun/product-skincare";
     }
-    @RequestMapping("/makeup")
+    @GetMapping("/makeup")
     public String makeup(Model model) throws Exception {
         List<ProductDto> makeupProducts = productService.getMakeupProducts();
         List<ProductDCDto> Products_DC = productService.Products_DC();
@@ -40,7 +42,7 @@ public class ProductController {
         return "sun/product-makeup";
     }
 
-    @RequestMapping("/men")
+    @GetMapping("/men")
     public String men(Model model) throws Exception {
         List<ProductDto> menProducts = productService.getMenProducts();
         List<ProductDCDto> Products_DC = productService.Products_DC();
@@ -51,7 +53,7 @@ public class ProductController {
 
         return "sun/product-men";
     }
-    @RequestMapping("/hair-body")
+    @GetMapping("/hair-body")
     public String hairBody(Model model) throws Exception {
         List<ProductDto> hairBodyProducts = productService.getHairBodyProducts();
         List<ProductDCDto> Products_DC = productService.Products_DC();
@@ -64,6 +66,38 @@ public class ProductController {
         return "sun/product-hair-body";
     }
 
+    @GetMapping("/{id}")
+    public String getProductById(@PathVariable("id") int id, Model model) throws Exception {
+//        System.out.println("진입");
+        ProductDto productDetail = productService.getProductById(id);
+        List<ProductDCDto> Products_DC = productService.Products_DC();
 
+//        System.out.println("여기");
+        model.addAttribute("productDetail", productDetail);
+        model.addAttribute("Products_DC", Products_DC);
+
+//        System.out.println("productDetail=>"+productDetail);
+        return "sun/product-detail";
+    }
+
+
+
+
+
+
+
+
+//      이거 상품목록 간략하게 만들기 보류
+//    @GetMapping("/{category}")
+//    public String productList(@PathVariable("category") String category, Model model) throws Exception {
+//        List<ProductDto> productList = productService.getProductList(category);
+//        List<ProductDCDto> Products_DC = productService.Products_DC();
+//
+//        model.addAttribute("category", category);
+//        model.addAttribute("productList", productList);
+//        model.addAttribute("Products_DC", Products_DC);
+//
+//        return "product-list";
+//    }
 
 }

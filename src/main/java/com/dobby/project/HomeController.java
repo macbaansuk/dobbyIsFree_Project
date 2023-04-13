@@ -24,8 +24,8 @@ public class HomeController {
 
         model.addAttribute("ProductsMain", ProductsMain);
         model.addAttribute("Products_DC", Products_DC);
-        System.out.println(ProductsMain);
-        System.out.println(Products_DC);
+//        System.out.println(ProductsMain);
+//        System.out.println(Products_DC);
 
         return "main";
     }

@@ -10,6 +10,10 @@ public interface ProductDao {
     List<ProductDto> getMakeupProducts();
     List<ProductDto> getMenProducts();
     List<ProductDto> getHairBodyProducts();
-    int countProducts();
 
+    ProductDto getProductById(int id) throws Exception;
+
+
+//    int countProducts();
+//    List<ProductDto> getProductList();
 }
