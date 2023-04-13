@@ -49,6 +49,16 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
+    <update id="InvUpdate" parameterType="InvDto">
+        UPDATE prod
+        SET INV_QTY = #{INV_QTY},
+            SAFE_INV = #{SAFE_INV},
+            INV_STUS_CD = #{INV_STUS_CD},
+            INV_LOC = #{INV_LOC}
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+
+
     <update id="update" parameterType="InvDto">
         UPDATE prod
         SET CATE_CD = #{CATE_CD},
@@ -79,6 +89,7 @@
             LAST_UPD_DTM = now(),
             LAST_UPDR_DCMT_NO = #{LAST_UPDR_DCMT_NO}
         WHERE PROD_ID = #{PROD_ID}
+
 
     </update>
 

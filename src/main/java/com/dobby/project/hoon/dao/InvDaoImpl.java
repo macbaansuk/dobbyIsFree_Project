@@ -61,7 +61,13 @@ public class InvDaoImpl implements InvDao {
     } // int update(String statement, Object parameter)
 
     @Override
+    public int updateInv(InvDto dto) throws Exception {
+        return session.update(namespace+"InvUpdate", dto);
+    }
+    @Override
     public int increaseViewCnt(Integer PROD_ID) throws Exception {
         return session.update(namespace+"increaseViewCnt", PROD_ID);
     }
+
+
 }

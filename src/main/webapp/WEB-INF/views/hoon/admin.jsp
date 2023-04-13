@@ -311,12 +311,14 @@
                             </thead>
 
                             <tbody class="center" id="eStockManageTable">
-
+                            <c:set var="page" value="${ph.page}" />
+                            <c:set var="pageSize" value="${ph.pageSize}" />
                             <c:forEach var="inv" items="${list}">
 
 
                             <tr>
-                                <td rowspan="1">${inv.PROD_ID}</td>
+                                <form  id="form" class="frm" action="/admin/modify" method="post">
+                                <td rowspan="1" id="prod-id">${inv.PROD_ID}</td>
                                 <td rowspan="1" class="left">
                                     <div class="gGoods gMedium" style="z-index: 0;">
                                         <div class="mOpen">
@@ -335,17 +337,20 @@
                                         <input type="hidden" name="product_no_list[]" value="10">
                                     </div>
                                 </td>
-                                <c:set var="page" value="${ph.page}" />
-                                <c:set var="pageSize" value="${ph.pageSize}" />
 
-                                <td rowspan="1">${inv.INV_QTY + inv.SAFE_INV}</td> <%-- 총 재고수량 --%>
+
+
+<%--                                <form  id="form" class="frm" action="/admin/modify" method="post">--%>
+                                <td rowspan="1">${inv.INV_QTY}</td> <%-- 총 재고수량 --%>
                                 <td>
                                         ${inv.CATE_CD} <%-- 카테고리 --%>
                                     <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
                                 </td>
 
 
-                                <form  id="form" class="frm" action="/admin/modify" method="post">
+
+
+<%--                                <form  id="form" class="frm" action="/admin/modify" method="post">--%>
                                 <td>
 <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_QTY}</span>--%>
                                     <input type="number" class="option-number" style="width:60px;" name="stock_number[P000000J000A]" value="${inv.INV_QTY}"> <%-- 재고수량 --%>
@@ -371,7 +376,9 @@
                                         <option value="창고 1(3A-14)" ${inv.INV_LOC == '창고 1(3A-14)' ? 'selected' : ''}>창고 1(3A-14)</option>
                                     </select>
                                 </td>
-                                </form>
+<%--                                </form>--%>
+
+
 
 
 
@@ -379,18 +386,24 @@
 
                                 </td>
                                 <td>${inv.AVG_ASCR} / 5</td> <%-- 평균 별점--%>
+                                </form>
+
                             </tr>
                             </c:forEach>
+
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <div class="mButton">
                     <button type="submit" class="btnModify" id="eBtnModify" ><span>저장</span></button>
                 </div>
 
+<%--                <div class="mButton">--%>
+<%--                    <button type="submit" class="btnModify" id="eBtnModify" ><span>저장</span></button>--%>
+<%--                </div>--%>
+<%--                </form>--%>
                 <br>
                 <div style="text-align:center; font-size: 1.5em;" >
                     <c:if test="${ph.showPrev}">
@@ -420,67 +433,96 @@
     Copyright ⓒ 2023 됐나욧 All rights reserved.
 </div>
 
+
+
 <script>
-    let msg = "${param.msg}";
+
+     $(document).ready(function() {
+         $('#eBtnModify').on("click", function() {
+             const invQty = $('input.option-number').val();
+             const safeInv = $('input.safe-number').val();
+             const invStusCd = $('select.inv-status').val();
+             const invLoc = $('select.inv-loc').val();
+             const prodId = $('#prod-id').text(); // 수정된 부분
+
+             const formData = new FormData();
+             formData.append('PROD_ID', parseInt(prodId));
+             formData.append('INV_QTY', parseInt(invQty));
+             formData.append('SAFE_INV', parseInt(safeInv));
+             formData.append('INV_STUS_CD', invStusCd);
+             formData.append('INV_LOC', invLoc);
+             $.ajax({
+                 url: '/admin/modify',
+                 type: 'POST',
+                 data: formData,
+                 contentType: false,
+                 processData: false,
+                 success: function(result) {
+                     console.log('전송 성공.');
+                     $.get('/admin/modify/' + prodId, function (data) {
+                         $('td#inv-qty').text(data.INV_QTY);
+                     });
+                 },
+                 error: function(xhr, status, error) {
+                     console.error(xhr.responseText);
+                     alert('수정 실패: ' + xhr.responseText);
+                 }
+             });
+         });
+
+     });
+
+    // $(document).ready(function() {
+    //     $('#eBtnModify').on("click", function() {
+    //         const invQty = $('input.option-number').val();
+    //         const safeInv = $('input.safe-number').val();
+    //         const invStusCd = $('select.inv-status').val();
+    //         const invLoc = $('select.inv-loc').val();
+    //         const prodId = $('#prod-id').text();
+    //
+    //         const formData = new FormData();
+    //         formData.append('PROD_ID', parseInt(prodId));
+    //         formData.append('INV_QTY', parseInt(invQty));
+    //         formData.append('SAFE_INV', parseInt(safeInv));
+    //         formData.append('INV_STUS_CD', invStusCd);
+    //         formData.append('INV_LOC', invLoc);
+    //         $.ajax({
+    //             url: '/admin/modify',
+    //             type: 'POST',
+    //             data: formData,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function(result) {
+    //                 console.log('전송 성공.');
+    //                 // 변경된 제품의 재고수량 조회
+    //                 $.ajax({
+    //                     url: '/inv/' + prodId,
+    //                     type: 'GET',
+    //                     success: function(data) {
+    //                         $('td#inv-qty').text(data.INV_QTY);
+    //                     },
+    //                     error: function(xhr, status, error) {
+    //                         console.error(xhr.responseText);
+    //                         alert('재고 조회 실패: ' + xhr.responseText);
+    //                     }
+    //                 });
+    //             },
+    //             error: function(xhr, status, error) {
+    //                 console.error(xhr.responseText);
+    //                 alert('수정 실패: ' + xhr.responseText);
+    //             }
+    //         });
+    //     });
+    // });
+
+
+</script>
+<script>
+    let msg ="${msg}";
     if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
     if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
-    if(msg=="MOD_OK") alert("게시물 수정에 성공하였습니다.");
-</script>
-
-<script>
-
-    $(document).ready(function() {
-        $('#eBtnModify').on("click", function() {
-            const invQty = parseInt($('input.option-number').val());
-            const safeInv = parseInt($('input.safe-number').val());
-            const invStusCd = $('select.inv-status').val();
-            const invLoc = $('select.inv-loc').val();
-
-            if (isNaN(invQty) || invQty < 0) {
-                alert('상품 재고량을 입력하세요.');
-                return;
-            }
-
-            if (isNaN(safeInv) || safeInv < 0) {
-                alert('안전 재고량을 입력하세요.');
-                return;
-            }
-
-            if (invStusCd === null || invStusCd === '') {
-                alert('재고 상태를 선택하세요.');
-                return;
-            }
-
-            if (invLoc === null || invLoc === '') {
-                alert('재고 위치를 선택하세요.');
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append('invDto.INV_QTY', invQty);
-            formData.append('invDto.SAFE_INV', safeInv);
-            formData.append('invDto.INV_STUS_CD', invStusCd);
-            formData.append('invDto.INV_LOC', invLoc);
-            $.ajax({
-                url: '/admin/modify',
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                    alert('수정 실패: ' + xhr.responseText);
-                }
-            })
-        })
-        });
-
-
+    if(msg=="MOD_OK") alert("수정이 완료되었습니다.");
 
 </script>
-
 </body>
 </html>
