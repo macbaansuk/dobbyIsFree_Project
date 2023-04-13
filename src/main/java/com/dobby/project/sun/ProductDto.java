@@ -5,20 +5,19 @@ import java.util.Objects;
 
 
 public class ProductDto {
-    private String prod_id;
+    private Integer prod_id;
     private String cate_cd;
-    private int amt;
+    private Integer amt;
     private String prod_nm;
     private String rep_img;
-    private int avg_ascr;
-    private int revw_ncnt;
+    private Integer avg_ascr;
+    private Integer revw_ncnt;
     private Integer inv_qty;
     private String new_yn;
     private String prod_stus;
     private String opt_yn;
-    private String desc;
+    private String prod_desc;
     private String dc_yn;
-    private Integer dc_aply;
     private String mai_yn;
     private String fgift_yn;
     private Date upd_dtm;
@@ -34,9 +33,11 @@ public class ProductDto {
     private Date last_upd_dtm;
     private String last_updr_dcmt_No;
 
-    // 생성자, getter, setter, toString
-    public ProductDto() {}
-    public ProductDto(String prod_id, String cate_cd, int amt, String prod_nm, String rep_img, int avg_ascr, int revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String desc, String dc_yn, Integer dc_aply, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm, String notice, Date sle_bgn_dtm, Date sle_end_dtm, String inv_loc, Integer safe_inv, String inv_stus_cd, Date fst_reg_dtm, String fst_regr_dcmt_no, Date last_upd_dtm, String last_updr_dcmt_No) {
+    public ProductDto() {
+    }
+
+    public ProductDto(Integer prod_id, String cate_cd, Integer amt, String prod_nm, String rep_img, Integer avg_ascr, Integer revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String prod_desc, String dc_yn, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm, String notice, Date sle_bgn_dtm, Date sle_end_dtm, String inv_loc, Integer safe_inv, String inv_stus_cd, Date fst_reg_dtm, String fst_regr_dcmt_no, Date last_upd_dtm, String last_updr_dcmt_No) {
+
         this.prod_id = prod_id;
         this.cate_cd = cate_cd;
         this.amt = amt;
@@ -48,9 +49,8 @@ public class ProductDto {
         this.new_yn = new_yn;
         this.prod_stus = prod_stus;
         this.opt_yn = opt_yn;
-        this.desc = desc;
+        this.prod_desc = prod_desc;
         this.dc_yn = dc_yn;
-        this.dc_aply = dc_aply;
         this.mai_yn = mai_yn;
         this.fgift_yn = fgift_yn;
         this.upd_dtm = upd_dtm;
@@ -67,11 +67,11 @@ public class ProductDto {
         this.last_updr_dcmt_No = last_updr_dcmt_No;
     }
 
-    public String getProd_id() {
+    public Integer getProd_id() {
         return prod_id;
     }
 
-    public void setProd_id(String prod_id) {
+    public void setProd_id(Integer prod_id) {
         this.prod_id = prod_id;
     }
 
@@ -83,11 +83,11 @@ public class ProductDto {
         this.cate_cd = cate_cd;
     }
 
-    public int getAmt() {
+    public Integer getAmt() {
         return amt;
     }
 
-    public void setAmt(int amt) {
+    public void setAmt(Integer amt) {
         this.amt = amt;
     }
 
@@ -107,19 +107,19 @@ public class ProductDto {
         this.rep_img = rep_img;
     }
 
-    public int getAvg_ascr() {
+    public Integer getAvg_ascr() {
         return avg_ascr;
     }
 
-    public void setAvg_ascr(int avg_ascr) {
+    public void setAvg_ascr(Integer avg_ascr) {
         this.avg_ascr = avg_ascr;
     }
 
-    public int getRevw_ncnt() {
+    public Integer getRevw_ncnt() {
         return revw_ncnt;
     }
 
-    public void setRevw_ncnt(int revw_ncnt) {
+    public void setRevw_ncnt(Integer revw_ncnt) {
         this.revw_ncnt = revw_ncnt;
     }
 
@@ -155,12 +155,12 @@ public class ProductDto {
         this.opt_yn = opt_yn;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getProd_desc() {
+        return prod_desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setProd_desc(String prod_desc) {
+        this.prod_desc = prod_desc;
     }
 
     public String getDc_yn() {
@@ -169,14 +169,6 @@ public class ProductDto {
 
     public void setDc_yn(String dc_yn) {
         this.dc_yn = dc_yn;
-    }
-
-    public Integer getDc_aply() {
-        return dc_aply;
-    }
-
-    public void setDc_aply(Integer dc_aply) {
-        this.dc_aply = dc_aply;
     }
 
     public String getMai_yn() {
@@ -305,9 +297,8 @@ public class ProductDto {
                 ", new_yn='" + new_yn + '\'' +
                 ", prod_stus='" + prod_stus + '\'' +
                 ", opt_yn='" + opt_yn + '\'' +
-                ", desc='" + desc + '\'' +
+                ", prod_desc='" + prod_desc + '\'' +
                 ", dc_yn='" + dc_yn + '\'' +
-                ", dc_aply=" + dc_aply +
                 ", mai_yn='" + mai_yn + '\'' +
                 ", fgift_yn='" + fgift_yn + '\'' +
                 ", upd_dtm=" + upd_dtm +
@@ -325,7 +316,6 @@ public class ProductDto {
                 '}';
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -339,3 +329,4 @@ public class ProductDto {
         return Objects.hash(prod_id, cate_cd, prod_nm);
     }
 }
+    // 생성자, getter, setter, toString

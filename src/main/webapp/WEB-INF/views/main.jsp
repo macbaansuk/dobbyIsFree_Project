@@ -273,7 +273,7 @@
                             <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
                             <span class="heart-icon">
                                 <i class="far fa-heart"></i>
-                                <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </span>
 
                         </div>
@@ -281,31 +281,7 @@
                 </div>
             </c:forEach>
         </div>
-        <script>
 
-            function insertA (productNumber) {
-                console.log(productNumber)
-                console.log("insert함수실행")
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    url: "/cart/"+ productNumber,
-                    type: "POST",
-                    success: function (data) {
-                        if (data == 1) {
-                        location.href='/cart'
-                        }
-                    },
-                    error: function () {
-                        alert("등록 실패")
-                    }
-                });<!--ajax -->
-            }
-
-        </script>
 
         <%-- 멤버십 시작 --%>
         <section class="mainMemberShipInfo">

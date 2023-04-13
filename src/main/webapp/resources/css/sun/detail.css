@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.contents {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto 0;
+    padding: 20px;
+
+}
+
+.product-topview {
+    display: flex;
+    padding: 20px;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #e5e5e5; */
+}
+
+.product-topview img {
+    max-width: 50%;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-right: 100px;
+}
+
+.product-detail {
+    width: 100%;
+}
+
+.product-detail h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-detail p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.star-wrap {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.star-wrap span {
+    margin-right: 10px;
+}
+.star-wrap i {
+    color: green;
+    font-size: 17px;
+}
+
+.star-rating {
+    margin-left: 5px;
+}
+
+.product-hashtag {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-hashtag a {
+    display: inline-block;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.product-guide {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.product-guide dt {
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.product-guide dl {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-guide span {
+    margin-right: 5px;
+}
+
+
+.product-purchase div {
+    display: flex;
+    align-items: center;
+}
+
+.product-purchase div p {
+    margin-right: 5px;
+}
+
+.product-purchase dl {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-purchase dt {
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.btn-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+
+button[type="button"] {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: #006633;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="button"]:hover {
+    background-color: #004d26;
+}
+
+/* 탭 스타일 */
+.tabType {
+    margin-top: 20px;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+.tabType ul {
+    display: flex;
+    list-style-type: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.tabType li {
+    flex-grow: 1;
+}
+
+.tabType button {
+    width: 100%;
+    padding: 15px 0;
+    background: none;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    border-bottom: 2px solid transparent;
+}
+
+
+.tabType button:hover {
+    color: #333;
+}
+
+.tabType button.current {
+    color: #006633;
+    border-bottom: 2px solid #006633;
+}
+
+.purchase-num {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.purchase-num dt {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.quantity button {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #f6f6f6;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+.quantity button:hover {
+    background-color: #e5e5e5;
+}
+
+.quantity input {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
