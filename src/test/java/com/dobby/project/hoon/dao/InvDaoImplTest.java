@@ -26,7 +26,7 @@ public class InvDaoImplTest {
     public void insertTestData () throws Exception {
         invDao.deleteAll();
         for (int i = 1; i <=250 ; i++) {
-            InvDto invDto = new InvDto(0, "11002", 28000, "스킨로션" + i, "", 4, 15, 120, "N", "판매중", "Y", "올인원 미니 스킨로션", "N", 0, "Y", "N", new Date(), new Date(), "최신 제품입니다.", new Date(), new Date(), "창고 1(3A-14)", 100, "여유", new Date(), "Dobby", new Date(), "Dobby");
+            InvDto invDto = new InvDto(0, "11002", 28000, "스킨로션" + i, "", 4, 15, 120, "N", "판매중", "Y", "올인원 미니 스킨로션", "N",  "Y", "N", new Date(), new Date(), "최신 제품입니다.", new Date(), new Date(), "창고 1(3A-14)", 100, "여유", new Date(), "Dobby", new Date(), "Dobby");
             invDao.insert(invDto);
         }
     }
@@ -35,7 +35,7 @@ public class InvDaoImplTest {
         invDao.deleteAll();
         assertTrue(invDao.count()==0);
 
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.count()==1);
 
@@ -48,12 +48,12 @@ public class InvDaoImplTest {
         invDao.deleteAll();
         assertTrue(invDao.count()==0);
 
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.deleteAll()==1);
         assertTrue(invDao.count()==0);
 
-        invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.deleteAll()==2);
@@ -65,7 +65,7 @@ public class InvDaoImplTest {
         invDao.deleteAll();
         assertTrue(invDao.count()==0);
 
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         Integer PROD_ID = invDao.selectAll().get(0).getPROD_ID();
         assertTrue(invDao.delete(PROD_ID, invDto.getPROD_NM())==1);
@@ -88,15 +88,15 @@ public class InvDaoImplTest {
     @Test
     public void insertTest() throws Exception {
         invDao.deleteAll();
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
 
-         invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+         invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.count()==2);
 
         invDao.deleteAll();
-         invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+         invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
         assertTrue(invDao.count()==1);
     }
@@ -109,7 +109,7 @@ public class InvDaoImplTest {
         List<InvDto> list = invDao.selectAll();
         assertTrue(list.size() == 0);
 
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
 
         list = invDao.selectAll();
@@ -124,7 +124,7 @@ public class InvDaoImplTest {
     public void selectTest() throws Exception {
         invDao.deleteAll();
         assertTrue(invDao.count()==0);
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
 //
         Integer PROD_ID = invDao.selectAll().get(0).getPROD_ID();
@@ -140,7 +140,7 @@ public class InvDaoImplTest {
         invDao.deleteAll();
 
         for (int i = 1; i <= 10; i++) {
-            InvDto invDto = new InvDto(0, "11002", 28000, "스킨로션" + i, "", 4, 15, 120, "N", "판매중", "Y", "올인원 미니 스킨로션", "N", 0, "Y", "N", new Date(), new Date(), "최신 제품입니다.", new Date(), new Date(), "창고 1(3A-14)", 100, "여유", new Date(), "Dobby", new Date(), "Dobby");
+            InvDto invDto = new InvDto(0, "11002", 28000, "스킨로션" + i, "", 4, 15, 120, "N", "판매중", "Y", "올인원 미니 스킨로션", "N",  "Y", "N", new Date(), new Date(), "최신 제품입니다.", new Date(), new Date(), "창고 1(3A-14)", 100, "여유", new Date(), "Dobby", new Date(), "Dobby");
             invDao.insert(invDto);
         }
 
@@ -173,13 +173,14 @@ public class InvDaoImplTest {
     @Test
     public void updateTest() throws Exception {
         invDao.deleteAll();
-        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N", 0, "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
+        InvDto invDto = new InvDto(0, "12001", 31000, "상품명", "", 0, 0, 0, "N", " ", "N", " ", "N",  "N", "N", new Date(), new Date(), " ", new Date(), new Date(), " ", 0, " ", new Date(), " ", new Date(), " ");
         assertTrue(invDao.insert(invDto)==1);
 
         Integer PROD_ID = invDao.selectAll().get(0).getPROD_ID();
         System.out.println("PROD_ID = " + PROD_ID);
         invDto.setPROD_ID(PROD_ID);
         invDto.setPROD_NM("변경된 상품명");
+        System.out.println("PROD_ID = " + PROD_ID);
         assertTrue(invDao.update(invDto)==1);
 
         InvDto invDto2 = invDao.select(PROD_ID);

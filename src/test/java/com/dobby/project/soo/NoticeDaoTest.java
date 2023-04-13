@@ -16,7 +16,7 @@ public class NoticeDaoTest {
     @Test
     public void insert() throws Exception {
 
-        for (int i=1; i<=20; i++){
+        for (int i=1; i<=2; i++){
             NoticeDto noticeDto = new NoticeDto("쇼핑몰 공지"
                     , "아아 이니스프리에서 공지합니다. 모든 회원은 확인바랍니다"
                     , "안녕하세요 고객님,오늘도 이니스프리 공식 온라인몰을 찾아 주셔서 감사합니다."
@@ -50,7 +50,7 @@ public class NoticeDaoTest {
                     +" * 8개월 연속 공병수거 참여 시 1만 포인트 적립은 4/30일까지이며, 이후에는 포인트 적립이 불가합니다."
                     +" 공병 프리퀀시 시즌2는 종료되지만, 공병 수거 제도는 연중 운영하고 있으니 많은 참여 부탁드립니다."
                     +" 이니스프리는 앞으로 더 나은 서비스를 제공드리기 위해 노력하겠습니다.감사합니다."
-                    , "강수희");
+                    , "강수희", "게시중");
             noticeDao.insert(noticeDto);
         }
         assertTrue(true);

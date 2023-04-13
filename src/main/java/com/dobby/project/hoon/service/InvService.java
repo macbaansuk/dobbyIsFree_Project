@@ -19,4 +19,8 @@ public interface InvService {
     List<InvDto> getPage(Map map) throws Exception;
 
     int modify(InvDto InvDto) throws Exception;
+
+    int InvModify(InvDto InvDto) throws Exception;
+
+    InvDto getInv(Integer PROD_ID) throws Exception;
 }

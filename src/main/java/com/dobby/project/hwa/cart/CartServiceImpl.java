@@ -15,7 +15,7 @@ public class CartServiceImpl implements CartService {
     public int insertCart(String proKey, String userKey) {
 
         CartDto cartDto = new CartDto();
-        cartDto.setPROD_NO(proKey);
+        cartDto.setPROD_ID(proKey);
         cartDto.setMBR_ID(userKey);
         CartDto resultCartDto = cartDao.selectCartByProdIdAndMbrId(cartDto);
 
@@ -24,10 +24,17 @@ public class CartServiceImpl implements CartService {
             cartDao.insertCart(cartDto);
         } else {
 //            // 수량이 하나 더 증가
-            int qty = resultCartDto.getPROD_INDV_QTY() + 1;
-            cartDto.setPROD_INDV_QTY(qty);
-            cartDao.updateCart(cartDto);
+//            int qty = resultCartDto.getPROD_INDV_QTY() + 1;
+//            cartDto.setPROD_INDV_QTY(qty);
+//            cartDao.updateCart(cartDto);
+//-------------------------------------------------원래 수량이 1개씩 증가하는 코드 but 수량 제한이 없다
 
+            int qty = resultCartDto.getPROD_INDV_QTY();
+            if (qty < 10) { //10개까지만 담을 수 있다
+                qty++;
+                cartDto.setPROD_INDV_QTY(qty);
+                cartDao.updateCart(cartDto);
+            }
         }
 
         return 1;
@@ -40,13 +47,22 @@ public class CartServiceImpl implements CartService {
     }
 
 
-
-
     @Override
     public void deleteCart(List<Integer> cartIdList) {
         System.out.println("delete service 진입");
         cartDao.deleteCart(cartIdList);
     }
+
+    @Override
+    public void updateCartQty(Integer cartId, Integer quantity) {
+//        CartDto cartDto = new CartDto();
+//        cartDto.setCART_ID(cartId);
+//        cartDto.setPROD_INDV_QTY(quantity);
+
+        cartDao.updateCartQty(cartId,quantity);
+    }
+
+
 
 
 }

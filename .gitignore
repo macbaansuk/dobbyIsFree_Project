@@ -9,11 +9,12 @@ tmp/
 *.bak
 *.swp
 *~.nib
+*.iml
 local.properties
 .settings/
 .loadpath
 .recommenders
-
+*.iml
 
 # External tool builders
 .externalToolBuilders/
@@ -159,3 +160,5 @@ fabric.properties
 
 # Project exclude paths
 /target/
+
+*.iml

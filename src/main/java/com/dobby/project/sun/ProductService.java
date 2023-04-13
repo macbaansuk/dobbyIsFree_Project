@@ -9,5 +9,9 @@ public interface ProductService {
     List<ProductDto> getMakeupProducts();
     List<ProductDto> getMenProducts();
     List<ProductDto> getHairBodyProducts();
+    ProductDto getProductById(int id) throws Exception;
 
+
+//    int countProducts();
+//    List<ProductDto> getProductList(String category);
 }

@@ -11,11 +11,11 @@ public class DeleteDto {
     }
 
     public void setCartIdList(List<Integer> cartIdList) {
+
         this.cartIdList = cartIdList;
     }
 
-    public DeleteDto() {
-    }
+    public DeleteDto() {}
 
     public DeleteDto(List<Integer> cartIdList) {
         this.cartIdList = cartIdList;

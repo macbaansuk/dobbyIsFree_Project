@@ -17,10 +17,10 @@
 
 <section class="contents">
     <div class="product-header">
-        <div class="prod-text">
-            <h2 class="prod-title">남성</h2>
-            <div class="prod-desc">
-                <pre>도비스프리 남성 화장품 전체 제품 페이지 입니다.
+        <div class="product-text">
+            <h2 class="product-title">남성</h2>
+            <div class="product-desc">
+                 <pre>도비스프리 남성 화장품 전체 제품 페이지 입니다.
 포레스트 포맨 올인원 에센스, 그린티 로션 포맨, 올리브 리얼 스킨 포맨 등
 도비스프리가 추천하는 쉐이빙 폼, 남자 로션, 남자 스킨 제품들을 만나보세요.</pre>
             </div>
@@ -30,42 +30,40 @@
 
     </div>
 
-    <div class="prod-contents">
+    <div class="product-contents">
         <div class="sort-contents">
             <p class="product-length">
                 총
                 <strong class="num">
-                    8개
+                    4개
                 </strong>
                 의 도비스프리
                 <strong class="cate">
-                    스킨케어
+                    남성
                 </strong>
                 제품이 있습니다.
             </p>
 
-            <div class="prod-sort-click">
+            <div class="product-sort-click">
                 <ul>
                     <li>
                         <label >최신순</label>
                     </li>
                     <li>
-                       <label>높은 가격순</label>
+                        <label>높은 가격순</label>
                     </li>
                 </ul>
             </div>
 
         </div>
-
         <!-- 상품 리스트 -->
         <div class="product-list">
             <c:forEach var="p" items="${menProducts}">
-                <div class="product">
+            <div class="product">
+                <a href="/product/${p.prod_id}">
                     <div class="product-img">
-                        <img src="${p.rep_img}" alt="상품 이미지" />
-                        <div class="cart_icon">
-                            <img class="icon" src="/img/main/003.png"  />
-                        </div>
+
+                        <img src="${p.rep_img}" alt="메인 상품 이미지">
                     </div>
                     <div class="product-info">
                         <span class="product-name">${p.prod_nm}</span>
@@ -87,8 +85,11 @@
                                 </c:otherwise>
                             </c:choose>
                         </p>
+                    </div>
+                </a>
 
-                        <div class="tag-wrap"></div>
+
+                    <div class="tag-wrap"></div>
                         <div class="star-wrap">
                             <i class="fas fa-star"></i>
                             <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
