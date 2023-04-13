@@ -145,20 +145,20 @@
   </div>
   <div id="logo_search_box">
     <h1>
-      <a href="#">
-        <img src="./img/main/logo.png" width="250px" />
+      <a href="/">
+        <img src="/img/main/logo.png" width="250px" />
       </a>
       <div id="search_box">
         <input type="text" placeholder="  검색어를 입력하세요.">
-        <img src="./img/main/search.png" />
+        <img src="/img/main/search.png" />
       </div>
     </h1>
   </div>
   <div id="product_cate">
-    <span>스킨케어</span>
-    <span>메이크업</span>
-    <span>헤어/바디</span>
-    <span>남성</span>
+    <span><a href="/product/skincare">스킨케어</a></span>
+    <span><a href="/product/makeup">메이크업</a></span>
+    <span><a href="/product/hair-body">헤어/바디</a></span>
+    <span><a href="/product/men">남성</a></span>
   </div>
 </header>
 </body>

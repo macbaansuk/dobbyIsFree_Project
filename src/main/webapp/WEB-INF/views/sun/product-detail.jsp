@@ -183,35 +183,23 @@
         </ul>
 
 
-        <div id="tab1" class="tabcontent current">
-            <img src="https://via.placeholder.com/300x300" alt="상세정보이미지">
-        </div>
+<%--        <div id="tab1" class="tabcontent current">--%>
+<%--            <img src="https://via.placeholder.com/300x300" alt="상세정보이미지">--%>
+<%--        </div>--%>
 
-        <div id="tab2" class="tabcontent">
-            <p>탭2</p>
-        </div>
+<%--        <div id="tab2" class="tabcontent">--%>
+<%--            <p>탭2</p>--%>
+<%--        </div>--%>
 
-        <div id="tab3" class="tabcontent">
-            <p>탭3</p>
-        </div>
+<%--        <div id="tab3" class="tabcontent">--%>
+<%--            <p>탭3</p>--%>
+<%--        </div>--%>
 
-        <div id="tab4" class="tabcontent">
-            <p>탭4</p>
-        </div>
+<%--        <div id="tab4" class="tabcontent">--%>
+<%--            <p>탭4</p>--%>
+<%--        </div>--%>
 
-        <%--        <!-- <script>--%>
-        <%--          $(document).ready(function(){--%>
-        <%--              $('ul.tabs li').click(function(){--%>
-        <%--                  var tab_id = $(this).attr('data-tab');--%>
-
-        <%--                  $('ul.tabs li').removeClass('active');--%>
-        <%--                  $('.tabcontent').removeClass('current');--%>
-
-        <%--                  $(this).addClass('active');--%>
-        <%--                  $("#"+tab_id).addClass('current');--%>
-        <%--              });--%>
-        <%--          });--%>
-        <%--      </script>--%>
+<%--       --%>
 
 
     </div>
