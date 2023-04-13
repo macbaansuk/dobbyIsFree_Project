@@ -6,7 +6,6 @@ body {
 }
 
 a {
-    color: #05f;
     text-decoration: none;
 }
 
@@ -28,7 +27,7 @@ ul, lo, li {
 /* ---------- */
 
 div#root {
-    width: 900px;
+    /*width: 900px;*/
     padding-left: 50px;
 }
 
@@ -39,11 +38,14 @@ nav#nav {
 }
 
 section#container {
+    display: inline-block;
 }
 
 section#content {
     float: right;
     width: 700px;
+    padding-left: 100px;
+    padding-top: 20px;
 }
 
 aside#aside {
@@ -59,33 +61,6 @@ section#container::after {
 
 
 
-/*header#header div#header_box {*/
-/*    text-align: center;*/
-/*    padding: 30px 0;*/
-/*}*/
-
-/*header#header div#header_box h1 {*/
-/*    font-size: 50px;*/
-/*}*/
-
-/*header#header div#header_box h1 a {*/
-/*    color: #000;*/
-/*}*/
-
-/*nav#nav div#nav_box {*/
-/*    font-size: 14px;*/
-/*    padding: 10px;*/
-/*    text-align: right;*/
-/*}*/
-
-/*nav#nav div#nav_box li {*/
-/*    display: inline-block;*/
-/*    margin: 0 10px;*/
-/*}*/
-
-/*nav#nav div#nav_box li a {*/
-/*    color: #333;*/
-/*}*/
 
 section#container {
 }
@@ -143,8 +118,6 @@ aside#aside li:hover > ul.low li a:hover {
 aside#aside li > ul.low li {
     width: 180px;
 }
-
-
 
 
   section#content ul li {
@@ -264,5 +237,286 @@ section#content div.gdsInfo .delete button {
     clear: both;
 }
 
+.spinner {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #dddee1;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.spinner:before, .spinner:after {
+    content: "";
+    display: table;
+}
+
+.spinner:after {
+    clear: both;
+}
+
+.spinner input, .spinner button {
+    float: left;
+}
+
+.spinner input {
+    font-family: "Open Sans", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "돋움", Dotum, Helvetica, Arial, sans-serif;
+    width: 46px;
+    height: 32px;
+    line-height: 32px;
+    color: #000000;
+    padding: 0;
+    font-size: 16px;
+    border: 0;
+    border-right: 1px solid #d5d5d5;
+    border-left: 1px solid #d5d5d5;
+    text-align: center;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.spinner input[readonly] {
+    background-color: #fff;
+}
+
+.spinner input[readonly]:focus {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.spinner .btn-amount {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 11px 11px;
+    overflow: hidden;
+    text-indent: -9999px;
+    font-size: 0.01em;
+    color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.spinner .btn-amount.minus {
+    border-right: 0;
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner .btn-amount.plus {
+    border-left: 0;
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.disabled {
+    background-color: #e5e5e5;
+}
+
+.spinner.disabled input[type="text"] {
+    color: #c1c1c1;
+}
+
+.spinner.disabled button.btn-amount {
+    background-color: #e5e5e5;
+}
+
+.spinner.disabled button.minus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner.disabled button.plus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.small .btn-amount {
+    width: 24px;
+    height: 24px;
+    background-color: #f9f9f9;
+}
+
+.spinner.small input {
+    width: 37px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.spinner.small.disabled .btn-amount {
+    background-color: #f6f6f6;
+}
+
+.spinner.small.disabled .btn-amount.minus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-minus.png");
+}
+
+.spinner.small.disabled .btn-amount.plus {
+    background-image: url("https://static.ableshop.kr/web/fo/static/images/common-fix/ico-spinner-plus.png");
+}
+
+.spinner.small.disabled input {
+    background-color: #f6f6f6;
+}
+#cart_header{padding: 30px 0 30px 0;}
+
+.order_btn {
+    /*       border: 1px solid black; */
+    font-size: 18px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    background: #eee;
+
+}
+
+.inputArea{padding: 20px 0 20px 0}
+
+/*변경 버튼*/
+.btn {
+    position: relative;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btn.slightly {
+    color: #222;
+    border-color: #d5d5d5;
+    background-color: #fff;
+}
+.btn.small {
+    padding: 0 15px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 16px;
+    /* font-weight: 400; */
+}
+/*변경 버튼 끝*/
+
+.fee{
+    vertical-align: top;
+    display: inline-block;
+    padding: 100px 50px 0 200px;
+    width: 400px;
+}
 
 
+/* 이니스프리 결제박스*/
+.totalPayment{
+    display: inline-block;
+    padding: 100px;
+    vertical-align: top;
+    width: 350px;
+    position: sticky;
+    top: 0;
+}
+
+
+.totalPayment .box {
+	padding: 0 18px;
+	border: 2px solid #222;
+    height: 240px;
+}
+.totalPayment .btnType4xl {
+	width: 100%;
+	margin: 16px 0 0;
+}
+.totalPayment .loginTxt {
+	padding: 18px 0 22px;
+	text-align: center;
+	color: #222;
+	border-bottom: 1px solid #222;
+}
+.totalPayment .loginTxt .btnType1s {
+	margin: 15px 0 0;
+	padding: 0 30px;
+}
+.totalPayment .orderPrice {padding: 8px 0 0;}
+.totalPayment .orderPrice .subTitle2 {margin: 10px 0 15px;}
+
+.totalPayment .orderPrice .layerTooltip {
+	top: 30px !important;
+	left: -210px !important;
+	text-align: left;
+	white-space: nowrap;
+}
+.totalPayment .orderPrice dl {
+	position: relative;
+	padding: 8px 0;
+	color: #222;
+	text-align: right;
+}
+.totalPayment .orderPrice dt {float: left;}
+.totalPayment .orderPrice dt.sub {padding-left:10px;}
+.totalPayment .orderPrice dd {display: inline-block;}
+.totalPayment .orderPrice .num {
+    /*font-family: 'roboM';*/
+    font-family: "나눔바른고딕OTF", "돋움";
+	letter-spacing: -.04em;
+}
+.totalPayment .orderPrice .totalPrice {
+	margin: 5px 0 0;
+	padding: 10px 0 15px;
+	border-top: 1px solid #dcdcdc;
+
+}
+.totalPayment .orderPrice .totalPrice dt {line-height: 30px;}
+.totalPayment .orderPrice .totalPrice dd {
+	font-size: 22px;
+	color: #d72137;
+}
+.totalPayment .orderPrice .totalPrice dd .num {
+	/*font: 26px/1.2 'roboM';*/
+    font-family: NanumSquareNeo-dEb;
+	vertical-align: middle;
+}
+
+.totalPayment .orderPrice .totalSale .num {color: #d72137;}
+.totalPayment .orderPrice .saleBox {
+	margin: 0 -10px;
+	padding: 10px;
+	background: #f3f3f3;
+}
+.totalPayment .orderPrice .saleBox.noBG {background:transparent;}
+.totalPayment .orderPrice .saleBox dl {
+	padding: 0;
+	color: #777;
+	font: 14px/1.8 'SDNeoL', 'notoL';
+}
+.totalPayment .orderPrice .saleBox dl.saleTit {font-family:'roboR','SDNeoL', 'notoR';color:#222;}
+.totalPayment .orderPrice .saleBox dd .num {font-family: 'roboR';}
+
+.totalPayment .btnType4xl {
+    width: 100%;
+    margin: 16px 0 0;
+}
+.btnType4xl {
+     height: 65px;
+     line-height: 65px;
+     font-size: 22px;
+}
+[class*="btnType4"] {
+    height: 50px;
+    line-height: 40px;
+    padding: 0 30px;
+    background: #d72137;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+
+/* 이니스프리 결제박스 끝*/
