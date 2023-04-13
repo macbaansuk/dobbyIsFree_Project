@@ -3,7 +3,7 @@ package com.dobby.project.ming.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class User {
+public class UserDto {
     private String MBR_ID;
     private String PWD;
     private String MBR_GRD;
@@ -30,53 +30,31 @@ public class User {
     private String AGRE_YN;
     private Date SNS_DTM;
 
-
-    public User() {}
-
-    public User(String MBR_ID, String PWD, String MBR_GRD, String MBR_TYPE_CD, String MBR_STUS_CD, String MBR_NM, String EMAIL, String MPNO, Date BD, String SEX, String DLVPN_ID, Integer MBR_PT, String MBR_COUPN, String COMMENT, String SNS_YN, Date SUBS_DTM, Date MBR_GRD_DTM, String CONN_TMS, Date LAST_LOGIN_DTM, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO, String AGRE_YN, Date SNS_DTM) {
+    public UserDto() {}
+    public UserDto(String MBR_ID, String PWD, String MBR_NM, String EMAIL, String MPNO) {
         this.MBR_ID = MBR_ID;
         this.PWD = PWD;
-        this.MBR_GRD = MBR_GRD;
-        this.MBR_TYPE_CD = MBR_TYPE_CD;
-        this.MBR_STUS_CD = MBR_STUS_CD;
         this.MBR_NM = MBR_NM;
         this.EMAIL = EMAIL;
         this.MPNO = MPNO;
-        this.BD = BD;
-        this.SEX = SEX;
-        this.DLVPN_ID = DLVPN_ID;
-        this.MBR_PT = MBR_PT;
-        this.MBR_COUPN = MBR_COUPN;
-        this.COMMENT = COMMENT;
-        this.SNS_YN = SNS_YN;
-        this.SUBS_DTM = SUBS_DTM;
-        this.MBR_GRD_DTM = MBR_GRD_DTM;
-        this.CONN_TMS = CONN_TMS;
-        this.LAST_LOGIN_DTM = LAST_LOGIN_DTM;
-        this.FST_REG_DTM = FST_REG_DTM;
-        this.FST_REGR_DCMT_NO = FST_REGR_DCMT_NO;
-        this.LAST_UPD_DTM = LAST_UPD_DTM;
-        this.LAST_UPDR_DCMT_NO = LAST_UPDR_DCMT_NO;
-        this.AGRE_YN = AGRE_YN;
-        this.SNS_DTM = SNS_DTM;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return MBR_ID.equals(user.MBR_ID) && PWD.equals(user.PWD) && MBR_GRD.equals(user.MBR_GRD) && MBR_TYPE_CD.equals(user.MBR_TYPE_CD) && MBR_STUS_CD.equals(user.MBR_STUS_CD) && MBR_NM.equals(user.MBR_NM) && EMAIL.equals(user.EMAIL) && MPNO.equals(user.MPNO) && BD.equals(user.BD) && SEX.equals(user.SEX) && Objects.equals(DLVPN_ID, user.DLVPN_ID) && Objects.equals(MBR_PT, user.MBR_PT) && Objects.equals(MBR_COUPN, user.MBR_COUPN) && Objects.equals(COMMENT, user.COMMENT) && SNS_YN.equals(user.SNS_YN) && SUBS_DTM.equals(user.SUBS_DTM) && MBR_GRD_DTM.equals(user.MBR_GRD_DTM) && Objects.equals(CONN_TMS, user.CONN_TMS) && Objects.equals(LAST_LOGIN_DTM, user.LAST_LOGIN_DTM) && Objects.equals(FST_REG_DTM, user.FST_REG_DTM) && Objects.equals(FST_REGR_DCMT_NO, user.FST_REGR_DCMT_NO) && Objects.equals(LAST_UPD_DTM, user.LAST_UPD_DTM) && Objects.equals(LAST_UPDR_DCMT_NO, user.LAST_UPDR_DCMT_NO) && AGRE_YN.equals(user.AGRE_YN) && Objects.equals(SNS_DTM, user.SNS_DTM);
+        UserDto userDto = (UserDto) o;
+        return MBR_ID.equals(userDto.MBR_ID) && PWD.equals(userDto.PWD) && MBR_NM.equals(userDto.MBR_NM) && EMAIL.equals(userDto.EMAIL) && MPNO.equals(userDto.MPNO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(MBR_ID, PWD, MBR_GRD, MBR_TYPE_CD, MBR_STUS_CD, MBR_NM, EMAIL, MPNO, BD, SEX, DLVPN_ID, MBR_PT, MBR_COUPN, COMMENT, SNS_YN, SUBS_DTM, MBR_GRD_DTM, CONN_TMS, LAST_LOGIN_DTM, FST_REG_DTM, FST_REGR_DCMT_NO, LAST_UPD_DTM, LAST_UPDR_DCMT_NO, AGRE_YN, SNS_DTM);
+        return Objects.hash(MBR_ID, PWD, MBR_NM, EMAIL, MPNO);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDto{" +
                 "MBR_ID='" + MBR_ID + '\'' +
                 ", PWD='" + PWD + '\'' +
                 ", MBR_GRD='" + MBR_GRD + '\'' +

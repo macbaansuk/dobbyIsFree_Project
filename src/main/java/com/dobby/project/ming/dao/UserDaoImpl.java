@@ -2,6 +2,8 @@ package com.dobby.project.ming.dao;
 
 import com.dobby.project.ming.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,54 +11,58 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+@Repository
 public class UserDaoImpl implements UserDao {
     @Autowired
     DataSource ds;
-    final int FAIL = 0;
+    final int FAIL=0;
 
     @Override
     public int deleteUser(String MBR_ID) {
-        int rowCnt = FAIL; //  insert, delete, update
+        int rowCnt = FAIL;
 
         Connection conn = null;
         PreparedStatement pstmt = null;
 
-        String sql = "delete from member_info where MBR_ID= ? ";
+        String sql = "DELETE FROM member_info WHERE MBR_ID= ? ";
 
-        try {
-            conn = ds.getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, MBR_ID);
-//        int rowCnt = pstmt.executeUpdate(); //  insert, delete, update
-//        return rowCnt;
+        try {  // try-with-resources - since jdk7
+              conn = ds.getConnection();
+              System.out.println("ds="+ds);
+              System.out.println("conn="+conn);
+              pstmt = conn.prepareStatement(sql);
+              pstmt.setString(1, MBR_ID);
+
             return pstmt.executeUpdate(); //  insert, delete, update
+
         } catch (SQLException e) {
-            e.printStackTrace();
-            return FAIL;
+              e.printStackTrace();
+              return FAIL;
+
         } finally {
-            // close()를 호출하다가 예외가 발생할 수 있으므로, try-catch로 감싸야함.
-//            try { if(pstmt!=null) pstmt.close(); } catch (SQLException e) { e.printStackTrace();}
-//            try { if(conn!=null)  conn.close();  } catch (SQLException e) { e.printStackTrace();}
-            close(pstmt, conn); //     private void close(AutoCloseable... acs) {
+              close(pstmt, conn);
         }
     }
 
     @Override
-    public User selectUser(String MBR_ID) throws Exception {
+    public User selectUser(String MBR_ID) {
         User user = null;
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        String sql = "select * from member_info where MBR_ID= ? ";
+        String sql = "SELECT * FROM member_info WHERE MBR_ID= ? ";
 
         try {
             conn = ds.getConnection();
-            pstmt = conn.prepareStatement(sql); // SQL Injection공격, 성능향상
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, MBR_ID);
 
-            rs = pstmt.executeQuery(); //  select
+            System.out.println("Select ds="+ds);
+            System.out.println("Select conn="+conn);
+
+            rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 user = new User();
@@ -70,30 +76,14 @@ public class UserDaoImpl implements UserDao {
                 user.setMPNO(rs.getString(8));
                 user.setBD(new Date(rs.getTimestamp(9).getTime()));
                 user.setSEX(rs.getString(10));
-                user.setADDR_ID(rs.getString(11));
-                user.setMBR_PT(rs.getInt(12));
-                user.setMBR_COUPN(rs.getString(13));
-                user.setCOMMENT(rs.getString(14));
-                user.setAGRE_YN(rs.getString(15));
-                user.setSNS_YN(rs.getString(16));
-                user.setSNS_DTM(new Date(rs.getTimestamp(17).getTime()));
-                user.setSUBS_DTM(new Date(rs.getTimestamp(18).getTime()));
-                user.setMBR_GRD_DTM(new Date(rs.getTimestamp(19).getTime()));
-                user.setCONN_TMS(rs.getString(20));
-                user.setLAST_LOGIN_DTM(new Date(rs.getTimestamp(21).getTime()));
-                user.setFST_REG_DTM(new Date(rs.getTimestamp(22).getTime()));
-                user.setFST_REGR_DCMT_NO(rs.getString(23));
-                user.setLAST_UPD_DTM(new Date(rs.getTimestamp(24).getTime()));
-                user.setLAST_UPDR_DCMT_NO(rs.getString(25));
+                user.setSNS_YN(rs.getString(15));
+                user.setSUBS_DTM(new Date(rs.getTimestamp(16).getTime()));
+                user.setMBR_GRD_DTM(new Date(rs.getTimestamp(17).getTime()));
+                user.setAGRE_YN(rs.getString(24));
             }
-        } catch (SQLException e) {
+        }   catch (SQLException e) {
             return null;
-        } finally {
-            // close()를 호출하다가 예외가 발생할 수 있으므로, try-catch로 감싸야함.
-            // close()의 호출순서는 생성된 순서의 역순
-//            try { if(rs!=null)    rs.close();    } catch (SQLException e) { e.printStackTrace();}
-//            try { if(pstmt!=null) pstmt.close(); } catch (SQLException e) { e.printStackTrace();}
-//            try { if(conn!=null)  conn.close();  } catch (SQLException e) { e.printStackTrace();}
+        }   finally {
             close(rs, pstmt, conn);  //     private void close(AutoCloseable... acs) {
         }
         return user;
@@ -107,29 +97,29 @@ public class UserDaoImpl implements UserDao {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
-        //insert into member_info (MBR_ID, PWD, MBR_GRD, MBR_TYPE_CD, MBR_STUS_CD, MBR_NM, EMAIL, MPNO, BD, SEX, SNS_YN, SUBS_DTM, MBR_GRD_DTM)
-        //values ('test_hwa', '5555', '웰컴', '2', '1', '테스트계정5', 'hwahwa@naver.com', '010-1234-1234', '1995-08-12', 'F', 'N', NOW(), NOW());
-
-        String sql = "insert into member_info values (?, ?, ?, ?, ?, ?, ?, ?, new Date(), ?, ?, ?, new Date(), new Date()) ";
+        //String sql = "INSERT INTO member_info VALUES ('test4', '2222', '웰컴', '2', '1', '테스트', 'bbb@bbb.com', '010-1234-1234', '2022-02-22', 'F','00000','0','','','Y', NOW(), NOW(),'0', NOW(), NOW(), '', NOW(), '','N',NOW()) ";
+        String sql = "INSERT INTO member_info VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?) ";
 
         try {
             conn = ds.getConnection();
-            pstmt = conn.prepareStatement(sql); // SQL Injection공격, 성능향상
-            pstmt.setString(1,user.getMBR_ID());
-            pstmt.setString(2,user.getPWD());
-            pstmt.setString(3,user.getMBR_GRD());
-            pstmt.setString(4,user.getMBR_TYPE_CD());
-            pstmt.setString(5,user.getMBR_STUS_CD());
-            pstmt.setString(6,user.getMBR_NM());
-            pstmt.setString(7,user.getEMAIL());
-            pstmt.setString(8,user.getMPNO());
-            pstmt.setDate(9,new java.sql.Date(user.getBD().getTime()));
-            pstmt.setString(10,user.getSEX());
-            pstmt.setString(11,user.getAGRE_YN());
-            pstmt.setString(12,user.getSNS_YN());
-            pstmt.setDate(13,new java.sql.Date(user.getSUBS_DTM().getTime()));
-            pstmt.setDate(14,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
-            return pstmt.executeUpdate(); //  insert, delete, update;
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, user.getMBR_ID());
+            pstmt.setString(2, user.getPWD());
+            pstmt.setString(3, user.getMBR_GRD());
+            pstmt.setString(4, user.getMBR_TYPE_CD());
+            pstmt.setString(5, user.getMBR_STUS_CD());
+            pstmt.setString(6, user.getMBR_NM());
+            pstmt.setString(7, user.getEMAIL());
+            pstmt.setString(8, user.getMPNO());
+            pstmt.setDate(9, new java.sql.Date(user.getBD().getTime()));
+            pstmt.setString(10, user.getSEX());
+            pstmt.setString(11, user.getSNS_YN());
+            pstmt.setDate(12, new   java.sql.Date(user.getSUBS_DTM().getTime()));
+            pstmt.setDate(13, new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
+            pstmt.setString(14, user.getAGRE_YN());
+
+            return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             return FAIL;
@@ -138,52 +128,56 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    // 매개변수로 받은 사용자 정보로 user_info테이블을 update하는 메서드
     @Override
     public int updateUser(User user) {
-        int rowCnt = FAIL; //  insert, delete, update
+        int rowCnt = FAIL;
 
-//        Connection conn = null;
-//        PreparedStatement pstmt = null;
+        String sql = "UPDATE member_info " +
+                "SET PWD = '1111', MBR_NM = '테스트' , EMAIL= 'aaa@aaa.com' , BD = '1994-11-24', SNS_YN= 'Y', SUBS_DTM= '2023-04-11' " +
+                "WHERE MBR_ID = 'test3' ";
 
-        String sql = "update member_info " +
-                "set PWD=?, MBR_GRD=?, MBR_TYPE_CD=?, MBR_STUS_CD=?, MBR_NM =?, EMAIL=?, MPNO=?, BD=?, SEX=?,AGRE_YN=?, SNS_YN=?, SUBS_DTM=?, MBR_GRD_DTM=? " +
-                "where MBR_ID = ? ";
 
-        // try-with-resources - since jdk7
         try (
                 Connection conn = ds.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql); // SQL Injection공격, 성능향상
+                PreparedStatement pstmt = conn.prepareStatement(sql);
         ){
-            pstmt.setString(1,user.getPWD());
-            pstmt.setString(2,user.getMBR_GRD());
-            pstmt.setString(3,user.getMBR_TYPE_CD());
-            pstmt.setString(4,user.getMBR_STUS_CD());
-            pstmt.setString(5,user.getMBR_NM());
-            pstmt.setString(6,user.getEMAIL());
-            pstmt.setString(7,user.getMPNO());
-            pstmt.setDate(8,new java.sql.Date(user.getBD().getTime()));
-            pstmt.setString(9,user.getSEX());
-            // pstmt.setDate(11, new java.sql.Date(user.getSNS_DTM().getTime()));
-            pstmt.setString(10,user.getAGRE_YN());
-            pstmt.setString(11,user.getSNS_YN());
-            pstmt.setDate(12, new java.sql.Date(user.getSUBS_DTM().getTime()));
-            pstmt.setDate(13,new java.sql.Date(user.getMBR_GRD_DTM().getTime()));
-            pstmt.setString(14, user.getMBR_ID());
+            pstmt.setString(1, user.getPWD());
+            pstmt.setString(2, user.getMBR_NM());
+            pstmt.setString(3, user.getEMAIL());
+            pstmt.setDate(4, new java.sql.Date(user.getBD().getTime()));
+            pstmt.setString(5, user.getSNS_YN());
+            pstmt.setTimestamp(6, new java.sql.Timestamp(user.getSUBS_DTM().getTime()));
+            pstmt.setString(7, user.getMBR_ID());
 
             rowCnt = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             return FAIL;
         }
-
         return rowCnt;
     }
 
+    @Override
+    public int count() throws Exception {
+        String sql = "SELECT count(*) FROM member_info ";
+
+        try(
+                Connection conn = ds.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery();
+        ){
+            rs.next();
+            int result = rs.getInt(1);
+
+            return result;
+        }
+    }
+
+    @Override
     public void deleteAll() throws Exception {
         Connection conn = ds.getConnection();
 
-        String sql = "delete from member_info ";
+        String sql = "delete from member_info";
 
         PreparedStatement pstmt = conn.prepareStatement(sql); // SQL Injection공격, 성능향상
         pstmt.executeUpdate(); //  insert, delete, update
