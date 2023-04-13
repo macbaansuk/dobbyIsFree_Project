@@ -77,24 +77,31 @@
                         <tr>
                             <td class="nb_id">${Notice.NB_ID}</td> <!--  게시물 번호 -->
                             <td class="bbs_cate">${Notice.BBS_CATE}</td>
-                            <td class="ttl"><a href="<c:url value="/cs/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a></td><!--  게시물 제목 -->
+                            <td class="ttl">
+                                <a href="<c:url value="/cs/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a>
+                            </td><!--  게시물 제목 -->
                             <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></td> <!--  게시물 작성일 -->
                         </tr>
                         </c:forEach>
                         </tbody>
 
                     </table>
+
+                    <div>
+                        <button type="button"><a href="/admin/notice/list">관리자 페이지</a></button>
+                    </div>
+
                 </div>
                 <!-- 페이징 -->
                <div class="paging">
                   <c:if test="${ph.showPrev}">
                     <a class="page">
                      <a href="<c:url value="/cs/notice/list?page=${ph.beginPage-1}"/>">&lt;</a>
-                 </c:if>
+                  </c:if>
                   <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
                       <a href="<c:url value="/cs/notice/list?page=${i}"/>">${i}</a>
                   </c:forEach>
-                   <c:if test="${ph.showNext}">
+                        <c:if test="${ph.showNext}">
                        <a href="<c:url value="/cs/notice/list?page=${ph.endPage+1}"/>">&gt;</a>
                    </c:if>
                </div>

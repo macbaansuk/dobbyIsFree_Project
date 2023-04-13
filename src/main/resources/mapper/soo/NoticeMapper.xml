@@ -5,12 +5,12 @@
 <mapper namespace="com.dobby.project.NoticeMapper">
 
     <sql id="selectFromNotice">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM notice
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM notice
     </sql>
 
     <!--  게시물 번호로 게시물 읽기  -->
     <select id="select" parameterType="int" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM NOTICE
         WHERE NB_ID = #{NB_ID}
     </select>
 
@@ -22,7 +22,7 @@
 
     <!--  게시물 목록 모두 불러오기  -->
     <select id="selectAll" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
+        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM NOTICE
         ORDER BY REG_DTM DESC, NB_ID DESC
     </select>
 
@@ -100,7 +100,7 @@
     </sql>
 
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, WRTR, REG_DTM, VIEWS
+        SELECT NB_ID, BBS_CATE, TTL, WRTR, REG_DTM, VIEWS, STUS
         FROM  NOTICE
         WHERE true
         <include refid="searchCondition"/>

@@ -6,7 +6,8 @@ import java.util.Map;
 public interface NoticeDao {
     NoticeDto select(Integer NB_ID) throws Exception;   //게시물 번호로 게시물을 조회
 
-    int delete(Integer NB_ID, String WRTR) throws Exception;    //게시물 번호, 작성자로 게시물 삭제
+    // 나중에 String WRTR 추가하기, 관리자 계정(이름)
+    int delete(Integer NB_ID) throws Exception;    //게시물 번호, 작성자로 게시물 삭제
 
     int insert(NoticeDto dto) throws Exception;     // 게시물 작성
 

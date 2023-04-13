@@ -19,9 +19,13 @@
       padding: 0;
     }
 
-    #login_menu span a {text-decoration: none;}
+    #login_menu span a {text-decoration: none; color: #777777;}
     #login_menu span a:visited { color: #777777; text-decoration: none; }
-    #product_cate span a {text-decoration: none;}
+    #login_menu span a:hover {
+      color: rgb(18, 182, 96);
+      font-weight: bold;
+    }
+    #product_cate span a {text-decoration: none; color: black;}
     #product_cate span a:visited { color: black; text-decoration: none; }
 
     #login_menu {
