@@ -2,7 +2,7 @@ package com.dobby.project.ming.domain;
 
 import java.util.Date;
 import java.util.Objects;
-
+//
 public class User {
     private String MBR_ID;
     private String PWD;
