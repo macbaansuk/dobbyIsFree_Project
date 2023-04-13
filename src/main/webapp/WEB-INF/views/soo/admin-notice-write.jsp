@@ -56,13 +56,12 @@
     }
 
 
-    #writeBtn{
+    button{
         position: relative;
         margin-left: 720px;
     }
 
     #writeBtn[type=submit] {
-
         background-color: #00a2ff;
         color: white;
         border: none;
@@ -75,6 +74,49 @@
         cursor: pointer;
         margin-right: 10px;
     }
+
+    #modifyBtn{
+        position: relative;
+        margin-right: 20px;
+    }
+
+    #modifyBtn[type=submit] {
+
+        background-color: rgba(231, 230, 230, 0.45);
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    #removeBtn{
+        position: relative;
+        margin-right: 20px;
+    }
+
+    #removeBtn[type=submit] {
+
+        background-color: #525252;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
 </style>
 <body>
 
@@ -193,7 +235,9 @@
                                           style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
                             </div>
                             <div>
-                                <button id="writeBtn" type="submit">등록</button>
+                                <button type="submit" id="writeBtn">등록</button>
+                                <button type="button" id="modifyBtn">수정</button>
+                                <button type="button" id="removeBtn">삭제</button>
                             </div>
                         </form>
                     </section>

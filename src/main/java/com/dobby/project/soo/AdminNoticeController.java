@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -28,8 +29,8 @@ public class AdminNoticeController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        m.addAttribute("page",page);
-        m.addAttribute("pageSize",pageSize);
+           m.addAttribute("page", page);
+           m.addAttribute("pageSize", pageSize);
 
         return "redirect:/admin/notice/list";
     }
@@ -47,7 +48,7 @@ public class AdminNoticeController {
             e.printStackTrace();
         }
 
-        return "/soo/admin-notice-write";
+        return "/soo/admin-notice-read";
     }
 
     @GetMapping("/write")
