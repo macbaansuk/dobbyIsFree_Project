@@ -120,8 +120,6 @@ aside#aside li > ul.low li {
 }
 
 
-
-
   section#content ul li {
       margin: 10px 0;
       padding: 10px 0;
@@ -422,6 +420,8 @@ section#content div.gdsInfo .delete button {
     padding: 100px;
     vertical-align: top;
     width: 350px;
+    position: sticky;
+    top: 0;
 }
 
 
@@ -464,7 +464,7 @@ section#content div.gdsInfo .delete button {
 .totalPayment .orderPrice dd {display: inline-block;}
 .totalPayment .orderPrice .num {
     /*font-family: 'roboM';*/
-    font-family:NanumSquareNeo-dEb;
+    font-family: "나눔바른고딕OTF", "돋움";
 	letter-spacing: -.04em;
 }
 .totalPayment .orderPrice .totalPrice {
