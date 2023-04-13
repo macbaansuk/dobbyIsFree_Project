@@ -64,8 +64,8 @@ public class NoticeDaoImpl implements NoticeDao {
 
     @Override // 검색 결과의 총 개수
     public int searchResultCnt(SearchCondition sc) throws Exception {
-        System.out.println("sc in searchResultCnt() = " + sc);
-        System.out.println("session = " + session);
+//        System.out.println("sc in searchResultCnt() = " + sc);
+//        System.out.println("session = " + session);
         return session.selectOne(namespace+"searchResultCnt", sc);
     }
 

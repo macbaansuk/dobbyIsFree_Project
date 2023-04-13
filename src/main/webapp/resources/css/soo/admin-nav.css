@@ -26,7 +26,7 @@
     color: #f8f8f8;
     align-items: center;
     overflow: hidden;
-    min-width: 1290px;
+    min-width: 1920px;
 
 }
 .Header .span1{
@@ -168,12 +168,6 @@
     transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
 }
 
-
-
-
-
-
-
 /* 좌측 바  */
 .admin-bar {
     position: relative;
@@ -267,8 +261,6 @@
 
 }
 
-
-
 .admin-container .admin-location {
     border-bottom: 1px solid #dddddd;
     color: #808080;
@@ -287,7 +279,7 @@
     clear: both;
     min-width: 1280px;
     background: #dedee0;
-    color: hsl(0, 0%, 40%);
+    color: #666666;
     padding: 18px 0 18px 20px;
     font-size: 11px;
 }
@@ -314,361 +306,14 @@
     margin-top: 10px;
 }
 
+
+
 .inv-list {
-    margin-top: 20px;
-    border: 3px solid #ccc;
-    padding: 0px;
+    margin-top: 30px;
+    margin-left: 20px;
+    /*border: 3px solid #ccc;*/
+    padding: 10px;
+    display: inline-block;
     width: 960px;
     height: 800px;
 }
-
-.inv-container {
-    border: 1px solid #ccc;
-    margin: 10px;
-    width: 940px;
-    height: 175px;
-    overflow: hidden;
-
-}
-
-.inv-container .item1 {
-    padding: 20px 20px 20px 20px;
-    border-bottom:1px solid #ccc;
-    font-size: 13px;
-
-}
-.inv-container .item2 {
-    height: 50px;
-    border-left:1px solid #ccc;
-    padding: 30px 0 30px 60px;
-    margin-left: 120px;
-}
-
-
-
-
-
-
-
-/* 컨텐츠 */
-.content {
-    min-height: 750px;
-    min-width: 960px;
-    padding: 24px 24px 100px;
-    vertical-align: top;
-    box-sizing: border-box;
-}
-
-.content th {
-    font-weight: normal;
-    vertical-align: middle;
-    background-color: #fafafb;
-}
-
-.mOption th, .mOption td {
-    height: 28px;
-    padding: 8px;
-    border: 1px solid #d9dadc;
-    text-align: left;
-}
-
-.btnSearch span {
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    white-space: nowrap;
-    box-sizing: border-box;
-    border-radius: 3px;
-}
-.mButton {
-    position: relative;
-    text-align: center;
-}
-.btnSearch span {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding: 0 8px;
-    border: 1px solid transparent;
-    font-size: 12px;
-    line-height: 26px;
-    color: #fff;
-    background-color: #444b59;
-    height: 36px;
-    min-width: 72px;
-    font-size: 13px;
-    line-height: 34px;
-    vertical-align: top;
-}
-
-body, code {
-    font-size: 12px;
-    font-family: "Noto Sans KR","맑은 고딕","malgun gothic","Apple SD Gothic Neo",sans-serif;
-    color: #1b1e26;
-    -webkit-text-size-adjust: none;
-    background-color: #f4f5f8;
-}
-
-.btnSearch.reset span {
-    border: 1px solid #aeb4c6;
-    color: #1b1e26;
-    background-color: #fff;
-}
-
-.content h1 {
-    position: relative;
-    display: inline-block;
-    padding: 0 2px 0 0;
-    height: 32px;
-    line-height: 32px;
-    color: #1b1e26;
-    font-size: 20px;
-    vertical-align: middle;
-    position: relative;
-    margin: 0 0 16px;
-}
-
-
-.content h2 {
-    display: inline-block;
-    padding: 0 5px 0 0;
-    color: #1b1e26;
-    font-size: 16px;
-    line-height: 1.5;
-    vertical-align: middle;
-    position: relative;
-    margin: 18px 0 8px;
-}
-
-.mState {
-    min-height: 46px;
-    margin: 8px 0 -1px;
-    padding: 8px;
-    border: 1px solid #d9dadc;
-    box-sizing: border-box;
-    background-color: #fff;
-}
-.mState .gLeft {
-    float: left;
-}
-.mState .total {
-    float: left;
-    margin: 6px 8px 0 0;
-}
-
-.mState .total strong {
-    color: #3971ff;
-}
-
-.mState .gRight {
-    float: right;
-}
-
-.fSelect {
-    display: inline;
-    height: 28px;
-    margin: 0;
-    padding: 0 24px 0 8px;
-    border-radius: 3px;
-    border: 1px solid #d6dae1;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background: #fff url('../../img/hoon/ico_select.png') no-repeat right 7px center;
-}
-
-option {
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    min-height: 1.2em;
-    padding: 0px 2px 1px;
-}
-
-.mState:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-caption {
-    display: none;
-}
-
-li {
-    list-style: none;
-}
-.btnIcon {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.btnDate span , .btnIcon span{
-    min-width: 45px;
-    padding: 0 8px;
-    border: 1px solid #aeb4c6;
-    color: #1b1e26;
-    font-size: 12px;
-    line-height: 26px;
-    background-color: #fff;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    white-space: nowrap;
-    box-sizing: border-box;
-    border-radius: 3px;
-    vertical-align: top;
-}
-
-.mOption th, .mOption td {
-    height: 28px;
-    padding: 8px;
-    border: 1px solid #d9dadc;
-    text-align: left;
-}
-
-.mOption table {
-    line-height: 18px;
-    background-color: #fff;
-}
-
-.mBoard.gScroll {
-    position: relative;
-    overflow: auto;
-    border-right: 1px solid #d9dadc;
-    border-left: 1px solid #d9dadc;
-    background-color: #fff;
-}
-
-table {
-    table-layout: fixed;
-    width: 100%;
-    border: 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-}
-
-.mBoard table {
-    line-height: 1.5;
-    background-color: #fff;
-}
-
-
-
-.mBoard.gCell thead th {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.mBoard.gScroll th, .mBoard.gScroll td {
-    border-right-width: 0;
-}
-
-.mBoard th, .mBoard td {
-    padding: 9px 9px 7px;
-    vertical-align: top;
-}
-
-.mBoard thead th {
-    border: 1px solid #d9dadc;
-    text-align: center;
-    vertical-align: middle;
-}
-
-
-.btnIcon.icoBunch span {
-    visibility: visible;
-    display: inline-block;
-    width: 24px;
-    font-size: 11px;
-    letter-spacing: 0;
-    line-height: 13px;
-    line-height: 14px\0;
-}
-tbody {
-    display: table-row-group;
-    vertical-align: middle;
-    border-color: inherit;
-}
-.mBoard .center {
-    text-align: center;
-}
-.mBoard table {
-    line-height: 1.5;
-    background-color: #fff;
-}
-
-.mBoard.gCell td {
-    padding: 8px;
-}
-
-.mBoard tfoot > tr > th, .mBoard tbody > tr > td {
-    border-top-width: 0;
-}
-
-.mBoard table {
-    border-top: 1px solid #d9dadc;
-}
-.mBoard .left {
-    text-align: left;
-}
-.mOpen {
-    position: relative;
-    display: inline-block;
-}
-.mBoard .gGoods {
-    position: relative;
-    text-align: left;
-}
-
-.gGoods .mOpen .frame {
-    cursor: pointer;
-}
-.mBoard .gGoods .frame {
-    float: left;
-    margin: 0 0 2px;
-}
-.frame, .figure, span.zoom {
-    display: inline-block;
-    position: relative;
-}
-
-.frame img {
-    max-width: 670px;
-    padding: 2px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-table img {
-    vertical-align: middle;
-}
-img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
-}
-.mBoard .left {
-    text-align: left;
-}
-tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
-}
-
-.gGoods .mOpen {
-    float: left;
-}
-
-.mBoard .gGoods.gMedium p, .mBoard .gGoods.gMedium ul {
-    padding: 0 0 0 59px;
-}
-
-.mBoard .gGoods:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-

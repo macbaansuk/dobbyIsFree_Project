@@ -23,6 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
     @Override
     public int write(NoticeDto noticeDto) throws Exception{
+
         return noticeDao.insert(noticeDto);
     }
     @Override
@@ -52,4 +53,6 @@ public class NoticeServiceImpl implements NoticeService {
     public List<NoticeDto> getSearchResultPage(SearchCondition sc) throws Exception{
         return noticeDao.searchSelectPage(sc);
     }
+
+
 }

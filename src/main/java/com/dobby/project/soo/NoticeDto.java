@@ -35,22 +35,24 @@ import java.util.Objects;
         }
 
 
-//        public NoticeDto() {this("","","","");}
-//        public NoticeDto(String BBS_CATE, String TTL, String CN, String WRTR) {
-//            this.BBS_CATE = BBS_CATE;
+//        public NoticeDto() {this("","","");}
+//        public NoticeDto(String TTL, String CN, String WRTR) {
+//
 //            this.TTL = TTL;
 //            this.CN = CN;
 //            this.WRTR = WRTR;
+//
 //        }
-public NoticeDto() {
-    this("", "", "", "");
-}
-        public NoticeDto(String BBS_CATE, String TTL, String CN, String WRTR){
+    public NoticeDto() {
+        this("", "", "", "","");
+    }
+            public NoticeDto(String BBS_CATE, String TTL, String CN, String WRTR, String STUS){
 
-            this.BBS_CATE = BBS_CATE;
-            this.TTL = TTL;
-            this.CN = CN;
-            this.WRTR = WRTR;
+                this.BBS_CATE = BBS_CATE;
+                this.TTL = TTL;
+                this.CN = CN;
+                this.WRTR = WRTR;
+                this.STUS = STUS;
 
         }
 

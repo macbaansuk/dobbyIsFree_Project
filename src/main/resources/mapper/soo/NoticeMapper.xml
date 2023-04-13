@@ -38,7 +38,7 @@
         SELECT COUNT(*) FROM NOTICE
     </select>
     
-    <!--  카테고리별 게시물 개수  -->
+<!--      카테고리별 게시물 개수-->
     <select id="countByCate" parameterType="String" resultType="int">
         SELECT COUNT(*) FROM NOTICE
         WHERE BBS_CATE=#{BBS_CATE}
@@ -47,10 +47,18 @@
     <!--  게시물 작성  -->
     <insert id="insert" parameterType="NoticeDto">
         INSERT INTO NOTICE
-            (BBS_CATE, TTL, CN, WRTR)
+            (BBS_CATE, STUS, TTL, CN, WRTR)
         VALUES
-            (#{BBS_CATE}, #{TTL}, #{CN}, #{WRTR})
+            (#{BBS_CATE}, #{STUS}, #{TTL}, #{CN}, #{WRTR})
     </insert>
+
+    <!--  게시물 작성  -->
+<!--    <insert id="insert" parameterType="NoticeDto">-->
+<!--        INSERT INTO NOTICE-->
+<!--            (TTL, CN, WRTR)-->
+<!--        VALUES-->
+<!--            (#{TTL}, #{CN}, #{WRTR})-->
+<!--    </insert>-->
 
     <!--  게시물 수정  -->
     <update id="update" parameterType="NoticeDto">
