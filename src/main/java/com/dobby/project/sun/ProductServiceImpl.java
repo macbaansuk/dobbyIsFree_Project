@@ -43,8 +43,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int countProducts() {
-        return productDao.countProducts();
+    public ProductDto getProductById(int id) throws Exception {
+        return productDao.getProductById(id);
     }
+
+
+
+//    @Override
+//    public int countProducts() {
+//        return productDao.countProducts();
+//    }
+//
+//    @Override
+//    public List<ProductDto> getProductList(String category) {
+//        return productDao.getProductList();
+//    }
 
 }
