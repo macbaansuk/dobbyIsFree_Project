@@ -12,10 +12,10 @@ public interface CartDao {
    public void updateCart(CartDto cartDto);
 
     List<CartProdDto> selectCartItemsByUserKey(String userKey);
-//    List<Map<String,Object>> selectCartItemsByUserKey(String userKey);
-
-
 
 
     public void deleteCart(List<Integer> cartIdList);
+
+    public void updateCartQty(int cartId, int quantity);
+
 }

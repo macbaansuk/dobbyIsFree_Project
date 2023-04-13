@@ -20,6 +20,7 @@
     <tbody>
     <c:forEach items="${cartList}" var="cartProdDto">
         <tr>
+            <td>${cartProdDto.CART_ID}</td>
             <td>${cartProdDto.MBR_ID}</td>
             <td>${cartProdDto.PROD_NO}</td>
             <td>${cartProdDto.PROD_NM}</td>

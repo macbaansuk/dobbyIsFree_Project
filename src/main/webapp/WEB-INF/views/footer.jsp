@@ -17,7 +17,7 @@
         }
         #footer {
             overflow-x: hidden;
-            height: 100%;
+            /*height: 100%;*/
             color: #777;
             font: 16px/1.5 'SDNeoL', 'notoR', 'Malgun Gothic', '맑은 고딕', '돋움', sans-serif;
             letter-spacing: -.06em;
