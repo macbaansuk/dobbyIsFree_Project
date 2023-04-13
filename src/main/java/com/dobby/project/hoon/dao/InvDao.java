@@ -33,6 +33,9 @@ public interface InvDao {
     int increaseViewCnt(Integer PROD_ID) throws Exception // int update(String statement, Object parameter)
     ;
 
+
+        int updateInv(InvDto dto) throws Exception;
+
 //    int searchResultCnt(SearchCondition sc) throws Exception // T selectOne(String statement, Object parameter)
 //    ;
 //
