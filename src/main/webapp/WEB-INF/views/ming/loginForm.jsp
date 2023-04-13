@@ -1,6 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
+<% String cookieId ="";
+
+    Cookie[] cookies = request.getCookies(); //쿠키 읽기
+
+    if(cookies != null){
+        for(Cookie c :cookies){
+            String name = c.getName();
+            if("id".equals(name))
+                cookieId = c.getValue();
+        }
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +61,7 @@
     <form action="/login" class="loginForm" method="post">
       <div class="input_form">
             <span class="inp" id="MBR_ID-span">
-                <input id="MBR_ID" name="MBR_ID" type="text" required autocomplete="off" class="inp_text" placeholder="아이디 입력" value="${cookie.id.value}">
+                <input id="MBR_ID" name="MBR_ID" type="text" required autocomplete="off" class="inp_text" placeholder="아이디 입력" value="<%=cookieId%>">
                 <button type="button" class="btn_del" style="display: none;">
                     <span class="blind">삭제</span>
                 </button>
@@ -67,10 +79,9 @@
         <p id="login-noti-msg" class="form_guide_txt" style="display: block; margin-left: auto; margin-right: auto;"></p>
       </div>
       <div class="btn_submit mt20">
-            <span class="checkboxA">
-                <input type="checkbox" id="saveid" name="saveid" checked="checked" title="아이디 저장"
-                       value="on" ${empty cookie.id.value ? "":"checked"}>
-                    <label for="saveid">아이디 저장</label>
+           <span class="checkboxA">
+                <%--@declare id="checkbox"--%><input type="checkbox" id="saveid" name="saveid" checked="checked" title="아이디 저장">
+                    <label for="checkbox">아이디 저장</label>
             </span>
       </div>
       <div class="login-opt">
@@ -99,7 +110,7 @@
     </button>
   </div>
     <script>
-        function formCheck(frm) {
+        function formCheck(frm) {zz
             let msg ='';
             if(frm.MBR_ID.value.length==0) {
 

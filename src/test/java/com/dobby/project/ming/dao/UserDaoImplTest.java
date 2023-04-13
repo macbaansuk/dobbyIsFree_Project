@@ -34,14 +34,14 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("test2", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(cal.getTimeInMillis()), "F", "N", new Date(), new Date(), "N");
+        User user = new User();
         assertTrue(userDao.insertUser(user)==1);
         assertTrue(userDao.count()==1);
 
        // User user2 = userDao.selectUser(user.getMBR_ID());
        // assertTrue(user.equals(user2));
 
-        User user3 = new User("test3", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(cal.getTimeInMillis()), "F", "N", new Date(), new Date(), "N");
+        User user3 = new User();
         assertTrue(userDao.insertUser(user3)==1);
         assertTrue(userDao.count()==2);
 
@@ -54,7 +54,7 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("test4", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(cal.getTimeInMillis()), "F", "N", new Date(), new Date(), "N");
+        User user = new User();
         assertTrue(userDao.insertUser(user)==1);
         assertTrue(userDao.count()==1);
 
@@ -72,7 +72,7 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("test5", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(cal.getTimeInMillis()), "F", "N", new Date(), new Date(), "N");
+        User user = new User();
         assertTrue(userDao.insertUser(user)==1);
 
         User user2 = userDao.selectUser(user.getMBR_ID());
@@ -85,7 +85,7 @@ public class UserDaoImplTest {
     @Test
     public void updateUser() throws Exception {
         userDao.deleteAll();
-        User user = new User("test3", "1234", "웰컴", "2", "1", "테스트", "bbb@bbb.com", "010-3614-4485", new Date(cal.getTimeInMillis()), "F", "N", new Date(), new Date(), "N");
+        User user = new User();
         int rowCnt = userDao.insertUser(user);
         assertTrue(rowCnt==1);
 

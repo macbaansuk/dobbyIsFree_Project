@@ -14,7 +14,7 @@ public class UserDto {
     private String MPNO;
     private Date BD;
     private String SEX;
-    private String ADDR_ID;
+    private String DLVPN_ID;
     private Integer MBR_PT;
     private String MBR_COUPN;
     private String COMMENT;
@@ -65,7 +65,7 @@ public class UserDto {
                 ", MPNO='" + MPNO + '\'' +
                 ", BD=" + BD +
                 ", SEX='" + SEX + '\'' +
-                ", ADDR_ID='" + ADDR_ID + '\'' +
+                ", DLVPN_ID='" + DLVPN_ID + '\'' +
                 ", MBR_PT=" + MBR_PT +
                 ", MBR_COUPN='" + MBR_COUPN + '\'' +
                 ", COMMENT='" + COMMENT + '\'' +
@@ -163,12 +163,12 @@ public class UserDto {
         this.SEX = SEX;
     }
 
-    public String getADDR_ID() {
-        return ADDR_ID;
+    public String getDLVPN_ID() {
+        return DLVPN_ID;
     }
 
-    public void setADDR_ID(String ADDR_ID) {
-        this.ADDR_ID = ADDR_ID;
+    public void setDLVPN_ID(String DLVPN_ID) {
+        this.DLVPN_ID = DLVPN_ID;
     }
 
     public Integer getMBR_PT() {

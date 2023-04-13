@@ -2,20 +2,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ page import = "javax.servlet.http.HttpSession" %>
 <%
   String login_out="로그인";
   String cookieId="";
 
   Cookie[] cookies = request.getCookies(); //쿠키 읽기
 
-  if(cookies != null){
-    for(Cookie c :cookies){
+  if(cookies != null) {
+    for (Cookie c : cookies) {
       String name = c.getName();
-      if("MBR_ID".equals(name))
+     if ("MBR_ID".equals(name)){
         cookieId = c.getValue();
+        login_out = "로그아웃";}
     }
   }
-  %>
+
+  HttpSession session = request.getSession(false); // get existing session if exists, don't create new one
+  if(session != null && session.getAttribute("id") != null) {
+    login_out = "로그아웃";
+  }
+%>
 
 <!DOCTYPE html>
 <html lang="ko">

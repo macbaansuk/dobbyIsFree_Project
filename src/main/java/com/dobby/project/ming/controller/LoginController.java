@@ -33,19 +33,21 @@ public class LoginController {
         // 2. 홈으로 이동
         return "redirect:/";
     }
+
     @PostMapping("login")
     public String login(String MBR_ID, String PWD, String toURL, boolean saveid,
                         HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+        System.out.println("MBR_ID = " + MBR_ID);
+        System.out.println("PWD = " + PWD);
         // 1. id와 pwd를 확인
-        if (loginCheck(MBR_ID, PWD)) {
-            System.out.println("로그인 테스트1: ID="+MBR_ID+", PW="+PWD);
+        if (!loginCheck(MBR_ID, PWD)) {
+            System.out.println("로그인 체크 불일치 : ID=" + MBR_ID + ", PW=" + PWD);
             // 2-1   일치하지 않으면, loginForm으로 이동
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 
             return "redirect:/login?msg=" + msg;
         } else {
-            System.out.println("로그인 테스트2: ID="+MBR_ID+", PW="+PWD);
+            System.out.println("로그인 체크 일치 : ID=" + MBR_ID + ", PW=" + PWD);
             // 2-2. id와 pwd가 일치하면,
             //  세션 객체를 얻어오기
             HttpSession session = req.getSession();
@@ -55,6 +57,7 @@ public class LoginController {
             if (saveid) {
                 //     1. 쿠키를 생성
                 Cookie c = new Cookie("MBR_ID", MBR_ID); // ctrl+shift+o 자동 import
+                System.out.println("c = " + c);
 //		       2. 응답에 저장
                 resp.addCookie(c);
             } else {
@@ -70,18 +73,24 @@ public class LoginController {
         }
     }
 
-    private boolean loginCheck(String MBR_ID, String PWD) {
-    // User user = userDao.selectUser(MBR_ID);
-        // if(userDao==null)   return false;
+    private boolean loginCheck(String MBR_ID, String PWD) throws Exception {
+        User user = userDao.selectUser(MBR_ID);
+        System.out.println("login userDao=" + userDao);
+        System.out.println("login MBR_ID=" + MBR_ID);
+        System.out.println("user = " + user);
+//        System.out.println("user.getMBR_ID() = " + user.getMBR_ID());
 
-    //  return user.getPWD().equals(PWD);
-
-	  return "abcd".equals(MBR_ID) && "1234".equals(PWD);
+        if (user == null) return false;
+        return user.getPWD().equals(PWD);
     }
 
     @RequestMapping("/findID")
-    public String findID(){ return "ming/findID"; }
+    public String findID() {
+        return "ming/findID";
+    }
 
     @RequestMapping("/findPWD")
-    public String findPWD(){ return "ming/findPWD"; }
+    public String findPWD() {
+        return "ming/findPWD";
+    }
 }
