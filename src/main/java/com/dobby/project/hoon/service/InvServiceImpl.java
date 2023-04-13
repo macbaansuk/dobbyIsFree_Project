@@ -51,4 +51,13 @@ public class InvServiceImpl implements InvService {
         return invDao.update(InvDto);
     }
 
+    @Override
+    public  int InvModify(InvDto InvDto) throws Exception {
+        return  invDao.updateInv(InvDto);
+    }
+
+    @Override
+    public InvDto getInv(Integer PROD_ID) throws Exception {
+        return invDao.select(PROD_ID);
+    }
 }

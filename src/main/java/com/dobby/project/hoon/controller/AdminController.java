@@ -20,14 +20,21 @@ import java.util.Map;
 public class AdminController {
     @Autowired
     InvService invService;
-    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    @GetMapping("/modify/{prodId}")
+    @ResponseBody
+    public InvDto getInv(@PathVariable("prodId") Integer prodId) throws Exception {
+        InvDto invDto = invService.getInv(prodId);
+        return invDto;
+    }
+
+    @ResponseBody
     @PostMapping("/modify")
-    public String modify(@ModelAttribute("invDto") InvDto invDto,
-                         Integer page, Integer pageSize,
-                         RedirectAttributes rattr, Model m, HttpSession session) {
+    public String modify(InvDto invDto, Integer page, Integer pageSize, RedirectAttributes rattr, Model m, HttpSession session)  throws Exception{
+//
+
         try {
-            System.out.println("invDto 1 = " + invDto);e
-            if (invService.modify(invDto) != 1)
+            System.out.println("invDto 1 = " + invDto);
+            if (invService.InvModify(invDto) != 1)
                 throw new Exception("Modify failed.");
 
             rattr.addAttribute("page", page);
@@ -39,7 +46,6 @@ public class AdminController {
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(invDto);
-            System.out.println("invDto 2 = " + invDto);
             m.addAttribute("page", page);
             m.addAttribute("pageSize", pageSize);
             m.addAttribute("msg", "MOD_ERR");
