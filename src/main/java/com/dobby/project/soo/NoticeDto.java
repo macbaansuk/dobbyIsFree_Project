@@ -31,18 +31,11 @@ import java.util.Objects;
 
         @Override
         public int hashCode() {
-            return Objects.hash(NB_ID, BBS_ID, BBS_CATE, TTL, CN, WRTR);
+            return Objects.hash(NB_ID, BBS_ID, BBS_CATE, TTL, CN, WRTR, STUS);
         }
 
 
-//        public NoticeDto() {this("","","");}
-//        public NoticeDto(String TTL, String CN, String WRTR) {
-//
-//            this.TTL = TTL;
-//            this.CN = CN;
-//            this.WRTR = WRTR;
-//
-//        }
+
     public NoticeDto() {
         this("", "", "", "","");
     }

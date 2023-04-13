@@ -54,28 +54,25 @@
                         ${noticeDto.CN}
                     </p>
                 </div>
-                <div class="listBtn">
-                    <a href="/cs/notice/list"><button>목록</button></a>
-<%--                    <a href="/cs/notice/list?page=${i}"><button>목록</button></a>--%>
-<%--                        <a href="<c:url value="/cs/notice/list?page=${i}"/>"><button>목록</button></a>--%>
+                <div class="listBtm">
+                    <button type="button" id="listBtn">목록</button>
                 </div>
             </section>
-
-
-
-
-
-
-
-
 
         </div>
 
     </section>
 </div>
-
-
 <jsp:include page="../footer.jsp"/>
+
+<script>
+    $(document).ready(function(){
+        $('#listBtn').on("click", function () {
+            location.href = "<c:url value='/cs/notice/list'/>?page=${page}&pageSize=${pageSize}";
+        })
+    });
+</script>
+
 </body>
 
 </html>

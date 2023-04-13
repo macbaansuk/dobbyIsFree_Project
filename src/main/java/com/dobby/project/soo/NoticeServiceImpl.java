@@ -17,9 +17,11 @@ public class NoticeServiceImpl implements NoticeService {
     public int getCount() throws Exception{
         return noticeDao.countAll();
     }
+
+    // 나중에 String WRTR 추가하기, 관리자 계정(이름)
     @Override
-    public int remove(Integer NB_ID, String WRTR) throws Exception{
-        return noticeDao.delete(NB_ID, WRTR);
+    public int remove(Integer NB_ID) throws Exception{
+        return noticeDao.delete(NB_ID);
     }
     @Override
     public int write(NoticeDto noticeDto) throws Exception{
@@ -53,6 +55,5 @@ public class NoticeServiceImpl implements NoticeService {
     public List<NoticeDto> getSearchResultPage(SearchCondition sc) throws Exception{
         return noticeDao.searchSelectPage(sc);
     }
-
 
 }
