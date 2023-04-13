@@ -7,13 +7,13 @@
   <title>Insert title here</title>
 </head>
 <body>
+<h1>MBR_NM=${user.MBR_NM}</h1>
 <h1>MBR_ID=${user.MBR_ID}</h1>
-<h1>PWD=${user.PWD}</h1>
-<h1>name=${user.name}</h1>
-<h1>email=${user.email}</h1>
-<h1>birth=${user.birth}</h1>
-<h1>hobby=${user.hobby}</h1>
-<h1>sns=${user.sns}</h1>
+<h1>PWD=${user.MBR_GRD}</h1>
+<h1>BD=${user.BD}</h1>
+<h1>EMAIL=${user.EMAIL}</h1>
+<h1>MPNO=${user.MPNO}</h1>
+<h1>AGRE_YN=${user.AGRE_YN}</h1>
 
 </body>
 </html>

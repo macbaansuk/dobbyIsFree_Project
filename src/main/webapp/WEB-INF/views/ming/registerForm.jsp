@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.net.URLDecoder" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +73,7 @@
         <div class="col-cell">
           <input type="password" name="password2" id="password2" class="MS_input_txt normal-input" value=""
                  size="15" maxlength="20" onkeyup="check_pwd_length(this, 'repassword');" />
-        </div
+        </div>
       </td>
     </tr>
     <tr>
@@ -236,8 +235,7 @@
           <option value="29">29</option>
           <option value="30">30</option>
           <option value="31">31</option>
-        </select>일&nbsp;&nbsp;<label><input type="radio" name="sex" value="-"
-                                            class="input-radio MS_radio" /> 선택안함</label>
+        </select>일&nbsp;&nbsp;
           &nbsp;<label><input type="radio" name="sex" value="1" class="MS_radio MS_radio" />남</label>
           <label><input type="radio" name="sex" value="2" class="MS_radio MS_radio" checked />여</label>
         </div>
@@ -328,8 +326,7 @@
             </div>
           </div>
           <div class="txt">
-            쇼핑몰에서 제공하는 신상품 소식/ 할인쿠폰을 무상으로 보내드립니다!<br />단, 상품 구매 정보는 수신동의 여부 관계없이 발송됩니다.<br /><strong>제공 동의를
-            하지 않으셔도 서비스 이용에는 문제가 없습니다.</strong>
+            제공 동의를 하지 않으셔도 서비스 이용에는 문제가 없습니다.
           </div>
         </div>
       </div>
@@ -339,7 +336,7 @@
     </div>
     <h4 class="tit" id="chk_cont1">이용약관</h4>
     <div class="privercy-contract">
-            <textarea cols="80" wrap="off" rows="10" readonly>인터넷 쇼핑몰 『도비스프리』회원 약관
+            <textarea cols="80" wrap="off" rows="10" readonly style="width: 857px; height: 209px;">인터넷 쇼핑몰 『도비스프리』회원 약관
 
 제1조(목적)
 이 약관은 도비스프리 회사(전자상거래 사업자)가 운영하는 도비스프리(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
@@ -562,7 +559,6 @@
         <col width="27%" />
         <col width="27%" />
         <col width="auto" />
-
       </colgroup>
       <thead>
       <tr>
@@ -600,7 +596,7 @@
       <tr>
 
         <td>
-          <div class="p10 purpose13">(주)스냅컴퍼니(알림전송수탁업체 : (주)엠티에스컴퍼니)</div>
+          <div class="p10 purpose13">(주)정석코딩캠프</div>
         </td>
         <td>
           <div class="p10 items13">항목 : 신규 서비스(제품) 개발 및 맞춤 서비스 제공, 이벤트 및 광고성 정보 및 참여기회 / 이름, 아이디, 휴대전화번호
