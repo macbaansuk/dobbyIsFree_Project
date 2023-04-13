@@ -122,7 +122,7 @@
   </div>
   <div id="logo_search_box">
     <h1>
-      <a href="#">
+      <a href="/">
         <img src="/img/main/logo.png" width="250px" />
       </a>
       <div id="search_box">

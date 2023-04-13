@@ -64,9 +64,11 @@
 
         <div class="product-list">
             <c:forEach var="p" items="${skincareProducts}">
-                <div class="product">
+            <div class="product">
+                <a href="/product/${p.prod_id}">
                     <div class="product-img">
-                        <img src="${p.rep_img}" alt="상품 이미지" />
+
+                        <img src="${p.rep_img}" alt="메인 상품 이미지">
                     </div>
                     <div class="product-info">
                         <span class="product-name">${p.prod_nm}</span>
@@ -88,8 +90,9 @@
                                 </c:otherwise>
                             </c:choose>
                         </p>
-
-                        <div class="tag-wrap"></div>
+                    </div>
+                </a>
+                    <div class="tag-wrap"></div>
                         <div class="star-wrap">
                             <i class="fas fa-star"></i>
                             <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
