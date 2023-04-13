@@ -6,7 +6,7 @@
 <%
   String login_out="로그인";
   String cookieId="";
-
+//
   Cookie[] cookies = request.getCookies(); //쿠키 읽기
 
   if(cookies != null) {
