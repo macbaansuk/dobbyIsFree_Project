@@ -42,9 +42,13 @@
       padding: 0;
     }
 
-    #login_menu span a {text-decoration: none;}
+    #login_menu span a {text-decoration: none; color: #777777;}
     #login_menu span a:visited { color: #777777; text-decoration: none; }
+    #login_menu span a:hover { color: rgb(18, 182, 96); text-decoration: none; }
 
+
+    #product_cate span a {text-decoration: none; color: #777777;}
+    #product_cate span a:visited { color: #777777; text-decoration: none; }
 
     #login_menu {
       background-color: rgba(231, 230, 230, 0.673);
@@ -136,7 +140,7 @@
 <body>
 <header>
   <div id="login_menu">
-    <span><a href="cs-notice">고객센터</a></span>
+    <span><a href="/cs/notice/list">고객센터</a></span>
     <span><a href="/login"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
     <span><a href="mypage">마이페이지</a></span>
