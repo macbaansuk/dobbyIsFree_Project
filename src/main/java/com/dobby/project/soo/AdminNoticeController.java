@@ -32,6 +32,7 @@ public class AdminNoticeController {
             rattr.addAttribute("pageSize", pageSize);
 
             return "redirect:/admin/notice/list";
+
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(noticeDto);
