@@ -5,16 +5,16 @@
 
 <mapper namespace="com.dobby.project.WishMapper">
 
-    <insert id="insert">
-        INSERT INTO WISH (MBR_ID,WISH_ID) VALUES (#{MBR_ID},#{PROD_ID})
-    </insert>
+<!--    <insert id="insert">-->
+<!--        INSERT INTO WISH (MBR_ID,WISH_ID) VALUES (#{MBR_ID},#{PROD_ID})-->
+<!--    </insert>-->
 
-    <delete id="delete">
-        DELETE FROM WISH
-    </delete>
+<!--    <delete id="delete">-->
+<!--        DELETE FROM WISH-->
+<!--    </delete>-->
 
-    <select id="getWishlist" resultType="WishDto">
-        select
-    </select>
+<!--    <select id="getWishlist" resultType="WishDto">-->
+<!--        select-->
+<!--    </select>-->
 
 </mapper>
