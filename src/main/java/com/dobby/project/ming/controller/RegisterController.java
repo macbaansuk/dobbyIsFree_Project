@@ -56,7 +56,7 @@ public class RegisterController {
         return "ming/registerForm";
     }
     private boolean isValid(User user) {
-    return true;
+        return true;
     }
 }
 

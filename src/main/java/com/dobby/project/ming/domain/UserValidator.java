@@ -16,18 +16,23 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         System.out.println("UserValidator.validate() is called");
 
-        User user = (User)target;
+        User user = (User) target;
 
         String MBR_ID = user.getMBR_ID();
+        String PWD = user.getPWD();
 
 //		if(id==null || "".equals(id.trim())) {
 //			errors.rejectValue("id", "required");
 //		}
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "MBR_ID",  "required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "MBR_ID", "required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "PWD", "required");
 
-        if(MBR_ID==null || MBR_ID.length() <  3 || MBR_ID.length() > 12) {
-            errors.rejectValue("MBR_ID", "invalidLength", new String[]{"3","12"}, null);
+        if (MBR_ID == null || MBR_ID.length() < 3 || MBR_ID.length() > 12) {
+            errors.rejectValue("MBR_ID", "invalidLength", new String[]{"3", "12"}, null);
+        }
+
+        if (PWD == null || PWD.length() < 8 || PWD.length() > 15) {
+            errors.rejectValue("PWD", "invalidLength", new String[]{"8", "15"}, null);
         }
     }
 }
