@@ -5,8 +5,8 @@
 <head>
     <title>관리자 공지사항 등록페이지</title>
 </head>
-<link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
-<%--<link rel="stylesheet" href="../../css/soo/admin-notice-list.css"/>--%>
+<link rel="stylesheet" href="/css/soo/admin-nav.css"/>
+<link rel="stylesheet" href="/css/soo/admin-notice-read.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
     section{
@@ -56,9 +56,9 @@
     }
 
 
-    button{
+    .btnList{
         position: relative;
-        margin-left: 720px;
+        margin-left: 730px;
     }
 
     #writeBtn[type=submit] {
@@ -77,7 +77,7 @@
 
     #modifyBtn{
         position: relative;
-        margin-right: 20px;
+        margin-right: 10px;
     }
 
     #modifyBtn[type=submit] {
@@ -98,7 +98,7 @@
 
     #removeBtn{
         position: relative;
-        margin-right: 20px;
+        margin-right: 10px;
     }
 
     #removeBtn[type=submit] {
@@ -161,7 +161,7 @@
 
                 <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
+                        <li><a href="/admin/notice/list" onfocus="this.blur();">공지사항</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">FAQ</a></li>
@@ -234,10 +234,10 @@
                                 <textarea id="content" name="CN"
                                           style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
                             </div>
-                            <div>
+                            <div class="btnList">
                                 <button type="submit" id="writeBtn">등록</button>
-                                <button type="button" id="modifyBtn">수정</button>
-                                <button type="button" id="removeBtn">삭제</button>
+<%--                                <button type="button" id="modifyBtn">수정</button>--%>
+<%--                                <button type="button" id="removeBtn">삭제</button>--%>
                             </div>
                         </form>
                     </section>

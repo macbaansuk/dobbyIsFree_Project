@@ -16,7 +16,7 @@ public class NoticeDaoTest {
     @Test
     public void insert() throws Exception {
 
-        for (int i=1; i<=2; i++){
+        for (int i=1; i<=20; i++){
             NoticeDto noticeDto = new NoticeDto("쇼핑몰 공지"
                     , "아아 이니스프리에서 공지합니다. 모든 회원은 확인바랍니다"
                     , "안녕하세요 고객님,오늘도 이니스프리 공식 온라인몰을 찾아 주셔서 감사합니다."

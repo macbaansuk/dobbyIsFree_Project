@@ -60,7 +60,7 @@
 
                 <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
+                        <li><a href="/admin/notice/list" onfocus="this.blur();">공지사항</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">FAQ</a></li>
