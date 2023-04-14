@@ -3,7 +3,12 @@
     padding: 0;
 }
 
-
+.contents{
+    font-family: "나눔바른고딕OTF", "돋움";
+}
+button{
+    font-family: "나눔바른고딕OTF", "돋움";
+}
 .product-header {
     position: relative;
 }
@@ -177,4 +182,21 @@
 .star-wrap .heart-icon i {
     color: #999;
     font-size: 24px;
+    padding-right: 10px;
+}
+
+
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    /*color: inherit; !* 텍스트 색상을 상위 요소와 동일하게 설정 *!*/
+}
+
+a:hover {
+    text-decoration: none; /* 마우스를 올렸을 때만 밑줄이 나타나게 함 */
+
+}
+
+a:visited {
+    /*color: inherit; !* 방문한 링크 색상을 상위 요소와 동일하게 설정 *!*/
+    text-decoration: none;
 }

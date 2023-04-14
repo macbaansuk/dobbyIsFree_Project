@@ -10,6 +10,15 @@ public interface ProductService {
     List<ProductDto> getMenProducts();
     List<ProductDto> getHairBodyProducts();
     ProductDto getProductById(int id) throws Exception;
+    List<ProductDto> getAllProducts();
+
+
+    List<ProductDto> orderByRegDate();
+    List<ProductDto> orderByPriceAsc();
+    List<ProductDto> orderByPriceDesc();
+
+    ProductDto getProductList(String category) throws Exception;
+
 
 
 //    int countProducts();
