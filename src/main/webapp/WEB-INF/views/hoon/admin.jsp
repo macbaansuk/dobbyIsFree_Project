@@ -244,7 +244,7 @@
                 <div class="section">
                     <div class="mState">
                         <div class="gLeft">
-                            <p class="total">[상품 총 <strong>2</strong>개 / 품목 총 <strong>2</strong>개]</p>
+                            <p class="total">[상품 총 <strong>20</strong>개 / 품목 총 <strong>20</strong>개]</p>
                         </div>
                         <div class="gRight">
                             <select class="fSelect" name="orderby">
@@ -276,7 +276,7 @@
                         </div>
                     </div>
                     <div class="mBoard gCell gScroll">
-                        <table border="1" summary="" class="eChkTr">
+                        <table border="1" summary="" class="eChkTr" id="listTable">
                             <caption>상품목록</caption>
                             <colgroup>
                                 <col style="width:50px">
@@ -316,81 +316,69 @@
                             <c:forEach var="inv" items="${list}">
 
 
-                            <tr>
-                                <form  id="form" class="frm" action="/admin/modify" method="post">
-                                <td rowspan="1" id="prod-id">${inv.PROD_ID}</td>
-                                <td rowspan="1" class="left">
-                                    <div class="gGoods gMedium" style="z-index: 0;">
-                                        <div class="mOpen">
-                                            <span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>
-                                            <div class="open" style="top: 20%; left: 20%; width: 145px; display: none;">
-                                                <div class="wrap">
-                                                    <ul class="default">
-                                                        <li><a href="#none" class="eProductDetail" target="_blank" title="새창 열림" product_no="10">상품 상세보기</a></li>
-                                                        <li><a href="#none" class="eProductDisplayPopup" popup="T" url="#">쇼핑몰화면 진열보기</a></li>
-                                                    </ul>
+                                <tr>
+                                    <form  id="form" class="frm" action="/admin/modify" method="post">
+                                        <td rowspan="1" id="prod-id" data-prod-id="${inv.PROD_ID}">${inv.PROD_ID}<input type="checkbox" id="pd-check" data-prod-id="${inv.PROD_ID}"></td>
+                                        <td rowspan="1" class="left">
+                                            <div class="gGoods gMedium" style="z-index: 0;">
+                                                <div class="mOpen">
+                                                    <span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>
+                                                    <div class="open" style="top: 20%; left: 20%; width: 145px; display: none;">
+                                                        <div class="wrap">
+                                                            <ul class="default">
+                                                                <li><a href="#none" class="eProductDetail" target="_blank" title="새창 열림" product_no="10">상품 상세보기</a></li>
+                                                                <li><a href="#none" class="eProductDisplayPopup" popup="T" url="#">쇼핑몰화면 진열보기</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <p><a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">${inv.PROD_NM}</a></p>
+                                                <p class="txtCode">(P000000J)</p>
+                                                <input type="hidden" name="product_no_list[]" value="10">
                                             </div>
-                                        </div>
-                                        <p><a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">${inv.PROD_NM}</a></p>
-                                        <p class="txtCode">(P000000J)</p>
-                                        <input type="hidden" name="product_no_list[]" value="10">
-                                    </div>
-                                </td>
+                                        </td>
 
+                                            <%--                                <td rowspan="1" id="total-qty" data-prod-id="${inv.PROD_ID}">${inv.INV_QTY}</td> &lt;%&ndash; 총 재고수량 &ndash;%&gt;--%>
+                                        <td rowspan="1" id="total-qty-${inv.PROD_ID}" data-prod-id="${inv.PROD_ID}">${inv.INV_QTY}</td>
 
+                                        <td>
+                                                ${inv.CATE_CD} <%-- 카테고리 --%>
+                                            <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
+                                        </td>
 
-<%--                                <form  id="form" class="frm" action="/admin/modify" method="post">--%>
-                                <td rowspan="1">${inv.INV_QTY}</td> <%-- 총 재고수량 --%>
-                                <td>
-                                        ${inv.CATE_CD} <%-- 카테고리 --%>
-                                    <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
-                                </td>
+                                        <td>
+                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_QTY}</span>--%>
+                                            <input type="number" class="option-number" data-prod-id="${inv.PROD_ID}" style="width:60px;" name="stock_number[P000000J000A]" value="${inv.INV_QTY}"> <%-- 재고수량 --%>
+                                        </td>
+                                        <td>
+                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.SAFE_INV}</span>--%>
+                                            <input type="number" class="safe-number" data-prod-id="${inv.PROD_ID}" style="width:60px;" name="stock_warn_value[P000000J000A]" value="${inv.SAFE_INV}"> <%-- 안전재고 --%>
+                                        </td>
+                                        <td>
+                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_STUS_CD}</span>--%>
+                                            <select class="inv-status" data-prod-id="${inv.PROD_ID}"  name="inv_status[P000000J000A]">
+                                                <option id="opt1" value="여유" data-prod-id="${inv.PROD_ID}" ${inv.INV_STUS_CD == '여유' ? 'selected' : ''}>여유</option>
+                                                <option id="opt2" value="부족" data-prod-id="${inv.PROD_ID}" ${inv.INV_STUS_CD == '부족' ? 'selected' : ''}>부족</option>
+                                                <option id="opt3" value="품절" data-prod-id="${inv.PROD_ID}"${inv.INV_STUS_CD == '품절' ? 'selected' : ''}>품절</option>
+                                            </select>
+                                        </td>
 
+                                        <td>
+                                            <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_LOC}</span>
+                                            <select class="inv-loc" data-prod-id="${inv.PROD_ID}" name="inv_loc[P000000J000A]">
+                                                <option value="창고 1(1A-14)" ${inv.INV_LOC == '창고 1(1A-14)' ? 'selected' : ''}>창고 1(1A-14)</option>
+                                                <option value="창고 1(2A-14)" ${inv.INV_LOC == '창고 1(2A-14)' ? 'selected' : ''}>창고 1(2A-14)</option>
+                                                <option value="창고 1(3A-14)" ${inv.INV_LOC == '창고 1(3A-14)' ? 'selected' : ''}>창고 1(3A-14)</option>
+                                            </select>
+                                        </td>
 
+                                        <td> ${inv.PROD_STUS} <%-- 상품 상태 --%>
+                                        </td>
+                                        <td>${inv.AVG_ASCR} / 5</td> <%-- 평균 별점--%>
+                                    </form>
 
-
-<%--                                <form  id="form" class="frm" action="/admin/modify" method="post">--%>
-                                <td>
-<%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_QTY}</span>--%>
-                                    <input type="number" class="option-number" style="width:60px;" name="stock_number[P000000J000A]" value="${inv.INV_QTY}"> <%-- 재고수량 --%>
-                                </td>
-                                <td>
-<%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.SAFE_INV}</span>--%>
-                                    <input type="number" class="safe-number" style="width:60px;" name="stock_warn_value[P000000J000A]" value="${inv.SAFE_INV}"> <%-- 안전재고 --%>
-                                </td>
-                                <td>
-<%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_STUS_CD}</span>--%>
-                                    <select class="inv-status" name="inv_status[P000000J000A]">
-                                        <option value="여유" ${inv.INV_STUS_CD == '여유' ? 'selected' : ''}>여유</option>
-                                        <option value="부족" ${inv.INV_STUS_CD == '부족' ? 'selected' : ''}>부족</option>
-                                        <option value="품절" ${inv.INV_STUS_CD == '품절' ? 'selected' : ''}>품절</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_LOC}</span>
-                                    <select class="inv-loc" name="inv_loc[P000000J000A]">
-                                        <option value="창고 1(1A-14)" ${inv.INV_LOC == '창고 1(1A-14)' ? 'selected' : ''}>창고 1(1A-14)</option>
-                                        <option value="창고 1(2A-14)" ${inv.INV_LOC == '창고 1(2A-14)' ? 'selected' : ''}>창고 1(2A-14)</option>
-                                        <option value="창고 1(3A-14)" ${inv.INV_LOC == '창고 1(3A-14)' ? 'selected' : ''}>창고 1(3A-14)</option>
-                                    </select>
-                                </td>
-<%--                                </form>--%>
-
-
-
-
-
-                                <td> ${inv.PROD_STUS} <%-- 상품 상태 --%>
-
-                                </td>
-                                <td>${inv.AVG_ASCR} / 5</td> <%-- 평균 별점--%>
-                                </form>
-
-                            </tr>
+                                </tr>
                             </c:forEach>
-
 
                             </tbody>
                         </table>
@@ -400,10 +388,6 @@
                     <button type="submit" class="btnModify" id="eBtnModify" ><span>저장</span></button>
                 </div>
 
-<%--                <div class="mButton">--%>
-<%--                    <button type="submit" class="btnModify" id="eBtnModify" ><span>저장</span></button>--%>
-<%--                </div>--%>
-<%--                </form>--%>
                 <br>
                 <div style="text-align:center; font-size: 1.5em;" >
                     <c:if test="${ph.showPrev}">
@@ -437,83 +421,83 @@
 
 <script>
 
-     $(document).ready(function() {
-         $('#eBtnModify').on("click", function() {
-             const invQty = $('input.option-number').val();
-             const safeInv = $('input.safe-number').val();
-             const invStusCd = $('select.inv-status').val();
-             const invLoc = $('select.inv-loc').val();
-             const prodId = $('#prod-id').text(); // 수정된 부분
 
-             const formData = new FormData();
-             formData.append('PROD_ID', parseInt(prodId));
-             formData.append('INV_QTY', parseInt(invQty));
-             formData.append('SAFE_INV', parseInt(safeInv));
-             formData.append('INV_STUS_CD', invStusCd);
-             formData.append('INV_LOC', invLoc);
-             $.ajax({
-                 url: '/admin/modify',
-                 type: 'POST',
-                 data: formData,
-                 contentType: false,
-                 processData: false,
-                 success: function(result) {
-                     console.log('전송 성공.');
-                     $.get('/admin/modify/' + prodId, function (data) {
-                         $('td#inv-qty').text(data.INV_QTY);
-                     });
-                 },
-                 error: function(xhr, status, error) {
-                     console.error(xhr.responseText);
-                     alert('수정 실패: ' + xhr.responseText);
-                 }
-             });
-         });
 
-     });
+    $(document).ready(function() {
 
-    // $(document).ready(function() {
-    //     $('#eBtnModify').on("click", function() {
-    //         const invQty = $('input.option-number').val();
-    //         const safeInv = $('input.safe-number').val();
-    //         const invStusCd = $('select.inv-status').val();
-    //         const invLoc = $('select.inv-loc').val();
-    //         const prodId = $('#prod-id').text();
-    //
-    //         const formData = new FormData();
-    //         formData.append('PROD_ID', parseInt(prodId));
-    //         formData.append('INV_QTY', parseInt(invQty));
-    //         formData.append('SAFE_INV', parseInt(safeInv));
-    //         formData.append('INV_STUS_CD', invStusCd);
-    //         formData.append('INV_LOC', invLoc);
-    //         $.ajax({
-    //             url: '/admin/modify',
-    //             type: 'POST',
-    //             data: formData,
-    //             contentType: false,
-    //             processData: false,
-    //             success: function(result) {
-    //                 console.log('전송 성공.');
-    //                 // 변경된 제품의 재고수량 조회
-    //                 $.ajax({
-    //                     url: '/inv/' + prodId,
-    //                     type: 'GET',
-    //                     success: function(data) {
-    //                         $('td#inv-qty').text(data.INV_QTY);
-    //                     },
-    //                     error: function(xhr, status, error) {
-    //                         console.error(xhr.responseText);
-    //                         alert('재고 조회 실패: ' + xhr.responseText);
-    //                     }
-    //                 });
-    //             },
-    //             error: function(xhr, status, error) {
-    //                 console.error(xhr.responseText);
-    //                 alert('수정 실패: ' + xhr.responseText);
-    //             }
-    //         });
-    //     });
-    // });
+
+
+        $('#eBtnModify').on("click", function() {
+            // const prodId = $('#prod-id').text(); // 수정된 부분
+
+
+            const prodId = $('input[type="checkbox"][id="pd-check"]:checked:first').data('prod-id');
+
+            const invQty = $('input.option-number[data-prod-id="'+prodId+'"]').val(); // 해당 prodId를 가진 input 선택
+            const safeInv = $('input.safe-number[data-prod-id="'+prodId+'"]').val();
+            const invStusCd = $('select.inv-status[data-prod-id="'+prodId+'"]').val();
+            const invLoc = $('select.inv-loc[data-prod-id="'+prodId+'"]').val();
+
+            const formData = new FormData();
+            formData.append('PROD_ID', parseInt(prodId));
+            formData.append('INV_QTY', parseInt(invQty));
+            formData.append('SAFE_INV', parseInt(safeInv));
+            formData.append('INV_STUS_CD', invStusCd);
+            formData.append('INV_LOC', invLoc);
+            $.ajax({
+                url: '/admin/modify',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(result) {
+                    console.log('전송 성공.');
+
+                    showList(prodId);
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('수정 실패: ' + xhr.responseText);
+                }
+            });
+
+        });
+    });
+    let showList = function(prodId) {
+        $.ajax({
+            url: '/admin/modify/' + prodId, // GET 요청
+            type: 'GET',
+            success: function (result) {
+                // 새로운 데이터를 받아서 해당하는 부분만 선택해서 업데이트
+                console.log(result);
+
+                const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 해당 prodId를 가진 input 선택
+                const totalQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
+                const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
+
+                const code1 = $('#opt1').val(); // 여유
+                const code2 = $('#opt2').val(); // 부족
+
+                // $('#total-qty').html(totalQty);
+                $('#total-qty-' + prodId).html(totalQty);
+
+                // $('input.option-number[data-prod-id="' + prodId + '"]').val();
+                $('td.total-qty[data-prod-id="' + prodId + '"]').val(totalQty);
+
+                if (parseInt(invQty) >= parseInt(safeInv)) {
+                    $('select.inv-status[data-prod-id="'+prodId+'"]').val(code1);
+                } else {
+                    $('select.inv-status[data-prod-id="'+prodId+'"]').val(code2);
+                }
+                // 정보 수정 후 목록에 대한 추가 처리 작성
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+
 
 
 </script>

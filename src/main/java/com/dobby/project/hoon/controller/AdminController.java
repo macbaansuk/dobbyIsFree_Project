@@ -22,10 +22,14 @@ public class AdminController {
     InvService invService;
     @GetMapping("/modify/{prodId}")
     @ResponseBody
-    public InvDto getInv(@PathVariable("prodId") Integer prodId) throws Exception {
+    public InvDto getInv(@PathVariable Integer prodId) throws Exception {
+        System.out.println("작동완료");
+        System.out.println("prodId = " + prodId);
         InvDto invDto = invService.getInv(prodId);
+        System.out.println("invDto = " + invDto);
         return invDto;
     }
+
 
     @ResponseBody
     @PostMapping("/modify")
