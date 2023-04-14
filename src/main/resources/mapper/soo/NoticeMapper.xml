@@ -64,9 +64,10 @@
     <update id="update" parameterType="NoticeDto">
         UPDATE NOTICE
         SET BBS_CATE = #{BBS_CATE}
+            , STUS = #{STUS}
+            , WRTR = #{WRTR}
             , TTL = #{TTL}
             , CN = #{CN}
-            , WRTR = #{WRTR}
         WHERE NB_ID = #{NB_ID}
     </update>
 
