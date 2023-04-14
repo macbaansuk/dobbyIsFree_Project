@@ -5,12 +5,23 @@
 
 <mapper namespace="com.dobby.project.ProductMapper">
 
+    <select id="getAllProducts"  resultType="ProductDto">
+        SELECT *
+        FROM PROD
+    </select>
 
     <select id="getMainProducts" resultType="ProductDto">
         SELECT *
         FROM PROD
         WHERE MAI_YN = 'Y'
         ORDER BY PROD_NM LIMIT 8
+    </select>
+
+    <select id="getProductList" resultType="ProductDto">
+        SELECT *
+        FROM PROD
+        WHERE CATE_CD = #{category}
+        ORDER BY REG_DTM
     </select>
 
 
@@ -70,6 +81,59 @@
     </select>
 
 
+    <select id="orderByRegDate" resultType="ProductDto">
+        SELECT * FROM PROD ORDER BY REG_DATE;
+    </select>
+
+    <select id="orderByPriceAsc" resultType="ProductDto">
+        SELECT P.PROD_ID,
+               P.PROD_NM,
+               P.AMT,
+               PD.DC_TYP,
+               PD.DC_RATE,
+               PD.DC_AMT,
+               (CASE
+                    WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
+                    WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
+                    ELSE P.AMT
+                   END) AS dc_price
+        FROM Prod AS P
+                 LEFT JOIN
+             Prod_DC AS PD
+             ON
+                 P.PROD_ID = PD.prod_ID
+        WHERE P.DC_YN = 'y'
+        ORDER BY dc_price ASC ;
+    </select>
+
+    <select id="orderByPriceDesc" resultType="ProductDto">
+        SELECT P.PROD_ID,
+               P.PROD_NM,
+               P.AMT,
+               PD.DC_TYP,
+               PD.DC_RATE,
+               PD.DC_AMT,
+               (CASE
+                    WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
+                    WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
+                    ELSE P.AMT
+                   END) AS dc_price
+        FROM Prod AS P
+                 LEFT JOIN
+             Prod_DC AS PD
+             ON
+                 P.PROD_ID = PD.prod_ID
+        WHERE P.DC_YN = 'y'
+        ORDER BY dc_price DESC;
+    </select>
+
+
+
+
+
+
+
+
     <!-- 상품목록페이지 간략하게 만들기 일단 이건 보류    -->
     <!--    <select id="countProducts" resultType="int">-->
     <!--        SELECT COUNT(*)-->
@@ -77,12 +141,7 @@
     <!--        WHERE CATE_CD = #{category}-->
     <!--    </select>-->
 
-    <!--    <select id="getProductList" resultType="ProductDto">-->
-    <!--         SELECT *-->
-    <!--         FROM PROD-->
-    <!--         WHERE CATE_CD = #{category}-->
-    <!--         ORDER BY REG_DTM-->
-    <!--    </select>-->
+
 
 
 </mapper>
