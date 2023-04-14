@@ -228,109 +228,111 @@
         <!-- 상품 리스트 -->
         <div class="product-list">
             <c:forEach var="p" items="${ProductsMain}">
-            <div class="product">
-                <a href="/product/${p.prod_id}">
-                    <div class="product-img">
+                <div class="product">
+                    <a href="/product/${p.prod_id}">
+                        <div class="product-img">
 
-                        <img src="${p.rep_img}" alt="메인 상품 이미지">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">${p.prod_nm}</span>
-                        <p class="price">
-                            <c:choose>
-                                <c:when test="${p.dc_yn == 'N'}">
-                                    <strong class="discount-price">${p.amt}</strong>
-                                    <span class="original-price"></span>
-                                    <span class="discount-rate"></span>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="dc" items="${Products_DC}">
-                                        <c:if test="${p.prod_id == dc.prod_id}">
-                                            <strong class="discount-price">${dc.dc_price}</strong>
-                                            <span class="discount-rate">${dc.dc_rate}%</span>
-                                        </c:if>
-                                    </c:forEach>
-                                    <span class="original-price">${p.amt}</span>
-                                </c:otherwise>
-                            </c:choose>
-                        </p>
-                    </div>
-                </a>
+                            <img src="${p.rep_img}" alt="메인 상품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-name">${p.prod_nm}</span>
+                            <p class="price">
+                                <c:choose>
+                                    <c:when test="${p.dc_yn == 'N'}">
+                                        <strong class="discount-price">${p.amt}</strong>
+                                        <span class="original-price"></span>
+                                        <span class="discount-rate"></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="dc" items="${Products_DC}">
+                                            <c:if test="${p.prod_id == dc.prod_id}">
+                                                <strong class="discount-price">${dc.dc_price}</strong>
+                                                <span class="discount-rate">${dc.dc_rate}%</span>
+                                            </c:if>
+                                        </c:forEach>
+                                        <span class="original-price">${p.amt}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </p>
+                        </div>
+                    </a>
 
-                        <div class="tag-wrap"></div>
-                        <div class="star-wrap">
-                            <i class="fas fa-star"></i>
-                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
-                            <span class="heart-icon">
+                    <div class="tag-wrap"></div>
+                    <div class="star-wrap">
+                        <i class="fas fa-star"></i>
+                        <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                        <span class="heart-icon">
                                 <i class="far fa-heart"></i>
                                 <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
                             </span>
 
-                        </div>
                     </div>
                 </div>
             </c:forEach>
+
         </div>
-        <script>
 
-            function insertA (productNumber) {
-                console.log(productNumber)
-                console.log("insert함수실행")
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    url: "/cart/"+ productNumber,
-                    type: "POST",
-                    success: function (data) {
-                        if (data == 1) {
-                            location.href='/cart'
-                        }
-                    },
-                    error: function () {
-                        alert("등록 실패")
-                    }
-                });<!--ajax -->
-            }
-
-        </script>
-
-        <%-- 멤버십 시작 --%>
-        <section class="mainMemberShipInfo">
-            <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
-            <div class="contWrap">
-                <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
-                <ul class="list">
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
-                        <strong class="tit">멤버십 혜택</strong>
-                        <span class="txt">등급별 적립혜택</span>
-                    </li>
-
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
-                        <strong class="tit">구매 적립</strong>
-                        <span class="txt">구매 금액 1% 적립</span>
-                    </li>
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
-                        <strong class="tit">생일 혜택</strong>
-                        <span class="txt">생일 쿠폰 지급</span>
-                    </li>
-
-                </ul>
-                <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
-            </div>
-        </section>
-
-
-        <%-- 멤버십 끝 --%>
     </div>
+    <script>
+
+        function insertA(productNumber) {
+            console.log(productNumber)
+            console.log("insert함수실행")
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                contentType: "application/json; charset=utf-8",
+                url: "/cart/" + productNumber,
+                type: "POST",
+                success: function (data) {
+                    if (data == 1) {
+                        location.href = '/cart'
+                    }
+                },
+                error: function () {
+                    alert("등록 실패")
+                }
+            });<!--ajax -->
+        }
+
+    </script>
+
+    <%-- 멤버십 시작 --%>
+    <section class="mainMemberShipInfo">
+        <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
+        <div class="contWrap">
+            <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
+            <ul class="list">
+                <li>
+                    <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
+                    <strong class="tit">멤버십 혜택</strong>
+                    <span class="txt">등급별 적립혜택</span>
+                </li>
+
+                <li>
+                    <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
+                    <strong class="tit">구매 적립</strong>
+                    <span class="txt">구매 금액 1% 적립</span>
+                </li>
+                <li>
+                    <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
+                    <strong class="tit">생일 혜택</strong>
+                    <span class="txt">생일 쿠폰 지급</span>
+                </li>
+
+            </ul>
+            <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
+        </div>
+    </section>
 
 
-    <jsp:include page="footer.jsp"/>
+    <%-- 멤버십 끝 --%>
+</div>
+
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

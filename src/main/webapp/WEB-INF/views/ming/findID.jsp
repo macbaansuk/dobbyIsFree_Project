@@ -58,7 +58,7 @@
                 </span>
         </div>
         <div class="btn_submit">
-            <button type="button" id="btn_submit" class="btnA btn_blue loginbtn">아이디 찾기</button>
+            <button type="button" id="btn_submit" class="btnA btn_blue loginbtn"> <a href="/findIDResult"style="text-decoration: none; color: #FFFFFF"; >아이디 찾기</a></button>
         </div>
         </form>
         <button class="btnA btn_white btn_join_membership">

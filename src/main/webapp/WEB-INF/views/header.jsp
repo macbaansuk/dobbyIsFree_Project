@@ -1,26 +1,27 @@
 <%@ page import="java.nio.file.FileStore" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page import = "javax.servlet.http.HttpSession" %>
 <%
   String login_out="로그인";
   String cookieId="";
-//
+  String move= "/login";
+
   Cookie[] cookies = request.getCookies(); //쿠키 읽기
 
-  if(cookies != null) {
+  if (cookies != null) {
     for (Cookie c : cookies) {
       String name = c.getName();
-     if ("MBR_ID".equals(name)){
+
+      if ("MBR_ID".equals(name))
         cookieId = c.getValue();
-        login_out = "로그아웃";}
     }
   }
 
-  HttpSession session = request.getSession(false); // get existing session if exists, don't create new one
-  if(session != null && session.getAttribute("id") != null) {
+  if (session.getAttribute("MBR_ID") != null) {
     login_out = "로그아웃";
+    move = "/logout";
   }
 %>
 
@@ -141,7 +142,7 @@
 <header>
   <div id="login_menu">
     <span><a href="/cs/notice/list">고객센터</a></span>
-    <span><a href="/login"><%=login_out%></a></span>
+    <span><a href="<%=move%>"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
     <span><a href="mypage">마이페이지</a></span>
     <span>장바구니</span>

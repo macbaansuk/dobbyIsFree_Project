@@ -52,25 +52,25 @@ public class ProductServiceImpl implements ProductService {
         return productDao.getAllProducts();
     }
 
-    @Override
-    public List<ProductDto> orderByRegDate() {
-        return productDao.orderByRegDate();
-    }
-
-    @Override
-    public List<ProductDto> orderByPriceAsc() {
-        return productDao.orderByPriceAsc();
-    }
-
-    @Override
-    public List<ProductDto> orderByPriceDesc() {
-        return productDao. orderByPriceDesc();
-    }
-
-    @Override
-    public ProductDto getProductList(String category) throws Exception {
-        return productDao.getProductList(category);
-    }
+//    @Override
+//    public List<ProductDto> orderByRegDate() {
+//        return productDao.orderByRegDate();
+//    }
+//
+//    @Override
+//    public List<ProductDto> orderByPriceAsc() {
+//        return productDao.orderByPriceAsc();
+//    }
+//
+//    @Override
+//    public List<ProductDto> orderByPriceDesc() {
+//        return productDao. orderByPriceDesc();
+//    }
+//
+//    @Override
+//    public ProductDto getProductList(String category) throws Exception {
+//        return productDao.getProductList(category);
+//    }
 
 
 //    @Override
