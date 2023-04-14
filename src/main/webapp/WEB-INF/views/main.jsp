@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/sun/product.css"/>
+    <link rel="stylesheet" href="../../css/sun/product.css"/>
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -25,35 +25,35 @@
         }
 
 
-        #membership {
-            display: block;
-            margin: 0 auto;
-            width: 60%;
-            height: auto;
-            padding: 100px 0 100px 0px;
+        /*#membership {*/
+        /*    display: block;*/
+        /*    margin: 0 auto;*/
+        /*    width: 60%;*/
+        /*    height: auto;*/
+        /*    padding: 100px 0 100px 0px;*/
 
-        }
+        /*}*/
 
         .grid-container {
             min-height: 100%;
         }
 
-        .cart_icon {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            /* Add any padding or margin you need for proper positioning */
-            padding: 5px;
-            background: #555555;
-            width: 40px;
-            height: 40px;
-            opacity: 0.6;
-        }
+        /*.cart_icon {*/
+        /*    position: absolute;*/
+        /*    bottom: 0;*/
+        /*    right: 0;*/
+        /*    !* Add any padding or margin you need for proper positioning *!*/
+        /*    padding: 5px;*/
+        /*    background: #555555;*/
+        /*    width: 40px;*/
+        /*    height: 40px;*/
+        /*    opacity: 0.6;*/
+        /*}*/
 
-        .icon {
-            max-width: 100%;
-            max-height: 100%;
-        }
+        /*.icon {*/
+        /*    max-width: 100%;*/
+        /*    max-height: 100%;*/
+        /*}*/
 
     </style>
 </head>
@@ -245,7 +245,6 @@
             <div class="product">
                 <a href="/product/${p.prod_id}">
                     <div class="product-img">
-
                         <img src="${p.rep_img}" alt="메인 상품 이미지">
                     </div>
                     <div class="product-info">
