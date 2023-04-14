@@ -158,13 +158,13 @@
             <option value=1991>1991</option>
             <option value=1992>1992</option>
             <option value=1993>1993</option>
-            <option value=1994>1994</option>
+            <option value=1994 selected>1994</option>
             <option value=1995>1995</option>
             <option value=1996>1996</option>
             <option value=1997>1997</option>
             <option value=1998>1998</option>
             <option value=1999>1999</option>
-            <option value=2000 selected>2000</option>
+            <option value=2000>2000</option>
             <option value=2001>2001</option>
             <option value=2002>2002</option>
             <option value=2003>2003</option>
@@ -248,8 +248,6 @@
       </th>
       <td>
         <div class="col-cell email-area">
-          <input type="hidden" name="oldemail" id="oldemail" value="" />
-          <input type="hidden" name="email" id="email" value="" />
           <input type="text" name="email1" id="email1" onchange="this.form.emailcheck.value=''"
                  class="MS_input_txt MS_input_email normal-input" size="10" maxlength="20" value="" />
           <span>@</span>
@@ -260,17 +258,10 @@
           <select name="email2" id="email2" class="MS_select MS_email MS_input_email"
                   style="margin-right:5px;" onchange="viewdirect()">
             <option value='direct'>직접입력</option>
+            <option value="jungsuk.com">jungsuk.com</option>
             <option value="naver.com">naver.com</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="hanmail.net">hanmail.net</option>
-            <option value="yahoo.com">yahoo.com</option>
-            <option value="nate.com">nate.com</option>
-            <option value="korea.com">korea.com</option>
-            <option value="chol.com">chol.com</option>
             <option value="gmail.com">gmail.com</option>
-            <option value="netian.com">netian.com</option>
           </select>
-          <a href="javascript:emailcheck('Y', 'N');" class="cbtn form">이메일 중복확인</a>
         </div>
       </td>
     </tr>
@@ -280,8 +271,8 @@
       </th>
       <td>
         <div class="col-cell">
-          <input type="text" name="etcphone" form="join_form" id="etcphone" class="MS_input_tel normal-input"
-                 size="15" maxlength="30" value="" />
+          <%--@declare id="join_form"--%><input type="tel" name="etcphone" form="join_form" id="etcphone" class="MS_input_tel normal-input"
+                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" size="15" maxlength="13" value="" />
         </div>
       </td>
     </tr>

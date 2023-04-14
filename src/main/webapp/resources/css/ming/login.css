@@ -104,7 +104,7 @@ button {
     width: 400px;
     height: 50px;
     margin: 40px auto 40px;
-    font-family: Noto Sans KR;
+    font-family: "나눔바른고딕OTF", "돋움";
     font-size: 25px;
     font-weight: bold;
     font-stretch: normal;
@@ -118,6 +118,14 @@ button {
 .view_keyboard {
     padding-bottom: 12px;
     text-align: right;
+}
+
+.view_keyboard.is_open .btn_keyboard:before {
+    transform: rotate(180deg);
+}
+
+.btn_open_info:focus, .close_layer_info:focus, #btnCloseAction:focus, .btn_del:focus, .btn_keyboard:focus, #do-regist-login:focus, #do-next:focus, #do-regist-login:focus, .btn_all_view:focus, #mobile-login:focus, #more-login:focus, .sns-btn:focus, #search_id:focus, #search_pwd:focus, #search_order:focus, .loginbtn:focus, #dojoin:focus, .btn_prev_page:focus, .btn_link_bp:focus, #go-home:focus, #sendsms:focus, .btn_link:focus, .sns-btn-way:focus, #mobile-login_pop:focus, #btnSmsResesnd:focus, #btnOkAction:focus, #change-pwd-cancel:focus, #dochangepwd:focus, #do-login-online:focus, #membership-join-finish:focus, #btnCloseAction:focus, #send-userid:focus, #do-login:focus, #terms-agree-next:focus, #term-agree-ok:focus {
+    outline: 2px solid #0A40D5;
 }
 
 .view_keyboard .btn_keyboard {
@@ -136,13 +144,10 @@ button {
     width: 14px;
     height: 8px;
     background: url(/img/ming/login_img/btn_keyboard_open.png) no-repeat 0 0;
+    transform: rotate(180deg);
     -webkit-background-size: 14px auto;
     background-size: 14px auto;
     content: "";
-}
-
-.view_keyboard.is_open .btn_keyboard:before {
-    transform: rotate(180deg);
 }
 
 .view_keyboard .img_keyboard {
@@ -155,11 +160,14 @@ transform: rotate(180deg);
 } */
 
 img {
-    width: 100%;
+    width: 60%;
     border: 0;
     vertical-align: top;
     overflow-clip-margin: content-box;
     overflow: clip;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form {
@@ -287,8 +295,13 @@ input[type="checkbox" i] {
     border: initial;
 }
 
-.checkboxA input:checked+label:before {
+.checkboxA input:checked + label:before {
+    content: "";
     background-image: url(/img/ming/login_img/btn_check_on.png);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
 }
 
 .checkboxA label:before {
@@ -411,39 +424,18 @@ ul {
  content: "";
 }*/
 
-
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 li {
     display: list-item;
     text-align: -webkit-match-parent;
-}
-
-em {
-    font-style: italic;
 }
 
 section {
     display: block;
 }
 
-a:link, a:active, a:visited {
-    color: inherit;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 /*.bottom_menu li {
