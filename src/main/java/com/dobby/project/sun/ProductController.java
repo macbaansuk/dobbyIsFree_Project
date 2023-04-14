@@ -80,24 +80,22 @@ public class ProductController {
         return "sun/product-detail";
     }
 
-
-
-
-
-
-
-
-//      이거 상품목록 간략하게 만들기 보류
 //    @GetMapping("/{category}")
-//    public String productList(@PathVariable("category") String category, Model model) throws Exception {
-//        List<ProductDto> productList = productService.getProductList(category);
+//    public String category(@PathVariable("category") String category,Model model) throws Exception {
+//        System.out.println("카테고리 들어가자");
+//        ProductDto productList = productService.getProductList(category);
 //        List<ProductDCDto> Products_DC = productService.Products_DC();
 //
-//        model.addAttribute("category", category);
+//        System.out.println("카테고리 다음단계");
 //        model.addAttribute("productList", productList);
 //        model.addAttribute("Products_DC", Products_DC);
 //
-//        return "product-list";
+//        System.out.println("productList = " + productList);
+//
+//
+//        return "sun/product-list";
 //    }
+
+
 
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/sun/product.css"/>
+    <link rel="stylesheet" href="/css/sun/main-product.css"/>
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -36,38 +36,9 @@
 
         }
 
-        .grid-container {
-            min-height: 100%;
-        }
-
-        .cart_icon {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            /* Add any padding or margin you need for proper positioning */
-            padding: 5px;
-            background: #555555;
-            width: 40px;
-            height: 40px;
-            opacity: 0.6;
-        }
-
-        .icon {
+        icon {
             max-width: 100%;
             max-height: 100%;
-        }
-        .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom{
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-
-        .swal2-html-container {
-            font-size: 2em;
-        }
-        .swal2-styled.swal2-confirm {
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-        .swal2-styled.swal2-cancel {
-            font-family: "나눔바른고딕OTF", "돋움";
         }
 
     </style>
@@ -257,72 +228,52 @@
         <!-- 상품 리스트 -->
         <div class="product-list">
             <c:forEach var="p" items="${ProductsMain}">
-                <div class="product">
-                    <a href="/product/${p.prod_id}">
-                        <div class="product-img">
+            <div class="product">
+                <a href="/product/${p.prod_id}">
+                    <div class="product-img">
 
-                            <img src="${p.rep_img}" alt="메인 상품 이미지">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-name">${p.prod_nm}</span>
-                            <p class="price">
-                                <c:choose>
-                                    <c:when test="${p.dc_yn == 'N'}">
-                                        <strong class="discount-price">${p.amt}</strong>
-                                        <span class="original-price"></span>
-                                        <span class="discount-rate"></span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach var="dc" items="${Products_DC}">
-                                            <c:if test="${p.prod_id == dc.prod_id}">
-                                                <strong class="discount-price">${dc.dc_price}</strong>
-                                                <span class="discount-rate">${dc.dc_rate}%</span>
-                                            </c:if>
-                                        </c:forEach>
-                                        <span class="original-price">${p.amt}</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </p>
-                        </div>
-                    </a>
+                        <img src="${p.rep_img}" alt="메인 상품 이미지">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">${p.prod_nm}</span>
+                        <p class="price">
+                            <c:choose>
+                                <c:when test="${p.dc_yn == 'N'}">
+                                    <strong class="discount-price">${p.amt}</strong>
+                                    <span class="original-price"></span>
+                                    <span class="discount-rate"></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="dc" items="${Products_DC}">
+                                        <c:if test="${p.prod_id == dc.prod_id}">
+                                            <strong class="discount-price">${dc.dc_price}</strong>
+                                            <span class="discount-rate">${dc.dc_rate}%</span>
+                                        </c:if>
+                                    </c:forEach>
+                                    <span class="original-price">${p.amt}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
+                </a>
 
-                    <div class="tag-wrap"></div>
-                    <div class="star-wrap">
-                        <i class="fas fa-star"></i>
-                        <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
-                        <span class="heart-icon">
+                        <div class="tag-wrap"></div>
+                        <div class="star-wrap">
+                            <i class="fas fa-star"></i>
+                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                            <span class="heart-icon">
                                 <i class="far fa-heart"></i>
                                 <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
                             </span>
 
-                            <%--                        </div>--%>
+                        </div>
                     </div>
                 </div>
             </c:forEach>
         </div>
         <script>
-            function cartsc(){
-                Swal.fire({
-                    icon : 'success',
-                    title: '🛒',
-                    text: "장바구니에 담겼습니다.",
-                    // icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: 'rgba(18, 182, 96)',
-                    cancelButtonColor: 'rgba(212, 212, 212, 1)',
-                    confirmButtonText: '장바구니 바로가기',
-                    cancelButtonText: '쇼핑 계속하기'
-                }).then((result) => {
-                    if (result.value) {
-                        location.href='/cart'
-                    }
-                })
-            }
 
             function insertA (productNumber) {
-
-
-
                 console.log(productNumber)
                 console.log("insert함수실행")
                 $.ajax({
@@ -334,21 +285,12 @@
                     url: "/cart/"+ productNumber,
                     type: "POST",
                     success: function (data) {
-                        cartsc()
-                        // alert("장바구니에 담겼어용 😉")
-                        // if (data == 1) {
-                        // location.href='/cart'
-                        // }
+                        if (data == 1) {
+                            location.href='/cart'
+                        }
                     },
                     error: function () {
-                        Swal.fire({
-                            // icon: 'error',
-                            title: '장바구니에 담으려면 로그인 해주세용! 😉',
-                            // text: '😉',
-                            confirmButtonColor: 'rgba(18, 182, 96)',
-                            footer: '<a href="/login">로그인 하러 가기</a>'
-                        })
-
+                        alert("등록 실패")
                     }
                 });<!--ajax -->
             }
