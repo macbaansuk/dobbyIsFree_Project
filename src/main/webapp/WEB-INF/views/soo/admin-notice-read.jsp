@@ -88,30 +88,64 @@
                 </p>
 
                 <div class="inv-list"><!-- 실제 구현 페이지 -->
-<%--                    <section class="listView">--%>
-<%--                        <form action="" id="form">--%>
-<%--                            <div class="listTitle">--%>
-<%--                                <span class="cate">${noticeDto.BBS_CATE}</span>--%>
-<%--                                <span class="title">${noticeDto.TTL}</span>--%>
-<%--                                <span class="stus">${noticeDto.STUS}</span>--%>
-<%--                                <span class="date"><fmt:formatDate value="${noticeDto.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></span>--%>
-<%--                            </div>--%>
-<%--                            <div class="listCont">--%>
-<%--                                <p>--%>
-<%--                                    ${noticeDto.CN}--%>
-<%--                                </p>--%>
-<%--                            </div>--%>
 
                     <form id="form" class="frm" action="" method="post" >
                         <input type="hidden" name="NB_ID" value="${noticeDto.NB_ID}">
+<%--                        <div class="form-group">--%>
+<%--                            &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
+<%--                            <input type="text" id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
+<%--                        </div>--%>
+<%--                        <div class="form-group">--%>
+<%--                            &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
+<%--                            <input type="text"id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
+<%--                        </div>--%>
+
+<%--                        <div class="form-group">--%>
+<%--                            &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
+<%--                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
+<%--                                <option value="고객 센터">고객 센터</option>--%>
+<%--                                <option value="매장 공지">매장 공지</option>--%>
+<%--                                <option value="배송 공지">배송 공지</option>--%>
+<%--                                <option value="쇼핑몰 공지">쇼핑몰 공지</option>--%>
+<%--                                <option value="이벤트 공지">이벤트 공지</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
+
+<%--                        <div class="form-group">--%>
+<%--                            &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
+<%--                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
+<%--                                <option value="게시중">게시중</option>--%>
+<%--                                <option value="비공개">비공개</option>--%>
+<%--                                <option value="수정중">수정중</option>--%>
+<%--                                <option value="삭제예정">삭제예정</option>--%>
+<%--                            </select>--%>
+
+<%--                        </div>--%>
+
+
                         <div class="form-group">
                             <%--@declare id="cate"--%><label for="cate">카테고리</label>
-                            <input type="text" id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">
+                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;">
+                                <option value="고객 센터" ${noticeDto.BBS_CATE == '고객 센터' ? 'selected' : ''}>고객 센터</option>
+                                <option value="매장 공지" ${noticeDto.BBS_CATE == '매장 공지' ? 'selected' : ''}>매장 공지</option>
+                                <option value="배송 공지" ${noticeDto.BBS_CATE == '배송 공지' ? 'selected' : ''}>배송 공지</option>
+                                <option value="쇼핑몰 공지" ${noticeDto.BBS_CATE == '쇼핑몰 공지' ? 'selected' : ''}>쇼핑몰 공지</option>
+                                <option value="이벤트 공지" ${noticeDto.BBS_CATE == '이벤트 공지' ? 'selected' : ''}>이벤트 공지</option>
+                            </select>
                         </div>
+
                         <div class="form-group">
                             <%--@declare id="status"--%><label for="status">상태</label>
-                            <input type="text"id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">
+                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;">
+                                <option value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
+                                <option value="비공개" ${noticeDto.STUS == '비공개' ? 'selected' : ''}>비공개</option>
+                                <option value="수정중" ${noticeDto.STUS == '수정중' ? 'selected' : ''}>수정중</option>
+                                <option value="삭제예정" ${noticeDto.STUS == '삭제예정' ? 'selected' : ''}>삭제예정</option>
+                            </select>
                         </div>
+
+
+
                         <div class="form-group">
                             <label for="writer">작성자</label>
                             <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}">
@@ -165,6 +199,15 @@
             form.attr("method", "post");
             form.submit();
         });
+
+
+        $("#modifyBtn").on("click", function(){
+            let form = $("#form");
+            form.attr("action", "<c:url value='/admin/notice/modify'/>");
+            form.attr("method", "post");
+            form.submit();
+        });
+
 
     });
 </script>
