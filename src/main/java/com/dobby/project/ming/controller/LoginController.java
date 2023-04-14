@@ -72,4 +72,10 @@ public class LoginController {
     public String findPWD() {
         return "ming/findPWD";
     }
+
+    @RequestMapping("/findIDResult")
+    public String findIDResult() {
+        return "ming/findIDResult";
+    }
+
 }
