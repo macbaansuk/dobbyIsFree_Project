@@ -2,8 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: '맑은 고딕', verdana;
-}
+    font-family: "나눔바른고딕OTF", "돋움";}
 
 a {
     text-decoration: none;
@@ -120,11 +119,11 @@ aside#aside li > ul.low li {
 }
 
 
-  section#content ul li {
-      margin: 10px 0;
-      padding: 10px 0;
-      border-bottom: 1px solid #999;
-  }
+section#content ul li {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #999;
+}
 
 section#content ul li img {
     width: 100px;
@@ -149,7 +148,7 @@ section#content div.gdsInfo {
 
 section#content div.gdsInfo {
     font-size: 14px;
-    line-height: 2;
+    /*line-height: 2;*/
 }
 
 section#content div.gdsInfo span {
@@ -426,38 +425,38 @@ section#content div.gdsInfo .delete button {
 
 
 .totalPayment .box {
-	padding: 0 18px;
-	border: 2px solid #222;
+    padding: 0 18px;
+    border: 2px solid #222;
     height: 240px;
 }
 .totalPayment .btnType4xl {
-	width: 100%;
-	margin: 16px 0 0;
+    width: 100%;
+    margin: 16px 0 0;
 }
 .totalPayment .loginTxt {
-	padding: 18px 0 22px;
-	text-align: center;
-	color: #222;
-	border-bottom: 1px solid #222;
+    padding: 18px 0 22px;
+    text-align: center;
+    color: #222;
+    border-bottom: 1px solid #222;
 }
 .totalPayment .loginTxt .btnType1s {
-	margin: 15px 0 0;
-	padding: 0 30px;
+    margin: 15px 0 0;
+    padding: 0 30px;
 }
 .totalPayment .orderPrice {padding: 8px 0 0;}
 .totalPayment .orderPrice .subTitle2 {margin: 10px 0 15px;}
 
 .totalPayment .orderPrice .layerTooltip {
-	top: 30px !important;
-	left: -210px !important;
-	text-align: left;
-	white-space: nowrap;
+    top: 30px !important;
+    left: -210px !important;
+    text-align: left;
+    white-space: nowrap;
 }
 .totalPayment .orderPrice dl {
-	position: relative;
-	padding: 8px 0;
-	color: #222;
-	text-align: right;
+    position: relative;
+    padding: 8px 0;
+    color: #222;
+    text-align: right;
 }
 .totalPayment .orderPrice dt {float: left;}
 .totalPayment .orderPrice dt.sub {padding-left:10px;}
@@ -465,36 +464,36 @@ section#content div.gdsInfo .delete button {
 .totalPayment .orderPrice .num {
     /*font-family: 'roboM';*/
     font-family: "나눔바른고딕OTF", "돋움";
-	letter-spacing: -.04em;
+    letter-spacing: -.04em;
 }
 .totalPayment .orderPrice .totalPrice {
-	margin: 5px 0 0;
-	padding: 10px 0 15px;
-	border-top: 1px solid #dcdcdc;
+    margin: 5px 0 0;
+    padding: 10px 0 15px;
+    border-top: 1px solid #dcdcdc;
 
 }
 .totalPayment .orderPrice .totalPrice dt {line-height: 30px;}
 .totalPayment .orderPrice .totalPrice dd {
-	font-size: 22px;
-	color: #d72137;
+    font-size: 22px;
+    color: #d72137;
 }
 .totalPayment .orderPrice .totalPrice dd .num {
-	/*font: 26px/1.2 'roboM';*/
+    /*font: 26px/1.2 'roboM';*/
     font-family: NanumSquareNeo-dEb;
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .totalPayment .orderPrice .totalSale .num {color: #d72137;}
 .totalPayment .orderPrice .saleBox {
-	margin: 0 -10px;
-	padding: 10px;
-	background: #f3f3f3;
+    margin: 0 -10px;
+    padding: 10px;
+    background: #f3f3f3;
 }
 .totalPayment .orderPrice .saleBox.noBG {background:transparent;}
 .totalPayment .orderPrice .saleBox dl {
-	padding: 0;
-	color: #777;
-	font: 14px/1.8 'SDNeoL', 'notoL';
+    padding: 0;
+    color: #777;
+    font: 14px/1.8 'SDNeoL', 'notoL';
 }
 .totalPayment .orderPrice .saleBox dl.saleTit {font-family:'roboR','SDNeoL', 'notoR';color:#222;}
 .totalPayment .orderPrice .saleBox dd .num {font-family: 'roboR';}
@@ -504,9 +503,9 @@ section#content div.gdsInfo .delete button {
     margin: 16px 0 0;
 }
 .btnType4xl {
-     height: 65px;
-     line-height: 65px;
-     font-size: 22px;
+    height: 65px;
+    line-height: 65px;
+    font-size: 22px;
 }
 [class*="btnType4"] {
     height: 50px;
