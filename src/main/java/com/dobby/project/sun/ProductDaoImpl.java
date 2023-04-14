@@ -53,6 +53,33 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "getProductById", id);
     }
 
+    @Override
+    public List<ProductDto> getAllProducts() {
+        return session.selectList("getAllProducts");
+    }
+
+    @Override
+    public List<ProductDto> orderByRegDate() {
+        return session.selectList("orderByRegDate");
+    }
+
+    @Override
+    public List<ProductDto> orderByPriceAsc() {
+        return session.selectList("orderByPriceAsc");
+    }
+
+    @Override
+    public List<ProductDto> orderByPriceDesc() {
+        return session.selectList("orderByPriceDesc");
+    }
+
+    @Override
+    public ProductDto getProductList(String category) throws Exception {
+        return session.selectOne(namespace + "getProductList", category);
+    }
+
+}
+
 
 
 //    public int countProducts() {
@@ -63,5 +90,3 @@ public class ProductDaoImpl implements ProductDao {
 //    public List<ProductDto> getProductList() {
 //        return session.selectOne("getProductList");
 //    }
-}
-
