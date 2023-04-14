@@ -1,79 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>관리자 공지사항 등록페이지</title>
 </head>
-<link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
-<link rel="stylesheet" href="../../css/soo/cs-notice.css"/>
+<link rel="stylesheet" href="/css/soo/admin-nav.css"/>
+<link rel="stylesheet" href="/css/soo/admin-notice-read.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-    section{
-        width:100% ;
-    }
 
-    form{
-        width: 1000px;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        /*justify-content: space-between;*/
-        margin-bottom: 10px;
-        width: 800px;
-    }
-
-    #writer {
-        width: 200px;
-    }
-    .form-group label {
-        flex-basis: 80px;
-        flex-shrink: 0;
-        margin-left: 10px;
-        margin-right: 10px;
-        font-weight: bold;
-        text-align: left;
-    }
-
-    .form-group > *:not(:last-child) {
-        margin-right: 10px;
-    }
-
-    .form-group input[type=text],
-    .form-group textarea {
-        flex: 1;
-        box-sizing: border-box;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-
-    }
-
-    .form-group textarea content{
-        height: 400px;
-    }
-
-
-    .button writeBtn{
-        position: relative;
-        margin-left: 720px;
-    }
-    .button writeBtn[type=submit] {
-
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-right: 10px;
-    }
 </style>
 <body>
 
@@ -118,7 +54,7 @@
 
                 <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
+                        <li><a href="/admin/notice/list" onfocus="this.blur();">공지사항</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">FAQ</a></li>
@@ -151,49 +87,58 @@
                     공지사항 목록을 보여주는 페이지입니다.
                 </p>
 
-                <div class="inv-list">
+                <div class="inv-list"><!-- 실제 구현 페이지 -->
+<%--                    <section class="listView">--%>
+<%--                        <form action="" id="form">--%>
+<%--                            <div class="listTitle">--%>
+<%--                                <span class="cate">${noticeDto.BBS_CATE}</span>--%>
+<%--                                <span class="title">${noticeDto.TTL}</span>--%>
+<%--                                <span class="stus">${noticeDto.STUS}</span>--%>
+<%--                                <span class="date"><fmt:formatDate value="${noticeDto.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></span>--%>
+<%--                            </div>--%>
+<%--                            <div class="listCont">--%>
+<%--                                <p>--%>
+<%--                                    ${noticeDto.CN}--%>
+<%--                                </p>--%>
+<%--                            </div>--%>
 
-                    <!-- 실제 구현 페이지 -->
-                    <section class="whole">
-                        <div class="listHead"></div>
-                        <p class="listCnt">총 ${totalCnt}개</p>
-                        <div class="list">
-                            <table>
-                                <colgroup>
-                                    <col style="width: 7%;">
-                                    <col style="width: 13%">
-                                    <col style="width: 65%;">
-                                    <col style="width: 15%;">
-                                </colgroup>
-
-                                <tbody>
-                                <c:forEach var="Notice" items="${noticeList}">
-                                    <tr>
-                                        <td class="nb_id">${Notice.NB_ID}</td> <!--  게시물 번호 -->
-                                        <td class="bbs_cate">${Notice.BBS_CATE}</td>
-                                        <td class="ttl"><a href="<c:url value="/admin/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a></td><!--  게시물 제목 -->
-                                        <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></td> <!--  게시물 작성일 -->
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-
-                            </table>
+                    <form id="form" class="frm" action="" method="post" >
+                        <input type="hidden" name="NB_ID" value="${noticeDto.NB_ID}">
+                        <div class="form-group">
+                            <%--@declare id="cate"--%><label for="cate">카테고리</label>
+                            <input type="text" id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">
                         </div>
-                        <!-- 페이징 -->
-                        <div class="paging">
-                            <c:if test="${ph.showPrev}">
-                            <a class="page">
-                                <a href="<c:url value="/admin/notice/list?page=${ph.beginPage-1}"/>">&lt;</a>
-                                </c:if>
-                                <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                                <a href="<c:url value="/admin/notice/list?page=${i}"/>">${i}</a>
-                                </c:forEach>
-                                <c:if test="${ph.showNext}">
-                                <a href="<c:url value="/admin/notice/list?page=${ph.endPage+1}"/>">&gt;</a>
-                                </c:if>
+                        <div class="form-group">
+                            <%--@declare id="status"--%><label for="status">상태</label>
+                            <input type="text"id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">
                         </div>
+                        <div class="form-group">
+                            <label for="writer">작성자</label>
+                            <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">제목</label>
+                            <input type="text" id="title" name="TTL" value="${noticeDto.TTL}">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">내용</label>
+                            <textarea id="content" name="CN"
+                                      style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
+                        </div>
+
+                            <div class="listBtm">
+                                <span>
+                                    <button type="button" id="modifyBtn"> 수정</button>
+                                </span>
+                                <span>
+                                    <button type="button" id="removeBtn">삭제</button>
+                                </span>
+                                <span>
+                                    <button type="button" id="listBtn">목록</button>
+                                </span>
+                            </div>
+                        </form>
                     </section>
-
 
                 </div>
             </div>
@@ -208,15 +153,20 @@
     Copyright ⓒ 2023 됐나욧 All rights reserved.
 </div>
 <script>
-    // $(document).ready(function() {
-    //     $("#writeBtn").on("click", function () {
-    //         let form = $("#form");
-    //         form.attr("action", "/admin/notice/write");
-    //         form.attr("method", "post");
-    //         if (formCheck())
-    //             form.submit();
-    //     })
-    // })
+    $(document).ready(function(){
+        $('#listBtn').on("click", function () {
+            location.href = "<c:url value='/admin/notice/list'/>?page=${page}&pageSize=${pageSize}";
+        })
+
+        $("#removeBtn").on("click", function(){
+            if(!confirm("삭제하시겠습니까?")) return;
+            let form = $('#form');
+            form.attr("action", "<c:url value='/admin/notice/remove'/>?page=${page}&pageSize=${pageSize}");
+            form.attr("method", "post");
+            form.submit();
+        });
+
+    });
 </script>
 </body>
 </html>

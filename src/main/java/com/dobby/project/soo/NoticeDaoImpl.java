@@ -17,13 +17,14 @@ public class NoticeDaoImpl implements NoticeDao {
     public NoticeDto select(Integer NB_ID) throws Exception{
         return session.selectOne(namespace+"select",NB_ID);
     }
-    @Override //게시물 번호, 작성자로 게시물 삭제
-    // 나중에 String WRTR 추가하기, 관리자 계정(이름)
+    @Override //게시물 번호, 작성자로 게시물 삭제// 나중에 String WRTR 추가하기, 관리자 계정(이름)
     public int delete(Integer NB_ID) throws Exception{
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("NB_ID",NB_ID);
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("NB_ID",NB_ID);
 //        map.put("WRTR",WRTR);
-        return session.delete(namespace+"delete", map);
+//        return session.delete(namespace+"delete", map);
+
+        return session.delete(namespace+"delete", NB_ID);
     }
     @Override // 게시물 작성
     public int insert(NoticeDto dto) throws Exception{

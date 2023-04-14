@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -20,6 +21,29 @@ public class AdminNoticeController {
     @Autowired
     NoticeService noticeService;
 
+
+
+    @PostMapping("/modify")
+    public String adminNoticeModify(NoticeDto noticeDto, Integer page, Integer pageSize, RedirectAttributes rattr, Model m) throws Exception {
+        try {
+            noticeService.modify(noticeDto);
+
+            rattr.addAttribute("page", page);
+            rattr.addAttribute("pageSize", pageSize);
+
+            return "redirect:/admin/notice/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute(noticeDto);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+
+            return "soo/admin-notice-read";
+        }
+
+    }
+
+
    @PostMapping("/remove")
     public String adminNoticeRemove(Integer NB_ID, Integer page, Integer pageSize, Model m) throws Exception {
         // 나중에 String WRTR 추가하기, 관리자 계정(이름)
@@ -28,8 +52,8 @@ public class AdminNoticeController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        m.addAttribute("page",page);
-        m.addAttribute("pageSize",pageSize);
+           m.addAttribute("page", page);
+           m.addAttribute("pageSize", pageSize);
 
         return "redirect:/admin/notice/list";
     }
@@ -47,7 +71,7 @@ public class AdminNoticeController {
             e.printStackTrace();
         }
 
-        return "/soo/admin-notice-write";
+        return "/soo/admin-notice-read";
     }
 
     @GetMapping("/write")

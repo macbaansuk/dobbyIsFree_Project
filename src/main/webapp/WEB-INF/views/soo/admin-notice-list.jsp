@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
-<link rel="stylesheet" href="../../css/soo/admin-notice-list.css"/>
+<link rel="stylesheet" href="/css/soo/admin-nav.css"/>
+<link rel="stylesheet" href="/css/soo/admin-notice-list.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
     section whole{
@@ -60,7 +60,7 @@
 
                 <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
+                        <li><a href="/admin/notice/list" onfocus="this.blur();">공지사항</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">FAQ</a></li>
@@ -126,7 +126,7 @@
                                 <button id="homeBtn" type="button">
                                     <a href="/cs/notice/list">NOTICE</a>
                                 </button>
-                                <button id="writeBtn" type="submit">등록</button>
+                                <button id="writeBtn" type="submit">글쓰기</button>
                             </span>
                         </div>
 
@@ -159,7 +159,7 @@
                                         <!--  게시물 카테고리 -->
                                         <td class="bbs_cate">${Notice.BBS_CATE}</td>
                                         <!--  게시물 제목 -->
-                                        <td class="ttl"><a href="<c:url value="/cs/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a></td>
+                                        <td class="ttl"><a href="<c:url value="/admin/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a></td>
                                         <!--  게시물 작성자 -->
                                         <td class="wrtr">${Notice.WRTR}</td>
                                         <!--  게시물 상태 -->

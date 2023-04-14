@@ -14,10 +14,10 @@
         WHERE NB_ID = #{NB_ID}
     </select>
 
-    <!--  게시물 번호, 작성자로 게시물 삭제  -->
+    <!--  게시물 번호, 작성자로 게시물 삭제   나중에 작성자 추가-->
     <delete id="delete" >
         DELETE FROM NOTICE
-        WHERE NB_ID = #{NB_ID} AND WRTR = #{WRTR}
+        WHERE NB_ID = #{NB_ID}
     </delete>
 
     <!--  게시물 목록 모두 불러오기  -->
@@ -64,9 +64,10 @@
     <update id="update" parameterType="NoticeDto">
         UPDATE NOTICE
         SET BBS_CATE = #{BBS_CATE}
+            , STUS = #{STUS}
+            , WRTR = #{WRTR}
             , TTL = #{TTL}
             , CN = #{CN}
-            , WRTR = #{WRTR}
         WHERE NB_ID = #{NB_ID}
     </update>
 
