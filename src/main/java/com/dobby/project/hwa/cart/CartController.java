@@ -17,7 +17,7 @@ public class CartController {
 
     @PostMapping("/cart/{key}")
     @ResponseBody
-    public int main(@PathVariable("key") String key, HttpServletRequest req) {
+    public int main(@PathVariable("key") String key, HttpServletRequest req , Model m) {
 
         System.out.println("main Carrt 컨트롤러 진입");
 //        String userKey = "test1";
@@ -27,6 +27,7 @@ public class CartController {
         System.out.println("session = " + session);
 
         String mbrId = (String) session.getAttribute("MBR_ID");
+        m.addAttribute("mbrId",mbrId);
         System.out.println("mbrId = " + mbrId);
 
 
@@ -49,10 +50,7 @@ public class CartController {
 //    public String selectCart(Model m) throws Exception {  ---원래코드1
     public String selectCart(Model m, HttpServletRequest req) throws Exception {
 
-//        String userKey = "test1";
-        //----------
         HttpSession session = req.getSession();
-//        System.out.println("session = " + session);
 
         String mbrId = (String) session.getAttribute("MBR_ID");
         System.out.println("mbrId = " + mbrId);
@@ -60,17 +58,16 @@ public class CartController {
         String unlogIn = "unlogIn";
 
         if(mbrId == null){
-            m.addAttribute("unlogIn",unlogIn);
+           return "redirect:/?toURL="+req.getRequestURL();
+
         }
 
 
-        //------
 
 
 
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(mbrId);
         m.addAttribute("cartList", cartList);
-//        System.out.println("여기서 안되는데");
 //        System.out.println("list="+ cartList);
 
 
@@ -85,8 +82,6 @@ public class CartController {
         System.out.println("deletemethod()진입");
         System.out.println("delete List = " + deleteDto.getCartIdList());
 
-//        System.out.println(prodNo);
-//        String userKey = "1";
         cartService.deleteCart(deleteDto.getCartIdList());
     }
 

@@ -12,7 +12,7 @@
   if(cookies != null) {
     for (Cookie c : cookies) {
       String name = c.getName();
-     if ("MBR_ID".equals(name)){
+      if ("MBR_ID".equals(name)){
         cookieId = c.getValue();
         login_out = "로그아웃";}
     }
@@ -32,10 +32,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
+
 
 
   <title>Main</title>
-<%--  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">--%>
+  <%--  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">--%>
   <style>
     * {
       margin: 0;
@@ -144,7 +146,7 @@
     <span><a href="/login"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
     <span><a href="mypage">마이페이지</a></span>
-    <span>장바구니</span>
+    <span><a href="/cart" onclick="return checkLogin()">장바구니</a></span>
     <span id="cart_cnt">0</span>
   </div>
   <div id="logo_search_box">
@@ -163,17 +165,36 @@
     <span><a href="/product/makeup">메이크업</a></span>
     <span><a href="/product/hair-body">헤어/바디</a></span>
     <span><a href="/product/men">남성</a></span>
-<%--  <ul>--%>
-<%--    <c:forEach var="p" items="${productList}">--%>
-<%--      <li>--%>
-<%--        <a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a>--%>
-<%--      </li>--%>
-<%--    </c:forEach>--%>
-<%--  </ul>--%>
+    <%--  <ul>--%>
+    <%--    <c:forEach var="p" items="${productList}">--%>
+    <%--      <li>--%>
+    <%--        <a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a>--%>
+    <%--      </li>--%>
+    <%--    </c:forEach>--%>
+    <%--  </ul>--%>
 
-<%--<c:forEach var="p" items="${productList}">--%>
-<%--  <span><a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a></span>--%>
-<%--</c:forEach>--%>
+    <%--<c:forEach var="p" items="${productList}">--%>
+    <%--  <span><a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a></span>--%>
+    <%--</c:forEach>--%>
+
+
+
+    <script> //장바구니 로그인체크
+      function checkLogin() {
+        let isLoggedIn = <%=session != null && session.getAttribute("MBR_ID") != null %> ;
+        console.log('로그인여부',isLoggedIn);
+        if (isLoggedIn === true) {
+          return true;
+        } else {
+          Swal.fire({
+            title: '로그인 해주세용! 😉',
+            confirmButtonColor: 'rgba(18, 182, 96)',
+            footer: '<a href="/login">로그인 하러 가기</a>'
+          })
+          return false;
+        }
+      }
+    </script>
 
   </div>
 </header>

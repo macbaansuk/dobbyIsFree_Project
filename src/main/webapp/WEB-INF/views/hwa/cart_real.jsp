@@ -23,9 +23,6 @@
 <jsp:include page="../header.jsp" />
 
 
-
-
-
 <div id="root">
 
     <section id="container">
