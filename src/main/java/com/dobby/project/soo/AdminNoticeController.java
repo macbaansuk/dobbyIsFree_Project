@@ -1,12 +1,10 @@
 package com.dobby.project.soo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +21,7 @@ public class AdminNoticeController {
 
 
 
+
     @PostMapping("/modify")
     public String adminNoticeModify(NoticeDto noticeDto, Integer page, Integer pageSize, RedirectAttributes rattr, Model m) throws Exception {
         try {
@@ -31,7 +30,7 @@ public class AdminNoticeController {
             rattr.addAttribute("page", page);
             rattr.addAttribute("pageSize", pageSize);
 
-            return "redirect:/admin/notice/list";
+            return "redirect:/admin/notice/list?page=" + page + "&pageSize=" + pageSize;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,11 +40,12 @@ public class AdminNoticeController {
 
             return "soo/admin-notice-read";
         }
-
     }
 
 
-   @PostMapping("/remove")
+
+
+    @PostMapping("/remove") // 게시물 수정 페이지에서의 삭제
     public String adminNoticeRemove(Integer NB_ID, Integer page, Integer pageSize, Model m) throws Exception {
         // 나중에 String WRTR 추가하기, 관리자 계정(이름)
         try {
@@ -58,6 +58,7 @@ public class AdminNoticeController {
 
         return "redirect:/admin/notice/list";
     }
+
     @GetMapping("/read")
     public String adminNoticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
         System.out.println("NoticeController - NB_ID: " + NB_ID);
@@ -85,33 +86,17 @@ public class AdminNoticeController {
 
 
     @PostMapping("/write")
-    public String adminNoticeWrite(Model m, NoticeDto noticeDto) throws Exception {
+    public String adminNoticeWrite(Model m, NoticeDto noticeDto) {
+        try {
+            noticeService.write(noticeDto);
 
-        noticeService.write(noticeDto);
-//        m.addAttribute(noticeDto);
+        } catch (Exception e) {
+            e.printStackTrace();
 
-            return "redirect:/cs/notice/list";
+        }
+        return "redirect:/admin/notice/list";
     }
 
-//    @GetMapping("/list")
-//    public String AdminNoticeList(Model m , HttpServletRequest request, SearchCondition sc) throws Exception {
-//
-//        try {
-//            int totalCnt = noticeService.getSearchResultCnt(sc);
-//            m.addAttribute("totalCnt", totalCnt);
-//
-//            PageHandler pageHandler = new PageHandler(totalCnt, sc);
-//
-//            List<NoticeDto> list = noticeService.getSearchResultPage(sc);
-//            m.addAttribute("adminNoticeList", list);
-//            m.addAttribute("ph", pageHandler);
-//            System.out.println("adminNoticeList="+m);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        return "/soo/admin-notice-list";
-//    }
 
     @GetMapping("/list")
     public String adminNoticeList(@RequestParam(defaultValue ="1") Integer page,
@@ -130,7 +115,6 @@ public class AdminNoticeController {
             Map map = new HashMap();
             map.put("offset", (page-1)*pageSize);
             map.put("pageSize", pageSize);
-
 
             List<NoticeDto> list = noticeService.getPage(map);
             m.addAttribute("adminNoticeList", list);

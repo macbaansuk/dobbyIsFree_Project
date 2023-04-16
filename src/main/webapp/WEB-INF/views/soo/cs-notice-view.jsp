@@ -42,6 +42,12 @@
                 </ul>
             </nav>
 
+            <script>
+                let msg="${msg}";
+                if(msg=="readError") alert("게시물 조회 중 오류가 발생했습니다.")
+            </script>
+
+
             <!-- 게시물 보기 -->
             <section class="listView">
                 <div class="listTitle">
