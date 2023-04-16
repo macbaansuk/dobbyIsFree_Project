@@ -223,23 +223,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="writer">작성자</label>
-                                <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}">
+                                <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}" placeholder="  작성자를 입력해 주세요.">
                             </div>
                             <div class="form-group">
                                 <label for="title">제목</label>
-                                <input type="text" id="title" name="TTL" value="${noticeDto.TTL}">
+                                <input type="text" id="title" name="TTL" value="${noticeDto.TTL}" placeholder="  제목을 입력해 주세요.">
                             </div>
                             <div class="form-group">
                                 <label for="content">내용</label>
-                                <textarea id="content" name="CN"
-                                          style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
+                                <textarea id="content" name="CN" placeholder="  내용을 입력해 주세요." style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
                             </div>
                             <div class="btnList">
                                 <button type="submit" id="writeBtn">등록</button>
-<%--                                <button type="button" id="modifyBtn">수정</button>--%>
-<%--                                <button type="button" id="removeBtn">삭제</button>--%>
                             </div>
                         </form>
+
                     </section>
 
                 </div>
@@ -260,10 +258,36 @@
             let form = $("#form");
             form.attr("action", "/admin/notice/write");
             form.attr("method", "post");
-            if (formCheck())
+
+            // form에 입력하지 않았을 때
+            if ($("#writer").val().trim() == "") {
+                alert("작성자를 입력해주세요.");
+                return false;
+            }
+            if ($("#title").val().trim() == "") {
+                alert("제목을 입력해주세요.");
+                return false;
+            }
+            if ($("#content").val().trim() == "") {
+                alert("내용을 입력해주세요.");
+                return false;
+            }
+
+            // form
+            if (formCheck()){
                 form.submit();
+                alert("게시물이 등록되었습니다.");
+            } else {
+                alert("게시물 등록에 실패했습니다.");
+                return false;
+            }
         })
     })
+
+
+
+
+
 </script>
 </body>
 </html>
