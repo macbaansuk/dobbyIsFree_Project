@@ -19,9 +19,6 @@ public class AdminNoticeController {
     @Autowired
     NoticeService noticeService;
 
-
-
-
     @PostMapping("/modify")
     public String adminNoticeModify(NoticeDto noticeDto, Integer page, Integer pageSize, RedirectAttributes rattr, Model m) throws Exception {
         try {
@@ -60,7 +57,7 @@ public class AdminNoticeController {
     }
 
     @GetMapping("/read")
-    public String adminNoticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
+    public String adminNoticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m ) throws Exception {
         System.out.println("NoticeController - NB_ID: " + NB_ID);
 
         try {
@@ -92,7 +89,7 @@ public class AdminNoticeController {
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            m.addAttribute(noticeDto);
         }
         return "redirect:/admin/notice/list";
     }
@@ -100,7 +97,7 @@ public class AdminNoticeController {
 
     @GetMapping("/list")
     public String adminNoticeList(@RequestParam(defaultValue ="1") Integer page,
-                             @RequestParam(defaultValue = "10") Integer pageSize,Model m, HttpServletRequest request) throws Exception {
+                                  @RequestParam(defaultValue = "10") Integer pageSize,Model m) throws Exception {
 
         try {
             int totalCnt = noticeService.getCount();
