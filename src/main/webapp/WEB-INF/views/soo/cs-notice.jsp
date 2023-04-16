@@ -35,14 +35,11 @@
         <div class="wrap">
             <!-- 게시판카테고리 -->
             <nav class="tab">
-<%--                <ul>--%>
-<%--                    <li><a href="#"><span>FAQ</span></a></li>--%>
-<%--                    <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>--%>
-<%--                    <li><a href="#"><span>1:1 상담</span></a></li>--%>
-<%--                </ul>--%>
-                <button class="tab-btn" NB_ID="F">FAQ</button>
-                <button class="tab-btn" NB_ID="N">공지사항</button>
-                <button class="tab-btn" NB_ID="C">1:1 상담</button>
+                <ul>
+                    <li><a href="#"><span>FAQ</span></a></li>
+                    <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>
+                    <li><a href="#"><span>1:1 상담</span></a></li>
+                </ul>
             </nav>
 
             <!-- 검색창 -->
@@ -53,14 +50,14 @@
 
             <!-- 공지사항 카테고리 -->
             <div class="tab2">
-
-                <button class="tab2-btn" BBS_CATE="전체">전체</button>
-                <button class="tab2-btn" BBS_CATE="고객 센터">고객 센터</button>
-                <button class="tab2-btn" BBS_CATE="매장 공지">매장 공지</button>
-                <button class="tab2-btn" BBS_CATE="배송 공지">배송 공지</button>
-                <button class="tab2-btn" BBS_CATE="쇼핑몰 공지">쇼핑몰 공지</button>
-                <button class="tab2-btn" BBS_CATE="이벤트 공지">이벤트 공지</button>
-
+                <ul>
+                    <li class="all"><a href="#"><span>전체</span></a></li>
+                    <li class=""><a href="#"><span>고객 센터</span></a></li>
+                    <li class=""><a href="#"><span>매장 공지</span></a></li>
+                    <li class=""><a href="#"><span>배송 공지</span></a></li>
+                    <li class=""><a href="#"><span>쇼핑몰 공지</span></a></li>
+                    <li calss=""><a href="#"><span>이벤트 공지</span></a></li>
+                </ul>
             </div>
 
             <script>
@@ -125,43 +122,5 @@
 
 <jsp:include page="../footer.jsp" />
 </body>
-
-<script>
-    // 버튼 요소들을 선택
-    const buttons = document.querySelectorAll('.tab2-btn');
-
-    // 버튼 클릭 시 처리할 함수
-    function handleButtonClick(event) {
-        // 선택된 버튼에 active 클래스 추가
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-
-        // 선택된 버튼의 BBS_CATE 속성 값을 가져옴
-        const BBS_CATE = event.target.getAttribute('BBS_CATE');
-
-        // AJAX 요청을 보내서 해당 카테고리의 게시물을 조회
-        // 여기서는 jQuery의 AJAX를 사용했지만, 다른 방법으로도 가능합니다.
-        $.ajax({
-            url: '/notice/list/{BBS_CATE}',
-            type: 'GET',
-            data: { BBS_CATE },
-            success: function(result) {
-                // 성공적으로 데이터를 받아왔을 때 처리할 코드
-                console.log(result);
-            },
-            error: function(error) {
-                // 오류가 발생했을 때 처리할 코드
-                console.error(error);
-            }
-        });
-    }
-
-    // 각 버튼에 클릭 이벤트 리스너 추가
-    buttons.forEach(btn => btn.addEventListener('click', handleButtonClick));
-
-
-</script>
-
-
 
 </html>

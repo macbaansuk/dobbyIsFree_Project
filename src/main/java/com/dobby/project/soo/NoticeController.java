@@ -39,34 +39,6 @@ public class NoticeController {
         return "/soo/cs-notice-view";
     }
 
-
-    @GetMapping("/list/{BBS_CATE}")
-    public String noticeListByCate(@RequestParam(defaultValue ="1") Integer page, String BBS_CATE,
-                                   @RequestParam(defaultValue = "10") Integer pageSize,Model m) throws Exception {
-        // 카테고리별 게시물 개수 변수에 저장
-        int totalCnt = noticeService.getCountByCate(BBS_CATE);
-        // 게시물 개수 모델에 저장
-        m.addAttribute("totalCnt", totalCnt);
-
-        PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
-        if(page < 0 || page > pageHandler.getTotalPage())
-            page = 1;
-        if(pageSize < 0 || pageSize > 50)
-            pageSize = 10;
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("offset", (page - 1) * pageSize);
-        map.put("pageSize", pageSize);
-        map.put("BBS_CATE", BBS_CATE);
-
-        List<NoticeDto> list = noticeService.getListByCate(BBS_CATE);
-        m.addAttribute("noticeList", list);
-        m.addAttribute("ph", pageHandler);
-
-        return "notice/list";
-    }
-
-
     @GetMapping("/list")
     public String noticeList(@RequestParam(defaultValue ="1") Integer page,
                              @RequestParam(defaultValue = "10") Integer pageSize,Model m) throws Exception {
