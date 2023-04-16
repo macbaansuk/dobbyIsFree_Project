@@ -22,7 +22,7 @@ public class NoticeController {
     NoticeDao noticeDao;
 
     @GetMapping("/read")
-    public String noticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m, SearchCondition sc ) throws Exception {
+    public String noticeRead(Integer page, Integer pageSize,Integer NB_ID, Model m) throws Exception {
         System.out.println("NoticeController - NB_ID: " + NB_ID);
 
         try {
@@ -33,33 +33,15 @@ public class NoticeController {
 
         } catch (Exception e) {
             e.printStackTrace();
+            m.addAttribute("msg","readError");
         }
 
         return "/soo/cs-notice-view";
     }
-//    @GetMapping("/list")
-//    public String noticeList(Model m, SearchCondition sc ,HttpServletRequest request) throws Exception {
-//
-//        try {
-//            int totalCnt = noticeService.getSearchResultCnt(sc);
-//            m.addAttribute("totalCnt", totalCnt);
-//
-//            PageHandler pageHandler = new PageHandler(totalCnt, sc);
-//
-////            NoticeDao noticeDao = noticeService.getCount(noticeDto);
-//
-//            List<NoticeDto> list = noticeService.getSearchResultPage(sc);
-//            m.addAttribute("noticeList", list);
-//            m.addAttribute("ph", pageHandler);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        return "/soo/cs-notice";
-//    }
+
     @GetMapping("/list")
     public String noticeList(@RequestParam(defaultValue ="1") Integer page,
-                             @RequestParam(defaultValue = "10") Integer pageSize,Model m, HttpServletRequest request) throws Exception {
+                             @RequestParam(defaultValue = "10") Integer pageSize,Model m) throws Exception {
 
         try {
             int totalCnt = noticeService.getCount();
@@ -79,7 +61,8 @@ public class NoticeController {
             m.addAttribute("noticeList", list);
             m.addAttribute("ph", pageHandler);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            m.addAttribute("msg", "listError");
         }
 
         return "/soo/cs-notice";
