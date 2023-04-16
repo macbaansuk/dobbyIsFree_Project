@@ -126,7 +126,7 @@
                                 <button id="homeBtn" type="button">
                                     <a href="/cs/notice/list">공지사항 목록</a>
                                 </button>
-                                <button id="registerBtn" type="submit">글쓰기</button>
+                                <button id="writeBtn" type="submit">글쓰기</button>
                             </span>
                         </div>
 
@@ -168,7 +168,7 @@
                                         <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
                                         <!--  수정, 삭제버튼 -->
                                         <td>
-                                            <a href="<c:url value="/admin/notice/modify${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">
+                                            <a href="<c:url value="/admin/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">
                                                 <button id="modifyBtn" type="submit">수정</button>
                                             </a>
 
@@ -213,7 +213,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#registerBtn").on("click", function(){
+        $("#writeBtn").on("click", function(){
             location.href="<c:url value='/admin/notice/write'/>";
         });
 
