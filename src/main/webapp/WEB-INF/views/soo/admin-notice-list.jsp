@@ -124,7 +124,7 @@
                             <span class="cnt">총 ${totalCnt}개</span>
                             <span class="btn">
                                 <button id="homeBtn" type="button">
-                                    <a href="/cs/notice/list">NOTICE</a>
+                                    <a href="/cs/notice/list">공지사항 목록</a>
                                 </button>
                                 <button id="writeBtn" type="submit">글쓰기</button>
                             </span>
@@ -168,8 +168,14 @@
                                         <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
                                         <!--  수정, 삭제버튼 -->
                                         <td>
-                                            <button id="modifyBtn" type="submit">수정</button>
-                                            <button id="removeBtn" type="submit">삭제</button>
+                                            <a href="<c:url value="/admin/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">
+                                                <button id="modifyBtn" type="submit">수정</button>
+                                            </a>
+
+                                            <a href="<c:url value="/cs/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">
+                                                <button id="readBtn" type="button">보기</button>
+                                            </a>
+
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -208,10 +214,6 @@
 <script>
     $(document).ready(function() {
         $("#writeBtn").on("click", function(){
-            location.href="<c:url value='/admin/notice/write'/>";
-        });
-
-        $("#removeBtn").on("click", function(){
             location.href="<c:url value='/admin/notice/write'/>";
         });
 

@@ -91,40 +91,11 @@
 
                     <form id="form" class="frm" action="" method="post" >
                         <input type="hidden" name="NB_ID" value="${noticeDto.NB_ID}">
-<%--                        <div class="form-group">--%>
-<%--                            &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
-<%--                            <input type="text" id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
-<%--                        </div>--%>
-<%--                        <div class="form-group">--%>
-<%--                            &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
-<%--                            <input type="text"id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
-<%--                        </div>--%>
-
-<%--                        <div class="form-group">--%>
-<%--                            &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
-<%--                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
-<%--                                <option value="고객 센터">고객 센터</option>--%>
-<%--                                <option value="매장 공지">매장 공지</option>--%>
-<%--                                <option value="배송 공지">배송 공지</option>--%>
-<%--                                <option value="쇼핑몰 공지">쇼핑몰 공지</option>--%>
-<%--                                <option value="이벤트 공지">이벤트 공지</option>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
-
-<%--                        <div class="form-group">--%>
-<%--                            &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
-<%--                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
-<%--                                <option value="게시중">게시중</option>--%>
-<%--                                <option value="비공개">비공개</option>--%>
-<%--                                <option value="수정중">수정중</option>--%>
-<%--                                <option value="삭제예정">삭제예정</option>--%>
-<%--                            </select>--%>
-
-<%--                        </div>--%>
-
+                        <input type="hidden" id="page" name="page" value="${page}">
+                        <input type="hidden" id="pageSize" name="pageSize" value="${pageSize}">
 
                         <div class="form-group">
-                            <%--@declare id="cate"--%><label for="cate">카테고리</label>
+                            <label for="catelist">카테고리</label>   <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
                             <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;">
                                 <option value="고객 센터" ${noticeDto.BBS_CATE == '고객 센터' ? 'selected' : ''}>고객 센터</option>
                                 <option value="매장 공지" ${noticeDto.BBS_CATE == '매장 공지' ? 'selected' : ''}>매장 공지</option>
@@ -135,7 +106,7 @@
                         </div>
 
                         <div class="form-group">
-                            <%--@declare id="status"--%><label for="status">상태</label>
+                            <label for="statuslist">상태</label>
                             <select id="statuslist" name="STUS" style="height: 30px; width: 150px;">
                                 <option value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
                                 <option value="비공개" ${noticeDto.STUS == '비공개' ? 'selected' : ''}>비공개</option>
@@ -162,7 +133,7 @@
 
                             <div class="listBtm">
                                 <span>
-                                    <button type="button" id="modifyBtn"> 수정</button>
+                                    <button type="button" id="modifyBtn">수정</button>
                                 </span>
                                 <span>
                                     <button type="button" id="removeBtn">삭제</button>
@@ -188,25 +159,54 @@
 </div>
 <script>
     $(document).ready(function(){
+        // 목록 버튼을 클릭하면
         $('#listBtn').on("click", function () {
+            // url을 생성하고, page, pageSize 변수의 값을 전달한다.
             location.href = "<c:url value='/admin/notice/list'/>?page=${page}&pageSize=${pageSize}";
         })
-
+        // 삭제 버튼을 클릭하면
         $("#removeBtn").on("click", function(){
+            // 삭제 전 메세지
             if(!confirm("삭제하시겠습니까?")) return;
+            // 확인을 선택하면, form 요소를 참조
             let form = $('#form');
+            // "action", form 데이터를 제출할 대상 (url)
             form.attr("action", "<c:url value='/admin/notice/remove'/>?page=${page}&pageSize=${pageSize}");
+            // "method", form 데이터를 전송할 HTTP 요청 방식 지정
             form.attr("method", "post");
+            // form 요소를 서버에 제출
             form.submit();
+            alert("삭제되었습니다.");
         });
-
 
         $("#modifyBtn").on("click", function(){
             let form = $("#form");
+            let page = $("#page").val(); // 수정 후에 해당되는 페이지
+            let pageSize = $("#pageSize").val(); // 페이지 크기
             form.attr("action", "<c:url value='/admin/notice/modify'/>");
             form.attr("method", "post");
-            form.submit();
+            form.append('<input type="hidden" name="page" value="' + page + '">'); // 페이지 전달
+            form.append('<input type="hidden" name="pageSize" value="' + pageSize + '">'); // 페이지 크기 전달
+
+            // form에 입력하지 않았을 때
+            if ($("#writer").val().trim() == "") {
+                alert("작성자를 입력해주세요.");
+                return false;
+            }
+            if ($("#title").val().trim() == "") {
+                alert("제목을 입력해주세요.");
+                return false;
+            }
+            if ($("#content").val().trim() == "") {
+                alert("내용을 입력해주세요.");
+                return false;
+            }
+                form.submit();
+                alert("게시물이 수정되었습니다.");
+
         });
+
+
 
 
     });
