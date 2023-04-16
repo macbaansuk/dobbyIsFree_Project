@@ -197,13 +197,28 @@
                 alert("제목을 입력해주세요.");
                 return false;
             }
+            if ($("#title").val().length > 30) {
+                alert("제목은 최대 30자까지 입력 가능합니다.");
+                $("#title").focus();
+                return false;
+            }
             if ($("#content").val().trim() == "") {
                 alert("내용을 입력해주세요.");
                 return false;
             }
+            if ($("#content").val().length > 5000) {
+                alert("내용은 최대 5000자까지 입력 가능합니다.");
+                $("content").focus();
+                return false;
+            }
+
+            if (formCheck()){
                 form.submit();
                 alert("게시물이 수정되었습니다.");
-
+            } else {
+                alert("게시물 수정에 실패했습니다.");
+                return false;
+            }
         });
 
 
