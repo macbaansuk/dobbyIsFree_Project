@@ -51,14 +51,21 @@
             <!-- 공지사항 카테고리 -->
             <div class="tab2">
                 <ul>
-                    <li class="whole"><a href="#"><span>전체</span></a></li>
-                    <li><a href="#"><span>고객 센터</span></a></li>
-                    <li><a href="#"><span>매장 공지</span></a></li>
-                    <li><a href="#"><span>배송 공지</span></a></li>
-                    <li><a href="#"><span>쇼핑몰 공지</span></a></li>
-                    <li><a href="#"><span>이벤트 공지</span></a></li>
+                    <li class="all"><a href="#"><span>전체</span></a></li>
+                    <li class=""><a href="#"><span>고객 센터</span></a></li>
+                    <li class=""><a href="#"><span>매장 공지</span></a></li>
+                    <li class=""><a href="#"><span>배송 공지</span></a></li>
+                    <li class=""><a href="#"><span>쇼핑몰 공지</span></a></li>
+                    <li calss=""><a href="#"><span>이벤트 공지</span></a></li>
                 </ul>
             </div>
+
+            <script>
+                let msg="${msg}";
+                if(msg=="listError") alert("게시물 목록을 불러올 수 없습니다.")
+            </script>
+
+
             <!-- 게시물목록 -->
             <section class="whole">
                 <div class="listHead"></div>
@@ -106,9 +113,7 @@
                    </c:if>
                </div>
             </section>
-
         </div>
-
     </section>
 </div>
     </section>

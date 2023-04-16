@@ -128,15 +128,15 @@ a {
     align-items: center;
 }
 
-.tab2 ul li.whole {
+.tab2 ul li #all {
     background-color: rgb(18, 182, 96);
 }
 
-.tab2 ul li.whole a {
+.tab2 ul li #all a {
     color: white;
 }
 
-.whole {}
+#all {}
 
 .listHead{
     padding-bottom: 30px;
