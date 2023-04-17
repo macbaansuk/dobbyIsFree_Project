@@ -54,7 +54,7 @@ section{
 }
 
 form{
-    width: 1000px;
+    width: 900px;
 }
 
 .form-group {
@@ -88,7 +88,7 @@ form{
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
-
+    width: 100%;
 }
 
 .form-group textarea content{
@@ -117,7 +117,7 @@ form{
 
 #modifyBtn{
     position: relative;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 #modifyBtn{
@@ -136,7 +136,7 @@ form{
 
 #removeBtn{
     position: relative;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 #removeBtn{
@@ -153,7 +153,24 @@ form{
     cursor: pointer;
 }
 
+#writeBtn {
+    background-color: #00a2ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
 
+#writeBtn{
+    position: relative;
+    margin-right: 10px;
+}
 
 .listView {
     margin-top: 20px;
