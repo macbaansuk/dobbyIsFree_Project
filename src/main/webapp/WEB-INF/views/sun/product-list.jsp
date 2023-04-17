@@ -17,17 +17,18 @@
 <jsp:include page="../header.jsp"/>
 
 <section class="contents">
+
     <div class="product-header">
         <div class="product-text">
-            <h2 class="product-title">남성</h2>
+            <h2 class="product-title">${productList[0].cate_nm}</h2> <!--list 객체 사용-->
             <div class="product-desc">
-                <pre>이니스프리 남성 화장품 전체 제품 페이지 입니다.
-포레스트 포맨 올인원 에센스, 그린티 로션 포맨, 올리브 리얼 스킨 포맨 등
-이니스프리가 추천하는 쉐이빙 폼, 남자 로션, 남자 스킨 제품들을 만나보세요.</pre>
+                <p>
+                <pre>${productList[0].cate_desc}</pre>
+                </p>
             </div>
         </div>
 
-        <img src="/img/sun/product-image/men_main.jpg" alt="헤어/바디 메인사진"/>
+        <img src="${productList[0].cate_rep_img}" alt="${productList[0].cate_nm} 메인사진"/>
 
     </div>
 
@@ -36,22 +37,21 @@
             <p class="product-length">
                 총
                 <strong class="num">
-                    4개
+                    ${countProducts}개
                 </strong>
-                의 도비스프리
-                <strong class="cate">
-                    남성
-                </strong>
-                제품이 있습니다.
+                의 제품이 있습니다.
             </p>
 
             <div class="product-sort-click">
                 <ul>
                     <li>
-                        <label>최신순</label>
+                        <button type="button" class="sort-btn" data-sort="latest">최신순</button>
                     </li>
                     <li>
-                        <label>높은 가격순</label>
+                        <button type="button" class="sort-btn" data-sort="high-price">높은 가격순</button>
+                    </li>
+                    <li>
+                        <button type="button" class="sort-btn" data-sort="low-price">낮은 가격순</button>
                     </li>
                 </ul>
             </div>
@@ -59,14 +59,15 @@
         </div>
 
 
+
         <!-- 상품 리스트 -->
         <div class="product-list">
-            <c:forEach var="p" items="${menProducts}">
+            <c:forEach var="p" items="${productList}">
                 <div class="product">
-                    <a href="/product/${p.prod_id}">
+                    <a href="/product/productDetail/${p.prod_id}">
                         <div class="product-img">
 
-                            <img src="${p.rep_img}" alt="메인 상품 이미지">
+                            <img src="${p.rep_img}" alt="${p.prod_nm}">
                         </div>
                         <div class="product-info">
                             <span class="product-name">${p.prod_nm}</span>
@@ -93,6 +94,9 @@
 
 
 
+
+
+
                     <div class="star-wrap">
                         <i class="fas fa-star"></i>
                         <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
@@ -101,17 +105,14 @@
                                      <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                     </div>
-
                 </div>
-
             </c:forEach>
+
         </div>
 
-
-    </div><!--prod-contents 끝-->
-
-
     </div>
+
+
 
 
 </section>

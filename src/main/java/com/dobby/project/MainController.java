@@ -1,9 +1,9 @@
 package com.dobby.project;
 
 
-import com.dobby.project.sun.ProductDCDto;
-import com.dobby.project.sun.ProductDto;
-import com.dobby.project.sun.ProductService;
+import com.dobby.project.sun.domain.ProductDCDto;
+import com.dobby.project.sun.domain.ProductDto;
+import com.dobby.project.sun.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

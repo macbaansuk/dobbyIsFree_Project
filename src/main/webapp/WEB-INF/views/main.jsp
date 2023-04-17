@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
-    <%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- 커스텀 창 -->--%>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
 
@@ -36,10 +34,9 @@
 
         }
 
-        icon {
-            max-width: 100%;
-            max-height: 100%;
-        }
+        /*.grid-container {*/
+        /*    min-height: 100%;*/
+        /*}*/
 
     </style>
 </head>
@@ -184,52 +181,57 @@
 
             </section>
 
-
         </div>
-        <script>
+    </div>
+</div>
 
-            const swiper = new Swiper('.swiper-container', {
+<script>
 
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
+    const swiper = new Swiper('.swiper-container', {
 
-                navigation: {
-                    prevEl: '.nav_prev',
-                    nextEl: '.nav_next',
-                },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
 
-                speed: 800,
+        navigation: {
+            prevEl: '.nav_prev',
+            nextEl: '.nav_next',
+        },
 
-                loop: true,
+        speed: 800,
 
-                autoplay: {
-                    delay: 3000,
-                    pauseOnMouseEnter: false,
-                    disableOnInteraction: false,
+        loop: true,
 
-                },
+        autoplay: {
+            delay: 3000,
+            pauseOnMouseEnter: false,
+            disableOnInteraction: false,
 
-                slidesPerView: 1,
+        },
+
+        slidesPerView: 1,
 
 
-            })
+    })
 
-        </script>
+</script>
 
-        <%-- 메인 배너 끝 --%>
+</div>
 
-        <%-- 상품 시작--%>
-        <div class="title">
-            <h3 class="line">한눈에 보는 추천제품</h3>
-        </div>
+<%-- 메인 배너 끝 --%>
 
-        <!-- 상품 리스트 -->
-        <div class="product-list">
-            <c:forEach var="p" items="${ProductsMain}">
+<%-- 상품 시작--%>
+<div class="container">
+    <div class="title">
+        <h3 class="line">한눈에 보는 추천제품</h3>
+    </div>
+
+    <!-- 상품 리스트 -->
+    <div class="product-list">
+        <c:forEach var="p" items="${ProductsMain}">
             <div class="product">
-                <a href="/product/${p.prod_id}">
+                <a href="/product/productDetail/${p.prod_id}">
                     <div class="product-img">
 
                         <img src="${p.rep_img}" alt="메인 상품 이미지">
@@ -256,81 +258,97 @@
                         </p>
                     </div>
                 </a>
-
-                        <div class="tag-wrap"></div>
-                        <div class="star-wrap">
-                            <i class="fas fa-star"></i>
-                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
-                            <span class="heart-icon">
-                                <i class="far fa-heart"></i>
-                                <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
-                            </span>
-
-                        </div>
+                <div class="star-wrap">
+                    <div class="starCnt">
+                        <i class="fas fa-star"></i>
+                        <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                    </div>
+                    <div class="icons">
+                    <span class="heart-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+                        <span class="cart-icon">
+                        <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
+                    </span>
                     </div>
                 </div>
-            </c:forEach>
-        </div>
-        <script>
-
-            function insertA (productNumber) {
-                console.log(productNumber)
-                console.log("insert함수실행")
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    url: "/cart/"+ productNumber,
-                    type: "POST",
-                    success: function (data) {
-                        if (data == 1) {
-                            location.href='/cart'
-                        }
-                    },
-                    error: function () {
-                        alert("등록 실패")
-                    }
-                });<!--ajax -->
-            }
-
-        </script>
-
-        <%-- 멤버십 시작 --%>
-        <section class="mainMemberShipInfo">
-            <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
-            <div class="contWrap">
-                <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
-                <ul class="list">
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
-                        <strong class="tit">멤버십 혜택</strong>
-                        <span class="txt">등급별 적립혜택</span>
-                    </li>
-
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
-                        <strong class="tit">구매 적립</strong>
-                        <span class="txt">구매 금액 1% 적립</span>
-                    </li>
-                    <li>
-                        <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
-                        <strong class="tit">생일 혜택</strong>
-                        <span class="txt">생일 쿠폰 지급</span>
-                    </li>
-
-                </ul>
-                <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
             </div>
-        </section>
-
-
-        <%-- 멤버십 끝 --%>
+        </c:forEach>
     </div>
 
+    <script>
+        function changeHeartIcon() {
+            $('.heart-icon i').toggleClass('fa-regular fa-solid');
+        }
 
-    <jsp:include page="footer.jsp"/>
+        $('.heart-icon').click(function() {
+            changeHeartIcon();
+        });
+    </script>
+
+
+
+    <script>
+
+        function insertA(productNumber) {
+            console.log(productNumber)
+            console.log("insert함수실행")
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                contentType: "application/json; charset=utf-8",
+                url: "/cart/" + productNumber,
+                type: "POST",
+                success: function (data) {
+                    if (data == 1) {
+                        location.href = '/cart'
+                    }
+                },
+                error: function () {
+                    alert("등록 실패")
+                }
+            });<!--ajax -->
+        }
+
+    </script>
+</div>
+
+<%-- 멤버십 시작 --%>
+<section class="mainMemberShipInfo">
+    <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
+    <div class="contWrap">
+        <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
+        <ul class="list">
+            <li>
+                <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
+                <strong class="tit">멤버십 혜택</strong>
+                <span class="txt">등급별 적립혜택</span>
+            </li>
+
+            <li>
+                <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
+                <strong class="tit">구매 적립</strong>
+                <span class="txt">구매 금액 1% 적립</span>
+            </li>
+            <li>
+                <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
+                <strong class="tit">생일 혜택</strong>
+                <span class="txt">생일 쿠폰 지급</span>
+            </li>
+
+        </ul>
+        <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
+    </div>
+</section>
+
+
+<%-- 멤버십 끝 --%>
+</div>
+
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

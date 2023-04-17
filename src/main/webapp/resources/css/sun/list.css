@@ -22,6 +22,13 @@ button{
     z-index: 2;
     padding: 20px;
     border-radius: 10px;
+
+
+}
+
+.product-header img {
+    width: 100%;
+    object-fit: cover; /* 이미지 크기 조절 추가 */
 }
 
 .product-title {
@@ -30,15 +37,16 @@ button{
     margin-bottom: 30px;
 }
 
-.product-desc pre {
+.product-desc p{
     font-size: 16px;
     margin: 0;
+    width: 80%; /* 너비 설정 수정 */
+    background: rgba(255, 255, 255, 0.8); /* 배경 설정 추가 (흰색으로 반투명) */
+    word-wrap: break-word; /* 단어 줄바꿈 */
 
 }
 
-.product-header img{
-    width:100%
-}
+
 
 .sort-contents {
     display: flex;
