@@ -12,8 +12,10 @@
         <typeAlias alias="InvDto" type="com.dobby.project.hoon.domain.InvDto"/>
         <typeAlias alias="NoticeDto" type="com.dobby.project.soo.NoticeDto"/>
         <typeAlias alias="SearchCondition" type="com.dobby.project.soo.SearchCondition"/>
-        <typeAlias alias="ProductDto" type="com.dobby.project.sun.ProductDto"/>
-        <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.ProductDCDto"/>
+        <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
+        <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
+        <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
+
     </typeAliases>
 
 

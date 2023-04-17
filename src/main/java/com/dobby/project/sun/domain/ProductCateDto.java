@@ -1,15 +1,15 @@
-package com.dobby.project.sun;
+package com.dobby.project.sun.domain;
 
 import java.sql.Date;
 import java.util.Objects;
 
-
-public class ProductDto {
+public class ProductCateDto {
     private Integer prod_id;
-    private String cate_cd;
+    private Integer cate_cd;
     private Integer amt;
     private String prod_nm;
     private String rep_img;
+    private String cate_rep_img;
     private Integer avg_ascr;
     private Integer revw_ncnt;
     private Integer inv_qty;
@@ -32,12 +32,16 @@ public class ProductDto {
     private String fst_regr_dcmt_no;
     private Date last_upd_dtm;
     private String last_updr_dcmt_No;
+    private String cate_nm;
+    private String cate_desc;
+    private String parent_id;
+    private String cate_stus;
 
-    public ProductDto() {
+    public ProductCateDto() {
     }
 
-    public ProductDto(Integer prod_id, String cate_cd, Integer amt, String prod_nm, String rep_img, Integer avg_ascr, Integer revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String prod_desc, String dc_yn, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm, String notice, Date sle_bgn_dtm, Date sle_end_dtm, String inv_loc, Integer safe_inv, String inv_stus_cd, Date fst_reg_dtm, String fst_regr_dcmt_no, Date last_upd_dtm, String last_updr_dcmt_No) {
-
+    public ProductCateDto(String cate_rep_img, Integer prod_id, Integer cate_cd, Integer amt, String prod_nm, String rep_img, Integer avg_ascr, Integer revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String prod_desc, String dc_yn, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm, String notice, Date sle_bgn_dtm, Date sle_end_dtm, String inv_loc, Integer safe_inv, String inv_stus_cd, Date fst_reg_dtm, String fst_regr_dcmt_no, Date last_upd_dtm, String last_updr_dcmt_No, String cate_nm, String cate_desc, String parent_id, String cate_stus) {
+        this.cate_rep_img = cate_rep_img;
         this.prod_id = prod_id;
         this.cate_cd = cate_cd;
         this.amt = amt;
@@ -65,6 +69,10 @@ public class ProductDto {
         this.fst_regr_dcmt_no = fst_regr_dcmt_no;
         this.last_upd_dtm = last_upd_dtm;
         this.last_updr_dcmt_No = last_updr_dcmt_No;
+        this.cate_nm = cate_nm;
+        this.cate_desc = cate_desc;
+        this.parent_id = parent_id;
+        this.cate_stus = cate_stus;
     }
 
     public Integer getProd_id() {
@@ -75,11 +83,11 @@ public class ProductDto {
         this.prod_id = prod_id;
     }
 
-    public String getCate_cd() {
+    public Integer getCate_cd() {
         return cate_cd;
     }
 
-    public void setCate_cd(String cate_cd) {
+    public void setCate_cd(Integer cate_cd) {
         this.cate_cd = cate_cd;
     }
 
@@ -105,6 +113,14 @@ public class ProductDto {
 
     public void setRep_img(String rep_img) {
         this.rep_img = rep_img;
+    }
+
+    public String getCate_rep_img() {
+        return cate_rep_img;
+    }
+
+    public void setCate_rep_img(String cate_rep_img) {
+        this.cate_rep_img = cate_rep_img;
     }
 
     public Integer getAvg_ascr() {
@@ -283,14 +299,47 @@ public class ProductDto {
         this.last_updr_dcmt_No = last_updr_dcmt_No;
     }
 
+    public String getCate_nm() {
+        return cate_nm;
+    }
+
+    public void setCate_nm(String cate_nm) {
+        this.cate_nm = cate_nm;
+    }
+
+    public String getCate_desc() {
+        return cate_desc;
+    }
+
+    public void setCate_desc(String cate_desc) {
+        this.cate_desc = cate_desc;
+    }
+
+    public String getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(String parent_id) {
+        this.parent_id = parent_id;
+    }
+
+    public String getCate_stus() {
+        return cate_stus;
+    }
+
+    public void setCate_stus(String cate_stus) {
+        this.cate_stus = cate_stus;
+    }
+
     @Override
     public String toString() {
-        return "ProductDto{" +
-                "prod_id='" + prod_id + '\'' +
-                ", cate_cd='" + cate_cd + '\'' +
+        return "ProductCateDto{" +
+                "prod_id=" + prod_id +
+                ", cate_cd=" + cate_cd +
                 ", amt=" + amt +
                 ", prod_nm='" + prod_nm + '\'' +
                 ", rep_img='" + rep_img + '\'' +
+                ", cate_rep_img='" + cate_rep_img + '\'' +
                 ", avg_ascr=" + avg_ascr +
                 ", revw_ncnt=" + revw_ncnt +
                 ", inv_qty=" + inv_qty +
@@ -313,6 +362,10 @@ public class ProductDto {
                 ", fst_regr_dcmt_no='" + fst_regr_dcmt_no + '\'' +
                 ", last_upd_dtm=" + last_upd_dtm +
                 ", last_updr_dcmt_No='" + last_updr_dcmt_No + '\'' +
+                ", cate_nm='" + cate_nm + '\'' +
+                ", cate_desc='" + cate_desc + '\'' +
+                ", parent_id='" + parent_id + '\'' +
+                ", cate_stus='" + cate_stus + '\'' +
                 '}';
     }
 
@@ -320,13 +373,12 @@ public class ProductDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductDto that = (ProductDto) o;
-        return Objects.equals(prod_id, that.prod_id) && Objects.equals(cate_cd, that.cate_cd) && Objects.equals(prod_nm, that.prod_nm);
+        ProductCateDto that = (ProductCateDto) o;
+        return Objects.equals(prod_id, that.prod_id) && Objects.equals(prod_nm, that.prod_nm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prod_id, cate_cd, prod_nm);
+        return Objects.hash(prod_id, prod_nm);
     }
 }
-    // 생성자, getter, setter, toString

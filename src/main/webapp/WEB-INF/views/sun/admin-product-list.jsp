@@ -4,13 +4,13 @@
 
 <html>
 <head>
-    <title>관리자 공지사항 등록페이지</title>
+    <title>관리자 상품 목록</title>
 </head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../../css/soo/admin-nav.css"/>
-<link rel="stylesheet" href="../../css/soo/admin-notice-list.css"/>
+<link rel="stylesheet" href="../../css/sun/admin-product-list.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
     section whole{
@@ -85,18 +85,18 @@
         </div><!-- //admin-left// -->
 
         <div class="admin-container">
-            <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 공지사항 &gt; 등록</div>
+            <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 상품 &gt; 목록</div>
 
             <div class="admin-contents">
-                <h3>공지사항 목록</h3>
+                <h3>상품 목록</h3>
                 <p class="txtbox1 top1">
-                    공지사항 목록을 보여주는 페이지입니다.
+                    상품 목록을 보여주는 페이지입니다.
                 </p>
                 <%--카테고리, 상태를 선택할 수 있는 부분--%>
 
                 <div class="inv-list">
                     <!-- 실제 구현 페이지 -->
-                    <section class="whole">
+<%--                    <section class="whole">--%>
 <%--                        <div class="listHead">--%>
 <%--                            <div>--%>
 <%--                                &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
@@ -108,8 +108,8 @@
 <%--                                    <option value="이벤트 공지">이벤트 공지</option>--%>
 <%--                                </select>--%>
 <%--                            </div>--%>
-
 <%--                            <div>--%>
+<%--                                --%>
 <%--                                &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
 <%--                                <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
 <%--                                    <option value="게시중">게시중</option>--%>
@@ -123,9 +123,6 @@
                         <div class="listMid">
                             <span class="cnt">총 ${totalCnt}개</span>
                             <span class="btn">
-                                <button id="homeBtn" type="button">
-<%--                                    <a href="/cs/notice/list">NOTICE</a>--%>
-                                </button>
                                 <button id="writeBtn" type="submit">등록</button>
                             </span>
                         </div>
@@ -148,21 +145,22 @@
                                     <th>카테고리</th>
                                     <th>상품명</th>
                                     <th>가격</th>
+                                    <th>상품 상태</th>
                                     <th>등록일시</th>
                                     <th>버튼</th>
                                 </tr>
-                                <c:forEach var="p" items="${getAllProducts}">
+                                <c:forEach var="p" items="${adminProductList}">
                                     <tr>
                                         <!--  상품 아이디 -->
                                         <td class="nb_id">${p.prod_id}</td>
                                         <!--  카테고리 -->
-                                        <td class="ttl">${p.cate_cd}</td>
+                                        <td class="ttl">${p.cate_nm}</td>
                                         <!--  상품명 -->
-                                        <td class="bbs_cate"><img src="${p.rep_img}" alt="상품 이미지"> ${p.prod_nm}</td>
+                                        <td class="bbs_cate"><img src="${p.rep_img}" alt="상품 이미지" align="middle"> ${p.prod_nm}</td>
                                         <!--  가격-->
                                         <td class="wrtr">${p.amt}</td>
                                         <!--  상태 -->
-<%--                                        <td class="stus">${p.STUS}</td>--%>
+                                        <td class="stus">${p.prod_stus}</td>
                                         <!--  등록일시 -->
                                         <td class="reg_dtm"><fmt:formatDate value="${p.reg_dtm}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
                                         <!--  수정, 삭제버튼 -->
@@ -175,19 +173,22 @@
                                 </tbody>
                             </table>
 
+
+
+
                             <!-- 페이징 -->
-<%--                            <div class="paging">--%>
-<%--                                <c:if test="${ph.showPrev}">--%>
-<%--                                <a class="page">--%>
-<%--                                    <a href="<c:url value="/admin/notice/list?page=${ph.beginPage-1}"/>">&lt;</a>--%>
-<%--                                    </c:if>--%>
-<%--                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">--%>
-<%--                                    <a href="<c:url value="/admin/product/list?page=${i}"/>">${i}</a>--%>
-<%--                                    </c:forEach>--%>
-<%--                                    <c:if test="${ph.showNext}">--%>
-<%--                                    <a href="<c:url value="/admin/notice/list?page=${ph.endPage+1}"/>">&gt;</a>--%>
-<%--                                    </c:if>--%>
-<%--                            </div>--%>
+                            <div class="paging">
+                                <c:if test="${ph.showPrev}">
+                                <a class="page">
+                                    <a href="<c:url value="/admin/product/list?page=${ph.beginPage-1}"/>">&lt;</a>
+                                    </c:if>
+                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                    <a href="<c:url value="/admin/product/list?page=${i}"/>">${i}</a>
+                                    </c:forEach>
+                                    <c:if test="${ph.showNext}">
+                                    <a href="<c:url value="/admin/product/list?page=${ph.endPage+1}"/>">&gt;</a>
+                                    </c:if>
+                            </div>
 
                         </div>
 
