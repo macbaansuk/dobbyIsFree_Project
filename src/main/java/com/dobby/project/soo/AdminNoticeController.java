@@ -19,11 +19,9 @@ public class AdminNoticeController {
     @Autowired
     NoticeService noticeService;
 
-
     @GetMapping("/modify")  // 수정하기 위해 기존 데이터 읽어오기
     public String adminNoticeModifyForm(Integer page, Integer pageSize,Integer NB_ID, Model m ) throws Exception {
 //        System.out.println("NoticeController - NB_ID: " + NB_ID);
-
         try {
             NoticeDto noticeDto = noticeService.read(NB_ID);
             m.addAttribute("noticeDto",noticeDto);
@@ -32,9 +30,7 @@ public class AdminNoticeController {
             m.addAttribute("mode", "mod");
         } catch (Exception e) {
             e.printStackTrace();
-
         }
-
         return "/soo/admin-notice-read";
     }
 
