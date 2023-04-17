@@ -8,9 +8,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -23,6 +21,19 @@ ul, lo, li {
     list-style: none;
 }
 
+.fa-cart-shopping{
+    color: gray;
+    font-size: 40px;
+    display: inline-block;
+    text-align: center;
+    margin: 30px;
+}
+
+.empty-cart{
+    font-size: 40px;
+    padding-left: 130px;
+}
+
 /* ---------- */
 
 div#root {
@@ -30,11 +41,7 @@ div#root {
     padding-left: 50px;
 }
 
-header#header {
-}
 
-nav#nav {
-}
 
 section#container {
     display: inline-block;

@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
     <link rel="stylesheet" href="./css/hwa/cart_real.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
+    <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
+
     <style>
         .swal2-title {
             font-family: "나눔바른고딕OTF", "돋움";
@@ -57,7 +59,7 @@
                                     const confirm_val = confirm("선택한거 삭제할라구용?🥹");
 
                                     if (confirm_val) {
-                                        const checkArr = [];
+                                        const checkArr = [];  //체크된값 담을 배열 생성
 
                                         // 체크된 체크박스의 갯수만큼 반복
                                         $("input[class='chBox']:checked").each(function () {
@@ -88,6 +90,14 @@
                     </li> <%-- 모두선택, 선택삭제 li end --%>
                     <c:set var="total_sum" value="0"/> <!-- 최종 가격 더하는 변수 -->
                     <c:set var="total_point" value="0"/> <!-- 최종 적립금 더하는 변수 -->
+
+                    <c:choose>
+                    <c:when test="${empty cartList}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="empty-cart">장바구니가 비어있습니다.</span>
+                    </c:when>
+                    <c:otherwise>
+
                     <c:forEach items="${cartList}" var="cartProdDto"> <!-- cartProdDto 반복 시작 -->
 
 
@@ -199,8 +209,7 @@
                                                     // 업데이트된 장바구니 상품 정보로 화면 갱신
                                                     let updatedData = response; // JSON.parse(response) 대신 response 사용(서버에서 이미 JSON으로 보내주는 경우)
 
-                                                    //개당 가격, 구입 수량, 최종 가격, 적립 포인트
-                                                    // let $itemPrice = $gdsInfo.find("span[data-info='prod_fee']");
+                                                    // 구입 수량, 최종 가격, 적립 포인트
                                                     let $itemQuantity = $gdsInfo.find("span[data-info='prod_quantity']");
                                                     let $itemTotal = $gdsInfo.find("span[data-info='prod_total']");
                                                     let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
@@ -211,8 +220,8 @@
                                                     let updatedProdPoints = updatedData.prod_points;  //적립 포인트
 
                                                     $itemQuantity.text(updatedProdQuantity);
-                                                    $itemTotal.text(updatedProdTotal);
-                                                    $itemPoints.text(updatedProdPoints);
+                                                    $itemTotal.text(updatedProdTotal + " 원");
+                                                    $itemPoints.text(updatedProdPoints + " P");
 
 
                                                 }
@@ -224,11 +233,11 @@
                                     <!--  -->
 
 
-                                    <span class="bold" class="prod_total price-data" data-price="${prod_total}">최종 가격</span>
+                                    <span  class="prod_total price-data bold" data-price="${prod_total}">최종 가격</span>
                                     <span  data-info="prod_total">
                                         <c:set var="prod_total" value="${cartProdDto.PROD_INDV_QTY * prod_fee}"/>
                                         <fmt:formatNumber pattern="###,###,###" value="${prod_total}"/>원</span> <br/>
-                                    <span class="bold" class="point point-data" data-point="${point}" >적립 포인트</span>
+                                    <span  class="point point-data bold" data-point="${point}" >적립 포인트</span>
                                     <span data-info="prod_points" >
                                     <c:set var="point" value="${prod_total  * 0.01 }"/>
                                     <fmt:formatNumber pattern="###,###,###" value="${point}"/> P</span>
@@ -300,6 +309,8 @@
 
 
                     </c:forEach> <!--전체 반복문 end -->
+                    </c:otherwise>
+                    </c:choose>
                 </ul>
 
             </section><!-- #contnet end -->
