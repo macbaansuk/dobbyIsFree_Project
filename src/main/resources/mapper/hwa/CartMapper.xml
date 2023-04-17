@@ -43,6 +43,7 @@
         WHERE MBR_ID = #{MBR_ID} AND PROD_ID = #{PROD_ID}
     </update>
 
+    <!-- 담은 카트 삭제 -->
     <delete id="deleteCart" parameterType="list">
         DELETE FROM `dobbyisfree`.`cart`
         WHERE CART_ID IN
@@ -51,11 +52,17 @@
         </foreach>
     </delete>
 
-
+    <!-- 카트 수량 변경 -->
     <update id="updateCartQty" parameterType="map">
         UPDATE  `dobbyisfree`.`cart` SET PROD_INDV_QTY = #{PROD_INDV_QTY}
         WHERE CART_ID = #{CART_ID}
     </update>
 
+    <select id="getCartProductById" parameterType="int" resultType="com.dobby.project.hwa.cart.CartProdDto">
+        SELECT c.CART_ID, c.MBR_ID, p.PROD_ID, p.PROD_NM, p.AMT, c.PROD_INDV_QTY, p.REP_IMG, p.DC_YN
+        FROM  `dobbyisfree`.`cart` c
+                  JOIN `dobbyisfree`.`prod` p ON c.PROD_ID = p.PROD_ID
+        WHERE c.CART_ID = #{CART_ID}
+    </select>
 
 </mapper>
