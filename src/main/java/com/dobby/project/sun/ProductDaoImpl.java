@@ -58,25 +58,25 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectList("getAllProducts");
     }
 
-    @Override
-    public List<ProductDto> orderByRegDate() {
-        return session.selectList("orderByRegDate");
-    }
-
-    @Override
-    public List<ProductDto> orderByPriceAsc() {
-        return session.selectList("orderByPriceAsc");
-    }
-
-    @Override
-    public List<ProductDto> orderByPriceDesc() {
-        return session.selectList("orderByPriceDesc");
-    }
-
-    @Override
-    public ProductDto getProductList(String category) throws Exception {
-        return session.selectOne(namespace + "getProductList", category);
-    }
+//    @Override
+//    public List<ProductDto> orderByRegDate() {
+//        return session.selectList("orderByRegDate");
+//    }
+//
+//    @Override
+//    public List<ProductDto> orderByPriceAsc() {
+//        return session.selectList("orderByPriceAsc");
+//    }
+//
+//    @Override
+//    public List<ProductDto> orderByPriceDesc() {
+//        return session.selectList("orderByPriceDesc");
+//    }
+//
+//    @Override
+//    public ProductDto getProductList(String category) throws Exception {
+//        return session.selectOne(namespace + "getProductList", category);
+//    }
 
 }
 
