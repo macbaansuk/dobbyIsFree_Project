@@ -5,11 +5,15 @@
 
 <mapper namespace="com.dobby.project.ProductMapper">
 
-    <select id="getAllProducts"  resultType="ProductDto">
-        SELECT *
+    <!--상품 목록페이지에서 상품 개수 세기 -->
+    <select id="countProducts" parameterType="int" resultType="int">
+        SELECT count(*)
         FROM PROD
+        WHERE CATE_CD=#{category}
     </select>
 
+
+    <!-- 메인 화면에 진열되는 상품 8개-->
     <select id="getMainProducts" resultType="ProductDto">
         SELECT *
         FROM PROD
@@ -17,14 +21,7 @@
         ORDER BY PROD_NM LIMIT 8
     </select>
 
-    <select id="getProductList" resultType="ProductDto">
-        SELECT *
-        FROM PROD
-        WHERE CATE_CD = #{category}
-        ORDER BY REG_DTM
-    </select>
-
-
+    <!--상품 할인이 됐을때 안됐을때 가격 불러오기-->
     <select id="Products_DC" resultType="ProductDCDto">
         SELECT P.PROD_ID,
                P.PROD_NM,
@@ -45,103 +42,61 @@
         WHERE P.DC_YN = 'y';
     </select>
 
-    <select id="getSkincareProducts" resultType="ProductDto">
-        SELECT *
-        FROM PROD
-        WHERE CATE_CD = 'CATE1'
-        ORDER BY REG_DTM
-    </select>
-
-    <select id="getMakeupProducts" resultType="ProductDto">
-        SELECT *
-        FROM PROD
-        WHERE CATE_CD = 'CATE2'
-        ORDER BY REG_DTM
-    </select>
-
-    <select id="getMenProducts" resultType="ProductDto">
-        SELECT *
-        FROM PROD
-        WHERE CATE_CD = 'CATE3'
-        ORDER BY REG_DTM
-    </select>
-
-    <select id="getHairBodyProducts" resultType="ProductDto">
-        SELECT *
-        FROM PROD
-        WHERE CATE_CD = 'CATE4'
-        ORDER BY REG_DTM
-    </select>
-
-
+    <!-- 상품 아이디로 상품 상세 불러오기 -->
     <select id="getProductById" parameterType="int" resultType="ProductDto">
         SELECT *
         FROM PROD
         WHERE PROD_ID = #{PROD_ID}
     </select>
 
-
-    <select id="orderByRegDate" resultType="ProductDto">
-        SELECT * FROM PROD ORDER BY REG_DATE;
-    </select>
-
-    <select id="orderByPriceAsc" resultType="ProductDto">
-        SELECT P.PROD_ID,
-               P.PROD_NM,
-               P.AMT,
-               PD.DC_TYP,
-               PD.DC_RATE,
-               PD.DC_AMT,
-               (CASE
-                    WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
-                    WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
-                    ELSE P.AMT
-                   END) AS dc_price
-        FROM Prod AS P
-                 LEFT JOIN
-             Prod_DC AS PD
-             ON
-                 P.PROD_ID = PD.prod_ID
-        WHERE P.DC_YN = 'y'
-        ORDER BY dc_price ASC ;
-    </select>
-
-    <select id="orderByPriceDesc" resultType="ProductDto">
-        SELECT P.PROD_ID,
-               P.PROD_NM,
-               P.AMT,
-               PD.DC_TYP,
-               PD.DC_RATE,
-               PD.DC_AMT,
-               (CASE
-                    WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
-                    WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
-                    ELSE P.AMT
-                   END) AS dc_price
-        FROM Prod AS P
-                 LEFT JOIN
-             Prod_DC AS PD
-             ON
-                 P.PROD_ID = PD.prod_ID
-        WHERE P.DC_YN = 'y'
-        ORDER BY dc_price DESC;
+    <!--해당 카테고리의 상품 목록 불러오기 -->
+    <select id="getProductList" parameterType="int" resultType="ProductCateDto">
+        SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
+        FROM PROD P, CATE C
+        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
+        ORDER BY P.REG_DTM
     </select>
 
 
+<!-- 상품 목록에서 정렬 버튼 구현하려고....-->
+    <select id="highPrice" resultType="ProductCateDto">
+        SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
+        FROM PROD P, CATE C
+        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
+        ORDER BY P.AMT ASC
+    </select>
+
+    <select id="lowPrice" resultType="ProductCateDto">
+        SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
+        FROM PROD P, CATE C
+        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
+        ORDER BY P.AMT DESC
+    </select>
+
+    <select id="latest" resultType="ProductCateDto">
+        SELECT *
+        FROM PROD
+        ORDER BY REG_DTM DESC
+    </select>
 
 
+    <!--관리자 상품목록 전체 상품 조회-->
+    <select id="selectPage" parameterType="map" resultType="ProductCateDto">
+        SELECT C.CATE_NM, P.*
+        FROM PROD P, CATE C
+        WHERE P.CATE_CD=C.CATE_CD
+        ORDER BY  PROD_ID ASC
+        LIMIT #{offset}, #{pageSize}
+    </select>
 
+    <!-- 관리자 페이지 상품 삭제, 나중에 관리자도 확인해야함-->
+    <delete id="deleteProduct">
+        DELETE  FROM PROD WHERE PROD_ID=#{PROD_ID}
+    </delete>
 
-
-
-    <!-- 상품목록페이지 간략하게 만들기 일단 이건 보류    -->
-    <!--    <select id="countProducts" resultType="int">-->
-    <!--        SELECT COUNT(*)-->
-    <!--        FROM PROD-->
-    <!--        WHERE CATE_CD = #{category}-->
-    <!--    </select>-->
-
-
-
+    <!--관리자 상품목록 전체 상품 개수-->
+    <select id="count" resultType="int">
+    SELECT count(*) FROM PROD
+    </select>
 
 </mapper>
