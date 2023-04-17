@@ -59,7 +59,7 @@
     <button class="btnA btn_white btn_join_membership">
         <span></span>
         <span>아직 회원이 아니세요?</span>
-        <em>회원가입</em>
+        <em><a href="/register" style="text-decoration: none; color: #252525";>회원가입</a></em>
     </button>
     </div>
 </section>

@@ -232,59 +232,59 @@
 
         </script>
 
-        <%-- 메인 배너 끝 --%>
+</div>
 
-        <%-- 상품 시작--%>
-        <div class="container">
-            <div class="title">
-                <h3 class="line">한눈에 보는 추천제품</h3>
-            </div>
+<%-- 메인 배너 끝 --%>
 
-        <!-- 상품 리스트 -->
-        <div class="product-list">
-            <c:forEach var="p" items="${ProductsMain}">
-                <div class="product">
-                    <a href="/product/productDetail/${p.prod_id}">
-                        <div class="product-img">
+<%-- 상품 시작--%>
+<div class="container">
+    <div class="title">
+        <h3 class="line">한눈에 보는 추천제품</h3>
+    </div>
 
-                            <img src="${p.rep_img}" alt="메인 상품 이미지">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-name">${p.prod_nm}</span>
-                            <p class="price">
-                                <c:choose>
-                                    <c:when test="${p.dc_yn == 'N'}">
-                                        <strong class="discount-price">${p.amt}</strong>
-                                        <span class="original-price"></span>
-                                        <span class="discount-rate"></span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach var="dc" items="${Products_DC}">
-                                            <c:if test="${p.prod_id == dc.prod_id}">
-                                                <strong class="discount-price">${dc.dc_price}</strong>
-                                                <span class="discount-rate">${dc.dc_rate}%</span>
-                                            </c:if>
-                                        </c:forEach>
-                                        <span class="original-price">${p.amt}</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </p>
-                        </div>
-                    </a>
+    <!-- 상품 리스트 -->
+    <div class="product-list">
+        <c:forEach var="p" items="${ProductsMain}">
+            <div class="product">
+                <a href="/product/productDetail/${p.prod_id}">
+                    <div class="product-img">
 
-                    <div class="star-wrap">
-                        <div class="starCnt">
+                        <img src="${p.rep_img}" alt="메인 상품 이미지">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">${p.prod_nm}</span>
+                        <p class="price">
+                            <c:choose>
+                                <c:when test="${p.dc_yn == 'N'}">
+                                    <strong class="discount-price">${p.amt}</strong>
+                                    <span class="original-price"></span>
+                                    <span class="discount-rate"></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="dc" items="${Products_DC}">
+                                        <c:if test="${p.prod_id == dc.prod_id}">
+                                            <strong class="discount-price">${dc.dc_price}</strong>
+                                            <span class="discount-rate">${dc.dc_rate}%</span>
+                                        </c:if>
+                                    </c:forEach>
+                                    <span class="original-price">${p.amt}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
+                </a>
+                <div class="star-wrap">
+                    <div class="starCnt">
                         <i class="fas fa-star"></i>
                         <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
-                        </div>
-                        <div class="icons">
-                        <span class="heart-icon">
-                                <i class="far fa-heart"></i>
-                            <span class="cart-icon">
-                                <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
-                            </span>
-
-                        </div>
+                    </div>
+                    <div class="icons">
+                    <span class="heart-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </span>
+                        <span class="cart-icon">
+                        <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
+                    </span>
                     </div>
                 </div>
             </c:forEach>
