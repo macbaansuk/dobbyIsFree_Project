@@ -3,19 +3,19 @@ package com.dobby.project.hwa.cart;
 public class CartProdDto {
     private Integer CART_ID;
     private String MBR_ID;
-    private String PROD_NO;
+    private Integer PROD_ID;
     private String PROD_NM;
     private Integer AMT;
     private Integer PROD_INDV_QTY;
     private String REP_IMG;
     private String DC_YN;
 
-    public CartProdDto() {}
 
-    public CartProdDto(Integer CART_ID, String MBR_ID, String PROD_NO, String PROD_NM, Integer AMT, Integer PROD_INDV_QTY, String REP_IMG, String DC_YN) {
+    public  CartProdDto () {}
+    public CartProdDto(Integer CART_ID, String MBR_ID, Integer PROD_ID, String PROD_NM, Integer AMT, Integer PROD_INDV_QTY, String REP_IMG, String DC_YN) {
         this.CART_ID = CART_ID;
         this.MBR_ID = MBR_ID;
-        this.PROD_NO = PROD_NO;
+        this.PROD_ID = PROD_ID;
         this.PROD_NM = PROD_NM;
         this.AMT = AMT;
         this.PROD_INDV_QTY = PROD_INDV_QTY;
@@ -23,12 +23,13 @@ public class CartProdDto {
         this.DC_YN = DC_YN;
     }
 
+
     @Override
     public String toString() {
         return "CartProdDto{" +
                 "CART_ID=" + CART_ID +
                 ", MBR_ID='" + MBR_ID + '\'' +
-                ", PROD_NO='" + PROD_NO + '\'' +
+                ", PROD_ID=" + PROD_ID +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", AMT=" + AMT +
                 ", PROD_INDV_QTY=" + PROD_INDV_QTY +
@@ -36,6 +37,7 @@ public class CartProdDto {
                 ", DC_YN='" + DC_YN + '\'' +
                 '}';
     }
+
 
     public Integer getCART_ID() {
         return CART_ID;
@@ -53,12 +55,12 @@ public class CartProdDto {
         this.MBR_ID = MBR_ID;
     }
 
-    public String getPROD_NO() {
-        return PROD_NO;
+    public Integer getPROD_ID() {
+        return PROD_ID;
     }
 
-    public void setPROD_NO(String PROD_NO) {
-        this.PROD_NO = PROD_NO;
+    public void setPROD_ID(Integer PROD_ID) {
+        this.PROD_ID = PROD_ID;
     }
 
     public String getPROD_NM() {

@@ -1,13 +1,17 @@
 package com.dobby.project.hwa.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CartController {
@@ -17,7 +21,7 @@ public class CartController {
 
     @PostMapping("/cart/{key}")
     @ResponseBody
-    public int main(@PathVariable("key") String key, HttpServletRequest req , Model m) {
+    public int main(@PathVariable("key") Integer key, HttpServletRequest req , Model m) {
 
         System.out.println("main Carrt 컨트롤러 진입");
 //        String userKey = "test1";
@@ -55,7 +59,6 @@ public class CartController {
         String mbrId = (String) session.getAttribute("MBR_ID");
         System.out.println("mbrId = " + mbrId);
 
-        String unlogIn = "unlogIn";
 
         if(mbrId == null){
            return "redirect:/?toURL="+req.getRequestURL();
@@ -75,29 +78,88 @@ public class CartController {
     }
 
 
+//원래 delete post url 반환 타입이 없어서 ajax error()
+//    @PostMapping ("/cart/delete")
+//    @ResponseBody
+//    public void deleteCartItem(@RequestBody DeleteDto deleteDto) {
+//        System.out.println("deletemethod()진입");
+//        System.out.println("delete List = " + deleteDto.getCartIdList());
+//
+//
+//        cartService.deleteCart(deleteDto.getCartIdList());
+//    }
+@PostMapping("/cart/delete") //이 메서드로 수정
+@ResponseBody
+public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDto deleteDto) {
+    System.out.println("deletemethod()진입");
+    System.out.println("delete List = " + deleteDto.getCartIdList());
 
-    @PostMapping ("/cart/delete")
-    @ResponseBody
-    public void deleteCartItem(@RequestBody DeleteDto deleteDto) {
-        System.out.println("deletemethod()진입");
-        System.out.println("delete List = " + deleteDto.getCartIdList());
+    cartService.deleteCart(deleteDto.getCartIdList());
 
-        cartService.deleteCart(deleteDto.getCartIdList());
-    }
+    Map<String,String> response = new HashMap<>();
+    response.put("status","success");
 
+
+    return ResponseEntity.ok().body(response);
+
+
+}
+
+//    @PostMapping("/cart/update")
+//    @ResponseBody
+//    public void updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
+//        System.out.println("updateController 진입");
+//        System.out.println("cartId= "+ cartId);
+//        System.out.println("수량 = " + quantity);
+//
+//        cartService.updateCartQty(cartId,quantity);
+//
+//
+//
+//    }
 
     @PostMapping("/cart/update")
     @ResponseBody
-    public void updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
+    public ResponseEntity<Map<String, String>> updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
         System.out.println("updateController 진입");
         System.out.println("cartId= "+ cartId);
         System.out.println("수량 = " + quantity);
 
-        cartService.updateCartQty(cartId,quantity);
 
+        CartProdDto upCartPdDto = cartService.updateCartQty(cartId, quantity);
+        System.out.println("updatedCartProduct = " + upCartPdDto);
+        int prodFee = upCartPdDto.getAMT();
+        System.out.println("prodFee = " + prodFee);
+        
+        if (upCartPdDto.getDC_YN().equals("Y")) {  //할인여부가 Y라면
+            prodFee *= 0.9;
+        }
+        int prodQuantity = upCartPdDto.getPROD_INDV_QTY(); // 값 구하기 위해서 개별 수량 필요
+        System.out.println("prodQuantity = " + prodQuantity);
 
+        int prodTotal = prodFee * prodQuantity;
+        System.out.println("prodTotal = " + prodTotal);
 
+        int prodPoints = (int) (prodTotal * 0.01); // 적립 포인트는 상품 총 가격의 1%
+        System.out.println("prodPoints = " + prodPoints);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("prod_fee", String.format("%,d", prodFee)); // json -> 문자열 변환
+        map.put("prod_quantity", String.valueOf(prodQuantity));
+        map.put("prod_total", String.format("%,d", prodTotal));
+        map.put("prod_points", String.valueOf(prodPoints));
+
+        return ResponseEntity.ok(map);
     }
+
+
+
+
+
+
+
+
+
 
 
 }
