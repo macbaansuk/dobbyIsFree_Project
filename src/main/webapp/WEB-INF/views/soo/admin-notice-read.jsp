@@ -82,9 +82,9 @@
             <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 공지사항 &gt; 등록</div>
 
             <div class="admin-contents">
-                <h3>공지사항 목록</h3>
+                <h3>공지사항</h3>
                 <p class="txtbox1 top1">
-                    공지사항 목록을 보여주는 페이지입니다.
+                    공지사항을 보여주는 페이지입니다.
                 </p>
 
                 <div class="inv-list"><!-- 실제 구현 페이지 -->
@@ -95,8 +95,11 @@
                         <input type="hidden" id="pageSize" name="pageSize" value="${pageSize}">
 
                         <div class="form-group">
-                            <label for="catelist">카테고리</label>   <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
-                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;">
+                            <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
+                            <label for="catelist">카테고리</label>
+                            <!-- select 태그에서는 readonly 대신 "disabled" 사용해야 변경 불가능 -->
+                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : "" }>
+                                <%-- 수정할 때 DB에 저장 된 option이 선택되어 있으려면 삼항연산자로 조건을 줘야한다 --%>
                                 <option value="고객 센터" ${noticeDto.BBS_CATE == '고객 센터' ? 'selected' : ''}>고객 센터</option>
                                 <option value="매장 공지" ${noticeDto.BBS_CATE == '매장 공지' ? 'selected' : ''}>매장 공지</option>
                                 <option value="배송 공지" ${noticeDto.BBS_CATE == '배송 공지' ? 'selected' : ''}>배송 공지</option>
@@ -107,7 +110,7 @@
 
                         <div class="form-group">
                             <label for="statuslist">상태</label>
-                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;">
+                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : ""}>
                                 <option value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
                                 <option value="비공개" ${noticeDto.STUS == '비공개' ? 'selected' : ''}>비공개</option>
                                 <option value="수정중" ${noticeDto.STUS == '수정중' ? 'selected' : ''}>수정중</option>
@@ -118,29 +121,30 @@
 
 
                         <div class="form-group">
-                            <label for="writer">작성자</label>
-                            <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}">
+                            <label for="writer">작성자</label>  <%--  mode=read일때 readonly로  --%>
+                            <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  작성자를 입력해 주세요.">
                         </div>
                         <div class="form-group">
                             <label for="title">제목</label>
-                            <input type="text" id="title" name="TTL" value="${noticeDto.TTL}">
+                            <input type="text" id="title" name="TTL" value="${noticeDto.TTL}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  제목을 입력해 주세요.">
                         </div>
                         <div class="form-group">
                             <label for="content">내용</label>
-                            <textarea id="content" name="CN"
+                            <textarea id="content" name="CN" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  내용을 입력해 주세요."
                                       style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
                         </div>
 
-                            <div class="listBtm">
-                                <span>
-                                    <button type="button" id="modifyBtn">수정</button>
-                                </span>
-                                <span>
-                                    <button type="button" id="removeBtn">삭제</button>
-                                </span>
-                                <span>
-                                    <button type="button" id="listBtn">목록</button>
-                                </span>
+                            <div class="listBtm" style="text-align: right;">
+                                <c:if test="${mode eq 'mod'}">  <!-- 수정일 때만 보여주기 -->
+                                <span><button type="button" id="modifyBtn">수정</button></span>
+                                </c:if>
+                                <c:if test="${mode eq 'new'}">  <!-- 글쓰기 모드일 때만 보여주기 -->
+                                    <span><button type="submit" id="writeBtn">등록</button></span>
+                                </c:if>
+                                <c:if test="${mode ne 'new'}">  <!-- 글쓰기 모드일 때 안보이기-->
+                                <span><button type="button" id="removeBtn">삭제</button></span>
+                                </c:if>
+                                <span><button type="button" id="listBtn">목록</button></span>
                             </div>
                         </form>
                     </section>
@@ -163,7 +167,7 @@
         $('#listBtn').on("click", function () {
             // url을 생성하고, page, pageSize 변수의 값을 전달한다.
             location.href = "<c:url value='/admin/notice/list'/>?page=${page}&pageSize=${pageSize}";
-        })
+        });
         // 삭제 버튼을 클릭하면
         $("#removeBtn").on("click", function(){
             // 삭제 전 메세지
@@ -179,17 +183,18 @@
             alert("삭제되었습니다.");
         });
 
-        $("#modifyBtn").on("click", function(){
+        // 수정버튼
+        $("#modifyBtn").on("click", function() {
             let form = $("#form");
-            let page = $("#page").val(); // 수정 후에 해당되는 페이지
+            let page = $("#page").val(); // 수정 후에 해당되는 페이지, val() => 해당 요소의 값을 가져오거나 설정하는 메서드
             let pageSize = $("#pageSize").val(); // 페이지 크기
             form.attr("action", "<c:url value='/admin/notice/modify'/>");
             form.attr("method", "post");
             form.append('<input type="hidden" name="page" value="' + page + '">'); // 페이지 전달
             form.append('<input type="hidden" name="pageSize" value="' + pageSize + '">'); // 페이지 크기 전달
 
-            // form에 입력하지 않았을 때
-            if ($("#writer").val().trim() == "") {
+            // form이 비어있을 때
+            if ($("#writer").val().trim() == "") { // trim() => 문자열에서 양 끝의 공백을 제거하는 메서드
                 alert("작성자를 입력해주세요.");
                 return false;
             }
@@ -197,9 +202,10 @@
                 alert("제목을 입력해주세요.");
                 return false;
             }
+            // 글자수를 넘겼을 때
             if ($("#title").val().length > 30) {
                 alert("제목은 최대 30자까지 입력 가능합니다.");
-                $("#title").focus();
+                $("#title").focus();    // focus() => 현재 작업하고 있는 요소를 가르키는 메서드
                 return false;
             }
             if ($("#content").val().trim() == "") {
@@ -212,18 +218,48 @@
                 return false;
             }
 
-            if (formCheck()){
-                form.submit();
-                alert("게시물이 수정되었습니다.");
-            } else {
-                alert("게시물 수정에 실패했습니다.");
-                return false;
-            }
+            form.submit();
+            alert("게시물이 수정되었습니다.");
         });
 
+            // 등록버튼
+            $("#writeBtn").on("click", function () {
+                let form = $("#form");
+                form.attr("action", "/admin/notice/write");
+                form.attr("method", "post");
 
-
-
+                // form에 입력하지 않았을 때
+                if ($("#writer").val().trim() == "") {
+                    alert("작성자를 입력해주세요.");
+                    return false;
+                }
+                if ($("#title").val().trim() == "") {
+                    alert("제목을 입력해주세요.");
+                    return false;
+                }
+                if ($("#title").val().length > 30) {
+                    alert("제목은 최대 30자까지 입력 가능합니다.");
+                    $("#title").focus();
+                    return false;
+                }
+                if ($("#content").val().trim() == "") {
+                    alert("내용을 입력해주세요.");
+                    return false;
+                }
+                if ($("#content").val().length > 5000) {
+                    alert("내용은 최대 5000자까지 입력 가능합니다.");
+                    $("content").focus();
+                    return false;
+                }
+                // form
+                if (formCheck()) {
+                    form.submit();
+                    alert("게시물이 등록되었습니다.");
+                } else {
+                    alert("게시물 등록에 실패했습니다.");
+                    return false;
+                }
+            });
     });
 </script>
 </body>
