@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/sun/main-product.css"/>
+    <link rel="stylesheet" href="./css/sun/main-product.css"/>
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -287,6 +287,7 @@
                     </span>
                     </div>
                 </div>
+            </div>
             </c:forEach>
         </div>
 

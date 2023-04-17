@@ -162,17 +162,7 @@
     </h1>
   </div>
   <div id="product_cate">
-    <span><a href="/product/skincare">스킨케어</a></span>
-    <span><a href="/product/makeup">메이크업</a></span>
-    <span><a href="/product/hair-body">헤어/바디</a></span>
-    <span><a href="/product/men">남성</a></span>
-    <%--  <ul>--%>
-    <%--    <c:forEach var="p" items="${productList}">--%>
-    <%--      <li>--%>
-    <%--        <a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a>--%>
-    <%--      </li>--%>
-    <%--    </c:forEach>--%>
-    <%--  </ul>--%>
+
 
     <%--<c:forEach var="p" items="${productList}">--%>
     <%--  <span><a href="<c:url value='/product/${p.CATE_CD}' />">${p.CATE_NM}</a></span>--%>
