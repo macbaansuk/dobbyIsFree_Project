@@ -15,11 +15,11 @@ public interface ProductDao {
 
     List<ProductDto> getAllProducts();
 
-    List<ProductDto> orderByRegDate();
-    List<ProductDto> orderByPriceAsc();
-    List<ProductDto> orderByPriceDesc();
-
-    ProductDto getProductList(String category) throws Exception;
+//    List<ProductDto> orderByRegDate();
+//    List<ProductDto> orderByPriceAsc();
+//    List<ProductDto> orderByPriceDesc();
+//
+//    ProductDto getProductList(String category) throws Exception;
 
 
 

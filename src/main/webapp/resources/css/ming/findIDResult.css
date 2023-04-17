@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+.inner {
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+}
+
+.header{
+    height: 70px;
+}
+
+.headerBox {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    z-index: 100;
+    border-bottom: 2px solid #f0f0f0;
+    box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.9);
+}
+
+.headerBox h1 {
+    line-height: 70px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.headerBox .btn_page_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+    height: 70px;
+    background: url(https://one-ap.amorepacific.com/auth/images/common/btn_textfield_delete.png) no-repeat 50% 50%;
+    -webkit-background-size: 23px auto;
+    background-size: 23px auto;
+}
+
+body {
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #252525;
+}
+
+input, select, textarea, button {
+    font-family: "나눔바른고딕OTF", "돋움";
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+button, input[type="submit"], input[type="button"], input[type="reset"] {
+    cursor: pointer;
+}
+
+.page_top_area {
+    width: 70%;
+    height: 65px;
+    margin: 0px auto 0px;
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: #000;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-image-width: 0;
+    font-family: inherit;
+    font-weight: 400;
+    color: #252525;
+}
+
+.blind {
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 1px;
+    color: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+}
+
+.container {
+    padding: 10px 20px 40px;
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+img {
+    width: 60%;
+    border: 0;
+    vertical-align: top;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
+    padding: 0 12px;
+    width: 70%;
+    height: 50px;
+    line-height: 48px;
+    color: #252525;
+    font-size: 16px;
+    letter-spacing: -0.7px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input_form .inp .btn_del {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background: #fff url(https://one-ap.amorepacific.com/auth/images/common/btn_textfield_delete.png) no-repeat 50% 50%;
+    -webkit-background-size: 13px auto;
+    background-size: 13px auto;
+    border-radius: 50%;
+}
+
+.form_guide_txt {
+    padding-top: 10px;
+    font-size: 13px;
+    line-height: 1.38;
+    letter-spacing: -0.65px;
+}
+
+.btn_submit.mt20 {
+    margin-top: 20px;
+    width: 70%;
+    height: 54px;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: -0.8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+section, nav, article, aside, header, footer, main {
+    display: block;
+}
+
+.is_error {
+    color: #f23636;
+    border-color: #f23636 !important;
+}
+.is_success {
+    color: #14b76c;
+    border-color: #14b76c !important;
+}
+.btn_submit {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    margin: 30px -5px 0;
+}
+
+input[type="checkbox" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+
+
+.btnA:disabled, .btnA[disabled] {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    color: #c6c6c6;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.sec_login .login_opt {
+    margin-top: 20px;
+}
+
+.btnA {
+    width: 70%;
+    height: 54px;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: -0.8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn_blue {
+    border: solid 1px #5c95f0;
+    background-color: #5c95f0;
+    color: #fff;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-image-width: 0;
+    font-family: inherit;
+    font-weight: 400;
+    color: #252525;
+}
+
+button:disabled {
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+
+section {
+    display: block;
+}
+.sec_join .user_info .tit_id{
+    margin-bottom: 40px;
+}
+.user_info {
+    width: 70%;
+    height: 65px;
+    margin: 0px auto 0px;
+    padding: 20px;
+    border-radius: 6px;
+    border: solid 1px #e5e5e5;
+    background-color: #f8f8f8;
+}
+.user_info .st_txt {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.tit_id {
+    width: 70%;
+    margin: 40px auto 0px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.page_top_area h2 {
+    margin-top: 25px;
+    font-size: 24px;
+    line-height: 1.5;
+    letter-spacing: -1px;
+    font-weight: 700;
+}
+.page_top_area p {
+    margin-top: 0px;
+    font-size: 20px;
+    line-height: 0;
+}
+p {
+    vertical-align: middle;
+}
+p {
+    display: block;
+    margin-block-start: 2em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
