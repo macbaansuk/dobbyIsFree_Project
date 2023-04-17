@@ -50,10 +50,7 @@ public class NoticeDaoImpl implements NoticeDao {
     public List<NoticeDto> selectByCate(String BBS_CATE) throws Exception{
         return session.selectList(namespace+"selectByCate",BBS_CATE);
     }
-    @Override // 모든 게시물 삭제
-    public int deleteAll() {
-        return session.delete(namespace + "deleteAll");
-    }
+
     @Override  // 게시물 전체 개수
     public int countAll() throws Exception {
         return session.selectOne(namespace+"countAll");
@@ -62,6 +59,11 @@ public class NoticeDaoImpl implements NoticeDao {
     @Override  // 카테고리별 게시물 개수
     public int countByCate(String BBS_CATE) throws Exception{
         return session.selectOne(namespace+"countByCate",BBS_CATE);
+    }
+
+    @Override // 모든 게시물 삭제
+    public int deleteAll() {
+        return session.delete(namespace + "deleteAll");
     }
 
     @Override // 검색 결과의 총 개수
