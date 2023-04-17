@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/sun/main-product.css"/>
+    <link rel="stylesheet" href="/css/sun/main-product.css"/>
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -36,26 +36,11 @@
 
         }
 
-        .grid-container {
-            min-height: 100%;
-        }
+        /*.grid-container {*/
+        /*    min-height: 100%;*/
+        /*}*/
 
-        .cart_icon {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            /* Add any padding or margin you need for proper positioning */
-            padding: 5px;
-            background: #555555;
-            width: 40px;
-            height: 40px;
-            opacity: 0.6;
-        }
 
-        .icon {
-            max-width: 100%;
-            max-height: 100%;
-        }
         .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom{
             font-family: "나눔바른고딕OTF", "돋움";
         }
@@ -250,15 +235,16 @@
         <%-- 메인 배너 끝 --%>
 
         <%-- 상품 시작--%>
-        <div class="title">
-            <h3 class="line">한눈에 보는 추천제품</h3>
-        </div>
+        <div class="container">
+            <div class="title">
+                <h3 class="line">한눈에 보는 추천제품</h3>
+            </div>
 
         <!-- 상품 리스트 -->
         <div class="product-list">
             <c:forEach var="p" items="${ProductsMain}">
                 <div class="product">
-                    <a href="/product/${p.prod_id}">
+                    <a href="/product/productDetail/${p.prod_id}">
                         <div class="product-img">
 
                             <img src="${p.rep_img}" alt="메인 상품 이미지">
@@ -286,20 +272,36 @@
                         </div>
                     </a>
 
-                    <div class="tag-wrap"></div>
                     <div class="star-wrap">
+                        <div class="starCnt">
                         <i class="fas fa-star"></i>
                         <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                        </div>
+                        <div class="icons">
                         <span class="heart-icon">
                                 <i class="far fa-heart"></i>
+                            <span class="cart-icon">
                                 <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
                             </span>
 
-                            <%--                        </div>--%>
+                        </div>
                     </div>
                 </div>
             </c:forEach>
         </div>
+
+
+        <script>
+            $('.heart-icon').click(function() {
+                $(this).find('i').toggleClass('fa-regular fa-solid');
+            });
+
+        </script>
+
+
+
+
+
         <script>
             function cartsc(){
                 Swal.fire({
