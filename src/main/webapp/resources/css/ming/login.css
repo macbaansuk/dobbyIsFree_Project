@@ -120,11 +120,7 @@ button {
     text-align: right;
 }
 
-.view_keyboard.is_open .btn_keyboard:before {
-    transform: rotate(180deg);
-}
-
-.btn_open_info:focus, .close_layer_info:focus, #btnCloseAction:focus, .btn_del:focus, .btn_keyboard:focus, #do-regist-login:focus, #do-next:focus, #do-regist-login:focus, .btn_all_view:focus, #mobile-login:focus, #more-login:focus, .sns-btn:focus, #search_id:focus, #search_pwd:focus, #search_order:focus, .loginbtn:focus, #dojoin:focus, .btn_prev_page:focus, .btn_link_bp:focus, #go-home:focus, #sendsms:focus, .btn_link:focus, .sns-btn-way:focus, #mobile-login_pop:focus, #btnSmsResesnd:focus, #btnOkAction:focus, #change-pwd-cancel:focus, #dochangepwd:focus, #do-login-online:focus, #membership-join-finish:focus, #btnCloseAction:focus, #send-userid:focus, #do-login:focus, #terms-agree-next:focus, #term-agree-ok:focus {
+.btn_open_info:focus, .close_layer_info:focus, #btnCloseAction:focus, .btn_del:focus, .btn_keyboard:focus, #do-regist-login:focus, #do-next:focus, #do-regist-login:focus, .btn_all_view:focus, #mobile-login:focus, #more-login:focus, .kakao-btn:focus, #search_id:focus, #search_pwd:focus, #search_order:focus, .loginbtn:focus, #dojoin:focus, .btn_prev_page:focus, .btn_link_bp:focus, #go-home:focus, #sendsms:focus, .btn_link:focus, .kakao-btn-way:focus, #mobile-login_pop:focus, #btnSmsResesnd:focus, #btnOkAction:focus, #change-pwd-cancel:focus, #dochangepwd:focus, #do-login-online:focus, #membership-join-finish:focus, #btnCloseAction:focus, #send-userid:focus, #do-login:focus, #terms-agree-next:focus, #term-agree-ok:focus {
     outline: 2px solid #0A40D5;
 }
 
@@ -136,6 +132,15 @@ button {
     letter-spacing: -0.65px;
 }
 
+.is_error {
+    color: #f23636;
+    border-color: #f23636 !important;
+}
+
+.view_keyboard.is_open .btn_keyboard:before {
+    transform: rotate(180deg);
+}
+
 .view_keyboard .btn_keyboard:before {
     position: absolute;
     right: 0;
@@ -144,7 +149,6 @@ button {
     width: 14px;
     height: 8px;
     background: url(/img/ming/login_img/btn_keyboard_open.png) no-repeat 0 0;
-    transform: rotate(180deg);
     -webkit-background-size: 14px auto;
     background-size: 14px auto;
     content: "";
@@ -154,10 +158,9 @@ button {
     display: none;
 }
 
-/*
-.view_keyboard.is_open .btn_keyboard:before {
-transform: rotate(180deg);
-} */
+.view_keyboard.is_open .img_keyboard {
+    display: block;
+}
 
 img {
     width: 60%;
@@ -342,7 +345,7 @@ button:disabled {
     margin-right: auto;
 }
 
-.sns-btn {
+.kakao-btn {
     width: 100%;
     height: 70px;
     border-radius: 6px;

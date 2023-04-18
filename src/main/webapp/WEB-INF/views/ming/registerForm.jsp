@@ -9,20 +9,54 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입 | 도비스프리</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   <link rel="stylesheet" href="./css/ming/register.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+        $(document).ready(function() {
+            //전체 선택 누르면 모두 체크
+        $("#every_agree").on('click', function () {
+          if ($(this).prop("checked")) {
+            $("#yaok2").prop('checked', true);
+            $("#privacy1").prop('checked', true);
+            $("#ad_every_agree").prop('checked', true);
+            $("#ADemail_").prop('checked', true);
+            $("#ADsms_").prop('checked', true);
+          } else {
+            //전체 선택 해제 시 모두 체크 해제
+            $("#yaok2").prop('checked', false);
+            $("#privacy1").prop('checked', false);
+            $("#ad_every_agree").prop('checked', false);
+            $("#ADemail_").prop('checked', false);
+            $("#ADsms_").prop('checked', false);
+          }
+        });
+      });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // email 옵션에서 선택한 값을 emailValue 변수에 저장
+      var emailValue = $("#email2").val();
+      console.log("email2="+emailValue)
+      // email 옵션값이 변경될 때마다 emailValue 변수 업데이트
+      $("#email2").on("change", function() {
+        emailValue = $(this).val();
+        $("#email3").val(emailValue);});
+        console.log("email2="+emailValue)
+      });
+  </script>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
-<div class="default-title__container" style="margin-bottom: 51px; margin-top: 120px;";>
+<form name="form1" method="post" id="join_form" action="/memberinfo" autocomplete="off" onsubmit="return formCheck(this)">
+  <!--onsubmit? 이벤트 등록하는 것/ return formCheck(this)에서 this는 form태그 자기자신을 의미-->
+<div class="default-title__container" style="margin-bottom: 51px; margin-top: 60px;";>
   <div class="default-title__custom">
     <h3>회원정보 입력</h3>
   </div>
 </div>
 <div class="popup-wrap popup2">
 </div>
-<!-- //타이틀 -->
-
-<!-- 일반회원 기본 노출 -->
 <div id="personInfo">
   <table class="person-tb">
     <colgroup>
@@ -35,8 +69,8 @@
       </th>
       <td>
         <div class="col-cell">
-          <input type="text" name="hname" id="hname" value="" class="MS_input_txt normal-input" size="15"
-                 maxlength="30" />
+          <input type="text" name="MBR_NM" id="hname" value="" class="MS_input_txt normal-input" size="15"
+                 maxlength="30" / >
         </div>
       </td>
     </tr>
@@ -46,7 +80,7 @@
       </th>
       <td>
         <div class="col-cell">
-          <input type="text" name="id" id="id" value="" class="MS_input_txt normal-input" size="10"
+          <input type="text" name="MBR_ID" id="id" value="" class="MS_input_txt normal-input" size="10"
                  maxlength="40" /> <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a>
         </div>
       </td>
@@ -57,7 +91,7 @@
       </th>
       <td>
         <div class="col-cell">
-          <input type="password" name="password1" id="password1" class="MS_input_txt normal-input" value=""
+          <input type="password" name="PWD" id="password" class="MS_input_txt normal-input" value=""
                  size="15" maxlength="20" onkeyup="check_pwd_length(this, 'password');" /> <span
                 class="idpw-info">
                         * 영문 대소문자/숫자/특수문자를 혼용하여 2종류 10~16자 또는 3종류 8~16자
@@ -82,7 +116,7 @@
       </th>
       <td>
         <div class="col-cell social">
-          <select name="birthyear" class="MS_select MS_birthday">
+          <select name="BD" class="MS_select MS_birthday">
             <option value="">선택</option>
             <option value=1920>1920</option>
             <option value=1921>1921</option>
@@ -188,7 +222,7 @@
             <option value=2021>2021</option>
             <option value=2022>2022</option>
             <option value=2023>2023</option>
-          </select>년 <select name="birthmonth" class="MS_select MS_birthday">
+          </select>년 <select name="BD" class="MS_select MS_birthday">
           <option value="">선택</option>
           <option value="01">1</option>
           <option value="02">2</option>
@@ -202,7 +236,7 @@
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
-        </select>월 <select name="birthdate" class="MS_select MS_birthday">
+        </select>월 <select name="BD" class="MS_select MS_birthday">
           <option value="">선택</option>
           <option value="01">1</option>
           <option value="02">2</option>
@@ -236,8 +270,8 @@
           <option value="30">30</option>
           <option value="31">31</option>
         </select>일&nbsp;&nbsp;
-          &nbsp;<label><input type="radio" name="sex" value="1" class="MS_radio MS_radio" />남</label>
-          <label><input type="radio" name="sex" value="2" class="MS_radio MS_radio" checked />여</label>
+          &nbsp;<label><input type="radio" name="SEX" value="1" class="MS_radio MS_radio" />남</label>
+          <label><input type="radio" name="SEX" value="2" class="MS_radio MS_radio" checked />여</label>
         </div>
       </td>
     </tr>
@@ -250,12 +284,12 @@
         <div class="col-cell email-area">
           <input type="text" name="email1" id="email1" onchange="this.form.emailcheck.value=''"
                  class="MS_input_txt MS_input_email normal-input" size="10" maxlength="20" value="" />
-          <span>@</span>
+          <span>@ </span>
           <span id="direct_email" style="margin-top:3px;display:inline-block">
                         <input type="text" name="email3" id="email3" class="MS_input_txt MS_input_email normal-input"
                                value="" size="15" maxlength="25" onchange="this.form.emailcheck.value=''" />
                     </span>
-          <select name="email2" id="email2" class="MS_select MS_email MS_input_email"
+          <select name="EMAIL" id="email2" class="MS_select MS_email MS_input_email"
                   style="margin-right:5px;" onchange="viewdirect()">
             <option value='direct'>직접입력</option>
             <option value="jungsuk.com">jungsuk.com</option>
@@ -271,8 +305,8 @@
       </th>
       <td>
         <div class="col-cell">
-          <%--@declare id="join_form"--%><input type="tel" name="etcphone" form="join_form" id="etcphone" class="MS_input_tel normal-input"
-                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" size="15" maxlength="13" value="" />
+          <%--@declare id="join_form"--%><input type="tel" name="MPNO" form="join_form" id="etcphone" class="MS_input_tel normal-input"
+                                               size="15" maxlength="13" value="" />
         </div>
       </td>
     </tr>
@@ -287,31 +321,31 @@
   <div class="new-privercy-contract">
     <div id="chkwrap">
       <div class="all-chk">
-        <label><input type="checkbox" name="every_agree" id="every_agree" value="all"
+        <label><input type="checkbox" name="AGRE_YN" id="every_agree" value="all"
                       class="input-cbox new_every_agree" /> 전체동의</label>
         <input type="hidden" name="allnew_agree" id="allnew_agree" value="Y">
       </div>
       <div class="cont p10">
         <ul>
           <li class="ml-30 pt-10">
-            <label><input type="checkbox" name="yaok2" id="yaok2" value="Y"
+            <label><input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
                           class="input-cbox every_agree" /> 이용약관</label> <a href="#chk_cont1">내용보기</a>
           </li>
-          <li class="ml-30 pt-10"> <label><input type="checkbox" name="privacy1" id="privacy1"
-                                                 value="agree_uidB" class="input-cbox every_agree" /> 개인정보 수집 및 이용 안내</label> <a
+          <li class="ml-30 pt-10"> <label><input type="checkbox" name="AGRE_YN" id="privacy1"
+                                                 value="개인정보 수집 및 이용안내 동의" class="input-cbox every_agree" /> 개인정보 수집 및 이용 안내</label> <a
                   href="#chk_cont2">내용보기</a> </li>
 
 
         </ul>
         <div class="marketing pb-10">
           <div class="mk-wrap">
-            <label class="mk-all"><input type="checkbox" name="ad_every_agree" id="ad_every_agree"
-                                         value="ad_all" class="input-cbox every_agree new_every_agree" /> <strong>마케팅
+            <label class="mk-all"><input type="checkbox" name="AGRE_YN" id="ad_every_agree"
+                                         value="마케팅 모두 동의" class="input-cbox every_agree new_every_agree" /> <strong>마케팅
               수신동의</strong></label>
             <div style="display:inline;">
-              ( <label><input type="checkbox" name="ADemail_" id="ADemail_" value="ADemail_"
+              ( <label><input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
                               class="input-cbox every_agree ad_every_agree" /> 이메일</label>
-              <label class="pl-30"><input type="checkbox" name="ADsms_" id="ADsms_" value="ADsms_"
+              <label class="pl-30"><input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
                                           class="input-cbox every_agree ad_every_agree" /> SMS</label>
               )
             </div>
@@ -323,7 +357,7 @@
       </div>
     </div>
     <div class="new-btn-area">
-      <a href="javascript:addsend();">동의하고 가입완료</a>
+      <input type="submit" value="동의하고 가입완료">
     </div>
     <h4 class="tit" id="chk_cont1">이용약관</h4>
     <div class="privercy-contract">
@@ -543,7 +577,7 @@
 </textarea>
     </div>
     <h4 class="tit" id="chk_cont2">개인정보 수집·이용 (필수)</h4>
-    <table id="join_privacyA" border="0" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
+    <table id="join_privacyA" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
       <caption>개인정보 수집·이용</caption>
       <colgroup>
         <col width="100" />
@@ -600,12 +634,11 @@
       </tr>
       </tbody>
     </table>
-    <div id="join_privacyA_noti" class="privacy-noti">* 서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.</div>
-    <h4 class="tit" id="chk_cont2">개인정보 수집·이용 (선택)</h4>
+    <div id="join_privacyA_noti" class="privacy-noti"><br/>* 서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.</div>
+    <h4 class="tit" id="chk_cont3">개인정보 수집·이용 (선택)</h4>
     <input type="hidden" name="agree_uidB" id="agree_uidB" value="14_1_">
-    <table id="join_privacyB" border="0" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
+    <table id="join_privacyB" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
       <caption>개인정보 수집·이용</caption>
-      <colgroup>
         <col width="100" />
         <col width="27%" />
         <col width="27%" />
@@ -660,10 +693,12 @@
       </tr>
       </tbody>
     </table>
-    <div id="join_privacyB_noti" class="privacy-noti">* 동의하지 않으셔도 쇼핑몰 서비스는 이용하실 수 있습니다.</div>
+    <div id="join_privacyB_noti" class="privacy-noti"><br/>* 동의하지 않으셔도 쇼핑몰 서비스는 이용하실 수 있습니다.</div>
     <p class="pl-6 btm-msg">
       귀하께서는 쇼핑몰에서 위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 개인정보를 기재하지 않음으로써 거부할 수 있습니다.<br />
-      다만, 이때 회원에게 제공되는 서비스가 제한될 수 있습니다.
+      다만, 이때 회원에게 제공되는 서비스가 제한될 수 있습니다.<br/>
+      <br/>
+      <br/>
     </p>
 
   </div>
@@ -681,5 +716,30 @@
 </div>
 </div>
 <jsp:include page="../footer.jsp" />
+<script>
+  function formCheck(frm) {
+    var msg ='';
+
+    if(frm.MBR_ID.value.length<3) {
+      setMessage('ID의 길이는 3이상이어야 합니다.', frm.MBR_ID);
+      return false;
+    }
+
+    if(frm.PWD.value.length<3) {
+      setMessage('password의 길이는 3이상이어야 합니다.', frm.PWD);
+      return false;
+    }
+
+    return true;
+  }
+
+  function setMessage(msg, element){
+    document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${msg}</i>`;
+
+    if(element) {
+      element.select();
+    }
+  }
+</script>
 </body>
 </html>
