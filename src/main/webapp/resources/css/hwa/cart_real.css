@@ -28,10 +28,14 @@ ul, lo, li {
     text-align: center;
     margin: 30px;
 }
+#cart-icon{
+    padding-inline: 300px;
+}
 
 .empty-cart{
     font-size: 40px;
     padding-left: 130px;
+    color: gray;
 }
 
 /* ---------- */

@@ -16,6 +16,8 @@
         <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
         <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
 
+        <typeAlias alias="CartDto" type="com.dobby.project.hwa.cart.CartDto"/>
+        <typeAlias alias="CartProdDto" type="com.dobby.project.hwa.cart.CartProdDto"/>
     </typeAliases>
 
 

@@ -31,7 +31,7 @@ public class CartController {
         System.out.println("session = " + session);
 
         String mbrId = (String) session.getAttribute("MBR_ID");
-        m.addAttribute("mbrId",mbrId);
+//        m.addAttribute("mbrId",mbrId);
         System.out.println("mbrId = " + mbrId);
 
 
@@ -60,10 +60,10 @@ public class CartController {
         System.out.println("mbrId = " + mbrId);
 
 
-        if(mbrId == null){
-           return "redirect:/?toURL="+req.getRequestURL();
-
-        }
+//        if(mbrId == null){
+//           return "redirect:/?toURL="+req.getRequestURL();
+//
+//        }
 
 
 
@@ -102,7 +102,7 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
 
 
     return ResponseEntity.ok().body(response);
-
+//확인요망  -> ok 일때 응답이 어떻게 나오는지
 
 }
 
@@ -129,6 +129,7 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
 
         CartProdDto upCartPdDto = cartService.updateCartQty(cartId, quantity);
         System.out.println("updatedCartProduct = " + upCartPdDto);
+        int proInvQty = upCartPdDto.getPROD_INDV_QTY(); //구입 수량 input
         int prodAmt = upCartPdDto.getAMT();  //개당 금액
         System.out.println("prodFee = " + prodAmt);
         
@@ -145,12 +146,15 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         System.out.println("prodPoints = " + prodPoints);
 
         Map<String, String> map = new HashMap<>();
+        map.put("prod_inv_qty", String.valueOf( proInvQty)); // 구입수량 input
         map.put("prod_amt", String.format("%,d", prodAmt)); // json -> 문자열 변환
         map.put("prod_quantity", String.valueOf(prodQuantity));
         map.put("prod_total", String.format("%,d", prodTotal));
         map.put("prod_points", String.valueOf(prodPoints));
 
-        return ResponseEntity.ok(map);
+        return ResponseEntity.ok(map);  //이렇게 delete 수정
+        
+        //delete 에서 return body 없이 ok로만 전송해봐
     }
 
 

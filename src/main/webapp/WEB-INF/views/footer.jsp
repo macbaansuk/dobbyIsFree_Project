@@ -32,7 +32,12 @@
         #footer .menuWrap {border-bottom: 1px solid #dbdbdb;}
         #footer .menuWrap .menu{display: flex; justify-content: space-between; align-items: center; height: 64px; min-width: 1024px;max-width: 1280px;margin: 0 auto;}
         #footer .menuWrap nav {/*padding: 15px 0 15px 0*/margin-left: -2px;}
-        #footer .menuWrap nav > a {position: relative;margin-left: 2px;color:#222; font-family: "Malgun Gothic";}
+        #footer .menuWrap nav > a {
+            position: relative;
+            margin-left: 50px;
+            color:#222;
+            font-family: "Malgun Gothic";
+        }
         #footer .menuWrap nav strong{font-family: 'SDNeoM', 'notoM';color: #000;}
 
         #footer .ftsns{opacity: 0.8;}
