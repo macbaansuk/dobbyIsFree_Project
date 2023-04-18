@@ -5,7 +5,7 @@ import java.util.Date;
 public class CartDto {
 
     private Integer CART_ID;
-    private String PROD_ID;
+    private Integer PROD_ID;
     private String MBR_ID;
     private Integer PROD_INDV_QTY;
     private Date CART_INPUT_DT;
@@ -13,7 +13,7 @@ public class CartDto {
 
     public CartDto(){}
 
-    public CartDto(Integer CART_ID, String PROD_ID, String MBR_ID, Integer PROD_INDV_QTY, Date CART_INPUT_DT) {
+    public CartDto(Integer CART_ID, Integer PROD_ID, String MBR_ID, Integer PROD_INDV_QTY, Date CART_INPUT_DT) {
         this.CART_ID = CART_ID;
         this.PROD_ID = PROD_ID;
         this.MBR_ID = MBR_ID;
@@ -21,12 +21,11 @@ public class CartDto {
         this.CART_INPUT_DT = CART_INPUT_DT;
     }
 
-
     @Override
     public String toString() {
         return "CartDto{" +
                 "CART_ID=" + CART_ID +
-                ", PROD_ID='" + PROD_ID + '\'' +
+                ", PROD_ID=" + PROD_ID +
                 ", MBR_ID='" + MBR_ID + '\'' +
                 ", PROD_INDV_QTY=" + PROD_INDV_QTY +
                 ", CART_INPUT_DT=" + CART_INPUT_DT +
@@ -41,11 +40,11 @@ public class CartDto {
         this.CART_ID = CART_ID;
     }
 
-    public String getPROD_ID() {
+    public Integer getPROD_ID() {
         return PROD_ID;
     }
 
-    public void setPROD_ID(String PROD_ID) {
+    public void setPROD_ID(Integer PROD_ID) {
         this.PROD_ID = PROD_ID;
     }
 

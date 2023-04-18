@@ -8,9 +8,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -23,6 +21,19 @@ ul, lo, li {
     list-style: none;
 }
 
+.fa-cart-shopping{
+    color: gray;
+    font-size: 40px;
+    display: inline-block;
+    text-align: center;
+    margin: 30px;
+}
+
+.empty-cart{
+    font-size: 40px;
+    padding-left: 130px;
+}
+
 /* ---------- */
 
 div#root {
@@ -30,11 +41,7 @@ div#root {
     padding-left: 50px;
 }
 
-header#header {
-}
 
-nav#nav {
-}
 
 section#container {
     display: inline-block;
@@ -154,20 +161,27 @@ section#content div.gdsInfo {
 section#content div.gdsInfo span {
     display: inline-block;
     width: 100px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin-right: 10px;
+}
+section#content div.gdsInfo .bold {
+    display: inline-block;
+    width: 100px;
+    /*font-weight: bold;*/
+    margin-right: 10px;
+    color: grey;
 }
 
 section#content div.gdsInfo .delete {
     text-align: right;
 }
-
-section#content div.gdsInfo .delete button {
+.cartDelBtn{
     font-size: 18px;
     padding: 5px 10px;
     border: 1px solid #eee;
     background: #eee;
 }
+
 
 .allCheck {
     float: left;
@@ -175,9 +189,11 @@ section#content div.gdsInfo .delete button {
 }
 
 .allCheck input {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+    accent-color :rgba(18, 182, 96);
 }
+
 
 .allCheck label {
     margin-left: 10px;
@@ -202,8 +218,9 @@ section#content div.gdsInfo .delete button {
 }
 
 .checkBox input {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+    accent-color :rgba(18, 182, 96);
 }
 
 .listResult {

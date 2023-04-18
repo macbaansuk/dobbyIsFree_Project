@@ -11,8 +11,10 @@ public class CartServiceImpl implements CartService {
     @Autowired
     CartDao cartDao;
 
+
+
     @Override
-    public int insertCart(String proKey, String userKey) {
+    public int insertCart(Integer proKey, String userKey) {
 
         CartDto cartDto = new CartDto();
         cartDto.setPROD_ID(proKey);
@@ -41,6 +43,9 @@ public class CartServiceImpl implements CartService {
 
     }
 
+
+
+
     @Override
     public List<CartProdDto> getCartItemByUserKey(String userKey) {
         return cartDao.selectCartItemsByUserKey(userKey);
@@ -53,13 +58,21 @@ public class CartServiceImpl implements CartService {
         cartDao.deleteCart(cartIdList);
     }
 
+//    @Override
+//    public void updateCartQty(Integer cartId, Integer quantity) {
+////        CartDto cartDto = new CartDto();
+////        cartDto.setCART_ID(cartId);
+////        cartDto.setPROD_INDV_QTY(quantity);
+//
+//        cartDao.updateCartQty(cartId,quantity);
+//    }
     @Override
-    public void updateCartQty(Integer cartId, Integer quantity) {
+    public CartProdDto updateCartQty(Integer cartId, Integer quantity) {
 //        CartDto cartDto = new CartDto();
 //        cartDto.setCART_ID(cartId);
 //        cartDto.setPROD_INDV_QTY(quantity);
 
-        cartDao.updateCartQty(cartId,quantity);
+        return cartDao.updateCartQty(cartId,quantity);
     }
 
 

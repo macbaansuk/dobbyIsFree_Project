@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/sun/main-product.css"/>
+    <link rel="stylesheet" href="./css/sun/main-product.css"/>
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
+
 
     <style>
 
@@ -37,6 +39,21 @@
         /*.grid-container {*/
         /*    min-height: 100%;*/
         /*}*/
+
+
+        .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom{
+            font-family: "나눔바른고딕OTF", "돋움";
+        }
+
+        .swal2-html-container {
+            font-size: 2em;
+        }
+        .swal2-styled.swal2-confirm {
+            font-family: "나눔바른고딕OTF", "돋움";
+        }
+        .swal2-styled.swal2-cancel {
+            font-family: "나눔바른고딕OTF", "돋움";
+        }
 
     </style>
 </head>
@@ -181,41 +198,39 @@
 
             </section>
 
+
         </div>
-    </div>
-</div>
+        <script>
 
-<script>
+            const swiper = new Swiper('.swiper-container', {
 
-    const swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+                navigation: {
+                    prevEl: '.nav_prev',
+                    nextEl: '.nav_next',
+                },
 
-        navigation: {
-            prevEl: '.nav_prev',
-            nextEl: '.nav_next',
-        },
+                speed: 800,
 
-        speed: 800,
+                loop: true,
 
-        loop: true,
+                autoplay: {
+                    delay: 3000,
+                    pauseOnMouseEnter: false,
+                    disableOnInteraction: false,
 
-        autoplay: {
-            delay: 3000,
-            pauseOnMouseEnter: false,
-            disableOnInteraction: false,
+                },
 
-        },
-
-        slidesPerView: 1,
+                slidesPerView: 1,
 
 
-    })
+            })
 
-</script>
+        </script>
 
 </div>
 
@@ -273,82 +288,110 @@
                     </div>
                 </div>
             </div>
-        </c:forEach>
-    </div>
+            </c:forEach>
+        </div>
 
-    <script>
-        function changeHeartIcon() {
-            $('.heart-icon i').toggleClass('fa-regular fa-solid');
-        }
 
-        $('.heart-icon').click(function() {
-            changeHeartIcon();
-        });
-    </script>
+        <script>
+            $('.heart-icon').click(function() {
+                $(this).find('i').toggleClass('fa-regular fa-solid');
+            });
+
+        </script>
 
 
 
-    <script>
 
-        function insertA(productNumber) {
-            console.log(productNumber)
-            console.log("insert함수실행")
-            $.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                contentType: "application/json; charset=utf-8",
-                url: "/cart/" + productNumber,
-                type: "POST",
-                success: function (data) {
-                    if (data == 1) {
-                        location.href = '/cart'
+
+        <script>
+            function cartsc(){
+                Swal.fire({
+                    icon : 'success',
+                    title: '🛒',
+                    text: "장바구니에 담겼습니다.",
+                    // icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'rgba(18, 182, 96)',
+                    cancelButtonColor: 'rgba(212, 212, 212, 1)',
+                    confirmButtonText: '장바구니 바로가기',
+                    cancelButtonText: '쇼핑 계속하기'
+                }).then((result) => {
+                    if (result.value) {
+                        location.href='/cart'
                     }
-                },
-                error: function () {
-                    alert("등록 실패")
-                }
-            });<!--ajax -->
-        }
+                })
+            }
 
-    </script>
-</div>
+            function insertA (productNumber) {
 
-<%-- 멤버십 시작 --%>
-<section class="mainMemberShipInfo">
-    <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
-    <div class="contWrap">
-        <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
-        <ul class="list">
-            <li>
-                <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
-                <strong class="tit">멤버십 혜택</strong>
-                <span class="txt">등급별 적립혜택</span>
-            </li>
 
-            <li>
-                <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
-                <strong class="tit">구매 적립</strong>
-                <span class="txt">구매 금액 1% 적립</span>
-            </li>
-            <li>
-                <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
-                <strong class="tit">생일 혜택</strong>
-                <span class="txt">생일 쿠폰 지급</span>
-            </li>
 
-        </ul>
-        <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
+                console.log(productNumber)
+                console.log("insert함수실행")
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    url: "/cart/"+ productNumber,
+                    type: "POST",
+                    success: function (data) {
+                        cartsc()
+                        // alert("장바구니에 담겼어용 😉")
+                        // if (data == 1) {
+                        // location.href='/cart'
+                        // }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            // icon: 'error',
+                            title: '장바구니에 담으려면 로그인 해주세용! 😉',
+                            // text: '😉',
+                            confirmButtonColor: 'rgba(18, 182, 96)',
+                            footer: '<a href="/login">로그인 하러 가기</a>'
+                        })
+
+                    }
+                });<!--ajax -->
+            }
+
+        </script>
+
+        <%-- 멤버십 시작 --%>
+        <section class="mainMemberShipInfo">
+            <h2 class="subTitle">도비이즈프리 멤버십 혜택 안내</h2>
+            <div class="contWrap">
+                <p class="subTxt">도비이즈프리 멤버십 회원이 되시면 도비이즈프리에서 제공하는 다양한 혜택을 받으실 수 있습니다.</p>
+                <ul class="list">
+                    <li>
+                        <span class="mb-icon"><img src="./img/main/mb_1.png" alt="멤버십데이"></span>
+                        <strong class="tit">멤버십 혜택</strong>
+                        <span class="txt">등급별 적립혜택</span>
+                    </li>
+
+                    <li>
+                        <span class="mb-icon"><img src="./img/main/mb_2.png" alt="구매 적립"></span>
+                        <strong class="tit">구매 적립</strong>
+                        <span class="txt">구매 금액 1% 적립</span>
+                    </li>
+                    <li>
+                        <span class="mb-icon"><img src="./img/main/mb_3.png" alt="생일 혜택"></span>
+                        <strong class="tit">생일 혜택</strong>
+                        <span class="txt">생일 쿠폰 지급</span>
+                    </li>
+
+                </ul>
+                <!-- <a href="/kr/ko/GreenteaClubMembership.do" class="pdtMore">혜택 더보기</a> -->
+            </div>
+        </section>
+
+
+        <%-- 멤버십 끝 --%>
     </div>
-</section>
 
 
-<%-- 멤버십 끝 --%>
-</div>
-
-
-<jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 
 </body>
 </html>
