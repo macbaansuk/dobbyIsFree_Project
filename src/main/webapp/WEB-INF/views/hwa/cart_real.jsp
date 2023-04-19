@@ -7,15 +7,7 @@
     <title>장바구니 상세</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
     <link rel="stylesheet" href="./css/hwa/cart_real.css"/><!-- css -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->  <!-- 안쓰는 방향으로 -->
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script><!-- 아이콘 -->
-
-    <style>
-        .swal2-title {
-            font-family: "나눔바른고딕OTF", "돋움";
-            font-size: 1.5em;
-        }
-    </style>
 
 
 </head>
@@ -51,7 +43,7 @@
 
                             <script>
                                 $(".selectDelete_btn").click(function () {
-                                    const confirm_val = confirm("선택한거 삭제할라구용?🥹");
+                                    const confirm_val = confirm("선택한 목록을 삭제하시겠습니까?");
 
                                     if (confirm_val) {
                                         const checkArr = [];  //체크된값 담을 배열 생성
@@ -161,10 +153,7 @@
                                             const value = parseInt(this.value);
 
                                             if (value < 1 || value > 10) {  //1~10 사이의 수가 아닐 때
-                                                Swal.fire({
-                                                    title: '1~10개까지 입력해주세용 🥺',
-                                                    confirmButtonColor: 'rgba(18, 182, 96)',
-                                                })
+                                                alert('1~10개까지 담을 수 있습니다');
                                                 this.value = ''; //유효값이 아니면 input 값 초기화
                                             }
                                         });
@@ -175,11 +164,7 @@
                                             if (quantity < 10) {
                                                 $(this).parent("div").find("input").val(++quantity);
                                             } else {
-                                                Swal.fire({
-                                                    title: '10개까지만 담을 수 있어용 아쉽🥺',
-                                                    confirmButtonColor: 'rgba(18, 182, 96)',
-                                                })
-
+                                                alert('10개까지만 담을 수 있습니다');
                                             }
                                         });
 
@@ -271,7 +256,7 @@
                                             function deleteA(this1) { //this1 -> 클릭된 삭제 버튼
                                                 console.log('this1',this1);
                                                 console.log('this',this);
-                                                if (confirm("삭제할라구용?🥹")) {
+                                                if (confirm("삭제하시겠습니까?")) {
                                                     const cartId = this1.dataset.cartid; //data 속성으로 cartId 찾음
                                                     $.ajax({
                                                         headers: {
@@ -313,7 +298,7 @@
 <%--                                <input type="hidden" class="individual_PROD_INDV_QTY_input"--%>
 <%--                                       value="${cartProdDto.PROD_INDV_QTY}">--%>
 <%--                                <input type="hidden" class="individual_AMT_input" value="${cartProdDto.AMT}">--%>
-                                <input type="hidden" class="individual_DC_YN_input" value="${cartProdDto.DC_YN}">
+<%--                                <input type="hidden" class="individual_DC_YN_input" value="${cartProdDto.DC_YN}">--%>
                             </div> <!-- input hidden end -->
 
                         </li><%-- 장바구니 목록 end--%>

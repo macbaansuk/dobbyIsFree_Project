@@ -33,7 +33,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
 
 
 
@@ -181,11 +180,8 @@
         if (isLoggedIn === true) {
           return true;
         } else {
-          Swal.fire({
-            title: '로그인 해주세용! 😉',
-            confirmButtonColor: 'rgba(18, 182, 96)',
-            footer: '<a href="/login">로그인 하러 가기</a>'
-          })
+          alert('장바구니를 이용하려면 로그인 해주세요');
+          console.log('비로그인 장바구니');
           return false;
         }
       }
