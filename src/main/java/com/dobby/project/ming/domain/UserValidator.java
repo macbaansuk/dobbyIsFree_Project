@@ -13,10 +13,10 @@ public class UserValidator implements Validator {
     }
 
     @Override
-    public void validate(Object target, Errors errors) {
+    public void validate(Object target, Errors errors) { //모든 객체를 검증해야하니 object로
         System.out.println("UserValidator.validate() is called");
 
-        User user = (User) target;
+        User user = (User) target; //object를 user로 형변환
 
         String MBR_ID = user.getMBR_ID();
         String PWD = user.getPWD();

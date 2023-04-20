@@ -189,6 +189,14 @@
           return false;
         }
       }
+
+    const loginoutalert=document.querySelector('a[href="/logout"]');
+
+    $(loginoutalert).click(function() {
+            console.log("로그아웃 되었습니다.");
+            alert("로그아웃 되었습니다.");
+          });
+
     </script>
 
   </div>

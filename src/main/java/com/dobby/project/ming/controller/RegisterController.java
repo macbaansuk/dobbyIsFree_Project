@@ -34,21 +34,21 @@ public class RegisterController {
         //	System.out.println("validatorList="+validatorList);
     }
 
-    @GetMapping("register")
+  /*  @GetMapping("register")
     public String register() {
-        return "ming/registerForm"; // WEB-INF/views/registerForm.jsp
-    }
+        return "ming/registerForm"; // WEB-INF/views/ming/registerForm.jsp
+    }*/
 
-    @PostMapping("register")
+    @PostMapping("register/save")
     public String save(@Valid User user, BindingResult result, Model m) throws Exception {
         System.out.println("result=" + result);
         System.out.println("user=" + user);
+
 
         // User객체를 검증한 결과 에러가 있으면, registerForm을 이용해서 에러를 보여줘야 함.
         if (!result.hasErrors()) {
             // 2. DB에 신규회원 정보를 저장
             int rowCnt = userDao.insertUser(user);
-
             if (rowCnt == FAIL) {
                 return "ming/registerForm";
             }
@@ -56,9 +56,10 @@ public class RegisterController {
         return "ming/registerForm";
     }
     @RequestMapping("/memberinfo")
-    public String memberinfo(){return "ming/registerInfo";}
+    public String memberinfo(){
+        return "ming/registerInfo";}
     private boolean isValid(User user) {
-        return true;
+        return false;
     }
 }
 

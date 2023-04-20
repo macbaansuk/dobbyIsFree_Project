@@ -14,7 +14,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
         $(document).ready(function() {
-            //전체 선택 누르면 모두 체크
+        //전체 선택 시
         $("#every_agree").on('click', function () {
           if ($(this).prop("checked")) {
             $("#yaok2").prop('checked', true);
@@ -23,7 +23,6 @@
             $("#ADemail_").prop('checked', true);
             $("#ADsms_").prop('checked', true);
           } else {
-            //전체 선택 해제 시 모두 체크 해제
             $("#yaok2").prop('checked', false);
             $("#privacy1").prop('checked', false);
             $("#ad_every_agree").prop('checked', false);
@@ -31,6 +30,16 @@
             $("#ADsms_").prop('checked', false);
           }
         });
+        //ad 선택 시
+          $("#ad_every_agree").on('click', function () {
+            if ($(this).prop("checked")) {
+              $("#ADemail_").prop('checked', true);
+              $("#ADsms_").prop('checked', true);
+            } else {
+              $("#ADemail_").prop('checked', false);
+              $("#ADsms_").prop('checked', false);
+            }
+          });
       });
   </script>
   <script>
@@ -70,7 +79,7 @@
       <td>
         <div class="col-cell">
           <input type="text" name="MBR_NM" id="hname" value="" class="MS_input_txt normal-input" size="15"
-                 maxlength="30" / >
+                 maxlength="30"/ >
         </div>
       </td>
     </tr>
