@@ -49,6 +49,45 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
+    <select id="invSearchSelectPage" parameterType="invSearchCondition" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        WHERE   true
+            <choose>
+                <when test='option=="T"'>
+                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
+                </when>
+                <when test='option=="W"'>
+                    AND PROD_ID LIKE concat('%', #{keyword}, '%')
+                </when>
+                <otherwise>
+                    AND (PROD_NM LIKE concat('%', #{keyword}, '%')
+                    OR PROD_ID LIKE concat('%', #{keyword}, '%'))
+                </otherwise>
+            </choose>
+
+
+        ORDER BY REG_DTM DESC, PROD_ID DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="invSearchResultCnt" parameterType="invSearchCondition" resultType="int">
+        SELECT count(*)
+        FROM prod
+        WHERE   true
+        <choose>
+        <when test='option=="T"'>
+            AND PROD_NM LIKE concat('%', #{keyword}, '%')
+        </when>
+        <when test='option=="W"'>
+            AND PROD_ID LIKE concat('%', #{keyword}, '%')
+        </when>
+        <otherwise>
+            AND (PROD_NM LIKE concat('%', #{keyword}, '%')
+            OR PROD_ID LIKE concat('%', #{keyword}, '%'))
+        </otherwise>
+        </choose>
+    </select>
+
     <update id="InvUpdate" parameterType="InvDto">
         UPDATE prod
         SET INV_QTY = #{INV_QTY},

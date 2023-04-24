@@ -1,6 +1,8 @@
 package com.dobby.project.hoon.dao;
 
 import com.dobby.project.hoon.domain.InvDto;
+import com.dobby.project.hoon.domain.invSearchCondition;
+import com.dobby.project.soo.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,7 @@ public class InvDaoImpl implements InvDao {
 
     @Override
     public int deleteAll() {
+
         return session.delete(namespace+"deleteAll");
     } // int delete(String statement)
 
@@ -69,5 +72,13 @@ public class InvDaoImpl implements InvDao {
         return session.update(namespace+"increaseViewCnt", PROD_ID);
     }
 
+    @Override
+    public int invSearchResultCnt(invSearchCondition sc) throws Exception {
+        return session.selectOne(namespace+"invSearchResultCnt", sc);
+    } // T selectOne(String statement)
 
+    @Override
+    public List<InvDto> invSearchSelectPage(invSearchCondition sc) throws Exception {
+        return session.selectList(namespace+"invSearchSelectPage", sc);
+    } // List<E> selectList(String statement, Object parameter)
 }

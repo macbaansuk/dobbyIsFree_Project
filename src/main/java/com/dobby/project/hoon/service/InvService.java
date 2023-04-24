@@ -1,6 +1,7 @@
 package com.dobby.project.hoon.service;
 
 import com.dobby.project.hoon.domain.InvDto;
+import com.dobby.project.hoon.domain.invSearchCondition;
 
 import java.util.List;
 import java.util.Map;
@@ -23,4 +24,7 @@ public interface InvService {
     int InvModify(InvDto InvDto) throws Exception;
 
     InvDto getInv(Integer PROD_ID) throws Exception;
+
+     int getInvSearchResultCnt(invSearchCondition sc) throws Exception ;
+     List<InvDto> getInvSearchResultPage(invSearchCondition sc) throws Exception ;
 }
