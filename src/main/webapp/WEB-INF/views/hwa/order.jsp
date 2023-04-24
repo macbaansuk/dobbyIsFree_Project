@@ -23,7 +23,7 @@
 </table>
 
 <table border ="1">
-        <c:forEach var="cartList" items="${cartList}">
+<%--        <c:forEach var="cartList" items="${cartList}">--%>
 
     <tr>
         <td class="no">주문자</td>
@@ -37,7 +37,7 @@
         <td class="title">이메일</td>
         <td class="no">${mbrDto.EMAIL}</td>
     </tr>
-        </c:forEach>
+<%--        </c:forEach>--%>
 </table>
 </body>
 </html>
