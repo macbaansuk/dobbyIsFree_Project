@@ -18,6 +18,7 @@
 
         <typeAlias alias="CartDto" type="com.dobby.project.hwa.cart.CartDto"/>
         <typeAlias alias="CartProdDto" type="com.dobby.project.hwa.cart.CartProdDto"/>
+        <typeAlias alias="MbrDto" type="com.dobby.project.hwa.order.MbrDto"/>
     </typeAliases>
 
 

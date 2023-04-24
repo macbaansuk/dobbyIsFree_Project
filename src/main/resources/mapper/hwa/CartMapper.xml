@@ -34,7 +34,7 @@
         SELECT c.CART_ID, c.MBR_ID, c.PROD_ID, p.PROD_NM, p.AMT, c.PROD_INDV_QTY, p.REP_IMG, p.DC_YN
         FROM `dobbyisfree`.`cart` c
                  JOIN `dobbyisfree`.`prod` p ON c.PROD_ID = p.PROD_ID
-        where MBR_ID = #{userKey}
+        where MBR_ID = #{MBR_ID}
     </select>
 
     <!-- 카트수량 1개 증가 -->

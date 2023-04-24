@@ -218,9 +218,6 @@
                                                     $itemPoints.text(updatedProdPoints + " P");
 
                                                     setTotalInfo();
-
-
-
                                                 }
                                             }); // ajax
                                         }); //onclick
@@ -363,8 +360,46 @@
             </div><!-- .box end-->
 
             <!-- 주문하기 버튼 -->
-            <button type="button" class="btnType4xl" id="cartPayBtn">주문하기</button>
+                <button type="button" class="btnType4xl ordBtn" id="cartPayBtn">주문하기</button>
+            <script>
+                // $(".ordBtn").click(function () {
+                //         const checkOrdArr = [];  //체크된값 담을 배열 생성
+                //
+                //         // 체크된 체크박스의 갯수만큼 반복
+                //         $("input[class='chBox']:checked").each(function () {
+                //             checkOrdArr.push(Number($(this).attr("data-cartId")));
+                //         });
+                //
+                //
+                //     let form = $('<form>').attr('method', 'POST').attr('action', '/order');
+                //     $.each(checkOrdArr, function(index, value) {
+                //         $('<input>').attr('type', 'hidden').attr('name', 'selectedItems[]').val(value).appendTo(form);
+                //     });
+                //
+                //     $(document.body).append(form);
+                //     // form.submit();
+                //
+                // });
+                $(".ordBtn").click(function () {
+                    const checkOrdArr = [];
 
+                    $("input[class='chBox']:checked").each(function () {
+                        checkOrdArr.push(Number($(this).attr("data-cartId")));
+                    });
+
+                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');
+                    $.each(checkOrdArr, function(index, value) {
+                        let InputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);
+
+                        console.log('Cart ID:', value);
+
+                        InputHidden.appendTo(form);
+                    });
+
+                    $(document.body).append(form);
+                    form.submit();
+                });
+            </script>
 
         </div><!--inner end-->
     </div><!--totalPayment end -->

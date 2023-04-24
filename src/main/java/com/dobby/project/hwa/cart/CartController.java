@@ -73,6 +73,16 @@ public class CartController {
         m.addAttribute("cartList", cartList);
 //        System.out.println("list="+ cartList);
 
+        //장바구니 목록을 세션에 담는다
+        session.setAttribute("cartList", cartList);
+        List<CartProdDto> cartListSession = (List<CartProdDto>) session.getAttribute("cartList");
+        System.out.println("cartListSession = " + cartListSession);
+
+        Map<String, Object> cartMap = new HashMap<String, Object>();
+        cartMap.put("cartList", cartListSession);
+        session.setAttribute("mySessionMap", cartMap);
+
+        System.out.println("mySessionMap=" + cartMap);
 
         return "hwa/cart_real";
     }
