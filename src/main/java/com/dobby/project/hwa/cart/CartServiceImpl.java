@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService {
 //            int qty = resultCartDto.getPROD_INDV_QTY() + 1;
 //            cartDto.setPROD_INDV_QTY(qty);
 //            cartDao.updateCart(cartDto);
-//-------------------------------------------------원래 수량이 1개씩 증가하는 코드 but 수량 제한이 없다
+//-------------------------------------------------위에 ) 원래 수량이 1개씩 증가하는 코드 but 수량 제한이 없다
 
             int qty = resultCartDto.getPROD_INDV_QTY();
             if (qty < 10) { //10개까지만 담을 수 있다
@@ -54,7 +54,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void deleteCart(List<Integer> cartIdList) {
-        System.out.println("delete service 진입");
+//        System.out.println("delete service 진입");
         cartDao.deleteCart(cartIdList);
     }
 

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
 
 
     <style>
@@ -39,21 +38,6 @@
         /*.grid-container {*/
         /*    min-height: 100%;*/
         /*}*/
-
-
-        .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom{
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-
-        .swal2-html-container {
-            font-size: 2em;
-        }
-        .swal2-styled.swal2-confirm {
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-        .swal2-styled.swal2-cancel {
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
 
     </style>
 </head>
@@ -305,21 +289,8 @@
 
         <script>
             function cartsc(){
-                Swal.fire({
-                    icon : 'success',
-                    title: '🛒',
-                    text: "장바구니에 담겼습니다.",
-                    // icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: 'rgba(18, 182, 96)',
-                    cancelButtonColor: 'rgba(212, 212, 212, 1)',
-                    confirmButtonText: '장바구니 바로가기',
-                    cancelButtonText: '쇼핑 계속하기'
-                }).then((result) => {
-                    if (result.value) {
-                        location.href='/cart'
-                    }
-                })
+                alert('장바구니에 해당 상품이 담겼습니다');
+                location.href='/cart'
             }
 
             function insertA (productNumber) {
@@ -344,13 +315,7 @@
                         // }
                     },
                     error: function () {
-                        Swal.fire({
-                            // icon: 'error',
-                            title: '장바구니에 담으려면 로그인 해주세용! 😉',
-                            // text: '😉',
-                            confirmButtonColor: 'rgba(18, 182, 96)',
-                            footer: '<a href="/login">로그인 하러 가기</a>'
-                        })
+                      alert('장바구니를 이용하시려면 로그인 해주세요');
 
                     }
                 });<!--ajax -->
