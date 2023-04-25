@@ -39,7 +39,7 @@
         <p class="tit_id" style="font-size:20px;">도비스프리 통합 아이디</p>
         <div class="user_info">
             <input type="hidden" id="user_id" name="loginid" value="">
-            <strong class="st_txt">아이디 : lms11**</strong>
+            <strong class="st_txt">아이디  |  lms11**</strong>
         </div>
         <div class="btn_submit">
             <button type="button" id="dologin" class="btnA btn_blue">

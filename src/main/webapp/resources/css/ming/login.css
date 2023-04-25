@@ -402,6 +402,17 @@ ul {
     margin-right: auto;
 }
 
+#msg {
+    height: 30px;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-bottom: 20px;
+    letter-spacing: -0.85px;
+    font-style: normal;
+    font-family: "나눔바른고딕OTF", "돋움";
+}
+
 .bottom_menu li a {
     display: block;
     margin: 20px 9px;

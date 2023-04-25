@@ -59,12 +59,30 @@
         })
     };
 </script>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
-    integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+    function setMessage(msg, element){
+        document.getElementById("msg").innerHTML = ` ${'${msg}'}`;
+
+        if(element) {
+            element.select();
+        }
+    }
+</script>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
     kakao.init("b4040bd0971985c1a504bc16b1bc1966");
 
-    function kakaoLogin() {
+    //카카오 로그인 버튼을 클릭할 때
+    document.querySelector('#kakao-btn').addEventListener("click", function(){
+        Kakao.Auth.authorize({
+            redirectUri:"http://localhost:3000/oauth/kakao/callback",
+            prompts:"login", //key값이 시도, 로그인을 시도한다는 뜻
+        });
+    });
+</script>
+
+   <!-- function kakaoLogin() {
         window.kakao.Auth.login({ //실제로 로그인 버튼을 눌렀을 때 실행된 함수
             scope: 'profile_nickname, account_email, gender', //동의항목에서 받아올 애들
             success: function(authObj) { //실제 로그인이 되면 success 콜백 함수가 일어남
@@ -78,8 +96,8 @@
                 });
             }
         })
-    }
-</script>
+    }-->
+
 <%--<script>
     function loginWithKakao() {
         Kakao.Auth.authorize({
@@ -131,6 +149,11 @@
                     <img src="https://one-ap.amorepacific.com/auth/images/common/img_keyboard.png" alt="키보드 배열 이미지";>
                     </span>
         </div>
+        <div id="msg">
+            <c:if test="${not empty param.msg}">
+                <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
+            </c:if>
+        </div>
         <div class="input_form">
             <form action="/login" class="loginForm" method="post">
                 <div class="input_form">
@@ -162,12 +185,13 @@
                     <button  id="dologin" class="btnA btn_blue loginbtn">로그인</button>
                     <!-- <button type="button" id="dologin" class="btnA btn_blue loginbtn" disabled="disabled">로그인</button> -->
                 </div>
-            </form>
+            <rm>
 
             <div class="etc_login">
-                <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
+                <button id="kakao-login-btn">카카오 계정으로 로그인</button>
+                <%--<button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
                     <a href="javascript:loginWithKakao();"> <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;"></a>
-                </button>
+                </button>--%>
             </div>
             <ul class="bottom_menu">
                 <li>

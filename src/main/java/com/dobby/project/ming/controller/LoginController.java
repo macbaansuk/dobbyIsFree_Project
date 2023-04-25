@@ -21,7 +21,6 @@ public class LoginController {
     @Autowired
     UserDao userDao;
 
-
     @GetMapping("login")
     public String loginForm() {
         return "ming/loginForm";
@@ -38,7 +37,7 @@ public class LoginController {
                         HttpServletRequest req, HttpServletResponse resp) throws Exception {
         //id pwd 확인
         if (!loginCheck(MBR_ID, PWD)) {
-            String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
+            String msg = URLEncoder.encode("⚠️id 또는 pwd가 일치하지 않습니다.", "utf-8");
             return "redirect:/login?msg=" + msg;
         }
 
