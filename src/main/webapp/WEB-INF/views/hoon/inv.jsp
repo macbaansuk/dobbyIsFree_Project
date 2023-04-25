@@ -15,96 +15,12 @@
 <body>
 
 <div class="admin">
-    <div class="Header">
-        <span class="span1">관리자 </span>
-        <span class="span2">매뉴얼</span>
-        <ul class="navi">
-            <li>
-                <a href="#">
-                    <span class="menuWrap">쇼핑몰 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">회원 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">게시판 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">접속 통계<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">배너 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <jsp:include page="../admin_header.jsp"/>
 
 
     <div class="admin-bar">
-        <div class="admin-left">
-            <h2>쇼핑몰관리</h2>
-            <ul  class="admin-ul">
-                <li class="on"><a href="#" onfocus="this.blur();">운영정보설정</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">상품관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품목록</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품분류</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">브랜드관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">옵션항목</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">재고관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품평관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품문의관리</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">주문관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">주문목록</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">개별취소요청</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">세금계산서</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">현금영수증</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">통계분석</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">매출통계분석</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품통계분석</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">쿠폰관리</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">적립금관리</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">가격비교사이트</a></li>
-            </ul>
+        <jsp:include page="../admin_left.jsp"/>
 
-
-        </div><!-- //admin-left// -->
 
         <div class="admin-container">
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
@@ -311,9 +227,9 @@
                             </thead>
 
                             <tbody class="center" id="eStockManageTable">
-                            <c:set var="page" value="${ph.page}" />
-                            <c:set var="pageSize" value="${ph.pageSize}" />
-                            <c:forEach var="inv" items="${list}">
+<%--                            <c:set var="page" value="${ph.page}" />--%>
+<%--                            <c:set var="pageSize" value="${ph.pageSize}" />--%>
+<%--                            <c:forEach var="inv" items="${list}">--%>
 
 
                                 <tr>
@@ -378,7 +294,7 @@
                                     </form>
 
                                 </tr>
-                            </c:forEach>
+<%--                            </c:forEach>--%>
 
                             </tbody>
                         </table>
@@ -389,33 +305,25 @@
                 </div>
 
                 <br>
-                <div style="text-align:center; font-size: 1.5em;" >
-                    <c:if test="${ph.showPrev}">
-                        <a href="<c:url value='/admin/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>" >&lt;</a>
-                    </c:if>
+<%--                <div style="text-align:center; font-size: 1.5em;" >--%>
+<%--                    <c:if test="${ph.showPrev}">--%>
+<%--                        <a href="<c:url value='/admin/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>" >&lt;</a>--%>
+<%--                    </c:if>--%>
 
-                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                        <a href="<c:url value='/admin/list?page=${i}&pageSize=${ph.pageSize}'/>" >${i}</a>
-                    </c:forEach>
+<%--                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">--%>
+<%--                        <a href="<c:url value='/admin/list?page=${i}&pageSize=${ph.pageSize}'/>" >${i}</a>--%>
+<%--                    </c:forEach>--%>
 
-                    <c:if test="${ph.showNext}">
-                        <a href="<c:url value='/admin/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>" >&gt;</a>
-                    </c:if>
-                </div>
+<%--                    <c:if test="${ph.showNext}">--%>
+<%--                        <a href="<c:url value='/admin/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>" >&gt;</a>--%>
+<%--                    </c:if>--%>
+<%--                </div>--%>
             </div>
         </div>
-    </div>
-
-</div>
 
 
 
-
-
-
-<div class="admin-footer">
-    Copyright ⓒ 2023 됐나욧 All rights reserved.
-</div>
+<jsp:include page="../admin_footer.jsp"/>
 
 
 

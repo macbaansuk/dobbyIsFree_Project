@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.hwa.order.OrderDao">
+
+    <!-- 선택한 목록을 장바구니TB에서 조회 -->
+    <select id="selectCartOrder" parameterType="list" resultType="cartDto">
+        SELECT * FROM `dobbyisfree`.`cart`
+        WHERE CART_ID IN
+        <foreach collection="list" item="cartId" open="(" separator="," close=")">
+            #{cartId}
+        </foreach>
+    </select>
+
+    <!-- 회원ID로 회원 정보 조회 -->
+    <select id="selectMbrIdInfo" resultType="MbrDto">
+        select MBR_ID, MBR_NM, MPNO, EMAIL
+        FROM `dobbyisfree`.`member_info`
+        WHERE MBR_ID = #{MBR_ID};
+    </select>
+
+
+</mapper>

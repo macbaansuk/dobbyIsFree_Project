@@ -1,6 +1,8 @@
 package com.dobby.project.hoon.dao;
 
 import com.dobby.project.hoon.domain.InvDto;
+import com.dobby.project.hoon.domain.invSearchCondition;
+import com.dobby.project.soo.SearchCondition;
 
 import java.util.List;
 import java.util.Map;
@@ -36,9 +38,9 @@ public interface InvDao {
 
         int updateInv(InvDto dto) throws Exception;
 
-//    int searchResultCnt(SearchCondition sc) throws Exception // T selectOne(String statement, Object parameter)
+    int invSearchResultCnt(invSearchCondition sc) throws Exception ;// T selectOne(String statement, Object parameter)
 //    ;
-//
-//    List<InvDto> searchSelectPage(SearchCondition sc) throws Exception // List<E> selectList(String statement, Object parameter)
-//    ;
+//invSearchResultCnt
+    List<InvDto> invSearchSelectPage(invSearchCondition sc) throws Exception // List<E> selectList(String statement, Object parameter)
+    ;
 }

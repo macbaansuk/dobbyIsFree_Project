@@ -40,10 +40,10 @@ public class LoginController {
         if (!loginCheck(MBR_ID, PWD)) {
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
             return "redirect:/login?msg=" + msg;
-        } else {
-            HttpSession session = req.getSession();
-            session.setAttribute("MBR_ID", MBR_ID);
+        }
 
+        HttpSession session = req.getSession();
+        session.setAttribute("MBR_ID", MBR_ID);
             if (saveid) {
                 Cookie c = new Cookie("MBR_ID", MBR_ID);
                 resp.addCookie(c);
@@ -55,7 +55,7 @@ public class LoginController {
             toURL = toURL == null || toURL.equals("") ? "/" : toURL;
             return "redirect:" + toURL;
         }
-    }
+    //ELSE 없앰 RETRUN
 
     private boolean loginCheck(String MBR_ID, String PWD) throws Exception {
         User user = userDao.selectUser(MBR_ID);
@@ -77,5 +77,4 @@ public class LoginController {
     public String findIDResult() {
         return "ming/findIDResult";
     }
-
 }

@@ -1,6 +1,7 @@
 package com.dobby.project.hoon.dao;
 
 import com.dobby.project.hoon.domain.InvDto;
+import com.dobby.project.hoon.domain.invSearchCondition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,20 @@ public class InvDaoImplTest {
     @Autowired
     InvDao invDao;
 
+    @Test
+    public void invSearchSelectPage () throws Exception {
+        invSearchCondition sc = new invSearchCondition(1,10,"포맨","T");
+     List<InvDto> list = invDao.invSearchSelectPage(sc);
+        System.out.println("list = " + list);
+    }
+
+    @Test
+    public void invSearchResultCntTest () throws Exception {
+        invSearchCondition sc = new invSearchCondition(1,10,"포맨","T");
+        int cnt = invDao.invSearchResultCnt(sc);
+        System.out.println("cnt = " + cnt);
+        assertTrue(cnt==3);
+    }
     @Test
     public void insertTestData () throws Exception {
         invDao.deleteAll();

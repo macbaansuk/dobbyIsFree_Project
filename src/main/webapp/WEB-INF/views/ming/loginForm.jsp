@@ -12,6 +12,7 @@
                 cookieId = c.getValue();
         }
     }
+    //${request.cookie.MBR_ID}로 해볼 것
 %>
 
 <!DOCTYPE html>
@@ -23,40 +24,83 @@
     <title>로그인 | 도비스프리</title>
     <link rel="stylesheet" href="./css/ming/login.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+</head>
+<body>
+<script>
+    window.onload = function() {
         // 버튼 클릭 시 이벤트 핸들러
-        const viewKeyboard = document.querySelector('.view_keyboard');
-        if (viewKeyboard) {
-            viewKeyboard.addEventListener('click', function() {
+        const btn_keyboard = document.querySelector('.btn_keyboard');
+        if (btn_keyboard) {
+            console.log('btn_keybord',btn_keyboard);
+            btn_keyboard.addEventListener('click', function () {
                 // 이미 열려있다면 닫기
                 if (this.parentNode.classList.contains('is_open')) {
+                    console.log('isopen',this.parentNode.classList.contains('is_open'));
                     this.parentNode.classList.remove('is_open');
+                    this.textContent = this.dataset.text; // 닫혔을 때의 텍스트 값으로 변경
                 }
                 // 열려있지 않다면 열기
                 else {
                     this.parentNode.classList.add('is_open');
+                    this.textContent = this.dataset.openText; // 열렸을 때의 텍스트 값으로 변경
+                    console.log('안열려있을때 열기',this.parentNode.classList);
+                    console.log('img_keyboard visibility: ' + document.querySelector('.img_keyboard').style.display);
                 }
             });
-        }
-        else {
-            console.error('.view_keyboard 요소를 찾을 수 없습니다.');
-        }
-
+        } //둘을 하나로 합쳐볼것
         $(document).ready(function () {
-            const btnKeyboardJq = $('.btn_keyboard').get(0);
-            if (btnKeyboardJq) {
-                $(btnKeyboardJq).click(function () {
+            const btn_keyboardJq = $('.btn_keyboard').get(0);
+            if (btn_keyboardJq) {
+                $(btn_keyboardJq).click(function () {
                     // 클릭 이벤트 핸들러의 코드를 작성합니다.
-                    console.log('btn_keyboard is clicked!');
+                    console.log('btn_Keyboard is clicked!');
                 });
             }
-            else {
-                console.error('.btn_keyboard 요소를 찾을 수 없습니다.');
+        })
+    };
+</script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+    integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+    kakao.init("b4040bd0971985c1a504bc16b1bc1966");
+
+    function kakaoLogin() {
+        window.kakao.Auth.login({ //실제로 로그인 버튼을 눌렀을 때 실행된 함수
+            scope: 'profile_nickname, account_email, gender', //동의항목에서 받아올 애들
+            success: function(authObj) { //실제 로그인이 되면 success 콜백 함수가 일어남
+                console.log(authObj); //받아온 오브젝트들 콘솔로 찍어보자
+                window.Kakao.API.request({ //로그인 된 상태에서 유저정보 가져오자(API로)
+                    url: '/v2/user/me', //현재 로그인한 사용자의 정보를 가져오라는 뜻
+                    success: res => { //success 콜백함수 일 때
+                        const kakao_account = res.kakao_account; //사용자 정보 콘솔에 찍어볼까
+                        consloe.log(kakao_account); //닉네임이랑 메일이랑 잘 가지고 오나 확인하기
+                    }
+                });
             }
+        })
+    }
+</script>
+<%--<script>
+    function loginWithKakao() {
+        Kakao.Auth.authorize({
+            redirectUri: 'http://localhost/login',
         });
-    </script>
-</head>
-<body>
+    }
+
+    function requestUserInfo() {
+        Kakao.API.request({
+            url: '/v2/user/me',
+        })
+            .then(function(res) {
+            alert(JSON.stringify(res));
+            })
+            .catch(function(err) {
+            alert(
+            'failed to request user information: ' + JSON.stringify(err)
+            );
+        });
+    }
+</script>--%>
 <!--header-->
 <header class="header">
     <div class="headerBox">
@@ -82,7 +126,7 @@
     </div>
     <div class="sec_login">
         <div class="view_keyboard" id="view_keyboard">
-            <button class="btn_keyboard"  id="btn_keyboard">PC 키보드 열기</button>
+            <button class="btn_keyboard"  id="btn_keyboard" data-text="PC 키보드 열기" data-open-text="PC 키보드 닫기">PC 키보드 열기</button>
             <span class="img_keyboard">
                     <img src="https://one-ap.amorepacific.com/auth/images/common/img_keyboard.png" alt="키보드 배열 이미지";>
                     </span>
@@ -106,7 +150,7 @@
             </span> <!--이 사이에 password-guide msg어쩌고 있었는데 필요없을듯하여 일단 생략-->
                 </div>
                 <div id="login-noti-panel" >
-                    <p id="login-noti-msg" class="form_guide_txt" style="display: block; margin-left: auto; margin-right: auto;"></p>
+                    <p id="login-noti-msg" class="form_guide_txt" style="display: none;"></p>
                 </div>
                 <div class="btn_submit mt20">
            <span class="checkboxA">
@@ -121,8 +165,8 @@
             </form>
 
             <div class="etc_login">
-                <button class="sns-btn" type="button" data-key="KA" data-val="KAKAO">
-                    <img src="./img/ming/login_img/kakao_login_large_wide２.png" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;">
+                <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
+                    <a href="javascript:loginWithKakao();"> <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;"></a>
                 </button>
             </div>
             <ul class="bottom_menu">
@@ -142,5 +186,19 @@
     </div>
 </section>
 <!--container-->
+<script>
+    <!--로그인 실패 시 오류메시지 표출 관련 추후 정리해볼 것-->
+    this.loginFailNotiMsg = function(msg) {
+        $('#login-noti-msg').empty();
+        $('#login-noti-msg').addClass('is_error');
+        $('#login-noti-msg').html(msg).show();
+    };
+
+    if (data.status === 0) // 존재하지 않는 회원
+        {
+    OMNI.auth.loginFailNotiMsgInit();
+    OMNI.auth.loginFailNotiMsg('아이디 또는 비밀번호가 맞지 않습니다.');
+        }
+</script>
 </body>
 </html>

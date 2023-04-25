@@ -2,6 +2,7 @@ package com.dobby.project.hoon.service;
 
 import com.dobby.project.hoon.dao.InvDao;
 import com.dobby.project.hoon.domain.InvDto;
+import com.dobby.project.hoon.domain.invSearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,14 @@ public class InvServiceImpl implements InvService {
     @Autowired
     private InvDao invDao;
 
+    @Override
+    public int getInvSearchResultCnt(invSearchCondition sc) throws Exception {
+        return invDao.invSearchResultCnt(sc);
+    } // List<E> selectList(String statement, Object parameter)
+    @Override
+    public List<InvDto> getInvSearchResultPage(invSearchCondition sc) throws Exception {
+        return invDao.invSearchSelectPage(sc);
+    }
     @Override
     public int getCount() throws Exception {
         return invDao.count();

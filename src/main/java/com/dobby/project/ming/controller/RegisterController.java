@@ -15,8 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-//
 @Controller // ctrl+shift+o 자동 import
+@RequestMapping("/")
 public class RegisterController {
 
     @Autowired
@@ -34,12 +34,12 @@ public class RegisterController {
         //	System.out.println("validatorList="+validatorList);
     }
 
-    @GetMapping("/register")
+    @GetMapping("register")
     public String register() {
         return "ming/registerForm"; // WEB-INF/views/registerForm.jsp
     }
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public String save(@Valid User user, BindingResult result, Model m) throws Exception {
         System.out.println("result=" + result);
         System.out.println("user=" + user);
@@ -55,8 +55,11 @@ public class RegisterController {
         }
         return "ming/registerForm";
     }
+    @RequestMapping("/memberinfo")
+    public String memberinfo(){return "ming/registerInfo";}
     private boolean isValid(User user) {
         return true;
     }
 }
+
 
