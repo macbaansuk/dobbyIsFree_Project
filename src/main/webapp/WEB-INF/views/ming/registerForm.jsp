@@ -60,12 +60,11 @@
       // event.preventDefault();
       const bd = document.querySelector('#BD').value;
       submitForm();
-      submitAGRE_YN();
       console.log('date BD 타입변환 이벤트 실행');
     });
 
     function submitForm() {
-      alert("submitForm() is called")
+ //     alert("submitForm() is called")
       let year = document.querySelector('select[name="BD-year"]').value;
       console.log("year=" + year);
       let month = document.querySelector('select[name="BD-month"]').value;
@@ -79,22 +78,7 @@
       System.out.println("bd=" + bd);
       }
 
-      // document.querySelectorAll('.input-cbox').forEach(function(el) {
-      //   el.addEventListener('click', function() {
-      //     if (this.checked) {
-      //       this.setAttribute('value', 'Y');
-      //     } else {
-      //       this.removeAttribute('value');
-      //     }
-      //   });
-      // });
-      function submitAGRE_YN() {
-        alert("submitAGRE_YN() is called")
-        const arr = AGRE_YN.split(","); // Convert the string to an array. split() 메서드를 사용하여 AGRE_YN 문자열을 쉼표(",")를 기준으로 나눠서 배열로 변환
-        arr.splice(arr.indexOf(''), 1); // Remove the empty string from the array. indexOf() 메서드와 splice() 메서드를 사용하여 배열에서 빈 문자열을 찾아서 제거
-        AGRE_YN = arr.join(''); // Join the remaining elements of the array into a string. join() 메서드를 사용하여 배열의 모든 요소를 이어서 하나의 문자열로 만듭니다. 이 문자열은 result 변수에 저장
-        System.out.println("AGRE_YN=" + AGRE_YN);
-      }
+
     });  //document.ready
   </script>
 </head>
@@ -169,7 +153,7 @@
       <td>
         <div class="col-cell social">
           <select name="BD-year" class="MS_select MS_birthday">
-            <option value="">선택</option>
+            <option value="" selected>연도</option>
             <option value=1920>1920</option>
             <option value=1921>1921</option>
             <option value=1922>1922</option>
@@ -244,7 +228,7 @@
             <option value=1991>1991</option>
             <option value=1992>1992</option>
             <option value=1993>1993</option>
-            <option value=1994 selected>1994</option>
+            <option value=1994>1994</option>
             <option value=1995>1995</option>
             <option value=1996>1996</option>
             <option value=1997>1997</option>
@@ -275,7 +259,7 @@
             <option value=2022>2022</option>
             <option value=2023>2023</option>
           </select>년 <select name="BD-month" class="MS_select MS_birthday">
-          <option value="">선택</option>
+          <option value="">월</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -289,7 +273,7 @@
           <option value="11">11</option>
           <option value="12">12</option>
         </select>월 <select name="BD-day" class="MS_select MS_birthday">
-          <option value="">선택</option>
+          <option value="">일</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -383,16 +367,12 @@
           <li class="ml-30 pt-10">
             <label><!--<input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
                           class="input-cbox every_agree" />-->
-<%--              <input type="checkbox" name="AGRE_YN" id="yaok2" class="input-cbox every_agree" />--%>
-              <input type="checkbox" name="AGRE_YN" id="yaok2" value=""
-                          class="input-cbox every_agree" />
+              <input type="checkbox" name="AGRE_YN" id="yaok2" class="input-cbox every_agree" />
               이용약관</label> <a href="#chk_cont1">내용보기</a>
           </li>
           <li class="ml-30 pt-10"> <label><!--<input type="checkbox" name="AGRE_YN" id="privacy1"
                                                  value="개인정보 수집 및 이용안내 동의" class="input-cbox every_agree" />-->
-<%--            <input type="checkbox" name="AGRE_YN" id="privacy1" class="input-cbox every_agree" />--%>
-            <input type="checkbox" name="AGRE_YN" id="privacy1"
-            value="" class="input-cbox every_agree" />
+            <input type="checkbox" name="AGRE_YN" id="privacy1" class="input-cbox every_agree" />
             개인정보 수집 및 이용 안내</label>
             <a href="#chk_cont2">내용보기</a> </li>
         </ul>
@@ -400,21 +380,18 @@
           <div class="mk-wrap">
             <label class="mk-all"><!--<input type="checkbox" name="AGRE_YN" id="ad_every_agree"
                                          value="마케팅 모두 동의" class="input-cbox every_agree new_every_agree" />-->
-<%--              <input type="checkbox" name="AGRE_YN" id="ad_every_agree" class="input-cbox every_agree new_every_agree" />--%>
-              <input type="checkbox" name="AGRE_YN" id="ad_every_agree"
-                     value="" class="input-cbox every_agree new_every_agree" /> <strong>마케팅
+             <input type="checkbox" name="AGRE_YN" id="ad_every_agree" class="input-cbox every_agree new_every_agree" />
+             <strong>마케팅
               수신동의</strong></label>
             <div style="display:inline;">
               ( <label><!--<input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
                               class="input-cbox every_agree ad_every_agree" />-->
-<%--              <input type="checkbox" name="AGRE_YN" id="ADemail_" class="input-cbox every_agree ad_every_agree" />--%>
-              <input type="checkbox" name="AGRE_YN" id="ADemail_" value="" class="input-cbox every_agree ad_every_agree" />이메일</label>
+              <input type="checkbox" name="AGRE_YN" id="ADemail_" class="input-cbox every_agree ad_every_agree" />
+              이메일</label>
               <label class="pl-30"><!--<input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
                                           class="input-cbox every_agree ad_every_agree" />-->
-<%--                <input type="checkbox" name="AGRE_YN" id="ADsms_" class="input-cbox every_agree ad_every_agree" />--%>
-                <input type="checkbox" name="AGRE_YN" id="ADsms_" value=""
-                       class="input-cbox every_agree ad_every_agree" />SMS</label>
-              )
+              <input type="checkbox" name="AGRE_YN" id="ADsms_" class="input-cbox every_agree ad_every_agree" />
+             SMS</label>)
             </div>
           </div>
           <div class="txt">

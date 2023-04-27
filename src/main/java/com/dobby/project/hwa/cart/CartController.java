@@ -76,13 +76,13 @@ public class CartController {
         //장바구니 목록을 세션에 담는다
         session.setAttribute("cartList", cartList);
         List<CartProdDto> cartListSession = (List<CartProdDto>) session.getAttribute("cartList");
-        System.out.println("cartListSession = " + cartListSession);
+//        System.out.println("cartListSession = " + cartListSession);
 
         Map<String, Object> cartMap = new HashMap<String, Object>();
         cartMap.put("cartList", cartListSession);
         session.setAttribute("mySessionMap", cartMap);
 
-        System.out.println("mySessionMap=" + cartMap);
+//        System.out.println("mySessionMap=" + cartMap);
 
         return "hwa/cart_real";
     }
@@ -103,7 +103,7 @@ public class CartController {
 @ResponseBody
 public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDto deleteDto) {
     System.out.println("deletemethod()진입");
-    System.out.println("delete List = " + deleteDto.getCartIdList());
+//    System.out.println("delete List = " + deleteDto.getCartIdList());
 
     cartService.deleteCart(deleteDto.getCartIdList());
 
@@ -133,27 +133,27 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
     @ResponseBody
     public ResponseEntity<Map<String, String>> updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
         System.out.println("updateController 진입");
-        System.out.println("cartId= "+ cartId);
-        System.out.println("수량 = " + quantity);
+//        System.out.println("cartId= "+ cartId);
+//        System.out.println("수량 = " + quantity);
 
 
         CartProdDto upCartPdDto = cartService.updateCartQty(cartId, quantity);
         System.out.println("updatedCartProduct = " + upCartPdDto);
         int proInvQty = upCartPdDto.getPROD_INDV_QTY(); //구입 수량 input
         int prodAmt = upCartPdDto.getAMT();  //개당 금액
-        System.out.println("prodFee = " + prodAmt);
+//        System.out.println("prodFee = " + prodAmt);
         
         if (upCartPdDto.getDC_YN().equals("Y")) {  //할인여부가 Y라면 10% 할인
             prodAmt *= 0.9; 
         }
         int prodQuantity = upCartPdDto.getPROD_INDV_QTY(); // 값 구하기 위해서 개별 수량 필요
-        System.out.println("prodQuantity = " + prodQuantity);
+//        System.out.println("prodQuantity = " + prodQuantity);
 
         int prodTotal = prodAmt * prodQuantity;  //최종 가격 -> 개당금액 * 수량
-        System.out.println("prodTotal = " + prodTotal);
+//        System.out.println("prodTotal = " + prodTotal);
 
         int prodPoints = (int) (prodTotal * 0.01); // 적립 포인트는 상품 총 가격의 1%
-        System.out.println("prodPoints = " + prodPoints);
+//        System.out.println("prodPoints = " + prodPoints);
 
         Map<String, String> map = new HashMap<>();
         map.put("prod_inv_qty", String.valueOf( proInvQty)); // 구입수량 input

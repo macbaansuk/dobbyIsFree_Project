@@ -125,7 +125,7 @@
         <div class="inner">
             <h1 class="page_tit">로그인</h1>
             <button>
-                <a href="http://localhost/" type="button" class="btn_page_close">
+                <a href="http://localhost:8080/" type="button" class="btn_page_close">
                     <span class="blind">이전</span>
                 </a>
             </button>
@@ -188,10 +188,9 @@
             <rm>
 
             <div class="etc_login">
-                <button id="kakao-login-btn">카카오 계정으로 로그인</button>
-                <%--<button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
-                    <a href="javascript:loginWithKakao();"> <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;"></a>
-                </button>--%>
+                <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
+                    <a href="javascript:loginWithKakao();"> <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-login-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;"></a>
+                </button>
             </div>
             <ul class="bottom_menu">
                 <li>
@@ -212,7 +211,7 @@
 <!--container-->
 <script>
     <!--로그인 실패 시 오류메시지 표출 관련 추후 정리해볼 것-->
-    this.loginFailNotiMsg = function(msg) {
+    /*this.loginFailNotiMsg = function(msg) {
         $('#login-noti-msg').empty();
         $('#login-noti-msg').addClass('is_error');
         $('#login-noti-msg').html(msg).show();
@@ -222,7 +221,7 @@
         {
     OMNI.auth.loginFailNotiMsgInit();
     OMNI.auth.loginFailNotiMsg('아이디 또는 비밀번호가 맞지 않습니다.');
-        }
+        }*/
 </script>
 </body>
 </html>

@@ -52,7 +52,7 @@ public class RegisterController {
         // 2. DB에 신규회원 정보를 저장
             int rowCnt = userDao.insertUser(user);
             if (rowCnt != FAIL) {
-                return "ming/registerForm";
+                return "ming/registerSuccess";
                 }
         }
         return "ming/registerInfo";

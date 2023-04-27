@@ -39,7 +39,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("PWD", "invalidLength", new String[]{"8", "15"}, null);
         }
 
-        Date BD = user.getBD();
+       /* Date BD = user.getBD();
 
         // 만약 BD 필드가 null이 아니고 형식이 맞지 않는다면
         if (BD != null && !isValidDate(BD)) {
@@ -57,6 +57,6 @@ public class UserValidator implements Validator {
                 return parsedDate.equals(date);
             } catch (ParseException e) {
                 return false;
-            }
+            }*/
         }
     }
