@@ -14,16 +14,15 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
         $(document).ready(function() {
-            //전체 선택 누르면 모두 체크
+        //전체 선택 시
         $("#every_agree").on('click', function () {
-          if ($(this).prop("checked")) {
+          if ($(this).prop('checked')) {
             $("#yaok2").prop('checked', true);
             $("#privacy1").prop('checked', true);
             $("#ad_every_agree").prop('checked', true);
             $("#ADemail_").prop('checked', true);
             $("#ADsms_").prop('checked', true);
           } else {
-            //전체 선택 해제 시 모두 체크 해제
             $("#yaok2").prop('checked', false);
             $("#privacy1").prop('checked', false);
             $("#ad_every_agree").prop('checked', false);
@@ -31,24 +30,61 @@
             $("#ADsms_").prop('checked', false);
           }
         });
+        //ad 선택 시
+          $("#ad_every_agree").on('click', function () {
+            if ($(this).prop("checked")) {
+              $("#ADemail_").prop('checked', true);
+              $("#ADsms_").prop('checked', true);
+            } else {
+              $("#ADemail_").prop('checked', false);
+              $("#ADsms_").prop('checked', false);
+            }
+          });
       });
   </script>
   <script>
     $(document).ready(function() {
       // email 옵션에서 선택한 값을 emailValue 변수에 저장
       var emailValue = $("#email2").val();
-      console.log("email2="+emailValue)
+      // console.log("email2="+emailValue)
       // email 옵션값이 변경될 때마다 emailValue 변수 업데이트
       $("#email2").on("change", function() {
         emailValue = $(this).val();
         $("#email3").val(emailValue);});
-        console.log("email2="+emailValue)
-      });
+        // console.log("email2="+emailValue)
+      // });
+
+    const form = document.querySelector('.form');
+
+    form.addEventListener('submit', function(event) {
+      // event.preventDefault();
+      const bd = document.querySelector('#BD').value;
+      submitForm();
+      console.log('date BD 타입변환 이벤트 실행');
+    });
+
+    function submitForm() {
+ //     alert("submitForm() is called")
+      let year = document.querySelector('select[name="BD-year"]').value;
+      console.log("year=" + year);
+      let month = document.querySelector('select[name="BD-month"]').value;
+      console.log("month=" + month);
+      let day = document.querySelector('select[name="BD-day"]').value;
+      console.log("day=" + day);
+      let bd = year + "/" + month + "/" + day;
+
+      document.querySelector('#BD').value = bd;
+      console.log("bd=" + bd);
+      System.out.println("bd=" + bd);
+      }
+
+
+    });  //document.ready
   </script>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
-<form name="form1" method="post" id="join_form" action="/memberinfo" autocomplete="off" onsubmit="return formCheck(this)">
+<form class ="form" method="post" id="join_form" action="/register" autocomplete="off" onsubmit="return formCheck(this)">
   <!--onsubmit? 이벤트 등록하는 것/ return formCheck(this)에서 this는 form태그 자기자신을 의미-->
 <div class="default-title__container" style="margin-bottom: 51px; margin-top: 60px;";>
   <div class="default-title__custom">
@@ -70,7 +106,7 @@
       <td>
         <div class="col-cell">
           <input type="text" name="MBR_NM" id="hname" value="" class="MS_input_txt normal-input" size="15"
-                 maxlength="30" / >
+                 maxlength="30">
         </div>
       </td>
     </tr>
@@ -116,8 +152,8 @@
       </th>
       <td>
         <div class="col-cell social">
-          <select name="BD" class="MS_select MS_birthday">
-            <option value="">선택</option>
+          <select name="BD-year" class="MS_select MS_birthday">
+            <option value="" selected>연도</option>
             <option value=1920>1920</option>
             <option value=1921>1921</option>
             <option value=1922>1922</option>
@@ -192,7 +228,7 @@
             <option value=1991>1991</option>
             <option value=1992>1992</option>
             <option value=1993>1993</option>
-            <option value=1994 selected>1994</option>
+            <option value=1994>1994</option>
             <option value=1995>1995</option>
             <option value=1996>1996</option>
             <option value=1997>1997</option>
@@ -222,8 +258,8 @@
             <option value=2021>2021</option>
             <option value=2022>2022</option>
             <option value=2023>2023</option>
-          </select>년 <select name="BD" class="MS_select MS_birthday">
-          <option value="">선택</option>
+          </select>년 <select name="BD-month" class="MS_select MS_birthday">
+          <option value="">월</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -236,8 +272,8 @@
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
-        </select>월 <select name="BD" class="MS_select MS_birthday">
-          <option value="">선택</option>
+        </select>월 <select name="BD-day" class="MS_select MS_birthday">
+          <option value="">일</option>
           <option value="01">1</option>
           <option value="02">2</option>
           <option value="03">3</option>
@@ -270,6 +306,7 @@
           <option value="30">30</option>
           <option value="31">31</option>
         </select>일&nbsp;&nbsp;
+          <input type="hidden" name="BD" id="BD">
           &nbsp;<label><input type="radio" name="SEX" value="1" class="MS_radio MS_radio" />남</label>
           <label><input type="radio" name="SEX" value="2" class="MS_radio MS_radio" checked />여</label>
         </div>
@@ -291,7 +328,7 @@
                     </span>
           <select name="EMAIL" id="email2" class="MS_select MS_email MS_input_email"
                   style="margin-right:5px;" onchange="viewdirect()">
-            <option value='direct'>직접입력</option>
+            <option value=''>직접입력</option>
             <option value="jungsuk.com">jungsuk.com</option>
             <option value="naver.com">naver.com</option>
             <option value="gmail.com">gmail.com</option>
@@ -321,33 +358,40 @@
   <div class="new-privercy-contract">
     <div id="chkwrap">
       <div class="all-chk">
-        <label><input type="checkbox" name="AGRE_YN" id="every_agree" value="all"
+        <label><input type="checkbox" name="AGRE_YN" id="every_agree" value="Y"
                       class="input-cbox new_every_agree" /> 전체동의</label>
-        <input type="hidden" name="allnew_agree" id="allnew_agree" value="Y">
+        <!--<input type="hidden" name="allnew_agree" id="allnew_agree" value="Y">-->
       </div>
       <div class="cont p10">
         <ul>
           <li class="ml-30 pt-10">
-            <label><input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
-                          class="input-cbox every_agree" /> 이용약관</label> <a href="#chk_cont1">내용보기</a>
+            <label><!--<input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
+                          class="input-cbox every_agree" />-->
+              <input type="checkbox" name="AGRE_YN" id="yaok2" class="input-cbox every_agree" />
+              이용약관</label> <a href="#chk_cont1">내용보기</a>
           </li>
-          <li class="ml-30 pt-10"> <label><input type="checkbox" name="AGRE_YN" id="privacy1"
-                                                 value="개인정보 수집 및 이용안내 동의" class="input-cbox every_agree" /> 개인정보 수집 및 이용 안내</label> <a
-                  href="#chk_cont2">내용보기</a> </li>
-
-
+          <li class="ml-30 pt-10"> <label><!--<input type="checkbox" name="AGRE_YN" id="privacy1"
+                                                 value="개인정보 수집 및 이용안내 동의" class="input-cbox every_agree" />-->
+            <input type="checkbox" name="AGRE_YN" id="privacy1" class="input-cbox every_agree" />
+            개인정보 수집 및 이용 안내</label>
+            <a href="#chk_cont2">내용보기</a> </li>
         </ul>
         <div class="marketing pb-10">
           <div class="mk-wrap">
-            <label class="mk-all"><input type="checkbox" name="AGRE_YN" id="ad_every_agree"
-                                         value="마케팅 모두 동의" class="input-cbox every_agree new_every_agree" /> <strong>마케팅
+            <label class="mk-all"><!--<input type="checkbox" name="AGRE_YN" id="ad_every_agree"
+                                         value="마케팅 모두 동의" class="input-cbox every_agree new_every_agree" />-->
+             <input type="checkbox" name="AGRE_YN" id="ad_every_agree" class="input-cbox every_agree new_every_agree" />
+             <strong>마케팅
               수신동의</strong></label>
             <div style="display:inline;">
-              ( <label><input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
-                              class="input-cbox every_agree ad_every_agree" /> 이메일</label>
-              <label class="pl-30"><input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
-                                          class="input-cbox every_agree ad_every_agree" /> SMS</label>
-              )
+              ( <label><!--<input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
+                              class="input-cbox every_agree ad_every_agree" />-->
+              <input type="checkbox" name="AGRE_YN" id="ADemail_" class="input-cbox every_agree ad_every_agree" />
+              이메일</label>
+              <label class="pl-30"><!--<input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
+                                          class="input-cbox every_agree ad_every_agree" />-->
+              <input type="checkbox" name="AGRE_YN" id="ADsms_" class="input-cbox every_agree ad_every_agree" />
+             SMS</label>)
             </div>
           </div>
           <div class="txt">
@@ -356,6 +400,7 @@
         </div>
       </div>
     </div>
+    <input type="hidden" name="AGRE_YN" id="AGRE_YN">
     <div class="new-btn-area">
       <input type="submit" value="동의하고 가입완료">
     </div>
@@ -706,15 +751,8 @@
 
 </fieldset>
 <!-- use_contract -->
-
 </form>
-
-</div>
 <!-- //페이징 -->
-</div>
-</div>
-</div>
-</div>
 <jsp:include page="../footer.jsp" />
 <script>
   function formCheck(frm) {

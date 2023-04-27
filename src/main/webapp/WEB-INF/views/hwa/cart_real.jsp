@@ -39,7 +39,7 @@
                             </script>
                         </div> <%-- all check --%>
                         <div class="delBtn"> <%-- 선택 삭제 버튼 --%>
-                            <button type="button" class="selectDelete_btn">선택 삭제</button>
+                            <button   class=      "selectDelete_btn">선택 삭제</button>
 
                             <script>
                                 $(".selectDelete_btn").click(function () {

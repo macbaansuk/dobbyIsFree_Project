@@ -21,7 +21,7 @@
     <div class="headerBox">
         <div class="inner">
             <h1 class="page_tit">아이디 찾기 결과</h1>
-            <a href="http://localhost/" button type="button" class="btn_page_close">
+            <a href="http://localhost:8080/" button type="button" class="btn_page_close">
                 <span class="blind">닫기</span>
             </a>
             </button>
@@ -39,7 +39,7 @@
         <p class="tit_id" style="font-size:20px;">도비스프리 통합 아이디</p>
         <div class="user_info">
             <input type="hidden" id="user_id" name="loginid" value="">
-            <strong class="st_txt">아이디 : lms11**</strong>
+            <strong class="st_txt">아이디  |  lms11**</strong>
         </div>
         <div class="btn_submit">
             <button type="button" id="dologin" class="btnA btn_blue">

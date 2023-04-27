@@ -26,7 +26,7 @@ public String placeOrder(@RequestParam("cartIdList") List<Integer> cartIdList, M
     System.out.println("orderDto = "+ orderDto.getCartIdList());
 
     List<CartDto> cartList = orderService.selectCartOrder(orderDto.getCartIdList());
-    System.out.println("chkCartList = " + cartList);
+//    System.out.println("chkCartList = " + cartList);
 
 
     // 회원아이디 조회
