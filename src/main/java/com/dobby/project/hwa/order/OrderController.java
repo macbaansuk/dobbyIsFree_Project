@@ -1,6 +1,7 @@
 package com.dobby.project.hwa.order;
 
 import com.dobby.project.hwa.cart.CartDto;
+import com.dobby.project.hwa.cart.CartProdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -21,12 +24,15 @@ public String placeOrder(@RequestParam("cartIdList") List<Integer> cartIdList, M
 //    public String placeOrder(@ModelAttribute OrderDto orderDto, Model m) {
     System.out.println("orderController 진입");
 
-    OrderDto orderDto = new OrderDto();
-    orderDto.setCartIdList(cartIdList);
-    System.out.println("orderDto = "+ orderDto.getCartIdList());
-
-    List<CartDto> cartList = orderService.selectCartOrder(orderDto.getCartIdList());
+//    OrderDto orderDto = new OrderDto();
+//    orderDto.setCartIdList(cartIdList);
+//    System.out.println("orderDto = "+ orderDto.getCartIdList());
+//
+//    List<CartDto> cartList = orderService.selectCartOrder(orderDto.getCartIdList());
 //    System.out.println("chkCartList = " + cartList);
+
+
+
 
 
     // 회원아이디 조회
@@ -47,7 +53,7 @@ public String placeOrder(@RequestParam("cartIdList") List<Integer> cartIdList, M
     // 카트테이블의 아이디랑 비교를 해야하는건지 모르겟네
 
     m.addAttribute("mbrDto", mbrDto);
-    m.addAttribute("orderDto", cartList);
+//    m.addAttribute("orderDto", cartList);
 
 
 
@@ -64,14 +70,19 @@ public String placeOrder(@RequestParam("cartIdList") List<Integer> cartIdList, M
     // 체크된 장바구니 아이디를 배열에 담는다.
     // 배열에 담긴 장바구니 아이디와 세션에 담긴 카트아이디를 확인해서
     // 카트아이디가 같은것만 리스트로 보여준다
-    
-    
-    
-    
-    
-    
-    
-    
+
+    System.out.println("cartList =" + cartIdList);
+    List<CartProdDto> checkedCartList = new ArrayList<>();
+    List<CartProdDto> sessionCartList = (List<CartProdDto>) session.getAttribute("cartList");
+    for (CartProdDto cart : sessionCartList) {
+        if (cartIdList.contains(cart.getCART_ID())) {
+            checkedCartList.add(cart);
+        }
+    }
+
+    System.out.println("checkedCartList = " + checkedCartList);
+    m.addAttribute("orderList",checkedCartList);
+
 
     //상품아이디에해당하는
     // 똑같이 배열에 넣는다
@@ -84,7 +95,7 @@ public String placeOrder(@RequestParam("cartIdList") List<Integer> cartIdList, M
 
 //    m.addAttribute("cartList",cartList);
 
-    return "hwa/order";
+    return "hwa/order_clone";
 }
 
 

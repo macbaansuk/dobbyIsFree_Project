@@ -380,20 +380,20 @@
                 //     // form.submit();
                 //
                 // });
-                $(".ordBtn").click(function () {
+                $(".ordBtn").click(function () { //주문하기 버튼 클릭시
                     const checkOrdArr = [];
 
                     $("input[class='chBox']:checked").each(function () {
-                        checkOrdArr.push(Number($(this).attr("data-cartId")));
+                        checkOrdArr.push(Number($(this).attr("data-cartId"))); //체크된 목록을 배열에 담고
                     });
 
-                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');
+                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');  //form을 생성
                     $.each(checkOrdArr, function(index, value) {
-                        let InputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);
+                        let inputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);
 
                         console.log('Cart ID:', value);
 
-                        InputHidden.appendTo(form);
+                        inputHidden.appendTo(form);
                     });
 
                     $(document.body).append(form);

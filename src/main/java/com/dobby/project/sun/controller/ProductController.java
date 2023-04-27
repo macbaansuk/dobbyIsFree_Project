@@ -48,7 +48,7 @@ public class ProductController {
         model.addAttribute("Products_DC", Products_DC);
         model.addAttribute("countProducts", countProducts);
 
-        System.out.println("productList = " + productList);
+//        System.out.println("productList = " + productList);
 
 
         return "sun/product-list";
