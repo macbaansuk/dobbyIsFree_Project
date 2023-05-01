@@ -6,14 +6,15 @@ import java.util.Objects;
 public class UserDto {
     private String MBR_ID;
     private String PWD;
-    private String MBR_GRD;
-    private String MBR_TYPE_CD;
-    private String MBR_STUS_CD;
     private String MBR_NM;
     private String EMAIL;
     private String MPNO;
     private Date BD;
     private String SEX;
+    private String AGRE_YN;
+    private String MBR_GRD;
+    private String MBR_TYPE_CD;
+    private String MBR_STUS_CD;
     private String DLVPN_ID;
     private Integer MBR_PT;
     private String MBR_COUPN;
@@ -27,7 +28,6 @@ public class UserDto {
     private String FST_REGR_DCMT_NO;
     private Date LAST_UPD_DTM;
     private String LAST_UPDR_DCMT_NO;
-    private String AGRE_YN;
     private Date SNS_DTM;
 
     public UserDto() {}
@@ -57,14 +57,15 @@ public class UserDto {
         return "UserDto{" +
                 "MBR_ID='" + MBR_ID + '\'' +
                 ", PWD='" + PWD + '\'' +
-                ", MBR_GRD='" + MBR_GRD + '\'' +
-                ", MBR_TYPE_CD='" + MBR_TYPE_CD + '\'' +
-                ", MBR_STUS_CD='" + MBR_STUS_CD + '\'' +
                 ", MBR_NM='" + MBR_NM + '\'' +
                 ", EMAIL='" + EMAIL + '\'' +
                 ", MPNO='" + MPNO + '\'' +
                 ", BD=" + BD +
                 ", SEX='" + SEX + '\'' +
+                ", AGRE_YN='" + AGRE_YN + '\'' +
+                ", MBR_GRD='" + MBR_GRD + '\'' +
+                ", MBR_TYPE_CD='" + MBR_TYPE_CD + '\'' +
+                ", MBR_STUS_CD='" + MBR_STUS_CD + '\'' +
                 ", DLVPN_ID='" + DLVPN_ID + '\'' +
                 ", MBR_PT=" + MBR_PT +
                 ", MBR_COUPN='" + MBR_COUPN + '\'' +
@@ -78,7 +79,6 @@ public class UserDto {
                 ", FST_REGR_DCMT_NO='" + FST_REGR_DCMT_NO + '\'' +
                 ", LAST_UPD_DTM=" + LAST_UPD_DTM +
                 ", LAST_UPDR_DCMT_NO='" + LAST_UPDR_DCMT_NO + '\'' +
-                ", AGRE_YN='" + AGRE_YN + '\'' +
                 ", SNS_DTM=" + SNS_DTM +
                 '}';
     }
@@ -99,29 +99,7 @@ public class UserDto {
         this.PWD = PWD;
     }
 
-    public String getMBR_GRD() {
-        return MBR_GRD;
-    }
 
-    public void setMBR_GRD(String MBR_GRD) {
-        this.MBR_GRD = MBR_GRD;
-    }
-
-    public String getMBR_TYPE_CD() {
-        return MBR_TYPE_CD;
-    }
-
-    public void setMBR_TYPE_CD(String MBR_TYPE_CD) {
-        this.MBR_TYPE_CD = MBR_TYPE_CD;
-    }
-
-    public String getMBR_STUS_CD() {
-        return MBR_STUS_CD;
-    }
-
-    public void setMBR_STUS_CD(String MBR_STUS_CD) {
-        this.MBR_STUS_CD = MBR_STUS_CD;
-    }
 
     public String getMBR_NM() {
         return MBR_NM;
@@ -163,6 +141,37 @@ public class UserDto {
         this.SEX = SEX;
     }
 
+    public String getAGRE_YN() {
+        return AGRE_YN;
+    }
+
+    public void setAGRE_YN(String AGRE_YN) {
+        this.AGRE_YN = AGRE_YN;
+    }
+
+    public String getMBR_GRD() {
+        return MBR_GRD;
+    }
+
+    public void setMBR_GRD(String MBR_GRD) {
+        this.MBR_GRD = MBR_GRD;
+    }
+
+    public String getMBR_TYPE_CD() {
+        return MBR_TYPE_CD;
+    }
+
+    public void setMBR_TYPE_CD(String MBR_TYPE_CD) {
+        this.MBR_TYPE_CD = MBR_TYPE_CD;
+    }
+
+    public String getMBR_STUS_CD() {
+        return MBR_STUS_CD;
+    }
+
+    public void setMBR_STUS_CD(String MBR_STUS_CD) {
+        this.MBR_STUS_CD = MBR_STUS_CD;
+    }
     public String getDLVPN_ID() {
         return DLVPN_ID;
     }
@@ -265,14 +274,6 @@ public class UserDto {
 
     public void setLAST_UPDR_DCMT_NO(String LAST_UPDR_DCMT_NO) {
         this.LAST_UPDR_DCMT_NO = LAST_UPDR_DCMT_NO;
-    }
-
-    public String getAGRE_YN() {
-        return AGRE_YN;
-    }
-
-    public void setAGRE_YN(String AGRE_YN) {
-        this.AGRE_YN = AGRE_YN;
     }
 
     public Date getSNS_DTM() {
