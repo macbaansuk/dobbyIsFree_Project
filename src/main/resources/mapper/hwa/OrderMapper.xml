@@ -15,9 +15,23 @@
 
     <!-- 회원ID로 회원 정보 조회 -->
     <select id="selectMbrIdInfo" resultType="MbrDto">
-        select MBR_ID, MBR_NM, MPNO, EMAIL
+        SELECT MBR_ID, MBR_NM, MPNO, EMAIL
         FROM `dobbyisfree`.`member_info`
-        WHERE MBR_ID = #{MBR_ID};
+        WHERE MBR_ID = #{MBR_ID}
+    </select>
+
+    <!-- 회원ID로 배송주소록 조회 -->
+    <select id="selectAddressByMbrId" resultType="DlvDto">
+        SELECT *
+        FROM `dobbyisfree`.`dlvpn_log`
+        WHERE MBR_ID = #{MBR_ID}
+    </select>
+
+    <!-- 배송지명에 해당하는 배송지ID로 배송주소록 조회 -->
+    <select id="selectAddressByDlvId" resultType="DlvDto">
+        SELECT *
+        FROM `dobbyisfree`.`dlvpn_log`
+        WHERE DLVPN_ID = #{DLVPN_ID}
     </select>
 
 

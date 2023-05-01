@@ -22,7 +22,18 @@ public class OrderDaoImpl implements  OrderDao {
 
     @Override
     public MbrDto selectMbrIdInfo(String mbrId) {
+
         return session.selectOne(namespace + "selectMbrIdInfo", mbrId);
+    }
+
+    @Override
+    public List<DlvDto> selectAddressByMbrId(String mbrId) {
+        return session.selectList(namespace + "selectAddressByMbrId", mbrId);
+    }
+
+    @Override
+    public DlvDto selectAddressByDlvId(Integer dlvNmId) {
+        return session.selectOne(namespace + "selectAddressByDlvId", dlvNmId);
     }
 
 

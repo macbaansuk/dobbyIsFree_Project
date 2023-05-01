@@ -9,4 +9,7 @@ public interface OrderService {
 
     public MbrDto getMbrInfoById(String mbrId);
 
+    public List<DlvDto> getAddressByMbrId(String mbrId);
+
+    public DlvDto getAddressDlvId(Integer dlvNmId);
 }
