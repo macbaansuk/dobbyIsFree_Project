@@ -20,4 +20,14 @@ public class OrderServiceImpl implements  OrderService{
     public MbrDto getMbrInfoById(String mbrId) {
         return orderDao.selectMbrIdInfo(mbrId);
     }
+
+    @Override
+    public List<DlvDto> getAddressByMbrId(String mbrId) {
+        return orderDao.selectAddressByMbrId(mbrId);
+    }
+
+    @Override
+    public DlvDto getAddressDlvId(Integer dlvNmId) {
+        return orderDao.selectAddressByDlvId(dlvNmId);
+    }
 }

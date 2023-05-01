@@ -23,7 +23,7 @@ public class CartController {
     @ResponseBody
     public int main(@PathVariable("key") Integer key, HttpServletRequest req , Model m) {
 
-        System.out.println("main Carrt 컨트롤러 진입");
+        System.out.println("main Cart 컨트롤러 진입");
 //        String userKey = "test1";
 
         //------로그인 연동 구현 추가 코드 ---------//
@@ -40,11 +40,11 @@ public class CartController {
         //상품 키를 화면에서 받아와서 저장한다
         //키와 유저키만 보낸다
 
-        System.out.println("key=" + key);
+//        System.out.println("key=" + key);
 
         //저장한 상품키를 jsp로 넘긴다
         int rowCnt = cartService.insertCart(key, mbrId);
-        System.out.println("rowCnt = " + rowCnt);
+//        System.out.println("rowCnt = " + rowCnt);
 //        System.out.println("마지막 post");
         return 1;
 
@@ -60,28 +60,23 @@ public class CartController {
         System.out.println("mbrId = " + mbrId);
 
 
-//        if(mbrId == null){
-//           return "redirect:/?toURL="+req.getRequestURL();
-//
-//        }
-
 
 
 
 
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(mbrId);
         m.addAttribute("cartList", cartList);
-//        System.out.println("list="+ cartList);
 
         //장바구니 목록을 세션에 담는다
         session.setAttribute("cartList", cartList);
-        List<CartProdDto> cartListSession = (List<CartProdDto>) session.getAttribute("cartList");
+        System.out.println("cartList = " + cartList);
+//        List<CartProdDto> cartListSession = (List<CartProdDto>) session.getAttribute("cartList");
 //        System.out.println("cartListSession = " + cartListSession);
-
-        Map<String, Object> cartMap = new HashMap<String, Object>();
-        cartMap.put("cartList", cartListSession);
-        session.setAttribute("mySessionMap", cartMap);
-
+//
+//        Map<String, Object> cartMap = new HashMap<String, Object>();
+//        cartMap.put("cartList", cartListSession);
+//        session.setAttribute("cartMap", cartMap);
+//
 //        System.out.println("mySessionMap=" + cartMap);
 
         return "hwa/cart_real";
@@ -103,7 +98,7 @@ public class CartController {
 @ResponseBody
 public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDto deleteDto) {
     System.out.println("deletemethod()진입");
-//    System.out.println("delete List = " + deleteDto.getCartIdList());
+    System.out.println("delete List = " + deleteDto.getCartIdList());
 
     cartService.deleteCart(deleteDto.getCartIdList());
 
@@ -131,14 +126,31 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
 
     @PostMapping("/cart/update")
     @ResponseBody
-    public ResponseEntity<Map<String, String>> updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
+    public ResponseEntity<Map<String, String>> updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity, HttpSession session) {
         System.out.println("updateController 진입");
-//        System.out.println("cartId= "+ cartId);
-//        System.out.println("수량 = " + quantity);
+        System.out.println("cartId= "+ cartId);
+        System.out.println("수량 = " + quantity);
 
 
         CartProdDto upCartPdDto = cartService.updateCartQty(cartId, quantity);
         System.out.println("updatedCartProduct = " + upCartPdDto);
+
+
+        //장바구니 목록을 세션에 담는다
+        List<CartProdDto> cartList = (List<CartProdDto>) session.getAttribute("cartList");
+
+        // Find the cart item with the matching CART_ID and update the quantity value
+        for (CartProdDto cartItem : cartList) {
+            if (cartItem.getCART_ID().equals(cartId)) {
+                cartItem.setPROD_INDV_QTY(quantity);
+                break;
+            }
+        }
+
+        session.setAttribute("cartList", cartList);
+
+
+
         int proInvQty = upCartPdDto.getPROD_INDV_QTY(); //구입 수량 input
         int prodAmt = upCartPdDto.getAMT();  //개당 금액
 //        System.out.println("prodFee = " + prodAmt);
@@ -161,6 +173,17 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         map.put("prod_quantity", String.valueOf(prodQuantity));
         map.put("prod_total", String.format("%,d", prodTotal));
         map.put("prod_points", String.valueOf(prodPoints));
+
+
+
+
+
+
+
+
+
+
+
 
         return ResponseEntity.ok(map);  //이렇게 delete 수정
         

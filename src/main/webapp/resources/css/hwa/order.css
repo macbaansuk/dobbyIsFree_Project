@@ -1,0 +1,942 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+body {
+    font-family: "나눔바른고딕OTF", "돋움";
+}
+#pdtImg{
+    width:100px;
+    height: 100px;
+}
+#logoImg {
+    width: 300px;
+}
+#orderHeader {
+    height: 99px;
+    border-bottom: 1px solid #dcdcdc;
+}
+#orderHeader .orderHead {
+    position: relative;
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 0 auto;
+    padding: 20px 0 0;
+}
+#orderHeader .logo {
+    height: 80px;
+}
+#orderHeader .logo a {
+    display: inline-block;
+    vertical-align: middle;
+}
+#orderHeader .logo:after, #orderHeader .helpArea:after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+#orderHeader .helpArea {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    color: #222;
+}
+#orderHeader .helpArea strong {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+#orderHeader .helpArea .btnType1s {
+    margin: 0 0 0 8px;
+    padding: 0 30px;
+    vertical-align: middle;
+}
+
+.btnType1s {
+    height: 32px;
+    line-height: 30px;
+    padding: 0 16px;
+    border-radius: 32px;
+    font-size: 14px;
+}
+[class*="btnType1"] {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 40px;
+    background: transparent;
+    border: 1px solid #222;
+    color: #333;
+    font-size: 14px;
+    border-radius: 46px;
+    text-align: center;
+}
+[class*="btnType"] {
+    display: inline-block;
+    margin: 0 4px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all .3s;
+    box-sizing: border-box;
+}
+input, select, textarea, button, pre, a {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    color: #222;
+    cursor: pointer;
+}
+/* ↑여기까지 header */
+#container {
+    position: relative;
+    min-height: 500px;
+    padding-bottom: 110px;
+    border-top: 1px solid transparent;
+}
+.orderTitle {
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 80px auto 22px;
+    font: 36px/1 '나눔바른고딕OTF', '돋움';
+    color: #222;
+}
+/* ↑여기까지 결제하기 h2 */
+.orderContents {
+    position: relative;
+    max-width: 920px;
+    min-width: 664px;
+    margin: 0 auto;
+    padding-right: 360px;
+}
+.orderContents .orderWrap {
+    position: relative;
+    min-height: 600px;
+    padding-top: 18px;
+    z-index: 10;
+}
+/* ↑여기까지 전체 컨테이너 */
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section, main {
+    display: block;
+}
+.orderContents .subTitle2 {
+    margin-bottom: 15px;
+}
+.subTitle2 {
+    margin: 75px 0 24px;
+    font-size: 22px;
+}
+[class*="subTitle"] {
+    color: #222;
+    font: 32px/1.2 'SDNeoM', 'notoM';
+}
+form {
+    display: block;
+    margin-top: 0em;
+}
+.tableTypeWrite {
+    padding: 14px 0;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #dcdcdc;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 0;
+    table-layout: fixed;
+}
+legend, caption, .hidden {
+    position: absolute;
+    z-index: -1;
+    font-size: 0;
+}
+colgroup {
+    background: none;
+}
+.tableTypeWrite th {
+    padding: 10px 0 0 10px;
+    text-align: left;
+    color: #222;
+    vertical-align: top;
+}
+.tableTypeWrite .required {
+    margin-left: -10px;
+    font-size: 0;
+}
+.tableTypeWrite .required:after {
+    content: "*";
+    display: inline-block;
+    color: #bd1e31;
+    font-size: 16px;
+    vertical-align: -3px;
+}
+.tableTypeWrite td {
+    height: 40px;
+    padding: 4px 0;
+    color: #222;
+}
+.tableTypeWrite .inputTxt, .tableTypeWrite .inputTxt + [class*="btnType"], .tableTypeWrite .radioWrap .inputTxt {
+    vertical-align: middle;
+}
+
+.inputTxt {
+    height: 40px;
+    padding: 0 8px;
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #222;
+    vertical-align: middle;
+}
+.inputAlt {
+    display: none;
+    margin: 5px 0 0;
+    font: 14px/1 '나눔바른고딕OTF', '돋움';
+    color: #d72137;
+}
+.tableTypeWrite th {
+    padding: 10px 0 0 10px;
+    text-align: left;
+    color: #222;
+    vertical-align: top;
+}
+.tableTypeWrite .required {
+    margin-left: -10px;
+    font-size: 0;
+}
+.tableTypeWrite th {
+    padding: 10px 0 0 10px;
+    text-align: left;
+    color: #222;
+    vertical-align: top;
+}
+.tableTypeWrite td {
+    height: 40px;
+    padding: 4px 0;
+    color: #222;
+}
+.selectArea {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.selectArea .selTit {
+    width: 100%;
+    height: 40px;
+    padding: 0 38px 0 8px;
+    background: url('https://images.innisfree.co.kr/resources/web2/images/common/arw_select.png') no-repeat 100% 50%;
+    border: 1px solid #a7a7a7;
+    text-align: left;
+    font-size: 16px;
+    color: #222;
+    vertical-align: top;
+}
+button {
+    overflow: visible;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: inherit;
+    outline: none;
+}
+.selectArea .selList {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    max-height: 170px;
+    overflow: auto;
+    margin: -1px 0 0;
+    font-size: 16px;
+    background: #fff;
+    border: 1px solid #a7a7a7;
+}
+.selectArea .selList li {
+    position: relative;
+}
+li {
+    list-style: none;
+}
+.selectArea .selList input[type="radio"] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.selectArea .selList label {
+    display: block;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+label, td img {
+    vertical-align: middle;
+}
+.tableTypeWrite .hyphen {
+    display: inline-block;
+    width: 4%;
+    text-align: center;
+    vertical-align: -5px;
+}
+.tableTypeWrite .inputTxt, .tableTypeWrite .inputTxt + [class*="btnType"], .tableTypeWrite .radioWrap .inputTxt {
+    vertical-align: middle;
+}
+.deliveryEmailWrap .row {
+    padding: 4px 0;
+}
+.deliveryEmailWrap .inputChk {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #777;
+}
+.inputChk input, .inputRadio input {
+    position: absolute;
+    z-indeX: -1;
+    opacity: 0;
+}
+.inputChk > span {
+    color: #444;
+    font-size: 16px;
+    margin-left: 6px;
+}
+.deliveryEmailWrap .btnUserInfo {
+    font-size: 14px;
+    line-height: 16px;
+    color: #222;
+    text-decoration: underline;
+    vertical-align: middle;
+}
+.deliveryEmailWrap .row {
+    padding: 4px 0;
+}
+/* ↑여기까지 이메일 */
+
+.tableTypeWrite td {
+    height: 40px;
+    padding: 4px 0;
+    color: #222;
+}
+deliverySelWrap .btn [class*="btnType"] {
+    margin: 0 4px 0 0;
+}
+.btnType7s {
+    height: 32px;
+    line-height: 30px;
+    padding: 0 16px;
+}
+[class*="btnType7"] {
+    background: #f3f3f3;
+    border: 1px solid #a7a7a7;
+    color: #222;
+    font-size: 14px;
+}
+[class*="btnType"] {
+    display: inline-block;
+    margin: 0 4px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all .3s;
+    box-sizing: border-box;
+}
+[class*="btnType6"] {
+    padding: 5px 32px;
+    border: 1px solid #222;
+    color: #222;
+    font-size: 14px;
+}
+.deliverySelWrap .list {
+    margin: 8px 0 0;
+    padding: 24px;
+    background: #f3f3f3;
+}
+.deliverySelWrap .list .inputRadio {
+    display: block;
+}
+.tableTypeWrite .inputRadio {
+    font-size: 16px;
+    vertical-align: 0;
+}
+.deliverySelWrap .list .inputRadio {
+    display: block;
+}
+.tableTypeWrite .inputRadio {
+    font-size: 16px;
+    vertical-align: 0;
+}
+.inputChk:last-child, .inputRadio:last-child {
+    margin-right: 0;
+}
+.inputChk, .inputRadio {
+    position: relative;
+    display: inline-block;
+    margin-right: 25px;
+    padding-left: 23px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+.deliverySelWrap .list .inputRadio > span {
+    display: block;
+    line-height: 1.5;
+}
+.deliverySelWrap .list .inputRadio .name {
+    display: inline-block;
+    margin-right: 6px;
+}
+.deliverySelWrap .list .inputRadio > span:after {
+    top: 7px;
+}
+.inputRadio > span:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/common/bg_input_radio.png') no-repeat 50% 50%;
+    background-size: 0;
+    border: 1px solid #a9a9a9;
+    border-radius: 50%;
+    transition: all .3s;
+}
+/* ↓ 새로운 배송지 추가 */
+.deliveryWriteWrap td {
+    padding-top: 20px;
+}
+.tableTypeWrite td {
+    height: 40px;
+    padding: 4px 0;
+    color: #222;
+}
+.deliveryWriteWrap .row:first-child {
+    margin-top: -4px;
+}
+.deliveryWriteWrap .inputChk {
+    font-size: 16px;
+    color: #777;
+    margin-right: 10px;
+}
+.inputChk {
+    line-height: 22px;
+}
+.inputChk > span {
+    color: #444;
+    font-size: 16px;
+    margin-left: 6px;
+}
+.inputChk input:checked + span:after {
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/home/bg_input_chked_v2.png') no-repeat 50% 50%;
+}
+.inputChk input:checked + span:after {
+    background-color: #0f4138;
+    border-color: #0f4138;
+}
+.inputChk > span:after {
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/home/bg_input_chk_v2.png') no-repeat 50% 50%;
+    border: 0;
+}
+
+.inputChk > span:after, .inputRadio > span:after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+}
+.deliveryWriteWrap .titLabel {
+    display: inline-block;
+    width: 68px;
+    padding-left: 10px;
+    color: #222;
+    vertical-align: middle;
+    font-family: "나눔바른고딕OTF", "돋움";
+}
+.deliveryWriteWrap .row {
+    padding: 4px 0;
+}
+.tableTypeWrite .required {
+    margin-left: -10px;
+    font-size: 0;
+}
+.inputTxt.read-only {
+    background: #fbfbfc;
+    pointer-events: none;
+}
+.inputTxt {
+    height: 40px;
+    padding: 0 8px;
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #222;
+    vertical-align: middle;
+}
+.inputTxt {
+    height: 40px;
+    padding: 0 8px;
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #222;
+    vertical-align: middle;
+}
+.deliveryWriteWrap .deliveryInput [class*="btnType"] {
+    margin: 0 0 0 4px;
+}
+.tableTypeWrite .inputTxt, .tableTypeWrite .inputTxt + [class*="btnType"], .tableTypeWrite .radioWrap .inputTxt {
+    vertical-align: middle;
+}
+.btnType7m {
+    height: 40px;
+    line-height: 38px;
+    padding: 0 16px;
+}
+[class*="btnType7"] {
+    background: #f3f3f3;
+    border: 1px solid #a7a7a7;
+    color: #222;
+    font-size: 14px;
+}
+[class*="btnType6"] {
+    padding: 5px 32px;
+    border: 1px solid #222;
+    color: #222;
+    font-size: 14px;
+}
+.deliveryWriteWrap .mobileInput {
+    padding: 14px 0 0;
+}
+.shippingMsg .writeMsg {
+    margin: 8px 0 0;
+    display: none;
+}
+/* 여기까지 주문/배송정보 */
+
+.orderContents .subTitle2 {
+    margin-bottom: 15px;
+}
+.subTitle2 {
+    margin: 75px 0 24px;
+    font-size: 22px;
+}
+[class*="subTitle"] {
+    color: #222;
+    font: 32px/1.2 'SDNeoM', 'notoM';
+}
+.orderWrap .cartList {
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+.orderWrap .cartList {
+    border-top: 1px solid #222;
+}
+
+.orderWrap .cartList > ul > li {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.orderWrap #orderChk .cartList .pdtRow {
+    border-bottom: 0;
+    margin-bottom: -1px;
+}
+.orderWrap .cartList .pdtRow {
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: -1px;
+}
+.orderWrap .cartList .pdtRow {
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+}
+.orderWrap .cartList .pdtRow .pdtImg {
+    width: 120px;
+    text-align: center;
+}
+.orderWrap .cartList .pdtRow .cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 16px 0;
+}
+.orderWrap .cartList .pdtRow .pdtInfo {
+    padding-left: 9px;
+    vertical-align: top;
+}
+.orderWrap .cartList .pdtRow .cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 16px 0;
+}
+.orderWrap .cartList .pdtRow .pdtCount {
+    width: 15%;
+    text-align: center;
+    color: #222;
+}
+.orderWrap .cartList .pdtRow .cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 16px 0;
+}
+.orderWrap .cartList .pdtRow .pdtPrice {
+    width: 160px;
+    text-align: center;
+}
+.orderWrap .cartList .pdtRow .cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 16px 0;
+}
+.orderWrap .cartList .pdtRow .cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 16px 0;
+}
+.orderWrap .cartList .usePoint {
+    position: relative;
+    padding: 0 0 25px 130px;
+    font: 14px/1 '나눔바른고딕OTF', '돋움';
+
+}
+.orderWrap .cartList .point {
+    display: block;
+    margin-right: 48px;
+    text-align: right;
+    color: #999;
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-size: 14px;
+}
+
+.orderWrap .cartList .pdtPrice .price .num {
+    font: 17px/1.2 '나눔바른고딕OTF','돋움';
+    vertical-align: -2px;
+    font-weight: 600;
+}
+/* 아래부터 결제박스  */
+.orderContents .totalPayment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100%;
+    z-index: 10;
+}
+
+.orderContents .totalPayment .inner {
+    width: 320px;
+    padding-top: 18px;
+    background: #fff;
+}
+
+.orderContents .totalPayment .subTitle2 {
+    margin: 0 0 15px;
+}
+[class*="subTitle"] {
+    color: #222;
+    font: 32px/1.2 '나눔바른고딕OTF', '돋움';
+
+}
+.totalPayment .box {
+    padding: 0 18px;
+    border: 2px solid #222;
+}
+.totalPayment .orderPrice {
+    padding: 8px 0 0;
+}
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section, main {
+    display: block;
+}
+.totalPayment .orderPrice dl {
+    position: relative;
+    padding: 8px 0;
+    color: #222;
+    text-align: right;
+}
+
+.totalPayment .orderPrice dt {
+    float: left;
+}
+.totalPayment .orderPrice dd {
+    display: inline-block;
+}
+.totalPayment .orderPrice .num {
+    font-family: "나눔바른고딕OTF", "돋움";
+    letter-spacing: -.04em;
+    font-weight: bold;
+}
+
+.totalPayment .orderPrice .totalSale .num {
+    color: #d72137;
+}
+.btnTooltip {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin-left: 4px;
+    background: url('https://images.innisfree.co.kr/resources/web2/images/common/btn_tooltip.png') no-repeat 50% 50%;
+    vertical-align: 6px;
+    font-size: 0;
+}
+totalPayment .orderPrice .totalPrice {
+    margin: 5px 0 0;
+    padding: 10px 0 15px;
+    border-top: 1px solid #dcdcdc;
+}
+.totalPayment .orderPrice dl {
+    position: relative;
+    padding: 8px 0;
+    color: #222;
+    text-align: right;
+}
+.totalPayment .orderPrice .totalPrice dt {
+    line-height: 30px;
+}
+.totalPayment .orderPrice .totalPrice dd {
+    font-size: 22px;
+    color: #d72137;
+}
+.totalPayment .orderPrice dd {
+    display: inline-block;
+}
+.totalPayment .orderPrice .totalPrice dd .num {
+    font: 26px/1.2 '나눔바른고딕OTF','돋움';
+    vertical-align: middle;
+}
+.totalPayment .orderPrice .num {
+    font-family: "나눔바른고딕OTF", "돋움";
+    letter-spacing: -.04em;
+}
+.paymentAgreeWrap {
+    margin: 10px 0 0 24px;
+    font-size: 14px;
+}
+.paymentAgreeWrap .agree {
+    margin: 0 0 15px;
+}
+.paymentAgreeWrap .inputChk {
+    margin: 0 0 5px -24px;
+}
+.inputChk {
+    line-height: 22px;
+}
+.inputChk, .inputRadio {
+    position: relative;
+    display: inline-block;
+    margin-right: 25px;
+    padding-left: 23px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+.inputChk input, .inputRadio input {
+    position: absolute;
+    z-indeX: -1;
+    opacity: 0;
+}
+.inputChk > span {
+    color: #444;
+    font-size: 16px;
+    margin-left: 6px;
+}
+.inputChk input:checked + span:after {
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/home/bg_input_chked_v2.png') no-repeat 50% 50%;
+}
+.inputChk input:checked + span:after {
+    background-color: #0f4138;
+    border-color: #0f4138;
+}
+.inputChk > span:after {
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/home/bg_input_chk_v2.png') no-repeat 50% 50%;
+    border: 0;
+}
+.inputChk > span:after {
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background: #fff url('https://images.innisfree.co.kr/resources/web2/images/home/bg_input_chk_v2.png') no-repeat 50% 50%;
+    border: 1px solid #a9a9a9;
+    transition: all .2s;
+}
+.inputChk > span:after, .inputRadio > span:after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+}
+.inputChk > span {
+    color: #444;
+    font-size: 16px;
+    margin-left: 6px;
+}
+.paymentAgreeWrap .agree .txt {
+    color: #999;
+    line-height: 1.4;
+}
+.paymentAgreeWrap .agree .btn {
+    text-decoration: underline;
+    color: #222;
+}
+.paymentAgreeWrap .agree {
+    margin: 0 0 15px;
+}
+.paymentAgreeWrap .inputChk {
+    margin: 0 0 5px -24px;
+}
+.inputChk input, .inputRadio input {
+    position: absolute;
+    z-indeX: -1;
+    opacity: 0;
+}
+.paymentAgreeWrap .inputChk {
+    margin: 0 0 5px -24px;
+}
+.paymentAgreeWrap .agree .btn {
+    text-decoration: underline;
+    color: #222;
+}
+.orderPrice .teenAlert {
+    margin: 0 0 24px;
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-size: 14px;
+}
+.totalPayment .btnType4xl {
+    width: 100%;
+    margin: 16px 0 0;
+}
+.btnType4xl {
+    height: 65px;
+    line-height: 65px;
+    font-size: 22px;
+}
+[class*="btnType4"] {
+    height: 65px;
+    line-height: 40px;
+    padding: 0 30px;
+    background: #d72137;
+    color: #fff;
+    font-size: 22px;
+    text-align: center;
+}
+
+
+.orderContents .totalPayment .fixed {
+    position: fixed;
+    top: 0;
+    right: auto;
+}
+.orderContents .totalPayment .inner {
+    width: 320px;
+    padding-top: 18px;
+    background: #fff;
+}
+.orderContents .totalPayment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100%;
+    z-index: 10;
+}
+.orderContents {
+    position: relative;
+    max-width: 920px;
+    min-width: 664px;
+    margin: 0 auto;
+    padding-right: 360px;
+}
+bulListType > li {
+    position: relative;
+    padding-left: 16px;
+    font: 14px/1.4 '나눔바른고딕OTF', '돋움';
+    color: #999;
+}
+/* 여기까지 상품정보 */
+
+.orderContents .subTitle2 {
+    margin-bottom: 15px;
+}
+.subTitle2 {
+    margin: 75px 0 24px;
+    font-size: 22px;
+}
+.tableTypeWrite.typeline {
+    padding: 0;
+}
+.tableTypeWrite {
+    padding: 14px 0;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #dcdcdc;
+}
+.ftColor3 {
+    color: #999 !important;
+}
+.ftColor7 {
+    color: #d72137 !important;
+}
+.bulListType2 > li {
+    position: relative;
+    margin: 0 0 5px;
+    padding-left: 10px;
+    font: 14px/1.4 '나눔바른고딕OTF', '돋움';
+    color: #999;
+}
+/* 아래부터 환불방법 */
+.orderContents .subTitle2 {
+    margin-bottom: 15px;
+}
+.subTitle2 {
+    margin: 75px 0 24px;
+    font-size: 22px;
+}
+.radioTab {
+    padding: 18px 0 22px;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 1;
+}
+.radioTab .inputRadio {
+    margin-right: 72px;
+}
+.inputChk, .inputRadio {
+    position: relative;
+    display: inline-block;
+    margin-right: 25px;
+    padding-left: 23px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+.radioTab .inputRadio span {
+    display: inline-block;
+    font: 16px/1 '나눔바른고딕OTF', '돋움';
+    color: #222;
+}
+.tableTypeWrite {
+    padding: 14px 0;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #dcdcdc;
+}
+.helpWrap {
+    position: relative;
+    margin: 15px 0 0;
+    font: 14px/1.5 '나눔바른고딕OTF', '돋움';
+}
+.bulListType > li {
+    position: relative;
+    padding-left: 16px;
+    font: 14px/1.4 '나눔바른고딕OTF', '돋움';
+    color: #999;
+}
