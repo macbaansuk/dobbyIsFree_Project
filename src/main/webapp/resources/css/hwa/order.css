@@ -517,6 +517,10 @@ deliverySelWrap .btn [class*="btnType"] {
 .deliveryWriteWrap .mobileInput {
     padding: 14px 0 0;
 }
+.shippingMsg .writeMsg {
+    margin: 8px 0 0;
+    display: none;
+}
 /* 여기까지 주문/배송정보 */
 
 .orderContents .subTitle2 {
@@ -605,11 +609,17 @@ deliverySelWrap .btn [class*="btnType"] {
 }
 .orderWrap .cartList .point {
     display: block;
-    margin-right: 24px;
+    margin-right: 48px;
     text-align: right;
     color: #999;
     font-family: "나눔바른고딕OTF", "돋움";
+    font-size: 14px;
+}
 
+.orderWrap .cartList .pdtPrice .price .num {
+    font: 17px/1.2 '나눔바른고딕OTF','돋움';
+    vertical-align: -2px;
+    font-weight: 600;
 }
 /* 아래부터 결제박스  */
 .orderContents .totalPayment {
@@ -663,6 +673,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav
     letter-spacing: -.04em;
     font-weight: bold;
 }
+
 .totalPayment .orderPrice .totalSale .num {
     color: #d72137;
 }

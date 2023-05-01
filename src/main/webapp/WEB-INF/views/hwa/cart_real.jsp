@@ -192,7 +192,7 @@
                                                     quantity: quantity
                                                 },
                                                 success: function (response) {  //reponse에서 받아서 처리하는 함수로 만들어서 교체
-
+                                                    console.log('response',response);
                                                     // 업데이트된 장바구니 상품 정보로 화면 갱신
                                                     let updatedData = response; // JSON.parse(response) 대신 response 사용(서버에서 이미 JSON으로 보냄)
 
@@ -362,24 +362,7 @@
             <!-- 주문하기 버튼 -->
                 <button type="button" class="btnType4xl ordBtn" id="cartPayBtn">주문하기</button>
             <script>
-                // $(".ordBtn").click(function () {
-                //         const checkOrdArr = [];  //체크된값 담을 배열 생성
-                //
-                //         // 체크된 체크박스의 갯수만큼 반복
-                //         $("input[class='chBox']:checked").each(function () {
-                //             checkOrdArr.push(Number($(this).attr("data-cartId")));
-                //         });
-                //
-                //
-                //     let form = $('<form>').attr('method', 'POST').attr('action', '/order');
-                //     $.each(checkOrdArr, function(index, value) {
-                //         $('<input>').attr('type', 'hidden').attr('name', 'selectedItems[]').val(value).appendTo(form);
-                //     });
-                //
-                //     $(document.body).append(form);
-                //     // form.submit();
-                //
-                // });
+
                 $(".ordBtn").click(function () { //주문하기 버튼 클릭시
                     const checkOrdArr = [];
 

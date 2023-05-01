@@ -12,4 +12,7 @@ public interface OrderDao {
     public MbrDto selectMbrIdInfo(String mbrId);
 
 
+    public List<DlvDto> selectAddressByMbrId(String mbrId);
+
+    public DlvDto selectAddressByDlvId(Integer dlvNmId);
 }

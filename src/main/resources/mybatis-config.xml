@@ -17,9 +17,11 @@
         <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
         <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
 
+        <!--    hwa    -->
         <typeAlias alias="CartDto" type="com.dobby.project.hwa.cart.CartDto"/>
         <typeAlias alias="CartProdDto" type="com.dobby.project.hwa.cart.CartProdDto"/>
         <typeAlias alias="MbrDto" type="com.dobby.project.hwa.order.MbrDto"/>
+        <typeAlias alias="DlvDto" type="com.dobby.project.hwa.order.DlvDto"/>
     </typeAliases>
 
 
