@@ -1,31 +1,34 @@
 package com.dobby.project.hoon.domain;
 
-import org.springframework.web.util.UriComponentsBuilder;
+//import org.springframework.web.util.UriComponentsBuilder;
+
+import com.dobby.project.soo.SearchCondition;
 
 public class PageHandler {
-
-
-    //    private int page; // 현재 페이지
-//    private int pageSize;
-//    private String option;
-//    private String keyword;
     private invSearchCondition sc;
-    private int totalCnt;
-    private int naviSize = 10;
-    private int totalPage;
-    private int beginPage;
-    private int endPage;
-    private boolean showPrev;
-    private boolean showNext;
+    private int totalCnt; // 총 개시물 개수
+    private int naviSize = 10; // 페이지 내비게이션 크기
+    private int totalPage; // 전체 페이지의 개수
+    private int beginPage; // 내비게이션의 첫번째 페이지
+    private int endPage; // 내비게이션의 마지막 페이지
+    private boolean showPrev; // 이전 페이지로 이동하는 링크를 보여줄 것인지의 여부
+    private boolean showNext; // 다음 페이지로 이동하는 링크를 보여줄 것인지의 여부
+
+
 
     public PageHandler(int totalCnt, invSearchCondition sc){
+        if (((Integer)totalCnt == null) || (totalCnt <= 0)) {
+            totalCnt = 1;
+        }
+//        if (totalCnt <= 0) {
+//            totalCnt = 1;
+//        }
+
         this.totalCnt = totalCnt;
         this.sc =sc;
 
         doPaging(totalCnt, sc);
     }
-
-
     public void doPaging(int totalCnt, invSearchCondition sc) {
         this.totalCnt =totalCnt;
 
@@ -35,6 +38,10 @@ public class PageHandler {
         showPrev = beginPage != 1;
         showNext = endPage != totalPage;
     }
+
+
+
+
 
 
     public invSearchCondition getSc() {

@@ -2,12 +2,25 @@ package com.dobby.project.hoon.domain;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Date;
+
 public class invSearchCondition {
    private Integer page = 1;
    private Integer pageSize = 10;
-//   private Integer offset = 0;
+
    private String keyword = "";
    private String option = "";
+
+    private String sortType = "";
+
+    private String category = "";
+
+    private Integer period = null;
+
+
+
+    private String dateField = null;
+
 
    public invSearchCondition(){}
 
@@ -19,23 +32,58 @@ public class invSearchCondition {
                 ", offset=" + getOffset() +
                 ", keyword='" + keyword + '\'' +
                 ", option='" + option + '\'' +
+                ", sortType='" + sortType + '\'' +
+                ", category='" + category + '\'' +
+                ", period=" + period +
+                ", dateField='" + dateField + '\'' +
                 '}';
     }
 
-    public invSearchCondition(Integer page, Integer pageSize, String keyword, String option) {
-        this.page = page;
-        this.pageSize = pageSize;
+    public invSearchCondition(Integer page, Integer pageSize, String keyword, String option, String sortType, String category ,Integer period, String dateField) {
+
+
+        if (page == null || page <= 0) {
+            this.page = 1;
+        } else {
+            this.page = page;
+        }
+
+        if (pageSize == null || pageSize <= 10) {
+            this.pageSize = 10;
+        } else {
+            this.pageSize = pageSize;
+        }
+
         this.keyword = keyword;
         this.option = option;
+        this.sortType = sortType;
+        this.category = category;
+        this.period = period;
+        this.dateField = dateField;
     }
     public String getQueryString(Integer page){
-
-        return  UriComponentsBuilder.newInstance()
+        if (page == null || page <= 0) {
+            page = 1;
+        }
+        if (pageSize == null || pageSize <=10) {
+            this.pageSize = 10;
+        } else {
+            this.pageSize = pageSize;
+        }
+        String tmp =
+            UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize",pageSize)
                 .queryParam("option", option)
                 .queryParam("keyword", keyword)
+                .queryParam("sortType", sortType)
+                .queryParam("category", category)
+                .queryParam("period", period)
+                .queryParam("dateField", dateField)
+
                 .build().toString();
+//        System.out.println("tmp = " + tmp);
+        return tmp;
     }
 
     public String getQueryString () {
@@ -62,7 +110,14 @@ public class invSearchCondition {
     }
 
     public Integer getOffset() {
-        return (page-1)*pageSize;
+        if (pageSize == null  || pageSize <= 10) {
+            this.pageSize = 10;
+        }
+        if (page == null || page <= 0) {
+            page = 1;
+        }
+        return (page - 1) * pageSize;
+
     }
 
 //    public void setOffset(Integer offset) {
@@ -83,5 +138,37 @@ public class invSearchCondition {
 
     public void setOption(String option) {
         this.option = option;
+    }
+
+    public String getSortType() {
+        return sortType;
+    }
+
+    public void setSortType(String sortType) {
+        this.sortType = sortType;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
+    public String getDateField() {
+        return dateField;
+    }
+
+    public void setDateField(String dateField) {
+        this.dateField = dateField;
     }
 }

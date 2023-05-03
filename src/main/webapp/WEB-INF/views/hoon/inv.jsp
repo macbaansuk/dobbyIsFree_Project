@@ -7,10 +7,16 @@
 <html>
 <head>
     <title>관리자 페이지</title>
+
+    <style>
+
+    </style>
 </head>
 
 <link rel="stylesheet" href="/css/hoon/admin.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
 <body>
 
@@ -37,13 +43,14 @@
                             <col style="width:auto;">
                         </colgroup>
                         <tbody>
+                        <form action="<c:url value="/admin/list"/>" class="search-form" method="get">
                         <tr>
                             <th scope="row">검색분류</th>
                             <td colspan="3">
                                 <ul class="mForm typeVer" id="eSearchFormGeneral">
                                     <li>
-                                        <select class="fSelect eSearch" name="eField[]">
-                                            <option value="product_name">상품명</option>
+                                        <select class="fSelect eSearch" name="option">
+                                            <option value="T" ${ph.sc.option=='T' ? "selected" : ""} name="searchOption">상품명</option>
                                             <option value="eng_product_name">영문상품명</option>
                                             <option value="item_name">상품명(관리용)</option>
                                             <option value="purchase_prd_name">공급사 상품명</option>
@@ -69,7 +76,7 @@
                                             <option value="pm_memo">메모</option>
                                             <option value="ins_user">등록아이디</option>
                                         </select>
-                                        <input type="text" class="fText eSearchText" style="width:500px;" value="" name="eValue[]">
+                                        <input type="text" class="search-input" style="width:500px;" value="${ph.sc.keyword}" name="keyword">
                                         <select data-placeholder="- 분류 선택 -" class="chzn-select-deselect eTrend  chzn-done" style="width:312px; display:none;" name="Trend[]" id="selPC1">
                                             <option value=""></option>
                                         </select><div id="selPC1_chzn" class="chzn-container chzn-container-single eSearchSelects" style="width: 312px; display: none;" title=""><a href="javascript:void(0)" class="chzn-single chzn-default" tabindex="-1"><span>- 분류 선택 -</span><div><b></b></div></a><div class="chzn-drop"><div class="chzn-search"><input type="text" autocomplete="off" style="display: none;"><input type="text" autocomplete="off"></div><ul class="chzn-results" style=""></ul></div></div>
@@ -105,9 +112,9 @@
                             <th scope="row">상품분류</th>
                             <td colspan="3">
                                 <div class="gSingle">
-                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="categorys[]"> <option value="">- 대분류 선택 -</option> <option value="23">(대분류) 미진열</option> <option value="24">(대분류) Outerwear</option> <option value="25">(대분류) Tops</option> <option value="26">(대분류) Dresses</option> <option value="27">(대분류) Bottoms</option> <option value="28">(대분류) Accessories</option> </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택 -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
-                                            <label class=""><input type="checkbox" class="fChk category_sort" name="sub_cate" value="T"> 하위분류 포함검색</label>
-                                            <label class=""><input type="checkbox" class="fChk category_sort" name="notincategory" value="T"> 분류 미등록상품 검색</label>
+                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="CATE1" ${ph.sc.option=='CATE1' ? "selected" : ""} >(대분류) CATE1</option> <option value="CATE2" ${ph.sc.option=='CATE2' ? "selected" : ""} >(대분류) CATE2</option> <option value="CATE3"${ph.sc.option=='CATE3' ? "selected" : ""} >(대분류) CATE3</option> <option value="CATE4"${ph.sc.option=='CATE4' ? "selected" : ""} >(대분류) CATE4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택 -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
+<%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="sub_cate" value="T"> 하위분류 포함검색</label>--%>
+<%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="notincategory" value="T"> 분류 미등록상품 검색</label>--%>
                                         </span>
                                 </div>
                             </td>
@@ -119,13 +126,13 @@
                                     <option value="regist">상품등록일</option>
                                     <option value="modify">상품최종수정일</option>
                                 </select>
-                                <a href="#none" class="btnDate" period="0"><span>오늘</span></a>
-                                <a href="#none" class="btnDate" period="3"><span>3일</span></a>
-                                <a href="#none" class="btnDate" period="7"><span>7일</span></a>
-                                <a href="#none" class="btnDate" period="30"><span>1개월</span></a>
-                                <a href="#none" class="btnDate" period="90"><span>3개월</span></a>
-                                <a href="#none" class="btnDate" period="365"><span>1년</span></a>
-                                <a href="#none" class="btnDate" period="-1"><span>전체</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="0"><span>오늘</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="3"><span>3일</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="7"><span>7일</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="30"><span>1개월</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="90"><span>3개월</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="365"><span>1년</span></a>
+                                <a href="javascript:void(0)" class="btnDate" period="-1"><span>전체</span></a>
                                 <input type="text" id="pr_start_date" name="start_date" class="fText gDate" value="2022-04-05">
                                 <a href="javascript:;" id="start_date" class="btnIcon icoCal"><span>달력보기</span></a>
                                 ~
@@ -152,39 +159,38 @@
                     </table>
                 </div>
                 <div class="mButton">
-                    <a href="#none" class="btnSearch" id="eBtnSearch"><span>검색</span></a>
-                    <a href="#none" class="btnSearch reset" id="eSearchFormInit"><span>초기화</span></a>
+                    <a href="javascript:void(0)" class="btnSearch" id="eBtnSearch"><span >검색</span></a>
+                    <a href="javascript:void(0)" class="btnSearch reset" id="eSearchFormInit"><span>초기화</span></a>
                 </div>
+                </form>
+
 
                 <h2>상품 목록</h2>
                 <div class="section">
                     <div class="mState">
                         <div class="gLeft">
-                            <p class="total">[상품 총 <strong>20</strong>개 / 품목 총 <strong>20</strong>개]</p>
+                            <p class="total">[상품 총 <strong>${ph.totalCnt}</strong>개 / 품목 총 <strong>20</strong>개]</p>
                         </div>
                         <div class="gRight">
                             <select class="fSelect" name="orderby">
-                                <option value="regist_d">등록일 역순</option>
-                                <option value="regist_a">등록일 순</option>
+                                <option value="id_d" ${ph.sc.sortType=='id_d' ? "selected" : ""}>상품ID 역순</option>
+                                <option value="id_a" ${ph.sc.sortType=='id_a' ? "selected" : ""}>상품ID 순</option>
                                 <option>---------------</option>
-                                <option value="modify_d">수정일 역순</option>
-                                <option value="modify_a">수정일 순</option>
+                                <option value="regist_d" ${ph.sc.sortType=='regist_d' ? "selected" : ""}>등록일 역순</option>
+                                <option value="regist_a" ${ph.sc.sortType=='regist_a' ? "selected" : ""}>등록일 순</option>
                                 <option>---------------</option>
-                                <option value="name_d">상품명 역순</option>
-                                <option value="name_a">상품명 순</option>
+                                <option value="modify_d" ${ph.sc.sortType=='modify_d' ? "selected" : ""}>수정일 역순</option>
+                                <option value="modify_a" ${ph.sc.sortType=='modify_a' ? "selected" : ""}>수정일 순</option>
                                 <option>---------------</option>
-                                <option value="price_d">판매가 역순</option>
-                                <option value="price_a">판매가 순</option>
+                                <option value="name_d" ${ph.sc.sortType=='name_d' ? "selected" : ""}>상품명 역순</option>
+                                <option value="name_a" ${ph.sc.sortType=='name_a' ? "selected" : ""}>상품명 순</option>
                                 <option>---------------</option>
-                                <option value="stock_d">총 재고량 역순</option>
-                                <option value="stock_a">총 재고량 순</option>
-                                <option class="sort">---------------</option>
-                                <option value="sort_d" class="sort">진열 역순</option>
-                                <option value="sort_a" class="sort">진열 순</option>
+                                <option value="stock_d" ${ph.sc.sortType=='stock_d' ? "selected" : ""}>총 재고량 역순</option>
+                                <option value="stock_a" ${ph.sc.sortType=='stock_a' ? "selected" : ""}>총 재고량 순</option>
                             </select>
                             <select class="fSelect" name="limit">
-                                <option value="10">10개씩보기</option>
-                                <option value="20" selected="selected">20개씩보기</option>
+                                <option value="10" selected="selected">10개씩보기</option>
+                                <option value="20" >20개씩보기</option>
                                 <option value="30">30개씩보기</option>
                                 <option value="50">50개씩보기</option>
                                 <option value="100">100개씩보기</option>
@@ -229,95 +235,49 @@
                             <tbody class="center" id="eStockManageTable">
 <%--                            <c:set var="page" value="${ph.page}" />--%>
 <%--                            <c:set var="pageSize" value="${ph.pageSize}" />--%>
-<%--                            <c:forEach var="inv" items="${list}">--%>
+<%--                                                    <div class="open" style="top: 20%; left: 20%; width: 145px; display: none;">--%>
+<%--                                                        <div class="wrap">--%>
+<%--                                                            <ul class="default">--%>
+<%--                                                                <li><a href="#none" class="eProductDetail" target="_blank" title="새창 열림" product_no="10">상품 상세보기</a></li>--%>
+<%--                                                                <li><a href="#none" class="eProductDisplayPopup" popup="T" url="#">쇼핑몰화면 진열보기</a></li>--%>
+<%--                                                            </ul>--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
 
 
-                                <tr>
-                                    <form  id="form" class="frm" action="/admin/modify" method="post">
-                                        <td rowspan="1" id="prod-id" data-prod-id="${inv.PROD_ID}">${inv.PROD_ID}<input type="checkbox" id="pd-check" data-prod-id="${inv.PROD_ID}"></td>
-                                        <td rowspan="1" class="left">
-                                            <div class="gGoods gMedium" style="z-index: 0;">
-                                                <div class="mOpen">
-                                                    <span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>
-                                                    <div class="open" style="top: 20%; left: 20%; width: 145px; display: none;">
-                                                        <div class="wrap">
-                                                            <ul class="default">
-                                                                <li><a href="#none" class="eProductDetail" target="_blank" title="새창 열림" product_no="10">상품 상세보기</a></li>
-                                                                <li><a href="#none" class="eProductDisplayPopup" popup="T" url="#">쇼핑몰화면 진열보기</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <p><a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">${inv.PROD_NM}</a></p>
-                                                <p class="txtCode">(P000000J)</p>
-                                                <input type="hidden" name="product_no_list[]" value="10">
-                                            </div>
-                                        </td>
-
-                                            <%--                                <td rowspan="1" id="total-qty" data-prod-id="${inv.PROD_ID}">${inv.INV_QTY}</td> &lt;%&ndash; 총 재고수량 &ndash;%&gt;--%>
-                                        <td rowspan="1" id="total-qty-${inv.PROD_ID}" data-prod-id="${inv.PROD_ID}">${inv.INV_QTY}</td>
-
-                                        <td>
-                                                ${inv.CATE_CD} <%-- 카테고리 --%>
-                                            <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
-                                        </td>
-
-                                        <td>
-                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_QTY}</span>--%>
-                                            <input type="number" class="option-number" data-prod-id="${inv.PROD_ID}" style="width:60px;" name="stock_number[P000000J000A]" value="${inv.INV_QTY}"> <%-- 재고수량 --%>
-                                        </td>
-                                        <td>
-                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.SAFE_INV}</span>--%>
-                                            <input type="number" class="safe-number" data-prod-id="${inv.PROD_ID}" style="width:60px;" name="stock_warn_value[P000000J000A]" value="${inv.SAFE_INV}"> <%-- 안전재고 --%>
-                                        </td>
-                                        <td>
-                                                <%--                                    <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_STUS_CD}</span>--%>
-                                            <select class="inv-status" data-prod-id="${inv.PROD_ID}"  name="inv_status[P000000J000A]">
-                                                <option id="opt1" value="여유" data-prod-id="${inv.PROD_ID}" ${inv.INV_STUS_CD == '여유' ? 'selected' : ''}>여유</option>
-                                                <option id="opt2" value="부족" data-prod-id="${inv.PROD_ID}" ${inv.INV_STUS_CD == '부족' ? 'selected' : ''}>부족</option>
-                                                <option id="opt3" value="품절" data-prod-id="${inv.PROD_ID}"${inv.INV_STUS_CD == '품절' ? 'selected' : ''}>품절</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <span class="ec-use-inventory-display-item" style="display: none;">${inv.INV_LOC}</span>
-                                            <select class="inv-loc" data-prod-id="${inv.PROD_ID}" name="inv_loc[P000000J000A]">
-                                                <option value="창고 1(1A-14)" ${inv.INV_LOC == '창고 1(1A-14)' ? 'selected' : ''}>창고 1(1A-14)</option>
-                                                <option value="창고 1(2A-14)" ${inv.INV_LOC == '창고 1(2A-14)' ? 'selected' : ''}>창고 1(2A-14)</option>
-                                                <option value="창고 1(3A-14)" ${inv.INV_LOC == '창고 1(3A-14)' ? 'selected' : ''}>창고 1(3A-14)</option>
-                                            </select>
-                                        </td>
-
-                                        <td> ${inv.PROD_STUS} <%-- 상품 상태 --%>
-                                        </td>
-                                        <td>${inv.AVG_ASCR} / 5</td> <%-- 평균 별점--%>
-                                    </form>
-
+                                <tr class="test">
+                               <!--상품 리스트 -->
                                 </tr>
-<%--                            </c:forEach>--%>
+
 
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="mButton">
-                    <button type="submit" class="btnModify" id="eBtnModify" ><span>저장</span></button>
+                    <a href="javascript:void(0)" class="btnModify" id="eBtnModify"><span >저장</span></a>
                 </div>
 
                 <br>
-<%--                <div style="text-align:center; font-size: 1.5em;" >--%>
-<%--                    <c:if test="${ph.showPrev}">--%>
-<%--                        <a href="<c:url value='/admin/list?page=${ph.beginPage-1}&pageSize=${ph.pageSize}'/>" >&lt;</a>--%>
-<%--                    </c:if>--%>
+                <div class="paging-container">
+                    <div class="paging">
+                        <c:if test="${ph.totalCnt==null || ph.totalCnt==0}">
+                            <div> 게시물이 없습니다. </div>
+                        </c:if>
+                        <c:if test="${ph.totalCnt!=null && ph.totalCnt!=0}">
+                            <c:if test="${ph.showPrev}">
+                                <a class="page" href="<c:url value="/admin/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                            </c:if>
+                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/admin/list${ph.sc.getQueryString(i)}"/>">${i}</a>
+                            </c:forEach>
+                            <c:if test="${ph.showNext}">
+                                <a class="page" href="<c:url value="/admin/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </div>
 
-<%--                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">--%>
-<%--                        <a href="<c:url value='/admin/list?page=${i}&pageSize=${ph.pageSize}'/>" >${i}</a>--%>
-<%--                    </c:forEach>--%>
-
-<%--                    <c:if test="${ph.showNext}">--%>
-<%--                        <a href="<c:url value='/admin/list?page=${ph.endPage+1}&pageSize=${ph.pageSize}'/>" >&gt;</a>--%>
-<%--                    </c:if>--%>
-<%--                </div>--%>
             </div>
         </div>
 
@@ -329,84 +289,367 @@
 
 <script>
 
+    let pageHandler; // 전역변수로 담아서 다른 함수에서도 사용할 수 있다.
 
+    // 화면 비동기화 업데이트 함수
+    let  showList = function(page, pageSize, keyword, sortType, category, period, dateField) {
+        //서버에 전달할 검색어와 옵션을 변수에 담는다.
+
+        let option = '';
+
+        // let sortType='';
+
+        console.log('가공 전 showList  ='+page)
+        console.log('가공 전 showList  ='+pageSize)
+        console.log('가공 전 showList  ='+keyword)
+        console.log('가공 전 showList  ='+sortType)
+        console.log('가공 전 showList  ='+category)
+        console.log('가공 전 showList  ='+period)
+        console.log('가공 전 showList  ='+dateField)
+
+
+
+        if(page ===undefined || page<=0)
+            page = 1;
+        if (pageSize === undefined || pageSize <= 10)
+            pageSize = 10;
+        if (keyword === undefined || keyword ===''){
+            keyword = $('.search-input').val(); // 검색어
+        } else {
+            keyword = keyword;
+        }
+        // if (option == undefined || option == ''){
+        //     option = $('select[name="option"] option:selected').val(); // 검색어
+        // } else {
+        //     option = option;
+        // }
+        if (sortType === undefined || sortType ===''){
+            sortType = $('select[name="orderby"] option:selected').val(); // 검색어
+        } else {
+            sortType = sortType;
+        }
+        if (category === undefined){
+            category = $('select[name="category"] option:selected').val(); // 검색어
+        } else {
+            category = category;
+        }
+
+        // let option = $('select[name="option"] option:selected').val(); //옵션
+        // sortType = $('select[name="orderby"] option:selected').val();
+        // let category = $('select[name="category"] option:selected').val();
+
+        console.log('showList page =' +page)
+        console.log('showList pageSize =' +pageSize)
+        console.log('showList keyword =' +keyword)
+        console.log('showList sortType =' +sortType)
+        console.log('showList category =' +category)
+        console.log('showList period =' +period)
+        console.log('showList dateField =' +dateField)
+        $('.test').empty();
+
+        $.ajax({
+            type: 'PATCH',
+            url: "/admin/list",
+            contentType : 'application/json',
+            // url: "/admin/list?pageSize="+pageSize+"&option="+option+"&keyword="+keyword, // 서버에 검색어와 옵션을 담아 보낸다.
+            //data: {},
+
+            data: JSON.stringify({
+                page : page,
+                pageSize: pageSize,
+                option: option,
+                keyword: keyword,
+                sortType: sortType, // sortType 값을 서버에 전달
+                category : category,
+                period : period,
+                dateField : dateField,
+
+            }),
+            // traditional: true, // 배열 형태의 데이터를 전송할 때 필요한 옵션
+            success: function (data) {
+                console.log(data);
+                processListData(data);// 뿌리는 부분 중복
+
+            },
+            error: function () {
+                // 에러 시 처리할 코드
+            }
+        });
+     }
+
+     // 자동 체크박스 체크 함수
+    const checkbox = function () {
+        const prodId = $(this).data('prod-id');
+        const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
+        const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
+        let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val();
+        const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val();
+
+        const $checkbox = $('input[type="checkbox"][id="pd-check"][data-prod-id="' + prodId + '"]');
+
+        if (invQty !== '' || safeInv !== '' || invStusCd !== '' || invLoc !== '') {
+            $checkbox.prop('checked', true);
+            console.log('Checkbox checked:', $checkbox.prop('checked'));
+        } else {
+            $checkbox.prop('checked', false);
+            console.log('Checkbox checked:', $checkbox.prop('checked'));
+        }
+    };
+
+    $('input.option-number, input.safe-number, select.inv-status, select.inv-loc').on('input', checkbox);
+        // 클릭시 검색어와 옵션의 값을 포함하여 전달함.
+
+
+    function processListData(data) {
+        pageHandler = data.ph;
+        const totalCnt = data.ph.totalCnt;
+        console.log("totalCnt = "+totalCnt)
+        $('.total strong').text(totalCnt); // 상품 총 개수를 보여주는
+        $('.center').html(toHtml(data.list)); // 상품을 보여주는
+        $('.paging').html(updatePaging(data.ph)); // 페이징을 업데이트 하는
+        checkbox;
+    }
+
+
+    // 비동기화 후 페이징 처리를 비동기화로 변경하는 함수
+    let updatePaging = function (ph){
+
+        console.log(ph)
+        let pagingHtml = '';
+//
+        if(ph.totalCnt == null || ph.totalCnt ==0 ){
+            pagingHtml += '<div> 게시물이 없습니다. </div>'
+        }
+        if(ph.showPrev) {
+            let beginPage = (ph.beginPage <= 1) ? 2 : ph.beginPage;
+                pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage-1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&lt;</a>'
+        }
+        for (let i=ph.beginPage; i<= ph.endPage; i++) {
+            let classText = (i===ph.sc.page)? 'page paging-active' : 'page';
+            let url = "/admin/list?page="+ph.sc.page+"&pageSize="+ph.sc.pageSize+"&option="+ph.sc.option+"&keyword="+ph.sc.keyword; // 누르면 해당하는 번호로 변경되게 해야함
+            pagingHtml += '<a class="'+classText+'" href="'+url+'">'+i+'</a>';
+        }
+        if(ph.showNext) {
+            let beginPage = (ph.beginPage <= 1) ? 1 : ph.beginPage;
+            pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage+1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&gt;</a>'
+        }
+        // console.log(pagingHtml)
+        return pagingHtml;
+    }
+
+
+    // 비동기화 호출 뒤 배열에 담긴 값들을 태그에 담는 함수
+    let toHtml = function (object) {
+        let tmp =''
+        object.forEach(function(inv){
+            tmp += '<tr>'
+            tmp += '<form id="form" class="frm" action="/admin/modify" method="post">'
+            tmp += '<td rowspan="1" id="prod-id" data-prod-id="' + inv.prod_ID + '">' + inv.prod_ID + '<input type="checkbox" id="pd-check" data-prod-id="' + inv.prod_ID + '"></td>'
+            tmp += '<td rowspan="1" class="left">'
+            tmp += '<div class="gGoods gMedium" style="z-index: 0;">'
+            tmp += '<div class="mOpen">'
+            tmp += '<span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>'
+            tmp += '</div>'
+            tmp += ' <p>'
+            tmp += '<a href="#" target="_blank" title="새창 열림" class="txtLink eProductDetail" product_no="10">'+inv.prod_NM+'</a>'
+            tmp += '</p>'
+            tmp += '<p class="txtCode">(P000000J)</p>'
+            tmp += '<input type="hidden" name="product_no_list[]" value="10">'
+            tmp +=  '</div>'
+            tmp +=  '</td>'
+            tmp +=  '<td rowspan="1" id="total-qty-'+inv.prod_ID+'" data-prod-id="'+inv.prod_ID+'">'+inv.inv_QTY+'</td>'
+            tmp +=  '<td>'+inv.cate_CD
+            tmp += '<input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">'
+            tmp += '</td>'
+            //
+            tmp += '<td>'
+            tmp += '<input type="number" class="option-number" data-prod-id="'+inv.prod_ID+'" style="width:60px;" name="s" value="'+inv.inv_QTY+'">'
+            tmp += '</td>'
+            tmp += '<td>'
+            tmp += '<input type="number" class="safe-number" data-prod-id="'+inv.prod_ID+'" style="width:60px;" name="stock_warn_value[P000000J000A]" value="'+inv.safe_INV+'">'
+            tmp += '</td>'
+
+            // tmp += '<td>'
+            tmp += '<td>'
+            tmp += '<select class="inv-status" data-prod-id="' + inv.prod_ID + '" name="inv_status[P000000J000A]">'
+            tmp += '<option id="opt1" value="여유" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '여유' ? 'selected' : '') + '>여유</option>'
+            tmp += '<option id="opt2" value="부족" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '부족' ? 'selected' : '') + '>부족</option>'
+            tmp += '<option id="opt3" value="품절" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '품절' ? 'selected' : '') + '>품절</option>'
+            tmp += '</select>'
+            tmp += '</td>'
+            //
+            tmp += '<td>'
+            tmp += '<span class="ec-use-inventory-display-item" style="display: none;">' + inv.inv_LOC + '</span>'
+            tmp += '<select class="inv-loc" data-prod-id="' + inv.prod_ID + '" name="inv_loc[P000000J000A]">'
+            tmp += '<option value="창고 1(1A-14)" ' + (inv.inv_LOC == '창고 1(1A-14)' ? 'selected' : '') + '>창고 1(1A-14)</option>'
+            tmp += '<option value="창고 1(2A-14)" ' + (inv.inv_LOC == '창고 1(2A-14)' ? 'selected' : '') + '>창고 1(2A-14)</option>'
+            tmp += '<option value="창고 1(3A-14)" ' + (inv.inv_LOC == '창고 1(3A-14)' ? 'selected' : '') + '>창고 1(3A-14)</option>'
+            tmp += '</select>'
+            tmp += '</td>'
+
+            tmp += '<td>' + inv.prod_STUS + '</td>'
+            tmp += '<td>' + inv.avg_ASCR + '/ 5</td>'
+            tmp += '</form>'
+            tmp += '</tr>'
+
+        })
+        // console.log(tmp);
+        return  tmp + "<br>" ;
+    }
 
     $(document).ready(function() {
 
+        showList('','',' ','');
+
+        // 페이지 숫자를 클릭했을 때의 이벤트 핸들러
+        $('.paging').on('click', '.page', function(event) {
+            event.preventDefault(); // 기본 동작 중단
+
+            let page = $(this).text(); // 클릭한 그 값을 가져옴 , 즉 i 의 값
+            let pageSize =pageHandler.sc.pageSize; // 전역 변수인 pageHandler를 참조하여 pageSize 추출 //
+            // let option = $('select[name="option"] option:selected').val(); // 옵션
+            // let keyword = $('.search-input').val(); // 검색어
+            // let sortType = $('select[name="orderby"] option:selected').val();
+
+            //담아서 showList에 매개변수로 전달한다.
+            showList(page,pageSize,'','')
+
+            });
 
 
-        $('#eBtnModify').on("click", function() {
-            // const prodId = $('#prod-id').text(); // 수정된 부분
+// 저장버튼 누를시 변경
+        $('#eBtnModify').on("click", function () {
+            const code1 = $('#opt1').val(); // 여유
+            const code2 = $('#opt2').val(); // 부족
+            const code3 = $('#opt3').val(); // 품절
+        // 서버에 객체를 담아 전달할 객체배열 하나 생성
+            const jsonData = [];
+            // 체크박스 or id = pd-check 가 체크된 박스들을 .each 로 순회해서 아래의 행동을 한다,
+            $('input[type="checkbox"][id="pd-check"]:checked').each(function () {
+                //변경할 값들을 변수에 담는다.
+                const prodId = $(this).data('prod-id'); // 아이디
+                const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 재고수량
+                const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val(); // 안전재고
+                let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
+                const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
 
+                if (invQty !== '' || safeInv !== '' || invStusCd !== '' || invLoc !== '') {
+                    $(this).prop('checked', true);
+                }
 
-            const prodId = $('input[type="checkbox"][id="pd-check"]:checked:first').data('prod-id');
+                // 안전재고보다 많거나 적을시 옵션의 값을 다음과 같이 지정한다.
+                // invStusCd의 값이 cde3 과 똑같다면  == invStusCd 는 code3 이된다.
+                if ( invStusCd === code3) {
+                    invStusCd = code3;
+                } else if (parseInt(invQty) >= parseInt(safeInv)) {
+                    invStusCd = code1;
+                } else {
+                    invStusCd = code2;
+                }
 
-            const invQty = $('input.option-number[data-prod-id="'+prodId+'"]').val(); // 해당 prodId를 가진 input 선택
-            const safeInv = $('input.safe-number[data-prod-id="'+prodId+'"]').val();
-            const invStusCd = $('select.inv-status[data-prod-id="'+prodId+'"]').val();
-            const invLoc = $('select.inv-loc[data-prod-id="'+prodId+'"]').val();
+                // invDto 객체에 아래의 값들을 담는다.
+                const invDto = {
+                    prod_ID: parseInt(prodId),
+                    inv_QTY: parseInt(invQty),
+                    safe_INV: parseInt(safeInv),
+                    inv_STUS_CD: invStusCd,
+                    inv_LOC: invLoc,
+                    upd_DTM : new Date()
+                };
+                //배열에 객체를 담는다.
+                jsonData.push(invDto);
+            }); //each의 끝
 
-            const formData = new FormData();
-            formData.append('PROD_ID', parseInt(prodId));
-            formData.append('INV_QTY', parseInt(invQty));
-            formData.append('SAFE_INV', parseInt(safeInv));
-            formData.append('INV_STUS_CD', invStusCd);
-            formData.append('INV_LOC', invLoc);
             $.ajax({
                 url: '/admin/modify',
                 type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(result) {
+                data: JSON.stringify(jsonData),
+                contentType: 'application/json',
+                success: function (result) {
                     console.log('전송 성공.');
-
-                    showList(prodId);
-
+                    showList();
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error(xhr.responseText);
                     alert('수정 실패: ' + xhr.responseText);
                 }
             });
+        });
+
+        //검색 버튼 누를시
+        $('#eBtnSearch').click(function () {
+            let page = $('.classText').val();
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $(this).val();
+            let category = $('select[name="category"] option:selected').val()
+            console.log('검색버튼 category =' + category)
+            showList(page, pageSize, keyword, sortType, category);
 
         });
-    });
-    let showList = function(prodId) {
-        $.ajax({
-            url: '/admin/modify/' + prodId, // GET 요청
-            type: 'GET',
-            success: function (result) {
-                // 새로운 데이터를 받아서 해당하는 부분만 선택해서 업데이트
-                console.log(result);
 
-                const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 해당 prodId를 가진 input 선택
-                const totalQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
-                const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
+        //초기화 버튼을 누를시
+        $('#eSearchFormInit').click(function () {
+            // $('.search-input').val(''); // 검색어 입력 필드의 값을 빈 문자열로 설정
+            $('.search-input').val(''); // 검색어 입력 필드의 값을 빈 문자열로 설정
+            $('select[name="category"]').val(''); // 카테고리 선택을 기본값으로 설정
+            let page = '';
+            let pageSize = '';
+            let keyword = ' '; // 검색어
+            let sortType = '';
+            let category = '';
+            showList(page, pageSize, keyword, sortType, category);
+        });
 
-                const code1 = $('#opt1').val(); // 여유
-                const code2 = $('#opt2').val(); // 부족
-
-                // $('#total-qty').html(totalQty);
-                $('#total-qty-' + prodId).html(totalQty);
-
-                // $('input.option-number[data-prod-id="' + prodId + '"]').val();
-                $('td.total-qty[data-prod-id="' + prodId + '"]').val(totalQty);
-
-                if (parseInt(invQty) >= parseInt(safeInv)) {
-                    $('select.inv-status[data-prod-id="'+prodId+'"]').val(code1);
-                } else {
-                    $('select.inv-status[data-prod-id="'+prodId+'"]').val(code2);
-                }
-                // 정보 수정 후 목록에 대한 추가 처리 작성
-            },
-            error: function (error) {
-                alert('error');
+            // 검색창에 커서가 있고 Enter를 누를 경우에만
+        $('.search-input').keydown(function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                $('#eBtnSearch').trigger('click'); // Simulate a click on the search button
             }
         });
-    }
 
 
+        // 체크박스 이벤트 처리 등록 // 이게 있어야 자동으로 체크박스가 체크된다.
+        $(document).on('input', 'input.option-number, input.safe-number, select.inv-status, select.inv-loc', checkbox);
+
+        // select 요소의 change 이벤트 처리 등록 - 10개씩 보기 , 20개씩 보기
+        $('select[name="limit"]').on('change', function() {
+            // 선택된 옵션의 값을 가져온다
+            let page = $('.classText').val();
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $(this).val();
+            // 선택된 값을 이용하여 원하는 동작을 수행한다
+            // 예: showList 함수 호출 등
+            showList(page,pageSize,keyword,sortType);
+        });
+
+        // 상품 정렬방식 - ORDER BY
+        $('select[name="orderby"]').on('change', function() {
+            // 선택된 옵션의 값을 가져온다
+            let page = $('.classText').val();
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $(this).val();
+
+            // 선택된 값을 이용하여 원하는 동작을 수행한다
+            // 예: showList 함수 호출 등
+            showList(page,pageSize,keyword,sortType);
+        });
+
+        $('.btnDate').click(function () {
+            let period = $(this).attr('period');
+            let dateField = $('select[name="date"]').val();
+
+            console.log("period ="+period)
+            console.log("dateField ="+dateField)
+            // 선택한 날짜 필터링 값을 서버로 전달하고 결과를 화면에 표시하는 함수 호출
+            showList('','' ,'' ,'' ,'' , period, dateField);
+        });
+
+
+    });
 
 </script>
 <script>
@@ -414,6 +657,9 @@
     if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
     if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
     if(msg=="MOD_OK") alert("수정이 완료되었습니다.");
+
+    if(msg=="LIST_ERR") alert("올바른 값을 입력해 주세요.");
+
 
 </script>
 </body>
