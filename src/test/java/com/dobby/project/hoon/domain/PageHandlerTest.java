@@ -7,7 +7,7 @@
 //public class PageHandlerTest {
 //    @Test
 //    public void test() {
-//        PageHandler ph = new PageHandler( 250, 1);
+//        PageHandler ph = new PageHandler( 250, new invSearchCondition());
 //        ph.print();
 //        System.out.println("ph = " + ph);
 //        assertTrue(ph.getBeginPage() ==1);
@@ -16,20 +16,24 @@
 //    }
 //    @Test
 //    public void test2() {
-//        PageHandler ph = new PageHandler( 255, 11);
+//        PageHandler ph = new PageHandler( 0,  new invSearchCondition());
 //        ph.print();
 //        System.out.println("ph = " + ph);
-//        assertTrue(ph.getBeginPage() ==11);
-//        assertTrue(ph.getEndPage() ==20);
+//        assertTrue(ph.getBeginPage() ==1);
+//        assertTrue(ph.getEndPage() ==1);
+//        assertFalse(ph.isShowPrev());
+//        assertFalse(ph.isShowNext());
 //
 //    }
 //    @Test
 //    public void test3() {
-//        PageHandler ph = new PageHandler( 255, 25);
+//        PageHandler ph = new PageHandler( null,  new invSearchCondition());
 //        ph.print();
 //        System.out.println("ph = " + ph);
-//        assertTrue(ph.getBeginPage() ==21);
-//        assertTrue(ph.getEndPage() ==26);
+//        assertTrue(ph.getBeginPage() ==1);
+//        assertTrue(ph.getEndPage() ==1);
+//        assertFalse(ph.isShowPrev());
+//        assertFalse(ph.isShowNext());
 //
 //    }
 //}

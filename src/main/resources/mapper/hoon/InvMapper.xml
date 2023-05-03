@@ -52,48 +52,134 @@
     <select id="invSearchSelectPage" parameterType="invSearchCondition" resultType="InvDto">
         <include refid="selectFromProd"/>
         WHERE   true
-            <choose>
-                <when test='option=="T"'>
-                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
-                </when>
-                <when test='option=="W"'>
-                    AND PROD_ID LIKE concat('%', #{keyword}, '%')
-                </when>
+        <choose>
+
+            <when test='option == "T"'>
+                <if test='keyword != "" and category != ""'>
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                    AND CATE_CD = #{category}
+                </if>
+                <if test='keyword != "" and category == ""'>
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+                <if test='keyword == "" and category != ""'>
+                    AND CATE_CD = #{category}
+                </if>
+            </when>
                 <otherwise>
-                    AND (PROD_NM LIKE concat('%', #{keyword}, '%')
-                    OR PROD_ID LIKE concat('%', #{keyword}, '%'))
+                    <if test='keyword != "" and category != ""'>
+                        AND ((PROD_NM LIKE CONCAT('%', #{keyword}, '%')) OR (PROD_ID LIKE CONCAT('%', #{keyword}, '%')))
+                        AND (CATE_CD = #{category})
+                    </if>
+                    <if test='keyword != "" and category == ""'>
+                        AND ((PROD_NM LIKE CONCAT('%', #{keyword}, '%')) OR (PROD_ID LIKE CONCAT('%', #{keyword}, '%')))
+                    </if>
+                    <if test='category != "" and keyword == ""'>
+                        AND (CATE_CD = #{category})
+                    </if>
                 </otherwise>
             </choose>
 
+            <choose>
+                <when test="period != null and dateField != null">
+                <if test="dateField == 'regist'">
+                    <if test="period > 0">
+                        AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                    </if>
+                    <if test="period == 0">
+                        AND DATE(REG_DTM) = CURDATE()
+                    </if>
+                </if>
 
-        ORDER BY REG_DTM DESC, PROD_ID DESC
+                <if test="dateField == 'modify'">
+                    <if test="period > 0">
+                        AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                    </if>
+                    <if test="period == 0">
+                        AND DATE(UPD_DTM) = CURDATE()
+                    </if>
+                </if>
+                </when>
+            </choose>
+
+        <choose>
+            <when test="sortType == 'regist_d'">
+                ORDER BY REG_DTM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'regist_a'">
+                ORDER BY REG_DTM, PROD_ID
+            </when>
+            <when test="sortType == 'modify_d'">
+                ORDER BY UPD_DTM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'modify_a'">
+                ORDER BY UPD_DTM, PROD_ID
+            </when>
+            <when test="sortType == 'name_d'">
+                ORDER BY PROD_NM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'name_a'">
+                ORDER BY PROD_NM, PROD_ID
+            </when>
+            <when test="sortType == 'stock_d'">
+                ORDER BY INV_QTY DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'stock_a'">
+                ORDER BY INV_QTY, PROD_ID
+            </when>
+            <when test="sortType == 'id_d'">
+                ORDER BY  PROD_ID DESC
+            </when>
+            <when test="sortType == 'id_a'">
+                ORDER BY PROD_ID
+            </when>
+            <otherwise>
+                ORDER BY REG_DTM DESC, PROD_ID DESC
+            </otherwise>
+        </choose>
         LIMIT #{offset}, #{pageSize}
     </select>
 
     <select id="invSearchResultCnt" parameterType="invSearchCondition" resultType="int">
         SELECT count(*)
         FROM prod
-        WHERE   true
+        WHERE 1=1
         <choose>
-        <when test='option=="T"'>
-            AND PROD_NM LIKE concat('%', #{keyword}, '%')
-        </when>
-        <when test='option=="W"'>
-            AND PROD_ID LIKE concat('%', #{keyword}, '%')
-        </when>
-        <otherwise>
-            AND (PROD_NM LIKE concat('%', #{keyword}, '%')
-            OR PROD_ID LIKE concat('%', #{keyword}, '%'))
-        </otherwise>
+            <when test='option=="T"'>
+                <if test='keyword != "" and category != ""'>
+                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
+                    AND CATE_CD = #{category}
+                </if>
+                <if test='keyword != "" and category == ""'>
+                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
+                </if>
+                <if test='keyword == "" and category != ""'>
+                    AND CATE_CD = #{category}
+                </if>
+            </when>
+            <otherwise>
+                <if test='keyword != "" and category != ""'>
+                    AND ((PROD_NM LIKE concat('%', #{keyword}, '%')) OR (PROD_ID LIKE concat('%', #{keyword}, '%')))
+                    AND (CATE_CD = #{category})
+                </if>
+                <if test='keyword != "" and category == ""'>
+                    AND ((PROD_NM LIKE concat('%', #{keyword}, '%')) OR (PROD_ID LIKE concat('%', #{keyword}, '%')))
+                </if>
+                <if test='category != "" and keyword == ""'>
+                    AND (CATE_CD = #{category})
+                </if>
+            </otherwise>
         </choose>
     </select>
+
 
     <update id="InvUpdate" parameterType="InvDto">
         UPDATE prod
         SET INV_QTY = #{INV_QTY},
             SAFE_INV = #{SAFE_INV},
             INV_STUS_CD = #{INV_STUS_CD},
-            INV_LOC = #{INV_LOC}
+            INV_LOC = #{INV_LOC},
+            UPD_DTM = #{UPD_DTM}
         WHERE PROD_ID = #{PROD_ID}
     </update>
 
