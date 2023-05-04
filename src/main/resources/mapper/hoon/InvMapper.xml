@@ -54,7 +54,7 @@
         WHERE   true
         <choose>
             <!-- startDate와 endDate가 모두 있거나 모두 없는 경우 -->
-            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null)">
+            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null) ">
                 <if test="startDate != null and endDate != null">
                     <if test="dateField == 'regist'">
                         <if test="startDate &lt; endDate">

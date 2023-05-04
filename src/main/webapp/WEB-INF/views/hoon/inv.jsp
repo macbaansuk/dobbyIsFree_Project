@@ -378,7 +378,7 @@
 
         $.ajax({
             type: 'PATCH',
-            url: "/admin/list",
+            url: "/admin/inv/list",
             contentType : 'application/json',
 
             data: JSON.stringify({
@@ -569,6 +569,16 @@
             const code2 = $('#opt2').val(); // 부족
             const code3 = $('#opt3').val(); // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
+            // 입력하던 화면으로 돌아가야함
+            const page = $('.classText').val();
+            const pageSize = $('select[name="limit"] option:selected').val();
+            const keyword = $('.search-input').val(); // 검색어
+            const sortType = $('select[name="orderby"] option:selected').val()
+            const category = $('select[name="category"] option:selected').val()
+            const startDate = $('#pr_start_date').val()
+            const endDate =$('#pr_end_date').val()
+            const dateField = $('select[name="date"] option:selected').val();
+
             const jsonData = [];
             // 체크박스 or id = pd-check 가 체크된 박스들을 .each 로 순회해서 아래의 행동을 한다,
             $('input[type="checkbox"][id="pd-check"]:checked').each(function () {
@@ -593,6 +603,20 @@
                     invStusCd = code2;
                 }
 
+
+
+
+
+                console.log('저장 page ='+page)
+                console.log('저장 pageSize ='+pageSize)
+                console.log('저장 keyword ='+keyword)
+                console.log('저장  sortType='+sortType)
+                console.log('저장 category ='+category)
+                console.log('저장 period ='+period)
+                console.log('저장 dateField ='+dateField)
+                console.log('저장 startDate ='+startDate)
+                console.log('저장 endDate ='+endDate)
+
                 // invDto 객체에 아래의 값들을 담는다.
                 const invDto = {
                     prod_ID: parseInt(prodId),
@@ -607,13 +631,21 @@
             }); //each의 끝
 
             $.ajax({
-                url: '/admin/modify',
+                url: '/admin/inv/modify',
                 type: 'POST',
                 data: JSON.stringify(jsonData),
                 contentType: 'application/json',
                 success: function (result) {
-                    console.log('전송 성공.');
-                    showList();
+                    console.log('저장 후 page ='+page)
+                    console.log('저장 후 pageSize ='+pageSize)
+                    console.log('저장 후 keyword ='+keyword)
+                    console.log('저장 후 sortType='+sortType)
+                    console.log('저장 후 category ='+category)
+                    console.log('저장 후 period ='+period)
+                    console.log('저장 후 dateField ='+dateField)
+                    console.log('저장 후 startDate ='+startDate)
+                    console.log('저장 후 endDate ='+endDate)
+                    showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
@@ -637,8 +669,13 @@
             console.log("dateField = " +dateField)
             console.log("startDate = " +startDate)
             console.log("endDate = " +endDate)
+            if (startDate ==="" && endDate ==="") {
+                console.log("동작")
+                startDate = null;
+                endDate = null;
+            }
 
-            if (startDate !== '' && endDate !== '')
+            if (startDate !== null && endDate !== null)
             {
                 period = '';
             }
@@ -646,11 +683,12 @@
             if (startDate > endDate)
             {alert('시작일을 종료일보다 이전으로 설정 하세요')}
 
-             else if ((startDate !== '' && endDate !== '') && (dateField ===''))
+             else if ((startDate !== null && endDate !== null) && (dateField ===''))
             {
                 alert('등록일 기준을 선택해주세요')
             }
              else{
+
             showList(page, pageSize, keyword, sortType, category,null,dateField,startDate,endDate);
 
             }
@@ -755,8 +793,8 @@
             let category = $('select[name="category"] option:selected').val()
             period = $(this).attr('period');
             let dateField = $('select[name="date"]').val();
-            let startDate = '';
-            let endDate ='';
+            let startDate = null;
+            let endDate =null;
             // let dateField = $('select[name="date"] option:selected').val();
             console.log("period ="+period)
             console.log("dateField ="+dateField)
