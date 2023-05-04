@@ -47,7 +47,7 @@
                             <col style="width:auto;">
                         </colgroup>
                         <tbody>
-                        <form action="<c:url value="/admin/list"/>" class="search-form" method="get">
+<%--                        <form action="<c:url value="/admin/list"/>" class="search-form" method="get">--%>
                         <tr>
                             <th scope="row">검색분류</th>
                             <td colspan="3">
@@ -378,10 +378,11 @@
 
         $.ajax({
             type: 'PATCH',
-            url: "/admin/list",
+            url: "/admin/inv/list",
             contentType : 'application/json',
 
             data: JSON.stringify({
+
                 page : page,
                 pageSize: pageSize,
                 option: option,
@@ -455,16 +456,16 @@
         }
         if(ph.showPrev) {
             let beginPage = (ph.beginPage <= 1) ? 2 : ph.beginPage;
-                pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage-1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&lt;</a>'
+                pagingHtml += '<a class="page" href="/admin/inv/list?page='+(ph.beginPage-1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&lt;</a>'
         }
         for (let i=ph.beginPage; i<= ph.endPage; i++) {
             let classText = (i===ph.sc.page)? 'page paging-active' : 'page';
-            let url = "/admin/list?page="+ph.sc.page+"&pageSize="+ph.sc.pageSize+"&option="+ph.sc.option+"&keyword="+ph.sc.keyword; // 누르면 해당하는 번호로 변경되게 해야함
-            pagingHtml += '<a class="'+classText+'" href="'+url+'">'+i+'</a>';
+            let url = "/admin/inv/list?page="+ph.sc.page+"&pageSize="+ph.sc.pageSize+"&option="+ph.sc.option+"&keyword="+ph.sc.keyword; // 누르면 해당하는 번호로 변경되게 해야함
+            pagingHtml += '<a class="'+classText+'" href="'+url+'" id="'+classText+i+'">'+i+'</a>';
         }
         if(ph.showNext) {
             let beginPage = (ph.beginPage <= 1) ? 1 : ph.beginPage;
-            pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage+1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&gt;</a>'
+            pagingHtml += '<a class="page" href="/admin/inv/list?page='+(ph.beginPage+1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&gt;</a>'
         }
         // console.log(pagingHtml)
         return pagingHtml;
@@ -551,10 +552,31 @@
             event.preventDefault(); // 기본 동작 중단
 
             let page = $(this).text(); // 클릭한 그 값을 가져옴 , 즉 i 의 값
+
             let pageSize =pageHandler.sc.pageSize; // 전역 변수인 pageHandler를 참조하여 pageSize 추출 //
-            // let option = $('select[name="option"] option:selected').val(); // 옵션
-            // let keyword = $('.search-input').val(); // 검색어
-            // let sortType = $('select[name="orderby"] option:selected').val();
+            const keyword = $('.search-input').val(); // 검색어
+            const sortType = $('select[name="orderby"] option:selected').val()
+            const category = $('select[name="category"] option:selected').val()
+            const startDate = $('#pr_start_date').val()
+            const endDate =$('#pr_end_date').val()
+            const dateField = $('select[name="date"] option:selected').val();
+
+            console.log(pageHandler);
+            if (page === '>') {
+                page = pageHandler.sc.page + 1;
+            } else if (page === '<') {
+                page = pageHandler.sc.page - 1;
+            }
+
+            console.log('page page ='+page)
+            console.log('page pageSize ='+pageSize)
+            console.log('page keyword ='+keyword)
+            console.log('page  sortType='+sortType)
+            console.log('page category ='+category)
+            console.log('page period ='+period)
+            console.log('page dateField ='+dateField)
+            console.log('page startDate ='+startDate)
+            console.log('page endDate ='+endDate)
 
             //담아서 showList에 매개변수로 전달한다.
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
@@ -569,6 +591,15 @@
             const code2 = $('#opt2').val(); // 부족
             const code3 = $('#opt3').val(); // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
+            // 입력하던 화면으로 돌아가야함
+            const page = pageHandler.sc.page;
+            const pageSize = $('select[name="limit"] option:selected').val();
+            const keyword = $('.search-input').val(); // 검색어
+            const sortType = $('select[name="orderby"] option:selected').val()
+            const category = $('select[name="category"] option:selected').val()
+
+
+
             const jsonData = [];
             // 체크박스 or id = pd-check 가 체크된 박스들을 .each 로 순회해서 아래의 행동을 한다,
             $('input[type="checkbox"][id="pd-check"]:checked').each(function () {
@@ -593,6 +624,16 @@
                     invStusCd = code2;
                 }
 
+                console.log('저장 page ='+page)
+                console.log('저장 pageSize ='+pageSize)
+                console.log('저장 keyword ='+keyword)
+                console.log('저장  sortType='+sortType)
+                console.log('저장 category ='+category)
+                console.log('저장 period ='+period)
+                console.log('저장 dateField ='+dateField)
+                console.log('저장 startDate ='+startDate)
+                console.log('저장 endDate ='+endDate)
+
                 // invDto 객체에 아래의 값들을 담는다.
                 const invDto = {
                     prod_ID: parseInt(prodId),
@@ -607,13 +648,21 @@
             }); //each의 끝
 
             $.ajax({
-                url: '/admin/modify',
+                url: '/admin/inv/modify',
                 type: 'POST',
                 data: JSON.stringify(jsonData),
                 contentType: 'application/json',
                 success: function (result) {
-                    console.log('전송 성공.');
-                    showList();
+                    console.log('저장 후 page ='+page)
+                    console.log('저장 후 pageSize ='+pageSize)
+                    console.log('저장 후 keyword ='+keyword)
+                    console.log('저장 후 sortType='+sortType)
+                    console.log('저장 후 category ='+category)
+                    console.log('저장 후 period ='+period)
+                    console.log('저장 후 dateField ='+dateField)
+                    console.log('저장 후 startDate ='+startDate)
+                    console.log('저장 후 endDate ='+endDate)
+                    showList(page, pageSize, keyword, sortType, category, null, null, null, null);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
@@ -637,8 +686,13 @@
             console.log("dateField = " +dateField)
             console.log("startDate = " +startDate)
             console.log("endDate = " +endDate)
+            if (startDate ==="" && endDate ==="") {
+                console.log("동작")
+                startDate = null;
+                endDate = null;
+            }
 
-            if (startDate !== '' && endDate !== '')
+            if (startDate !== null && endDate !== null)
             {
                 period = '';
             }
@@ -646,11 +700,12 @@
             if (startDate > endDate)
             {alert('시작일을 종료일보다 이전으로 설정 하세요')}
 
-             else if ((startDate !== '' && endDate !== '') && (dateField ===''))
+             else if ((startDate !== null && endDate !== null) && (dateField ===''))
             {
                 alert('등록일 기준을 선택해주세요')
             }
              else{
+
             showList(page, pageSize, keyword, sortType, category,null,dateField,startDate,endDate);
 
             }
@@ -755,8 +810,8 @@
             let category = $('select[name="category"] option:selected').val()
             period = $(this).attr('period');
             let dateField = $('select[name="date"]').val();
-            let startDate = '';
-            let endDate ='';
+            let startDate = null;
+            let endDate =null;
             // let dateField = $('select[name="date"] option:selected').val();
             console.log("period ="+period)
             console.log("dateField ="+dateField)
@@ -768,10 +823,6 @@
             // 선택한 날짜 필터링 값을 서버로 전달하고 결과를 화면에 표시하는 함수 호출
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
-
-
-
-
 
     });
 
@@ -785,6 +836,28 @@
     if(msg=="LIST_ERR") alert("올바른 값을 입력해 주세요.");
 
 
+
+    // function getPageData() {
+    //     const page = $('.classText').val();
+    //     const pageSize = $('select[name="limit"] option:selected').val();
+    //     const keyword = $('.search-input').val();
+    //     const sortType = $('select[name="orderby"] option:selected').val();
+    //     const category = $('select[name="category"] option:selected').val();
+    //     const startDate = $('#pr_start_date').val();
+    //     const endDate = $('#pr_end_date').val();
+    //     const dateField = $('select[name="date"] option:selected').val();
+    //
+    //     return {
+    //         page,
+    //         pageSize,
+    //         keyword,
+    //         sortType,
+    //         category,
+    //         startDate,
+    //         endDate,
+    //         dateField,
+    //     };
+    // }
 </script>
 
 </body>
