@@ -53,54 +53,63 @@
         <include refid="selectFromProd"/>
         WHERE   true
         <choose>
+            <!-- startDate와 endDate가 모두 있거나 모두 없는 경우 -->
+            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null)">
+                <if test="startDate != null and endDate != null">
+                    <if test="dateField == 'regist'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(REG_DTM) &gt;= #{startDate} AND DATE(REG_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(REG_DTM) = #{startDate}
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(UPD_DTM) &gt;= #{startDate} AND DATE(UPD_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(UPD_DTM) = #{startDate}
+                        </if>
+                    </if>
+                </if>
 
-            <when test='option == "T"'>
-                <if test='keyword != "" and category != ""'>
+                <!-- period, dateField 조건 -->
+                <if test="period != null and dateField != null">
+                    <if test="dateField == 'regist'">
+                        <if test="period > 0">
+                            AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(REG_DTM) = CURDATE()
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="period > 0">
+                            AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(UPD_DTM) = CURDATE()
+                        </if>
+                    </if>
+                </if>
+
+                <!-- keyword, category 조건 -->
+                <if test="keyword != '' and category != ''">
                     AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
                     AND CATE_CD = #{category}
                 </if>
-                <if test='keyword != "" and category == ""'>
+                <if test="keyword != '' and category == ''">
                     AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
                 </if>
-                <if test='keyword == "" and category != ""'>
+                <if test="keyword == '' and category != ''">
                     AND CATE_CD = #{category}
                 </if>
             </when>
-                <otherwise>
-                    <if test='keyword != "" and category != ""'>
-                        AND ((PROD_NM LIKE CONCAT('%', #{keyword}, '%')) OR (PROD_ID LIKE CONCAT('%', #{keyword}, '%')))
-                        AND (CATE_CD = #{category})
-                    </if>
-                    <if test='keyword != "" and category == ""'>
-                        AND ((PROD_NM LIKE CONCAT('%', #{keyword}, '%')) OR (PROD_ID LIKE CONCAT('%', #{keyword}, '%')))
-                    </if>
-                    <if test='category != "" and keyword == ""'>
-                        AND (CATE_CD = #{category})
-                    </if>
-                </otherwise>
-            </choose>
+        </choose>
 
-            <choose>
-                <when test="period != null and dateField != null">
-                <if test="dateField == 'regist'">
-                    <if test="period > 0">
-                        AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
-                    </if>
-                    <if test="period == 0">
-                        AND DATE(REG_DTM) = CURDATE()
-                    </if>
-                </if>
 
-                <if test="dateField == 'modify'">
-                    <if test="period > 0">
-                        AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
-                    </if>
-                    <if test="period == 0">
-                        AND DATE(UPD_DTM) = CURDATE()
-                    </if>
-                </if>
-                </when>
-            </choose>
+
 
         <choose>
             <when test="sortType == 'regist_d'">
@@ -143,33 +152,62 @@
     <select id="invSearchResultCnt" parameterType="invSearchCondition" resultType="int">
         SELECT count(*)
         FROM prod
-        WHERE 1=1
+        WHERE true
         <choose>
-            <when test='option=="T"'>
-                <if test='keyword != "" and category != ""'>
-                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
-                    AND CATE_CD = #{category}
+        <!-- startDate와 endDate가 모두 있거나 모두 없는 경우 -->
+            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null)">
+                <if test="startDate != null and endDate != null">
+                    <if test="dateField == 'regist'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(REG_DTM) &gt;= #{startDate} AND DATE(REG_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(REG_DTM) = #{startDate}
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(UPD_DTM) &gt;= #{startDate} AND DATE(UPD_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(UPD_DTM) = #{startDate}
+                        </if>
+                    </if>
                 </if>
-                <if test='keyword != "" and category == ""'>
-                    AND PROD_NM LIKE concat('%', #{keyword}, '%')
+
+            <!-- period, dateField 조건 -->
+            <if test="period != null and dateField != null">
+                <if test="dateField == 'regist'">
+                    <if test="period > 0">
+                        AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                    </if>
+                    <if test="period == 0">
+                        AND DATE(REG_DTM) = CURDATE()
+                    </if>
                 </if>
-                <if test='keyword == "" and category != ""'>
-                    AND CATE_CD = #{category}
+                <if test="dateField == 'modify'">
+                    <if test="period > 0">
+                        AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                    </if>
+                    <if test="period == 0">
+                        AND DATE(UPD_DTM) = CURDATE()
+                    </if>
                 </if>
-            </when>
-            <otherwise>
-                <if test='keyword != "" and category != ""'>
-                    AND ((PROD_NM LIKE concat('%', #{keyword}, '%')) OR (PROD_ID LIKE concat('%', #{keyword}, '%')))
-                    AND (CATE_CD = #{category})
-                </if>
-                <if test='keyword != "" and category == ""'>
-                    AND ((PROD_NM LIKE concat('%', #{keyword}, '%')) OR (PROD_ID LIKE concat('%', #{keyword}, '%')))
-                </if>
-                <if test='category != "" and keyword == ""'>
-                    AND (CATE_CD = #{category})
-                </if>
-            </otherwise>
-        </choose>
+            </if>
+
+            <!-- keyword, category 조건 -->
+            <if test="keyword != '' and category != ''">
+                AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                AND CATE_CD = #{category}
+            </if>
+            <if test="keyword != '' and category == ''">
+                AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="keyword == '' and category != ''">
+                AND CATE_CD = #{category}
+            </if>
+        </when>
+    </choose>
     </select>
 
 

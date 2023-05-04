@@ -18,7 +18,7 @@ public class PageHandler {
 
     public PageHandler(int totalCnt, invSearchCondition sc){
         if (((Integer)totalCnt == null) || (totalCnt <= 0)) {
-            totalCnt = 1;
+            totalCnt = 0;
         }
 //        if (totalCnt <= 0) {
 //            totalCnt = 1;
