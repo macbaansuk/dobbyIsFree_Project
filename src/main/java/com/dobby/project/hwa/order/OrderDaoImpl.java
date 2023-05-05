@@ -36,5 +36,8 @@ public class OrderDaoImpl implements  OrderDao {
         return session.selectOne(namespace + "selectAddressByDlvId", dlvNmId);
     }
 
-
+    @Override
+    public int insertOrdInfo(OrdDto ordDto) {
+        return session.insert(namespace + "insertOrdInfo", ordDto);
+    }
 }

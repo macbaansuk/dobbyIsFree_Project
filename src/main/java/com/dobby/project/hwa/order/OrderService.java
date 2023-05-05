@@ -12,4 +12,5 @@ public interface OrderService {
     public List<DlvDto> getAddressByMbrId(String mbrId);
 
     public DlvDto getAddressDlvId(Integer dlvNmId);
+    public int insertOrdInfo(OrdDto ordDto);
 }

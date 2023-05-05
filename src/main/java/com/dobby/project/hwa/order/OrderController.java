@@ -156,4 +156,50 @@ public String paymentTest(){
         return "/hwa/payTest";
 }
 
+
+
+
+
+    @PostMapping("/order/done")
+    public String orderSubmit(OrderDone od, HttpServletRequest req){
+        System.out.println("오더 post 진입");
+        HttpSession session = req.getSession();
+
+        String mbrId = (String) session.getAttribute("MBR_ID");
+
+        System.out.println("od = " + od.toString());
+        // 주문상품정보는 장바구니에서 넘겼던 세션, 그리고 주문페이지로 넘겼던 메소드 그대로 활용해서
+        //DB에 insert
+        //나머지 주문 정보는 OrderDone의 get정보를  OrdDto에 set해서 DB에 insert
+        // 문제는 주문상품정보에 하나의 주문ID로 여러개의 상품을 어떻게 담을 것인가 고민
+
+        OrdDto ordDto = new OrdDto();
+        ordDto.setORD_ID(od.getInputOrdId()); // 주문id
+        ordDto.setMBR_ID(mbrId); // 회원아이디
+        ordDto.setORDR(od.getInputOrdNmTxt()); // 주문자명
+        ordDto.setORDR_NO(od.getInputOrdMblNo()); //주문자연락처
+        ordDto.setORDR_EMAIL(od.getInputEmailTxt()); //주문자이메일
+        ordDto.setRCPR_NM(od.getInputRcvNmTxt()); //수령자명
+        ordDto.setRCPR_ZPCD(od.getInputOrdzipTxt()); //우편번호
+        ordDto.setRCPR_BASIC_ADDR(od.getInputDlvAddr1stTxt()); //기본주소
+        ordDto.setRCPR_DTL_ADDR(od.getInputDlvAddr2ndTxt()); //상세주소
+        ordDto.setRCPR_MPNO(od.getInputMblNoVal()); //수령자번호
+        ordDto.setDLVPN_REQ(od.getInputDlvReqCntTxt()); //배송요청사항
+        ordDto.setBANK(od.getInputBank()); //은행
+        ordDto.setACC_NO(od.getInputTempAccNo()); //계좌번호
+        ordDto.setDPOSR(od.getInputTempDpoSiTr()); //예금주
+        ordDto.setORD_TAMT(od.getInputTotPrdPrcTxt()); //주문금액
+        ordDto.setSETL_AMT(od.getInputTotPurPrcTxt()); //결제금액
+        ordDto.setORD_TAMT(od.getInputTotPurPrcTxt()); //주문금액
+        ordDto.setDEXP(od.getInputTotPurDlvPrcTxt()); //배송비
+
+        System.out.println("ordDto=" + ordDto);
+        orderService.insertOrdInfo(ordDto);
+        return "hwa/orderDone";
+    }
+
+
+
+
+
 }

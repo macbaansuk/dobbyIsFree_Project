@@ -30,4 +30,8 @@ public class OrderServiceImpl implements  OrderService{
     public DlvDto getAddressDlvId(Integer dlvNmId) {
         return orderDao.selectAddressByDlvId(dlvNmId);
     }
+    @Override
+    public int insertOrdInfo(OrdDto ordDto) {
+        return orderDao.insertOrdInfo(ordDto);
+    }
 }

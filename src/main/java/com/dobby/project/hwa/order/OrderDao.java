@@ -15,4 +15,6 @@ public interface OrderDao {
     public List<DlvDto> selectAddressByMbrId(String mbrId);
 
     public DlvDto selectAddressByDlvId(Integer dlvNmId);
+    public int insertOrdInfo(OrdDto ordDto);
+
 }
