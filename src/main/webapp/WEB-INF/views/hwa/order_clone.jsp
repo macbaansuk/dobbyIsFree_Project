@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 주소찾기 -->
     <!-- jQuery -->
-<%--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>--%>
+    <%--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>--%>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>  <!--아임포트 -->
 </head>
 
@@ -100,25 +100,25 @@
                                         <p class="inputAlt"></p>
                                     </td>
                                 </tr>
-                                 <!--연락처 세개로 나누는 script [010-1234-1234] -> [010] [1234] [1234] -->
-                                    <script>
-                                        let phoneNum = '${mbrDto.MPNO}';
-                                        console.log('폰넘버타입',typeof phoneNum);  //number -> ${mbrDto.MPNO}를 문자열로 감싸서 string으로 변환
-                                        console.log('폰넘버', '${mbrDto.MPNO}');  // ''문자열로 감싸야 올바른 값이 찍힌다
-                                        console.log('폰넘버변수', phoneNum);
+                                <!--연락처 세개로 나누는 script [010-1234-1234] -> [010] [1234] [1234] -->
+                                <script>
+                                    let phoneNum = '${mbrDto.MPNO}';
+                                    console.log('폰넘버타입',typeof phoneNum);  //number -> ${mbrDto.MPNO}를 문자열로 감싸서 string으로 변환
+                                    console.log('폰넘버', '${mbrDto.MPNO}');  // ''문자열로 감싸야 올바른 값이 찍힌다
+                                    console.log('폰넘버변수', phoneNum);
 
-                                        let num1 = phoneNum.substring(0,3);
-                                        let num2 = phoneNum.substring(3,7);
-                                        let num3 = phoneNum.substring(7,11);
+                                    let num1 = phoneNum.substring(0,3);
+                                    let num2 = phoneNum.substring(3,7);
+                                    let num3 = phoneNum.substring(7,11);
 
-                                        console.log("num1",num1)
-                                        console.log("num2",num2)
-                                        console.log("num3",num3)
+                                    console.log("num1",num1)
+                                    console.log("num2",num2)
+                                    console.log("num3",num3)
 
-                                        document.getElementById("ordMblNo1").value = num1;
-                                        document.getElementById("ordMblNo2").value = num2;
-                                        document.getElementById("ordMblNo3").value = num3;
-                                    </script>
+                                    document.getElementById("ordMblNo1").value = num1;
+                                    document.getElementById("ordMblNo2").value = num2;
+                                    document.getElementById("ordMblNo3").value = num3;
+                                </script>
 
                                 <!-- 이메일 -->
                                 <tr class="deliveryEmailWrap">
@@ -130,7 +130,7 @@
                                 </tr>
 
 
-<%--                                <tr class="deliverySelWrap addrSave">--%>  <!-- 무슨 html인지 몰라서 일단 주석 -->
+                                <%--                                <tr class="deliverySelWrap addrSave">--%>  <!-- 무슨 html인지 몰라서 일단 주석 -->
 
 
                                 <!-- 배송지 작성 -->
@@ -139,124 +139,139 @@
                                     <td>
 
                                         <!-- 배송지목록에 추가, 기본배송지로 등록 -->
-                                        <div class="row deliverySel">
-                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" id="isAddNewChk" checked="checked" readonly=""> <span>배송지 목록에 추가</span></label>
-                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" id="isAddDefaultChk"> <span>기본 배송지로 등록</span></label>
+                                        <div class="row deliverySel"  id="chkWrapper" style="display: none">
+                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" name="isAddNewChk" id="isAddNewChk" checked="checked" readonly="" value="Y"> <span>배송지 목록에 추가</span></label>
+                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" value="Y"> <span>기본 배송지로 등록</span></label>
                                             <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
                                         </div>
+                                            <script>
+                                                function dlvChk(radioButton) {
 
+                                                    let chkWrapper = document.getElementById("chkWrapper");
+
+                                                    // 신규 입력 선택
+                                                    if (radioButton.id === "dlvRequest1" && radioButton.checked) {
+                                                        chkWrapper.style.display = "block";
+                                                    } else {
+                                                        chkWrapper.style.display = "none";
+                                                    }
+                                                }
+                                            </script>
                                         <!-- 배송지명 -->
-                                            <div class="row">
-                                                <label for="dlvNmTxt" class="titLabel"  style="display: block"><span class="required" aria-required="true">필수입력</span> 배송지명</label>
-                                                    <div class="selectArea" style="width: 90%">
-                                                        <button class="selTit" type="button" onclick="selActive();">배송지명 선택</button>
-                                                        <ul class="selList">
-                                                            <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>
-    <%--                                                        <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>--%>
-    <%--                                                        <li><input type="radio" id="dlvRequest2" name="dlvReqCntRadio"><label for="dlvRequest2">집</label></li>--%>
-    <%--                                                        <li><input type="radio" id="dlvRequest3" name="dlvReqCntRadio"><label for="dlvRequest3">회사</label></li>--%>
+                                        <div class="row">
+                                            <label for="dlvNmTxt" class="titLabel"  style="display: block"><span class="required" aria-required="true">필수입력</span> 배송지명</label>
+                                            <div class="selectArea" style="width: 90%">
+                                                <button class="selTit" type="button" onclick="selActive();">배송지명 선택</button>
+                                                <ul class="selList">
+                                                    <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio" onclick="dlvChk(this)"><label for="dlvRequest1" >신규입력</label></li>
+                                                    <%--                                                        <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>--%>
+                                                    <%--                                                        <li><input type="radio" id="dlvRequest2" name="dlvReqCntRadio"><label for="dlvRequest2">집</label></li>--%>
+                                                    <%--                                                        <li><input type="radio" id="dlvRequest3" name="dlvReqCntRadio"><label for="dlvRequest3">회사</label></li>--%>
 
-                                                            <c:set var="loop" value="${2}" />
-                                                            <c:forEach items="${dlvsList}" var="dlvsList">
-                                                                <li><input onclick="dlvNmClick(this)" data-dlvpnId="${dlvsList.DLVPN_ID}" type="radio" id="dlvRequest${loop}" name="dlvReqCntRadio" ><label for="dlvRequest${loop}">${dlvsList.DLVPN_NM}</label></li>
-                                                                <c:set var="loop" value="${loop + 1}" />
-                                                            </c:forEach>
-                                                         </ul>
-                                                    </div>
-                                                    <input type="text" id="dlvNmTxt" name="dlvNmTxt" maxlength="10" class="inputTxt dlvInput" style="width:90%;margin-top:4px;" placeholder="최대 10자 까지 입력 가능" >
-
-                                                <p class="inputAlt"></p>
+                                                    <c:set var="loop" value="${2}" />
+                                                    <c:forEach items="${dlvsList}" var="dlvsList">
+                                                        <li><input onclick="dlvNmClick(this); dlvChk(this)" data-dlvpnId="${dlvsList.DLVPN_ID}" type="radio" id="dlvRequest${loop}" name="dlvReqCntRadio" ><label for="dlvRequest${loop}">${dlvsList.DLVPN_NM}</label></li>
+                                                        <c:set var="loop" value="${loop + 1}" />
+                                                    </c:forEach>
+                                                </ul>
                                             </div>
+                                            <input type="text" id="dlvNmTxt" name="dlvNmTxt" maxlength="10" class="inputTxt dlvInput" style="width:90%;margin-top:4px;" placeholder="최대 10자 까지 입력 가능" >
+
+                                            <p class="inputAlt"></p>
+                                        </div>
 
                                         <script>
-                                                //배송지명 : 신규 입력 클릭시 입력값 처음 val로 나타내기
-                                                let dlvRequest1 = document.getElementById("dlvRequest1").value;  //원래 값 변수에 저장해놓기
-                                                $('#dlvRequest1').on('click', function() {
-                                                 console.log("신규입력 클릭확인")
-
-                                                document.getElementById("dlvRequest1").value = dlvRequest1;
-                                                document.getElementById("rcvNmTxt").value = rcvNmTxtVal;
-                                                document.getElementById("mblNo1").value = mblNo1Val;
-                                                document.getElementById("mblNo2").value = mblNo2Val;
-                                                document.getElementById("mblNo3").value = mblNo3val;
-                                                });
+                                            //신규입력 클릭시 배송지추가버튼 보이게하기
 
 
-                                        //-----------------------배송지명 li  클릭 ----------------------------
-                                        function dlvNmClick(this1){ //this1 -> 클릭된 li > input
+                                            //배송지명 : 신규 입력 클릭시 입력값 처음 val로 나타내기
+                                            let dlvRequest1 = document.getElementById("dlvRequest1").value;  //원래 값 변수에 저장해놓기
+                                            $('#dlvRequest1').on('click', function() {
+                                                console.log("신규입력 클릭확인")
+
+                                                document.getElementById("dlvRequest1").value = '';
+                                                document.getElementById("rcvNmTxt").value = '';
+                                                document.getElementById("ordzipTxt").value = '';
+                                                document.getElementById("dlvAddr1stTxt").value = '';
+                                                document.getElementById("dlvAddr2ndTxt").value = '';
+                                                document.getElementById("mblNo1").value = '';
+                                                document.getElementById("mblNo2").value = '';
+                                                document.getElementById("mblNo3").value = '';
+                                            });
+
+
+                                            //-----------------------배송지명 li  클릭 ----------------------------
+                                            function dlvNmClick(this1){ //this1 -> 클릭된 li > input
                                                 console.log('this1',this1);
                                                 console.log('this',this);
 
-                                                    const dlvpnId = this1.dataset.dlvpnid; //data 속성으로 dlvpnId 찾음
-                                                    console.log('dlvpnId',dlvpnId);
-                                                    console.log('dlvpnId 타입',typeof  dlvpnId);
-                                                    $.ajax({
-                                                        headers: {
-                                                            'Accept': 'application/json',
-                                                            'Content-Type': 'application/json',
-                                                        },
-                                                        contentType: "application/json; charset=utf-8",
-                                                        url: "/order/dlv",
-                                                        type: "POST",
-                                                        data: JSON.stringify( Number(dlvpnId) ),
-                                                        dataType: 'json',
-                                                        success: function (response) {
-                                                            console.log('반환 JSON data:', response);
+                                                const dlvpnId = this1.dataset.dlvpnid; //data 속성으로 dlvpnId 찾음
+                                                console.log('dlvpnId',dlvpnId);
+                                                console.log('dlvpnId 타입',typeof  dlvpnId);
+                                                $.ajax({
+                                                    headers: {
+                                                        'Accept': 'application/json',
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                    contentType: "application/json; charset=utf-8",
+                                                    url: "/order/dlv",
+                                                    type: "POST",
+                                                    data: JSON.stringify( Number(dlvpnId) ),
+                                                    dataType: 'json',
+                                                    success: function (response) {
+                                                        console.log('반환 JSON data:', response);
 
-                                                            let dlvNm = response;
+                                                        let dlvNm = response;
 
-                                                            let dlvNmTxt = document.getElementById('dlvNmTxt');
-                                                            let rcvNmTxt = document.getElementById('rcvNmTxt');
-                                                            let ordzipTxt = document.getElementById('ordzipTxt');
-                                                            let dlvAddr1stTxt = document.getElementById('dlvAddr1stTxt');
-                                                            let dlvAddr2ndTxt = document.getElementById('dlvAddr2ndTxt');
-                                                            let mblNo1 = document.getElementById('mblNo1');
-                                                            let mblNo2 = document.getElementById('mblNo2');
-                                                            let mblNo3 = document.getElementById('mblNo3');
+                                                        let dlvNmTxt = document.getElementById('dlvNmTxt');
+                                                        let rcvNmTxt = document.getElementById('rcvNmTxt');
+                                                        let ordzipTxt = document.getElementById('ordzipTxt');
+                                                        let dlvAddr1stTxt = document.getElementById('dlvAddr1stTxt');
+                                                        let dlvAddr2ndTxt = document.getElementById('dlvAddr2ndTxt');
+                                                        let mblNo1 = document.getElementById('mblNo1');
+                                                        let mblNo2 = document.getElementById('mblNo2');
+                                                        let mblNo3 = document.getElementById('mblNo3');
 
-                                                            let getPhoneNum = dlvNm.mblNo;
-                                                            // let NgetPhoneNum = getPhoneNum* 1;  // * 1을 하니 맨첫번째자리 0이 제대로 형변환 되지 않았다.
-                                                            // let NgetPhoneNum = Number(getPhoneNum); // 어이없어 왜 형변환을 했을까 ?
-                                                            // let NgetPhoneNum = parseInt(getPhoneNum);
+                                                        let getPhoneNum = dlvNm.mblNo;
+                                                        // let NgetPhoneNum = getPhoneNum* 1;  // * 1을 하니 맨첫번째자리 0이 제대로 형변환 되지 않았다.
+                                                        // let NgetPhoneNum = Number(getPhoneNum); // 어이없어 왜 형변환을 했을까 ?
+                                                        // let NgetPhoneNum = parseInt(getPhoneNum);
 
-                                                            // 앞자리 0일 날라가는 이유 JS에서는 첫번째가 0으로 시작하면 8진수로 취급
-                                                            //parseInt("01", 10) -> 10진수 변환으로 작성하면 해결
-
-
-                                                            console.log('배송지명 연락처',getPhoneNum);
-                                                            console.log('배송지명 연락처',typeof getPhoneNum);
-                                                            // console.log('배송지명 연락처 형변환',typeof NgetPhoneNum);
-                                                            // console.log('배송지명 연락처 형변환 값',NgetPhoneNum);
-
-                                                            let getNum1 = getPhoneNum.substring(0,3); console.log("1번째",getNum1);
-                                                            let getNum2 = getPhoneNum.substring(3,7); console.log("2번째",getNum2);
-                                                            let getNum3 = getPhoneNum.substring(7,11); console.log("3번째",getNum3);
+                                                        // 앞자리 0일 날라가는 이유 JS에서는 첫번째가 0으로 시작하면 8진수로 취급
+                                                        //parseInt("01", 10) -> 10진수 변환으로 작성하면 해결
 
 
-                                                            let getdlvNmTxt = dlvNm.dlvNm;
-                                                            let getRcvNmTxt = dlvNm.rcvNm;
-                                                            let getOrdzipTxt = dlvNm.ordzip;
-                                                            let getDlvAddr1stTxt = dlvNm.dlvAddr1st;
-                                                            let getDlvAddr2ndTxt = dlvNm.dlvAddr2nd;
+                                                        console.log('배송지명 연락처',getPhoneNum);
+                                                        console.log('배송지명 연락처',typeof getPhoneNum);
+                                                        // console.log('배송지명 연락처 형변환',typeof NgetPhoneNum);
+                                                        // console.log('배송지명 연락처 형변환 값',NgetPhoneNum);
+
+                                                        let getNum1 = getPhoneNum.substring(0,3); console.log("1번째",getNum1);
+                                                        let getNum2 = getPhoneNum.substring(3,7); console.log("2번째",getNum2);
+                                                        let getNum3 = getPhoneNum.substring(7,11); console.log("3번째",getNum3);
 
 
-                                                            document.getElementById("dlvNmTxt").value = getdlvNmTxt;
-                                                            document.getElementById("rcvNmTxt").value = getRcvNmTxt;
-                                                            document.getElementById("ordzipTxt").value = getOrdzipTxt;
-                                                            document.getElementById("dlvAddr1stTxt").value = getDlvAddr1stTxt;
-                                                            document.getElementById("dlvAddr2ndTxt").value = getDlvAddr2ndTxt;
-                                                            document.getElementById("mblNo1").value = getNum1;
-                                                            document.getElementById("mblNo2").value = getNum2;
-                                                            document.getElementById("mblNo3").value = getNum3;
+                                                        let getdlvNmTxt = dlvNm.dlvNm;
+                                                        let getRcvNmTxt = dlvNm.rcvNm;
+                                                        let getOrdzipTxt = dlvNm.ordzip;
+                                                        let getDlvAddr1stTxt = dlvNm.dlvAddr1st;
+                                                        let getDlvAddr2ndTxt = dlvNm.dlvAddr2nd;
 
 
-
-                                                        },
-                                                        error: function (jqXHR, textStatus, errorThrown) {
-                                                            console.log('Error:', jqXHR, textStatus, errorThrown);
-                                                            alert('배송지명으로 불러오기 실패');
-                                                        }
-                                                    });<!--ajax -->
+                                                        document.getElementById("dlvNmTxt").value = getdlvNmTxt;
+                                                        document.getElementById("rcvNmTxt").value = getRcvNmTxt;
+                                                        document.getElementById("ordzipTxt").value = getOrdzipTxt;
+                                                        document.getElementById("dlvAddr1stTxt").value = getDlvAddr1stTxt;
+                                                        document.getElementById("dlvAddr2ndTxt").value = getDlvAddr2ndTxt;
+                                                        document.getElementById("mblNo1").value = getNum1;
+                                                        document.getElementById("mblNo2").value = getNum2;
+                                                        document.getElementById("mblNo3").value = getNum3;
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        console.log('Error:', jqXHR, textStatus, errorThrown);
+                                                        alert('배송지명으로 불러오기 실패');
+                                                    }
+                                                });<!--ajax -->
                                             }
                                         </script>
 
@@ -340,7 +355,7 @@
 
                                 <!-- 배송지 작성 -->
 
-                                <c:if test="${empty addressList}">  <!-- 회원의 배송주소록이 등록되어있지 않을때 -->
+                                <c:if test="${empty dlvsList}">  <!-- 회원의 배송주소록이 등록되어있지 않을때 -->
                                 <script>
                                     let nameDlv =  document.getElementById('dlvNmTxt');  //배송지명
                                     let rcvDlv =  document.getElementById('rcvNmTxt');   //수령인
@@ -463,16 +478,16 @@
                         <h3 class="subTitle2">주문 상품 정보</h3>
                         <div class="cartList">
                             <ul>
-<%--                                <c:forEach items="${orderList}" var="orderList">--%>
-<%--                                    <c:choose>--%>
-<%--                                    <c:when test="${orderList.DC_YN eq 'Y'}">--%>
-<%--                                        <c:set var="prod_fee" value="${orderList.AMT * 0.9 * orderList.PROD_INDV_QTY}"/>--%>
-<%--                                    </c:when>--%>
-<%--                                    <c:otherwise>--%>
-<%--                                        <c:set var="prod_fee" value="${orderList.AMT * orderList.PROD_INDV_QTY}"/>--%>
-<%--                                    </c:otherwise>--%>
-<%--                                        <c:set var="point" value="${prod_fee * 0.01}"/>--%>
-<%--                                    </c:choose>--%>
+                                <%--                                <c:forEach items="${orderList}" var="orderList">--%>
+                                <%--                                    <c:choose>--%>
+                                <%--                                    <c:when test="${orderList.DC_YN eq 'Y'}">--%>
+                                <%--                                        <c:set var="prod_fee" value="${orderList.AMT * 0.9 * orderList.PROD_INDV_QTY}"/>--%>
+                                <%--                                    </c:when>--%>
+                                <%--                                    <c:otherwise>--%>
+                                <%--                                        <c:set var="prod_fee" value="${orderList.AMT * orderList.PROD_INDV_QTY}"/>--%>
+                                <%--                                    </c:otherwise>--%>
+                                <%--                                        <c:set var="point" value="${prod_fee * 0.01}"/>--%>
+                                <%--                                    </c:choose>--%>
 
                                 <c:forEach items="${orderList}" var="orderList">
                                     <c:set var="prod_fee" value="${orderList.AMT * orderList.PROD_INDV_QTY}"/>
@@ -481,43 +496,43 @@
                                     </c:if>
                                     <c:set var="point" value="${prod_fee * 0.01}"/>
 
-                                <li>
-                                <div class="pdtRow">
-                                    <div class="cell pdtImg">
+                                    <li>
+                                        <div class="pdtRow">
+                                            <div class="cell pdtImg">
 
-                                        <a href="javascript:void(0);" onclick="window.open('','_blank');">
-                                            <img  id ="pdtImg" src="${orderList.REP_IMG}" alt="상품이미지">
-                                        </a>
+                                                <a href="javascript:void(0);" onclick="window.open('','_blank');">
+                                                    <img  id ="pdtImg" src="${orderList.REP_IMG}" alt="상품이미지">
+                                                </a>
 
-                                    </div>
-                                    <div class="cell pdtInfo">
-                                        <div class="pdtName">
-                                            <a href="javascript:void(0);" onclick="window.open('/kr/ko/ProductView.do?prdSeq=34662&amp;catCd01=UA','_blank');">
-                                                ${orderList.PROD_NM}
-                                            </a>
-                                        </div>
+                                            </div>
+                                            <div class="cell pdtInfo">
+                                                <div class="pdtName">
+                                                    <a href="javascript:void(0);" onclick="window.open('/kr/ko/ProductView.do?prdSeq=34662&amp;catCd01=UA','_blank');">
+                                                            ${orderList.PROD_NM}
+                                                    </a>
+                                                </div>
 
-                                        <div class="pdtOpt">
+                                                <div class="pdtOpt">
 
-                                        </div>
-                                    </div>
-                                    <div class="cell pdtCount">${orderList.PROD_INDV_QTY} 개</div>
-                                    <div class="cell pdtPrice">
+                                                </div>
+                                            </div>
+                                            <div class="cell pdtCount">${orderList.PROD_INDV_QTY} 개</div>
+                                            <div class="cell pdtPrice">
                                                             <span class="price">
                                                                 <span id="price" class="num"><fmt:formatNumber pattern="###,###,###" value="${prod_fee}"/></span>원
                                                             </span>
-                                        <span id="point" class="point">+<fmt:formatNumber pattern="###,###,###" value="${point}"/> P</span>
-                                    </div>
-                                </div>
+                                                <span id="point" class="point">+<fmt:formatNumber pattern="###,###,###" value="${point}"/> P</span>
+                                            </div>
+                                        </div>
 
-                                <div class="usePoint">
+                                        <div class="usePoint">
 
                                                         <span class="pointInput" style="display:none;">
                                                             <input type="text" name="useBtPt" id="useBtPt" class="inputTxt checkNum inputError colorRed" value="0"> P
                                                         </span>
-                                </div>
+                                        </div>
 
-                                </li>
+                                    </li>
                                 </c:forEach> <!-- orderList -->
 
 
@@ -718,7 +733,7 @@
                                             <th scope="row">입금은행</th>
                                             <td>
                                                 <div class="selectArea" style="width:534px;">
-                                                    <button type="button" class="selTit" onclick="selActive();">은행을 선택해 주세요.</button>
+                                                    <button type="button" class="selTit" onclick="selActive();" id="bank">은행을 선택해 주세요.</button>
                                                     <ul class="selList">
                                                         <li><input type="radio" name="tempBankCd" id="bankCd00" value=""><label for="bankCd00">은행을 선택해 주세요.</label></li>
                                                         <li><input type="radio" name="tempBankCd" id="bankCd01" value="11"><label for="bankCd01">농협</label></li>
@@ -740,13 +755,13 @@
                                         <tr>
                                             <th scope="row">계좌번호</th>
                                             <td>
-                                                <input type="text" name="tempAccNo" class="inputTxt checkNum" title="계좌번호 입력" placeholder="‘-’제외하고 숫자만 입력해주세요." style="width:534px;">
+                                                <input type="text" name="tempAccNo" id="tempAccNo" class="inputTxt checkNum" title="계좌번호 입력" placeholder="‘-’제외하고 숫자만 입력해주세요." style="width:534px;">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">예금주명</th>
                                             <td>
-                                                <input type="text" name="tempDpoSiTr" class="inputTxt" title="예금주명 입력" placeholder="예금주명을 입력해주세요." style="width:534px;">
+                                                <input type="text" name="tempDpoSiTr" id="tempDpoSiTr" class="inputTxt" title="예금주명 입력" placeholder="예금주명을 입력해주세요." style="width:534px;">
                                             </td>
                                         </tr>
                                         </tbody>
@@ -781,7 +796,7 @@
                             </dl>
                             <dl>
                                 <dt>할인/차감 금액</dt>
-                                <dd class="totalSale"><span class="num" id="totDcCpnPrcTxt">- 0</span>원</dd>
+                                <dd class="totalSale"><span class="num" id="totDcCpnPrcTxt">0</span>원</dd>
                             </dl>
                             <div class="saleBox" style="display: none;">
                                 <dl id="cpnDcDl" style="display:none;">
@@ -811,7 +826,7 @@
                             </dl>
                             <dl>
                                 <dt>배송비</dt>
-<%--                                <dd id="totPurDlvPrcTxt" $dlvcost="2500"></dd>--%>
+                                <%--                                <dd id="totPurDlvPrcTxt" $dlvcost="2500"></dd>--%>
                                 <dd id="totalDlvTxt" $dlvcost="2500"><span class="num" id="totPurDlvPrcTxt">- 0</span>원</dd>
                             </dl>
                             <!-- [ARC] 배송비 - 뷰티포인트 결제  -->
@@ -893,9 +908,6 @@
         });
     }
 
-
-
-
     // 우편번호 검색 API
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -945,7 +957,6 @@
         }).open();
     }
 
-
     //결제박스
     function setTotalInfo() {
 
@@ -983,7 +994,7 @@
 
 
         //@최종결제금액 = 주문금액 - 할인/차감금액
-       // 아직 쿠폰 적립금이 적용안된 상태 -> 할인/차감금액 빼기 없이 주문금액으로 대체
+        // 아직 쿠폰 적립금이 적용안된 상태 -> 할인/차감금액 빼기 없이 주문금액으로 대체
         totalPrc = totalOrdPrc;
 
         //예정적립금 = 최종결제금액  * 0.01 (할인.차감금액이 적용된 상태에서 1% 적립)
@@ -1005,67 +1016,178 @@
     }
 
 
+    function order_Id(){
+        const date = new Date();
+        const year = date.getFullYear().toString();
+        const month = (date.getMonth() + 1).toString();  //0부터시작 +1
+        const day = date.getDate().toString();
+
+
+        let orderNum = year + month + day;
+        for(let i=0;i<3;i++) {
+            orderNum += Math.floor(Math.random() * 8);
+        }
+
+        return orderNum;
+    }
+    const orderId = order_Id();
+    console.log("주문번호",orderId);
 
 
 
+    //input태그
+            function input(){
+                let ordForm = $("<form>").attr('method', 'POST').attr('action', '/order/done'); //폼생성
 
-    $(document).ready(function () {
+                let ordNmTxtVal = $('#ordNmTxt').val(); //주문자
+                let inputOrdNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdNmTxt').val(ordNmTxtVal).appendTo(ordForm); //주문자
 
+                let ordMblNo1Val = $('#ordMblNo1').text();
+                let ordMblNo2Val = $('#ordMblNo2').val();
+                let ordMblNo3tVal = $('#ordMblNo3').val();
+                let ordMblNoVal = ordMblNo1Val + ordMblNo2Val+ ordMblNo3tVal; //주문자 연락처
+                let inputOrdMblNo = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdMblNo').val(ordMblNoVal).appendTo(ordForm); //주문자 연락처 1+2+3
 
-        setTotalInfo();
-    });
+                let emailTxtVal = $('#emailTxt').val();
+                let inputEmailTxt  = $('<input>').attr('type', 'hidden').attr('name', 'inputEmailTxt').val(emailTxtVal).appendTo(ordForm);  // 주문자 이메일
 
+                let dlvNmTxtVal = $('#dlvNmTxt').val();  //배송지명
+                let inputDlvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvNmTxt').val(dlvNmTxtVal).appendTo(ordForm);  // 배송지명
 
+                let rcvNmTxtVal = $('#rcvNmTxt').val();  //받으실분
+                let inputRcvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputRcvNmTxt').val(rcvNmTxtVal).appendTo(ordForm); //받으실분
 
-    //-----------------------------------------------------------------------------------------------------------
+                let ordzipTxtVal = $('#ordzipTxt').val(); //우편번호
+                let inputOrdzipTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdzipTxt').val(ordzipTxtVal).appendTo(ordForm); //우편번호
+
+                let dlvAddr1stTxtVal = $('#dlvAddr1stTxt').val(); // 기본주소
+                let inputDlvAddr1stTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr1stTxt').val(dlvAddr1stTxtVal).appendTo(ordForm);  //기본주소
+
+                let dlvAddr2ndTxtVal = $('#dlvAddr2ndTxt').val(); // 상세주소
+                let inputDlvAddr2ndTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr2ndTxt').val(dlvAddr2ndTxtVal).appendTo(ordForm);  //상세주소
+
+                let mblNo1Val = $('#mblNo1').text();
+                let mblNo2Val = $('#mblNo2').val();
+                let mblNo3Val = $('#mblNo3').val();
+
+                let mblNoVal = mblNo1Val + mblNo2Val + mblNo3Val; // 수령인 연락처
+                let inputMblNoVal = $('<input>').attr('type', 'hidden').attr('name', 'inputMblNoVal').val(mblNoVal).appendTo(ordForm);  //수령인연락처 1 + 2 + 3
+
+                let dlvReqCntTxtVal = $('#dlvReqCntTxt').val(); //배송 요청사항
+                let inputDlvReqCntTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvReqCntTxt').val(dlvReqCntTxtVal).appendTo(ordForm);  //배송요청사항
+
+                let bankVal = $('#bank').text();  //은행
+                let inputBank = $('<input>').attr('type', 'hidden').attr('name', 'inputBank').val(bankVal).appendTo(ordForm);  //은행
+
+                let tempAccNoVal = $('#tempAccNo').val(); // 계좌번호
+                let inputTempAccNo = $('<input>').attr('type', 'hidden').attr('name', 'inputTempAccNo').val(tempAccNoVal).appendTo(ordForm);   //계좌번호
+
+                let tempDpoSiTrVal = $('#tempDpoSiTr').val();  //예금주
+                let inputTempDpoSiTr = $('<input>').attr('type', 'hidden').attr('name', 'inputTempDpoSiTr').val(tempDpoSiTrVal).appendTo(ordForm); //예금주명
+
+                let totPrdPrcTxtVal = parseInt($('#totPrdPrcTxt').text().replace(/,/g, "")); //주문금액
+                let inputTotPrdPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPrdPrcTxt').val(totPrdPrcTxtVal).appendTo(ordForm); //주문금액
+
+                let totPurPrcTxtVal = parseInt($('#totPurPrcTxt').text().replace(/,/g, ""));  //결제금액
+                let inputTotPurPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurPrcTxt').val(totPurPrcTxtVal).appendTo(ordForm); //결제금액
+
+                let totDcCpnPrcTxtVal = parseInt($('#totDcCpnPrcTxt').text().replace(/,/g, "")); //할인,차감금액
+                let inputTotDcCpnPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotDcCpnPrcTxt').val(totDcCpnPrcTxtVal).appendTo(ordForm);  //할인차감금액
+
+                let totReservePtTxtVal = parseInt($('#totReservePtTxt').text().replace(/,/g, "")); //적립금
+                let inputTotReservePtTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotReservePtTxt').val(totReservePtTxtVal).appendTo(ordForm); //적립금
+
+                let totPurDlvPrcTxtVal = parseInt($('#totPurDlvPrcTxt').text().replace(/,/g, "")); //배송비
+                let inputTotPurDlvPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurDlvPrcTxt').val(totPurDlvPrcTxtVal).appendTo(ordForm);//배송비
+
+                let inputOrdId = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdId').val(orderId).appendTo(ordForm);//주문번호
+                console.log('inputTotPurPrcTxt',totPrdPrcTxtVal);
+                console.log('inputTotPurPrcTxt',totPurPrcTxtVal);
+                console.log('totDcCpnPrcTxtVal',totDcCpnPrcTxtVal);
+                console.log('totReservePtTxtVal',totReservePtTxtVal);
+                console.log('totPurDlvPrcTxtVal',totPurDlvPrcTxtVal);
+
+                let isAddNewChkVal = document.getElementById("isAddNewChk").checked ? "Y" : "N";
+                let inputIsAddNewChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddNewChk').val(isAddNewChkVal).appendTo(ordForm);
+
+                let isAddDefaultChkVal = document.getElementById("isAddDefaultChk").checked ? "Y" : "N";
+                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddNewChkVal).appendTo(ordForm);
+
+                $(document.body).append(ordForm);
+                ordForm.submit();
+            } //input()
+    //------------------------------------------------------------------------------------------
     //결제 API
     $("#payBtn").click(function() {
         console.log('버튼클릭확인');
-    IMP.init('imp21837643');
+
+        let zipDlvPay =  document.getElementById('ordzipTxt').value;
+        let Addr1stDlvPay =  document.getElementById('dlvAddr1stTxt').value;
+        let totPurPrcTxt =  parseInt(document.getElementById('totPurPrcTxt').textContent.replace(/,/g, ""));
+
+        console.log("결제 우편 ",typeof zipDlvPay);
+        console.log("결제 주소",typeof Addr1stDlvPay);
+        console.log("결제 금액",typeof totPurPrcTxt);
+        console.log("결제 금액 최종값", totPurPrcTxt);
+
+        // input();
+
+
+        IMP.init('imp21837643');
+        IMP.request_pay({
+            pg : 'html5_inicis.INIpayTest',  //pg사 - kg이니시스
+            pay_method : 'card',       //결제방법 - 카드
+            // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
+            merchant_uid : orderId,  //주문아이디
+            // name : '주문명:결제테스트', //주문명
+            name : '이니스프리 결제',
+            amount :  totPurPrcTxt, //상품가격 - Number()
+            // amount :  100, //상품가격  -----**********test 용 100원************
+            buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
+            buyer_name : '${mbrDto.MBR_NM}',     //주문자
+            buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
+            buyer_addr : Addr1stDlvPay,            //주문자 우편번호
+            buyer_postcode :zipDlvPay        //주문자 기본주소
+        }, function(rsp) {  //-------콜백함수
+            let result = '';
+            if ( rsp.success ) {
+                let msg ='';
+                result ='0';
+            } else {
+                // let msg = '결제에 실패하였습니다.';
+                msg = '결제에 실패하였습니다.';
+                msg +=  rsp.error_msg;
+                result ='1';
+            }
+            if(result==='0') {
+                // msg = '결제가 완료되었습니다.';
+                // msg += '고유ID : ' + rsp.imp_uid;  //가맹점번호
+                // msg += '상점 거래ID : ' + rsp.merchant_uid;
+                // msg += '결제 금액 : ' + rsp.paid_amount;
+                // msg += '카드 승인번호 : ' + rsp.apply_num;
+                input();
+
+                alert("결제가 성공하였습니다")
+            }
+            alert(msg);
+        });//rsp
+    }); //payBtn click
+
+
+
     //결제시 전달되는 정보
-    IMP.request_pay({
-        pg : 'inicis',
-        pay_method : 'card',
-        merchant_uid : 'merchant_' + new Date().getTime(),
-        name : '주문명:결제테스트'/*상품명*/,
-        amount : 100/*상품 가격*/,
-        buyer_email : 'iamport@siot.do'/*구매자 이메일*/,
-        buyer_name : '구매자이름',
-        buyer_tel : '010-1234-5678'/*구매자 연락처*/,
-        buyer_addr : '서울특별시 강남구 삼성동'/*구매자 주소*/,
-        buyer_postcode : '123-456'/*구매자 우편번호*/
-    }, function(rsp) {
-        var result = '';
-        if ( rsp.success ) {
-            var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-            result ='0';
-        } else {
-            var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-            result ='1';
-        }
-        if(result=='0') {
-            // location.href= $.getContextPath()+"/Cart/Success";
-            alert("결제 성공")
-        }
-        alert(msg);
+
+
+
+
+
+    //---------------------------------------------------------------------------------------------------------------------
+    $(document).ready(function () {
+        setTotalInfo();
+        //나중에 포인트 쿠폰 적용 클릭 이벤트시에도 결제박스계산 함수 호출하기 (나중에)
+
     });
-    });
-
-
-
-
-
-
-
-
-
 </script>
-
 
 </body>
 </html>

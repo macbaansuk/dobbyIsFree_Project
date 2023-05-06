@@ -12,4 +12,14 @@ public interface OrderService {
     public List<DlvDto> getAddressByMbrId(String mbrId);
 
     public DlvDto getAddressDlvId(Integer dlvNmId);
+    public int insertOrdInfo(OrdDto ordDto);
+
+
+    public int insertOrderProd(OrdProdDto ordProdDto);
+
+    public int  insertDlvLog(DlvpnLogDto dPDto);
+
+    public int updateDlvDefault(String mbrId, Integer dlvpnId);
+
+    public void deleteCart(List<Integer> delCartIds);
 }

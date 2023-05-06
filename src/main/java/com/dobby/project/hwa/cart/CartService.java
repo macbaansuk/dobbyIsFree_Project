@@ -13,12 +13,7 @@ public interface CartService {
 
     public void deleteCart(List<Integer> cartIdList);
 
-//    public  void updateCartQty(Integer cartId, Integer quantity);  //원래 업데이트 카트
     public  CartProdDto  updateCartQty(Integer cartId, Integer quantity);
-
-
-//    public void updateCartQuantity(String userKey, Integer cartId, Integer quantity);
-
 
 
 }
