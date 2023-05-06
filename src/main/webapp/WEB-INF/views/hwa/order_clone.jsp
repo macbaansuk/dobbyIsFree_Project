@@ -139,26 +139,38 @@
                                     <td>
 
                                         <!-- 배송지목록에 추가, 기본배송지로 등록 -->
-                                        <div class="row deliverySel">
-                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" id="isAddNewChk" checked="checked" readonly=""> <span>배송지 목록에 추가</span></label>
-                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" id="isAddDefaultChk"> <span>기본 배송지로 등록</span></label>
+                                        <div class="row deliverySel"  id="chkWrapper" style="display: none">
+                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" name="isAddNewChk" id="isAddNewChk" checked="checked" readonly="" value="Y"> <span>배송지 목록에 추가</span></label>
+                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" value="Y"> <span>기본 배송지로 등록</span></label>
                                             <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
                                         </div>
+                                            <script>
+                                                function dlvChk(radioButton) {
 
+                                                    let chkWrapper = document.getElementById("chkWrapper");
+
+                                                    // 신규 입력 선택
+                                                    if (radioButton.id === "dlvRequest1" && radioButton.checked) {
+                                                        chkWrapper.style.display = "block";
+                                                    } else {
+                                                        chkWrapper.style.display = "none";
+                                                    }
+                                                }
+                                            </script>
                                         <!-- 배송지명 -->
                                         <div class="row">
                                             <label for="dlvNmTxt" class="titLabel"  style="display: block"><span class="required" aria-required="true">필수입력</span> 배송지명</label>
                                             <div class="selectArea" style="width: 90%">
                                                 <button class="selTit" type="button" onclick="selActive();">배송지명 선택</button>
                                                 <ul class="selList">
-                                                    <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>
+                                                    <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio" onclick="dlvChk(this)"><label for="dlvRequest1" >신규입력</label></li>
                                                     <%--                                                        <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>--%>
                                                     <%--                                                        <li><input type="radio" id="dlvRequest2" name="dlvReqCntRadio"><label for="dlvRequest2">집</label></li>--%>
                                                     <%--                                                        <li><input type="radio" id="dlvRequest3" name="dlvReqCntRadio"><label for="dlvRequest3">회사</label></li>--%>
 
                                                     <c:set var="loop" value="${2}" />
                                                     <c:forEach items="${dlvsList}" var="dlvsList">
-                                                        <li><input onclick="dlvNmClick(this)" data-dlvpnId="${dlvsList.DLVPN_ID}" type="radio" id="dlvRequest${loop}" name="dlvReqCntRadio" ><label for="dlvRequest${loop}">${dlvsList.DLVPN_NM}</label></li>
+                                                        <li><input onclick="dlvNmClick(this); dlvChk(this)" data-dlvpnId="${dlvsList.DLVPN_ID}" type="radio" id="dlvRequest${loop}" name="dlvReqCntRadio" ><label for="dlvRequest${loop}">${dlvsList.DLVPN_NM}</label></li>
                                                         <c:set var="loop" value="${loop + 1}" />
                                                     </c:forEach>
                                                 </ul>
@@ -169,16 +181,22 @@
                                         </div>
 
                                         <script>
+                                            //신규입력 클릭시 배송지추가버튼 보이게하기
+
+
                                             //배송지명 : 신규 입력 클릭시 입력값 처음 val로 나타내기
                                             let dlvRequest1 = document.getElementById("dlvRequest1").value;  //원래 값 변수에 저장해놓기
                                             $('#dlvRequest1').on('click', function() {
                                                 console.log("신규입력 클릭확인")
 
-                                                document.getElementById("dlvRequest1").value = dlvRequest1;
-                                                document.getElementById("rcvNmTxt").value = rcvNmTxtVal;
-                                                document.getElementById("mblNo1").value = mblNo1Val;
-                                                document.getElementById("mblNo2").value = mblNo2Val;
-                                                document.getElementById("mblNo3").value = mblNo3val;
+                                                document.getElementById("dlvRequest1").value = '';
+                                                document.getElementById("rcvNmTxt").value = '';
+                                                document.getElementById("ordzipTxt").value = '';
+                                                document.getElementById("dlvAddr1stTxt").value = '';
+                                                document.getElementById("dlvAddr2ndTxt").value = '';
+                                                document.getElementById("mblNo1").value = '';
+                                                document.getElementById("mblNo2").value = '';
+                                                document.getElementById("mblNo3").value = '';
                                             });
 
 
@@ -337,7 +355,7 @@
 
                                 <!-- 배송지 작성 -->
 
-                                <c:if test="${empty addressList}">  <!-- 회원의 배송주소록이 등록되어있지 않을때 -->
+                                <c:if test="${empty dlvsList}">  <!-- 회원의 배송주소록이 등록되어있지 않을때 -->
                                 <script>
                                     let nameDlv =  document.getElementById('dlvNmTxt');  //배송지명
                                     let rcvDlv =  document.getElementById('rcvNmTxt');   //수령인
@@ -352,7 +370,7 @@
                                     </c:if>
                                 </script>
 
-                                <c:forEach var="addressList" items="${addressList}"> <!-- 기본배송지여부가 'Y'인 배송지List -->
+                                <c:forEach var="addressList" items="${dlvsList}"> <!-- 기본배송지여부가 'Y'인 배송지List -->
                                     <script>
                                         let nameDlv2 =  document.getElementById('dlvNmTxt');
                                         let rcvDlv2 =  document.getElementById('rcvNmTxt');
@@ -1018,82 +1036,86 @@
 
 
     //input태그
-    function input(){
-        let ordForm = $("<form>").attr('method', 'POST').attr('action', '/order/done'); //폼생성
+            function input(){
+                let ordForm = $("<form>").attr('method', 'POST').attr('action', '/order/done'); //폼생성
 
-        let ordNmTxtVal = $('#ordNmTxt').val(); //주문자
-        let inputOrdNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdNmTxt').val(ordNmTxtVal).appendTo(ordForm); //주문자
+                let ordNmTxtVal = $('#ordNmTxt').val(); //주문자
+                let inputOrdNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdNmTxt').val(ordNmTxtVal).appendTo(ordForm); //주문자
 
-        let ordMblNo1Val = $('#ordMblNo1').text();
-        let ordMblNo2Val = $('#ordMblNo2').val();
-        let ordMblNo3tVal = $('#ordMblNo3').val();
-        let ordMblNoVal = ordMblNo1Val + ordMblNo2Val+ ordMblNo3tVal; //주문자 연락처
-        let inputOrdMblNo = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdMblNo').val(ordMblNoVal).appendTo(ordForm); //주문자 연락처 1+2+3
+                let ordMblNo1Val = $('#ordMblNo1').text();
+                let ordMblNo2Val = $('#ordMblNo2').val();
+                let ordMblNo3tVal = $('#ordMblNo3').val();
+                let ordMblNoVal = ordMblNo1Val + ordMblNo2Val+ ordMblNo3tVal; //주문자 연락처
+                let inputOrdMblNo = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdMblNo').val(ordMblNoVal).appendTo(ordForm); //주문자 연락처 1+2+3
 
-        let emailTxtVal = $('#emailTxt').val();
-        let inputEmailTxt  = $('<input>').attr('type', 'hidden').attr('name', 'inputEmailTxt').val(emailTxtVal).appendTo(ordForm);  // 주문자 이메일
+                let emailTxtVal = $('#emailTxt').val();
+                let inputEmailTxt  = $('<input>').attr('type', 'hidden').attr('name', 'inputEmailTxt').val(emailTxtVal).appendTo(ordForm);  // 주문자 이메일
 
-        let dlvNmTxtVal = $('#dlvNmTxt').val();  //배송지명
-        let inputDlvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvNmTxt').val(dlvNmTxtVal).appendTo(ordForm);  // 배송지명
+                let dlvNmTxtVal = $('#dlvNmTxt').val();  //배송지명
+                let inputDlvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvNmTxt').val(dlvNmTxtVal).appendTo(ordForm);  // 배송지명
 
-        let rcvNmTxtVal = $('#rcvNmTxt').val();  //받으실분
-        let inputRcvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputRcvNmTxt').val(rcvNmTxtVal).appendTo(ordForm); //받으실분
+                let rcvNmTxtVal = $('#rcvNmTxt').val();  //받으실분
+                let inputRcvNmTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputRcvNmTxt').val(rcvNmTxtVal).appendTo(ordForm); //받으실분
 
-        let ordzipTxtVal = $('#ordzipTxt').val(); //우편번호
-        let inputOrdzipTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdzipTxt').val(ordzipTxtVal).appendTo(ordForm); //우편번호
+                let ordzipTxtVal = $('#ordzipTxt').val(); //우편번호
+                let inputOrdzipTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdzipTxt').val(ordzipTxtVal).appendTo(ordForm); //우편번호
 
-        let dlvAddr1stTxtVal = $('#dlvAddr1stTxt').val(); // 기본주소
-        let inputDlvAddr1stTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr1stTxt').val(dlvAddr1stTxtVal).appendTo(ordForm);  //기본주소
+                let dlvAddr1stTxtVal = $('#dlvAddr1stTxt').val(); // 기본주소
+                let inputDlvAddr1stTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr1stTxt').val(dlvAddr1stTxtVal).appendTo(ordForm);  //기본주소
 
-        let dlvAddr2ndTxtVal = $('#dlvAddr2ndTxt').val(); // 상세주소
-        let inputDlvAddr2ndTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr2ndTxt').val(dlvAddr2ndTxtVal).appendTo(ordForm);  //상세주소
+                let dlvAddr2ndTxtVal = $('#dlvAddr2ndTxt').val(); // 상세주소
+                let inputDlvAddr2ndTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvAddr2ndTxt').val(dlvAddr2ndTxtVal).appendTo(ordForm);  //상세주소
 
-        let mblNo1Val = $('#mblNo1').text();
-        let mblNo2Val = $('#mblNo2').val();
-        let mblNo3Val = $('#mblNo3').val();
+                let mblNo1Val = $('#mblNo1').text();
+                let mblNo2Val = $('#mblNo2').val();
+                let mblNo3Val = $('#mblNo3').val();
 
-        let mblNoVal = mblNo1Val + mblNo2Val + mblNo3Val; // 수령인 연락처
-        let inputMblNoVal = $('<input>').attr('type', 'hidden').attr('name', 'inputMblNoVal').val(mblNoVal).appendTo(ordForm);  //수령인연락처 1 + 2 + 3
+                let mblNoVal = mblNo1Val + mblNo2Val + mblNo3Val; // 수령인 연락처
+                let inputMblNoVal = $('<input>').attr('type', 'hidden').attr('name', 'inputMblNoVal').val(mblNoVal).appendTo(ordForm);  //수령인연락처 1 + 2 + 3
 
-        let dlvReqCntTxtVal = $('#dlvReqCntTxt').val(); //배송 요청사항
-        let inputDlvReqCntTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvReqCntTxt').val(dlvReqCntTxtVal).appendTo(ordForm);  //배송요청사항
+                let dlvReqCntTxtVal = $('#dlvReqCntTxt').val(); //배송 요청사항
+                let inputDlvReqCntTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputDlvReqCntTxt').val(dlvReqCntTxtVal).appendTo(ordForm);  //배송요청사항
 
-        let bankVal = $('#bank').text();  //은행
-        let inputBank = $('<input>').attr('type', 'hidden').attr('name', 'inputBank').val(bankVal).appendTo(ordForm);  //은행
+                let bankVal = $('#bank').text();  //은행
+                let inputBank = $('<input>').attr('type', 'hidden').attr('name', 'inputBank').val(bankVal).appendTo(ordForm);  //은행
 
-        let tempAccNoVal = $('#tempAccNo').val(); // 계좌번호
-        let inputTempAccNo = $('<input>').attr('type', 'hidden').attr('name', 'inputTempAccNo').val(tempAccNoVal).appendTo(ordForm);   //계좌번호
+                let tempAccNoVal = $('#tempAccNo').val(); // 계좌번호
+                let inputTempAccNo = $('<input>').attr('type', 'hidden').attr('name', 'inputTempAccNo').val(tempAccNoVal).appendTo(ordForm);   //계좌번호
 
-        let tempDpoSiTrVal = $('#tempDpoSiTr').val();  //예금주
-        let inputTempDpoSiTr = $('<input>').attr('type', 'hidden').attr('name', 'inputTempDpoSiTr').val(tempDpoSiTrVal).appendTo(ordForm); //예금주명
+                let tempDpoSiTrVal = $('#tempDpoSiTr').val();  //예금주
+                let inputTempDpoSiTr = $('<input>').attr('type', 'hidden').attr('name', 'inputTempDpoSiTr').val(tempDpoSiTrVal).appendTo(ordForm); //예금주명
 
-        let totPrdPrcTxtVal = parseInt($('#totPrdPrcTxt').text().replace(/,/g, "")); //주문금액
-        let inputTotPrdPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPrdPrcTxt').val(totPrdPrcTxtVal).appendTo(ordForm); //주문금액
+                let totPrdPrcTxtVal = parseInt($('#totPrdPrcTxt').text().replace(/,/g, "")); //주문금액
+                let inputTotPrdPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPrdPrcTxt').val(totPrdPrcTxtVal).appendTo(ordForm); //주문금액
 
-        let totPurPrcTxtVal = parseInt($('#totPurPrcTxt').text().replace(/,/g, ""));  //결제금액
-        let inputTotPurPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurPrcTxt').val(totPurPrcTxtVal).appendTo(ordForm); //결제금액
+                let totPurPrcTxtVal = parseInt($('#totPurPrcTxt').text().replace(/,/g, ""));  //결제금액
+                let inputTotPurPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurPrcTxt').val(totPurPrcTxtVal).appendTo(ordForm); //결제금액
 
-        let totDcCpnPrcTxtVal = parseInt($('#totDcCpnPrcTxt').text().replace(/,/g, "")); //할인,차감금액
-        let inputTotDcCpnPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotDcCpnPrcTxt').val(totDcCpnPrcTxtVal).appendTo(ordForm);  //할인차감금액
+                let totDcCpnPrcTxtVal = parseInt($('#totDcCpnPrcTxt').text().replace(/,/g, "")); //할인,차감금액
+                let inputTotDcCpnPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotDcCpnPrcTxt').val(totDcCpnPrcTxtVal).appendTo(ordForm);  //할인차감금액
 
-        let totReservePtTxtVal = parseInt($('#totReservePtTxt').text().replace(/,/g, "")); //적립금
-        let inputTotReservePtTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotReservePtTxt').val(totReservePtTxtVal).appendTo(ordForm); //적립금
+                let totReservePtTxtVal = parseInt($('#totReservePtTxt').text().replace(/,/g, "")); //적립금
+                let inputTotReservePtTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotReservePtTxt').val(totReservePtTxtVal).appendTo(ordForm); //적립금
 
-        let totPurDlvPrcTxtVal = parseInt($('#totPurDlvPrcTxt').text().replace(/,/g, "")); //배송비
-        let inputTotPurDlvPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurDlvPrcTxt').val(totPurDlvPrcTxtVal).appendTo(ordForm);//배송비
+                let totPurDlvPrcTxtVal = parseInt($('#totPurDlvPrcTxt').text().replace(/,/g, "")); //배송비
+                let inputTotPurDlvPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurDlvPrcTxt').val(totPurDlvPrcTxtVal).appendTo(ordForm);//배송비
 
-        let inputOrdId = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdId').val(orderId).appendTo(ordForm);//주문번호
-        console.log('inputTotPurPrcTxt',totPrdPrcTxtVal);
-        console.log('inputTotPurPrcTxt',totPurPrcTxtVal);
-        console.log('totDcCpnPrcTxtVal',totDcCpnPrcTxtVal);
-        console.log('totReservePtTxtVal',totReservePtTxtVal);
-        console.log('totPurDlvPrcTxtVal',totPurDlvPrcTxtVal);
+                let inputOrdId = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdId').val(orderId).appendTo(ordForm);//주문번호
+                console.log('inputTotPurPrcTxt',totPrdPrcTxtVal);
+                console.log('inputTotPurPrcTxt',totPurPrcTxtVal);
+                console.log('totDcCpnPrcTxtVal',totDcCpnPrcTxtVal);
+                console.log('totReservePtTxtVal',totReservePtTxtVal);
+                console.log('totPurDlvPrcTxtVal',totPurDlvPrcTxtVal);
 
+                let isAddNewChkVal = document.getElementById("isAddNewChk").checked ? "Y" : "N";
+                let inputIsAddNewChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddNewChk').val(isAddNewChkVal).appendTo(ordForm);
 
+                let isAddDefaultChkVal = document.getElementById("isAddDefaultChk").checked ? "Y" : "N";
+                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddNewChkVal).appendTo(ordForm);
 
-        $(document.body).append(ordForm);
-        ordForm.submit();
-    } //input()
+                $(document.body).append(ordForm);
+                ordForm.submit();
+            } //input()
     //------------------------------------------------------------------------------------------
     //결제 API
     $("#payBtn").click(function() {
@@ -1108,7 +1130,7 @@
         console.log("결제 금액",typeof totPurPrcTxt);
         console.log("결제 금액 최종값", totPurPrcTxt);
 
-        // input();
+        input();
 
 
         IMP.init('imp21837643');
@@ -1142,7 +1164,7 @@
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-                input();
+                // input();
 
                 // alert("결제 성공")
             }
@@ -1161,7 +1183,8 @@
     //---------------------------------------------------------------------------------------------------------------------
     $(document).ready(function () {
         setTotalInfo();
-        //나중에 포인트 쿠폰 적용 클릭 이벤트시에도 결제박스계산 함수 호출하기
+        //나중에 포인트 쿠폰 적용 클릭 이벤트시에도 결제박스계산 함수 호출하기 (나중에)
+
     });
 </script>
 

@@ -1,24 +1,22 @@
 package com.dobby.project.hwa.order;
 
-public class DlvDto {  //배송지주소록
-
-    private String DLVPN_ID;
+public class DlvpnLogDto {
+    private Integer DLVPN_ID;
     private String MBR_ID;
     private String ORD_ID;
-    private String RCPR;
-    private String DLVPN_NM;
+    private String RCPR;  //수령자
+    private String DLVPN_NM;  //배송지명
     private String RCPR_MPNO;
     private String ZPCD;
     private String BASIC_ADDR;
     private String DTL_ADDR;
-    private String REQ;
-    private String BASIC_DLVPN_ADD;
-    private String LIST_YN;
+    private String REQ; //요청사항 - 안쓰는컬럼
+    private String BASIC_DLVPN_ADD;  //배송지목록에추가 -안쓰는 컬럼
+    private String LIST_YN; //기본배송지여부
 
-
-    public DlvDto(){}
-
-    public DlvDto(String DLVPN_ID, String MBR_ID, String ORD_ID, String RCPR, String DLVPN_NM, String RCPR_MPNO, String ZPCD, String BASIC_ADDR, String DTL_ADDR, String REQ, String BASIC_DLVPN_ADD, String LIST_YN) {
+    public DlvpnLogDto(){}
+    public DlvpnLogDto(Integer DLVPN_ID, String MBR_ID, String ORD_ID, String RCPR, String DLVPN_NM, String RCPR_MPNO,
+                       String ZPCD, String BASIC_ADDR, String DTL_ADDR, String REQ, String BASIC_DLVPN_ADD, String LIST_YN) {
         this.DLVPN_ID = DLVPN_ID;
         this.MBR_ID = MBR_ID;
         this.ORD_ID = ORD_ID;
@@ -36,8 +34,8 @@ public class DlvDto {  //배송지주소록
 
     @Override
     public String toString() {
-        return "DlvDto{" +
-                "DLVPN_ID='" + DLVPN_ID + '\'' +
+        return "DlvpnLogDto{" +
+                "DLVPN_ID=" + DLVPN_ID +
                 ", MBR_ID='" + MBR_ID + '\'' +
                 ", ORD_ID='" + ORD_ID + '\'' +
                 ", RCPR='" + RCPR + '\'' +
@@ -52,11 +50,12 @@ public class DlvDto {  //배송지주소록
                 '}';
     }
 
-    public String getDLVPN_ID() {
+
+    public Integer getDLVPN_ID() {
         return DLVPN_ID;
     }
 
-    public void setDLVPN_ID(String DLVPN_ID) {
+    public void setDLVPN_ID(Integer DLVPN_ID) {
         this.DLVPN_ID = DLVPN_ID;
     }
 

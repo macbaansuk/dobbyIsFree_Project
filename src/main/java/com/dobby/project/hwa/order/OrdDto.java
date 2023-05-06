@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class OrdDto {
+public class OrdDto {  // 주문 TB
     private String ORD_ID;
     private String MBR_ID;
     private String COU_ID;

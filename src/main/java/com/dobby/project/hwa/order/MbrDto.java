@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class MbrDto {
+public class MbrDto { //주문 회원정보
 
     private String MBR_Id;
     private String MBR_NM;

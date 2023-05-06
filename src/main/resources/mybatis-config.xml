@@ -23,6 +23,8 @@
         <typeAlias alias="MbrDto" type="com.dobby.project.hwa.order.MbrDto"/>
         <typeAlias alias="DlvDto" type="com.dobby.project.hwa.order.DlvDto"/>
         <typeAlias alias="OrdDto" type="com.dobby.project.hwa.order.OrdDto"/>
+        <typeAlias alias="OrdProdDto" type="com.dobby.project.hwa.order.OrdProdDto"/>
+        <typeAlias alias="DlvpnLogDto" type="com.dobby.project.hwa.order.DlvpnLogDto"/>
 
     </typeAliases>
 

@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class OrderDone {
+public class OrderDone { // 주문 상품제외 주문 정보
 
     private String  inputOrdId; //주문아이디
     private String  inputOrdNmTxt; //주문자명

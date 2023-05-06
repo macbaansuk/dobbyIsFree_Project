@@ -5,7 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class OrderDaoImpl implements  OrderDao {
@@ -39,5 +41,26 @@ public class OrderDaoImpl implements  OrderDao {
     @Override
     public int insertOrdInfo(OrdDto ordDto) {
         return session.insert(namespace + "insertOrdInfo", ordDto);
+    }
+
+
+
+    @Override
+    public int insertOrderProd(OrdProdDto ordProdDto) {
+        return session.insert(namespace + "insertOrderProd",ordProdDto);
+    }
+
+    @Override
+    public int insertDlvLog(DlvpnLogDto dPDto) {
+        return session.insert(namespace + "insertDlvLog",dPDto);
+    }
+
+    @Override
+    public int updateDlvDefault(String mbrId, Integer dlvpnId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("MBR_ID", mbrId);
+        map.put("DLVPN_ID", dlvpnId);
+
+        return session.update(namespace + "updateDlvDefault",map);
     }
 }
