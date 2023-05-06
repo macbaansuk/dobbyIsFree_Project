@@ -370,7 +370,7 @@
                                     </c:if>
                                 </script>
 
-                                <c:forEach var="addressList" items="${dlvsList}"> <!-- 기본배송지여부가 'Y'인 배송지List -->
+                                <c:forEach var="addressList" items="${addressList}"> <!-- 기본배송지여부가 'Y'인 배송지List -->
                                     <script>
                                         let nameDlv2 =  document.getElementById('dlvNmTxt');
                                         let rcvDlv2 =  document.getElementById('rcvNmTxt');
@@ -1139,9 +1139,10 @@
             pay_method : 'card',       //결제방법 - 카드
             // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
             merchant_uid : orderId,  //주문아이디
-            name : '주문명:결제테스트', //주문명
-            // amount :  totPurPrcTxt, //상품가격 - Number()
-            amount :  100, //상품가격  -----**********test 용 100원************
+            // name : '주문명:결제테스트', //주문명
+            name : '이니스프리 결제',
+            amount :  totPurPrcTxt, //상품가격 - Number()
+            // amount :  100, //상품가격  -----**********test 용 100원************
             buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
             buyer_name : '${mbrDto.MBR_NM}',     //주문자
             buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
@@ -1159,14 +1160,14 @@
                 result ='1';
             }
             if(result==='0') {
-                msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;  //가맹점번호
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
+                // msg = '결제가 완료되었습니다.';
+                // msg += '고유ID : ' + rsp.imp_uid;  //가맹점번호
+                // msg += '상점 거래ID : ' + rsp.merchant_uid;
+                // msg += '결제 금액 : ' + rsp.paid_amount;
+                // msg += '카드 승인번호 : ' + rsp.apply_num;
                 // input();
 
-                // alert("결제 성공")
+                alert("결제가 성공하였습니다")
             }
             alert(msg);
         });//rsp

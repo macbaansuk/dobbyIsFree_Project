@@ -15,5 +15,5 @@ public interface CartService {
 
     public  CartProdDto  updateCartQty(Integer cartId, Integer quantity);
 
-s
+
 }

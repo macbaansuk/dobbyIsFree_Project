@@ -82,15 +82,16 @@ public class OrderController {
         // 기본 배송지가 'Y'가 아니라면 불러오지 않는다
         List<DlvDto> dlvsList = orderService.getAddressByMbrId(mbrId);
 
-//        List<DlvDto> addressList = new ArrayList<>();
-//        for (DlvDto dlv : dlvsList) {
-//            if (dlv.getBASIC_DLVPN_ADD().equals("Y")) {
-//                addressList.add(dlv);
-//                break;
-//            }
-//        }  --기본배송지여부 Y가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
+        List<DlvDto> addressList = new ArrayList<>();
+        for (DlvDto dlv : dlvsList) {
+//            if (dlv.getBASIC_DLVPN_ADD().equals("Y")) { //배송지목록추가말고
+            if (dlv.getLIST_YN().equals("Y")) {  // 기본배송지여부
+                addressList.add(dlv);
+                break;
+            }
+        }  //--기본배송지여부 Y가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
 
-//        m.addAttribute("addressList", addressList);
+        m.addAttribute("addressList", addressList);
         m.addAttribute("dlvsList", dlvsList);
 
 //        System.out.println("(배송지List)dlvList=" + dlvsList);
@@ -225,6 +226,14 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
             }
         }
 
+        //장바구니 삭제하기
+        List<Integer> delCartIds = new ArrayList<>();
+        for(CartProdDto cartProdDto : checkedCartList){
+            delCartIds.add(cartProdDto.getCART_ID());
+        }
+            orderService.deleteCart(delCartIds);
+        
+        
         //세션 삭제하기
 //        session.removeAttribute("checkedCartList");
 //        session.removeAttribute("cartList");

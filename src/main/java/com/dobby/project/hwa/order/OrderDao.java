@@ -23,4 +23,6 @@ public interface OrderDao {
     public int insertDlvLog(DlvpnLogDto dPDto);
 
     public int updateDlvDefault(String mbrId, Integer dlvpnId);
+
+    public void deleteCart(List<Integer> delCartIds);
 }

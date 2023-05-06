@@ -63,4 +63,11 @@ public class OrderDaoImpl implements  OrderDao {
 
         return session.update(namespace + "updateDlvDefault",map);
     }
+
+    @Override
+    public void deleteCart(List<Integer> delCartIds) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("delCartIds", delCartIds);
+        session.delete(namespace + "deleteCart", map);
+    }
 }

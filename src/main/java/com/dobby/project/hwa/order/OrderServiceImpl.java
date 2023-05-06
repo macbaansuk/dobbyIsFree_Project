@@ -51,4 +51,10 @@ public class OrderServiceImpl implements  OrderService{
         return orderDao.updateDlvDefault(mbrId,dlvpnId);
 
     }
+
+    @Override
+    public void deleteCart(List<Integer> delCartIds) {
+            orderDao.deleteCart(delCartIds);
+
+    }
 }

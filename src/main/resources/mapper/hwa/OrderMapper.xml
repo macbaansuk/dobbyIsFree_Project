@@ -76,6 +76,12 @@
         WHERE DLVPN_ID = #{DLVPN_ID} AND MBR_ID = #{MBR_ID}
     </update>
 
-
+    <delete id="deleteCart" parameterType="map">
+        DELETE FROM `dobbyisfree`.`cart`
+        WHERE CART_ID IN
+        <foreach collection="delCartIds" item="cartId" separator="," open="(" close=")">
+            #{cartId}
+        </foreach>
+    </delete>
 
 </mapper>
