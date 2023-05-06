@@ -343,28 +343,12 @@
 
         let option = '';
 
-        // let sortType='';
-
-        console.log('가공 전 showList  ='+page)
-        console.log('가공 전 showList  ='+pageSize)
-        console.log('가공 전 showList  ='+keyword)
-        console.log('가공 전 showList  ='+sortType)
-        console.log('가공 전 showList  ='+category)
-        console.log('가공 전 showList  ='+period)
-        console.log('가공 전 showList  ='+dateField)
-        console.log('가공 전 showList  ='+startDate)
-        console.log('가공 전 showList  ='+endDate)
-
-
-
         if(page ===undefined || page<=0)
             page = 1;
         if (pageSize === undefined || pageSize <= 10)
             pageSize = 10;
 
-        //달력보기로 설정후 등록일 기준이 없을시
-
-
+        //데이터 값 전달 확인용  삭제요망
         console.log('showList page =' +page)
         console.log('showList pageSize =' +pageSize)
         console.log('showList keyword =' +keyword)
@@ -374,7 +358,7 @@
         console.log('showList dateField =' +dateField)
         console.log('showList startDate =' +startDate)
         console.log('showList endDate =' +endDate)
-        $('.test').empty();
+        $('.test').empty(); // 상품 목록 리스트를 모두 비운다.
 
         $.ajax({
             type: 'PATCH',
@@ -398,7 +382,7 @@
             // traditional: true, // 배열 형태의 데이터를 전송할 때 필요한 옵션
             success: function (data) {
                 console.log(data);
-                processListData(data);// 화면에 뿌리는 부분 중복
+                processListData(data);// 화면에 출력하는 함수
 
 
             },
@@ -409,15 +393,13 @@
      }
 
 
-
-
      // 자동 체크박스 체크 함수
     const checkbox = function () {
-        const prodId = $(this).data('prod-id');
-        const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
-        const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
+        let prodId = $(this).data('prod-id');
+        let invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
+        let safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
         let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val();
-        const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val();
+        let invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val();
 
         const $checkbox = $('input[type="checkbox"][id="pd-check"][data-prod-id="' + prodId + '"]');
 
@@ -430,14 +412,13 @@
         }
     };
 
-    $('input.option-number, input.safe-number, select.inv-status, select.inv-loc').on('input', checkbox);
-        // 클릭시 검색어와 옵션의 값을 포함하여 전달함.
+
 
 
     function processListData(data) {
-        pageHandler = data.ph;
-        const totalCnt = data.ph.totalCnt;
-        console.log("totalCnt = "+totalCnt)
+        pageHandler = data.ph; // 서버에서 보낸 data의 ph를 pageHandler 변수에 저장
+        const totalCnt = data.ph.totalCnt; // 위와 동일
+        console.log("totalCnt = "+totalCnt) // 확인용
         $('.total strong').text(totalCnt); // 상품 총 개수를 보여주는
         $('.center').html(toHtml(data.list)); // 상품을 보여주는
         $('.paging').html(updatePaging(data.ph)); // 페이징을 업데이트 하는
@@ -503,7 +484,7 @@
             tmp += '<input type="number" class="safe-number" data-prod-id="'+inv.prod_ID+'" style="width:60px;" name="stock_warn_value[P000000J000A]" value="'+inv.safe_INV+'">'
             tmp += '</td>'
 
-            // tmp += '<td>'
+            //
             tmp += '<td>'
             tmp += '<select class="inv-status" data-prod-id="' + inv.prod_ID + '" name="inv_status[P000000J000A]">'
             tmp += '<option id="opt1" value="여유" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '여유' ? 'selected' : '') + '>여유</option>'
@@ -554,18 +535,25 @@
             let page = $(this).text(); // 클릭한 그 값을 가져옴 , 즉 i 의 값
 
             let pageSize =pageHandler.sc.pageSize; // 전역 변수인 pageHandler를 참조하여 pageSize 추출 //
-            const keyword = $('.search-input').val(); // 검색어
-            const sortType = $('select[name="orderby"] option:selected').val()
-            const category = $('select[name="category"] option:selected').val()
-            const startDate = $('#pr_start_date').val()
-            const endDate =$('#pr_end_date').val()
-            const dateField = $('select[name="date"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어 및 나머지 검색조건의 값들을 담는다
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            let startDate = $('#pr_start_date').val()
+            let endDate =$('#pr_end_date').val()
+            let dateField = $('select[name="date"] option:selected').val();
 
+            // paging 함수의 a태그의 herf 를 쓰지 않을거라
             console.log(pageHandler);
             if (page === '>') {
                 page = pageHandler.sc.page + 1;
             } else if (page === '<') {
                 page = pageHandler.sc.page - 1;
+            }
+
+            if (startDate ==="" && endDate ==="") {
+                console.log("널 처리")
+                startDate = null;
+                endDate = null;
             }
 
             console.log('page page ='+page)
@@ -591,25 +579,47 @@
             const code2 = $('#opt2').val(); // 부족
             const code3 = $('#opt3').val(); // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
-            // 입력하던 화면으로 돌아가야함
-            const page = pageHandler.sc.page;
-            const pageSize = $('select[name="limit"] option:selected').val();
-            const keyword = $('.search-input').val(); // 검색어
-            const sortType = $('select[name="orderby"] option:selected').val()
-            const category = $('select[name="category"] option:selected').val()
 
+            // 입력하던 화면으로 돌아가야함, 즉 클라이언트가 입력한 정보로 다시 showList 호출
+            let page = pageHandler.sc.page;
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            let dateField = $('select[name="date"] option:selected').val();
+            let startDate = $('#pr_start_date').val()
+            let endDate =$('#pr_end_date').val()
 
-
+            //date 타입 sql 에러를 방지하기 위해 사용자가 입력하지 않으면 null로 처리한다.
+            if (startDate ==="" && endDate ==="") {
+                console.log("널 처리")
+                startDate = null;
+                endDate = null;
+            }
+            //JSON 을 담을 배열
             const jsonData = [];
+
             // 체크박스 or id = pd-check 가 체크된 박스들을 .each 로 순회해서 아래의 행동을 한다,
             $('input[type="checkbox"][id="pd-check"]:checked').each(function () {
-                //변경할 값들을 변수에 담는다.
-                const prodId = $(this).data('prod-id'); // 아이디
-                const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 재고수량
-                const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val(); // 안전재고
-                let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
-                const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
 
+                //변경할 값들을 변수에 담는다.
+                let prodId = $(this).data('prod-id'); // 아이디
+                let invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 재고수량
+                let safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val(); // 안전재고
+                let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
+                let invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
+
+                // 재고수량 안전재고는 빈 문자열시 0의 값을 갖는다
+                if (invQty === '')
+                {
+                    invQty = 0;
+
+                } else if (safeInv === '' || safeInv <= 0) // 안전재고는 -가 될 수 없다.
+                {
+                    safeInv = 0;
+                }
+
+                // 한개라도 빈 문자열이 아닐시
                 if (invQty !== '' || safeInv !== '' || invStusCd !== '' || invLoc !== '') {
                     $(this).prop('checked', true);
                 }
@@ -662,7 +672,7 @@
                     console.log('저장 후 dateField ='+dateField)
                     console.log('저장 후 startDate ='+startDate)
                     console.log('저장 후 endDate ='+endDate)
-                    showList(page, pageSize, keyword, sortType, category, null, null, null, null);
+                    showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
@@ -683,23 +693,42 @@
             let endDate =$('#pr_end_date').val()
             let dateField = $('select[name="date"] option:selected').val();
 
+            // 전역변수에 저장된 period 를 초기화 한다. period는 클릭시 검색과 같기 때문에,
+            period = '';
+
             console.log("dateField = " +dateField)
             console.log("startDate = " +startDate)
             console.log("endDate = " +endDate)
-            if (startDate ==="" && endDate ==="") {
-                console.log("동작")
+
+            //date 타입 sql 에러를 방지하기 위해 사용자가 입력하지 않으면 null로 처리한다.
+            if (startDate ==="" && endDate ==="") { // 사용자가 입력하지 않을경우 빈문자열로 처리되기 때문에.
+                console.log("널처리")
                 startDate = null;
                 endDate = null;
             }
 
+            // 입력하게 될 경우, period 와 조건 날짜의 중복을 방지
             if (startDate !== null && endDate !== null)
             {
                 period = '';
             }
 
-            if (startDate > endDate)
-            {alert('시작일을 종료일보다 이전으로 설정 하세요')}
+            //startDate 와 endDate
 
+            if (startDate !== '' && endDate === ''){
+                alert('종료일을 설정해주세요.')
+
+            }
+            else if (startDate === '' && endDate !== '')
+            {
+                alert('시작일을 설정해주세요.')
+            } else if ((startDate !== '' && endDate !== '')&& startDate>endDate)
+            {
+                alert('시작일을 종료일보다 빠르게 설정해주세요.')
+            }
+
+
+            // 기준일 미입력시
              else if ((startDate !== null && endDate !== null) && (dateField ===''))
             {
                 alert('등록일 기준을 선택해주세요')
@@ -709,8 +738,6 @@
             showList(page, pageSize, keyword, sortType, category,null,dateField,startDate,endDate);
 
             }
-            // category값이 undefined가 아니라면 dateField 는 null로 변경된다.
-
         });
 
         //초기화 버튼을 누를시
@@ -719,10 +746,12 @@
             $('.search-input').val(''); // 검색어 입력 필드의 값을 빈 문자열로 설정
             $('select[name="category"]').val(''); // 카테고리 선택을 기본값으로 설정
             $('#pr_start_date, #pr_end_date').val(''); // 날짜 선택(input 태그)의 값을 빈 문자열로 설정
-            $('select[name="limit"]').val('10');
-            $('select[name="orderby"]').val('id_d');
-            $('select[name="date"]').val("");
-            $('select[name="option"]').val("T");
+            $('select[name="limit"]').val('10'); // 10개씩 보기로 디폴트 값 설정
+            $('select[name="orderby"]').val('id_d'); // 상품ID 순으로  디폴트 값 설정
+            $('select[name="date"]').val(""); // 등록일 선택 디폴트 값 설정
+            $('select[name="option"]').val("T"); // 검색분류 기본값 설정
+
+            // 초기화시 모든 매개변수 초기화로 설정
             let page = '';
             let pageSize = '';
             let keyword =' ';
@@ -736,37 +765,55 @@
 
         });
 
-            // 검색창에 커서가 있고 Enter를 누를 경우에만
+            // 검색창에 커서가 있고 Enter를 누를 경우에만 검색으로 적용되게 한다. 검색창은 동적생성이 아니라 이렇게 가능함
         $('.search-input').keydown(function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                $('#eBtnSearch').trigger('click'); // Simulate a click on the search button
+            if (event.keyCode === 13) { //Enter 키를 지칭함
+                event.preventDefault(); // 원래 기능을 막고
+                $('#eBtnSearch').trigger('click'); // 새로운 기능 부여
             }
         });
 
+        // 저장 가능한 필드에 커서가 있으면 Enter 누를시 저장버튼 클릭 // 동적생성으로 이벤트 위임을 이용해서 처리함. keydown 발생시
+        $(document).on('keydown', '.option-number, .safe-number, .inv-status, .inv-loc', function(event) {
+            if (event.keyCode === 13) { //Enter 키를 지칭함
+                console.log('enter 작동')
+                event.preventDefault(); // 원래 기능을 막고
+                $('#eBtnModify').trigger('click'); // 새로운 기능 부여
+            }
+        });
 
-        // 체크박스 이벤트 처리 등록 // 이게 있어야 자동으로 체크박스가 체크된다.
+        // $('input.option-number, input.safe-number, select.inv-status, select.inv-loc').on('input', checkbox);
+        // 입력칸 4개의 값이 변경되면 자동 체크박스 함수 호출
+        // 역시 동적생성이라 이벤트 위임으로 할당함 / 원래 의도는 위 코드였음
         $(document).on('input', 'input.option-number, input.safe-number, select.inv-status, select.inv-loc', checkbox);
+
 
         // select 요소의 change 이벤트 처리 등록 - 10개씩 보기 , 20개씩 보기
         $('select[name="limit"]').on('change', function() {
-            // 선택된 옵션의 값을 가져온다
+            // keyword, category, period, startDate, endDate 고려해야 한다.
+            // period, 와 startDate, endDate는 둘중 하나만 적용되어야 한다.
 
             let page = $('.classText').val();
             let pageSize = $('select[name="limit"] option:selected').val();
             let keyword = $('.search-input').val(); // 검색어
             let sortType = $('select[name="orderby"] option:selected').val()
             let category = $('select[name="category"] option:selected').val()
-            // let period = $(this).attr('period');
+             period = period;
             let dateField = $('select[name="date"]').val();
             let startDate = $('#pr_start_date').val();
             let endDate = $('#pr_end_date').val();
             // 선택된 값을 이용하여 원하는 동작을 수행한다
+            console.log('startDate ='+ startDate);
+            console.log('endDate ='+ endDate);
 
-            if (startDate !== '' && endDate !== '')
-            {
-                period = '';
+
+            if (startDate ==="" && endDate ==="") {
+
+                startDate = null;
+                endDate = null;
+
             }
+
             console.log('startDate ='+ startDate);
             console.log('endDate ='+ endDate);
             // 예: showList 함수 호출 등
@@ -776,19 +823,20 @@
         // 상품 정렬방식 - ORDER BY
         $('select[name="orderby"]').on('change', function() {
             // 선택된 옵션의 값을 가져온다
+            period = period;//전역 변수로 period는 관리한다.
             let page = $('.classText').val();
             let pageSize = $('select[name="limit"] option:selected').val();
             let keyword = $('.search-input').val(); // 검색어
             let sortType = $('select[name="orderby"] option:selected').val()
             let category = $('select[name="category"] option:selected').val()
-            // let period = $(this).attr('period');
             let dateField = $('select[name="date"]').val();
             let startDate = $('#pr_start_date').val();
             let endDate = $('#pr_end_date').val();
 
-            if (startDate !== '' && endDate !== '')
-            {
-                period = '';
+
+            if(startDate == '' && endDate == ''){
+                startDate = null;
+                endDate = null;
             }
             // 선택된 값을 이용하여 원하는 동작을 수행한다
             // 예: showList 함수 호출 등
@@ -797,6 +845,13 @@
             console.log('period ='+ period);
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
+
+        // 달력보기 클릭시 period의 값을 초기화 한다. 중복 날짜 조건을 없애기 위해.
+        $('#start_date,#end_date').click(function (){
+            period = '' ;
+            console.log('period ='+period)
+        });
+
 
         // 1일 3일 날짜버튼을 클릭할시
         $('.btnDate').click(function () {
@@ -808,11 +863,11 @@
             let keyword = $('.search-input').val(); // 검색어
             let sortType = $('select[name="orderby"] option:selected').val()
             let category = $('select[name="category"] option:selected').val()
-            period = $(this).attr('period');
+            period = $(this).attr('period'); // 내가 클릭한 날짜 값을 가져온다
             let dateField = $('select[name="date"]').val();
-            let startDate = null;
-            let endDate =null;
-            // let dateField = $('select[name="date"] option:selected').val();
+            let startDate = null;  // 중복 날짜 계산을 방지하기 위해 날짜 버튼 클릭시 null로 초기화함
+            let endDate =null; // 중복 날짜 계산을 방지하기 위해 날짜 버튼 클릭시 null로 초기화함
+
             console.log("period ="+period)
             console.log("dateField ="+dateField)
 
@@ -820,7 +875,6 @@
             {alert('등록일 기준을 선택 하세요')}
 
 
-            // 선택한 날짜 필터링 값을 서버로 전달하고 결과를 화면에 표시하는 함수 호출
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
 
@@ -828,15 +882,7 @@
 
 </script>
 <script>
-    let msg ="${msg}";
-    if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
-    if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
-    if(msg=="MOD_OK") alert("수정이 완료되었습니다.");
-
-    if(msg=="LIST_ERR") alert("올바른 값을 입력해 주세요.");
-
-
-
+    //showList 매개변수를 아래의 코드에 담아서 코드 중복을 줄 일 수 있다. 특정 상황에 더 힘들 것 같고 시간이 없어서 하지 않았다.
     // function getPageData() {
     //     const page = $('.classText').val();
     //     const pageSize = $('select[name="limit"] option:selected').val();
