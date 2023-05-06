@@ -30,4 +30,31 @@ public class OrderServiceImpl implements  OrderService{
     public DlvDto getAddressDlvId(Integer dlvNmId) {
         return orderDao.selectAddressByDlvId(dlvNmId);
     }
+    @Override
+    public int insertOrdInfo(OrdDto ordDto) {
+        return orderDao.insertOrdInfo(ordDto);
+    }
+
+
+    @Override
+    public int insertOrderProd(OrdProdDto ordProdDto) {
+        return orderDao.insertOrderProd(ordProdDto);
+    }
+
+    @Override
+    public int insertDlvLog(DlvpnLogDto dPDto) {
+        return orderDao.insertDlvLog(dPDto);
+    }
+
+    @Override
+    public int updateDlvDefault(String mbrId, Integer dlvpnId) {
+        return orderDao.updateDlvDefault(mbrId,dlvpnId);
+
+    }
+
+    @Override
+    public void deleteCart(List<Integer> delCartIds) {
+            orderDao.deleteCart(delCartIds);
+
+    }
 }

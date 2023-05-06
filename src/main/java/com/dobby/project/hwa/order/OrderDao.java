@@ -15,4 +15,14 @@ public interface OrderDao {
     public List<DlvDto> selectAddressByMbrId(String mbrId);
 
     public DlvDto selectAddressByDlvId(Integer dlvNmId);
+    public int insertOrdInfo(OrdDto ordDto);
+
+
+    public int insertOrderProd(OrdProdDto ordProdDto);
+
+    public int insertDlvLog(DlvpnLogDto dPDto);
+
+    public int updateDlvDefault(String mbrId, Integer dlvpnId);
+
+    public void deleteCart(List<Integer> delCartIds);
 }

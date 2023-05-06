@@ -34,5 +34,55 @@
         WHERE DLVPN_ID = #{DLVPN_ID}
     </select>
 
+    <!-- 주문정보 넣기 -->
+    <insert id="insertOrdInfo" parameterType="OrdDto">
+        INSERT INTO `dobbyisfree`.`ord`
+        (ORD_ID, MBR_ID, SETL_AMT, DEXP, ORD_TAMT, RCPR_NM, RCPR_ZPCD, RCPR_BASIC_ADDR,
+         RCPR_DTL_ADDR, DLVPN_REQ, RCPR_MPNO, BANK, ACC_NO, DPOSR, ORDR_EMAIL, ORDR, ORDR_NO)
+        VALUES
+            (#{ORD_ID}, #{MBR_ID},  #{SETL_AMT}, #{DEXP}, #{ORD_TAMT}, #{RCPR_NM}, #{RCPR_ZPCD}, #{RCPR_BASIC_ADDR},
+             #{RCPR_DTL_ADDR}, #{DLVPN_REQ}, #{RCPR_MPNO}, #{BANK}, #{ACC_NO}, #{DPOSR}, #{ORDR_EMAIL}, #{ORDR}, #{ORDR_NO})
+    </insert>
+
+
+    <!-- 주문상품 정보 넣기 -->  <!--실패-->
+    <insert id="insertOrdProd" parameterType="list" >
+        INSERT INTO `dobbyisfree`.`ord_prod`
+        (PROD_ID,PROD_NM,PROD_INDV_QTY,PROD_AMT,PROD_OPT)
+        VALUES
+        <foreach collection="list" item="oP" separator=",">
+            ( #{oP.PROD_ID}, #{oP.PROD_NM}, #{oP.PROD_INDV_QTY}, #{oP.PROD_AMT}, #{oP.PROD_OPT})
+        </foreach>
+    </insert>
+
+    <!-- 주문 상품 저장 -->
+    <insert id="insertOrderProd" parameterType="OrdProdDto">
+        INSERT INTO `dobbyisfree`.`ord_prod`
+            (ORD_PROD_NO,ORD_ID,PROD_ID,PROD_OPT,PROD_NM,PROD_AMT,PROD_INDV_QTY,REP_IMG,DC_YN)
+        VALUES ( #{ORD_PROD_NO}, #{ORD_ID},#{PROD_ID},#{PROD_OPT},#{PROD_NM},#{PROD_AMT},#{PROD_INDV_QTY},#{REP_IMG},#{DC_YN} )
+    </insert>
+
+    <!-- 배송지 목록에 저장 -->
+    <insert id="insertDlvLog" parameterType="DlvpnLogDto" useGeneratedKeys="true" keyProperty="DLVPN_ID">
+        INSERT INTO `dobbyisfree`.`dlvpn_log`
+        ( MBR_ID,ORD_ID,RCPR,DLVPN_NM,RCPR_MPNO,ZPCD,BASIC_ADDR,DTL_ADDR )
+        VALUES ( #{MBR_ID}, #{ORD_ID},#{RCPR},#{DLVPN_NM},#{RCPR_MPNO},#{ZPCD},#{BASIC_ADDR},#{DTL_ADDR} )
+    </insert>
+
+    <!-- 기본배송지선택시 'Y'로 수정 -->
+    <update id="updateDlvDefault" parameterType="map">
+        UPDATE `dobbyisfree`.`dlvpn_log`
+        SET LIST_YN = 'Y'
+        WHERE DLVPN_ID = #{DLVPN_ID} AND MBR_ID = #{MBR_ID}
+    </update>
+
+    <!-- 장바구니 삭제 -->
+    <delete id="deleteCart" parameterType="map">
+        DELETE FROM `dobbyisfree`.`cart`
+        WHERE CART_ID IN
+        <foreach collection="delCartIds" item="cartId" separator="," open="(" close=")">
+            #{cartId}
+        </foreach>
+    </delete>
 
 </mapper>

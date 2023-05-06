@@ -3,7 +3,7 @@ package com.dobby.project.hwa.order;
 
 import java.util.List;
 
-public class OrderDto {
+public class OrderDto { //장바구니에서 넘긴 상품 LIST
     List<Integer> cartIdList;
 
     public List<Integer> getCartIdList() {

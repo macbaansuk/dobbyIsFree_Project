@@ -58,14 +58,7 @@ public class CartServiceImpl implements CartService {
         cartDao.deleteCart(cartIdList);
     }
 
-//    @Override
-//    public void updateCartQty(Integer cartId, Integer quantity) {
-////        CartDto cartDto = new CartDto();
-////        cartDto.setCART_ID(cartId);
-////        cartDto.setPROD_INDV_QTY(quantity);
-//
-//        cartDao.updateCartQty(cartId,quantity);
-//    }
+
     @Override
     public CartProdDto updateCartQty(Integer cartId, Integer quantity) {
 //        CartDto cartDto = new CartDto();
