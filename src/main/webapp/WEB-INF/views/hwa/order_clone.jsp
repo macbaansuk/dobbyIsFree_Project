@@ -1130,7 +1130,7 @@
         console.log("결제 금액",typeof totPurPrcTxt);
         console.log("결제 금액 최종값", totPurPrcTxt);
 
-        input();
+        // input();
 
 
         IMP.init('imp21837643');
@@ -1165,7 +1165,7 @@
                 // msg += '상점 거래ID : ' + rsp.merchant_uid;
                 // msg += '결제 금액 : ' + rsp.paid_amount;
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
-                // input();
+                input();
 
                 alert("결제가 성공하였습니다")
             }

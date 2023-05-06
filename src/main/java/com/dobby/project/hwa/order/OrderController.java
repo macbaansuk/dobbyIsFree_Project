@@ -154,7 +154,7 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
         // 주문상품정보는 장바구니에서 넘겼던 세션, 그리고 주문페이지로 넘겼던 메소드 그대로 활용해서
         //DB에 insert
         //나머지 주문 정보는 OrderDone의 get정보를  OrdDto에 set해서 DB에 insert
-        // 문제는 주문상품정보에 하나의 주문ID로 여러개의 상품을 어떻게 담을 것인가 고민 -> 그냥 넣으됨
+        // 문제는 주문상품정보에 하나의 주문ID로 여러개의 상품을 어떻게 담을 것인가 고민 -> 그냥 넣음됨
 
         OrdDto ordDto = new OrdDto();
         ordDto.setORD_ID(od.getInputOrdId()); // 주문id
