@@ -18,11 +18,11 @@
 <div id="wrap">
     <header id="orderHeader">
         <div class="orderHead">
-            <h1 class="logo"><a href="/"><img  id ="logoImg" src="/img/main/logo_black.png" alt="dobbyisfree"></a></h1>
+            <h1 class="logo"><a href="/"><img  id ="logoImg" src="/img/main/logo.png" alt="dobbyisfree"></a></h1>
             <p class="helpArea">
                 <strong>도움이 필요하세요?</strong>
                 <span class="helpBtn">
-                    <a href="" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
+                    <a href="/cs/notice/list" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
                     <a href="" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
                 </span>
             </p>
@@ -140,13 +140,14 @@
 
                                         <!-- 배송지목록에 추가, 기본배송지로 등록 -->
                                         <div class="row deliverySel"  id="chkWrapper" style="display: none">
-                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" name="isAddNewChk" id="isAddNewChk" checked="checked" readonly="" value="Y"> <span>배송지 목록에 추가</span></label>
-                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" value="Y"> <span>기본 배송지로 등록</span></label>
+                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox"   name="isAddNewChk" id="isAddNewChk"  readonly=""  checked="checked"> <span>배송지 목록에 추가</span></label>
+                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" > <span>기본 배송지로 등록</span></label>
                                             <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
                                         </div>
+
+
                                             <script>
                                                 function dlvChk(radioButton) {
-
                                                     let chkWrapper = document.getElementById("chkWrapper");
 
                                                     // 신규 입력 선택
@@ -1111,11 +1112,17 @@
                 let inputIsAddNewChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddNewChk').val(isAddNewChkVal).appendTo(ordForm);
 
                 let isAddDefaultChkVal = document.getElementById("isAddDefaultChk").checked ? "Y" : "N";
-                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddNewChkVal).appendTo(ordForm);
+                console.log('기본배송치체크',isAddDefaultChkVal);
+                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddDefaultChkVal).appendTo(ordForm);
 
                 $(document.body).append(ordForm);
                 ordForm.submit();
             } //input()
+
+
+
+
+
     //------------------------------------------------------------------------------------------
     //결제 API
     $("#payBtn").click(function() {
