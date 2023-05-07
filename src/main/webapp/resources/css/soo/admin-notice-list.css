@@ -112,12 +112,12 @@ a {text-decoration: none;}
     margin-right: 10px;
 }
 
-#writeBtn{
+#registerBtn{
     position: relative;
     margin-right: 20px;
 }
 
-#writeBtn[type=submit] {
+#registerBtn[type=submit] {
 
     background-color: #00a2ff;
     color: white;
@@ -141,8 +141,8 @@ a {text-decoration: none;}
 
 #modifyBtn[type=submit] {
 
-    background-color: rgba(231, 230, 230, 0.45);
-    color: black;
+    background-color: darkgray;
+    color: white;
     border: none;
     padding: 5px 10px;
     text-align: center;
@@ -155,15 +155,15 @@ a {text-decoration: none;}
     margin-right: 10px;
 }
 
-#removeBtn{
+#readBtn{
     position: relative;
     margin-right: 20px;
 }
 
-#removeBtn[type=submit] {
+#readBtn[type=button] {
 
-    background-color: #525252;
-    color: white;
+    background-color: rgba(231, 230, 230, 0.66);
+    color: black;
     border: none;
     padding: 5px 10px;
     text-align: center;

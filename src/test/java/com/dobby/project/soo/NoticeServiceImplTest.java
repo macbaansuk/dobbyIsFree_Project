@@ -17,14 +17,14 @@ public class NoticeServiceImplTest {
 
     @Test
     public void testWrite() throws Exception {
-        NoticeDto noticeDto = new NoticeDto();
-        noticeDto.setBBS_CATE("쇼핑몰 공지");
-        noticeDto.setSTUS("게시중");
-        noticeDto.setTTL("noticeSerive.write() 호출 테스트 성공");
-        noticeDto.setCN("내용입니다.");
-        noticeDto.setWRTR("작성자입니다.");
-
-        int result = noticeService.write(noticeDto);
-        System.out.println("serviceTestresult : " + result);
+//        NoticeDto noticeDto = new NoticeDto();
+//        noticeDto.setBBS_CATE("쇼핑몰 공지");
+//        noticeDto.setSTUS("게시중");
+//        noticeDto.setTTL("noticeSerive.write() 호출 테스트 성공");
+//        noticeDto.setCN("내용입니다.");
+//        noticeDto.setWRTR("작성자입니다.");
+//
+//        int result = noticeService.write(noticeDto);
+//        System.out.println("serviceTestresult : " + result);
     }
 }

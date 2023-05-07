@@ -92,25 +92,25 @@
                 <p class="txtbox1 top1">
                     공지사항 목록을 보여주는 페이지입니다.
                 </p>
-                <%--카테고리, 상태를 선택할 수 있는 부분--%>
 
+                <%--카테고리, 상태를 선택할 수 있는 부분--%>
                 <div class="inv-list">
                     <!-- 실제 구현 페이지 -->
                     <section class="whole">
                         <div class="listHead">
                             <div>
-                                <%--@declare id="cate"--%><label for="cate">카테고리</label>
-                                <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">
-                                    <option value="고객 센터">고객 센터</option>
-                                    <option value="매장 공지">매장 공지</option>
-                                    <option value="배송 공지">배송 공지</option>
-                                    <option value="쇼핑몰 공지">쇼핑몰 공지</option>
-                                    <option value="이벤트 공지">이벤트 공지</option>
+                                <label for="catelist">카테고리</label>
+                                <select id="catelist" name="CATE_NM" style="height: 30px; width: 150px;" value="${noticeDto.CATE_NM}">
+                                    <option value="고객센터">고객 센터</option>
+                                    <option value="매장공지">매장 공지</option>
+                                    <option value="배송공지">배송 공지</option>
+                                    <option value="쇼핑몰공지">쇼핑몰 공지</option>
+                                    <option value="이벤트공지">이벤트 공지</option>
                                 </select>
                             </div>
 
                             <div>
-                                <%--@declare id="status"--%><label for="status">상태</label>
+                                <label for="statuslist">상태</label>
                                 <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">
                                     <option value="게시중">게시중</option>
                                     <option value="비공개">비공개</option>
@@ -124,9 +124,9 @@
                             <span class="cnt">총 ${totalCnt}개</span>
                             <span class="btn">
                                 <button id="homeBtn" type="button">
-                                    <a href="/cs/notice/list">NOTICE</a>
+                                    <a href="/cs/notice/list">공지사항 목록</a>
                                 </button>
-                                <button id="writeBtn" type="submit">글쓰기</button>
+                                <button id="registerBtn" type="submit">글쓰기</button>
                             </span>
                         </div>
 
@@ -152,12 +152,13 @@
                                     <th>등록일시</th>
                                     <th>버튼</th>
                                 </tr>
+<%--                                adminNoticeList에 저장된 데이터를 꺼내서 Notice변수에 저장--%>
                                 <c:forEach var="Notice" items="${adminNoticeList}">
                                     <tr>
                                         <!--  게시물 번호 -->
                                         <td class="nb_id">${Notice.NB_ID}</td>
                                         <!--  게시물 카테고리 -->
-                                        <td class="bbs_cate">${Notice.BBS_CATE}</td>
+                                        <td class="cate_nm">${Notice.CATE_NM}</td>
                                         <!--  게시물 제목 -->
                                         <td class="ttl"><a href="<c:url value="/admin/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a></td>
                                         <!--  게시물 작성자 -->
@@ -166,10 +167,17 @@
                                         <td class="stus">${Notice.STUS}</td>
                                         <!--  게시물 작성일 -->
                                         <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
-                                        <!--  수정, 삭제버튼 -->
+
                                         <td>
-                                            <button id="modifyBtn" type="submit">수정</button>
-                                            <button id="removeBtn" type="submit">삭제</button>
+                                            <!--  수정버튼 -->
+                                            <a href="<c:url value="/admin/notice/modify?NB_ID=${Notice.NB_ID}"/>">
+                                                <button id="modifyBtn" type="submit">수정</button>
+                                            </a>
+                                            <!--  삭제버튼 -->
+                                            <a href="<c:url value="/cs/notice/read?NB_ID=${Notice.NB_ID}"/>">
+                                                <button id="readBtn" type="button">보기</button>
+                                            </a>
+
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -192,8 +200,6 @@
 
                         </div>
 
-
-
                     </section>
                 </div>
             </div>
@@ -207,11 +213,8 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#writeBtn").on("click", function(){
-            location.href="<c:url value='/admin/notice/write'/>";
-        });
-
-        $("#removeBtn").on("click", function(){
+        // 글쓰기 버튼 클릭시
+        $("#registerBtn").on("click", function(){
             location.href="<c:url value='/admin/notice/write'/>";
         });
 

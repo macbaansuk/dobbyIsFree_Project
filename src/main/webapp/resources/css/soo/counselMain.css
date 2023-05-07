@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.location {
+    padding-top: 10px;
+    padding-left: 17%;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+#container a:visited {
+    text-decoration: none;
+}
+
+#contents {
+    padding-left: 17%;
+    padding-right: 17%;
+}
+
+.wrap {
+    display: block;
+}
+
+.page_title {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    font-size: 32px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.bbsList {
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bbsList ul {
+    display: flex;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bbsList ul li {
+    text-align: center;
+    background-color: white;
+    border: 0.5px solid #d0d0d0;
+    width: 33.333334%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+
+.bbsList ul li span {
+    color: black;
+}
+
+
+#C {
+    background-color: rgb(18, 182, 96);
+}
+
+#C span {
+    color: white;
+}
+
+
+.content {
+    margin-top: 50px;
+}
+
+.counselBox {
+    position: relative;
+    margin-top: 20px;
+    padding: 60px 0 60px 40px;
+    background: #f3f3f3;
+    height: 130px;
+}
+
+.counselBox img {
+    display: inline-block;
+    width: 50px;
+    margin-left: 30px;
+}
+
+.counselBox .qnaLink {
+    position: absolute;
+    top: 30%;
+    left: 13%;
+    /* transform: translate(-50%, -50%); */
+    /* padding-left: 40px; */
+    font-size: 20px;
+    line-height: 1.4;
+    color: #222;
+    width: 50%;
+}
+
+.qnaLink {
+    font-size: 16px;
+}
+
+.qnaLink a {
+    font-size: 14px;
+    color: darkgray;
+}
+
+
+.counselBox .qnaRecom{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* margin-top: -50px; */
+}
+
+.qnaRecom .subTitle2 {
+    padding-bottom: 10px;
+    color: #222;
+    font-weight: 550;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul.list {
+    list-style-type: none;
+    color: #222;
+}
+
+
+.list a {
+    color: #222;
+}
+
+.list span {
+    font-weight: bold;
+}
+
+.list li {
+    padding-top: 7px;
+}
+
+.help {
+    padding-top: 10px;
+}
+
+.help .subTitle3 {
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #222;
+}
+
+.helpList li {
+    padding-bottom: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+.btnWrap {
+    text-align: center;
+    margin-top: 80px;
+    display: block;
+    margin-bottom: 80px;
+}
+
+.counBtn {
+    display: inline-block;
+    height: 48px;
+    padding: 0 55px;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    line-height: 48px;
+}

@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#mypageTop {
+    height: 150px;
+}
+
+#member {
+    height: 140px;
+    background: rgba(231, 230, 230, 0.673);
+}
+
+#user_grade {
+    margin-left: 18%;
+    margin-right: 18%;
+    width: 100%;
+    height: 100%;
+}
+
+#page_point {
+    height: 30px;
+    padding-left: 17%;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    margin-right: 16%;
+    margin-left: 16%;
+}
+
+#menu {
+    padding: 30px 20px 20px 20px;
+    width: 170px;
+    border-right: 1px solid rgba(231, 230, 230, 0.673);
+}
+
+#menu a p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #777777;
+}
+#menu a {
+    text-decoration: none;
+    color: #777777;
+}
+
+
+/* 아래부터 실제 페이지 구현 */
+
+#page {
+    display: inline-block;
+    margin: 30px;
+    width: 1000px;
+}
+
+.tab {
+    padding: 20px 0 10px 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.tab ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.tab ul li {
+    text-align: center;
+    background-color: white;
+    border: 0.5px solid #d0d0d0;
+    width: 50%;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.tab ul li span {
+    color: black;
+    font-size: 16px;
+}
+
+
+#L {
+    background-color: rgb(18, 182, 96);
+}
+
+#L span {
+    color: white;
+}
+
+/*1:1 상담내역 버튼 끝*/
+
+/* 조회시작 */
+
+.tableTypeSearch table th {
+    text-align: left;
+    vertical-align: middle;
+    padding: 10px 0 10px 0;
+}
+
+.tableTypeSearch table td {
+    color: #777777;
+    background: #ffffff;
+}
+
+.inputRadio {
+    margin-right: 10px;
+}
+
+.inputRadio span {
+    vertical-align: middle;
+}
+
+.datepicker {
+    height: 35px;
+}
+
+.btnType {
+    margin-left: 10px;
+    width: 70px;
+    height: 35px;
+    background-color: #f3f3f3;
+    color:#222222;
+    border: 1px solid #a7a7a7;
+}
+
+
+.tableHeadTxt {
+    font-size: 15px;
+}
+
+.sub-ftColor7 {
+    font-size: 14px;
+    color: #d72137;
+}
+
+
+
+
+
+
+
+
+/* 테이블 시작 */
+caption {
+    display: none;
+}
+.questionCont {
+    display: none;
+    color: #777777;
+}
+
+table {
+    margin: 20px 0 20px 0;
+    border-collapse: collapse;
+}
+
+.counselList thead th{
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+.counselList tbody tr {
+    border-bottom: 1px solid #dcdcdc;
+}
+.counselList tbody td {
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+.no, .date, .stus {
+    text-align: center;
+}
+
+.delBtn {
+    width: 45px;
+    height: 25px;
+    border-radius: 0;
+    background-color: #f3f3f3;
+    color: #222222;
+    border: 1px solid #a7a7a7;
+    margin-left: 7px;
+}
+.questionC {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.prod{
+    font-size: 14px;
+}
+.reTitle{
+    display: block;
+    color: #222222;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+}
+
+.reBtn {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px 2px 4px;
+    color: #fff;
+    background: #12b560;
+    line-height: 20px;
+    border-radius: 3px;
+}
+.answerCont{
+    font-size: 14px;
+}
+.answerDate{
+    margin-top: 10px;
+}
+
+input[type="text"]{
+    font-size: 16px;
+    text-align: center;
+    color:#222222;
+}

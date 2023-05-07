@@ -5,13 +5,12 @@
 
 
 .location {
-    /* background:  rgba(231, 230, 230, 0.673); */
     padding-top: 10px;
     padding-left: 17%;
 }
+
 #container a { text-decoration: none; }
 #container a:visited { text-decoration: none; }
-/*.list a:visited { text-decoration: none; color: black; }*/
 
 #contents {
     padding-left: 17%;
@@ -29,49 +28,50 @@ a {
     text-decoration: none;
 }
 
-.tab {
+
+.bbsList {
     box-sizing: border-box;
-    justify-content: center;
     width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.tab ul {
-    list-style-type: none;
-    height: 60px;
+.bbsList ul {
+    display: flex;
     width: 100%;
-    display: flex;
-
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.tab ul li {
+.bbsList ul li {
+    text-align: center;
+    background-color: white;
+    border: 0.5px solid #d0d0d0;
+    width: 33.333334%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
-    height: 100%;
-    width: 33.33%;
-    display: flex;
-    align-items: center;
-    border: 0.1px solid rgb(170, 170, 170);
 }
 
-.tab ul li a {
-    color: rgb(95, 95, 95);
-    margin: auto;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    align-items: center;
+.bbsList ul li span {
+    color: black;
 }
 
-.tab ul li.tab-notice {
+
+#N {
     background-color: rgb(18, 182, 96);
 }
-
-.tab ul li.tab-notice a {
+#N span{
     color: white;
 }
 
 .search_box {
     margin-top: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,52 +91,47 @@ a {
 .search_box img {
     position: relative;
     width: 30px;
-    /* margin-right: 10%; */
 }
 
-.tab2 {
-    box-sizing: border-box;
-    justify-content: center;
+/*.cateList cate2 ul li button span*/
+
+.cateList{
+    padding: 30px 0 30px;
+    display: block;
+}
+
+.cate2 li {
+    list-style: none;
+    float: left;
+    width: calc(100% / 6);
+}
+.cate2 li:last-child {
+    margin-right: 0;
+}
+
+.cate2 li button:hover {
+    background-color: #12b560;
+    color: #fff;
+}
+
+.cate2 li.active button {
+    background:#12b560;
+    color: #fff;
+}
+
+.cate2 li button, .cate2 li a {
+    position: relative;
+    display: block;
     width: 100%;
-
+    height: 46px;
+    background: #f8f8f8;
+    text-align: center;
+    text-decoration: none;
+    border: 0;
+    outline: none;
 }
 
-.tab2 ul {
-    list-style-type: none;
-    height: 40px;
-    width: 100%;
-    background: rgba(231, 230, 230, 0.469);
-    display: flex;
 
-}
-
-.tab2 ul li {
-    box-sizing: border-box;
-    height: 100%;
-    width: 16.66%;
-    display: flex;
-    align-items: center;
-    border: 0.1px solid rgb(204, 204, 204);
-}
-
-.tab2 ul li a {
-    color: rgb(130, 130, 130);
-    margin: auto;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 500;
-    align-items: center;
-}
-
-.tab2 ul li.whole {
-    background-color: rgb(18, 182, 96);
-}
-
-.tab2 ul li.whole a {
-    color: white;
-}
-
-.whole {}
 
 .listHead{
     padding-bottom: 30px;
