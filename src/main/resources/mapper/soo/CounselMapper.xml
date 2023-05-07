@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.CounselMapper">
+
+    <!-- 회원ID로 회원 정보 조회 -->
+    <select id="selectFromMember" parameterType="String" resultType="MemberDto">
+        SELECT MBR_ID, MBR_NM, MPNO
+        FROM MEMBER_INFO
+        WHERE MBR_ID = #{MBR_ID}
+    </select>
+
+    <!--  회원 1:1 상담 작성 -->
+    <insert id="insertCounsel" parameterType="CounselDto">
+        INSERT INTO COUNSEL
+            (MBR_ID, PROD_ID, CATE_ID, TTL, CN, RX)
+        VALUE
+            (#{MBR_ID}, #{PROD_ID}, #{CATE_ID}, #{TTL}, #{CN}, #{RX})
+    </insert>
+
+    <!--  회원 1:1 상담 작성 시 문의제품 목록  -->
+    <select id="selectProdList" parameterType="map" resultType="ProdDto">
+        SELECT PROD_ID, PROD_NM
+        FROM PROD
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!--  1:1 상담 총 개수  -->
+    <select id="countAllCounsel" resultType="int">
+        SELECT COUNT(*)
+        FROM COUNSEL
+    </select>
+
+    <!--  회원별 상담 개수  -->
+    <select id="countCounselByMember" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM COUNSEL
+        WHERE MBR_ID=#{MBR_ID}
+    </select>
+
+    <!--  상품 총 개수  -->
+    <select id="countProd" resultType="int">
+        SELECT COUNT(*)
+        FROM PROD
+    </select>
+
+    <!--  회원 1:1 상담 작성 시 첨부파일  -->
+    <insert id="insertFile" parameterType="BbsFileDto">
+        INSERT INTO BBS_FILE
+            (FILE_ID, BBS_ID, CNSL_ID, NB_ID, NM, PATH, SIZE, TYPE, REG_DTM, UPD_DTM)
+        VALUE
+            (#{FILE_ID}, #{BBS_ID}, #{CNSL_ID}, #{NB_ID}, #{NM}, #{PATH}, #{SIZE}, #{TYPE}, #{REG_DTM}, #{UPD_DTM})
+    </insert>
+
+    <!--  회원별 1:1 상담게시물+답변 불러오기, COUNSEL+ANSWER  -->
+    <select id="selectListByMember" parameterType="map" resultType="MemberDto">
+        SELECT *
+        FROM COUNSEL C
+            LEFT JOIN ANSWER A ON C.CNSL_ID = A.CNSL_ID
+        WHERE C.MBR_ID = #{MBR_ID}
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!--  1:1 상담 답변 작성  -->
+    <insert id="insertAnswer" >
+        INSERT INTO ANSWER (CNSL_ID, CN, WRTR)
+        SELECT C.CNSL_ID, #{CN}, #{WRTR}
+        FROM COUNSEL C
+        WHERE C.CNSL_ID = #{CNSL_ID};
+    </insert>
+
+</mapper>
