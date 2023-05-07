@@ -17,11 +17,11 @@ public class invSearchCondition {
 
     private Integer period = null;
 
-
-
     private String dateField = null;
 
+    private String startDate = null;
 
+    private String endDate = null;
    public invSearchCondition(){}
 
     @Override
@@ -36,10 +36,12 @@ public class invSearchCondition {
                 ", category='" + category + '\'' +
                 ", period=" + period +
                 ", dateField='" + dateField + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 '}';
     }
 
-    public invSearchCondition(Integer page, Integer pageSize, String keyword, String option, String sortType, String category ,Integer period, String dateField) {
+    public invSearchCondition(Integer page, Integer pageSize, String keyword, String option, String sortType, String category ,Integer period, String dateField,String startDate, String endDate) {
 
 
         if (page == null || page <= 0) {
@@ -60,6 +62,8 @@ public class invSearchCondition {
         this.category = category;
         this.period = period;
         this.dateField = dateField;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     public String getQueryString(Integer page){
         if (page == null || page <= 0) {
@@ -80,6 +84,8 @@ public class invSearchCondition {
                 .queryParam("category", category)
                 .queryParam("period", period)
                 .queryParam("dateField", dateField)
+                .queryParam("startDate", startDate)
+                .queryParam("endDate", endDate)
 
                 .build().toString();
 //        System.out.println("tmp = " + tmp);
@@ -170,5 +176,21 @@ public class invSearchCondition {
 
     public void setDateField(String dateField) {
         this.dateField = dateField;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

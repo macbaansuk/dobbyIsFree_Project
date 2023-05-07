@@ -56,7 +56,7 @@ public class CartDaoImpl implements CartDao {
 
         session.update(namespace + "updateCartQty", map);
 
-        // 업데이트된 항목을 가져옵니다.
+
         return getCartProductById(cartId);
 
 
@@ -66,21 +66,6 @@ public class CartDaoImpl implements CartDao {
     public CartProdDto getCartProductById(int cartId) {
         return session.selectOne(namespace+"getCartProductById",cartId);
     }
-
-
-//    @Override
-//    public void updateCartQty(int cartId, int quantity) {
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("CART_ID", cartId);
-//        map.put("PROD_INDV_QTY", quantity);
-//        System.out.println("serviceImp카트아이디 : " + cartId);
-//
-//      session.update(namespace+"updateCartQty",map);
-//
-//    }
-
-
 
 
 }

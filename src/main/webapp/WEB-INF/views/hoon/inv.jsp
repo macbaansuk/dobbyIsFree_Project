@@ -11,10 +11,14 @@
     <style>
 
     </style>
-</head>
 
+</head>
 <link rel="stylesheet" href="/css/hoon/admin.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/css/hoon/jquery/jquery-ui.css">
+<script src="/css/hoon/jquery/jquery-ui.min.js"></script>
 
 
 
@@ -43,7 +47,7 @@
                             <col style="width:auto;">
                         </colgroup>
                         <tbody>
-                        <form action="<c:url value="/admin/list"/>" class="search-form" method="get">
+<%--                        <form action="<c:url value="/admin/list"/>" class="search-form" method="get">--%>
                         <tr>
                             <th scope="row">검색분류</th>
                             <td colspan="3">
@@ -102,8 +106,8 @@
                                                 <input type="text" class="fText eSearchOrigin" style="width:200px;" name="made_in[]" value="" id="eMadeIn_0">
                                             </span>
 
-                                        <a href="#none" class="btnIcon icoMinus" search-type="general"><span>삭제</span></a>
-                                        <a href="#none" class="btnIcon icoPlus" search-type="general" style="display: inline-block;"><span>추가</span></a>
+<%--                                        <a href="#none" class="btnIcon icoMinus" search-type="general"><span>삭제</span></a>--%>
+<%--                                        <a href="#none" class="btnIcon icoPlus" search-type="general" style="display: inline-block;"><span>추가</span></a>--%>
                                     </li>
                                 </ul>
                             </td>
@@ -112,7 +116,7 @@
                             <th scope="row">상품분류</th>
                             <td colspan="3">
                                 <div class="gSingle">
-                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="CATE1" ${ph.sc.option=='CATE1' ? "selected" : ""} >(대분류) CATE1</option> <option value="CATE2" ${ph.sc.option=='CATE2' ? "selected" : ""} >(대분류) CATE2</option> <option value="CATE3"${ph.sc.option=='CATE3' ? "selected" : ""} >(대분류) CATE3</option> <option value="CATE4"${ph.sc.option=='CATE4' ? "selected" : ""} >(대분류) CATE4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택 -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
+                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="CATE1" ${ph.sc.option=='CATE1' ? "selected" : ""} >(대분류) CATE1</option> <option value="CATE2" ${ph.sc.option=='CATE2' ? "selected" : ""} >(대분류) CATE2</option> <option value="CATE3"${ph.sc.option=='CATE3' ? "selected" : ""} >(대분류) CATE3</option> <option value="CATE4"${ph.sc.option=='CATE4' ? "selected" : ""} >(대분류) CATE4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택(미구현) -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 (미구현) -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 (미구현) -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="sub_cate" value="T"> 하위분류 포함검색</label>--%>
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="notincategory" value="T"> 분류 미등록상품 검색</label>--%>
                                         </span>
@@ -123,8 +127,9 @@
                             <th scope="row">상품등록일</th>
                             <td colspan="3">
                                 <select class="fSelect category" name="date">
-                                    <option value="regist">상품등록일</option>
-                                    <option value="modify">상품최종수정일</option>
+                                    <option value="" ${ph.sc.dateField=='' ? "selected" : ""}>-등록일 선택-</option>
+                                    <option value="regist" ${ph.sc.dateField=='regist' ? "selected" : ""}>상품등록일</option>
+                                    <option value="modify" ${ph.sc.dateField=='modify' ? "selected" : ""}>상품최종수정일</option>
                                 </select>
                                 <a href="javascript:void(0)" class="btnDate" period="0"><span>오늘</span></a>
                                 <a href="javascript:void(0)" class="btnDate" period="3"><span>3일</span></a>
@@ -133,22 +138,22 @@
                                 <a href="javascript:void(0)" class="btnDate" period="90"><span>3개월</span></a>
                                 <a href="javascript:void(0)" class="btnDate" period="365"><span>1년</span></a>
                                 <a href="javascript:void(0)" class="btnDate" period="-1"><span>전체</span></a>
-                                <input type="text" id="pr_start_date" name="start_date" class="fText gDate" value="2022-04-05">
-                                <a href="javascript:;" id="start_date" class="btnIcon icoCal"><span>달력보기</span></a>
+                                <input type="text" id="pr_start_date" name="start_date" class="fText gDate" value="">
+                                <a href="javascript:void(0)" id="start_date" class="btnIcon icoCal"><span>달력보기</span></a>
                                 ~
-                                <input type="text" id="pr_end_date" name="end_date" class="fText gDate" value="2023-04-05">
-                                <a href="javascript:;" id="end_date" class="btnIcon icoCal"><span>달력보기</span></a>
+                                <input type="text" id="pr_end_date" name="end_date" class="fText gDate" value="">
+                                <a href="javascript:void(0)" id="end_date" class="btnIcon icoCal"><span>달력보기</span></a>
                                 <input type="hidden" name="date_type" value="9999">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">진열상태</th>
+                            <th scope="row">진열상태 (미구현)</th>
                             <td>
                                 <label class="gSingleLabel eSelected"><input type="radio" class="fChk eDisplayStatus" name="display" value="A" checked="&quot;checked&quot;"> 전체</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="display" value="T"> 진열함</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="display" value="F"> 진열안함</label>
                             </td>
-                            <th scope="row">판매상태</th>
+                            <th scope="row">판매상태 (미구현)</th>
                             <td>
                                 <label class="gSingleLabel eSelected"><input type="radio" class="fChk eDisplayStatus" name="selling" value="A" checked="&quot;checked&quot;"> 전체</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="selling" value="T"> 판매함</label>
@@ -285,59 +290,65 @@
 
 <jsp:include page="../admin_footer.jsp"/>
 
+  <script>
+      //datePicker
+      let calendar = $(function(){
+          $('#start_date,#end_date').click(function() {
+              let datePicker = $(this).prev('input');
+              let isFirstTime = true; // 처음 클릭 시에만 setDate를 사용하기 위한 변수
 
+              // datePicker 옵션 초기화 하기
+              datePicker.datepicker({
+                  closeText: "닫기",
+                  prevText: "이전달",
+                  nextText: "다음달",
+                  currentText: "오늘",
+                  monthNames: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+                  monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+                  dayNames: ["일","월","화","수","목","금","토"],
+                  dayNamesShort: ["일","월","화","수","목","금","토"],
+                  dayNamesMin: ["일","월","화","수","목","금","토"],
+                  weekHeader: "주",
+                  dateFormat: "yy-mm-dd",
+                  firstDay: 0,
+                  isRTL: false,
+                  showMonthAfterYear: true,
+                  yearSuffix: "년",
+                  showButtonPanel: true,
+
+                  beforeShow: function(input) {
+                      if (isFirstTime) {
+                          isFirstTime = false;
+                          $(input).datepicker("setDate", 'today');
+                      }
+                  }
+
+              });
+
+              // datepicker 보여주기
+              datePicker.datepicker("show");
+              console.log('show')
+          });
+      });
+
+  </script>
 
 <script>
 
     let pageHandler; // 전역변수로 담아서 다른 함수에서도 사용할 수 있다.
-
+    let period = '';
     // 화면 비동기화 업데이트 함수
-    let  showList = function(page, pageSize, keyword, sortType, category, period, dateField) {
+    let  showList = function(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate) {
         //서버에 전달할 검색어와 옵션을 변수에 담는다.
 
         let option = '';
-
-        // let sortType='';
-
-        console.log('가공 전 showList  ='+page)
-        console.log('가공 전 showList  ='+pageSize)
-        console.log('가공 전 showList  ='+keyword)
-        console.log('가공 전 showList  ='+sortType)
-        console.log('가공 전 showList  ='+category)
-        console.log('가공 전 showList  ='+period)
-        console.log('가공 전 showList  ='+dateField)
-
-
 
         if(page ===undefined || page<=0)
             page = 1;
         if (pageSize === undefined || pageSize <= 10)
             pageSize = 10;
-        if (keyword === undefined || keyword ===''){
-            keyword = $('.search-input').val(); // 검색어
-        } else {
-            keyword = keyword;
-        }
-        // if (option == undefined || option == ''){
-        //     option = $('select[name="option"] option:selected').val(); // 검색어
-        // } else {
-        //     option = option;
-        // }
-        if (sortType === undefined || sortType ===''){
-            sortType = $('select[name="orderby"] option:selected').val(); // 검색어
-        } else {
-            sortType = sortType;
-        }
-        if (category === undefined){
-            category = $('select[name="category"] option:selected').val(); // 검색어
-        } else {
-            category = category;
-        }
 
-        // let option = $('select[name="option"] option:selected').val(); //옵션
-        // sortType = $('select[name="orderby"] option:selected').val();
-        // let category = $('select[name="category"] option:selected').val();
-
+        //데이터 값 전달 확인용  삭제요망
         console.log('showList page =' +page)
         console.log('showList pageSize =' +pageSize)
         console.log('showList keyword =' +keyword)
@@ -345,16 +356,17 @@
         console.log('showList category =' +category)
         console.log('showList period =' +period)
         console.log('showList dateField =' +dateField)
-        $('.test').empty();
+        console.log('showList startDate =' +startDate)
+        console.log('showList endDate =' +endDate)
+        $('.test').empty(); // 상품 목록 리스트를 모두 비운다.
 
         $.ajax({
             type: 'PATCH',
-            url: "/admin/list",
+            url: "/admin/inv/list",
             contentType : 'application/json',
-            // url: "/admin/list?pageSize="+pageSize+"&option="+option+"&keyword="+keyword, // 서버에 검색어와 옵션을 담아 보낸다.
-            //data: {},
 
             data: JSON.stringify({
+
                 page : page,
                 pageSize: pageSize,
                 option: option,
@@ -363,12 +375,15 @@
                 category : category,
                 period : period,
                 dateField : dateField,
+                startDate : startDate,
+                endDate : endDate,
 
             }),
             // traditional: true, // 배열 형태의 데이터를 전송할 때 필요한 옵션
             success: function (data) {
                 console.log(data);
-                processListData(data);// 뿌리는 부분 중복
+                processListData(data);// 화면에 출력하는 함수
+
 
             },
             error: function () {
@@ -377,13 +392,14 @@
         });
      }
 
+
      // 자동 체크박스 체크 함수
     const checkbox = function () {
-        const prodId = $(this).data('prod-id');
-        const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
-        const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
+        let prodId = $(this).data('prod-id');
+        let invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val();
+        let safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val();
         let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val();
-        const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val();
+        let invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val();
 
         const $checkbox = $('input[type="checkbox"][id="pd-check"][data-prod-id="' + prodId + '"]');
 
@@ -396,14 +412,13 @@
         }
     };
 
-    $('input.option-number, input.safe-number, select.inv-status, select.inv-loc').on('input', checkbox);
-        // 클릭시 검색어와 옵션의 값을 포함하여 전달함.
+
 
 
     function processListData(data) {
-        pageHandler = data.ph;
-        const totalCnt = data.ph.totalCnt;
-        console.log("totalCnt = "+totalCnt)
+        pageHandler = data.ph; // 서버에서 보낸 data의 ph를 pageHandler 변수에 저장
+        const totalCnt = data.ph.totalCnt; // 위와 동일
+        console.log("totalCnt = "+totalCnt) // 확인용
         $('.total strong').text(totalCnt); // 상품 총 개수를 보여주는
         $('.center').html(toHtml(data.list)); // 상품을 보여주는
         $('.paging').html(updatePaging(data.ph)); // 페이징을 업데이트 하는
@@ -422,16 +437,16 @@
         }
         if(ph.showPrev) {
             let beginPage = (ph.beginPage <= 1) ? 2 : ph.beginPage;
-                pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage-1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&lt;</a>'
+                pagingHtml += '<a class="page" href="/admin/inv/list?page='+(ph.beginPage-1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&lt;</a>'
         }
         for (let i=ph.beginPage; i<= ph.endPage; i++) {
             let classText = (i===ph.sc.page)? 'page paging-active' : 'page';
-            let url = "/admin/list?page="+ph.sc.page+"&pageSize="+ph.sc.pageSize+"&option="+ph.sc.option+"&keyword="+ph.sc.keyword; // 누르면 해당하는 번호로 변경되게 해야함
-            pagingHtml += '<a class="'+classText+'" href="'+url+'">'+i+'</a>';
+            let url = "/admin/inv/list?page="+ph.sc.page+"&pageSize="+ph.sc.pageSize+"&option="+ph.sc.option+"&keyword="+ph.sc.keyword; // 누르면 해당하는 번호로 변경되게 해야함
+            pagingHtml += '<a class="'+classText+'" href="'+url+'" id="'+classText+i+'">'+i+'</a>';
         }
         if(ph.showNext) {
             let beginPage = (ph.beginPage <= 1) ? 1 : ph.beginPage;
-            pagingHtml += '<a class="page" href="/admin/list?page='+(ph.beginPage+1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&gt;</a>'
+            pagingHtml += '<a class="page" href="/admin/inv/list?page='+(ph.beginPage+1)+'&pageSize='+ph.sc.pageSize+'&option='+ph.sc.option+'&keyword='+ph.sc.keyword+'">&gt;</a>'
         }
         // console.log(pagingHtml)
         return pagingHtml;
@@ -469,7 +484,7 @@
             tmp += '<input type="number" class="safe-number" data-prod-id="'+inv.prod_ID+'" style="width:60px;" name="stock_warn_value[P000000J000A]" value="'+inv.safe_INV+'">'
             tmp += '</td>'
 
-            // tmp += '<td>'
+            //
             tmp += '<td>'
             tmp += '<select class="inv-status" data-prod-id="' + inv.prod_ID + '" name="inv_status[P000000J000A]">'
             tmp += '<option id="opt1" value="여유" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '여유' ? 'selected' : '') + '>여유</option>'
@@ -499,20 +514,61 @@
 
     $(document).ready(function() {
 
-        showList('','',' ','');
+        let page = '';
+        let pageSize = '';
+        let keyword =' ';
+        let sortType ='';
+        let category ='';
+        let period ='';
+        let dateField ='';
+        let startDate ='';
+        let endDate ='';
+
+        showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
+
+
 
         // 페이지 숫자를 클릭했을 때의 이벤트 핸들러
         $('.paging').on('click', '.page', function(event) {
             event.preventDefault(); // 기본 동작 중단
 
             let page = $(this).text(); // 클릭한 그 값을 가져옴 , 즉 i 의 값
+
             let pageSize =pageHandler.sc.pageSize; // 전역 변수인 pageHandler를 참조하여 pageSize 추출 //
-            // let option = $('select[name="option"] option:selected').val(); // 옵션
-            // let keyword = $('.search-input').val(); // 검색어
-            // let sortType = $('select[name="orderby"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어 및 나머지 검색조건의 값들을 담는다
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            let startDate = $('#pr_start_date').val()
+            let endDate =$('#pr_end_date').val()
+            let dateField = $('select[name="date"] option:selected').val();
+
+            // paging 함수의 a태그의 herf 를 쓰지 않을거라
+            console.log(pageHandler);
+            if (page === '>') {
+                page = pageHandler.sc.page + 1;
+            } else if (page === '<') {
+                page = pageHandler.sc.page - 1;
+            }
+
+            if (startDate ==="" && endDate ==="") {
+                console.log("널 처리")
+                startDate = null;
+                endDate = null;
+            }
+
+            console.log('page page ='+page)
+            console.log('page pageSize ='+pageSize)
+            console.log('page keyword ='+keyword)
+            console.log('page  sortType='+sortType)
+            console.log('page category ='+category)
+            console.log('page period ='+period)
+            console.log('page dateField ='+dateField)
+            console.log('page startDate ='+startDate)
+            console.log('page endDate ='+endDate)
 
             //담아서 showList에 매개변수로 전달한다.
-            showList(page,pageSize,'','')
+            showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
+            // showList(page,pageSize,'','')
 
             });
 
@@ -523,16 +579,47 @@
             const code2 = $('#opt2').val(); // 부족
             const code3 = $('#opt3').val(); // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
+
+            // 입력하던 화면으로 돌아가야함, 즉 클라이언트가 입력한 정보로 다시 showList 호출
+            let page = pageHandler.sc.page;
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            let dateField = $('select[name="date"] option:selected').val();
+            let startDate = $('#pr_start_date').val()
+            let endDate =$('#pr_end_date').val()
+
+            //date 타입 sql 에러를 방지하기 위해 사용자가 입력하지 않으면 null로 처리한다.
+            if (startDate ==="" && endDate ==="") {
+                console.log("널 처리")
+                startDate = null;
+                endDate = null;
+            }
+            //JSON 을 담을 배열
             const jsonData = [];
+
             // 체크박스 or id = pd-check 가 체크된 박스들을 .each 로 순회해서 아래의 행동을 한다,
             $('input[type="checkbox"][id="pd-check"]:checked').each(function () {
-                //변경할 값들을 변수에 담는다.
-                const prodId = $(this).data('prod-id'); // 아이디
-                const invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 재고수량
-                const safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val(); // 안전재고
-                let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
-                const invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
 
+                //변경할 값들을 변수에 담는다.
+                let prodId = $(this).data('prod-id'); // 아이디
+                let invQty = $('input.option-number[data-prod-id="' + prodId + '"]').val(); // 재고수량
+                let safeInv = $('input.safe-number[data-prod-id="' + prodId + '"]').val(); // 안전재고
+                let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
+                let invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
+
+                // 재고수량 안전재고는 빈 문자열시 0의 값을 갖는다
+                if (invQty === '')
+                {
+                    invQty = 0;
+
+                } else if (safeInv === '' || safeInv <= 0) // 안전재고는 -가 될 수 없다.
+                {
+                    safeInv = 0;
+                }
+
+                // 한개라도 빈 문자열이 아닐시
                 if (invQty !== '' || safeInv !== '' || invStusCd !== '' || invLoc !== '') {
                     $(this).prop('checked', true);
                 }
@@ -546,6 +633,16 @@
                 } else {
                     invStusCd = code2;
                 }
+
+                console.log('저장 page ='+page)
+                console.log('저장 pageSize ='+pageSize)
+                console.log('저장 keyword ='+keyword)
+                console.log('저장  sortType='+sortType)
+                console.log('저장 category ='+category)
+                console.log('저장 period ='+period)
+                console.log('저장 dateField ='+dateField)
+                console.log('저장 startDate ='+startDate)
+                console.log('저장 endDate ='+endDate)
 
                 // invDto 객체에 아래의 값들을 담는다.
                 const invDto = {
@@ -561,13 +658,21 @@
             }); //each의 끝
 
             $.ajax({
-                url: '/admin/modify',
+                url: '/admin/inv/modify',
                 type: 'POST',
                 data: JSON.stringify(jsonData),
                 contentType: 'application/json',
                 success: function (result) {
-                    console.log('전송 성공.');
-                    showList();
+                    console.log('저장 후 page ='+page)
+                    console.log('저장 후 pageSize ='+pageSize)
+                    console.log('저장 후 keyword ='+keyword)
+                    console.log('저장 후 sortType='+sortType)
+                    console.log('저장 후 category ='+category)
+                    console.log('저장 후 period ='+period)
+                    console.log('저장 후 dateField ='+dateField)
+                    console.log('저장 후 startDate ='+startDate)
+                    console.log('저장 후 endDate ='+endDate)
+                    showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
@@ -577,90 +682,229 @@
         });
 
         //검색 버튼 누를시
+        // 상품명과 pageSize 같이 적용되서 검색
         $('#eBtnSearch').click(function () {
             let page = $('.classText').val();
             let pageSize = $('select[name="limit"] option:selected').val();
             let keyword = $('.search-input').val(); // 검색어
-            let sortType = $(this).val();
+            let sortType = $('select[name="orderby"] option:selected').val()
             let category = $('select[name="category"] option:selected').val()
-            console.log('검색버튼 category =' + category)
-            showList(page, pageSize, keyword, sortType, category);
+            let startDate = $('#pr_start_date').val()
+            let endDate =$('#pr_end_date').val()
+            let dateField = $('select[name="date"] option:selected').val();
 
+            // 전역변수에 저장된 period 를 초기화 한다. period는 클릭시 검색과 같기 때문에,
+            period = '';
+
+            console.log("dateField = " +dateField)
+            console.log("startDate = " +startDate)
+            console.log("endDate = " +endDate)
+
+            //date 타입 sql 에러를 방지하기 위해 사용자가 입력하지 않으면 null로 처리한다.
+            if (startDate ==="" && endDate ==="") { // 사용자가 입력하지 않을경우 빈문자열로 처리되기 때문에.
+                console.log("널처리")
+                startDate = null;
+                endDate = null;
+            }
+
+            // 입력하게 될 경우, period 와 조건 날짜의 중복을 방지
+            if (startDate !== null && endDate !== null)
+            {
+                period = '';
+            }
+
+            //startDate 와 endDate
+
+            if (startDate !== '' && endDate === ''){
+                alert('종료일을 설정해주세요.')
+
+            }
+            else if (startDate === '' && endDate !== '')
+            {
+                alert('시작일을 설정해주세요.')
+            } else if ((startDate !== '' && endDate !== '')&& startDate>endDate)
+            {
+                alert('시작일을 종료일보다 빠르게 설정해주세요.')
+            }
+
+
+            // 기준일 미입력시
+             else if ((startDate !== null && endDate !== null) && (dateField ===''))
+            {
+                alert('등록일 기준을 선택해주세요')
+            }
+             else{
+
+            showList(page, pageSize, keyword, sortType, category,null,dateField,startDate,endDate);
+
+            }
         });
 
         //초기화 버튼을 누를시
         $('#eSearchFormInit').click(function () {
-            // $('.search-input').val(''); // 검색어 입력 필드의 값을 빈 문자열로 설정
+
             $('.search-input').val(''); // 검색어 입력 필드의 값을 빈 문자열로 설정
             $('select[name="category"]').val(''); // 카테고리 선택을 기본값으로 설정
+            $('#pr_start_date, #pr_end_date').val(''); // 날짜 선택(input 태그)의 값을 빈 문자열로 설정
+            $('select[name="limit"]').val('10'); // 10개씩 보기로 디폴트 값 설정
+            $('select[name="orderby"]').val('id_d'); // 상품ID 순으로  디폴트 값 설정
+            $('select[name="date"]').val(""); // 등록일 선택 디폴트 값 설정
+            $('select[name="option"]').val("T"); // 검색분류 기본값 설정
+
+            // 초기화시 모든 매개변수 초기화로 설정
             let page = '';
             let pageSize = '';
-            let keyword = ' '; // 검색어
-            let sortType = '';
-            let category = '';
-            showList(page, pageSize, keyword, sortType, category);
+            let keyword =' ';
+            let sortType ='';
+            let category ='';
+            let period ='';
+            let dateField ='';
+            let startDate ='';
+            let endDate ='';
+            showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
+
         });
 
-            // 검색창에 커서가 있고 Enter를 누를 경우에만
+            // 검색창에 커서가 있고 Enter를 누를 경우에만 검색으로 적용되게 한다. 검색창은 동적생성이 아니라 이렇게 가능함
         $('.search-input').keydown(function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                $('#eBtnSearch').trigger('click'); // Simulate a click on the search button
+            if (event.keyCode === 13) { //Enter 키를 지칭함
+                event.preventDefault(); // 원래 기능을 막고
+                $('#eBtnSearch').trigger('click'); // 새로운 기능 부여
             }
         });
 
+        // 저장 가능한 필드에 커서가 있으면 Enter 누를시 저장버튼 클릭 // 동적생성으로 이벤트 위임을 이용해서 처리함. keydown 발생시
+        $(document).on('keydown', '.option-number, .safe-number, .inv-status, .inv-loc', function(event) {
+            if (event.keyCode === 13) { //Enter 키를 지칭함
+                console.log('enter 작동')
+                event.preventDefault(); // 원래 기능을 막고
+                $('#eBtnModify').trigger('click'); // 새로운 기능 부여
+            }
+        });
 
-        // 체크박스 이벤트 처리 등록 // 이게 있어야 자동으로 체크박스가 체크된다.
+        // $('input.option-number, input.safe-number, select.inv-status, select.inv-loc').on('input', checkbox);
+        // 입력칸 4개의 값이 변경되면 자동 체크박스 함수 호출
+        // 역시 동적생성이라 이벤트 위임으로 할당함 / 원래 의도는 위 코드였음
         $(document).on('input', 'input.option-number, input.safe-number, select.inv-status, select.inv-loc', checkbox);
+
 
         // select 요소의 change 이벤트 처리 등록 - 10개씩 보기 , 20개씩 보기
         $('select[name="limit"]').on('change', function() {
-            // 선택된 옵션의 값을 가져온다
+            // keyword, category, period, startDate, endDate 고려해야 한다.
+            // period, 와 startDate, endDate는 둘중 하나만 적용되어야 한다.
+
             let page = $('.classText').val();
             let pageSize = $('select[name="limit"] option:selected').val();
             let keyword = $('.search-input').val(); // 검색어
-            let sortType = $(this).val();
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+             period = period;
+            let dateField = $('select[name="date"]').val();
+            let startDate = $('#pr_start_date').val();
+            let endDate = $('#pr_end_date').val();
             // 선택된 값을 이용하여 원하는 동작을 수행한다
+            console.log('startDate ='+ startDate);
+            console.log('endDate ='+ endDate);
+
+
+            if (startDate ==="" && endDate ==="") {
+
+                startDate = null;
+                endDate = null;
+
+            }
+
+            console.log('startDate ='+ startDate);
+            console.log('endDate ='+ endDate);
             // 예: showList 함수 호출 등
-            showList(page,pageSize,keyword,sortType);
+            showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
 
         // 상품 정렬방식 - ORDER BY
         $('select[name="orderby"]').on('change', function() {
             // 선택된 옵션의 값을 가져온다
+            period = period;//전역 변수로 period는 관리한다.
             let page = $('.classText').val();
             let pageSize = $('select[name="limit"] option:selected').val();
             let keyword = $('.search-input').val(); // 검색어
-            let sortType = $(this).val();
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            let dateField = $('select[name="date"]').val();
+            let startDate = $('#pr_start_date').val();
+            let endDate = $('#pr_end_date').val();
 
+
+            if(startDate == '' && endDate == ''){
+                startDate = null;
+                endDate = null;
+            }
             // 선택된 값을 이용하여 원하는 동작을 수행한다
             // 예: showList 함수 호출 등
-            showList(page,pageSize,keyword,sortType);
+            console.log('startDate ='+ startDate);
+            console.log('endDate ='+ endDate);
+            console.log('period ='+ period);
+            showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
 
+        // 달력보기 클릭시 period의 값을 초기화 한다. 중복 날짜 조건을 없애기 위해.
+        $('#start_date,#end_date').click(function (){
+            period = '' ;
+            console.log('period ='+period)
+        });
+
+
+        // 1일 3일 날짜버튼을 클릭할시
         $('.btnDate').click(function () {
-            let period = $(this).attr('period');
+
+            $('#pr_start_date, #pr_end_date').val(''); // 날짜 선택(input 태그)의 값을 빈 문자열로 설정, 중복 x
+
+            let page = $('.classText').val();
+            let pageSize = $('select[name="limit"] option:selected').val();
+            let keyword = $('.search-input').val(); // 검색어
+            let sortType = $('select[name="orderby"] option:selected').val()
+            let category = $('select[name="category"] option:selected').val()
+            period = $(this).attr('period'); // 내가 클릭한 날짜 값을 가져온다
             let dateField = $('select[name="date"]').val();
+            let startDate = null;  // 중복 날짜 계산을 방지하기 위해 날짜 버튼 클릭시 null로 초기화함
+            let endDate =null; // 중복 날짜 계산을 방지하기 위해 날짜 버튼 클릭시 null로 초기화함
 
             console.log("period ="+period)
             console.log("dateField ="+dateField)
-            // 선택한 날짜 필터링 값을 서버로 전달하고 결과를 화면에 표시하는 함수 호출
-            showList('','' ,'' ,'' ,'' , period, dateField);
-        });
 
+            if (dateField == undefined || dateField =='')
+            {alert('등록일 기준을 선택 하세요')}
+
+
+            showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
+        });
 
     });
 
 </script>
 <script>
-    let msg ="${msg}";
-    if(msg=="WRT_ERR") alert("게시물 등록에 실패하였습니다. 다시 시도해 주세요.");
-    if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
-    if(msg=="MOD_OK") alert("수정이 완료되었습니다.");
-
-    if(msg=="LIST_ERR") alert("올바른 값을 입력해 주세요.");
-
-
+    //showList 매개변수를 아래의 코드에 담아서 코드 중복을 줄 일 수 있다. 특정 상황에 더 힘들 것 같고 시간이 없어서 하지 않았다.
+    // function getPageData() {
+    //     const page = $('.classText').val();
+    //     const pageSize = $('select[name="limit"] option:selected').val();
+    //     const keyword = $('.search-input').val();
+    //     const sortType = $('select[name="orderby"] option:selected').val();
+    //     const category = $('select[name="category"] option:selected').val();
+    //     const startDate = $('#pr_start_date').val();
+    //     const endDate = $('#pr_end_date').val();
+    //     const dateField = $('select[name="date"] option:selected').val();
+    //
+    //     return {
+    //         page,
+    //         pageSize,
+    //         keyword,
+    //         sortType,
+    //         category,
+    //         startDate,
+    //         endDate,
+    //         dateField,
+    //     };
+    // }
 </script>
+
 </body>
 </html>

@@ -83,17 +83,6 @@ public class CartController {
     }
 
 
-//원래 delete post url 반환 타입이 없어서 ajax error:function(){}
-//응답상태는 200으로 잘뜸 but 에서 -> 반환값을 주지 않음
-//    @PostMapping ("/cart/delete")
-//    @ResponseBody
-//    public void deleteCartItem(@RequestBody DeleteDto deleteDto) {
-//        System.out.println("deletemethod()진입");
-//        System.out.println("delete List = " + deleteDto.getCartIdList());
-//
-//
-//        cartService.deleteCart(deleteDto.getCartIdList());
-//    }
 @PostMapping("/cart/delete") //이 메서드로 수정
 @ResponseBody
 public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDto deleteDto) {
@@ -111,18 +100,6 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
 
 }
 
-//    @PostMapping("/cart/update")
-//    @ResponseBody
-//    public void updateCartItem(@RequestParam Integer cartId, @RequestParam Integer quantity) {
-//        System.out.println("updateController 진입");
-//        System.out.println("cartId= "+ cartId);
-//        System.out.println("수량 = " + quantity);
-//
-//        cartService.updateCartQty(cartId,quantity);
-//
-//
-//
-//    }
 
     @PostMapping("/cart/update")
     @ResponseBody
@@ -139,7 +116,6 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         //장바구니 목록을 세션에 담는다
         List<CartProdDto> cartList = (List<CartProdDto>) session.getAttribute("cartList");
 
-        // Find the cart item with the matching CART_ID and update the quantity value
         for (CartProdDto cartItem : cartList) {
             if (cartItem.getCART_ID().equals(cartId)) {
                 cartItem.setPROD_INDV_QTY(quantity);
@@ -148,7 +124,6 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         }
 
         session.setAttribute("cartList", cartList);
-
 
 
         int proInvQty = upCartPdDto.getPROD_INDV_QTY(); //구입 수량 input
@@ -173,16 +148,6 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         map.put("prod_quantity", String.valueOf(prodQuantity));
         map.put("prod_total", String.format("%,d", prodTotal));
         map.put("prod_points", String.valueOf(prodPoints));
-
-
-
-
-
-
-
-
-
-
 
 
         return ResponseEntity.ok(map);  //이렇게 delete 수정
