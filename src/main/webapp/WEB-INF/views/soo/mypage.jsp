@@ -77,7 +77,7 @@
         </div>
 
 
-    </div>
+    </div><!--mypageTop-->
 
     <div id="container">
         <div id="menu">
@@ -92,9 +92,9 @@
         </div>
         <div id="page">
             <h1>1:1 상담내역</h1>
-        </div>
+        </div><!-- page -->
     </div>
-</div>
+</div><!-- mypage -->
 
 <jsp:include page="../footer.jsp" />
 </body>

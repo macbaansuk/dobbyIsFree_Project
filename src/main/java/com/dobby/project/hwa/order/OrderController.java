@@ -247,7 +247,11 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
 //        session.removeAttribute("cartList");
         String orderId = od.getInputOrdId(); // 주문id
         System.out.println("주문번호" + orderId);
+        String orderer = od.getInputOrdNmTxt();
+        System.out.println("주문자 " + orderer);
+
         m.addAttribute("orderId",orderId);
+        m.addAttribute("orderer",orderer);
         return "hwa/orderDone";
     }
 

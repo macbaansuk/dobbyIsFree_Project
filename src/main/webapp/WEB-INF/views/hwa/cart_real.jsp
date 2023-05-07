@@ -365,6 +365,7 @@
 
                 $(".ordBtn").click(function () { //주문하기 버튼 클릭시
                     const checkOrdArr = [];
+                    const cartList = ${cartList}
 
                     $("input[class='chBox']:checked").each(function () {
                         checkOrdArr.push(Number($(this).attr("data-cartId"))); //체크된 목록을 배열에 담고
@@ -380,7 +381,11 @@
                     });
 
                     $(document.body).append(form);
-                    form.submit();
+                    if(cartList.length > 0 ){  //장바구니목록이 존재해야만
+                         form.submit();
+                    }else{
+                        alert("장바구니가 비어있습니다");
+                    }
                 });
             </script>
 

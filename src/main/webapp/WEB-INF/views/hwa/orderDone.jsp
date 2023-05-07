@@ -23,7 +23,7 @@
         <div class="orderWrap orderComWrap" id="orderComplete">
             <div class="orderComTop">
                 <p class="txt1">주문이 완료되었습니다.</p>
-                <p class="txt2">이현화 님의 주문번호는 <strong class="num">${orderId}</strong> 입니다.</p>
+                <p class="txt2">${orderer} 님의 주문번호는 <strong class="num">${orderId}</strong> 입니다.</p>
                 <p class="txt4">이 주문 상품은 결제완료 시점에서 2일에서 3영업일 이내 배송이 되며 도서산간 및 행사 시 지연될 수 있습니다.</p>
             </div>
 

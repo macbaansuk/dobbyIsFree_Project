@@ -1020,12 +1020,12 @@
     function order_Id(){
         const date = new Date();
         const year = date.getFullYear().toString();
-        const month = (date.getMonth() + 1).toString();  //0부터시작 +1
-        const day = date.getDate().toString();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');  //0부터시작 +1 ,한자리숫자로 나오는거 padStart로 수정
+        const day = date.getDate().toString().padStart(2, '0');
 
 
         let orderNum = year + month + day;
-        for(let i=0;i<3;i++) {
+        for(let i=0;i<6;i++) {
             orderNum += Math.floor(Math.random() * 8);
         }
 
