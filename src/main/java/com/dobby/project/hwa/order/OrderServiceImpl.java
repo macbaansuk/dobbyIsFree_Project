@@ -57,4 +57,9 @@ public class OrderServiceImpl implements  OrderService{
             orderDao.deleteCart(delCartIds);
 
     }
+
+    @Override
+    public int insertPoint(PointDto pd) {
+        return orderDao.insertPoint(pd);
+    }
 }

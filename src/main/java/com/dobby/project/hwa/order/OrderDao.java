@@ -25,4 +25,6 @@ public interface OrderDao {
     public int updateDlvDefault(String mbrId, Integer dlvpnId);
 
     public void deleteCart(List<Integer> delCartIds);
+
+    public int insertPoint(PointDto pd);
 }

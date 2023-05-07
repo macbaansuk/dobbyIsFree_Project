@@ -234,6 +234,19 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
             orderService.deleteCart(delCartIds);
         
         
+        //적립금 적립TB에 insert 해주기
+        // 1.결제된 후 총 적립금 가져오기
+        // 2.해당 회원아이디 가져와서 적립금 tb에 insert
+        PointDto pd = new PointDto();
+        pd.setMBR_ID(mbrId);
+        pd.setAMT(od.getInputTotReservePtTxt());
+
+        orderService.insertPoint(pd);
+
+
+        
+        
+        
         //세션 삭제하기
 //        session.removeAttribute("checkedCartList");
 //        session.removeAttribute("cartList");

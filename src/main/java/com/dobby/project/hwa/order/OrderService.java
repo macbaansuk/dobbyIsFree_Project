@@ -22,4 +22,6 @@ public interface OrderService {
     public int updateDlvDefault(String mbrId, Integer dlvpnId);
 
     public void deleteCart(List<Integer> delCartIds);
+
+    public int insertPoint(PointDto pd); //적립금
 }
