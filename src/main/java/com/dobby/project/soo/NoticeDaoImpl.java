@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Repository
@@ -17,6 +16,7 @@ public class NoticeDaoImpl implements NoticeDao {
     public NoticeDto select(Integer NB_ID) throws Exception{
         return session.selectOne(namespace+"select",NB_ID);
     }
+
     @Override //게시물 번호, 작성자로 게시물 삭제// 나중에 String WRTR 추가하기, 관리자 계정(이름)
     public int delete(Integer NB_ID) throws Exception{
 //        Map<String, Object> map = new HashMap<String, Object>();
@@ -27,28 +27,28 @@ public class NoticeDaoImpl implements NoticeDao {
         return session.delete(namespace+"delete", NB_ID);
     }
     @Override // 게시물 작성
-    public int insert(NoticeDto dto) throws Exception{
-        return session.insert(namespace+"insert", dto);
+    public int insert(NoticeDto noticedto) throws Exception{
+        return session.insert(namespace+"insert", noticedto);
     }
     @Override // 게시물 수정
-    public int update(NoticeDto dto) throws Exception{
-        return session.update(namespace+"update", dto);
+    public int update(NoticeDto noticedto) throws Exception{
+        return session.update(namespace+"update", noticedto);
     }
     @Override // 게시물별 조회수
     public int increaseViewCnt(Integer NB_ID) throws Exception{
         return session.update(namespace+"increaseViewCnt", NB_ID);
     }
-    @Override  // 페이지 단위로 게시물 조회, Map = 페이지번호, 페이지 당 게시물 수
-    public List<NoticeDto> selectPage(Map map) throws Exception{
-        return session.selectList(namespace+"selectPage",map);
-    }
+//    @Override  // 페이지 단위로 게시물 조회, Map = 페이지번호, 페이지 당 게시물 수
+//    public List<NoticeDto> selectPage(Map map) throws Exception{
+//        return session.selectList(namespace+"selectPage",map);
+//    }
     @Override // 모든 게시물 조회
-    public List<NoticeDto> selectAll() throws Exception{
-        return session.selectList(namespace+"selectAll");
+    public List<NoticeDto> selectAll(Map map) throws Exception{
+        return session.selectList(namespace+"selectAll",map);
     }
     @Override // 카테고리별 게시물 조회
-    public List<NoticeDto> selectByCate(String BBS_CATE) throws Exception{
-        return session.selectList(namespace+"selectByCate",BBS_CATE);
+    public List<NoticeDto> selectByCate(Map<String, Object> map) throws Exception{
+        return session.selectList(namespace+"selectByCate",map);
     }
 
     @Override  // 게시물 전체 개수

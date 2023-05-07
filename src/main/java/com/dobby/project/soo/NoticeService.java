@@ -15,19 +15,19 @@ public interface NoticeService {
     int write(NoticeDto noticeDto) throws Exception;
 
     // 모든 게시물 조회
-    List<NoticeDto> getList() throws Exception;
+    List<NoticeDto> getAllList(Map map) throws Exception;
 
     // 게시물 읽기
     NoticeDto read(Integer NB_ID) throws Exception;
 
     // 페이지별 게시물 읽기
-    List<NoticeDto> getPage(Map map) throws Exception;
+//    List<NoticeDto> getPage(Map map) throws Exception;
 
     // 게시물 수정
     int modify(NoticeDto noticeDto) throws Exception;
 
     // 카테고리별 게시물 조회
-    List<NoticeDto> getListByCate(String BBS_CATE)throws Exception;
+    List<NoticeDto> getListByCate(Map<String, Object> map)throws Exception;
 
     // 카테고리별 게시물 개수
     int getCountByCate(String BBS_CATE) throws Exception;

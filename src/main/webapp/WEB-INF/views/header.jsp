@@ -118,7 +118,7 @@
       display: flex;
       align-items: center;
       border-radius: 2px;
-      border: 1px solid #777777;
+      border: 2px solid #d9d9d9;
     }
 
     #search_box input[type="text"] {
@@ -145,7 +145,7 @@
     <span><a href="/cs/notice/list">고객센터</a></span>
     <span><a href="<%=move%>"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
-    <span><a href="mypage">마이페이지</a></span>
+    <span><a href="/mypage">마이페이지</a></span>
     <span><a href="/cart" onclick="return checkLogin()">장바구니</a></span>
     <span id="cart_cnt">0</span>
   </div>

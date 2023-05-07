@@ -50,7 +50,7 @@
                 </span>
     </div>
     <div class="btn_joins bdb_n">
-        <a href="javascript::" rel="opener" class="is_disabled" id="phone-cert">
+        <a href="javascript:" rel="opener" class="is_disabled" id="phone-cert">
             <i class="ico i_phone"></i>
             휴대폰 인증
         </a>

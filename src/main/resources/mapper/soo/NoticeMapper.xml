@@ -5,65 +5,69 @@
 <mapper namespace="com.dobby.project.NoticeMapper">
 
     <sql id="selectFromNotice">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM notice
+        SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
+        FROM NOTICE N, BBS_CATEGORY C
+        WHERE N.CATE_ID = C.CATE_ID
     </sql>
 
     <!--  게시물 번호로 게시물 읽기  -->
     <select id="select" parameterType="int" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM NOTICE
-        WHERE NB_ID = #{NB_ID}
+        SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
+        FROM NOTICE N, BBS_CATEGORY C
+        WHERE N.CATE_ID = C.CATE_ID AND NB_ID = #{NB_ID}
     </select>
 
-    <!--  게시물 번호, 작성자로 게시물 삭제   나중에 작성자 추가-->
+    <!--  게시물 번호, 작성자로 게시물 삭제 ,  나중에 작성자(관리자 계정) 추가-->
     <delete id="delete" >
         DELETE FROM NOTICE
         WHERE NB_ID = #{NB_ID}
+#         AND WRTR='관리자'
     </delete>
 
     <!--  게시물 목록 모두 불러오기  -->
     <select id="selectAll" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM, STUS FROM NOTICE
+        SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
+        FROM NOTICE N, BBS_CATEGORY C
+        WHERE N.CATE_ID = C.CATE_ID
         ORDER BY REG_DTM DESC, NB_ID DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <!--  카테고리별 게시물 목록 불러오기  -->
-    <select id="selectByCate" parameterType="string" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, CN, WRTR, REG_DTM FROM NOTICE
-        WHERE BBS_CATE=#{BBS_CATE}
+    <select id="selectByCate" parameterType="map" resultType="NoticeDto">
+        SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
+        FROM NOTICE N, BBS_CATEGORY C
+        WHERE N.CATE_ID = C.CATE_ID AND N.CATE_ID = #{CATE}
         ORDER BY REG_DTM DESC, NB_ID DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
-    <!--  전체 게시물 개수, INPUT(X)  -->
+<!--      전체 게시물 개수, INPUT(X)-->
     <select id="countAll" resultType="int">
-        SELECT COUNT(*) FROM NOTICE
+        SELECT COUNT(*)
+        FROM NOTICE
     </select>
     
-<!--      카테고리별 게시물 개수-->
+<!--      카테고리별 게시물 개수, 카-->
     <select id="countByCate" parameterType="String" resultType="int">
-        SELECT COUNT(*) FROM NOTICE
-        WHERE BBS_CATE=#{BBS_CATE}
+        SELECT COUNT(*)
+        FROM NOTICE
+        WHERE CATE_ID=#{CATE_ID}
     </select>
 
     <!--  게시물 작성  -->
     <insert id="insert" parameterType="NoticeDto">
         INSERT INTO NOTICE
-            (BBS_CATE, STUS, TTL, CN, WRTR)
+            (CATE_ID, STUS, TTL, CN, WRTR)
         VALUES
-            (#{BBS_CATE}, #{STUS}, #{TTL}, #{CN}, #{WRTR})
+            (#{CATE_ID}, #{STUS}, #{TTL}, #{CN}, #{WRTR})
     </insert>
 
-    <!--  게시물 작성  -->
-<!--    <insert id="insert" parameterType="NoticeDto">-->
-<!--        INSERT INTO NOTICE-->
-<!--            (TTL, CN, WRTR)-->
-<!--        VALUES-->
-<!--            (#{TTL}, #{CN}, #{WRTR})-->
-<!--    </insert>-->
 
     <!--  게시물 수정  -->
     <update id="update" parameterType="NoticeDto">
         UPDATE NOTICE
-        SET BBS_CATE = #{BBS_CATE}
+        SET CATE_ID = #{CATE_ID}
             , STUS = #{STUS}
             , WRTR = #{WRTR}
             , TTL = #{TTL}
@@ -78,43 +82,43 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
-    <!--  조회수  -->
-    <update id="increaseViewCnt" parameterType="int">
-        UPDATE NOTICE
-        SET   VIEWS = VIEWS + 1
-        WHERE NB_ID = #{NB_ID}
-    </update>
+<!--    &lt;!&ndash;  조회수  &ndash;&gt;-->
+<!--    <update id="increaseViewCnt" parameterType="int">-->
+<!--        UPDATE NOTICE-->
+<!--        SET   VIEWS = VIEWS + 1-->
+<!--        WHERE NB_ID = #{NB_ID}-->
+<!--    </update>-->
 
-    <sql id="searchCondition">
-        <choose>
-            <when test='option=="T"'>
-                AND TTL LIKE concat('%', #{keyword}, '%')
-            </when>
-            <when test='option=="W"'>
-                AND WRTR LIKE concat('%', #{keyword}, '%')
-            </when>
-            <otherwise>
-                AND (TTL  LIKE concat('%', #{keyword}, '%')
-                OR   CN LIKE concat('%', #{keyword}, '%'))
-            </otherwise>
-        </choose>
-    </sql>
+<!--    <sql id="searchCondition">-->
+<!--        <choose>-->
+<!--            <when test='option=="T"'>-->
+<!--                AND TTL LIKE concat('%', #{keyword}, '%')-->
+<!--            </when>-->
+<!--            <when test='option=="W"'>-->
+<!--                AND WRTR LIKE concat('%', #{keyword}, '%')-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                AND (TTL  LIKE concat('%', #{keyword}, '%')-->
+<!--                OR   CN LIKE concat('%', #{keyword}, '%'))-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+<!--    </sql>-->
 
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="NoticeDto">
-        SELECT NB_ID, BBS_CATE, TTL, WRTR, REG_DTM, VIEWS, STUS
-        FROM  NOTICE
-        WHERE true
-        <include refid="searchCondition"/>
-        ORDER BY REG_DTM DESC, NB_ID DESC
-        LIMIT #{offset}, #{pageSize}
-    </select>
+<!--    <select id="searchSelectPage" parameterType="SearchCondition" resultType="NoticeDto">-->
+<!--        SELECT NB_ID, BBS_CATE, TTL, WRTR, REG_DTM, VIEWS, STUS-->
+<!--        FROM  NOTICE-->
+<!--        WHERE true-->
+<!--        <include refid="searchCondition"/>-->
+<!--        ORDER BY REG_DTM DESC, NB_ID DESC-->
+<!--        LIMIT #{offset}, #{pageSize}-->
+<!--    </select>-->
 
-    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
-        SELECT COUNT(*)
-        FROM  NOTICE
-        WHERE true
-        <include refid="searchCondition"/>
-    </select>
+<!--    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM  NOTICE-->
+<!--        WHERE true-->
+<!--        <include refid="searchCondition"/>-->
+<!--    </select>-->
 
     
 </mapper>

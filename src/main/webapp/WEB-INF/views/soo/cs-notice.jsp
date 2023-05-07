@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,9 @@
     <title>고객센터 - 공지사항</title>
 
     <style>
-
+        .tab2-btn a {text-decoration: none; color: black;}
+        .tab2-btn a:visited {text-decoration: none;}
+        .tab2-btn a:hover {text-decoration: none; color: white;}
     </style>
 </head>
 
@@ -34,15 +37,18 @@
 
         <div class="wrap">
             <!-- 게시판카테고리 -->
-            <nav class="tab">
-<%--                <ul>--%>
-<%--                    <li><a href="#"><span>FAQ</span></a></li>--%>
-<%--                    <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>--%>
-<%--                    <li><a href="#"><span>1:1 상담</span></a></li>--%>
-<%--                </ul>--%>
-                <button class="tab-btn" NB_ID="F">FAQ</button>
-                <button class="tab-btn" NB_ID="N">공지사항</button>
-                <button class="tab-btn" NB_ID="C">1:1 상담</button>
+            <nav class="bbsList">
+                <ul class="cate1">
+                    <li id="F">
+                        <a href="/cs/faq/list"><span>FAQ</span></a>
+                    </li>
+                    <li id="N">
+                        <a href="/cs/notice/list"><span>공지사항</span></a>
+                    </li>
+                    <li id="C">
+                        <a href="/cs/counsel/main"><span>1:1 상담</span></a>
+                    </li>
+                </ul>
             </nav>
 
             <!-- 검색창 -->
@@ -52,22 +58,22 @@
             </div>
 
             <!-- 공지사항 카테고리 -->
-            <div class="tab2">
-
-                <button class="tab2-btn" BBS_CATE="전체">전체</button>
-                <button class="tab2-btn" BBS_CATE="고객 센터">고객 센터</button>
-                <button class="tab2-btn" BBS_CATE="매장 공지">매장 공지</button>
-                <button class="tab2-btn" BBS_CATE="배송 공지">배송 공지</button>
-                <button class="tab2-btn" BBS_CATE="쇼핑몰 공지">쇼핑몰 공지</button>
-                <button class="tab2-btn" BBS_CATE="이벤트 공지">이벤트 공지</button>
-
+            <div class="cateList">
+                <ul class="cate2">
+                    <li><button type="button" onclick="getList('','0')" value="all"><span>전체</span></button></li>
+                    <li><button type="button" onclick="getList('N01','1')" value="customer"><span>고객센터</span></button></li>
+                    <li><button type="button" onclick="getList('N02','2')" value="store"><span>매장공지</span></button></li>
+                    <li><button type="button" onclick="getList('N03','3')" value="delivery"><span>배송공지</span></button></li>
+                    <li><button type="button" onclick="getList('N04','4')" value="shop"><span>쇼핑몰공지</span></button></li>
+                    <li><button type="button" onclick="getList('N05','5')" value="event"><span>이벤트</span></button></li>
+                </ul>
             </div>
 
-            <script>
-                let msg="${msg}";
-                if(msg=="listError") alert("게시물 목록을 불러올 수 없습니다.")
-            </script>
 
+            <script>
+                let msg = "${msg}";
+                if( msg == "listError" ) alert("게시물 목록을 불러올 수 없습니다.")
+            </script>
 
             <!-- 게시물목록 -->
             <section class="whole">
@@ -85,12 +91,16 @@
                         <tbody>
                         <c:forEach var="Notice" items="${noticeList}">
                         <tr>
-                            <td class="nb_id">${Notice.NB_ID}</td> <!--  게시물 번호 -->
-                            <td class="bbs_cate">${Notice.BBS_CATE}</td>
+                            <!--  게시물 번호 -->
+                            <td class="nb_id">${Notice.NB_ID}</td>
+                            <!--  게시물 카테고리 -->
+                            <td class="bbs_cate" value="${Notice.CATE_NM}">${Notice.CATE_NM}</td>
+                            <!--  게시물 제목 -->
                             <td class="ttl">
                                 <a href="<c:url value="/cs/notice/read${ph.sc.queryString}&NB_ID=${Notice.NB_ID}"/>">${Notice.TTL}</a>
-                            </td><!--  게시물 제목 -->
-                            <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></td> <!--  게시물 작성일 -->
+                            </td>
+                            <!--  게시물 작성일 -->
+                            <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></td>
                         </tr>
                         </c:forEach>
                         </tbody>
@@ -119,45 +129,84 @@
         </div>
     </section>
 </div>
-    </section>
-</div>
+
 
 
 <jsp:include page="../footer.jsp" />
 </body>
 
 <script>
-    // 버튼 요소들을 선택
-    const buttons = document.querySelectorAll('.tab2-btn');
+    // $(document).ready(function() {
+    //     var category = $('.cateBtn');
+    //     var listByCate = $('.bbs_cate');
+    //     var currentPage = 1;
+    //
+    //     category.click(function(){
+    //         $(this).addClass('active').siblings().removeClass('active');
+    //         var cateValue = $(this).val();
+    //         console.log(cateValue);
+    //
+    //         if (cateValue === 'all') { // 전체 카테고리를 선택한 경우
+    //             listByCate.closest('tr').fadeIn(); // 모든 게시물을 보여줌
+    //         } else { // 특정 카테고리를 선택한 경우
+    //             listByCate.closest('tr').fadeOut(); // 모든 게시물을 숨김
+    //             listByCate.filter('[value="'+cateValue+'"]').closest('tr').fadeIn(); // 클릭한 카테고리에 해당하는 게시물만 보여줌
+    //         }
+    //
+    //         currentPage = 1; // 필터링 후 첫 페이지로 설정
+    //     });
+    //
+    //     $('.paging a').click(function(e) {
+    //         e.preventDefault();
+    //         var href = $(this).attr('href');
+    //         currentPage = href.substring(href.indexOf('=') + 1);
+    //         // 페이지 이동 후 필터링 다시 적용
+    //         var activeCate = $('.cateBtn.active').val();
+    //
+    //
+    //         if (activeCate === 'all') { // 전체 카테고리를 선택한 경우
+    //             $('.list tbody tr').show(); // 모든 게시물을 보여줌
+    //         } else { // 특정 카테고리를 선택한 경우
+    //             $('.list tbody tr').hide(); // 모든 게시물을 숨김
+    //             listByCate.filter('[value="'+activeCate+'"]').parent().show(); // 클릭한 카테고리에 해당하는 게시물만 보여줌
+    //         }
+    //     });
+    // }); // ready
 
-    // 버튼 클릭 시 처리할 함수
-    function handleButtonClick(event) {
-        // 선택된 버튼에 active 클래스 추가
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
 
-        // 선택된 버튼의 BBS_CATE 속성 값을 가져옴
-        const BBS_CATE = event.target.getAttribute('BBS_CATE');
+    $(document).on('click', '.cateBtn', function() {
+        $('.cateBtn[value="all"]').trigger('click');
 
-        // AJAX 요청을 보내서 해당 카테고리의 게시물을 조회
-        // 여기서는 jQuery의 AJAX를 사용했지만, 다른 방법으로도 가능합니다.
+        var category = $(this).val();
         $.ajax({
-            url: '/notice/list/{BBS_CATE}',
+            url: '/cs/notice/list',
             type: 'GET',
-            data: { BBS_CATE },
-            success: function(result) {
-                // 성공적으로 데이터를 받아왔을 때 처리할 코드
-                console.log(result);
+            data: {category: category},
+            success: function(data) {
+                $('.noticeList').html(data);
+                console.log(data);
             },
-            error: function(error) {
-                // 오류가 발생했을 때 처리할 코드
-                console.error(error);
+            error: function() {
+                alert('게시물 로딩에 실패했습니다.');
             }
         });
-    }
+    });
 
-    // 각 버튼에 클릭 이벤트 리스너 추가
-    buttons.forEach(btn => btn.addEventListener('click', handleButtonClick));
+    const faqBtn = document.querySelector('#F');
+    const noticeBtn = document.querySelector('#N');
+    const counselBtn = document.querySelector('#C');
+
+    faqBtn.addEventListener('click', function() {
+        window.location.href = '/cs/faq/list'; // 링크 주소 입력
+    });
+
+    noticeBtn.addEventListener('click', function() {
+        window.location.href = '/cs/notice/list'; // 링크 주소 입력
+    });
+
+    counselBtn.addEventListener('click', function() {
+        window.location.href = '/cs/counsel/main'; // 링크 주소 입력
+    });
 
 
 </script>

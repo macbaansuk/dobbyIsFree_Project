@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #777777;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #777777;
+}
+
+/*#container {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    margin-right: 16%;*/
+/*    margin-left: 16%;*/
+/*}*/
+
+#menu {
+    display: inline-block;
+    padding: 30px 20px 20px 20px;
+    flex: 1.7;
+    border-right: 1px solid rgba(231, 230, 230, 0.673);
+}
+
+#menu p {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #777777;
+}
+
+/*#page {*/
+/*    margin: 30px;*/
+/*    flex: 8.3;*/
+/*}*/

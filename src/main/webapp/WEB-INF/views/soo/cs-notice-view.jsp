@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="/css/soo/cs-notice-view.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>공지사항</title>
+    <title>고객센터 - 공지사항</title>
 
     <style>
 
@@ -36,9 +36,9 @@
             <!-- 게시판카테고리 -->
             <nav class="tab">
                 <ul>
-                    <li><a href="#"><span>FAQ</span></a></li>
+                    <li><a href="/cs/faq/list"><span>FAQ</span></a></li>
                     <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>
-                    <li><a href="#"><span>1:1 상담</span></a></li>
+                    <li><a href="/cs/counsel"><span>1:1 상담</span></a></li>
                 </ul>
             </nav>
 
@@ -51,7 +51,7 @@
             <!-- 게시물 보기 -->
             <section class="listView">
                 <div class="listTitle">
-                    <span class="cate">${noticeDto.BBS_CATE}</span>
+                    <span class="cate">${noticeDto.CATE_NM}</span>
                     <span class="title">${noticeDto.TTL}</span>
                     <span class="date"><fmt:formatDate value="${noticeDto.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></span>
                 </div>

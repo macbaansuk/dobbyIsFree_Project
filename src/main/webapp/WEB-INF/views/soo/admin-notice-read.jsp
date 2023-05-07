@@ -78,6 +78,8 @@
 
         </div><!-- //admin-left// -->
 
+
+        <!-- 실제 구현 페이지 -->
         <div class="admin-container">
             <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 공지사항 &gt; 등록</div>
 
@@ -87,28 +89,28 @@
                     공지사항을 보여주는 페이지입니다.
                 </p>
 
-                <div class="inv-list"><!-- 실제 구현 페이지 -->
+                <div class="inv-list">
 
                     <form id="form" class="frm" action="" method="post" >
                         <input type="hidden" name="NB_ID" value="${noticeDto.NB_ID}">
                         <input type="hidden" id="page" name="page" value="${page}">
                         <input type="hidden" id="pageSize" name="pageSize" value="${pageSize}">
 
-                        <div class="form-group">
-                            <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
-                            <label for="catelist">카테고리</label>
+                        <div class="form-group"> <!--게시물 카테고리-->
+
+                            <label for="catelist">카테고리</label>  <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
                             <!-- select 태그에서는 readonly 대신 "disabled" 사용해야 변경 불가능 -->
-                            <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : "" }>
-                                <%-- 수정할 때 DB에 저장 된 option이 선택되어 있으려면 삼항연산자로 조건을 줘야한다 --%>
-                                <option value="고객 센터" ${noticeDto.BBS_CATE == '고객 센터' ? 'selected' : ''}>고객 센터</option>
-                                <option value="매장 공지" ${noticeDto.BBS_CATE == '매장 공지' ? 'selected' : ''}>매장 공지</option>
-                                <option value="배송 공지" ${noticeDto.BBS_CATE == '배송 공지' ? 'selected' : ''}>배송 공지</option>
-                                <option value="쇼핑몰 공지" ${noticeDto.BBS_CATE == '쇼핑몰 공지' ? 'selected' : ''}>쇼핑몰 공지</option>
-                                <option value="이벤트 공지" ${noticeDto.BBS_CATE == '이벤트 공지' ? 'selected' : ''}>이벤트 공지</option>
+                            <select id="catelist" name="CATE_ID" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : "" }>
+                                <!-- 수정할 때 DB에 저장 된 option이 선택되어 있으려면 삼항연산자로 조건을 줘야한다 -->
+                                <option value="N01" ${noticeDto.CATE_ID == 'N01' ? 'selected' : ''}>고객 센터</option>
+                                <option value="N02" ${noticeDto.CATE_ID == 'N02' ? 'selected' : ''}>매장 공지</option>
+                                <option value="N03" ${noticeDto.CATE_ID == 'N03' ? 'selected' : ''}>배송 공지</option>
+                                <option value="N04" ${noticeDto.CATE_ID == 'N04' ? 'selected' : ''}>쇼핑몰 공지</option>
+                                <option value="N05" ${noticeDto.CATE_ID == 'N05' ? 'selected' : ''}>이벤트 공지</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group"> <!--게시물 상태-->
                             <label for="statuslist">상태</label>
                             <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : ""}>
                                 <option value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
@@ -203,8 +205,8 @@
                 return false;
             }
             // 글자수를 넘겼을 때
-            if ($("#title").val().length > 30) {
-                alert("제목은 최대 30자까지 입력 가능합니다.");
+            if ($("#title").val().length > 50) {
+                alert("제목은 최대 50자까지 입력 가능합니다.");
                 $("#title").focus();    // focus() => 현재 작업하고 있는 요소를 가르키는 메서드
                 return false;
             }
@@ -237,8 +239,8 @@
                     alert("제목을 입력해주세요.");
                     return false;
                 }
-                if ($("#title").val().length > 30) {
-                    alert("제목은 최대 30자까지 입력 가능합니다.");
+                if ($("#title").val().length > 50) {
+                    alert("제목은 최대 50자까지 입력 가능합니다.");
                     $("#title").focus();
                     return false;
                 }

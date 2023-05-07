@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -13,13 +12,12 @@
 
 <body>
 
-
     <div class="Header">
         <span class="span1">관리자 </span>
         <span class="span2">매뉴얼</span>
         <ul class="navi">
             <li>
-<%--                span 안에 a태그를 넣는게 좋다.--%>
+<%--span 안에 a태그를 넣는게 좋다.--%>
                 <a href="#">
                     <span class="menuWrap">쇼핑몰 관리<button type="button" class="bar"></button></span>
                 </a>
