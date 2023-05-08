@@ -9,8 +9,10 @@
     </settings>
 
     <typeAliases>
+        <!--   YoungHoon     -->
         <typeAlias alias="InvDto" type="com.dobby.project.hoon.domain.InvDto"/>
         <typeAlias alias="invSearchCondition" type="com.dobby.project.hoon.domain.invSearchCondition"/>
+        <typeAlias alias="AdminDto" type="com.dobby.project.hoon.domain.AdminDto"/>
 
         <!--    soo    -->
         <typeAlias alias="NoticeDto"  type="com.dobby.project.soo.NoticeDto"/>
