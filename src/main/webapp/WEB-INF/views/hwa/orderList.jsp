@@ -270,17 +270,20 @@
       console.log('데이트변환',ordDtmFormat);
       let ordDtmString = ordDtmFormat.toString();
       let ord = ordDtmFormat.split('.');
+      let ord1 = ord[0];
       let ord2 = ord[1];
       let ord3 = ord[2];
-      console.log('ord1',ord);
+      console.log('ord1',ord1); //확인해보니 공백이있음 ㅡㅡ;
       console.log('ord2',ord2);
       console.log('ord3',ord3);
-      let ord22 = ord2.toString().padStart(2,'0');
-      let ord33 = ord3.toString().padStart(2,'0');
+      let ord11 = ord1.toString().trim();
+      let ord22 = ord2.toString().trim().padStart(2,'0'); //trim() 추가
+      let ord33 = ord3.toString().trim().padStart(2,'0');
+      console.log('ord11',ord11);
       console.log('ord22',ord22);
       console.log('ord33',ord33)
       console.log('스트링',ordDtmString);
-      element.innerText = ordDtmFormat;
+      element.innerText = ord[1] + ord22 + ord33;
     });
   });
 </script>
