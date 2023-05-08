@@ -62,4 +62,6 @@ public class OrderServiceImpl implements  OrderService{
     public int insertPoint(PointDto pd) {
         return orderDao.insertPoint(pd);
     }
+
+
 }

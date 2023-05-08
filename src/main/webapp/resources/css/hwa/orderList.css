@@ -17,7 +17,8 @@
     line-height: 40px;
 }
 .section-title-wrap .title {
-    font-size: 42px;
+    font-size: 25px;
+    font-weight: 400;
 }
 p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -33,7 +34,7 @@ p, h1, h2, h3, h4, h5, h6 {
     background-color: #d5d5d5;
 }
 .date-setting-content {
-    padding: 24px 45px;
+    padding: 24px 45px 40px 45px;
     border-bottom: 1px solid #d5d5d5;
 }
 .date-setting-content .date-setting-control .control-panel + .control-panel {
@@ -57,11 +58,12 @@ form {
     display: table;
 }
 .date-setting-content.double .btn-search {
-    height: 92px;
-    line-height: 90px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 30px;
 }
 .date-setting-content .btn-search {
-    float: right;
+    /*float: right;*/
     width: 106px;
     background-color: #000;
 }
@@ -77,10 +79,12 @@ form {
     font-weight: 300;
     font-size: 18px;
     letter-spacing: -0.03em;
+    margin-top: 25px;
 }
 .date-setting-content .date-setting-control .control-panel .date-set {
     float: left;
     margin-left: 9px;
+    margin-top: 12px;
 }
 .date-setting-content .date-setting-control .control-panel .date-set:before, .date-setting-content .date-setting-control .control-panel .date-set:after {
     content: "";
@@ -333,3 +337,118 @@ button, input, optgroup, select, textarea {
     clear: both;
 }
 
+/* ---------------------------------------------------------------------------------- */
+/*주문내역 table*/
+.tableListLength {
+    margin: 15px 0 10px 14px;
+    color: #222;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+.ftColor1 {
+    color: #12b560 !important;
+}
+h1, h2, h3, h4, h5, strong, b, th {
+    font-weight: normal;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+.tableType {
+    position: relative;
+    border-top: 2px solid #222;
+}
+.tableType table {
+    margin-left: -1px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 0;
+    table-layout: fixed;
+}
+legend, caption, .hidden {
+    position: absolute;
+    z-index: -1;
+    font-size: 0;
+}
+colgroup {
+    background: none;
+}
+.tableType th:first-child, .tableType td:first-child {
+    border-left: 0;
+}
+.tableType thead th {
+    font-family: '나눔바른고딕OTF', '돋움';
+    border-bottom: 1px solid #222;
+}
+.tableType th, .tableType td {
+    padding: 17px 14px;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    text-align: center;
+    color: #222;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+.tableType th:first-child, .tableType td:first-child {
+    border-left: 0;
+}
+.tableType th, .tableType td {
+    padding: 17px 14px;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    text-align: center;
+    color: #222;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+input, select, textarea, button, pre, a {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+[class*="tableType"] table td.left, [class*="tableType"] table .left th, [class*="tableType"] table .left td {
+    text-align: left;
+}
+.tableType .btn1 {
+    padding: 0;
+}
+.tableType th, .tableType td {
+    padding: 17px 14px;
+    border-bottom: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    text-align: center;
+    color: #222;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+.helpWrap {
+    position: relative;
+    margin: 40px 0 0;
+    font: 14px/1.5 '나눔바른고딕OTF', '돋움';
+}
+.paging + .helpWrap {
+    margin: 28px 0 0;
+}
+.bulListType > li {
+    position: relative;
+    padding-left: 16px;
+    font: 14px/1.4 '나눔바른고딕OTF', '돋움';
+    color: #999;
+}
+.bulListType > li:after {
+    content: "※";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bulListType > li {
+    position: relative;
+    padding-left: 16px;
+    font: 14px/1.4 '나눔바른고딕OTF', '돋움';
+    color: #999;
+    list-style: none;
+}
+.bulListType > li + li {
+    margin: 3px 0 0;
+}

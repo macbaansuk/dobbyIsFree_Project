@@ -27,4 +27,5 @@ public interface OrderDao {
     public void deleteCart(List<Integer> delCartIds);
 
     public int insertPoint(PointDto pd);
+
 }

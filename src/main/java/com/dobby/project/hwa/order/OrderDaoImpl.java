@@ -75,4 +75,6 @@ public class OrderDaoImpl implements  OrderDao {
     public int insertPoint(PointDto pd) {
         return session.insert(namespace + "insertPoint",pd);
     }
+
+
 }

@@ -24,4 +24,5 @@ public interface OrderService {
     public void deleteCart(List<Integer> delCartIds);
 
     public int insertPoint(PointDto pd); //적립금
+
 }

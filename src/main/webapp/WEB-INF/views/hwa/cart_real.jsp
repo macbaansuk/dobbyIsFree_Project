@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
+
 <html>
 <head>
     <title>장바구니 상세</title>
@@ -361,35 +363,74 @@
 
             <!-- 주문하기 버튼 -->
                 <button type="button" class="btnType4xl ordBtn" id="cartPayBtn">주문하기</button>
-            <script>
 
-                $(".ordBtn").click(function () { //주문하기 버튼 클릭시
-                    const checkOrdArr = [];
-                    const cartList = ${cartList}
+            <c:choose>
+                <%-- 장바구니에 아무것도 담겨있지 않으면 --%>
+                <c:when test="${empty cartList}">
+                    <script>
+                        $(".ordBtn").click(function () {
+                            alert("장바구니가 비어있습니다");
+                        });
+                    </script>
+                </c:when>
+                <%-- 장바구니에 상품이 담겨있으면 --%>
+                <c:otherwise>
+                    <script>
+                        $(".ordBtn").click(function () {
+                            const checkOrdArr = [];
+                            $("input[class='chBox']:checked").each(function () {
+                                checkOrdArr.push(Number($(this).attr("data-cartId")));
+                            });
 
-                    $("input[class='chBox']:checked").each(function () {
-                        checkOrdArr.push(Number($(this).attr("data-cartId"))); //체크된 목록을 배열에 담고
-                    });
+                            if (checkOrdArr.length === 0) {
+                                alert("주문할 상품을 선택해주세요");
+                                return;
+                            }
 
-                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');  //form을 생성
-                    $.each(checkOrdArr, function(index, value) {
-                        let inputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);
+                            let form = $('<form>').attr('method', 'POST').attr('action', '/order');
+                            $.each(checkOrdArr, function(index, value) {
+                                let inputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);
+                                inputHidden.appendTo(form);
+                            });
+                            $(document.body).append(form);
+                            form.submit();
+                        });
+                    </script>
+                </c:otherwise>
+            </c:choose>
+<%--            <script>--%>
+                    <!-- 장바구니가 비어있는 경우 동작하지 않아서 위에 jstl로 다시 처리 -->
+<%--                $(".ordBtn").click(function () { //주문하기 버튼 클릭시--%>
+<%--                    const checkOrdArr = [];--%>
+<%--                    const cartList = JSON.parse('${cartList}');--%>
+<%--                    $("input[class='chBox']:checked").each(function () {--%>
+<%--                        checkOrdArr.push(Number($(this).attr("data-cartId"))); //체크된 목록을 배열에 담고--%>
+<%--                    });--%>
 
-                        console.log('Cart ID:', value);
+<%--                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');  //form을 생성--%>
+<%--                    $.each(checkOrdArr, function(index, value) {--%>
+<%--                        let inputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);--%>
 
-                        inputHidden.appendTo(form);
-                    });
+<%--                        console.log('Cart ID:', value);--%>
 
-                    $(document.body).append(form);
-                    if(cartList.length > 0 ){  //장바구니목록이 존재해야만
-                         form.submit();
-                    }else{
-                        alert("장바구니가 비어있습니다");
-                    }
-                });
-            </script>
+<%--                        inputHidden.appendTo(form);--%>
+<%--                    });--%>
 
-        </div><!--inner end-->
+<%--                    if(checkOrdArr.length === 0) { // 선택한 상품이 없는 경우--%>
+<%--                        alert("주문할 상품을 선택해주세요");--%>
+<%--                        return;--%>
+<%--                    }--%>
+<%--                   if(cartList.length === 0) { // 선택한 상품이 없는 경우--%>
+<%--                        alert("주문할 상품을 선택해주세요");--%>
+<%--                        return;--%>
+<%--                    }--%>
+
+<%--                    $(document.body).append(form);--%>
+<%--                         form.submit();--%>
+<%--                });--%>
+<%--            </script>--%>
+
+        </div> <!--inner end-->
     </div><!--totalPayment end -->
 </div> <!--root end-->
 

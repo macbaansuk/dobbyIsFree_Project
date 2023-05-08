@@ -89,11 +89,11 @@
             <p>공병수거 캠페인</p>
             <p>회원정보 수정</p>
             <p>배송지 관리</p>
-        </div>
+        </div><!--menu-->
         <div id="page">
             <h1>1:1 상담내역</h1>
         </div><!-- page -->
-    </div>
+    </div><!--container-->
 </div><!-- mypage -->
 
 <jsp:include page="../footer.jsp" />
