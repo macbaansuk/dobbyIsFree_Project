@@ -82,6 +82,19 @@ public class CartController {
         return "hwa/cart_real";
     }
 
+    @PostMapping("/cart/{key}/{quantity}")
+    @ResponseBody
+    public int addToCart(@PathVariable("key") Integer key, @PathVariable("quantity")  Integer quantity, HttpServletRequest req) {
+
+        HttpSession session = req.getSession();
+        String mbrId = (String) session.getAttribute("MBR_ID");
+        System.out.println("아이디" + mbrId);
+        int rowCnt = cartService.insertCartQty(key, mbrId, quantity);
+
+        return 1;
+    }
+
+
 
 @PostMapping("/cart/delete") //이 메서드로 수정
 @ResponseBody

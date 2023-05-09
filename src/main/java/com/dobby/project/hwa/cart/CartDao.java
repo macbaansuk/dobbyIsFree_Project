@@ -19,4 +19,8 @@ public interface CartDao {
     public CartProdDto  updateCartQty(int cartId, int quantity);
     public CartProdDto getCartProductById(int cartId);
 
+
+    public int insertCartQty(CartDto cartDto);
+
+    public void updateCartQtyProdPage(CartDto cartDto);
 }

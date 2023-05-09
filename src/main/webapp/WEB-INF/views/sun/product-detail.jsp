@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha34-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link href="/css/sun/detail.css" rel="stylesheet" type="text/css">
+    <link href="/css/hwa/modal.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -146,7 +147,7 @@
                     </button>
 
                     <span>
-                            <button type="button">장바구니</button>
+                            <button type="button" onclick="insertA(${productDetail.prod_id})">장바구니</button>
                         </span>
                     <span>
                             <button type="button">바로구매</button>
@@ -156,8 +157,39 @@
             </div>
         </div>
     </div>
-
     </div><!--product-topview 끝-->
+
+<script>
+    function cartsc(){
+        document.getElementById('cart-modal').style.display = 'block';
+    }
+
+    function insertA(productNumber) {
+        let quantity = parseInt($('#quantity').val());
+        console.log(productNumber);
+        console.log(quantity);
+        console.log("insert 함수 실행");
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            contentType: "application/json; charset=utf-8",
+            url: "/cart/" + productNumber + "/" + quantity,
+            type: "POST",
+            success: function (data) {
+                cartsc();
+            },
+            error: function() {
+                alert('Please login to use the shopping cart');
+            }
+        });
+    }
+
+</script>
+
+
+
 
     <script>
         function changeHeartIcon() {
@@ -322,5 +354,34 @@
 
 
 <jsp:include page="../footer.jsp"/>
+
+<!--모달창 -->
+<div class="modal" id="cart-modal">
+    <div class="modal-content">
+        <h2>장바구니에 상품이 담겼습니다</h2>
+        <div class="modal-buttons">
+            <button id="shopping-btn">쇼핑 계속하기</button>
+            <button id="cart-btn">장바구니로 이동</button>
+        </div>
+    </div>
+</div>
+<script>
+    //장바구니 모달창
+    $(document).ready(function() {
+        let continueShoppingBtn = document.getElementById('shopping-btn');
+        let goToCartBtn = document.getElementById('cart-btn');
+        let cartModal = document.getElementById('cart-modal');
+
+        continueShoppingBtn.addEventListener('click', function() {
+            cartModal.style.display = 'none';
+            location.href='/';
+        });
+
+        goToCartBtn.addEventListener('click', function() {
+            cartModal.style.display = 'none';
+            location.href='/cart';
+        });
+    });
+</script>
 </body>
 </html>

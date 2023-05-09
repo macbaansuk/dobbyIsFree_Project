@@ -68,4 +68,16 @@ public class CartDaoImpl implements CartDao {
     }
 
 
+
+    @Override
+    public int insertCartQty(CartDto cartDto) {
+        return session.insert(namespace+"insert",cartDto);
+    }
+
+    @Override
+    public void updateCartQtyProdPage(CartDto cartDto) {
+        session.update(namespace + "update", cartDto);
+    }
+
+
 }

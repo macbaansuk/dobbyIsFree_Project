@@ -16,4 +16,5 @@ public interface CartService {
     public  CartProdDto  updateCartQty(Integer cartId, Integer quantity);
 
 
+    public int insertCartQty(Integer key, String mbrId, Integer quantity);
 }

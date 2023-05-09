@@ -43,6 +43,61 @@ public class CartServiceImpl implements CartService {
 
     }
 
+    @Override
+    public int insertCartQty(Integer key, String mbrId, Integer quantity) {
+//        CartDto cartDto = new CartDto();
+//        cartDto.setPROD_ID(key);
+//        cartDto.setMBR_ID(mbrId);
+//        CartDto resultCartDto = cartDao.selectCartByProdIdAndMbrId(cartDto);
+//
+//        if (resultCartDto == null) {
+//            cartDto.setPROD_INDV_QTY(quantity);
+//            cartDao.insertCart(cartDto);
+//        } else {
+//            int qty = resultCartDto.getPROD_INDV_QTY();
+//            if (qty < 10) {
+//                qty++;
+//                cartDto.setPROD_INDV_QTY(qty);
+//                cartDto.setCART_ID(resultCartDto.getCART_ID());
+//                cartDao.updateCartQtyProdPage(cartDto);
+//            } else {
+//                return 0;
+//            }
+//        }
+//
+//        return 1;
+
+
+
+        CartDto cartDto = new CartDto();
+        cartDto.setPROD_ID(key);
+        cartDto.setMBR_ID(mbrId);
+        CartDto resultCartDto = cartDao.selectCartByProdIdAndMbrId(cartDto);
+
+        if (resultCartDto == null) {
+            cartDto.setPROD_INDV_QTY(quantity);
+            cartDao.insertCart(cartDto);
+        } else {
+            int qty = resultCartDto.getPROD_INDV_QTY();
+            if (qty < 10) {
+                qty += quantity;
+                if (qty > 10) {
+                  qty = 10;
+                }
+                cartDto.setPROD_INDV_QTY(qty);
+                cartDto.setCART_ID(resultCartDto.getCART_ID());
+                cartDao.updateCartQtyProdPage(cartDto);
+            } else {
+                return 0;
+            }
+        }
+
+        return 1;
+
+    }
+
+
+
 
 
 
@@ -67,7 +122,6 @@ public class CartServiceImpl implements CartService {
 
         return cartDao.updateCartQty(cartId,quantity);
     }
-
 
 
 
