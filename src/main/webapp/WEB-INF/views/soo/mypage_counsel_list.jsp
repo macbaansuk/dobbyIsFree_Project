@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="/css/soo/mypage_counsel_list.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/css/hoon/jquery/jquery-ui.min.js"></script>
+
   <title>MyPage - 1:1 상담</title>
   <style></style>
 </head>
@@ -128,7 +130,7 @@
 
             <tr class="question">
             <!-- 1:1 상담 번호(rownum) -->
-            <td class="no">${counsel.CNSL_ID}</td>
+            <td class="no" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</td>
             <!-- 문의제목 -->
             <td class="title">${counsel.TTL}</td>
             <!-- 작성일, yy-MM-dd hh:mm:ss -->
@@ -138,6 +140,10 @@
             <!-- 문의 처리현황, 처리중 -> 처리완료 -->
             <td class="stus" value="${counsel.STUS}">
                 ${counsel.STUS}
+                  <!-- 처리중일때만 보이는 버튼 -->
+                    <button type="button" class="delBtn"
+                            onclick="deleteCounsel(${counsel.CNSL_ID})">삭제</button>
+
             </td>
           </tr>
           <tr class="questionCont">
@@ -212,6 +218,25 @@
       delBtn.style.display = 'none';
     }
   });
+
+  // 1:1 상담 목록 삭제 버튼
+
+  function deleteCounsel(cnslId) {
+    if(confirm("삭제하시겠습니까?")) {
+      $.ajax({
+        type: 'POST',
+        url: "/mypage/counsel/remove",
+        data: {'cnslId': cnslId},
+        success: function () {
+          location.reload();
+          alert("삭제되었습니다")
+        },
+        error: function () {
+          alert("삭제에 실패했습니다. 다시 시도해주세요.")
+        }
+      });
+    }
+  }
 
 
   function setDateRange(period) {

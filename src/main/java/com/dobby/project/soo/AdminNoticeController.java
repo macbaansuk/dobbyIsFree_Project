@@ -1,11 +1,13 @@
 package com.dobby.project.soo;
 
+import com.dobby.project.hoon.domain.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,27 +132,35 @@ public class AdminNoticeController {
 
     @GetMapping("/list")    // 목록 읽어오기
     public String adminNoticeList(@RequestParam(defaultValue ="1") Integer page,
-                                  @RequestParam(defaultValue = "10")Integer pageSize,Model m) throws Exception {
+                                  @RequestParam(defaultValue = "10")Integer pageSize, Model m,
+                                  HttpSession session , RedirectAttributes rattr) throws Exception {
 
-        try {
-            int totalCnt = noticeService.getCount();
-            m.addAttribute("totalCnt", totalCnt);
+        AdminDto adminDto = (AdminDto) session.getAttribute("admin");
+        // 로그인 체크 유무 코드
+        if (session.getAttribute("admin") == null) {
+            rattr.addFlashAttribute("msg", "login_ERR");
+            return "redirect:/admin";
+        } else {
+            try {
+                int totalCnt = noticeService.getCount();
+                m.addAttribute("totalCnt", totalCnt);
 
-            PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
+                PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("offset", (page-1)*pageSize);
-            map.put("pageSize", pageSize);
+                Map<String, Object> map = new HashMap<>();
+                map.put("offset", (page - 1) * pageSize);
+                map.put("pageSize", pageSize);
 
-            List<NoticeDto> list = noticeService.getAllList(map);
-            m.addAttribute("adminNoticeList", list);
-            m.addAttribute("ph", pageHandler);
+                List<NoticeDto> list = noticeService.getAllList(map);
+                m.addAttribute("adminNoticeList", list);
+                m.addAttribute("ph", pageHandler);
 
-            System.out.println("adminNoticeList="+m);
-        } catch (Exception e) {
-            e.printStackTrace();
+                System.out.println("adminNoticeList=" + m);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return "/soo/admin-notice-list";
         }
-
-        return "/soo/admin-notice-list";
     }
 }

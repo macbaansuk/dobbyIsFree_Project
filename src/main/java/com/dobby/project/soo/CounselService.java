@@ -24,10 +24,16 @@ public interface CounselService {
     int getCountProd() throws Exception;
 
     // 회원별 1:1 상담 목록 조회 (COUNSEL+ANSWER JOIN)
-    List<CounselAnswerDto> getListByMember(String mbrId) throws Exception ;
+    List<CounselAnswerDto> getListByMember(String mbrId) throws Exception;
 
+    // 회원별 1:1 상담 게시물 삭제
+    int removeCounsel(Integer cnslId) throws Exception;
+
+
+    // 여기부터 관리자 페이지
     // 전체 1:1 상담 목록 + 답변 조회
     List<CounselAnswerDto> getAllList(Map map) throws Exception;
-    // 답변 작성
-    void writeAnswer(AnswerDto answerDto) throws Exception;
+
+    // 답변 작성 + 1:1 상담 게시물 상태 업데이트
+    void writeAnswer(AnswerDto answerDto, CounselDto counselDto) throws Exception;
 }

@@ -1,12 +1,10 @@
 package com.dobby.project.soo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +22,15 @@ public class CounselController {
     CounselService counselService;
 
     @GetMapping("/cs/counsel/main") // 고객센터 1:1 상담 안내
-    public String counselMain(){
+    public String counselMain() throws Exception {
 
         return "soo/cs_counsel";
+    }
+
+    @PostMapping("/mypage/counsel/remove")
+    public String counselRemove(Integer cnslId, Model m) throws Exception{
+        counselService.removeCounsel(cnslId);
+        return "redirect:/mypage/counsel/list";
     }
 
     @GetMapping("/mypage/counsel/write") // 1:1 상담 작성 폼(글쓰기)
@@ -117,7 +121,5 @@ public class CounselController {
             e.printStackTrace();
         }
         return "soo/mypage_counsel_list";
-//        return "soo/counselList";
-
     }
 }

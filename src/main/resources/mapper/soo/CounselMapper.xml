@@ -66,10 +66,16 @@
         ORDER BY C.CNSL_ID DESC
     </select>
 
+    <!--  회원별 1:1 상담 게시물 삭제  -->
+    <delete id="deleteCounsel" parameterType="int">
+        DELETE
+        FROM `dobbyisfree`.COUNSEL
+        WHERE CNSL_ID=#{CNSL_ID}
+    </delete>
 
 
 
-<!--아래부턴 관리자 페이지 -->
+<!--           아래부턴 관리자 페이지           -->
 
     <!-- 전체 1:1 상담 목록 + 답변 불러오기  -->
     <select id="selectAllList" resultType="CounselAnswerDto">
@@ -83,12 +89,28 @@
     </select>
 
     <!--  1:1 상담 답변 작성 + 게시물 상태 업데이트  -->
+<!--    <insert id="insertAnswer" parameterType="AnswerDto">-->
+<!--        INSERT INTO ANSWER (CNSL_ID, CONTENT, WRTR)-->
+<!--        VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});-->
+<!--        UPDATE `dobbyisfree`.COUNSEL-->
+<!--        SET STUS='처리완료', ANS_YN='Y'-->
+<!--        WHERE CNSL_ID=#{CNSL_ID};-->
+<!--    </insert>-->
+
+    <!--  1:1 상담 답변 등록  -->
     <insert id="insertAnswer" parameterType="AnswerDto">
-        INSERT INTO ANSWER (CNSL_ID, CONTENT, WRTR)
+        INSERT INTO `dobbyisfree`.ANSWER (CNSL_ID, CONTENT, WRTR)
         VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});
-        UPDATE COUNSEL
+    </insert>
+
+    <!--  게시물 상태 업데이트, 1:1 상담 답변 등록 후에 -->
+    <update id="updateCounselStatus" parameterType="CounselDto">
+        UPDATE `dobbyisfree`.COUNSEL
         SET STUS='처리완료', ANS_YN='Y'
         WHERE CNSL_ID=#{CNSL_ID};
-    </insert>
+    </update>
+
+
+
 
 </mapper>

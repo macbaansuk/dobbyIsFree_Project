@@ -47,14 +47,24 @@ public class CounselDaoImpl implements CounselDao {
     public List<CounselAnswerDto> selectListByMember(String mbrId) throws Exception{
         return session.selectList(namespace+"selectListByMember", mbrId);
     }
+    @Override // 회원별 1:1 상담 게시물 삭제
+    public int deleteCounsel(Integer cnslId) throws Exception{
+        return session.delete(namespace+"deleteCounsel", cnslId);
+    }
 
+// 여기부터 관리자 페이지
     @Override   // 전체 1:1 상담 + 답변 불러오기
     public List<CounselAnswerDto> selectAllList(Map map) throws Exception {
         return session.selectList(namespace+"selectAllList", map);
     }
 
     @Override // 답변 작성
-    public void insertAnswer(AnswerDto answerDto) throws Exception {
-        session.insert(namespace+"insertAnswer", answerDto);
+    public int insertAnswer(AnswerDto answerDto) throws Exception {
+        return session.insert(namespace+"insertAnswer", answerDto);
+    }
+
+    @Override   // 1:1 상담 상태 업데이트
+    public int updateCounselStatus(CounselDto counselDto) throws Exception {
+        return session.update(namespace+"updateCounselStatus", counselDto);
     }
 }
