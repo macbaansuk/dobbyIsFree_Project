@@ -142,9 +142,8 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
 
 
     @PostMapping("/order/done")
-    public String orderSubmit(OrderDone od, HttpServletRequest req,@RequestParam(value = "inputIsAddDefaultChk",required = false)
-                              String isAddDefaultChk, @RequestParam(value = "inputIsAddNewChk",required = false)
-    String isAddNewChk){
+    public String orderSubmit(OrderDone od, HttpServletRequest req, Model m, @RequestParam(value = "inputIsAddDefaultChk",required = false)
+                              String isAddDefaultChk, @RequestParam(value = "inputIsAddNewChk",required = false) String isAddNewChk){
         System.out.println("오더 post 진입");
         HttpSession session = req.getSession();
 
@@ -200,11 +199,8 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
         }
 
 
-
-
-
         System.out.println("isAddNewChk: " + isAddNewChk);
-        System.out.println("isAddDefaultChk: " + isAddNewChk);
+        System.out.println("isAddDefaultChk: " + isAddDefaultChk);
 
         //---------------배송지추가 -----------------------
         if ("Y".equals(isAddNewChk)) {
@@ -218,13 +214,15 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
             dPDto.setDTL_ADDR(od.getInputDlvAddr2ndTxt()); //상세주소
             dPDto.setRCPR_MPNO(od.getInputMblNoVal()); //수령자번호
             orderService.insertDlvLog(dPDto);
+        }
 //            System.out.println("배송DTo =" + dPDto);
             // 기본 배송지 등록이 체크된 경우
             if ("Y".equals(isAddDefaultChk)) {
+                DlvpnLogDto dPDto = new DlvpnLogDto();
 //            System.out.println("베송Id =" + dPDto.getDLVPN_ID());
                 orderService.updateDlvDefault(mbrId,dPDto.getDLVPN_ID());
             }
-        }
+
 
         //장바구니 삭제하기
         List<Integer> delCartIds = new ArrayList<>();
@@ -234,9 +232,26 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
             orderService.deleteCart(delCartIds);
         
         
+        //적립금 적립TB에 insert 해주기
+        // 1.결제된 후 총 적립금 가져오기
+        // 2.해당 회원아이디 가져와서 적립금 tb에 insert
+        PointDto pd = new PointDto();
+        pd.setMBR_ID(mbrId);
+        pd.setAMT(od.getInputTotReservePtTxt());
+
+        orderService.insertPoint(pd);
+
+
         //세션 삭제하기
 //        session.removeAttribute("checkedCartList");
 //        session.removeAttribute("cartList");
+        String orderId = od.getInputOrdId(); // 주문id
+        System.out.println("주문번호" + orderId);
+        String orderer = od.getInputOrdNmTxt();
+        System.out.println("주문자 " + orderer);
+
+        m.addAttribute("orderId",orderId);
+        m.addAttribute("orderer",orderer);
         return "hwa/orderDone";
     }
 
