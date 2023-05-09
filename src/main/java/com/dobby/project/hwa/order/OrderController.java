@@ -172,8 +172,9 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
         ordDto.setDPOSR(od.getInputTempDpoSiTr()); //예금주
         ordDto.setORD_TAMT(od.getInputTotPrdPrcTxt()); //주문금액
         ordDto.setSETL_AMT(od.getInputTotPurPrcTxt()); //결제금액
-        ordDto.setORD_TAMT(od.getInputTotPurPrcTxt()); //주문금액
         ordDto.setDEXP(od.getInputTotPurDlvPrcTxt()); //배송비
+        ordDto.setPOINT_AMT(od.getInputTotReservePtTxt()); //배송비
+        ordDto.setDC_AMT(od.getInputTotDcCpnPrcTxt()); //배송비
 
         //체크카트리스트 세션
         List<CartProdDto> checkedCartList = (List<CartProdDto>) session.getAttribute("checkedCartList");

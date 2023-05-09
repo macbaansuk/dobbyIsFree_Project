@@ -13,4 +13,6 @@ public interface OrderListService {
     public List<OrdProdDto> getProdNm(String ordId); //상품명 불러오기 주문번호로
 
     public List<ProdCntDto> getProdCnt(String mbrId, String ordId);
+
+    public OrdDto getOrdDetailList(String orderId);
 }

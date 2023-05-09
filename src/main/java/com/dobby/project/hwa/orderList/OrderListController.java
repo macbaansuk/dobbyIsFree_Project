@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -81,5 +82,25 @@ public class OrderListController {
 
      return "hwa/orderList";
  }
+
+@GetMapping("/orderDetail")
+ public String OrderDetail(@RequestParam("orderId") String orderId){
+    System.out.println("주문상세 진입");
+    
+    //주문아이디에 해당하는 상세정보 불러오기
+    OrdDto ordDto = orderListService.getOrdDetailList(orderId);
+    
+    
+    
+    
+    
+    
+     return "hwa/orderDetailList";
+ }
+
+
+
+
+
 
 }

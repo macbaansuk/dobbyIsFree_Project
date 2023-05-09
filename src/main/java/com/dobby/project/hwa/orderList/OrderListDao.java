@@ -14,4 +14,8 @@ public interface OrderListDao {
     public List<OrdProdDto> selectProdNm(String ordId);
 
     public List<ProdCntDto> selectProdCnt(String mbrId, String ordId);
+
+    public OrdDto selectOrderDetailList(String orderId);
+
+    public OrdDto getOrdDetailList(String orderId);
 }

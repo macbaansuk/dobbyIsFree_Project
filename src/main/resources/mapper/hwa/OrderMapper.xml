@@ -38,10 +38,10 @@
     <insert id="insertOrdInfo" parameterType="OrdDto">
         INSERT INTO `dobbyisfree`.`ord`
         (ORD_ID, MBR_ID, SETL_AMT, DEXP, ORD_TAMT, RCPR_NM, RCPR_ZPCD, RCPR_BASIC_ADDR,
-         RCPR_DTL_ADDR, DLVPN_REQ, RCPR_MPNO, BANK, ACC_NO, DPOSR, ORDR_EMAIL, ORDR, ORDR_NO)
+         RCPR_DTL_ADDR, DLVPN_REQ, RCPR_MPNO, BANK, ACC_NO, DPOSR, ORDR_EMAIL, ORDR, ORDR_NO,POINT_AMT, DC_AMT)
         VALUES
             (#{ORD_ID}, #{MBR_ID},  #{SETL_AMT}, #{DEXP}, #{ORD_TAMT}, #{RCPR_NM}, #{RCPR_ZPCD}, #{RCPR_BASIC_ADDR},
-             #{RCPR_DTL_ADDR}, #{DLVPN_REQ}, #{RCPR_MPNO}, #{BANK}, #{ACC_NO}, #{DPOSR}, #{ORDR_EMAIL}, #{ORDR}, #{ORDR_NO})
+             #{RCPR_DTL_ADDR}, #{DLVPN_REQ}, #{RCPR_MPNO}, #{BANK}, #{ACC_NO}, #{DPOSR}, #{ORDR_EMAIL}, #{ORDR}, #{ORDR_NO},#{POINT_AMT} ,#{DC_AMT} )
     </insert>
 
 
