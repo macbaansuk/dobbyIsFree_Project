@@ -93,4 +93,10 @@
         (#{MBR_ID},#{AMT})
     </insert>
 
+    <select id="selectProdInfo" resultType="CartProdDto">
+        select PROD_ID, PROD_NM, AMT, REP_IMG, DC_YN
+        from prod
+        where PROD_ID = #{PROD_ID};
+    </select>
+
 </mapper>

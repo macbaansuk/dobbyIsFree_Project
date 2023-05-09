@@ -2,6 +2,7 @@ package com.dobby.project.hwa.order;
 
 
 import com.dobby.project.hwa.cart.CartDto;
+import com.dobby.project.hwa.cart.CartProdDto;
 
 import java.util.List;
 
@@ -28,4 +29,5 @@ public interface OrderDao {
 
     public int insertPoint(PointDto pd);
 
+    public List<CartProdDto> selectProdInfo(int productId);
 }

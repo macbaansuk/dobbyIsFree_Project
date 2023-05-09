@@ -1,6 +1,7 @@
 package com.dobby.project.hwa.order;
 
 import com.dobby.project.hwa.cart.CartDto;
+import com.dobby.project.hwa.cart.CartProdDto;
 
 import java.util.List;
 
@@ -25,4 +26,5 @@ public interface OrderService {
 
     public int insertPoint(PointDto pd); //적립금
 
+    public List<CartProdDto> getProdInfo(int productId);
 }

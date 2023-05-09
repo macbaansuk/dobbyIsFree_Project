@@ -150,7 +150,7 @@
                             <button type="button" onclick="insertA(${productDetail.prod_id})">장바구니</button>
                         </span>
                     <span>
-                            <button type="button">바로구매</button>
+                            <button type="button" onclick="order()">바로구매</button>
                         </span>
 
                 </div>
@@ -160,6 +160,7 @@
     </div><!--product-topview 끝-->
 
 <script>
+    //모달창불러오기
     function cartsc(){
         document.getElementById('cart-modal').style.display = 'block';
     }
@@ -185,6 +186,22 @@
             }
         });
     }
+
+    //바로구매
+    function order() {
+        const productId = ${productDetail.prod_id};
+        const quantity = parseInt($('#quantity').val());
+
+        const form = $('<form>').attr('method', 'POST').attr('action', '/order/direct');
+
+        $('<input>').attr('type', 'hidden').attr('name', 'productId').val(productId).appendTo(form);
+        $('<input>').attr('type', 'hidden').attr('name', 'quantity').val(quantity).appendTo(form);
+
+        $(document.body).append(form);
+        form.submit();
+    }
+
+
 
 </script>
 
