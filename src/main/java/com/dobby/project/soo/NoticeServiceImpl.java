@@ -18,14 +18,13 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeDao.countAll();
     }
 
-    // 나중에 String WRTR 추가하기, 관리자 계정(이름)
-    @Override // 게시물 삭제
+
+    @Override // 게시물 삭제 + 나중에 String WRTR 추가하기, 관리자 계정(이름)
     public int remove(Integer NB_ID) throws Exception{
         return noticeDao.delete(NB_ID);
     }
     @Override // 게시물 작성
     public int write(NoticeDto noticeDto) throws Exception{
-
         return noticeDao.insert(noticeDto);
     }
     @Override // 모든 게시물 조회

@@ -7,13 +7,13 @@
     <!-- 회원ID로 회원 정보 조회 -->
     <select id="selectFromMember" parameterType="String" resultType="MemberDto">
         SELECT MBR_ID, MBR_NM, MPNO
-        FROM MEMBER_INFO
+        FROM `dobbyisfree`.MEMBER_INFO
         WHERE MBR_ID = #{MBR_ID}
     </select>
 
     <!--  회원 1:1 상담 작성 -->
     <insert id="insertCounsel" parameterType="CounselDto">
-        INSERT INTO COUNSEL
+        INSERT INTO `dobbyisfree`.COUNSEL
             (MBR_ID, PROD_ID, CATE_ID, TTL, CN, RX)
         VALUE
             (#{MBR_ID}, #{PROD_ID}, #{CATE_ID}, #{TTL}, #{CN}, #{RX})
@@ -22,52 +22,95 @@
     <!--  회원 1:1 상담 작성 시 문의제품 목록  -->
     <select id="selectProdList" parameterType="map" resultType="ProdDto">
         SELECT PROD_ID, PROD_NM
-        FROM PROD
+        FROM `dobbyisfree`.PROD
         LIMIT #{offset}, #{pageSize}
     </select>
 
     <!--  1:1 상담 총 개수  -->
     <select id="countAllCounsel" resultType="int">
         SELECT COUNT(*)
-        FROM COUNSEL
+        FROM `dobbyisfree`.COUNSEL
     </select>
 
     <!--  회원별 상담 개수  -->
     <select id="countCounselByMember" parameterType="String" resultType="int">
         SELECT COUNT(*)
-        FROM COUNSEL
+        FROM `dobbyisfree`.COUNSEL
         WHERE MBR_ID=#{MBR_ID}
     </select>
 
     <!--  상품 총 개수  -->
     <select id="countProd" resultType="int">
         SELECT COUNT(*)
-        FROM PROD
+        FROM `dobbyisfree`.PROD
     </select>
 
     <!--  회원 1:1 상담 작성 시 첨부파일  -->
     <insert id="insertFile" parameterType="BbsFileDto">
-        INSERT INTO BBS_FILE
+        INSERT INTO `dobbyisfree`.BBS_FILE
             (FILE_ID, BBS_ID, CNSL_ID, NB_ID, NM, PATH, SIZE, TYPE, REG_DTM, UPD_DTM)
         VALUE
             (#{FILE_ID}, #{BBS_ID}, #{CNSL_ID}, #{NB_ID}, #{NM}, #{PATH}, #{SIZE}, #{TYPE}, #{REG_DTM}, #{UPD_DTM})
     </insert>
 
-    <!--  회원별 1:1 상담게시물+답변 불러오기, COUNSEL+ANSWER  -->
-    <select id="selectListByMember" parameterType="map" resultType="MemberDto">
-        SELECT *
-        FROM COUNSEL C
-            LEFT JOIN ANSWER A ON C.CNSL_ID = A.CNSL_ID
+
+    <!--  회원별 1:1 상담 목록 + 답변 불러오기  -->
+    <select id="selectListByMember" resultType="CounselAnswerDto">
+        SELECT C.CNSL_ID, C.BBS_ID, C.MBR_ID, C.CATE_ID, C.PROD_ID, C.TTL, C.CN , C.RX, C.REG_DTM, C.STUS, C.ANS_YN,
+               BC.CATE_NM, P.PROD_NM, A.ANS_ID, A.CNSL_ID, A.CONTENT, A.WRTR, A.REGISTER_DTM , A.RMK
+        FROM `dobbyisfree`.COUNSEL C
+                 LEFT JOIN `dobbyisfree`.ANSWER A ON C.CNSL_ID = A.CNSL_ID
+                 LEFT JOIN `dobbyisfree`.BBS_CATEGORY BC ON C.CATE_ID = BC.CATE_ID
+                 LEFT JOIN `dobbyisfree`.PROD P ON C.PROD_ID = P.PROD_ID
         WHERE C.MBR_ID = #{MBR_ID}
-        LIMIT #{offset}, #{pageSize}
+        ORDER BY C.CNSL_ID DESC
     </select>
 
-    <!--  1:1 상담 답변 작성  -->
-    <insert id="insertAnswer" >
-        INSERT INTO ANSWER (CNSL_ID, CN, WRTR)
-        SELECT C.CNSL_ID, #{CN}, #{WRTR}
-        FROM COUNSEL C
-        WHERE C.CNSL_ID = #{CNSL_ID};
+    <!--  회원별 1:1 상담 게시물 삭제  -->
+    <delete id="deleteCounsel" parameterType="int">
+        DELETE
+        FROM `dobbyisfree`.COUNSEL
+        WHERE CNSL_ID=#{CNSL_ID}
+    </delete>
+
+
+
+<!--           아래부턴 관리자 페이지           -->
+
+    <!-- 전체 1:1 상담 목록 + 답변 불러오기  -->
+    <select id="selectAllList" resultType="CounselAnswerDto">
+        SELECT C.CNSL_ID, C.BBS_ID, C.MBR_ID, C.CATE_ID, C.PROD_ID, C.TTL, C.CN , C.RX, C.REG_DTM, C.STUS, C.ANS_YN,
+               BC.CATE_NM, P.PROD_NM, A.ANS_ID, A.CNSL_ID, A.CONTENT, A.WRTR, A.REGISTER_DTM , A.RMK
+        FROM `dobbyisfree`.COUNSEL C
+                 LEFT JOIN `dobbyisfree`.ANSWER A ON C.CNSL_ID = A.CNSL_ID
+                 LEFT JOIN `dobbyisfree`.BBS_CATEGORY BC ON C.CATE_ID = BC.CATE_ID
+                 LEFT JOIN `dobbyisfree`.PROD P ON C.PROD_ID = P.PROD_ID
+        ORDER BY C.CNSL_ID DESC
+    </select>
+
+    <!--  1:1 상담 답변 작성 + 게시물 상태 업데이트  -->
+<!--    <insert id="insertAnswer" parameterType="AnswerDto">-->
+<!--        INSERT INTO ANSWER (CNSL_ID, CONTENT, WRTR)-->
+<!--        VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});-->
+<!--        UPDATE `dobbyisfree`.COUNSEL-->
+<!--        SET STUS='처리완료', ANS_YN='Y'-->
+<!--        WHERE CNSL_ID=#{CNSL_ID};-->
+<!--    </insert>-->
+
+    <!--  1:1 상담 답변 등록  -->
+    <insert id="insertAnswer" parameterType="AnswerDto">
+        INSERT INTO `dobbyisfree`.ANSWER (CNSL_ID, CONTENT, WRTR)
+        VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});
     </insert>
+
+    <!--  게시물 상태 업데이트, 1:1 상담 답변 등록 후에 -->
+    <update id="updateCounselStatus" parameterType="CounselDto">
+        UPDATE `dobbyisfree`.COUNSEL
+        SET STUS='처리완료', ANS_YN='Y'
+        WHERE CNSL_ID=#{CNSL_ID};
+    </update>
+
+
+
 
 </mapper>
