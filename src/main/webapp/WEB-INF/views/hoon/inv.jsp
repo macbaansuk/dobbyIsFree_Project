@@ -881,30 +881,11 @@
     });
 
 </script>
-<script>
-    //showList 매개변수를 아래의 코드에 담아서 코드 중복을 줄 일 수 있다. 특정 상황에 더 힘들 것 같고 시간이 없어서 하지 않았다.
-    // function getPageData() {
-    //     const page = $('.classText').val();
-    //     const pageSize = $('select[name="limit"] option:selected').val();
-    //     const keyword = $('.search-input').val();
-    //     const sortType = $('select[name="orderby"] option:selected').val();
-    //     const category = $('select[name="category"] option:selected').val();
-    //     const startDate = $('#pr_start_date').val();
-    //     const endDate = $('#pr_end_date').val();
-    //     const dateField = $('select[name="date"] option:selected').val();
-    //
-    //     return {
-    //         page,
-    //         pageSize,
-    //         keyword,
-    //         sortType,
-    //         category,
-    //         startDate,
-    //         endDate,
-    //         dateField,
-    //     };
-    // }
-</script>
+            <script >
+                let msg = "${msg}";
+                if (msg=="login_ERR") alert("관리자 아이디로 로그인 해주세요.")
+
+            </script>
 
 </body>
 </html>

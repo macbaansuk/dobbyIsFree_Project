@@ -18,11 +18,11 @@
 <div id="wrap">
     <header id="orderHeader">
         <div class="orderHead">
-            <h1 class="logo"><a href="/"><img  id ="logoImg" src="/img/main/logo_black.png" alt="dobbyisfree"></a></h1>
+            <h1 class="logo"><a href="/"><img  id ="logoImg" src="/img/main/logo.png" alt="dobbyisfree"></a></h1>
             <p class="helpArea">
                 <strong>도움이 필요하세요?</strong>
                 <span class="helpBtn">
-                    <a href="" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
+                    <a href="/cs/notice/list" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
                     <a href="" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
                 </span>
             </p>
@@ -140,13 +140,14 @@
 
                                         <!-- 배송지목록에 추가, 기본배송지로 등록 -->
                                         <div class="row deliverySel"  id="chkWrapper" style="display: none">
-                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox" name="isAddNewChk" id="isAddNewChk" checked="checked" readonly="" value="Y"> <span>배송지 목록에 추가</span></label>
-                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" value="Y"> <span>기본 배송지로 등록</span></label>
+                                            <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox"   name="isAddNewChk" id="isAddNewChk"  readonly=""  checked="checked"> <span>배송지 목록에 추가</span></label>
+                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" > <span>기본 배송지로 등록</span></label>
                                             <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
                                         </div>
+
+
                                             <script>
                                                 function dlvChk(radioButton) {
-
                                                     let chkWrapper = document.getElementById("chkWrapper");
 
                                                     // 신규 입력 선택
@@ -1019,12 +1020,12 @@
     function order_Id(){
         const date = new Date();
         const year = date.getFullYear().toString();
-        const month = (date.getMonth() + 1).toString();  //0부터시작 +1
-        const day = date.getDate().toString();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');  //0부터시작 +1 ,한자리숫자로 나오는거 padStart로 수정
+        const day = date.getDate().toString().padStart(2, '0');
 
 
         let orderNum = year + month + day;
-        for(let i=0;i<3;i++) {
+        for(let i=0;i<6;i++) {
             orderNum += Math.floor(Math.random() * 8);
         }
 
@@ -1111,11 +1112,17 @@
                 let inputIsAddNewChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddNewChk').val(isAddNewChkVal).appendTo(ordForm);
 
                 let isAddDefaultChkVal = document.getElementById("isAddDefaultChk").checked ? "Y" : "N";
-                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddNewChkVal).appendTo(ordForm);
+                console.log('기본배송치체크',isAddDefaultChkVal);
+                let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddDefaultChkVal).appendTo(ordForm);
 
                 $(document.body).append(ordForm);
                 ordForm.submit();
             } //input()
+
+
+
+
+
     //------------------------------------------------------------------------------------------
     //결제 API
     $("#payBtn").click(function() {
@@ -1130,7 +1137,7 @@
         console.log("결제 금액",typeof totPurPrcTxt);
         console.log("결제 금액 최종값", totPurPrcTxt);
 
-        // input();
+        input();
 
 
         IMP.init('imp21837643');
@@ -1165,7 +1172,7 @@
                 // msg += '상점 거래ID : ' + rsp.merchant_uid;
                 // msg += '결제 금액 : ' + rsp.paid_amount;
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
-                input();
+                // input();
 
                 alert("결제가 성공하였습니다")
             }

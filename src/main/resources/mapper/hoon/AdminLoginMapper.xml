@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dobby.project.hoon.dao.AdminLoginMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM mngr;
+    </select>
+
+    <select id="loginCheck" parameterType="String" resultType="AdminDto">
+        SELECT * from mngr
+        where MNGR_ID = #{MNGR_ID} AND MNGR_PWD = #{MNGR_PWD} ;
+    </select>
+
+
+</mapper>

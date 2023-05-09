@@ -42,6 +42,14 @@
                     <span class="menuWrap">배너 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
+            <li>
+
+                <a href="/admin/logout">
+<%--                    <span>${admin.MNGR_ID}</span>--%>
+<%--                    <br>--%>
+                    <span class="menuWrap">로그아웃<button type="button" class="bar"></button></span>
+                </a>
+            </li>
         </ul>
     </div>
 

@@ -85,4 +85,12 @@
         </foreach>
     </delete>
 
+    <!-- 적립금 저장-->
+    <insert id="insertPoint" parameterType="PointDto" >
+        INSERT INTO `dobbyisfree`.`point`
+        (MBR_ID, AMT)
+        VALUES
+        (#{MBR_ID},#{AMT})
+    </insert>
+
 </mapper>

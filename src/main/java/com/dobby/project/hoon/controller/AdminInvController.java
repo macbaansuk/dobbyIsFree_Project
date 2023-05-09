@@ -1,5 +1,6 @@
 package com.dobby.project.hoon.controller;
 
+import com.dobby.project.hoon.domain.AdminDto;
 import com.dobby.project.hoon.domain.InvDto;
 import com.dobby.project.hoon.domain.PageHandler;
 import com.dobby.project.hoon.domain.invSearchCondition;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -20,6 +22,8 @@ import java.util.*;
 public class AdminInvController {
     @Autowired
     InvService invService;
+
+
 
     @GetMapping("/modify/{prodId}") // 체크박스에 체크된 prodID의  바꾸는 메서드
     @ResponseBody
@@ -81,27 +85,34 @@ public class AdminInvController {
 
     @GetMapping("/list")  // 모든 게시물을 페이지로 나눠서 보여주는 메서드  // /admin/list?page=1&pageSize=10&option=&keyword=
 
-    public String list(invSearchCondition sc, Model m, HttpServletRequest request , RedirectAttributes rattr) {
-
+    public String list(invSearchCondition sc, Model m, HttpServletRequest request , RedirectAttributes rattr, HttpSession session) {
+        AdminDto adminDto = (AdminDto) session.getAttribute("admin");
+        System.out.println("세션 저장"+adminDto);
         System.out.println("sc GetMapping = " + sc);
 
-        try {
+        // 로그인 체크 유무 코드
+        if (session.getAttribute("admin") == null) {
+            rattr.addFlashAttribute("msg", "login_ERR");
+            return "redirect:/admin";
+        } else { // 본인 페이지 원래 코드
+//
+            try {
+                int toatlCnt = invService.getInvSearchResultCnt(sc); // 테이블의 전체 레코드 수를 반환 한다. 전체 게시물의 개수
+                PageHandler pageHandler = new PageHandler(toatlCnt, sc);
+                List<InvDto> list = invService.getInvSearchResultPage(sc);
+                m.addAttribute("list", list);
+                m.addAttribute("ph",pageHandler);
+                rattr.addAttribute("pageSize", sc.getPageSize());
+                rattr.addFlashAttribute("msg", "LIST_OK");
 
-            int toatlCnt = invService.getInvSearchResultCnt(sc); // 테이블의 전체 레코드 수를 반환 한다. 전체 게시물의 개수
-            PageHandler pageHandler = new PageHandler(toatlCnt, sc);
-            List<InvDto> list = invService.getInvSearchResultPage(sc);
-            m.addAttribute("list", list);
-            m.addAttribute("ph",pageHandler);
-            rattr.addAttribute("pageSize", sc.getPageSize());
-            rattr.addFlashAttribute("msg", "LIST_OK");
+                return "hoon/inv";
 
-            return "hoon/inv";
-
-        } catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            m.addAttribute("pageSize", sc.getPageSize());
-            m.addAttribute("msg", "LIST_ERR");
-            return "hoon/inv";
+                m.addAttribute("pageSize", sc.getPageSize());
+                m.addAttribute("msg", "LIST_ERR");
+                return "hoon/inv";
+            }
         }
 //        return "hoon/inv"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }

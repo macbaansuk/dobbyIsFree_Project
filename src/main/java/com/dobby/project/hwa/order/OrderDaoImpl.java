@@ -70,4 +70,11 @@ public class OrderDaoImpl implements  OrderDao {
         map.put("delCartIds", delCartIds);
         session.delete(namespace + "deleteCart", map);
     }
+
+    @Override
+    public int insertPoint(PointDto pd) {
+        return session.insert(namespace + "insertPoint",pd);
+    }
+
+
 }

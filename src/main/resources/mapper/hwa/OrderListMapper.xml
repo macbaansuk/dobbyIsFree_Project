@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dobby.project.hwa.order.OrderListDao">
+
+    <!-- 주문내역 간단 불러오기 -->
+    <select id="selectOrderInfo" resultType="OrdDto">
+        SELECT
+            ORD_ID,MBR_ID ,ORD_DTM,ORD_DTM,SETL_AMT,ORD_TAMT
+        FROM `dobbyisfree`.`ord`
+        WHERE
+            MBR_ID= #{MBR_ID}
+    </select>
+
+    <!-- 주문 대표제품명 불러오기 -->
+    <select id="selectProdNm" resultType="OrdProdDto">
+        SELECT ORD_ID, PROD_NM
+        FROM `dobbyisfree`.`ord_prod`
+        WHERE ORD_ID = #{ORD_ID} AND ORD_PROD_NO IN (
+            SELECT MIN(ORD_PROD_NO)
+            FROM ord_prod
+            WHERE ORD_ID = #{ORD_ID}
+        );
+    </select>
+
+    <select id="selectProdCnt" parameterType="map" resultType="ProdCntDto">
+        SELECT o.ORD_ID, COUNT(DISTINCT op.PROD_ID) as Prod_Cnt
+        FROM `dobbyisfree`.`ord_prod` op
+                 JOIN ord o ON op.ORD_ID = o.ORD_ID
+        WHERE o.MBR_ID = #{MBR_ID}
+        GROUP BY o.ORD_ID;
+    </select>
+
+</mapper>
