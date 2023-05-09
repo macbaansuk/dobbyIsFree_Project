@@ -93,7 +93,9 @@ public class AdminInvController {
         // 로그인 체크 유무 코드
         if (session.getAttribute("admin") == null) {
             rattr.addFlashAttribute("msg", "login_ERR");
-            return "redirect:/admin";
+            String prevUrl = request.getHeader("Referer");
+            System.out.println("get prevUrl = " + prevUrl);
+            return "redirect:/admin/login";
         } else { // 본인 페이지 원래 코드
 //
             try {

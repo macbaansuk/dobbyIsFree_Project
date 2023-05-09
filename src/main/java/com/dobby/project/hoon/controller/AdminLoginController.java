@@ -18,12 +18,12 @@ public class AdminLoginController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("")
+    @GetMapping("/login")
     public String adminLoginPage() {
         return "hoon/AdminLogin";
     }
 
-    @PostMapping("")
+    @PostMapping("/login")
     public String adminLogin(@RequestParam String id, @RequestParam String pwd, HttpSession session, RedirectAttributes rttr) throws Exception {
      //로그인 체크
         AdminDto adminDto = adminService.AdminloginCheck(id,pwd);
@@ -41,16 +41,16 @@ public class AdminLoginController {
 
     @GetMapping("/main") // 미구현
     public String adminMainPage(HttpSession session) throws Exception {
-        if (session.getAttribute("admin") == null) {
-            return "redirect:/admin";
-        } else {
+//        if (session.getAttribute("admin") == null) {
+//            return "redirect:/admin/login";
+//        } else {
             return "hoon/AdminMain";
-        }
+//        }
     }
 
     @GetMapping("/logout")
     public String adminLogout(HttpSession session) throws Exception {
         session.invalidate();
-        return "redirect:/admin";
+        return "redirect:/admin/login";
     }
 }
