@@ -1,18 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>MyPage - 1:1 상담</title>
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-          crossorigin="anonymous"
-  />
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="/css/soo/mypage_counsel_list.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+  <title>MyPage - 1:1 상담</title>
   <style></style>
 </head>
 
@@ -123,57 +124,51 @@
           </tr>
           </thead>
           <tbody>
-<%--          <c:forEach var="Counsel" items="${a}">--%>
-          <c:forEach>
-          <tr class="question">
+          <c:forEach var="counsel" items="${list}">
 
+            <tr class="question">
             <!-- 1:1 상담 번호(rownum) -->
-            <td class="no">2</td>
+            <td class="no">${counsel.CNSL_ID}</td>
             <!-- 문의제목 -->
-            <td class="title">그린티 씨드 세럼 제품명 변경에 대해 문의합니다.</td>
+            <td class="title">${counsel.TTL}</td>
             <!-- 작성일, yy-MM-dd hh:mm:ss -->
-            <td class="date">2023-04-29 14:40:17</td>
+            <td class="date">
+              <fmt:formatDate value="${counsel.REG_DTM}" pattern="yyyy-MM-dd" type="date"/>
+            </td>
             <!-- 문의 처리현황, 처리중 -> 처리완료 -->
-            <td class="stus" value="처리완료">
-              처리완료
-              <!-- 처리중일때만 보이는 버튼 -->
-              <button type="button" class="delBtn">삭제</button>
+            <td class="stus" value="${counsel.STUS}">
+                ${counsel.STUS}
             </td>
           </tr>
           <tr class="questionCont">
             <td></td>
-            <td colspan="3">
+            <td colspan="2">
               <!-- 제품명 추가 -->
-              <div class="prod">[제품정보] 그린티 씨드 히알루론산 세럼</div>
+              <div class="prod">[제품명] ${counsel.PROD_NM}</div>
               <!-- 문의내용 -->
               <div class="questionC">
-                안녕하세요? 그린티 씨드 세럼을 이용중이었는데, 제품명에 히알루론산이 추가 되었더라구요. 패키지만 변경된건가요?
-                아니면 성분도 리뉴얼된건지 궁금합니다.
+                  ${counsel.CN}
               </div>
               <div class="answer">
                       <span class="reTitle">
                         <span class="reBtn">답변</span>
                         <!-- RE: + 상담 제목이 한번 더 -->
-                        RE: 그린티 씨드 세럼 제품명 변경에 대해 문의합니다.
+                        RE: ${counsel.TTL}
                       </span>
                 <!-- answer 내용 -->
-                <span class="answerCont">
-                    안녕하세요, 고객님. 이니스프리입니다. 먼저, 저희 이니스프리에 관심을 가져주시고 이용해 주시는 고객님께 진심으로
-                    감사의 마음을 전합니다. 문의주신 [그린티 씨드 히알루론산 세럼]제품은 기존 그린티 씨드 크림 제품이 리뉴얼 되어 재출시된
-                    제품이며, 성분/처방/가격 변경등으로 사용감, 제형 등 개인차에 따라 다르게 느낄 수 있는 점 이용에 참고 부탁드립니다.
-                    *자세한 제품 설명은 해당페이지 상세정보 확인 바랍니다. 혹여, 민감피부이신 경우라면 제품상세페이지 >유의사항 클릭시
-                    해당제품의 전성분 확인이 가능하오니 혹여 맞지 않은 성분이 포함되어 있지 않은지 구매 전 꼭 확인 부탁드립니다.
-                    소중한 시간 내어 문의 주신 점 감사 드립니다. 행복한 하루 보내세요.
-                    </span>
+                <div class="answerCont">
+                    ${counsel.CONTENT}
+                    </div>
               </div>
+              <!-- answer 날짜 -->
               <div class="answerDate">
-                2023-04-29
-                <!-- answer 날짜 -->
+<%--                <fmt:formatDate value="${counsel.REGISTER_DTM}" pattern="yyyy-MM-dd" type="date"/>--%>
               </div>
             </td>
           </tr>
-          </tbody>
+<%--            </c:if>--%>
           </c:forEach>
+          </tbody>
         </table>
       </div>
     </div>

@@ -6,20 +6,20 @@
 
     <sql id="selectFromNotice">
         SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
-        FROM NOTICE N, BBS_CATEGORY C
+        FROM `dobbyisfree`.NOTICE N, `dobbyisfree`.BBS_CATEGORY C
         WHERE N.CATE_ID = C.CATE_ID
     </sql>
 
     <!--  게시물 번호로 게시물 읽기  -->
     <select id="select" parameterType="int" resultType="NoticeDto">
         SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
-        FROM NOTICE N, BBS_CATEGORY C
+        FROM `dobbyisfree`.NOTICE N, `dobbyisfree`.BBS_CATEGORY C
         WHERE N.CATE_ID = C.CATE_ID AND NB_ID = #{NB_ID}
     </select>
 
     <!--  게시물 번호, 작성자로 게시물 삭제 ,  나중에 작성자(관리자 계정) 추가-->
     <delete id="delete" >
-        DELETE FROM NOTICE
+        DELETE FROM `dobbyisfree`.NOTICE
         WHERE NB_ID = #{NB_ID}
 #         AND WRTR='관리자'
     </delete>
@@ -27,7 +27,7 @@
     <!--  게시물 목록 모두 불러오기  -->
     <select id="selectAll" resultType="NoticeDto">
         SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
-        FROM NOTICE N, BBS_CATEGORY C
+        FROM `dobbyisfree`.NOTICE N, `dobbyisfree`.BBS_CATEGORY C
         WHERE N.CATE_ID = C.CATE_ID
         ORDER BY REG_DTM DESC, NB_ID DESC
         LIMIT #{offset}, #{pageSize}
@@ -36,7 +36,7 @@
     <!--  카테고리별 게시물 목록 불러오기  -->
     <select id="selectByCate" parameterType="map" resultType="NoticeDto">
         SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
-        FROM NOTICE N, BBS_CATEGORY C
+        FROM `dobbyisfree`.NOTICE N, `dobbyisfree`.BBS_CATEGORY C
         WHERE N.CATE_ID = C.CATE_ID AND N.CATE_ID = #{CATE}
         ORDER BY REG_DTM DESC, NB_ID DESC
         LIMIT #{offset}, #{pageSize}
@@ -45,19 +45,19 @@
 <!--      전체 게시물 개수, INPUT(X)-->
     <select id="countAll" resultType="int">
         SELECT COUNT(*)
-        FROM NOTICE
+        FROM `dobbyisfree`.NOTICE
     </select>
     
 <!--      카테고리별 게시물 개수, 카-->
     <select id="countByCate" parameterType="String" resultType="int">
         SELECT COUNT(*)
-        FROM NOTICE
+        FROM `dobbyisfree`.NOTICE
         WHERE CATE_ID=#{CATE_ID}
     </select>
 
     <!--  게시물 작성  -->
     <insert id="insert" parameterType="NoticeDto">
-        INSERT INTO NOTICE
+        INSERT INTO `dobbyisfree`.NOTICE
             (CATE_ID, STUS, TTL, CN, WRTR)
         VALUES
             (#{CATE_ID}, #{STUS}, #{TTL}, #{CN}, #{WRTR})
@@ -66,7 +66,7 @@
 
     <!--  게시물 수정  -->
     <update id="update" parameterType="NoticeDto">
-        UPDATE NOTICE
+        UPDATE `dobbyisfree`.NOTICE
         SET CATE_ID = #{CATE_ID}
             , STUS = #{STUS}
             , WRTR = #{WRTR}

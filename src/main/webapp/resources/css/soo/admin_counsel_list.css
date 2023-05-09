@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {text-decoration: none;}
+
+
+#catelist {
+    padding-bottom: 10px;
+}
+
+#statuslist {
+    padding-bottom: 10px;
+}
+
+.listHead div {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+
+.listMid {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cnt {
+    text-align: left;
+}
+
+.btn {
+    text-align: right;
+    margin-right: 12px;
+}
+
+
+caption {
+    display: none;
+}
+.questionCont {
+    display: none;
+    color: #777777;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0 20px 0;
+    border-collapse: collapse;
+}
+
+.counselList thead th{
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+.counselList tbody tr {
+    border-bottom: 1px solid #dcdcdc;
+}
+.counselList tbody td {
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+.no, .regdate, .stus, .category, .member {
+    text-align: center;
+}
+
+#regBtn {
+    width: 60px;
+    height: 30px;
+    border-radius: 0;
+    background-color: #f3f3f3;
+    color: #222222;
+    border: 1px solid #a7a7a7;
+    margin: 0 0 10px 10px;
+}
+.counselList tbody td.questionCont {
+    padding-left: 100px;
+}
+.questionC {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.prod{
+    font-size: 14px;
+}
+.reTitle{
+    display: block;
+    color: #222222;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+}
+
+.reBtn {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 6px 2px 4px;
+    color: #fff;
+    background: #12b560;
+    line-height: 20px;
+    border-radius: 3px;
+}
+.answerCont{
+    font-size: 14px;
+    margin: 10px 0 10px 0;
+}
+.answerDate{
+    margin-top: 10px;
+}
+
+.answertext {
+    width: 650px;
+    height: 200px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0;
+    outline: none;
+    border: solid 0.5px #dcdcdc;
+    resize: none;
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+}
+
+
+.paging {
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.paging a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.paging a:hover {
+    background-color: #ddd;
+}
+

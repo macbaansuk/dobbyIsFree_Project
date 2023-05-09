@@ -55,7 +55,7 @@
 
     <div class="admin-bar">
         <div class="admin-left">
-            <h2>쇼핑몰관리</h2>
+            <h2>게시판관리</h2>
             <ul  class="admin-ul">
 
                 <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>

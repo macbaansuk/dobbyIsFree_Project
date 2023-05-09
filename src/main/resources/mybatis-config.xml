@@ -16,6 +16,7 @@
         <typeAlias alias="NoticeDto"  type="com.dobby.project.soo.NoticeDto"/>
         <typeAlias alias="CounselDto" type="com.dobby.project.soo.CounselDto"/>
         <typeAlias alias="AnswerDto"  type="com.dobby.project.soo.AnswerDto"/>
+        <typeAlias alias="CounselAnswerDto"  type="com.dobby.project.soo.CounselAnswerDto"/>
         <typeAlias alias="BbsFileDto" type="com.dobby.project.soo.BbsFileDto"/>
         <typeAlias alias="MemberDto"  type="com.dobby.project.soo.MemberDto"/>
         <typeAlias alias="ProdDto"  type="com.dobby.project.soo.ProdDto"/>
