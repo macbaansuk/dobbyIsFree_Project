@@ -84,18 +84,22 @@ public class OrderListController {
  }
 
 @GetMapping("/orderDetail")
- public String OrderDetail(@RequestParam("orderId") String orderId){
+ public String OrderDetail(@RequestParam("orderId") String orderId, Model m){
     System.out.println("주문상세 진입");
     
     //주문아이디에 해당하는 상세정보 불러오기
     OrdDto ordDto = orderListService.getOrdDetailList(orderId);
-    
-    
-    
-    
-    
-    
-     return "hwa/orderDetailList";
+
+    System.out.println("주문내역 = " + ordDto);
+    m.addAttribute("ordDto",ordDto);
+
+    //주문 상품목록 불러오기
+    List<OrdProdInfoDto> opiDto = orderListService.getOrdProdInfo(orderId);
+
+    System.out.println("opiDto = " + opiDto);
+    m.addAttribute("opiDto",opiDto);
+
+    return "hwa/orderDetailList";
  }
 
 

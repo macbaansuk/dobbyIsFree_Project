@@ -15,4 +15,6 @@ public interface OrderListService {
     public List<ProdCntDto> getProdCnt(String mbrId, String ordId);
 
     public OrdDto getOrdDetailList(String orderId);
+
+    public List<OrdProdInfoDto> getOrdProdInfo(String orderId);
 }

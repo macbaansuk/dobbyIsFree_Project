@@ -45,7 +45,11 @@ public class OrderListDaoImpl implements OrderListDao {
     }
 
     @Override
-    public OrdDto getOrdDetailList(String orderId) {
-        return null;
+    public List<OrdProdInfoDto> selectOrdProdInfo(String orderId) {
+        return session.selectList(namespace + "selectOrdProdInfo",orderId);
     }
+
+
+
+
 }
