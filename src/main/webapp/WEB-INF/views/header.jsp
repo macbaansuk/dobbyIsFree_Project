@@ -147,7 +147,7 @@
     <span><a href="/register">회원가입</a></span>
     <span><a href="/mypage">마이페이지</a></span>
     <span><a href="/cart" onclick="return checkLogin()">장바구니</a></span>
-    <span id="cart_cnt">0</span>
+    <span id="cart_cnt"><a href="/order/list">000</a></span>
   </div>
   <div id="logo_search_box">
     <h1>
