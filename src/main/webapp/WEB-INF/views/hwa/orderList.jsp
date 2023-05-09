@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -166,7 +166,7 @@
             <caption>전체주문체결내역</caption>
             <colgroup>
               <col style="width:120px;">
-              <col style="width:115px;">
+              <col style="width:160px;">
               <col>
               <col style="width:110px;">
               <col style="width:110px;">
@@ -190,7 +190,6 @@
             <tr>
 
               <td class="ordDtm" data-ord-dtm="${orderList.ORD_DTM}">
-<%--                  ${orderList.ORD_DTM}--%>
               </td>
 
               <td>
@@ -198,10 +197,26 @@
                   ${orderList.ORD_ID}
                 </a>
               </td>
+
               <td class="left">
-                <a href="javascript:void(0)">
-                  블랙티 유스 인핸싱 앰플 [대용량]
-                </a>
+                <c:forEach items="${ordProdDto}" var="ordProdDto">
+                  <c:choose>
+                    <c:when test="${ordProdDto.ORD_ID eq orderList.ORD_ID}">
+                  <a href="/orderDetails?orderId=${ordProdDto.ORD_ID}">
+                ${ordProdDto.PROD_NM}
+                      <c:forEach items="${pcDto}" var="pcDto">
+                        <c:if test="${pcDto.ORD_ID eq orderList.ORD_ID}">
+                          <c:set var="pdCnt" value="${pcDto.prod_Cnt}" />
+                          <fmt:parseNumber var="fmtCnt" type="number" value="${pdCnt}" />
+                          <c:if test="${fmtCnt != 1 && fmtCnt gt 0}">
+                            외 ${fmtCnt}건
+                          </c:if>
+                        </c:if>
+                      </c:forEach>
+                  </a>
+                    </c:when>
+                  </c:choose>
+                </c:forEach>
               </td>
 
               <td><fmt:formatNumber pattern="###,###,###" value="${orderList.SETL_AMT}"/>원</td>
@@ -283,7 +298,9 @@
       console.log('ord22',ord22);
       console.log('ord33',ord33)
       console.log('스트링',ordDtmString);
-      element.innerText = ord[1] + ord22 + ord33;
+      let ordTot = ord11  +'.' + ord22 +'.'+ ord33;
+      console.log('ordTot',ordTot);
+      element.innerText = ordTot;
     });
   });
 </script>

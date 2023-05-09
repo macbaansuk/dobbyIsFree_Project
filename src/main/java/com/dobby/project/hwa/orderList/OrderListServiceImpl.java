@@ -18,4 +18,14 @@ public class OrderListServiceImpl implements OrderListService {
 
         return orderListDao.selectOrderInfo(mbrId);
     }
+
+    @Override
+    public List<OrdProdDto> getProdNm(String ordId) {
+        return orderListDao.selectProdNm(ordId);
+    }
+
+    @Override
+    public List<ProdCntDto> getProdCnt(String mbrId, String ordId) {
+        return orderListDao.selectProdCnt(mbrId,ordId);
+    }
 }
