@@ -5,9 +5,9 @@ import java.util.Date;
 public class AnswerDto {
     private Integer ANS_ID;
     private Integer CSNL_ID;
-    private String CN;
+    private String CONTENT;
     private String WRTR;
-    private Date REG_DTM;
+    private Date REGISTER_DTM;
     private Date UPD_DTM;
     private String RMK;
     private Date FST_REG_DTM;
@@ -16,9 +16,9 @@ public class AnswerDto {
     private String LAST_UPD_DCMT_NO;
 
     public AnswerDto(){}
-    public AnswerDto(Integer CSNL_ID, String CN, String WRTR, String RMK) {
+    public AnswerDto(Integer CSNL_ID, String CONTENT, String WRTR, String RMK) {
         this.CSNL_ID = CSNL_ID;
-        this.CN = CN;
+        this.CONTENT = CONTENT;
         this.WRTR = WRTR;
         this.RMK = RMK;
     }
@@ -39,12 +39,12 @@ public class AnswerDto {
         this.CSNL_ID = CSNL_ID;
     }
 
-    public String getCN() {
-        return CN;
+    public String getCONTENT() {
+        return CONTENT;
     }
 
-    public void setCN(String CN) {
-        this.CN = CN;
+    public void setCONTENT(String CONTENT) {
+        this.CONTENT = CONTENT;
     }
 
     public String getWRTR() {
@@ -55,12 +55,12 @@ public class AnswerDto {
         this.WRTR = WRTR;
     }
 
-    public Date getREG_DTM() {
-        return REG_DTM;
+    public Date getREGISTER_DTM() {
+        return REGISTER_DTM;
     }
 
-    public void setREG_DTM(Date REG_DTM) {
-        this.REG_DTM = REG_DTM;
+    public void setREGISTER_DTM(Date REGISTER_DTM) {
+        this.REGISTER_DTM = REGISTER_DTM;
     }
 
     public Date getUPD_DTM() {
@@ -116,9 +116,9 @@ public class AnswerDto {
         return "AnswerDto{" +
                 "ANS_ID=" + ANS_ID +
                 ", CSNL_ID=" + CSNL_ID +
-                ", CN='" + CN + '\'' +
+                ", CONTENT='" + CONTENT + '\'' +
                 ", WRTR='" + WRTR + '\'' +
-                ", REG_DTM=" + REG_DTM +
+                ", REGISTER_DTM=" + REGISTER_DTM +
                 ", UPD_DTM=" + UPD_DTM +
                 ", RMK='" + RMK + '\'' +
                 ", FST_REG_DTM=" + FST_REG_DTM +

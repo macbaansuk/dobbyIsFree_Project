@@ -1,11 +1,10 @@
 package com.dobby.project.soo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +22,15 @@ public class CounselController {
     CounselService counselService;
 
     @GetMapping("/cs/counsel/main") // 고객센터 1:1 상담 안내
-    public String counselMain(){
+    public String counselMain() throws Exception {
 
         return "soo/cs_counsel";
+    }
+
+    @PostMapping("/mypage/counsel/remove")
+    public String counselRemove(Integer cnslId, Model m) throws Exception{
+        counselService.removeCounsel(cnslId);
+        return "redirect:/mypage/counsel/list";
     }
 
     @GetMapping("/mypage/counsel/write") // 1:1 상담 작성 폼(글쓰기)
@@ -33,7 +38,7 @@ public class CounselController {
 
         // 로그인 체크
         // session에 저장된게 없을 때
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         // 로그인되어 있지 않으면
         if (session == null || session.getAttribute("MBR_ID") == null) {
             // 이전 페이지 정보를 세션에 저장
@@ -42,10 +47,10 @@ public class CounselController {
         }
         // 회원 이름, 전화번호 미리 불러오기
         // 세션에서 MBR_ID를 가져옴
-        String MBR_ID = (String) session.getAttribute("MBR_ID");
+        String mbrId = (String) session.getAttribute("MBR_ID");
 
         // 회원 이름, 전화번호 미리 불러오기
-        MemberDto memberDto = counselService.getMember(MBR_ID);
+        MemberDto memberDto = counselService.getMember(mbrId);
         m.addAttribute("memberDto", memberDto);
         System.out.println("memberDto="+m);
 
@@ -89,22 +94,32 @@ public class CounselController {
         return "redirect:/mypage/counsel/list";
     }
 
-//    @GetMapping("/mypage/counsel/list") // 1:1 상담 작성 리스트 조회
-//    public String counselList(@RequestParam(defaultValue ="1") Integer page,String MBR_ID,
-//                              @RequestParam(defaultValue = "10") Integer pageSize, Model m) throws Exception {
-//
-//        int totalCnt = counselService.getCountCounselByMember(MBR_ID);
-//        m.addAttribute("totalCnt", totalCnt);
-//
-//        PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("offset", (page-1)*pageSize);
-//        map.put("pageSize", pageSize);
-//
-//        List<CounselDto> counselList = counselService.getListByMemberId(map);
-//        List
-//        m.addAttribute("counselListByMember", counselList);
-//        m.addAttribute("ph", pageHandler);
-//        return "soo/mypage_counsel_list";
-//    }
+
+    @GetMapping("/mypage/counsel/list") // 1:1 상담 작성 리스트 조회
+    public String counselList(@RequestParam(defaultValue ="1") Integer page, HttpServletRequest request,
+                              @RequestParam(defaultValue = "10") Integer pageSize, Model m) throws Exception {
+
+        try {
+            HttpSession session = request.getSession();
+            if (session == null) {
+                // 세션이 없는 경우에 대한 예외 처리
+                throw new IllegalStateException("세션이 존재하지 않습니다.");
+            }
+            String mbrId = (String) session.getAttribute("MBR_ID");
+            if (mbrId == null) {
+                // MBR_ID가 세션에 저장되어 있지 않은 경우에 대한 예외 처리
+                throw new IllegalStateException("MBR_ID가 세션에 저장되어 있지 않습니다.");
+            }
+
+            System.out.println("세션 아이디 :" + mbrId);
+
+
+            List<CounselAnswerDto> list = counselService.getListByMember(mbrId);
+            m.addAttribute("list", list);
+            System.out.println("상담 목록 조회 : "+m);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "soo/mypage_counsel_list";
+    }
 }

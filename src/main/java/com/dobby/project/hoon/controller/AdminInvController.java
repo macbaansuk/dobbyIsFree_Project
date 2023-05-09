@@ -61,7 +61,6 @@ public class AdminInvController {
     }
 //    @GetMapping("/list")
     @PatchMapping("/list")
-
     public ResponseEntity<Map<String, Object>> test(@RequestBody invSearchCondition sc, Model m, HttpServletRequest request, RedirectAttributes rattr) {
 
         System.out.println("sc PatchMapping = " + sc);

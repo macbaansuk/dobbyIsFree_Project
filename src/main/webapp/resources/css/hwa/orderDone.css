@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "나눔바른고딕OTF", "돋움";
+}
+#pdtImg{
+    width:100px;
+    height: 100px;
+}
+#logoImg {
+    width: 300px;
+}
+#orderHeader {
+    height: 99px;
+    border-bottom: 1px solid #dcdcdc;
+}
+#orderHeader .orderHead {
+    position: relative;
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 0 auto;
+    padding: 20px 0 0;
+}
+#orderHeader .logo {
+    height: 80px;
+}
+#orderHeader .logo a {
+    display: inline-block;
+    vertical-align: middle;
+}
+#orderHeader .logo:after, #orderHeader .helpArea:after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+#orderHeader .helpArea {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    color: #222;
+}
+#orderHeader .helpArea strong {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+#orderHeader .helpArea .btnType1s {
+    margin: 0 0 0 8px;
+    padding: 0 30px;
+    vertical-align: middle;
+}
+
+.btnType1s {
+    height: 32px;
+    line-height: 30px;
+    padding: 0 16px;
+    border-radius: 32px;
+    font-size: 14px;
+}
+[class*="btnType1"] {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 40px;
+    background: transparent;
+    border: 1px solid #222;
+    color: #333;
+    font-size: 14px;
+    border-radius: 46px;
+    text-align: center;
+}
+[class*="btnType"] {
+    display: inline-block;
+    margin: 0 4px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all .3s;
+    box-sizing: border-box;
+}
+input, select, textarea, button, pre, a {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    color: #222;
+    cursor: pointer;
+}
+/* <!--헤더--> */
+
+#container {
+    position: relative;
+    min-height: 500px;
+    padding-bottom: 110px;
+    border-top: 1px solid transparent;
+}
+.orderComWrap {
+    max-width: 1280px;
+    min-width: 1024px;
+    margin: 0 auto;
+}
+.orderComWrap .orderComTop {
+    margin: 80px 0 0;
+    padding: 64px 210px;
+    background: #f3f3f3;
+    color: #222;
+    text-align: center;
+}
+.orderComWrap .orderComTop .txt1 {
+    font: 32px/1 '나눔바른고딕OTF', '돋움';
+    color: #222;
+}
+.orderComWrap .orderComTop .txt2 {
+    margin: 14px 0 0;
+    font-size: 22px;
+}
+.orderComWrap .orderComTop .txt2 .num {
+    color: #d72137;
+}
+h1, h2, h3, h4, h5, strong, b, th {
+    font-weight: normal;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+.orderComWrap .orderComTop .txt4 {
+    margin: 30px 0 0;
+    color: #777;
+    font-family: '나눔바른고딕OTF', '돋움';
+}
+
+.btnWrap {
+    text-align: center;
+    margin-top: 80px;
+}
+
+input, select, textarea, button, pre, a {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+[class*="btnType"] {
+    display: inline-block;
+    margin: 0 4px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all .3s;
+    box-sizing: border-box;
+}
+[class*="btnType6"] {
+    padding: 5px 32px;
+    border: 1px solid #222;
+    color: #222;
+    font-size: 14px;
+}
+.btnType6l {
+    height: 48px;
+    padding: 0 55px;
+    font: 18px/48px '나눔바른고딕OTF', '돋움';
+}
+.orderComHelper {
+    margin: 80px 0 0;
+    font: 14px/1.5 '나눔바른고딕OTF', '돋움';
+}
+[class*="btnType3"] {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.btnType3l {
+    height: 48px;
+    padding: 0 55px;
+    font: 18px/48px '나눔바른고딕OTF', '돋움';
+}
+.btnWrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}

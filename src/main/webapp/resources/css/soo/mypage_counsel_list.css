@@ -199,6 +199,9 @@ table {
     border: 1px solid #a7a7a7;
     margin-left: 7px;
 }
+.counselList tbody td.questionCont {
+    padding-left: 100px;
+}
 .questionC {
     margin-bottom: 20px;
     font-size: 14px;
