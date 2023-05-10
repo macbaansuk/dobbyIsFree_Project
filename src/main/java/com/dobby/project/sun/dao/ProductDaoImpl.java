@@ -1,13 +1,12 @@
 package com.dobby.project.sun.dao;
 
 
-import com.dobby.project.sun.domain.ProductCateDto;
-import com.dobby.project.sun.domain.ProductDCDto;
-import com.dobby.project.sun.domain.ProductDto;
+import com.dobby.project.sun.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,14 +15,10 @@ public class ProductDaoImpl implements ProductDao {
     @Autowired
     private SqlSession session;
     private static String namespace = "com.dobby.project.ProductMapper.";
-//    @Override
-//    public List<ProductDto> selectAllProducts() {
-//        return sqlSession.selectList("selectAllProducts");
-//    }
-
 
     @Override
     public List<ProductDto> getMainProducts() {
+
         return session.selectList("getMainProducts");
     }
 
@@ -37,39 +32,116 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "getProductById", id);
     }
 
+
     @Override
-    public List<ProductCateDto> highPrice() {
-        return session.selectList("highPrice");
+    public int countProducts(Integer CATE_CD) {
+        return session.selectOne("countProducts", CATE_CD);
     }
 
     @Override
-    public List<ProductCateDto> lowPrice() {
-        return session.selectList("lowPrice");
-    }
-
-    @Override
-    public List<ProductCateDto> latest() {
-        return session.selectList("lateset");
-    }
-
-    @Override
-    public int countProducts(int category) {
-        return session.selectOne("countProducts", category);
-    }
-
-    @Override
-    public List<ProductCateDto> getProductList(int category) throws Exception {
-        return session.selectList("getProductList", category);
+    public List<ProductCateDto> getProductList(Integer CATE_CD) throws Exception {
+        return session.selectList("getProductList", CATE_CD);
     }
 
     @Override
     public List<ProductCateDto> selectPage(Map map) throws Exception {
-        return session.selectList(namespace+"selectPage",map);
+        return session.selectList(namespace + "selectPage", map);
     }
+
     @Override  // 게시물 전체 개수
     public int count() throws Exception {
-        return session.selectOne(namespace+"count");
+        return session.selectOne(namespace + "count");
     }
+
+//    @Override
+//    public List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort) {
+//        HashMap<String, Object> params = new HashMap<>();
+//        params.put("CATE_CD", CATE_CD);
+//        params.put("sort", sort);
+//        return session.selectList("getProductsByCategoryAndSort", params);
+//    }
+
+    @Override
+    public List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("category", category);
+        params.put("sort", sort);
+        return session.selectList("getProductsByCategoryAndSort", params);
+    }
+
+    @Override
+    public TotalDto getAdminProductsById(Integer id) {
+        return session.selectOne("getAdminProductsById", id);
+    }
+
+    @Override
+    public int deleteProductOpt(Integer id) {
+        return session.delete(namespace + "deleteProductOpt", id);
+    }
+
+    @Override
+    public int deleteProductDc(Integer id) {
+        return session.delete(namespace + "deleteProductDc", id);
+    }
+
+    @Override
+    public int deleteFile(Integer id) {
+        return session.delete(namespace + "deleteFile", id);
+    }
+
+    @Override
+    public int deleteProductFinal(Integer id) {
+        return session.delete(namespace + "deleteProductFinal", id);
+    }
+
+    @Override
+    public int deleteProductHashtag(Integer id) {
+        return session.delete(namespace + "deleteProductHashtag", id);
+    }
+
+
+//    @Override
+//    public void insertProduct(ProductDto productDto) {
+//        session.insert("insertProduct",productDto);
+//    }
+//
+    @Override
+    public void insertProduct(RegisterDto registerDto) {
+        session.insert("insertProduct", registerDto);
+    }
+
+    @Override
+    public void insertDiscount(RegisterDto registerDto) {
+        session.insert("insertDiscount",registerDto);
+    }
+
+    @Override
+    public void insertFile(RegisterDto registerDto) {
+        session.insert("insertFile",registerDto);
+    }
+
+    @Override
+    public void updateProduct(RegisterDto registerDto) {
+        session.update("updateProduct",registerDto);
+    }
+
+    //    @Override
+//    public void insertOption(ProductOptionDto productOptionDto) {
+//        session.insert("insertOption", productOptionDto);
+
+//    }
+
+
+//    @Override
+//    public void insertHashtag(ProductHashtagDto productHashtagDto) {
+//             session.insert("insertHashtag", productHashtagDto);
+//
+//    }
+//    @Override
+//    public void insertFile(ProductFileDto productFileDto) {
+//        session.insert("insertFile", productFileDto);
+//    }
+
 
 }
 

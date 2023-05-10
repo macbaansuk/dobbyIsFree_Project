@@ -1,33 +1,61 @@
 package com.dobby.project.sun.dao;
 
-import com.dobby.project.soo.NoticeDto;
-import com.dobby.project.sun.domain.ProductCateDto;
-import com.dobby.project.sun.domain.ProductDCDto;
-import com.dobby.project.sun.domain.ProductDto;
+import com.dobby.project.sun.domain.*;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ProductDao {
 
+    //메인화면 진열
     List<ProductDto> getMainProducts();
+
+    //상품 할인만
     List<ProductDCDto> Products_DC()throws Exception;
 
+    //상품상세로 상품 아이디로 넘기기
     ProductDto getProductById(int id) throws Exception;
 
-    List<ProductCateDto> highPrice();
-    List<ProductCateDto> lowPrice();
-    List<ProductCateDto> latest();
+    //상품 목록에서 상품 개수 세기
+    int countProducts(Integer CATE_CD);
 
-    int countProducts(int category);
-
-    List<ProductCateDto> getProductList(int category) throws Exception;
+    ///해당 카테고리의 상품 목록 불러오기
+    List<ProductCateDto> getProductList(Integer CATE_CD) throws Exception;
 
 
     //페이징
     List<ProductCateDto> selectPage(Map map) throws Exception;
     // 게시물 전체 개수
     int count() throws Exception;
+    //상품 목록 정렬버튼
+    List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort);
+
+    //관리자 상품 읽어오기
+    TotalDto getAdminProductsById(Integer id);
+
+    //관리자 상품 삭제
+    int deleteProductOpt(Integer id);
+    int deleteProductDc(Integer id);
+    int deleteFile(Integer id);
+    int deleteProductFinal(Integer id);
+    int deleteProductHashtag(Integer id);
+
+//    int insertProduct(ProductDto productDto);
+//    int insertDiscount(ProductDCDto productDCDto);
+//    int insertOption(ProductOptionDto productOptionDto);
+//    int insertHashtag(ProductHashtagDto productHashtagDto);
+//    int insertFile(ProductFileDto productFileDto);
+
+//    void insertProduct(ProductDto productDto);
+    void insertProduct(RegisterDto registerDto);
+    void insertDiscount(RegisterDto registerDto);
+    void insertFile(RegisterDto registerDto);
+
+    void updateProduct(RegisterDto registerDto);
 
 
+//    void insertHashtag(ProductHashtagDto productHashtagDto);
+//    void insertFile(ProductFileDto productFileDto);
+//    void insertFile(ProductFileDto productFileDto);
+//    void insertOption(ProductOptionDto productOptionDto);
 }
