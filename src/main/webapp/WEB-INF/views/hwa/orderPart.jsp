@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<jsp:include page="./PartTest.jsp" />
+<jsp:include page="../mypage-header.jsp" />
 
       <div class="sub-content mypage-content" ><!--*style="min-height: 1094px;"*-->
         <!-- 멤버십 카드 관리 -->

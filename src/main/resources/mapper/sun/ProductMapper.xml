@@ -34,9 +34,9 @@
                     WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
                     ELSE P.AMT
                    END) AS dc_price
-        FROM Prod AS P
+        FROM `dobbyisfree`.`Prod` AS P
                  LEFT JOIN
-             Prod_DC AS PD
+             `dobbyisfree`.`Prod_DC` AS PD
              ON
                  P.PROD_ID = PD.PROD_ID
         WHERE P.DC_YN = 'Y';
@@ -52,8 +52,8 @@
     <!--해당 카테고리의 상품 목록 불러오기 -->
     <select id="getProductList" parameterType="int" resultType="ProductCateDto">
         SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
-        FROM PROD P,
-             CATE C
+        FROM `dobbyisfree`.`PROD` P,
+             `dobbyisfree`.`CATE` C
         WHERE P.CATE_CD = C.CATE_CD
           AND P.CATE_CD = #{CATE_CD}
         ORDER BY P.REG_DTM
@@ -70,8 +70,8 @@
         WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
         ELSE P.AMT
         END) AS DC_PRICE
-        FROM PROD P
-        LEFT JOIN Prod_DC AS PD
+        FROM `dobbyisfree`.`PROD` P
+        LEFT JOIN `dobbyisfree`.`Prod_DC` AS PD
         ON P.PROD_ID = PD.PROD_ID
         WHERE P.CATE_CD = #{category}
         ORDER BY
