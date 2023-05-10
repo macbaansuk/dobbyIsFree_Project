@@ -1,6 +1,31 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-style: normal;
+}
+
+p {
+    text-align: center;
+    font-size: 17px;
+}
+
+h2 {
+    padding: 15px;
+    font-style: normal;
+}
+.mypage-img2{
+    margin-left: 300px;
+}
+
+.grade {
+    font-weight: bold;
+    color: #12B560;
+}
+
+.info {
+    font-weight: bold;
+    color: #12B560;
 }
 
 #mypageTop {
@@ -8,7 +33,7 @@
 }
 
 #member {
-    height: 140px;
+    height: 80px;
     background: rgba(231, 230, 230, 0.673);
 }
 
