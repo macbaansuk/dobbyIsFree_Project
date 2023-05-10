@@ -24,68 +24,53 @@
 
 <%--    <jsp:include page="../admin_header.jsp"/>--%>
     <div class="Header">
-        <span class="span1">관리자 </span>
-        <span class="span2">매뉴얼</span>
+        <a href="/admin/main">
+            <span class="span1">관리자 </span>
+            <span class="span2">매뉴얼</span>
+        </a>
         <ul class="navi">
             <li>
-                <a href="#">
-                    <span class="menuWrap">쇼핑몰 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/memberPage/list">
                     <span class="menuWrap">회원 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/product/list">
+                    <span class="menuWrap">상품 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/inv/list">
+                    <span class="menuWrap">재고 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/notice/list">
                     <span class="menuWrap">게시판 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="menuWrap">접속 통계<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">배너 관리<button type="button" class="bar"></button></span>
+                <a href="/admin/logout">
+                    <span class="menuWrap">로그아웃<button type="button" class="bar"></button></span>
                 </a>
             </li>
         </ul>
     </div>
 
-
     <div class="admin-bar">
         <div class="admin-left">
-            <h2>쇼핑몰관리</h2>
-            <ul  class="admin-ul">
-
-                <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">FAQ</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">1:1 상담</a></li>
-                    </ul>
-                </li>
-
-                <li class="on"><a href="#" onfocus="this.blur();">검색어 관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">검색어 목록</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">검색어 통계</a></li>
-                    </ul>
-                </li>
+            <h2>상품 관리</h2>
+            <ul class="admin-ul">
+                <li class="on"><a href="#" onfocus="this.blur();">상품 관리</a></li>
+                <ul>
+                    <li><a href="/admin/product/list" onfocus="this.blur();">상품목록</a></li>
+                </ul>
 
             </ul>
-
-
         </div><!-- //admin-left// -->
+
+
+
 
         <div class="admin-container">
             <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 상품 &gt; 목록</div>

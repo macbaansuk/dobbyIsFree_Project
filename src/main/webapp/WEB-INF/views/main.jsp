@@ -14,8 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
+    <link rel="stylesheet" href="./css/hwa/modal.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- 커스텀 창 -->
 
 
     <style>
@@ -39,21 +39,6 @@
         /*.grid-container {*/
         /*    min-height: 100%;*/
         /*}*/
-
-
-        .swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom{
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-
-        .swal2-html-container {
-            font-size: 2em;
-        }
-        .swal2-styled.swal2-confirm {
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
-        .swal2-styled.swal2-cancel {
-            font-family: "나눔바른고딕OTF", "돋움";
-        }
 
     </style>
 </head>
@@ -303,28 +288,13 @@
 
 
         <script>
+            // function cartsc(){
+            //     alert('장바구니에 해당 상품이 담겼습니다');
+            // }
             function cartsc(){
-                Swal.fire({
-                    icon : 'success',
-                    title: '🛒',
-                    text: "장바구니에 담겼습니다.",
-                    // icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: 'rgba(18, 182, 96)',
-                    cancelButtonColor: 'rgba(212, 212, 212, 1)',
-                    confirmButtonText: '장바구니 바로가기',
-                    cancelButtonText: '쇼핑 계속하기'
-                }).then((result) => {
-                    if (result.value) {
-                        location.href='/cart'
-                    }
-                })
+                document.getElementById('cart-modal').style.display = 'block';
             }
-
             function insertA (productNumber) {
-
-
-
                 console.log(productNumber)
                 console.log("insert함수실행")
                 $.ajax({
@@ -337,19 +307,12 @@
                     type: "POST",
                     success: function (data) {
                         cartsc()
-                        // alert("장바구니에 담겼어용 😉")
                         // if (data == 1) {
                         // location.href='/cart'
                         // }
                     },
                     error: function () {
-                        Swal.fire({
-                            // icon: 'error',
-                            title: '장바구니에 담으려면 로그인 해주세용! 😉',
-                            // text: '😉',
-                            confirmButtonColor: 'rgba(18, 182, 96)',
-                            footer: '<a href="/login">로그인 하러 가기</a>'
-                        })
+                        alert('장바구니를 이용하시려면 로그인 해주세요');
 
                     }
                 });<!--ajax -->
@@ -388,6 +351,36 @@
 
         <%-- 멤버십 끝 --%>
     </div>
+        <!--모달창 -->
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <h2>장바구니에 상품이 담겼습니다</h2>
+                <div class="modal-buttons">
+                    <button id="shopping-btn">쇼핑 계속하기</button>
+                    <button id="cart-btn">장바구니로 이동</button>
+                </div>
+            </div>
+        </div>
+
+        <jsp:include page="footer.jsp"/>
+        <script>
+            //장바구니 모달창
+            $(document).ready(function() {
+                let continueShoppingBtn = document.getElementById('shopping-btn');
+                let goToCartBtn = document.getElementById('cart-btn');
+                let cartModal = document.getElementById('cart-modal');
+
+                continueShoppingBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/";
+                });
+
+                goToCartBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/cart";
+                });
+            });
+        </script>
 
 
     <jsp:include page="footer.jsp"/>
