@@ -138,24 +138,24 @@
 
             <th scope="col">결제방법</th>
             <td>
-              무통장입금(에스크로)
+              카드결제
             </td>
-            <th scope="col">영수증여부</th>
-            <td>Y</td>
+            <th scope="col"></th>
+            <td></td>
 
           </tr>
           <tr>
             <th scope="col">주문상태</th>
             <td class="state">
-              주문접수
+              ${ordDto.ORD_STUS_CD}
             </td>
             <th scope="col">송장번호</th>
             <td>
             </td>
           </tr>
           <tr>
-            <!-- <th scope="col">배송일</th>
-            <td></td> -->
+             <th scope="col">배송일</th>
+            <td></td>
             <th scope="col">배송완료일</th>
             <td>
 
@@ -228,7 +228,7 @@
             </td>
 
             <td>
-              <fmt:formatNumber pattern="###,###,###" value="${opiDto.PROD_AMT * 0.01}"/>P</td>
+              <fmt:formatNumber pattern="###,###,###" value="${prod_fee * 0.01  * opiDto.PROD_INDV_QTY}"/>P</td>
             <td>
               ${opiDto.ORD_STUS_CD}
             </td>
@@ -319,24 +319,24 @@
 
           <tr>
             <th scope="row">결제금액</th>
-            <td colspan="3">38,080원</td>
+            <td colspan="3"><fmt:formatNumber pattern="###,###,###" value="${ordDto.SETL_AMT}"/>원</td>
           </tr>
           <tr>
-            <th scope="row">입금은행</th>
-            <td>국민</td>
-            <th scope="row">입금계좌번호</th>
-            <td>56699073065694</td>
+            <th scope="row">환불 받을 은행</th>
+            <td>${ordDto.BANK}</td>
+            <th scope="row">환불 계좌번호</th>
+            <td>${ordDto.ACC_NO}</td>
           </tr>
           <tr>
             <th scope="row">예금주</th>
-            <td>(주)이니스프리</td>
-            <th scope="row">송금자</th>
-            <td>이현화</td>
+            <td>${ordDto.DPOSR}</td>
+            <th scope="row"></th>
+            <td></td>
           </tr>
-          <tr>
-            <th scope="row">입금기한</th>
-            <td colspan="3"> 20230510</td>
-          </tr>
+<%--          <tr>--%>
+<%--            <th scope="row">입금기한</th>--%>
+<%--            <td colspan="3"> 20230510</td>--%>
+<%--          </tr>--%>
 
 
           </tbody>
@@ -420,7 +420,7 @@
       </form>
 
       <div class="btnWrap">
-        <a href="/kr/ko/MypageOnlineOrderList.do?reqOrdStatType=000" class="btnType3l">목록</a>
+        <a href="/order/list" class="btnType3l">목록</a>
       </div>
 
     </div><!--page-->
