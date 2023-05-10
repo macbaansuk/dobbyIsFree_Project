@@ -116,7 +116,7 @@
                             <th scope="row">상품분류</th>
                             <td colspan="3">
                                 <div class="gSingle">
-                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="CATE1" ${ph.sc.option=='CATE1' ? "selected" : ""} >(대분류) CATE1</option> <option value="CATE2" ${ph.sc.option=='CATE2' ? "selected" : ""} >(대분류) CATE2</option> <option value="CATE3"${ph.sc.option=='CATE3' ? "selected" : ""} >(대분류) CATE3</option> <option value="CATE4"${ph.sc.option=='CATE4' ? "selected" : ""} >(대분류) CATE4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택(미구현) -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 (미구현) -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 (미구현) -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
+                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="1" ${ph.sc.option=='1' ? "selected" : ""} >(대분류) 1</option> <option value="2" ${ph.sc.option=='2' ? "selected" : ""} >(대분류) 2</option> <option value="3"${ph.sc.option=='3' ? "selected" : ""} >(대분류) 3</option> <option value="4"${ph.sc.option=='4' ? "selected" : ""} >(대분류) 4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택(미구현) -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 (미구현) -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 (미구현) -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="sub_cate" value="T"> 하위분류 포함검색</label>--%>
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="notincategory" value="T"> 분류 미등록상품 검색</label>--%>
                                         </span>
@@ -614,18 +614,17 @@
                 console.log("invQty 확인"+invQty)
 
                 // 재고수량 안전재고는 빈 문자열시 0의 값을 갖는다
-                if (invQty === '')
+                if (invQty === '' || invQty === null)
                 {
-                    alert('올바른 숫자를 입력해주세요.');
+                    // alert('올바른 숫자를 입력해주세요.');
                     return;
-                } else if (safeInv === '') // 안전재고는 -가 될 수 없다.
+                }  else if (safeInv < 0 || safeInv === null) // 안전재고는 -가 될 수 없다.
                 {
-                    alert('올바른 숫자를 입력해주세요.');
+                    // alert('올바른 숫자를 입력해주세요.');
                     return;
-                } else if (safeInv <= 0) // 안전재고는 -가 될 수 없다.
+                }  else if (safeInv === 0 || safeInv ==='') // 안전재고는 -가 될 수 없다.
                 {
-                    alert('올바른 숫자를 입력해주세요.');
-                    return;
+                    safeInv = 0;
                 }
 
 

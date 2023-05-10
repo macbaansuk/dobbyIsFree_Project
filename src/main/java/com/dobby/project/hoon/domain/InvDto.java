@@ -6,7 +6,7 @@ import java.util.Objects;
 public class InvDto {
 
     private Integer PROD_ID;
-    private String CATE_CD;
+    private Integer CATE_CD;
     private Integer AMT;
     private String PROD_NM;
     private String REP_IMG;
@@ -44,7 +44,7 @@ public class InvDto {
 //
 //    }
 
-    public InvDto(Integer PROD_ID, String CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN,  String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
+    public InvDto(Integer PROD_ID, Integer CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN,  String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
         this.PROD_ID = PROD_ID;
         this.CATE_CD = CATE_CD;
         this.AMT = AMT;
@@ -92,7 +92,7 @@ public class InvDto {
     public String toString() {
         return "InvDto{" +
                 "PROD_ID=" + PROD_ID +
-                ", CATE_CD='" + CATE_CD + '\'' +
+                ", CATE_CD='" + CATE_CD +
                 ", AMT=" + AMT +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
@@ -130,11 +130,11 @@ public class InvDto {
         this.PROD_ID = PROD_ID;
     }
 
-    public String getCATE_CD() {
+    public Integer getCATE_CD() {
         return CATE_CD;
     }
 
-    public void setCATE_CD(String CATE_CD) {
+    public void setCATE_CD(Integer CATE_CD) {
         this.CATE_CD = CATE_CD;
     }
 

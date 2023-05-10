@@ -229,30 +229,29 @@
 
         <!-- 상품 리스트 -->
         <div class="product-list">
-            <c:forEach var="p" items="${ProductsMain}">
+            <c:forEach var="P" items="${ProductsMain}">
                 <div class="product">
-                    <a href="/product/productDetail/${p.prod_id}">
+                    <a href="/product/productDetail/${P.PROD_ID}">
                         <div class="product-img">
-
-                            <img src="${p.rep_img}" alt="메인 상품 이미지">
+                            <img src="${P.REP_IMG}" alt="메인 상품 이미지">
                         </div>
                         <div class="product-info">
-                            <span class="product-name">${p.prod_nm}</span>
+                            <span class="product-name">${P.PROD_NM}</span>
                             <p class="price">
                                 <c:choose>
-                                    <c:when test="${p.dc_yn == 'N'}">
-                                        <strong class="discount-price">${p.amt}</strong>
+                                    <c:when test="${P.DC_YN == 'N'}">
+                                        <strong class="discount-price">${P.AMT}</strong>
                                         <span class="original-price"></span>
                                         <span class="discount-rate"></span>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:forEach var="dc" items="${Products_DC}">
-                                            <c:if test="${p.prod_id == dc.prod_id}">
-                                                <strong class="discount-price">${dc.dc_price}</strong>
-                                                <span class="discount-rate">${dc.dc_rate}%</span>
+                                        <c:forEach var="DC" items="${Products_DC}">
+                                            <c:if test="${P.PROD_ID == DC.PROD_ID}">
+                                                <strong class="discount-price">${DC.DC_PRICE}</strong>
+                                                <span class="discount-rate">${DC.DC_RATE}%</span>
                                             </c:if>
                                         </c:forEach>
-                                        <span class="original-price">${p.amt}</span>
+                                        <span class="original-price">${P.AMT}</span>
                                     </c:otherwise>
                                 </c:choose>
                             </p>
@@ -261,14 +260,14 @@
                     <div class="star-wrap">
                         <div class="starCnt">
                             <i class="fas fa-star"></i>
-                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                            <span class="star-rating">${P.AVG_ASCR} (${P.REVW_NCNT})</span>
                         </div>
                         <div class="icons">
                     <span class="heart-icon">
                         <i class="fa-regular fa-heart"></i>
                     </span>
                             <span class="cart-icon">
-                        <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
+                        <i onclick="insertA(${P.PROD_ID})" class="fa-solid fa-cart-shopping"></i>
                     </span>
                         </div>
                     </div>
@@ -352,37 +351,6 @@
 
         <%-- 멤버십 끝 --%>
     </div>
-        <!--모달창 -->
-        <div class="modal" id="cart-modal">
-            <div class="modal-content">
-                <h2>장바구니에 상품이 담겼습니다</h2>
-                <div class="modal-buttons">
-                    <button id="shopping-btn">쇼핑 계속하기</button>
-                    <button id="cart-btn">장바구니로 이동</button>
-                </div>
-            </div>
-        </div>
-
-
-        <script>
-            //장바구니 모달창
-            $(document).ready(function() {
-                let continueShoppingBtn = document.getElementById('shopping-btn');
-                let goToCartBtn = document.getElementById('cart-btn');
-                let cartModal = document.getElementById('cart-modal');
-
-                continueShoppingBtn.addEventListener('click', function() {
-                    cartModal.style.display = 'none';
-                    location.href="/";
-                });
-
-                goToCartBtn.addEventListener('click', function() {
-                    cartModal.style.display = 'none';
-                    location.href="/cart";
-                });
-            });
-        </script>
-
     <!--모달창 -->
     <div class="modal" id="cart-modal">
         <div class="modal-content">
@@ -394,7 +362,6 @@
         </div>
     </div>
 
-    <jsp:include page="footer.jsp"/>
     <script>
         //장바구니 모달창
         $(document).ready(function() {
@@ -413,6 +380,9 @@
             });
         });
     </script>
+
+
+    <jsp:include page="footer.jsp"/>
+
 </body>
 </html>
-
