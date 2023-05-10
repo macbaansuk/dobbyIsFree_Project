@@ -82,12 +82,6 @@
         LIMIT #{offset}, #{pageSize}
     </select>
 
-<!--    &lt;!&ndash;  조회수  &ndash;&gt;-->
-<!--    <update id="increaseViewCnt" parameterType="int">-->
-<!--        UPDATE NOTICE-->
-<!--        SET   VIEWS = VIEWS + 1-->
-<!--        WHERE NB_ID = #{NB_ID}-->
-<!--    </update>-->
 
 <!--    <sql id="searchCondition">-->
 <!--        <choose>-->

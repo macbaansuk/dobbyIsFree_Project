@@ -1,6 +1,11 @@
 * {
     word-break: keep-all;
 }
+/*#page {*/
+/*    display: inline-block;*/
+/*    margin: 30px;*/
+/*    width: 1000px;*/
+/*}*/
 .sub-section-inner .section-title-wrap {
     margin-bottom: 0;
 }
@@ -359,7 +364,7 @@ h1, h2, h3, h4, h5, strong, b, th {
     margin-left: -1px;
 }
 table {
-    width: 100%;
+    width: 1100px;
     border-collapse: collapse;
     border: 0;
     table-layout: fixed;

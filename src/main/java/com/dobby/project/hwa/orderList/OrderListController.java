@@ -81,8 +81,8 @@ public class OrderListController {
      System.out.println("pcDto = " + prodCntDtoList);
 
 
-//     return "hwa/orderList";
-     return "hwa/orderPart";
+     return "hwa/orderList";
+//     return "hwa/orderPart";
  }
 
 @GetMapping("/orderDetail")

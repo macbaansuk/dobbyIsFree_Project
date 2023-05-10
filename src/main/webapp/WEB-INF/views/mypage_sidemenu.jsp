@@ -9,7 +9,7 @@
 <body>
 <div id="container">
   <div id="menu">
-    <p><a href="#">주문/배송현황</a></p>
+    <p><a href="/order/list">주문/배송현황</a></p>
     <p><a href="#">뷰티포인트</a></p>
     <p><a href="#">찜한 제품</a></p>
     <p><a href="#">내 리뷰</a></p>
@@ -19,9 +19,9 @@
     <p><a href="#">배송지 관리</a></p>
   </div>
   <!-- 실제구현 페이지 -->
-  <div id="page">
+<%--  <div id="page">--%>
 
-  </div>
+<%--  </div>--%>
 </div>
 </body>
 </html>

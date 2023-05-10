@@ -23,8 +23,10 @@
 
 <div class="admin">
     <div class="Header">
-        <span class="span1">관리자 </span>
-        <span class="span2">매뉴얼</span>
+        <a href="/admin/main">
+            <span class="span1">관리자 </span>
+            <span class="span2">매뉴얼</span>
+        </a>
         <ul class="navi">
             <li>
                 <a href="/memberPage/list">
@@ -51,7 +53,6 @@
                     <span class="menuWrap">로그아웃<button type="button" class="bar"></button></span>
                 </a>
             </li>
-
         </ul>
     </div>
 
@@ -166,15 +167,16 @@
                                                     RE: ${counsel.TTL}
                                                 </span>
                                                 <!-- answer 작성 -->
-                                                <span class="answerCont">
-                                                    <textarea class="answertext" type="text">${counsel.CONTENT}</textarea>
+                                                <form name="answerForm" method="post">
+                                                    <span class="answerCont">
+                                                    <textarea class="answertext" type="text" name="answerContent" >${counsel.CONTENT}</textarea>
                                                 </span>
-                                                <span class="btn">
-                                                    <button id="regBtn" type="button"
-                                                            onclick="registerAnswer(this)"
-                                                            data-cnslId="${counsel.CNSL_ID}"
-                                                            data-content="${counsel.CONTENT}">답변등록</button>
+                                                    <span class="btn">
+                                                        <input type="hidden" name="cnslId" value="${counsel.CNSL_ID}">
+                                                    <button id="regBtn" type="submit">답변등록</button>
                                                 </span>
+                                                </form>
+
                                             </div>
 
                                         </td>
@@ -230,31 +232,7 @@
         });
     });
 
-    // function registerAnswer(this1) {
-    //     var this1 = {
-    //         cnslId : this1.dataset.cnslId,
-    //         content : this1.dataset.content
-    //     };
-    //     $.ajax({
-    //     type : "POST",
-    //     url : "/admin/counsel/write",
-    //     data : JSON.stringify({
-    //         cnslId: cnsl
-    //         content}),
-    //     contentType : "application/json; charset=UTF-8",
-    //     dataType : "json",
-    //     success : function(result) {
-    //         if(result === "success") {
-    //             alert("답변이 등록되었습니다.");
-    //             location.href = "/admin/counsel/list";
-    //         } else {
-    //             alert("답변 등록에 실패했습니다.");
-    //         }
-    //     },
-    //     error : function(e) {
-    //         console.log(e);
-    //     }
-    // });
+
 
     let msg = "${msg}";
     if (msg=="login_ERR") alert("로그인 정보를 다시 확인해주세요.");

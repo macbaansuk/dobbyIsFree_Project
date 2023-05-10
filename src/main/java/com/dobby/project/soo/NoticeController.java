@@ -49,7 +49,7 @@ public class NoticeController {
 
 
     @GetMapping("/list")    // 게시물 목록 조회
-    public String noticeList(@RequestParam(defaultValue ="1") Integer page,
+    public String noticeList(@RequestParam(defaultValue ="1") Integer page, SearchCondition sc,
                              @RequestParam(defaultValue = "10") Integer pageSize, Model m) throws Exception {
 
         try {
@@ -58,6 +58,7 @@ public class NoticeController {
             m.addAttribute("totalCnt", totalCnt);
             // pageHandler 객체 생성
             PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
+
 
             Map<String, Object> map = new HashMap<>();
             // offset => 조회를 시작할 위치 지정
@@ -79,46 +80,6 @@ public class NoticeController {
     }
 }
 
-
-//    @GetMapping("/list")
-//    public String noticeList(@RequestParam(defaultValue = "1") Integer page,
-//                             @RequestParam(defaultValue = "10") Integer pageSize,
-//                             @RequestParam(required = false) String category,
-//                             Model m) {
-//
-//        try {
-////            String decodedCategory = URLDecoder.decode(category, StandardCharsets.UTF_8);
-//            int totalCnt = noticeService.getCount();
-//            m.addAttribute("totalCnt", totalCnt);
-//
-//            PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
-//            if (page < 0 || page > pageHandler.getTotalPage())
-//                page = 1;
-//            if (pageSize < 0 || pageSize > 50)
-//                pageSize = 10;
-//
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("offset", (page - 1) * pageSize);
-//            map.put("pageSize", pageSize);
-//
-//            List<NoticeDto> list;
-//            if (category != null && !category.isEmpty() && !category.equals("all")) {
-//                map.put("category", category);
-//                m.addAttribute("category", category);
-//                System.out.println("noticeController Model=" + m);
-//                list = noticeService.getListByCate(map);
-//            } else {
-//                list = noticeService.getPage(map);
-//            }
-//
-//            m.addAttribute("noticeList", list);
-//            m.addAttribute("ph", pageHandler);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            m.addAttribute("msg", "listError");
-//        }
-//        return "soo/cs-notice";
-//    }
 
 
 

@@ -19,19 +19,13 @@ public class AdminCounselController {
     CounselService counselService;
 
 
-//    @PostMapping("/write")
-//    @ResponseBody
-//    public String AdminWriteAnswer (@PathVariable("cnslId") Integer cnslId, @RequestBody AnswerDto answerDto,
-//                                    @RequestBody CounselDto counselDto) throws Exception {
-//        try {
-//            answerDto.setCSNL_ID(cnslId);
-//            counselService.writeAnswer(answerDto, counselDto);
-//            return "success";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "fail";
-//        }
-//    }
+
+    @PostMapping("/write")
+    public String AdminAnswerWrite () throws Exception {
+
+        return "";
+    }
+
 
     @PostMapping("/list")
     public String AdminCounselAnswer(Model m) throws Exception {
