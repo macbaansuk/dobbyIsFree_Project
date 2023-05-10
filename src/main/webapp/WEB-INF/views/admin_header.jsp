@@ -13,8 +13,10 @@
 <body>
 
     <div class="Header">
+        <a href="/admin/main">
         <span class="span1">관리자 </span>
         <span class="span2">매뉴얼</span>
+        </a>
         <ul class="navi">
             <li>
                 <a href="/memberPage/list">

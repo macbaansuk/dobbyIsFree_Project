@@ -34,18 +34,18 @@ public class AdminLoginController {
             return "redirect:/admin";
         } else {
             session.setAttribute("admin", adminDto);
-            return "redirect:/admin/inv/list";
+            return "redirect:/admin/main";
 
         }
     }
 
     @GetMapping("/main") // 미구현
     public String adminMainPage(HttpSession session) throws Exception {
-//        if (session.getAttribute("admin") == null) {
-//            return "redirect:/admin/login";
-//        } else {
+        if (session.getAttribute("admin") == null) {
+            return "redirect:/admin/login";
+        } else {
             return "hoon/AdminMain";
-//        }
+        }
     }
 
     @GetMapping("/logout")

@@ -32,7 +32,7 @@
                         <li><a href="#" onfocus="this.blur();">옵션항목</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">재고관리</a></li>
+                        <li><a href="/admin/inv/list" onfocus="this.blur();">재고관리</a></li>
                     </ul>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">상품평관리</a></li>
