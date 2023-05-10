@@ -1137,7 +1137,7 @@
         console.log("결제 금액",typeof totPurPrcTxt);
         console.log("결제 금액 최종값", totPurPrcTxt);
 
-        input();
+        // input();
 
 
         IMP.init('imp21837643');
@@ -1147,9 +1147,9 @@
             // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
             merchant_uid : orderId,  //주문아이디
             // name : '주문명:결제테스트', //주문명
-            name : '이니스프리 결제',
-            amount :  totPurPrcTxt, //상품가격 - Number()
-            // amount :  100, //상품가격  -----**********test 용 100원************
+            name : '도비스프리 결제',
+            // amount :  totPurPrcTxt, //상품가격 - Number()
+            amount :  100, //상품가격  -----**********test 용 100원************
             buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
             buyer_name : '${mbrDto.MBR_NM}',     //주문자
             buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
@@ -1172,7 +1172,7 @@
                 // msg += '상점 거래ID : ' + rsp.merchant_uid;
                 // msg += '결제 금액 : ' + rsp.paid_amount;
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
-                // input();
+                input();
 
                 alert("결제가 성공하였습니다")
             }
