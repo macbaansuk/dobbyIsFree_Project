@@ -14,8 +14,32 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>비밀번호 찾기 | 도비스프리</title>
     <link rel="stylesheet" href="./css/ming/findPWD.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<script>
+    /*  $(document).ready(function() {
+      $('.inp .btn_del').each(function () {
+          var $target_inp = $(this).parent('.inp').find('.inp_text');
+          //var $guide = $(this).parent('.inp').next($('p'));
+          $(this).toggle(Boolean($target_inp.val()));
+          $(this).click(function () {
+              $target_inp.empty().removeClass('is_error is_success')/!*.focus()*!/;
+              $(this).hide();
+              $('#login-noti-msg').empty();
+              $('#login-noti-msg').removeClass('is_success is_error');
+              $('#login-noti-msg').hide();
+              //$guide.hide();
+              $('#dologin').attr('disabled', 'disabled');
+          })
+          })
+      });*/
+    $('#mail-Check-Btn').click(function() {
+        const eamil = $('#userEmail1').val() + $('#userEmail2').val(); // 이메일 주소값 얻어오기!
+        console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+        const checkInput = $('.mail-check-input') // 인증번호 입력하는곳
+    }); // end send eamil
+</script>
 <!--header-->
 <header class="header">
     <div class="headerBox">
@@ -39,21 +63,32 @@
     </div>
     <div class="page_top_area">
         <h2 >가입 시 입력한 정보로 비밀번호를 찾아보세요.</h2>
-        <p>아이디 입력 후 본인인증 방식을 선택해주세요.</p>
+        <p>이메일 입력 후 전송 코드를 통해 이메일 인증을 완료해주세요.</p>
     </div>
-    <div class="input_form inp_id">
+    <div class="input_form inp_email">
                 <span class="inp">
-                    <input id="memberId" type="text" required autocomplete="off" class="inp_text" placeholder="아이디 입력">
+                    <input id="EMAIL" type="text" required autocomplete="off" class="inp_text" placeholder="이메일 입력">
                     <button type="button" class="btn_del" style="display: none;">
                     <span class="blind">삭제</span>
                     </button>
                 </span>
     </div>
     <div class="btn_joins bdb_n">
-        <a href="javascript:" rel="opener" class="is_disabled" id="phone-cert">
-            <i class="ico i_phone"></i>
-            휴대폰 인증
-        </a>
+        <button type="button" class="btn btn-primary" id="mail-Check-Btn">
+            <!--<a href="javascript::" rel="opener" class="is_disabled" id="email-cert">-->
+            <i class="ico i_email"></i>
+            <span>이메일 인증</span>
+            </a>
+        </button>
+        <%--<button type="button" class="btn btn-primary" id="mail-Check-Btn">Verify</button>--%>
+    </div>
+    <div class="input_form inp_email">
+                <span class="inp_code">
+                    <input id="EMAIL_code" type="text" required autocomplete="off" class="inp_text" placeholder="인증번호 6자리를 입력해주세요">
+                    <button type="button" class="btn_del" style="display: none;">
+                    <span class="blind">삭제</span>
+                    </button>
+                </span>
     </div>
     </form>
     <button class="btnA btn_white btn_join_membership">

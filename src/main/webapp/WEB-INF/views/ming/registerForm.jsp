@@ -13,72 +13,81 @@
   <link rel="stylesheet" href="./css/ming/register.css"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-        $(document).ready(function() {
-        //전체 선택 시
-        $("#every_agree").on('click', function () {
-          if ($(this).prop('checked')) {
-            $("#yaok2").prop('checked', true);
-            $("#privacy1").prop('checked', true);
-            $("#ad_every_agree").prop('checked', true);
-            $("#ADemail_").prop('checked', true);
-            $("#ADsms_").prop('checked', true);
-          } else {
-            $("#yaok2").prop('checked', false);
-            $("#privacy1").prop('checked', false);
-            $("#ad_every_agree").prop('checked', false);
-            $("#ADemail_").prop('checked', false);
-            $("#ADsms_").prop('checked', false);
-          }
-        });
-        //ad 선택 시
-          $("#ad_every_agree").on('click', function () {
-            if ($(this).prop("checked")) {
-              $("#ADemail_").prop('checked', true);
-              $("#ADsms_").prop('checked', true);
-            } else {
-              $("#ADemail_").prop('checked', false);
-              $("#ADsms_").prop('checked', false);
-            }
-          });
+    $(document).ready(function() {
+      //전체 선택 시
+      $("#every_agree").on('click', function () {
+        if ($(this).prop('checked')) {
+          $("#yaok2").prop('checked', true);
+          $("#privacy1").prop('checked', true);
+          $("#ad_every_agree").prop('checked', true);
+          $("#ADemail_").prop('checked', true);
+          $("#ADsms_").prop('checked', true);
+        } else {
+          $("#yaok2").prop('checked', false);
+          $("#privacy1").prop('checked', false);
+          $("#ad_every_agree").prop('checked', false);
+          $("#ADemail_").prop('checked', false);
+          $("#ADsms_").prop('checked', false);
+        }
       });
+      //ad 선택 시
+      $("#ad_every_agree").on('click', function () {
+        if ($(this).prop("checked")) {
+          $("#ADemail_").prop('checked', true);
+          $("#ADsms_").prop('checked', true);
+        } else {
+          $("#ADemail_").prop('checked', false);
+          $("#ADsms_").prop('checked', false);
+        }
+      });
+    });
   </script>
   <script>
     $(document).ready(function() {
+
+      const form = document.querySelector('.form');
+
+      form.addEventListener('submit', function(event) {
+        // event.preventDefault();
+        // alert("addEventListener")
+        const bd = document.querySelector('#BD').value;
+        const emailForm = document.querySelector('#EMAIL').value;
+        submitForm();
+
+      });
       // email 옵션에서 선택한 값을 emailValue 변수에 저장
       var emailValue = $("#email2").val();
-      // console.log("email2="+emailValue)
+
       // email 옵션값이 변경될 때마다 emailValue 변수 업데이트
       $("#email2").on("change", function() {
         emailValue = $(this).val();
-        $("#email3").val(emailValue);});
-        // console.log("email2="+emailValue)
-      // });
+        $("#email3").val(emailValue);
+      });
 
-    const form = document.querySelector('.form');
+      /* form.addEventListener('submit', function(event) {
+           // event.preventDefault();
+           // alert("addEventListener")
+           const bd = document.querySelector('#BD').value;
+           const emailForm = document.querySelector('#EMAIL').value;
+           submitForm();
 
-    form.addEventListener('submit', function(event) {
-      // event.preventDefault();
-      const bd = document.querySelector('#BD').value;
-      submitForm();
-      console.log('date BD 타입변환 이벤트 실행');
-    });
+       });*/
 
-    function submitForm() {
- //     alert("submitForm() is called")
-      let year = document.querySelector('select[name="BD-year"]').value;
-      console.log("year=" + year);
-      let month = document.querySelector('select[name="BD-month"]').value;
-      console.log("month=" + month);
-      let day = document.querySelector('select[name="BD-day"]').value;
-      console.log("day=" + day);
-      let bd = year + "/" + month + "/" + day;
+      function submitForm() {
+        // alert("submitForm() is called")
+        let year = document.querySelector('select[name="BD-year"]').value;
+        let month = document.querySelector('select[name="BD-month"]').value;
+        let day = document.querySelector('select[name="BD-day"]').value;
+        let bd = year + "/" + month + "/" + day;
+        document.querySelector('#BD').value = bd;
 
-      document.querySelector('#BD').value = bd;
-      console.log("bd=" + bd);
-      System.out.println("bd=" + bd);
+
+        let email1 = document.querySelector('input[name="email1"]').value;
+        let email = email1+"@"+$("#email3").val();
+
+        document.querySelector('#EMAIL').value = email;
+        let em = document.querySelector('#EMAIL'); //#EMAIL 값 확인
       }
-
-
     });  //document.ready
   </script>
 </head>
@@ -86,326 +95,332 @@
 <jsp:include page="../header.jsp" />
 <form class ="form" method="post" id="join_form" action="/register" autocomplete="off" onsubmit="return formCheck(this)">
   <!--onsubmit? 이벤트 등록하는 것/ return formCheck(this)에서 this는 form태그 자기자신을 의미-->
-<div class="default-title__container" style="margin-bottom: 51px; margin-top: 60px;";>
-  <div class="default-title__custom">
-    <h3>회원정보 입력</h3>
+  <div class="default-title__container" style="margin-bottom: 51px; margin-top: 60px;";>
+    <div class="default-title__custom">
+      <h3>회원정보 입력</h3>
+    </div>
   </div>
-</div>
-<div class="popup-wrap popup2">
-</div>
-<div id="personInfo">
-  <table class="person-tb">
-    <colgroup>
-      <col style="width:155px;" />
-      <col style="width:auto;" />
-    </colgroup>
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>이름</div>
-      </th>
-      <td>
-        <div class="col-cell">
-          <input type="text" name="MBR_NM" id="hname" value="" class="MS_input_txt normal-input" size="15"
-                 maxlength="30">
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>아이디</div>
-      </th>
-      <td>
-        <div class="col-cell">
-          <input type="text" name="MBR_ID" id="id" value="" class="MS_input_txt normal-input" size="10"
-                 maxlength="40" /> <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>비밀번호</div>
-      </th>
-      <td>
-        <div class="col-cell">
-          <input type="password" name="PWD" id="password" class="MS_input_txt normal-input" value=""
-                 size="15" maxlength="20" onkeyup="check_pwd_length(this, 'password');" /> <span
-                class="idpw-info">
-                        * 영문 대소문자/숫자/특수문자를 혼용하여 2종류 10~16자 또는 3종류 8~16자
+  <div class="popup-wrap popup2">
+    <div id="msg" class="msg">
+      <c:if test="${not empty param.msg}">
+      <span class="fa-stack fa-lg">
+                <span class="fa-stack-1x">${URLDecoder.decode(param.msg)}
+                </span>
+            </c:if>
+    </div>
+  </div>
+  <div id="personInfo">
+    <table class="person-tb">
+      <colgroup>
+        <col style="width:155px;" />
+        <col style="width:auto;" />
+      </colgroup>
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>이름</div>
+        </th>
+        <td>
+          <div class="col-cell">
+            <input type="text" name="MBR_NM" id="hname" value="" class="MS_input_txt normal-input" size="15"
+                   maxlength="30">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>아이디</div>
+        </th>
+        <td>
+          <div class="col-cell">
+            <input type="text" name="MBR_ID" id="id" value="" class="MS_input_txt normal-input" size="10"
+                   maxlength="40" /> <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>비밀번호</div>
+        </th>
+        <td>
+          <div class="col-cell">
+            <input type="password" name="PWD" id="password" class="MS_input_txt normal-input" value=""
+                   size="15" maxlength="20" onkeyup="check_pwd_length(this, 'password');" /> <span
+                  class="idpw-info">
+                        * 영문자/숫자를 혼용하여 8~16자
                     </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>비밀번호 확인</div>
-      </th>
-      <td>
-        <div class="col-cell">
-          <input type="password" name="password2" id="password2" class="MS_input_txt normal-input" value=""
-                 size="15" maxlength="20" onkeyup="check_pwd_length(this, 'repassword');" />
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>생년월일</div>
-      </th>
-      <td>
-        <div class="col-cell social">
-          <select name="BD-year" class="MS_select MS_birthday">
-            <option value="" selected>연도</option>
-            <option value=1920>1920</option>
-            <option value=1921>1921</option>
-            <option value=1922>1922</option>
-            <option value=1923>1923</option>
-            <option value=1924>1924</option>
-            <option value=1925>1925</option>
-            <option value=1926>1926</option>
-            <option value=1927>1927</option>
-            <option value=1928>1928</option>
-            <option value=1929>1929</option>
-            <option value=1930>1930</option>
-            <option value=1931>1931</option>
-            <option value=1932>1932</option>
-            <option value=1933>1933</option>
-            <option value=1934>1934</option>
-            <option value=1935>1935</option>
-            <option value=1936>1936</option>
-            <option value=1937>1937</option>
-            <option value=1938>1938</option>
-            <option value=1939>1939</option>
-            <option value=1940>1940</option>
-            <option value=1941>1941</option>
-            <option value=1942>1942</option>
-            <option value=1943>1943</option>
-            <option value=1944>1944</option>
-            <option value=1945>1945</option>
-            <option value=1946>1946</option>
-            <option value=1947>1947</option>
-            <option value=1948>1948</option>
-            <option value=1949>1949</option>
-            <option value=1950>1950</option>
-            <option value=1951>1951</option>
-            <option value=1952>1952</option>
-            <option value=1953>1953</option>
-            <option value=1954>1954</option>
-            <option value=1955>1955</option>
-            <option value=1956>1956</option>
-            <option value=1957>1957</option>
-            <option value=1958>1958</option>
-            <option value=1959>1959</option>
-            <option value=1960>1960</option>
-            <option value=1961>1961</option>
-            <option value=1962>1962</option>
-            <option value=1963>1963</option>
-            <option value=1964>1964</option>
-            <option value=1965>1965</option>
-            <option value=1966>1966</option>
-            <option value=1967>1967</option>
-            <option value=1968>1968</option>
-            <option value=1969>1969</option>
-            <option value=1970>1970</option>
-            <option value=1971>1971</option>
-            <option value=1972>1972</option>
-            <option value=1973>1973</option>
-            <option value=1974>1974</option>
-            <option value=1975>1975</option>
-            <option value=1976>1976</option>
-            <option value=1977>1977</option>
-            <option value=1978>1978</option>
-            <option value=1979>1979</option>
-            <option value=1980>1980</option>
-            <option value=1981>1981</option>
-            <option value=1982>1982</option>
-            <option value=1983>1983</option>
-            <option value=1984>1984</option>
-            <option value=1985>1985</option>
-            <option value=1986>1986</option>
-            <option value=1987>1987</option>
-            <option value=1988>1988</option>
-            <option value=1989>1989</option>
-            <option value=1990>1990</option>
-            <option value=1991>1991</option>
-            <option value=1992>1992</option>
-            <option value=1993>1993</option>
-            <option value=1994>1994</option>
-            <option value=1995>1995</option>
-            <option value=1996>1996</option>
-            <option value=1997>1997</option>
-            <option value=1998>1998</option>
-            <option value=1999>1999</option>
-            <option value=2000>2000</option>
-            <option value=2001>2001</option>
-            <option value=2002>2002</option>
-            <option value=2003>2003</option>
-            <option value=2004>2004</option>
-            <option value=2005>2005</option>
-            <option value=2006>2006</option>
-            <option value=2007>2007</option>
-            <option value=2008>2008</option>
-            <option value=2009>2009</option>
-            <option value=2010>2010</option>
-            <option value=2011>2011</option>
-            <option value=2012>2012</option>
-            <option value=2013>2013</option>
-            <option value=2014>2014</option>
-            <option value=2015>2015</option>
-            <option value=2016>2016</option>
-            <option value=2017>2017</option>
-            <option value=2018>2018</option>
-            <option value=2019>2019</option>
-            <option value=2020>2020</option>
-            <option value=2021>2021</option>
-            <option value=2022>2022</option>
-            <option value=2023>2023</option>
-          </select>년 <select name="BD-month" class="MS_select MS_birthday">
-          <option value="">월</option>
-          <option value="01">1</option>
-          <option value="02">2</option>
-          <option value="03">3</option>
-          <option value="04">4</option>
-          <option value="05">5</option>
-          <option value="06">6</option>
-          <option value="07">7</option>
-          <option value="08">8</option>
-          <option value="09">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select>월 <select name="BD-day" class="MS_select MS_birthday">
-          <option value="">일</option>
-          <option value="01">1</option>
-          <option value="02">2</option>
-          <option value="03">3</option>
-          <option value="04">4</option>
-          <option value="05">5</option>
-          <option value="06">6</option>
-          <option value="07">7</option>
-          <option value="08">8</option>
-          <option value="09">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-        </select>일&nbsp;&nbsp;
-          <input type="hidden" name="BD" id="BD">
-          &nbsp;<label><input type="radio" name="SEX" value="1" class="MS_radio MS_radio" />남</label>
-          <label><input type="radio" name="SEX" value="2" class="MS_radio MS_radio" checked />여</label>
-        </div>
-      </td>
-    </tr>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>비밀번호 확인</div>
+        </th>
+        <td>
+          <div class="col-cell">
+            <input type="password" name="password2" id="password2" class="MS_input_txt normal-input" value=""
+                   size="15" maxlength="20" onkeyup="check_pwd_length(this, 'repassword');" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>생년월일</div>
+        </th>
+        <td>
+          <div class="col-cell social">
+            <select name="BD-year" class="MS_select MS_birthday">
+              <option value="" selected>연도</option>
+              <option value=1920>1920</option>
+              <option value=1921>1921</option>
+              <option value=1922>1922</option>
+              <option value=1923>1923</option>
+              <option value=1924>1924</option>
+              <option value=1925>1925</option>
+              <option value=1926>1926</option>
+              <option value=1927>1927</option>
+              <option value=1928>1928</option>
+              <option value=1929>1929</option>
+              <option value=1930>1930</option>
+              <option value=1931>1931</option>
+              <option value=1932>1932</option>
+              <option value=1933>1933</option>
+              <option value=1934>1934</option>
+              <option value=1935>1935</option>
+              <option value=1936>1936</option>
+              <option value=1937>1937</option>
+              <option value=1938>1938</option>
+              <option value=1939>1939</option>
+              <option value=1940>1940</option>
+              <option value=1941>1941</option>
+              <option value=1942>1942</option>
+              <option value=1943>1943</option>
+              <option value=1944>1944</option>
+              <option value=1945>1945</option>
+              <option value=1946>1946</option>
+              <option value=1947>1947</option>
+              <option value=1948>1948</option>
+              <option value=1949>1949</option>
+              <option value=1950>1950</option>
+              <option value=1951>1951</option>
+              <option value=1952>1952</option>
+              <option value=1953>1953</option>
+              <option value=1954>1954</option>
+              <option value=1955>1955</option>
+              <option value=1956>1956</option>
+              <option value=1957>1957</option>
+              <option value=1958>1958</option>
+              <option value=1959>1959</option>
+              <option value=1960>1960</option>
+              <option value=1961>1961</option>
+              <option value=1962>1962</option>
+              <option value=1963>1963</option>
+              <option value=1964>1964</option>
+              <option value=1965>1965</option>
+              <option value=1966>1966</option>
+              <option value=1967>1967</option>
+              <option value=1968>1968</option>
+              <option value=1969>1969</option>
+              <option value=1970>1970</option>
+              <option value=1971>1971</option>
+              <option value=1972>1972</option>
+              <option value=1973>1973</option>
+              <option value=1974>1974</option>
+              <option value=1975>1975</option>
+              <option value=1976>1976</option>
+              <option value=1977>1977</option>
+              <option value=1978>1978</option>
+              <option value=1979>1979</option>
+              <option value=1980>1980</option>
+              <option value=1981>1981</option>
+              <option value=1982>1982</option>
+              <option value=1983>1983</option>
+              <option value=1984>1984</option>
+              <option value=1985>1985</option>
+              <option value=1986>1986</option>
+              <option value=1987>1987</option>
+              <option value=1988>1988</option>
+              <option value=1989>1989</option>
+              <option value=1990>1990</option>
+              <option value=1991>1991</option>
+              <option value=1992>1992</option>
+              <option value=1993>1993</option>
+              <option value=1994>1994</option>
+              <option value=1995>1995</option>
+              <option value=1996>1996</option>
+              <option value=1997>1997</option>
+              <option value=1998>1998</option>
+              <option value=1999>1999</option>
+              <option value=2000>2000</option>
+              <option value=2001>2001</option>
+              <option value=2002>2002</option>
+              <option value=2003>2003</option>
+              <option value=2004>2004</option>
+              <option value=2005>2005</option>
+              <option value=2006>2006</option>
+              <option value=2007>2007</option>
+              <option value=2008>2008</option>
+              <option value=2009>2009</option>
+              <option value=2010>2010</option>
+              <option value=2011>2011</option>
+              <option value=2012>2012</option>
+              <option value=2013>2013</option>
+              <option value=2014>2014</option>
+              <option value=2015>2015</option>
+              <option value=2016>2016</option>
+              <option value=2017>2017</option>
+              <option value=2018>2018</option>
+              <option value=2019>2019</option>
+              <option value=2020>2020</option>
+              <option value=2021>2021</option>
+              <option value=2022>2022</option>
+              <option value=2023>2023</option>
+            </select>년 <select name="BD-month" class="MS_select MS_birthday">
+            <option value="">월</option>
+            <option value="01">1</option>
+            <option value="02">2</option>
+            <option value="03">3</option>
+            <option value="04">4</option>
+            <option value="05">5</option>
+            <option value="06">6</option>
+            <option value="07">7</option>
+            <option value="08">8</option>
+            <option value="09">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>월 <select name="BD-day" class="MS_select MS_birthday">
+            <option value="">일</option>
+            <option value="01">1</option>
+            <option value="02">2</option>
+            <option value="03">3</option>
+            <option value="04">4</option>
+            <option value="05">5</option>
+            <option value="06">6</option>
+            <option value="07">7</option>
+            <option value="08">8</option>
+            <option value="09">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>일&nbsp;&nbsp;
+            <input type="hidden" name="BD" id="BD">
+            &nbsp;<label><input type="radio" name="SEX" value="1" class="MS_radio MS_radio" />남</label>
+            <label><input type="radio" name="SEX" value="2" class="MS_radio MS_radio" checked />여</label>
+          </div>
+        </td>
+      </tr>
 
-    <tr>
-      <th>
-        <div class="head-cell"><span class="empha">*</span>이메일</div>
-      </th>
-      <td>
-        <div class="col-cell email-area">
-          <input type="text" name="email1" id="email1" onchange="this.form.emailcheck.value=''"
-                 class="MS_input_txt MS_input_email normal-input" size="10" maxlength="20" value="" />
-          <span>@ </span>
-          <span id="direct_email" style="margin-top:3px;display:inline-block">
-                        <input type="text" name="email3" id="email3" class="MS_input_txt MS_input_email normal-input"
-                               value="" size="15" maxlength="25" onchange="this.form.emailcheck.value=''" />
+      <tr>
+        <th>
+          <div class="head-cell"><span class="empha">*</span>이메일</div>
+        </th>
+        <td>
+          <div class="col-cell email-area">
+            <input type="text" name="email1" id="email1"
+                   class="MS_input_txt MS_input_email normal-input" size="10" maxlength="20" value="" />
+            <span>@ </span>
+            <span id="direct_email" style="margin-top:3px;display:inline-block">
+                        <input type="text" name="email2" id="email3" class="MS_input_txt MS_input_email normal-input"
+                               value="" size="15" maxlength="25" />
                     </span>
-          <select name="EMAIL" id="email2" class="MS_select MS_email MS_input_email"
-                  style="margin-right:5px;" onchange="viewdirect()">
-            <option value=''>직접입력</option>
-            <option value="jungsuk.com">jungsuk.com</option>
-            <option value="naver.com">naver.com</option>
-            <option value="gmail.com">gmail.com</option>
-          </select>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <div class="head-cell">휴대폰<span class="empha">*</span></div>
-      </th>
-      <td>
-        <div class="col-cell">
-          <%--@declare id="join_form"--%><input type="tel" name="MPNO" form="join_form" id="etcphone" class="MS_input_tel normal-input"
-                                               size="15" maxlength="13" value="" />
-        </div>
-      </td>
-    </tr>
-  </table>
-</div> <!-- #personInfo -->
+            <select name="email2" id="email2" class="MS_select MS_email MS_input_email"
+                    style="margin-right:5px;" >
+              <option value=''>직접입력</option>
+              <option value="jungsuk.com">jungsuk.com</option>
+              <option value="naver.com">naver.com</option>
+              <option value="gmail.com">gmail.com</option>
+            </select>
+            <input type="hidden" name="EMAIL" id="EMAIL">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <div class="head-cell">휴대폰<span class="empha">*</span></div>
+        </th>
+        <td>
+          <div class="col-cell">
+            <%--@declare id="join_form"--%><input placeholder="휴대폰 번호(숫자만)" type="tel" name="MPNO" form="join_form" id="etcphone" class="MS_input_tel normal-input"
+                                                  size="15" maxlength="13" value="" />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div> <!-- #personInfo -->
 
-<ul id="snsConnect">
-</ul><!-- #snsConnect -->
-
-<fieldset>
-  <legend>약관 동의 폼</legend>
-  <div class="new-privercy-contract">
-    <div id="chkwrap">
-      <div class="all-chk">
-        <label><input type="checkbox" name="AGRE_YN" id="every_agree" value="Y"
-                      class="input-cbox new_every_agree" /> 전체동의</label>
-        <!--<input type="hidden" name="allnew_agree" id="allnew_agree" value="Y">-->
-      </div>
-      <div class="cont p10">
-        <ul>
-          <li class="ml-30 pt-10">
-            <label><!--<input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
+  <ul id="snsConnect">
+  </ul><!-- #snsConnect -->
+  <fieldset>
+    <legend>약관 동의 폼</legend>
+    <div class="new-privercy-contract">
+      <div id="chkwrap">
+        <div class="all-chk">
+          <label><input type="checkbox" name="AGRE_YN" id="every_agree" value="Y"
+                        class="input-cbox new_every_agree" /> 전체동의</label>
+          <!--<input type="hidden" name="allnew_agree" id="allnew_agree" value="Y">-->
+        </div>
+        <div class="cont p10">
+          <ul>
+            <li class="ml-30 pt-10">
+              <label><!--<input type="checkbox" name="AGRE_YN" id="yaok2" value="이용약관 동의"
                           class="input-cbox every_agree" />-->
-              <input type="checkbox" name="AGRE_YN" id="yaok2" class="input-cbox every_agree" />
-              이용약관</label> <a href="#chk_cont1">내용보기</a>
-          </li>
-          <li class="ml-30 pt-10"> <label><!--<input type="checkbox" name="AGRE_YN" id="privacy1"
+                <input type="checkbox" name="AGRE_YN" id="yaok2" class="input-cbox every_agree" />
+                이용약관</label> <a href="#chk_cont1">내용보기</a>
+            </li>
+            <li class="ml-30 pt-10"> <label><!--<input type="checkbox" name="AGRE_YN" id="privacy1"
                                                  value="개인정보 수집 및 이용안내 동의" class="input-cbox every_agree" />-->
-            <input type="checkbox" name="AGRE_YN" id="privacy1" class="input-cbox every_agree" />
-            개인정보 수집 및 이용 안내</label>
-            <a href="#chk_cont2">내용보기</a> </li>
-        </ul>
-        <div class="marketing pb-10">
-          <div class="mk-wrap">
-            <label class="mk-all"><!--<input type="checkbox" name="AGRE_YN" id="ad_every_agree"
+              <input type="checkbox" name="AGRE_YN" id="privacy1" class="input-cbox every_agree" />
+              개인정보 수집 및 이용 안내</label>
+              <a href="#chk_cont2">내용보기</a> </li>
+          </ul>
+          <div class="marketing pb-10">
+            <div class="mk-wrap">
+              <label class="mk-all"><!--<input type="checkbox" name="AGRE_YN" id="ad_every_agree"
                                          value="마케팅 모두 동의" class="input-cbox every_agree new_every_agree" />-->
-             <input type="checkbox" name="AGRE_YN" id="ad_every_agree" class="input-cbox every_agree new_every_agree" />
-             <strong>마케팅
-              수신동의</strong></label>
-            <div style="display:inline;">
-              ( <label><!--<input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
+                <input type="checkbox" name="AGRE_YN" id="ad_every_agree" class="input-cbox every_agree new_every_agree" />
+                <strong>마케팅 수신동의</strong></label>
+              <div style="display:inline;">
+                ( <label><!--<input type="checkbox" name="AGRE_YN" id="ADemail_" value="이메일 수신 동의"
                               class="input-cbox every_agree ad_every_agree" />-->
-              <input type="checkbox" name="AGRE_YN" id="ADemail_" class="input-cbox every_agree ad_every_agree" />
-              이메일</label>
-              <label class="pl-30"><!--<input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
+                <input type="checkbox" name="AGRE_YN" id="ADemail_" class="input-cbox every_agree ad_every_agree" />
+                이메일</label>
+                <label class="pl-30"><!--<input type="checkbox" name="AGRE_YN" id="ADsms_" value="SMS 수신 동의"
                                           class="input-cbox every_agree ad_every_agree" />-->
-              <input type="checkbox" name="AGRE_YN" id="ADsms_" class="input-cbox every_agree ad_every_agree" />
-             SMS</label>)
+                  <input type="checkbox" name="AGRE_YN" id="ADsms_" class="input-cbox every_agree ad_every_agree" />
+                  SMS</label>)
+              </div>
+            </div>
+            <div class="txt">
+              제공 동의를 하지 않으셔도 서비스 이용에는 문제가 없습니다.
             </div>
           </div>
-          <div class="txt">
-            제공 동의를 하지 않으셔도 서비스 이용에는 문제가 없습니다.
-          </div>
         </div>
       </div>
-    </div>
-    <input type="hidden" name="AGRE_YN" id="AGRE_YN">
-    <div class="new-btn-area">
-      <input type="submit" value="동의하고 가입완료">
-    </div>
-    <h4 class="tit" id="chk_cont1">이용약관</h4>
-    <div class="privercy-contract">
+      <input type="hidden" name="AGRE_YN" id="AGRE_YN">
+      <div class="new-btn-area">
+        <input type="submit" value="동의하고 가입완료">
+      </div>
+      <h4 class="tit" id="chk_cont1">이용약관</h4>
+      <div class="privercy-contract">
             <textarea cols="80" wrap="off" rows="10" readonly style="width: 857px; height: 209px;">인터넷 쇼핑몰 『도비스프리』회원 약관
 
 제1조(목적)
@@ -620,137 +635,136 @@
 
 본 약관은 2021년 08월 26일부터 적용됩니다.
 </textarea>
+      </div>
+      <h4 class="tit" id="chk_cont2">개인정보 수집·이용 (필수)</h4>
+      <table id="join_privacyA" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
+        <caption>개인정보 수집·이용</caption>
+        <colgroup>
+          <col width="100" />
+          <col width="27%" />
+          <col width="27%" />
+          <col width="auto" />
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">
+            <div>구분</div>
+          </th>
+          <th scope="col">
+            <div>목적</div>
+          </th>
+          <th scope="col">
+            <div>항목</div>
+          </th>
+          <th scope="col">
+            <div>보유기간</div>
+          </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row" rowspan="2">
+            <div>필수정보</div>
+          </th>
+          <td>
+            <div class="p10 purposeY">회원제 서비스 이용 / 본인확인</div>
+          </td>
+          <td>
+            <div class="p10 itemsY">이름, 아이디, 비밀번호, 이메일, 생년월일, 성별, 휴대 전화</div>
+          </td>
+          <td>
+            <div class="p10 holdingY">회원 탈퇴 후 즉시</div>
+          </td>
+
+        </tr>
+        <tr>
+
+          <td>
+            <div class="p10 purpose13">(주)정석코딩캠프</div>
+          </td>
+          <td>
+            <div class="p10 items13">항목 : 신규 서비스(제품) 개발 및 맞춤 서비스 제공, 이벤트 및 광고성 정보 및 참여기회 / 이름, 아이디, 휴대전화번호
+            </div>
+          </td>
+          <td>
+            <div class="p10 holding13">보유기간 : 계약종료시까지</div>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+      <div id="join_privacyA_noti" class="privacy-noti"><br/>* 서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.</div>
+      <h4 class="tit" id="chk_cont3">개인정보 수집·이용 (선택)</h4>
+      <input type="hidden" name="agree_uidB" id="agree_uidB" value="14_1_">
+      <table id="join_privacyB" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
+        <caption>개인정보 수집·이용</caption>
+        <col width="100" />
+        <col width="27%" />
+        <col width="27%" />
+        <col width="auto" />
+
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">
+            <div>구분</div>
+          </th>
+          <th scope="col">
+            <div>목적</div>
+          </th>
+          <th scope="col">
+            <div>항목</div>
+          </th>
+          <th scope="col">
+            <div>보유기간</div>
+          </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row" rowspan="2">
+            <div>선택정보</div>
+          </th>
+          <td>
+            <div class="p10 purpose14">회원제 서비스 이용 / 본인확인</div>
+          </td>
+          <td>
+            <div class="p10 items14">피부타입, 피부고민 , 관심 카테고리 </div>
+          </td>
+          <td>
+            <div class="p10 holding14">회원 탈퇴 후 즉시</div>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <div class="p10 purpose1">마케팅 활용(이벤트, 맞춤형 광고)</div>
+          </td>
+          <td>
+            <div class="p10 items1">휴대폰, 이메일, 쿠키정보</div>
+          </td>
+          <td>
+            <div class="p10 holding1">회원 탈퇴 후 즉시</div>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+      <div id="join_privacyB_noti" class="privacy-noti"><br/>* 동의하지 않으셔도 쇼핑몰 서비스는 이용하실 수 있습니다.</div>
+      <p class="pl-6 btm-msg">
+        귀하께서는 쇼핑몰에서 위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 개인정보를 기재하지 않음으로써 거부할 수 있습니다.<br />
+        다만, 이때 회원에게 제공되는 서비스가 제한될 수 있습니다.<br/>
+        <br/>
+        <br/>
+      </p>
+
     </div>
-    <h4 class="tit" id="chk_cont2">개인정보 수집·이용 (필수)</h4>
-    <table id="join_privacyA" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
-      <caption>개인정보 수집·이용</caption>
-      <colgroup>
-        <col width="100" />
-        <col width="27%" />
-        <col width="27%" />
-        <col width="auto" />
-      </colgroup>
-      <thead>
-      <tr>
-        <th scope="col">
-          <div>구분</div>
-        </th>
-        <th scope="col">
-          <div>목적</div>
-        </th>
-        <th scope="col">
-          <div>항목</div>
-        </th>
-        <th scope="col">
-          <div>보유기간</div>
-        </th>
-
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row" rowspan="2">
-          <div>필수정보</div>
-        </th>
-        <td>
-          <div class="p10 purposeY">회원제 서비스 이용 / 본인확인</div>
-        </td>
-        <td>
-          <div class="p10 itemsY">이름, 아이디, 비밀번호, 이메일, 생년월일, 성별, 휴대 전화</div>
-        </td>
-        <td>
-          <div class="p10 holdingY">회원 탈퇴 후 즉시</div>
-        </td>
-
-      </tr>
-      <tr>
-
-        <td>
-          <div class="p10 purpose13">(주)정석코딩캠프</div>
-        </td>
-        <td>
-          <div class="p10 items13">항목 : 신규 서비스(제품) 개발 및 맞춤 서비스 제공, 이벤트 및 광고성 정보 및 참여기회 / 이름, 아이디, 휴대전화번호
-          </div>
-        </td>
-        <td>
-          <div class="p10 holding13">보유기간 : 계약종료시까지</div>
-        </td>
-
-      </tr>
-      </tbody>
-    </table>
-    <div id="join_privacyA_noti" class="privacy-noti"><br/>* 서비스 제공을 위한 최소한의 개인정보이므로 동의를 해주셔야 서비스를 이용하실 수 있습니다.</div>
-    <h4 class="tit" id="chk_cont3">개인정보 수집·이용 (선택)</h4>
-    <input type="hidden" name="agree_uidB" id="agree_uidB" value="14_1_">
-    <table id="join_privacyB" border="1" style="border-color: #555 !important; table-border-color: #555 !important;" summary="구분, 목적, 항목, 보유기간, 필수정보, 선택정보" class="contract-tbl">
-      <caption>개인정보 수집·이용</caption>
-        <col width="100" />
-        <col width="27%" />
-        <col width="27%" />
-        <col width="auto" />
-
-      </colgroup>
-      <thead>
-      <tr>
-        <th scope="col">
-          <div>구분</div>
-        </th>
-        <th scope="col">
-          <div>목적</div>
-        </th>
-        <th scope="col">
-          <div>항목</div>
-        </th>
-        <th scope="col">
-          <div>보유기간</div>
-        </th>
-
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row" rowspan="2">
-          <div>선택정보</div>
-        </th>
-        <td>
-          <div class="p10 purpose14">회원제 서비스 이용 / 본인확인</div>
-        </td>
-        <td>
-          <div class="p10 items14">피부타입, 피부고민 , 관심 카테고리 </div>
-        </td>
-        <td>
-          <div class="p10 holding14">회원 탈퇴 후 즉시</div>
-        </td>
-
-      </tr>
-      <tr>
-
-        <td>
-          <div class="p10 purpose1">마케팅 활용(이벤트, 맞춤형 광고)</div>
-        </td>
-        <td>
-          <div class="p10 items1">휴대폰, 이메일, 쿠키정보</div>
-        </td>
-        <td>
-          <div class="p10 holding1">회원 탈퇴 후 즉시</div>
-        </td>
-
-      </tr>
-      </tbody>
-    </table>
-    <div id="join_privacyB_noti" class="privacy-noti"><br/>* 동의하지 않으셔도 쇼핑몰 서비스는 이용하실 수 있습니다.</div>
-    <p class="pl-6 btm-msg">
-      귀하께서는 쇼핑몰에서 위와 같이 수집하는 개인정보에 대해, 동의하지 않거나 개인정보를 기재하지 않음으로써 거부할 수 있습니다.<br />
-      다만, 이때 회원에게 제공되는 서비스가 제한될 수 있습니다.<br/>
-      <br/>
-      <br/>
-    </p>
-
-  </div>
 
 
-</fieldset>
-<!-- use_contract -->
+  </fieldset>
+  <!-- use_contract -->
 </form>
 <!-- //페이징 -->
 <jsp:include page="../footer.jsp" />
@@ -758,13 +772,48 @@
   function formCheck(frm) {
     var msg ='';
 
-    if(frm.MBR_ID.value.length<3) {
-      setMessage('ID의 길이는 3이상이어야 합니다.', frm.MBR_ID);
+    if(frm.MBR_NM.value.trim()==='') {
+      setMessage('⚠️이름을 입력해야 합니다.', frm.MBR_NM);
       return false;
     }
 
-    if(frm.PWD.value.length<3) {
-      setMessage('password의 길이는 3이상이어야 합니다.', frm.PWD);
+    if(frm.MBR_ID.value.trim()==='') {
+      setMessage('⚠️아이디를 입력해야 합니다.', frm.MBR_ID);
+      return false;
+    }
+
+    if(0<frm.MBR_ID.value.length && frm.MBR_ID.value.length<3) {
+      setMessage('⚠️아이디의 길이는 3글자 이상이어야 합니다.', frm.MBR_ID);
+      return false;
+    }
+
+    if(frm.PWD.value.trim()==='') {
+      setMessage('⚠️비밀번호를 입력해야 합니다.', frm.MBR_ID);
+      return false;
+    }
+
+    if(frm.PWD.value.length<8) {
+      setMessage('⚠️비밀번호의 길이는 8글자 이상이어야 합니다.', frm.PWD);
+      return false;
+    }
+
+    if(frm.BD.value.trim()==='') {
+      setMessage('⚠️생년월일을 입력해야 합니다.', frm.BD);
+      return false;
+    }
+
+    if(frm.EMAIL.value.trim()==='') {
+      setMessage('⚠️이메일을 입력해야 합니다.', frm.EMAIL);
+      return false;
+    }
+
+    if(frm.MPNO.value.trim()==='') {
+      setMessage('⚠️휴대폰을 입력해야 합니다.', frm.MPNO);
+      return false;
+    }
+
+    if($("#yaok2").prop('checked', false) && ("#privacy1").prop('checked', false)) {
+      setMessage('⚠️(필수)에 동의하셔야 합니다.', frm.AGRE_YN);
       return false;
     }
 
@@ -772,7 +821,7 @@
   }
 
   function setMessage(msg, element){
-    document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${msg}</i>`;
+    document.getElementById("msg").innerHTML = `${'${msg}'}`;
 
     if(element) {
       element.select();

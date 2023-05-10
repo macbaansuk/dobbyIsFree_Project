@@ -131,13 +131,13 @@ h2 {
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
+    margin-block-end: 0.4em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
 }
 
-.input_form.inp_id {
+.input_form.inp_email {
     padding-bottom: 30px;
     margin-bottom: 30px;
     border-bottom: 1px solid #f0f0f0;
@@ -366,20 +366,46 @@ b {
     opacity: .2;
 }
 
-.btn_joins a {
+#mail-Check-Btn {
+    FONT-VARIANT: JIS04;
     position: relative;
     display: block;
     margin-top: 15px;
-    padding-left: 50px;
+    padding-left: initial;
     width: 70%;
-    line-height: 80px;
-    font-size: 16px;
-    font-weight: 500;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
     border-radius: 6px;
     border: solid 1px #d3d3d3;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn_joins button {
+    FONT-VARIANT: JIS04 !important;
+    position: relative !important;
+    display: block !important;
+    margin-top: 15px !important;
+    padding-left: initial !important;
+    width: 70% !important;
+    line-height: 60px !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    border: solid 1px #d3d3d3 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    margin-bottom: 15px !important;
 }
 
 .btn_joins a.is_disabled {
@@ -389,11 +415,11 @@ b {
     border-color: #e6e6e6;
 }
 
-a:hover {
+button:hover {
     color: inherit;
 }
 
-.btn_joins a.is_disabled:after {
+.btn_joins button.is_disabled:after {
     opacity: .2;
 }
 
@@ -410,11 +436,11 @@ a:hover {
     content: "";
 }
 
-/*.btn_joins a .ico.i_phone {
-    background-image: url("C:\Users\leemi\Desktop\icon_phone.png");
+/*.btn_joins a .ico.i_email {
+    background-image: url("C:\Users\leemi\Desktop\icon_email.png");
 } */
 
-.btn_joins a .ico {
+.btn_joins button .ico {
     position: absolute;
     left: 25px;
     top: 50%;

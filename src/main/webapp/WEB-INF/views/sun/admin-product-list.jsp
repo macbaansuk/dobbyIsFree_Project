@@ -19,70 +19,58 @@
 </style>
 <body>
 
+
 <div class="admin">
+
+<%--    <jsp:include page="../admin_header.jsp"/>--%>
     <div class="Header">
-        <span class="span1">관리자 </span>
-        <span class="span2">매뉴얼</span>
+        <a href="/admin/main">
+            <span class="span1">관리자 </span>
+            <span class="span2">매뉴얼</span>
+        </a>
         <ul class="navi">
             <li>
-                <a href="#">
-                    <span class="menuWrap">쇼핑몰 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/memberPage/list">
                     <span class="menuWrap">회원 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/product/list">
+                    <span class="menuWrap">상품 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/inv/list">
+                    <span class="menuWrap">재고 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/notice/list">
                     <span class="menuWrap">게시판 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="menuWrap">접속 통계<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">배너 관리<button type="button" class="bar"></button></span>
+                <a href="/admin/logout">
+                    <span class="menuWrap">로그아웃<button type="button" class="bar"></button></span>
                 </a>
             </li>
         </ul>
     </div>
 
-
     <div class="admin-bar">
         <div class="admin-left">
-            <h2>쇼핑몰관리</h2>
-            <ul  class="admin-ul">
-
-                <li class="on"><a href="#" onfocus="this.blur();">고객센터 관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">공지사항</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">FAQ</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">1:1 상담</a></li>
-                    </ul>
-                </li>
-
-                <li class="on"><a href="#" onfocus="this.blur();">검색어 관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">검색어 목록</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">검색어 통계</a></li>
-                    </ul>
-                </li>
+            <h2>상품 관리</h2>
+            <ul class="admin-ul">
+                <li class="on"><a href="#" onfocus="this.blur();">상품 관리</a></li>
+                <ul>
+                    <li><a href="/admin/product/list" onfocus="this.blur();">상품목록</a></li>
+                </ul>
 
             </ul>
-
-
         </div><!-- //admin-left// -->
+
+
+
 
         <div class="admin-container">
             <div class="admin-location">HOME &gt; 고객센터 관리 &gt; 상품 &gt; 목록</div>
@@ -96,101 +84,126 @@
 
                 <div class="inv-list">
                     <!-- 실제 구현 페이지 -->
-<%--                    <section class="whole">--%>
-<%--                        <div class="listHead">--%>
-<%--                            <div>--%>
-<%--                                &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
-<%--                                <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
-<%--                                    <option value="고객 센터">고객 센터</option>--%>
-<%--                                    <option value="매장 공지">매장 공지</option>--%>
-<%--                                    <option value="배송 공지">배송 공지</option>--%>
-<%--                                    <option value="쇼핑몰 공지">쇼핑몰 공지</option>--%>
-<%--                                    <option value="이벤트 공지">이벤트 공지</option>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
-<%--                            <div>--%>
-<%--                                --%>
-<%--                                &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
-<%--                                <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
-<%--                                    <option value="게시중">게시중</option>--%>
-<%--                                    <option value="비공개">비공개</option>--%>
-<%--                                    <option value="수정중">수정중</option>--%>
-<%--                                    <option value="삭제예정">삭제예정</option>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                    <%--                    <section class="whole">--%>
+                    <%--                        <div class="listHead">--%>
+                    <%--                            <div>--%>
+                    <%--                                &lt;%&ndash;@declare id="cate"&ndash;%&gt;<label for="cate">카테고리</label>--%>
+                    <%--                                <select id="catelist" name="BBS_CATE" style="height: 30px; width: 150px;" value="${noticeDto.BBS_CATE}">--%>
+                    <%--                                    <option value="고객 센터">고객 센터</option>--%>
+                    <%--                                    <option value="매장 공지">매장 공지</option>--%>
+                    <%--                                    <option value="배송 공지">배송 공지</option>--%>
+                    <%--                                    <option value="쇼핑몰 공지">쇼핑몰 공지</option>--%>
+                    <%--                                    <option value="이벤트 공지">이벤트 공지</option>--%>
+                    <%--                                </select>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div>--%>
+                    <%--                                --%>
+                    <%--                                &lt;%&ndash;@declare id="status"&ndash;%&gt;<label for="status">상태</label>--%>
+                    <%--                                <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" value="${noticeDto.STUS}">--%>
+                    <%--                                    <option value="게시중">게시중</option>--%>
+                    <%--                                    <option value="비공개">비공개</option>--%>
+                    <%--                                    <option value="수정중">수정중</option>--%>
+                    <%--                                    <option value="삭제예정">삭제예정</option>--%>
+                    <%--                                </select>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
 
-                        <div class="listMid">
-                            <span class="cnt">총 ${totalCnt}개</span>
-                            <span class="btn">
-                                <button id="writeBtn" type="submit">등록</button>
+                    <div class="listMid">
+                        <span class="cnt">총 ${totalCnt}개</span>
+                        <span class="btn">
+                                <button id="writeBtn" type="submit" onclick="location.href='<c:url value="/admin/product/register"/>'">등록</button>
                             </span>
-                        </div>
+                    </div>
 
-                        <div class="list">
-                            <table>
-                                <colgroup>
-                                    <col style="width: 6%;">
-                                    <col style="width: 8%">
-                                    <col style="width: 40%;">
-                                    <col style="width: 8%;">
-                                    <col style="width: 7%">
-                                    <col style="width: 18%;">
-                                    <col style="width: 15%;">
-                                </colgroup>
+                    <div class="list">
+                        <table>
+                            <colgroup>
+                                <col style="width: 6%;">
+                                <col style="width: 8%">
+                                <col style="width: 40%;">
+                                <col style="width: 8%;">
+                                <col style="width: 7%">
+                                <col style="width: 18%;">
+                                <col style="width: 15%;">
+                            </colgroup>
 
-                                <tbody>
+                            <tbody>
+                            <tr>
+                                <th>상품 ID</th>
+                                <th>카테고리</th>
+                                <th>상품명</th>
+                                <th>가격</th>
+                                <th>상품 상태</th>
+                                <th>등록일시</th>
+                                <th>버튼</th>
+                            </tr>
+                            <c:forEach var="P" items="${adminProductList}">
                                 <tr>
-                                    <th>상품 ID</th>
-                                    <th>카테고리</th>
-                                    <th>상품명</th>
-                                    <th>가격</th>
-                                    <th>상품 상태</th>
-                                    <th>등록일시</th>
-                                    <th>버튼</th>
+                                    <!--  상품 아이디 -->
+                                    <td class="nb_id">${P.PROD_ID}</td>
+                                    <!--  카테고리 -->
+                                    <td class="ttl">${P.CATE_NM}</td>
+                                    <!--  상품명 -->
+                                    <td class="bbs_cate"> <a href="<c:url value="/admin/product/read?id=${P.PROD_ID}&page=${page}&pageSize=${pageSize}"/>"><img src="${P.REP_IMG}" alt="상품 이미지" align="middle"> ${P.PROD_NM}</a></td>
+                                    <!--  가격-->
+
+                                    <td class="wrtr">${P.AMT}</td>
+                                    <!--  상태 -->
+                                    <td class="stus">${P.PROD_STUS}</td>
+                                    <!--  등록일시 -->
+                                    <td class="reg_dtm"><fmt:formatDate value="${P.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
+                                    <!--  수정, 삭제버튼 -->
+                                    <td>
+<%--                                        <button id="modifyBtn" type="submit">수정</button>--%>
+                                        <button id="removeBtn" type="button" onclick="deleteProduct(${P.PROD_ID})">삭제</button>
+                                    </td>
                                 </tr>
-                                <c:forEach var="p" items="${adminProductList}">
-                                    <tr>
-                                        <!--  상품 아이디 -->
-                                        <td class="nb_id">${p.prod_id}</td>
-                                        <!--  카테고리 -->
-                                        <td class="ttl">${p.cate_nm}</td>
-                                        <!--  상품명 -->
-                                        <td class="bbs_cate"><img src="${p.rep_img}" alt="상품 이미지" align="middle"> ${p.prod_nm}</td>
-                                        <!--  가격-->
-                                        <td class="wrtr">${p.amt}</td>
-                                        <!--  상태 -->
-                                        <td class="stus">${p.prod_stus}</td>
-                                        <!--  등록일시 -->
-                                        <td class="reg_dtm"><fmt:formatDate value="${p.reg_dtm}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
-                                        <!--  수정, 삭제버튼 -->
-                                        <td>
-                                            <button id="modifyBtn" type="submit">수정</button>
-                                            <button id="removeBtn" type="submit">삭제</button>
-                                        </td>
-                                    </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+
+
+
+
+                        <!-- 페이징 -->
+                        <div class="paging">
+                            <c:if test="${ph.showPrev}">
+                            <a class="page">
+                                <a href="<c:url value="/admin/product/list?page=${ph.beginPage-1}"/>">&lt;</a>
+                                </c:if>
+                                <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                <a href="<c:url value="/admin/product/list?page=${i}"/>">${i}</a>
                                 </c:forEach>
-                                </tbody>
-                            </table>
-
-
-
-
-                            <!-- 페이징 -->
-                            <div class="paging">
-                                <c:if test="${ph.showPrev}">
-                                <a class="page">
-                                    <a href="<c:url value="/admin/product/list?page=${ph.beginPage-1}"/>">&lt;</a>
-                                    </c:if>
-                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                                    <a href="<c:url value="/admin/product/list?page=${i}"/>">${i}</a>
-                                    </c:forEach>
-                                    <c:if test="${ph.showNext}">
-                                    <a href="<c:url value="/admin/product/list?page=${ph.endPage+1}"/>">&gt;</a>
-                                    </c:if>
-                            </div>
-
+                                <c:if test="${ph.showNext}">
+                                <a href="<c:url value="/admin/product/list?page=${ph.endPage+1}"/>">&gt;</a>
+                                </c:if>
                         </div>
+
+                    </div>
+
+                    <script>
+                        function deleteProduct(id) {
+                            if (confirm("정말로 삭제하시겠습니까?")) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/admin/product/remove",
+                                    data: {id: id},
+                                    success: function() {
+                                        location.reload();
+                                        alert("상품이 성공적으로 삭제되었습니다.");
+                                    },
+                                    error: function() {
+                                        alert("상품 삭제에 실패했습니다.");
+                                    }
+                                });
+                            }
+                      }
+
+
+                        let msg = "${msg}";
+                        if (msg=="login_ERR") alert("로그인 정보를 다시 확인해주세요.")
+
+                    </script>
 
 
 

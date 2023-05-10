@@ -217,62 +217,62 @@
 
         </script>
 
-</div>
-
-<%-- 메인 배너 끝 --%>
-
-<%-- 상품 시작--%>
-<div class="container">
-    <div class="title">
-        <h3 class="line">한눈에 보는 추천제품</h3>
     </div>
 
-    <!-- 상품 리스트 -->
-    <div class="product-list">
-        <c:forEach var="p" items="${ProductsMain}">
-            <div class="product">
-                <a href="/product/productDetail/${p.prod_id}">
-                    <div class="product-img">
+    <%-- 메인 배너 끝 --%>
 
-                        <img src="${p.rep_img}" alt="메인 상품 이미지">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">${p.prod_nm}</span>
-                        <p class="price">
-                            <c:choose>
-                                <c:when test="${p.dc_yn == 'N'}">
-                                    <strong class="discount-price">${p.amt}</strong>
-                                    <span class="original-price"></span>
-                                    <span class="discount-rate"></span>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="dc" items="${Products_DC}">
-                                        <c:if test="${p.prod_id == dc.prod_id}">
-                                            <strong class="discount-price">${dc.dc_price}</strong>
-                                            <span class="discount-rate">${dc.dc_rate}%</span>
-                                        </c:if>
-                                    </c:forEach>
-                                    <span class="original-price">${p.amt}</span>
-                                </c:otherwise>
-                            </c:choose>
-                        </p>
-                    </div>
-                </a>
-                <div class="star-wrap">
-                    <div class="starCnt">
-                        <i class="fas fa-star"></i>
-                        <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
-                    </div>
-                    <div class="icons">
+    <%-- 상품 시작--%>
+    <div class="container">
+        <div class="title">
+            <h3 class="line">한눈에 보는 추천제품</h3>
+        </div>
+
+        <!-- 상품 리스트 -->
+        <div class="product-list">
+            <c:forEach var="p" items="${ProductsMain}">
+                <div class="product">
+                    <a href="/product/productDetail/${p.prod_id}">
+                        <div class="product-img">
+
+                            <img src="${p.rep_img}" alt="메인 상품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-name">${p.prod_nm}</span>
+                            <p class="price">
+                                <c:choose>
+                                    <c:when test="${p.dc_yn == 'N'}">
+                                        <strong class="discount-price">${p.amt}</strong>
+                                        <span class="original-price"></span>
+                                        <span class="discount-rate"></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="dc" items="${Products_DC}">
+                                            <c:if test="${p.prod_id == dc.prod_id}">
+                                                <strong class="discount-price">${dc.dc_price}</strong>
+                                                <span class="discount-rate">${dc.dc_rate}%</span>
+                                            </c:if>
+                                        </c:forEach>
+                                        <span class="original-price">${p.amt}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </p>
+                        </div>
+                    </a>
+                    <div class="star-wrap">
+                        <div class="starCnt">
+                            <i class="fas fa-star"></i>
+                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                        </div>
+                        <div class="icons">
                     <span class="heart-icon">
                         <i class="fa-regular fa-heart"></i>
                     </span>
-                        <span class="cart-icon">
+                            <span class="cart-icon">
                         <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
                     </span>
+                        </div>
                     </div>
                 </div>
-            </div>
             </c:forEach>
         </div>
 
@@ -313,7 +313,7 @@
                         // }
                     },
                     error: function () {
-                      alert('장바구니를 이용하시려면 로그인 해주세요');
+                        alert('장바구니를 이용하시려면 로그인 해주세요');
 
                     }
                 });<!--ajax -->
@@ -352,7 +352,6 @@
 
         <%-- 멤버십 끝 --%>
     </div>
-
         <!--모달창 -->
         <div class="modal" id="cart-modal">
             <div class="modal-content">
@@ -364,25 +363,56 @@
             </div>
         </div>
 
+        <jsp:include page="footer.jsp"/>
+        <script>
+            //장바구니 모달창
+            $(document).ready(function() {
+                let continueShoppingBtn = document.getElementById('shopping-btn');
+                let goToCartBtn = document.getElementById('cart-btn');
+                let cartModal = document.getElementById('cart-modal');
+
+                continueShoppingBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/";
+                });
+
+                goToCartBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/cart";
+                });
+            });
+        </script>
+
+    <!--모달창 -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <h2>장바구니에 상품이 담겼습니다</h2>
+            <div class="modal-buttons">
+                <button id="shopping-btn">쇼핑 계속하기</button>
+                <button id="cart-btn">장바구니로 이동</button>
+            </div>
+        </div>
+    </div>
+
     <jsp:include page="footer.jsp"/>
-<script>
-    //장바구니 모달창
-    $(document).ready(function() {
-        let continueShoppingBtn = document.getElementById('shopping-btn');
-        let goToCartBtn = document.getElementById('cart-btn');
-        let cartModal = document.getElementById('cart-modal');
+    <script>
+        //장바구니 모달창
+        $(document).ready(function() {
+            let continueShoppingBtn = document.getElementById('shopping-btn');
+            let goToCartBtn = document.getElementById('cart-btn');
+            let cartModal = document.getElementById('cart-modal');
 
-        continueShoppingBtn.addEventListener('click', function() {
-            cartModal.style.display = 'none';
-            location.href="/";
-        });
+            continueShoppingBtn.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+                location.href="/";
+            });
 
-        goToCartBtn.addEventListener('click', function() {
-            cartModal.style.display = 'none';
-            location.href="/cart";
+            goToCartBtn.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+                location.href="/cart";
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
 

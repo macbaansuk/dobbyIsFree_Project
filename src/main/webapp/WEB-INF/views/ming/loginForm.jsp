@@ -68,57 +68,6 @@
         }
     }
 </script>
-
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script>
-    kakao.init("b4040bd0971985c1a504bc16b1bc1966");
-
-    //카카오 로그인 버튼을 클릭할 때
-    document.querySelector('#kakao-btn').addEventListener("click", function(){
-        Kakao.Auth.authorize({
-            redirectUri:"http://localhost:3000/oauth/kakao/callback",
-            prompts:"login", //key값이 시도, 로그인을 시도한다는 뜻
-        });
-    });
-</script>
-
-   <!-- function kakaoLogin() {
-        window.kakao.Auth.login({ //실제로 로그인 버튼을 눌렀을 때 실행된 함수
-            scope: 'profile_nickname, account_email, gender', //동의항목에서 받아올 애들
-            success: function(authObj) { //실제 로그인이 되면 success 콜백 함수가 일어남
-                console.log(authObj); //받아온 오브젝트들 콘솔로 찍어보자
-                window.Kakao.API.request({ //로그인 된 상태에서 유저정보 가져오자(API로)
-                    url: '/v2/user/me', //현재 로그인한 사용자의 정보를 가져오라는 뜻
-                    success: res => { //success 콜백함수 일 때
-                        const kakao_account = res.kakao_account; //사용자 정보 콘솔에 찍어볼까
-                        consloe.log(kakao_account); //닉네임이랑 메일이랑 잘 가지고 오나 확인하기
-                    }
-                });
-            }
-        })
-    }-->
-
-<%--<script>
-    function loginWithKakao() {
-        Kakao.Auth.authorize({
-            redirectUri: 'http://localhost/login',
-        });
-    }
-
-    function requestUserInfo() {
-        Kakao.API.request({
-            url: '/v2/user/me',
-        })
-            .then(function(res) {
-            alert(JSON.stringify(res));
-            })
-            .catch(function(err) {
-            alert(
-            'failed to request user information: ' + JSON.stringify(err)
-            );
-        });
-    }
-</script>--%>
 <!--header-->
 <header class="header">
     <div class="headerBox">
@@ -149,10 +98,12 @@
                     <img src="https://one-ap.amorepacific.com/auth/images/common/img_keyboard.png" alt="키보드 배열 이미지";>
                     </span>
         </div>
-        <div id="msg">
+        <div id="msg" class="msg">
             <c:if test="${not empty param.msg}">
-                <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>
-            </c:if>
+            <span class="fa-stack fa-lg">
+            <span class="fa-stack-1x">${URLDecoder.decode(param.msg)}
+            </span>
+                    </c:if>
         </div>
         <div class="input_form">
             <form action="/login" class="loginForm" method="post">
@@ -162,7 +113,7 @@
                 <button type="button" class="btn_del" style="display: none;">
                     <span class="blind">삭제</span>
                 </button>
-            </span> <!--이 사이에 login-guide msg어쩌고 있었는데 필요없을듯하여 일단 생략-->
+            </span>
                 </div>
                 <div class="input_form">
             <span class="inp" id="PWD-span">
@@ -170,58 +121,44 @@
                 <button type="button" class="btn_del" style="display: none;">
                     <span class="blind">삭제</span>
                 </button>
-            </span> <!--이 사이에 password-guide msg어쩌고 있었는데 필요없을듯하여 일단 생략-->
+            </span>
                 </div>
                 <div id="login-noti-panel" >
                     <p id="login-noti-msg" class="form_guide_txt" style="display: none;"></p>
                 </div>
                 <div class="btn_submit mt20">
            <span class="checkboxA">
-                <%--@declare id="checkbox"--%><input type="checkbox" id="saveid" name="saveid" title="아이디 저장">
+               <input type="checkbox" id="saveid" name="saveid" title="아이디 저장">
                     <label for="saveid">아이디 저장</label>
             </span>
                 </div>
                 <div class="login-opt">
                     <button  id="dologin" class="btnA btn_blue loginbtn">로그인</button>
-                    <!-- <button type="button" id="dologin" class="btnA btn_blue loginbtn" disabled="disabled">로그인</button> -->
                 </div>
-            <rm>
+                <rm>
 
-            <div class="etc_login">
-                <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
-                    <a href="javascript:loginWithKakao();"> <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-login-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;"></a>
-                </button>
-            </div>
-            <ul class="bottom_menu">
-                <li>
-                    <a href="/findID" id="search_id">아이디 찾기</a>
-                </li>
-                <li><span class="just_line" style="color:#898989">|</span></li>
-                <li>
-                    <a href="/findPWD" id="search_pwd">비밀번호 찾기</a>
-                </li>
-            </ul>
-            <button class="btnA btn_white btn_join_membership">
-                <span>아직 회원이 아니세요?</span>
-                <em><a href="/register" style="text-decoration: none; color: #252525";>회원가입</a></em>
-            </button>
+                    <div class="etc_login">
+                        <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO">
+                            <img src="./img/ming/login_img/kakao_login_large_wide２.png" id="kakao-login-btn" alt  style="width: 510px; display: block; margin-left: auto; margin-right: auto;">
+                        </button>
+                        <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO" id="kakao-logout-btn" style="display: none"></button>
+                    </div>
+                    <ul class="bottom_menu">
+                        <li>
+                            <a href="/findID" id="search_id">아이디 찾기</a>
+                        </li>
+                        <li><span class="just_line" style="color:#898989">|</span></li>
+                        <li>
+                            <a href="/findPWD" id="search_pwd">비밀번호 찾기</a>
+                        </li>
+                    </ul>
+                    <button class="btnA btn_white btn_join_membership">
+                        <span>아직 회원이 아니세요?</span>
+                        <em><a href="/register" style="text-decoration: none; color: #252525";>회원가입</a></em>
+                    </button>
         </div>
     </div>
 </section>
 <!--container-->
-<script>
-    <!--로그인 실패 시 오류메시지 표출 관련 추후 정리해볼 것-->
-    /*this.loginFailNotiMsg = function(msg) {
-        $('#login-noti-msg').empty();
-        $('#login-noti-msg').addClass('is_error');
-        $('#login-noti-msg').html(msg).show();
-    };
-
-    if (data.status === 0) // 존재하지 않는 회원
-        {
-    OMNI.auth.loginFailNotiMsgInit();
-    OMNI.auth.loginFailNotiMsg('아이디 또는 비밀번호가 맞지 않습니다.');
-        }*/
-</script>
 </body>
 </html>
