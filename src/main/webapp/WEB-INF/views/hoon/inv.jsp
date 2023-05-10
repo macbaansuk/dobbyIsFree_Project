@@ -730,7 +730,7 @@
 
 
             //startDate 와 endDate
-
+            //등록일 선택 = '' 이고 날짜가 없을 경우
             if (startDate !== '' && endDate === ''){
                 alert('종료일을 설정해주세요.')
 
@@ -741,8 +741,8 @@
             } else if ((startDate !== '' && endDate !== '')&& startDate>endDate)
             {
                 alert('시작일을 종료일보다 빠르게 설정해주세요.')
-            }
-           else if (dateField !== null && startDate ===null && endDate ===null ){
+            } //
+           else if (dateField !== '' && (startDate ===null && endDate ===null) ){
                 alert('날짜를 설정해주세요.')
 
             }
