@@ -38,7 +38,7 @@ div {
 }
 
 element.style {
-    margin-bottom: 51px;
+    margin-bottom: 0px;
     margin-top: 120px;
 }
 
@@ -307,6 +307,21 @@ legend, hr {
     font-weight: bold;
     color: #000;
     border-bottom: 1px solid #dedede;
+}
+.msg {
+    height: 30px;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-bottom: 20px;
+}
+
+#msg {
+    height: 30px;
+    text-align:center;
+    font-size:16px;
+    color:red;
+    margin-bottom: 20px;
 }
 #chkwrap .all-chk {
     height: 43px;

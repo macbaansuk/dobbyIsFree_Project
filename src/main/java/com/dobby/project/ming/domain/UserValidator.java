@@ -58,5 +58,5 @@ public class UserValidator implements Validator {
             } catch (ParseException e) {
                 return false;
             }*/
-        }
     }
+}

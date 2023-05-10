@@ -9,6 +9,9 @@
     </settings>
 
     <typeAliases>
+        <!--   ming     -->
+        <typeAlias alias="UserDto" type="com.dobby.project.ming.domain.UserDto"/>
+
         <!--   YoungHoon     -->
         <typeAlias alias="InvDto" type="com.dobby.project.hoon.domain.InvDto"/>
         <typeAlias alias="invSearchCondition" type="com.dobby.project.hoon.domain.invSearchCondition"/>

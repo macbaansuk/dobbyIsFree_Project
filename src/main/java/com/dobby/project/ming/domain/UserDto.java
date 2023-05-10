@@ -283,4 +283,6 @@ public class UserDto {
     public void setSNS_DTM(Date SNS_DTM) {
         this.SNS_DTM = SNS_DTM;
     }
+
 }
+
