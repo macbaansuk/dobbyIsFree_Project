@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    String MBR_ID = request.getParameter("MBR_ID");
+    request.setAttribute("MBR_ID", MBR_ID);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +14,7 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
           crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
+    <link rel="stylesheet" href="/css/mypage_header.css" />
 
     <style>
         * {
@@ -31,9 +36,8 @@
         }
 
         #user_grade {
-
-            width: 100%;
-            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
         #page_point {
@@ -50,7 +54,7 @@
 
         #menu {
             padding: 30px 0 20px 20px;
-            width: 150px;
+
             border-right: 1px solid rgba(231, 230, 230, 0.673);
             margin-left: 250px;
         }
@@ -59,6 +63,7 @@
             margin-top: 10px;
             margin-bottom: 30px;
             color: #777777;
+            width: 110px;
         }
         #menu a {
             text-decoration: none;
@@ -77,13 +82,7 @@
             /*width: 1000px;*/
         }
 
-        /*#page {*/
-        /*    margin: 20px;*/
-        /*    flex: 9;*/
-        /*    min-height: 600px;!* 주문내역 추가 *!*/
-        /*    margin-right: 100px;!* 주문내역 추가 *!*/
-        /*    margin-left: 30px;!* 주문내역 추가 *!*/
-        /*}*/
+
     </style>
 </head>
 
@@ -92,12 +91,17 @@
 
 <div class="mypage">
     <div id="mypageTop">
-        <div id="page_point">
-            <p>홈 > 마이페이지 > 1:1상담내역</p>
-        </div>
         <div id="member">
             <div id="user_grade">
-                <h1>회원 등급 표시</h1>
+                <img src="../img/ming/myPage_ming/welcomegrade.png"style="width: 50px" class="mypage-img1">
+                <h2>
+                    ${MBR_ID}님은 <em class="grade">웰컴</em> 회원입니다.
+                </h2>
+                <span></span>
+                <img src="../img/ming/myPage_ming/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
+                <p>보유쿠폰 <em class="info">2장</em> </p>
+                <img src="../img/ming/myPage_ming/point_icon.png"style="width: 75px" class="mypage-img3">
+                <p>보유포인트 <em class="info">3000p</em> </p>
             </div>
         </div>
     </div>

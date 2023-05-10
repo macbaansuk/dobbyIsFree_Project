@@ -22,7 +22,7 @@
 
 <div class="mypage">
     <div id="mypageTop">
-        <jsp:include page="mypage_header.jsp" />
+        <jsp:include page="mypage-header.jsp" />
     </div>
 
     <div id="container">
