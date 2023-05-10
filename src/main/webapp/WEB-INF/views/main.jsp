@@ -352,6 +352,36 @@
 
         <%-- 멤버십 끝 --%>
     </div>
+        <!--모달창 -->
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <h2>장바구니에 상품이 담겼습니다</h2>
+                <div class="modal-buttons">
+                    <button id="shopping-btn">쇼핑 계속하기</button>
+                    <button id="cart-btn">장바구니로 이동</button>
+                </div>
+            </div>
+        </div>
+
+        <jsp:include page="footer.jsp"/>
+        <script>
+            //장바구니 모달창
+            $(document).ready(function() {
+                let continueShoppingBtn = document.getElementById('shopping-btn');
+                let goToCartBtn = document.getElementById('cart-btn');
+                let cartModal = document.getElementById('cart-modal');
+
+                continueShoppingBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/";
+                });
+
+                goToCartBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href="/cart";
+                });
+            });
+        </script>
 
     <!--모달창 -->
     <div class="modal" id="cart-modal">

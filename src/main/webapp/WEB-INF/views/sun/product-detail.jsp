@@ -146,10 +146,10 @@
                     </button>
 
                     <span>
-                            <button type="button">장바구니</button>
+                            <button type="button" onclick="insertA(${productDetail.PROD_ID})">장바구니</button>
                         </span>
                     <span>
-                            <button type="button">바로구매</button>
+                            <button type="button" onclick="order()">바로구매</button>
                         </span>
 
                 </div>
@@ -158,6 +158,54 @@
     </div>
 
     </div><!--product-topview 끝-->
+    <script>
+        //모달창불러오기
+        function cartsc(){
+            document.getElementById('cart-modal').style.display = 'block';
+        }
+
+        function insertA(productNumber) {
+            let quantity = parseInt($('#quantity').val());
+            console.log(productNumber);
+            console.log(quantity);
+            console.log("insert 함수 실행");
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                contentType: "application/json; charset=utf-8",
+                url: "/cart/" + productNumber + "/" + quantity,
+                type: "POST",
+                success: function (data) {
+                    cartsc();
+                },
+                error: function() {
+                    alert('Please login to use the shopping cart');
+                }
+            });
+        }
+
+        //바로구매
+        function order() {
+            const productId = ${productDetail.PROD_ID};
+            const quantity = parseInt($('#quantity').val());
+
+            const form = $('<form>').attr('method', 'POST').attr('action', '/order/direct');
+
+            $('<input>').attr('type', 'hidden').attr('name', 'productId').val(productId).appendTo(form);
+            $('<input>').attr('type', 'hidden').attr('name', 'quantity').val(quantity).appendTo(form);
+
+            $(document.body).append(form);
+            form.submit();
+        }
+
+
+
+    </script>
+
+
+
 
     <script>
         function changeHeartIcon() {
