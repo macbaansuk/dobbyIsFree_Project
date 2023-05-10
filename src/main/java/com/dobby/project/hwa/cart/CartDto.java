@@ -2,7 +2,7 @@ package com.dobby.project.hwa.cart;
 
 import java.util.Date;
 
-public class CartDto {
+public class CartDto { //장바구니 TB
 
     private Integer CART_ID;
     private Integer PROD_ID;

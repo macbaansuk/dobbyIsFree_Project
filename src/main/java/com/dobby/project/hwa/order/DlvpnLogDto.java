@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class DlvpnLogDto {
+public class DlvpnLogDto { //배송지TB
     private Integer DLVPN_ID;
     private String MBR_ID;
     private String ORD_ID;

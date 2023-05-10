@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="./css/hwa/order.css"/><!-- css -->
+    <link rel="stylesheet" href="/css/hwa/order.css"/><!-- css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 주소찾기 -->
     <!-- jQuery -->
@@ -244,8 +244,8 @@
 
                                                         console.log('배송지명 연락처',getPhoneNum);
                                                         console.log('배송지명 연락처',typeof getPhoneNum);
-                                                        // console.log('배송지명 연락처 형변환',typeof NgetPhoneNum);
-                                                        // console.log('배송지명 연락처 형변환 값',NgetPhoneNum);
+                                                        // console.log('배송지명 연락처 형변환',typeof getPhoneNum);
+                                                        // console.log('배송지명 연락처 형변환 값',getPhoneNum);
 
                                                         let getNum1 = getPhoneNum.substring(0,3); console.log("1번째",getNum1);
                                                         let getNum2 = getPhoneNum.substring(3,7); console.log("2번째",getNum2);
@@ -264,7 +264,7 @@
                                                         document.getElementById("ordzipTxt").value = getOrdzipTxt;
                                                         document.getElementById("dlvAddr1stTxt").value = getDlvAddr1stTxt;
                                                         document.getElementById("dlvAddr2ndTxt").value = getDlvAddr2ndTxt;
-                                                        document.getElementById("mblNo1").value = getNum1;
+                                                        document.getElementById("mblNo1").textContent = getNum1;
                                                         document.getElementById("mblNo2").value = getNum2;
                                                         document.getElementById("mblNo3").value = getNum3;
                                                     },
@@ -396,7 +396,7 @@
                                         console.log("rcprNum2",rcprNum2)
                                         console.log("rcprNum3",rcprNum3)
 
-                                        document.getElementById("mblNo1").value = rcprNum1;
+                                        document.getElementById("mblNo1").textContent  = rcprNum1;
                                         document.getElementById("mblNo2").value = rcprNum2;
                                         document.getElementById("mblNo3").value = rcprNum3;
                                     </script>

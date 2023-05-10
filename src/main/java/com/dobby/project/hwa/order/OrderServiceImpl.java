@@ -1,6 +1,7 @@
 package com.dobby.project.hwa.order;
 
 import com.dobby.project.hwa.cart.CartDto;
+import com.dobby.project.hwa.cart.CartProdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +62,11 @@ public class OrderServiceImpl implements  OrderService{
     @Override
     public int insertPoint(PointDto pd) {
         return orderDao.insertPoint(pd);
+    }
+
+    @Override
+    public List<CartProdDto> getProdInfo(int productId) {
+        return orderDao.selectProdInfo(productId);
     }
 
 

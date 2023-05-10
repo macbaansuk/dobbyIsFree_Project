@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class DlvDto {  //배송지주소록
+public class DlvDto {  //배송지정보 주문페이지 정보 넘기는용
 
     private String DLVPN_ID;
     private String MBR_ID;
