@@ -735,6 +735,8 @@ tr {
 .btn-write:hover {
     text-decoration: underline;
 }
-
+* {
+    font-family: "나눔바른고딕OTF", "돋움";
+}
  /*}*/
 
