@@ -319,7 +319,7 @@
 
           <tr>
             <th scope="row">결제금액</th>
-            <td colspan="3">38,080원</td>
+            <td colspan="3"><fmt:formatNumber pattern="###,###,###" value="${ordDto.SETL_AMT}"/>원</td>
           </tr>
           <tr>
             <th scope="row">환불 받을 은행</th>

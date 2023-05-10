@@ -716,10 +716,10 @@
                     <!-- 품절 시 환불 방법 -->
                     <section id="refundMethodArea" style="display: block;">
                         <h3 class="subTitle2">품절 시 환불 방법</h3>
-                        <div class="radioTab">
-                            <label class="inputRadio refundPayMethod1" for="refundPayMethod1"><input type="radio" name="refundPayMethod" id="refundPayMethod1" value="PG" checked="checked"> <span>결제 수단으로 환불 받기</span></label>
-                            <label class="inputRadio refundPayMethod2" for="refundPayMethod2" style="display: none;"><input type="radio" name="refundPayMethod" id="refundPayMethod2" value="ACCOUNT"> <span>계좌로 환불 받기</span></label>
-                        </div>
+<%--                        <div class="radioTab">--%>
+<%--                            <label class="inputRadio refundPayMethod1" for="refundPayMethod1"><input type="radio" name="refundPayMethod" id="refundPayMethod1" value="PG" checked="checked"> <span>결제 수단으로 환불 받기</span></label>--%>
+<%--                            <label class="inputRadio refundPayMethod2" for="refundPayMethod2" style="display: none;"><input type="radio" name="refundPayMethod" id="refundPayMethod2" value="ACCOUNT"> <span>계좌로 환불 받기</span></label>--%>
+<%--                        </div>--%>
                         <div class="refundPayMethod radioTabContents">
                             <div id="ACCOUNT" class="radioTabCont">
                                 <div class="tableTypeWrite">
