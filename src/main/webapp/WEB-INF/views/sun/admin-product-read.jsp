@@ -19,91 +19,48 @@
 
 <div class="admin">
     <div class="Header">
-        <span class="span1">관리자 </span>
-        <span class="span2">매뉴얼</span>
+        <a href="/admin/main">
+            <span class="span1">관리자 </span>
+            <span class="span2">매뉴얼</span>
+        </a>
         <ul class="navi">
             <li>
-                <a href="#">
-                    <span class="menuWrap">쇼핑몰 관리<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/memberPage/list">
                     <span class="menuWrap">회원 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/admin/product/list">
+                    <span class="menuWrap">상품 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/inv/list">
+                    <span class="menuWrap">재고 관리<button type="button" class="bar"></button></span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/notice/list">
                     <span class="menuWrap">게시판 관리<button type="button" class="bar"></button></span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="menuWrap">접속 통계<button type="button" class="bar"></button></span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="menuWrap">배너 관리<button type="button" class="bar"></button></span>
+                <a href="/admin/logout">
+                    <span class="menuWrap">로그아웃<button type="button" class="bar"></button></span>
                 </a>
             </li>
         </ul>
     </div>
 
-
     <div class="admin-bar">
         <div class="admin-left">
-            <h2>쇼핑몰관리</h2>
+            <h2>상품 관리</h2>
             <ul class="admin-ul">
-                <li class="on"><a href="#" onfocus="this.blur();">운영정보설정</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">상품관리</a>
+                <li class="on"><a href="#" onfocus="this.blur();">상품 관리</a></li>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">상품목록</a></li>
+                        <li><a href="/admin/product/list" onfocus="this.blur();">상품목록</a></li>
                     </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품분류</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">브랜드관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">옵션항목</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">재고관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품평관리</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품문의관리</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">주문관리</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">주문목록</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">개별취소요청</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">세금계산서</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">현금영수증</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">통계분석</a>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">매출통계분석</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">상품통계분석</a></li>
-                    </ul>
-                </li>
-                <li class="on"><a href="#" onfocus="this.blur();">쿠폰관리</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">적립금관리</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">가격비교사이트</a></li>
+
             </ul>
         </div><!-- //admin-left// -->
 
