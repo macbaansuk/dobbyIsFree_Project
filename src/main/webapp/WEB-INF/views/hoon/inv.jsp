@@ -285,6 +285,8 @@
 
             </div>
         </div>
+    </div>
+</div>
 
 
 
@@ -517,7 +519,7 @@
         let page = '';
         let pageSize = '';
         let keyword =' ';
-        let sortType ='';
+        let sortType ='id_d';
         let category ='';
         let period ='';
         let dateField ='';
@@ -609,15 +611,25 @@
                 let invStusCd = $('select.inv-status[data-prod-id="' + prodId + '"]').val(); // 재고상태
                 let invLoc = $('select.inv-loc[data-prod-id="' + prodId + '"]').val(); // 재고위치
 
+                console.log("invQty 확인"+invQty)
+
                 // 재고수량 안전재고는 빈 문자열시 0의 값을 갖는다
                 if (invQty === '')
                 {
-                    invQty = 0;
-
-                } else if (safeInv === '' || safeInv <= 0) // 안전재고는 -가 될 수 없다.
+                    alert('올바른 숫자를 입력해주세요.');
+                    return;
+                } else if (safeInv === '') // 안전재고는 -가 될 수 없다.
                 {
-                    safeInv = 0;
+                    alert('올바른 숫자를 입력해주세요.');
+                    return;
+                } else if (safeInv <= 0) // 안전재고는 -가 될 수 없다.
+                {
+                    alert('올바른 숫자를 입력해주세요.');
+                    return;
                 }
+
+
+
 
                 // 한개라도 빈 문자열이 아닐시
                 if (invQty !== '' || safeInv !== '' || invStusCd !== '' || invLoc !== '') {
@@ -713,6 +725,10 @@
                 period = '';
             }
 
+            // datafiled 는 있지만 날짜가 없을 경우
+
+
+
             //startDate 와 endDate
 
             if (startDate !== '' && endDate === ''){
@@ -726,7 +742,10 @@
             {
                 alert('시작일을 종료일보다 빠르게 설정해주세요.')
             }
+           else if (dateField !== null && startDate ===null && endDate ===null ){
+                alert('날짜를 설정해주세요.')
 
+            }
 
             // 기준일 미입력시
              else if ((startDate !== null && endDate !== null) && (dateField ===''))
