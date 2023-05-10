@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.order;
 
-public class PointDto {
+public class PointDto { //적립금 TB
     private Integer PT_ID;
     private String MBR_ID;
     private String PT_STUS;

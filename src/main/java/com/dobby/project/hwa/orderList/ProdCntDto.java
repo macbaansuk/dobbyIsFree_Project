@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.orderList;
 
-public class ProdCntDto {
+public class ProdCntDto { //주문id의 상품목록 Count
     private String ORD_ID;
     private int Prod_Cnt;
 

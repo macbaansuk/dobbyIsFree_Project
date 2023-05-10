@@ -93,6 +93,7 @@
         (#{MBR_ID},#{AMT})
     </insert>
 
+    <!-- 상품id에 해당하는 상품 정보 가져오기 -->
     <select id="selectProdInfo" resultType="CartProdDto">
         select PROD_ID, PROD_NM, AMT, REP_IMG, DC_YN
         from prod

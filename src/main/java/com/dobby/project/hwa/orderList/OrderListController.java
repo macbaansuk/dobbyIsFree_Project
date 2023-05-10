@@ -46,8 +46,7 @@ public class OrderListController {
 //     }
 
 
-//
-//
+
      List<OrdProdDto> ordProdDtoList = new ArrayList<>();
      List<ProdCntDto> prodCntDtoList = new ArrayList<>();
 
@@ -61,23 +60,25 @@ public class OrderListController {
          // 상품 Cnt 가져오기
          List<ProdCntDto> prodCntDto = orderListService.getProdCnt(mbrId, ordId);
 
-         // 주문번호 같으면 추가 못하게 
-         boolean found = false;
+         // 주문번호 같으면 추가 못하게
+         boolean id = false;
          for (ProdCntDto pcDto : prodCntDtoList) {
              if (pcDto.getORD_ID().equals(ordId)) {
-                 found = true;
+                 id = true;
                  break;
              }
          }
-         if (!found) {
+         if (!id) {
              prodCntDtoList.addAll(prodCntDto);
          }
+
+
      }
 
      m.addAttribute("ordProdDto", ordProdDtoList);
      m.addAttribute("pcDto", prodCntDtoList);
-//     System.out.println("ordProdDto = " + ordProdDtoList);
-//     System.out.println("pcDto = " + prodCntDtoList);
+     System.out.println("ordProdDto = " + ordProdDtoList);
+     System.out.println("pcDto = " + prodCntDtoList);
 
 
      return "hwa/orderList";

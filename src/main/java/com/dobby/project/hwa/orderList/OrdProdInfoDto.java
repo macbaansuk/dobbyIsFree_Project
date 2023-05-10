@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.orderList;
 
-public class OrdProdInfoDto {
+public class OrdProdInfoDto { //주문상세페이지 주문상품정보
 
     private String REP_IMG;
     private String PROD_NM;

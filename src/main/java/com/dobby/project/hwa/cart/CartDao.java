@@ -4,23 +4,23 @@ import java.util.List;
 
 public interface CartDao {
 
-    public void insertCart(CartDto cartDto);
+    public void insertCart(CartDto cartDto); // 장바구니에 insert
 
-    public CartDto selectCartByProdIdAndMbrId(CartDto cartDto);
-
-
-   public void updateCart(CartDto cartDto);
-
-    List<CartProdDto> selectCartItemsByUserKey(String userKey);
+    public int insertCartQty(CartDto cartDto); //상세에서 장바구니에 insert
+    public CartDto selectCartByProdIdAndMbrId(CartDto cartDto); // 상품id,회원id로 장바구니 조회 (해당 상품이 장바구니에  들어가져있는지 확인)
 
 
-    public void deleteCart(List<Integer> cartIdList);
+   public void updateCart(CartDto cartDto); // 장바구니에서 사용자가 수량 수정 반영
 
-    public CartProdDto  updateCartQty(int cartId, int quantity);
-    public CartProdDto getCartProductById(int cartId);
+    List<CartProdDto> selectCartItemsByUserKey(String userKey); // 장바구니 조회
 
 
-    public int insertCartQty(CartDto cartDto);
+    public void deleteCart(List<Integer> cartIdList); // 장바구니 삭제
 
-    public void updateCartQtyProdPage(CartDto cartDto);
+    public CartProdDto  updateCartQty(int cartId, int quantity); // 상품상세에서
+
+    public CartProdDto getCartProductById(int cartId); //카트 ID에 해당하는 장바구니 상품 조회 (상품TB과 조인)
+
+
+    public void updateCartQtyProdPage(CartDto cartDto); //상세에서 장바구니 담을 때 수량 반영
 }

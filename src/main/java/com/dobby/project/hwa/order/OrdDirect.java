@@ -1,7 +1,7 @@
 package com.dobby.project.hwa.order;
 
-public class OrdDirect {
-    // 상세페이지에서 바로 주문하기
+public class OrdDirect {  // 상세페이지에서 바로 주문하기 정보 담기
+
     private String MBR_ID;
     private Integer PROD_ID;
     private String PROD_NM;

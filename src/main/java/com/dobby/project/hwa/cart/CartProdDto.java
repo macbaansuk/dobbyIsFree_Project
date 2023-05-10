@@ -1,6 +1,6 @@
 package com.dobby.project.hwa.cart;
 
-public class CartProdDto {
+public class CartProdDto { //장바구니에 담긴 상품 정보과 JOIN한 결과
     private Integer CART_ID;
     private String MBR_ID;
     private Integer PROD_ID;

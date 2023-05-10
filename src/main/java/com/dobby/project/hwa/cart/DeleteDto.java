@@ -3,7 +3,7 @@ package com.dobby.project.hwa.cart;
 import java.util.List;
 
 
-public class DeleteDto {
+public class DeleteDto {  //카트 ID List로 받아온것
     List<Integer> cartIdList;
 
     public List<Integer> getCartIdList() {

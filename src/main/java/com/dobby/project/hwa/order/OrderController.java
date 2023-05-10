@@ -24,12 +24,6 @@ public class OrderController {
     public String order(@RequestParam("cartIdList") List<Integer> cartIdList, Model m, HttpServletRequest req) {
 //        System.out.println("orderController 진입");
 
-        //상품아이디에해당하는  -----상세에서 개별 주문
-        // 똑같이 배열에 넣는다
-        // 베열에 담아서 똑같이 /order 컨트롤러로 값을 넘긴다
-        
-        
-        
         // 회원아이디 조회
         // -> 회원 테이블에서 가져온다
         // 세션 아이디로 해당하는 회원의 정보를가져온다
@@ -89,7 +83,7 @@ public class OrderController {
                 addressList.add(dlv);
                 break;
             }
-        }  //--기본배송지여부 Y가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
+        }  //--배송지목록추가 = 'Y'가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
 
         m.addAttribute("addressList", addressList);
         m.addAttribute("dlvsList", dlvsList);
@@ -106,18 +100,16 @@ public class OrderController {
     @PostMapping("/order/direct")
     public String directOrder(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity,
                               Model m, HttpServletRequest req) {
-        System.out.println("바로구매 컨트롤러 진입");
-        System.out.println("사움Id"+productId);
-        System.out.println("수량"+quantity);
-        System.out.println("orderController 진입");
+//        System.out.println("바로구매 컨트롤러 진입");
+//        System.out.println("상품Id"+productId);
+//        System.out.println("수량"+quantity);
 
 
 
-
+        //로그인된 회원 아이디 가져오기
         HttpSession session = req.getSession();
 
         String mbrId = (String) session.getAttribute("MBR_ID");
-
         MbrDto mbrDto = orderService.getMbrInfoById(mbrId);
 
 //        System.out.println("mbrDto = " + mbrDto);
@@ -125,10 +117,9 @@ public class OrderController {
 
         m.addAttribute("mbrDto", mbrDto);
 
-        // 단품만 주문하는것이니 해당 단품의 수량과 상품정보를 상품테이블에서 가져온다
+        // 상세페이지에서 한개의 상품만 주문
         // 상세페이지에서 수량과, 상품ID를 가져왔으니
         // 상품ID로 상품TB에서 정보를 가져오고 수량은 set해준다
-
 
 
         List<CartProdDto> cp = (List<CartProdDto>) orderService.getProdInfo(productId);
@@ -158,24 +149,20 @@ public class OrderController {
                 addressList.add(dlv);
                 break;
             }
-        }  //--기본배송지여부 Y가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
+        }  //--배송지목록추가 = 'Y'가 필요없음 왜? '배송지목록에추가' 버튼을 눌러야만 배송지목록에 등록되게할것
 
         m.addAttribute("addressList", addressList);
         m.addAttribute("dlvsList", dlvsList);
 
-//        System.out.println("(배송지List)dlvList=" + dlvsList);
-//        if (dlvsList.isEmpty()) {  //  배송지비어있는지 확인
-//            System.out.println("배송지 비어있음");
-//        }
-//        System.out.println("(기본배송지)=" + addressList);
-        
-        
+
         return "hwa/order_clone";
     }
 
 @PostMapping("/order/dlv")
 @ResponseBody
 public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNmId ) {
+    // 배송지명에 해당하는 배송정보 가져오기
+
     System.out.println("order/dlv() 진입");
     System.out.println("dlvNmId= "+dlvNmId);
 
@@ -311,9 +298,7 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
         orderService.insertPoint(pd);
 
 
-        //세션 삭제하기
-//        session.removeAttribute("checkedCartList");
-//        session.removeAttribute("cartList");
+
         String orderId = od.getInputOrdId(); // 주문id
         System.out.println("주문번호" + orderId);
         String orderer = od.getInputOrdNmTxt();
@@ -321,6 +306,13 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
 
         m.addAttribute("orderId",orderId);
         m.addAttribute("orderer",orderer);
+
+
+        //세션 삭제하기
+        session.removeAttribute("checkedCartList");
+        session.removeAttribute("cartList");
+
+
         return "hwa/orderDone";
     }
 
