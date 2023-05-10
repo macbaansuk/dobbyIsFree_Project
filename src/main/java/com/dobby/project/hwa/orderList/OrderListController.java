@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,8 +46,7 @@ public class OrderListController {
 //     }
 
 
-//
-//
+
      List<OrdProdDto> ordProdDtoList = new ArrayList<>();
      List<ProdCntDto> prodCntDtoList = new ArrayList<>();
 
@@ -60,26 +60,52 @@ public class OrderListController {
          // 상품 Cnt 가져오기
          List<ProdCntDto> prodCntDto = orderListService.getProdCnt(mbrId, ordId);
 
-         // 주문번호 같으면 추가 못하게 
-         boolean found = false;
+         // 주문번호 같으면 추가 못하게
+         boolean id = false;
          for (ProdCntDto pcDto : prodCntDtoList) {
              if (pcDto.getORD_ID().equals(ordId)) {
-                 found = true;
+                 id = true;
                  break;
              }
          }
-         if (!found) {
+         if (!id) {
              prodCntDtoList.addAll(prodCntDto);
          }
+
+
      }
 
      m.addAttribute("ordProdDto", ordProdDtoList);
      m.addAttribute("pcDto", prodCntDtoList);
-//     System.out.println("ordProdDto = " + ordProdDtoList);
-//     System.out.println("pcDto = " + prodCntDtoList);
+     System.out.println("ordProdDto = " + ordProdDtoList);
+     System.out.println("pcDto = " + prodCntDtoList);
 
 
      return "hwa/orderList";
  }
+
+@GetMapping("/orderDetail")
+ public String OrderDetail(@RequestParam("orderId") String orderId, Model m){
+    System.out.println("주문상세 진입");
+    
+    //주문아이디에 해당하는 상세정보 불러오기
+    OrdDto ordDto = orderListService.getOrdDetailList(orderId);
+
+    System.out.println("주문내역 = " + ordDto);
+    m.addAttribute("ordDto",ordDto);
+
+    //주문 상품목록 불러오기
+    List<OrdProdInfoDto> opiDto = orderListService.getOrdProdInfo(orderId);
+
+    System.out.println("opiDto = " + opiDto);
+    m.addAttribute("opiDto",opiDto);
+
+    return "hwa/orderDetailList";
+ }
+
+
+
+
+
 
 }

@@ -13,6 +13,7 @@
 
     </insert>
 
+
     <!-- 카트에  해당 상품담겨있는지 조회 -->
     <select id="selectCart" resultType="CartDto" parameterType="CartDto">
         SELECT *
@@ -52,6 +53,7 @@
         WHERE CART_ID = #{CART_ID}
     </update>
 
+    <!-- 카트ID로 해당 장바구니 상품정보까지 조회 -->
     <select id="getCartProductById" parameterType="int" resultType="CartProdDto">
         SELECT c.CART_ID, c.MBR_ID, p.PROD_ID, p.PROD_NM, p.AMT, c.PROD_INDV_QTY, p.REP_IMG, p.DC_YN
         FROM  `dobbyisfree`.`cart` c

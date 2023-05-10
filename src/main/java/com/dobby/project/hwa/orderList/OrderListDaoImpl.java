@@ -38,4 +38,18 @@ public class OrderListDaoImpl implements OrderListDao {
 
         return session.selectList(namespace + "selectProdCnt",map);
     }
+
+    @Override
+    public OrdDto selectOrderDetailList(String orderId) {
+        return session.selectOne(namespace + "selectOrderDetailList",orderId);
+    }
+
+    @Override
+    public List<OrdProdInfoDto> selectOrdProdInfo(String orderId) {
+        return session.selectList(namespace + "selectOrdProdInfo",orderId);
+    }
+
+
+
+
 }

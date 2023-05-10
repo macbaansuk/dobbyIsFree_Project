@@ -31,14 +31,15 @@ public class OrdDto {  // 주문 TB
     private String ORDR_EMAIL; //주문자이메일
     private String ORDR; //주문자
     private String ORDR_NO; //주문자연락처
-
+    private Integer POINT_AMT;  //적립금
+    private Integer DC_AMT; //차감액
     public OrdDto() {}
 
     public OrdDto(String ORD_ID, String MBR_ID, String COU_ID, String ORD_DTM, String REP_PROD_NM, Integer PROD_CNT, Integer SETL_AMT,
                   Integer DEXP, String DEXP_YN, String PROD_OPT, String PROD_DC, String USE_COUPN_NO, Integer ORD_TAMT, String REVW_YN,
                   String ORD_STUS_CD, String ORD_CNCL_YN, String ORD_PROCR, String ORD_RMK, String RCPR_NM, String RCPR_ZPCD,
-                  String RCPR_BASIC_ADDR, String RCPR_DTL_ADDR, String DLVPN_REQ, String RCPR_MPNO, String BANK, String ACC_NO,
-                  String DPOSR, String ORDR_EMAIL, String ORDR, String ORDR_NO) {
+                  String RCPR_BASIC_ADDR,  String RCPR_DTL_ADDR, String DLVPN_REQ, String RCPR_MPNO, String BANK, String ACC_NO,
+                  String DPOSR, String ORDR_EMAIL, String ORDR, String ORDR_NO, Integer POINT_AMT, Integer DC_AMT) {
         this.ORD_ID = ORD_ID;
         this.MBR_ID = MBR_ID;
         this.COU_ID = COU_ID;
@@ -69,6 +70,8 @@ public class OrdDto {  // 주문 TB
         this.ORDR_EMAIL = ORDR_EMAIL;
         this.ORDR = ORDR;
         this.ORDR_NO = ORDR_NO;
+        this.POINT_AMT = POINT_AMT;
+        this.DC_AMT = DC_AMT;
     }
 
     @Override
@@ -104,9 +107,10 @@ public class OrdDto {  // 주문 TB
                 ", ORDR_EMAIL='" + ORDR_EMAIL + '\'' +
                 ", ORDR='" + ORDR + '\'' +
                 ", ORDR_NO='" + ORDR_NO + '\'' +
+                ", POINT_AMT=" + POINT_AMT +
+                ", DC_AMT=" + DC_AMT +
                 '}';
     }
-
 
     public String getORD_ID() {
         return ORD_ID;
@@ -346,5 +350,21 @@ public class OrdDto {  // 주문 TB
 
     public void setORDR_NO(String ORDR_NO) {
         this.ORDR_NO = ORDR_NO;
+    }
+
+    public Integer getPOINT_AMT() {
+        return POINT_AMT;
+    }
+
+    public void setPOINT_AMT(Integer POINT_AMT) {
+        this.POINT_AMT = POINT_AMT;
+    }
+
+    public Integer getDC_AMT() {
+        return DC_AMT;
+    }
+
+    public void setDC_AMT(Integer DC_AMT) {
+        this.DC_AMT = DC_AMT;
     }
 }

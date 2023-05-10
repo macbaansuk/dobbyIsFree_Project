@@ -202,7 +202,7 @@
                 <c:forEach items="${ordProdDto}" var="ordProdDto">
                   <c:choose>
                     <c:when test="${ordProdDto.ORD_ID eq orderList.ORD_ID}">
-                  <a href="/orderDetails?orderId=${ordProdDto.ORD_ID}">
+                  <a href="/orderDetail?orderId=${ordProdDto.ORD_ID}">
                 ${ordProdDto.PROD_NM}
                       <c:forEach items="${pcDto}" var="pcDto">
                         <c:if test="${pcDto.ORD_ID eq orderList.ORD_ID}">
