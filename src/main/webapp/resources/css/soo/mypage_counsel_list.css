@@ -114,7 +114,11 @@ caption {
     color: #777777;
 }
 
-table {
+.counselList {
+    width: 100%;
+}
+.counselList table {
+    width: 100%;
     margin: 20px 0 20px 0;
     border-collapse: collapse;
 }
