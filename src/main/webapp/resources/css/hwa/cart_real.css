@@ -187,7 +187,7 @@ section#content div.gdsInfo .delete {
 .cartDelBtn{
     font-size: 18px;
     padding: 5px 10px;
-    border: 1px solid #eee;
+    border: 1px solid #a7a7a7;
     background: #eee;
 }
 
@@ -217,7 +217,7 @@ section#content div.gdsInfo .delete {
 .delBtn button {
     font-size: 18px;
     padding: 5px 10px;
-    border: 1px solid #eee;
+    border: 1px solid #a7a7a7;
     background: #eee;
 }
 
