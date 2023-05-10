@@ -21,7 +21,7 @@
     <div class="headerBox">
         <div class="inner">
             <h1 class="page_tit">아이디 찾기 결과</h1>
-            <a href="http://localhost:8080/" button type="button" class="btn_page_close">
+            <a href="http://localhost:80/" button type="button" class="btn_page_close">
                 <span class="blind">닫기</span>
             </a>
             </button>

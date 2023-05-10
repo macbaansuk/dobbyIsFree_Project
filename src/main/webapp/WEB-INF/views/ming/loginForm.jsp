@@ -74,7 +74,7 @@
         <div class="inner">
             <h1 class="page_tit">로그인</h1>
             <button>
-                <a href="http://localhost:8080/" type="button" class="btn_page_close">
+                <a href="http://localhost:80/" type="button" class="btn_page_close">
                     <span class="blind">이전</span>
                 </a>
             </button>

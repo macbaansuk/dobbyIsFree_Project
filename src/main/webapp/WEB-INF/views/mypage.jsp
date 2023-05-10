@@ -3,7 +3,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
-    <title>MyPage - </title>
+    <title>MyPage | Dobby Is Free</title>
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -45,7 +45,4 @@
 
 <jsp:include page="footer.jsp" />
 </body>
-
-
-
 </html>

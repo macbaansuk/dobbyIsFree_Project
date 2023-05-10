@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="./css/ming/register.css"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
+    $('.id_input').on("propertychange change keyup paste input", function(){
+      console.log("id input 작동 테스트");
+    });
+
     $(document).ready(function() {
       //전체 선택 시
       $("#every_agree").on('click', function () {
@@ -41,8 +45,7 @@
         }
       });
     });
-  </script>
-  <script>
+
     $(document).ready(function() {
 
       const form = document.querySelector('.form');
@@ -53,7 +56,6 @@
         const bd = document.querySelector('#BD').value;
         const emailForm = document.querySelector('#EMAIL').value;
         submitForm();
-
       });
       // email 옵션에서 선택한 값을 emailValue 변수에 저장
       var emailValue = $("#email2").val();
@@ -133,7 +135,10 @@
         <td>
           <div class="col-cell">
             <input type="text" name="MBR_ID" id="id" value="" class="MS_input_txt normal-input" size="10"
-                   maxlength="40" /> <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a>
+                   maxlength="40" />
+            <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+            <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+            <!-- <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a> -->
           </div>
         </td>
       </tr>
