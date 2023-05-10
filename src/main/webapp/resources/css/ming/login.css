@@ -121,7 +121,7 @@ button {
 }
 
 .btn_open_info:focus, .close_layer_info:focus, #btnCloseAction:focus, .btn_del:focus, .btn_keyboard:focus, #do-regist-login:focus, #do-next:focus, #do-regist-login:focus, .btn_all_view:focus, #mobile-login:focus, #more-login:focus, .kakao-btn:focus, #search_id:focus, #search_pwd:focus, #search_order:focus, .loginbtn:focus, #dojoin:focus, .btn_prev_page:focus, .btn_link_bp:focus, #go-home:focus, #sendsms:focus, .btn_link:focus, .kakao-btn-way:focus, #mobile-login_pop:focus, #btnSmsResesnd:focus, #btnOkAction:focus, #change-pwd-cancel:focus, #dochangepwd:focus, #do-login-online:focus, #membership-join-finish:focus, #btnCloseAction:focus, #send-userid:focus, #do-login:focus, #terms-agree-next:focus, #term-agree-ok:focus {
-    outline: 2px solid #0A40D5;
+    outline: 2px solid #FFFFFF;
 }
 
 .view_keyboard .btn_keyboard {
