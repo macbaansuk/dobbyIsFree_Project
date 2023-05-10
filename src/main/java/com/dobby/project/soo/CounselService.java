@@ -36,4 +36,5 @@ public interface CounselService {
 
     // 답변 작성 + 1:1 상담 게시물 상태 업데이트
     void writeAnswer(AnswerDto answerDto, CounselDto counselDto) throws Exception;
+
 }

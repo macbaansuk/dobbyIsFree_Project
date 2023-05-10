@@ -58,7 +58,7 @@ public class CounselController {
     }
 
     @GetMapping("/mypage/counsel/write/prodPop")
-    public void prodPopGET(@RequestParam(defaultValue ="1") Integer page,
+    public String prodPopGET(@RequestParam(defaultValue ="1") Integer page,
                            @RequestParam(defaultValue = "10") Integer pageSize,Model m) throws Exception{
 
         // 상품 총 개수
@@ -75,7 +75,7 @@ public class CounselController {
         m.addAttribute("ph", pageHandler);
         System.out.println("CounselController/prodPop - m" + m);
 
-//        return "soo/mypage_counsel_prodPop";
+        return "soo/mypage_counsel_prodPop";
     }
 
     @PostMapping("/mypage/counsel/write")   // 1:1 상담 작성 후 데이터 전달

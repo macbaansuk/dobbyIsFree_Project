@@ -70,7 +70,8 @@
         // $(opener.document).find("#prodName_input").val(prodName);
         $(opener.document).find("#prodId_input").attr('value', prodId);
         $(opener.document).find("#prodName_input").attr('value', prodName);
-
+        console.log($(opener.document).find("#prodId_input").val());
+        console.log($(opener.document).find("#prodName_input").val());
         window.close();
 
     });
