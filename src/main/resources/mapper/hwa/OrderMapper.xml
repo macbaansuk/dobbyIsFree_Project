@@ -38,10 +38,10 @@
     <insert id="insertOrdInfo" parameterType="OrdDto">
         INSERT INTO `dobbyisfree`.`ord`
         (ORD_ID, MBR_ID, SETL_AMT, DEXP, ORD_TAMT, RCPR_NM, RCPR_ZPCD, RCPR_BASIC_ADDR,
-         RCPR_DTL_ADDR, DLVPN_REQ, RCPR_MPNO, BANK, ACC_NO, DPOSR, ORDR_EMAIL, ORDR, ORDR_NO)
+         RCPR_DTL_ADDR, DLVPN_REQ, RCPR_MPNO, BANK, ACC_NO, DPOSR, ORDR_EMAIL, ORDR, ORDR_NO,POINT_AMT, DC_AMT)
         VALUES
             (#{ORD_ID}, #{MBR_ID},  #{SETL_AMT}, #{DEXP}, #{ORD_TAMT}, #{RCPR_NM}, #{RCPR_ZPCD}, #{RCPR_BASIC_ADDR},
-             #{RCPR_DTL_ADDR}, #{DLVPN_REQ}, #{RCPR_MPNO}, #{BANK}, #{ACC_NO}, #{DPOSR}, #{ORDR_EMAIL}, #{ORDR}, #{ORDR_NO})
+             #{RCPR_DTL_ADDR}, #{DLVPN_REQ}, #{RCPR_MPNO}, #{BANK}, #{ACC_NO}, #{DPOSR}, #{ORDR_EMAIL}, #{ORDR}, #{ORDR_NO},#{POINT_AMT} ,#{DC_AMT} )
     </insert>
 
 
@@ -92,5 +92,12 @@
         VALUES
         (#{MBR_ID},#{AMT})
     </insert>
+
+    <!-- 상품id에 해당하는 상품 정보 가져오기 -->
+    <select id="selectProdInfo" resultType="CartProdDto">
+        select PROD_ID, PROD_NM, AMT, REP_IMG, DC_YN
+        from prod
+        where PROD_ID = #{PROD_ID};
+    </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.dobby.project.hwa.order;
 
 import com.dobby.project.hwa.cart.CartDto;
+import com.dobby.project.hwa.cart.CartProdDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -74,6 +75,11 @@ public class OrderDaoImpl implements  OrderDao {
     @Override
     public int insertPoint(PointDto pd) {
         return session.insert(namespace + "insertPoint",pd);
+    }
+
+    @Override
+    public List<CartProdDto> selectProdInfo(int productId) {
+        return session.selectList(namespace+"selectProdInfo",productId);
     }
 
 

@@ -60,27 +60,29 @@ public class CartController {
         System.out.println("mbrId = " + mbrId);
 
 
-
-
-
-
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(mbrId);
         m.addAttribute("cartList", cartList);
 
         //장바구니 목록을 세션에 담는다
         session.setAttribute("cartList", cartList);
         System.out.println("cartList = " + cartList);
-//        List<CartProdDto> cartListSession = (List<CartProdDto>) session.getAttribute("cartList");
-//        System.out.println("cartListSession = " + cartListSession);
-//
-//        Map<String, Object> cartMap = new HashMap<String, Object>();
-//        cartMap.put("cartList", cartListSession);
-//        session.setAttribute("cartMap", cartMap);
-//
-//        System.out.println("mySessionMap=" + cartMap);
+
 
         return "hwa/cart_real";
     }
+
+    @PostMapping("/cart/{key}/{quantity}")
+    @ResponseBody
+    public int addToCart(@PathVariable("key") Integer key, @PathVariable("quantity")  Integer quantity, HttpServletRequest req) {
+
+        HttpSession session = req.getSession();
+        String mbrId = (String) session.getAttribute("MBR_ID");
+        System.out.println("아이디" + mbrId);
+        int rowCnt = cartService.insertCartQty(key, mbrId, quantity);
+
+        return 1;
+    }
+
 
 
 @PostMapping("/cart/delete") //이 메서드로 수정
