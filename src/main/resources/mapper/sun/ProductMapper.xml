@@ -9,7 +9,7 @@
     <select id="countProducts" parameterType="int" resultType="int">
         SELECT count(*)
         FROM PROD
-        WHERE CATE_CD=#{category}
+        WHERE CATE_CD = #{CATE_CD}
     </select>
 
 
@@ -38,8 +38,8 @@
                  LEFT JOIN
              Prod_DC AS PD
              ON
-                 P.PROD_ID = PD.prod_ID
-        WHERE P.DC_YN = 'y';
+                 P.PROD_ID = PD.PROD_ID
+        WHERE P.DC_YN = 'Y';
     </select>
 
     <!-- 상품 아이디로 상품 상세 불러오기 -->
@@ -52,51 +52,218 @@
     <!--해당 카테고리의 상품 목록 불러오기 -->
     <select id="getProductList" parameterType="int" resultType="ProductCateDto">
         SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
-        FROM PROD P, CATE C
-        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
+        FROM PROD P,
+             CATE C
+        WHERE P.CATE_CD = C.CATE_CD
+          AND P.CATE_CD = #{CATE_CD}
         ORDER BY P.REG_DTM
     </select>
 
 
-<!-- 상품 목록에서 정렬 버튼 구현하려고....-->
-    <select id="highPrice" resultType="ProductCateDto">
-        SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
-        FROM PROD P, CATE C
-        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
-        ORDER BY P.AMT ASC
+    <!--카테고리별 상품 목록페이지 정렬 버튼 구현 -->
+    <select id="getProductsByCategoryAndSort" parameterType="map" resultType="ProductDCDto">
+        SELECT P.*,
+        PD.DC_RATE,
+        PD.DC_TYP,
+        (CASE
+        WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
+        WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
+        ELSE P.AMT
+        END) AS DC_PRICE
+        FROM PROD P
+        LEFT JOIN Prod_DC AS PD
+        ON P.PROD_ID = PD.PROD_ID
+        WHERE P.CATE_CD = #{category}
+        ORDER BY
+        <choose>
+            <when test="sort == 'latest'">P.REG_DTM DESC</when>
+            <when test="sort == 'highest_price'">DC_PRICE DESC</when>
+            <when test="sort == 'lowest_price'">DC_PRICE ASC</when>
+        </choose>
     </select>
 
-    <select id="lowPrice" resultType="ProductCateDto">
-        SELECT C.CATE_NM, C.CATE_DESC, C.CATE_REP_IMG, P.*
-        FROM PROD P, CATE C
-        WHERE P.CATE_CD = C.CATE_CD AND P.CATE_CD = #{category}
-        ORDER BY P.AMT DESC
-    </select>
 
-    <select id="latest" resultType="ProductCateDto">
-        SELECT *
+    <!--관리자 페이지-->
+
+    <!--관리자 상품목록 전체 상품 개수-->
+    <select id="count" resultType="int">
+        SELECT count(*)
         FROM PROD
-        ORDER BY REG_DTM DESC
     </select>
-
 
     <!--관리자 상품목록 전체 상품 조회-->
     <select id="selectPage" parameterType="map" resultType="ProductCateDto">
         SELECT C.CATE_NM, P.*
-        FROM PROD P, CATE C
-        WHERE P.CATE_CD=C.CATE_CD
-        ORDER BY  PROD_ID ASC
-        LIMIT #{offset}, #{pageSize}
+        FROM PROD P,
+             CATE C
+        WHERE P.CATE_CD = C.CATE_CD
+        ORDER BY PROD_ID DESC
+            LIMIT #{offset}, #{pageSize}
     </select>
 
-    <!-- 관리자 페이지 상품 삭제, 나중에 관리자도 확인해야함-->
-    <delete id="deleteProduct">
-        DELETE  FROM PROD WHERE PROD_ID=#{PROD_ID}
+    <!-- 관리자 상품 읽기 상품 아이디로 -->
+    <select id="getAdminProductsById" parameterType="int" resultType="TotalDto">
+        SELECT P.*, F.*, PD.*, O.*, PO.*, H.*, PH.*
+        FROM PROD P
+                 LEFT JOIN FILE F ON P.PROD_ID = F.PROD_ID
+                 LEFT JOIN PROD_DC PD ON P.PROD_ID = PD.PROD_ID
+                 LEFT JOIN PROD_OPT PO ON P.PROD_ID = PO.PROD_ID
+                 LEFT JOIN OPT O ON PO.OPT_ID = O.OPT_ID
+                 LEFT JOIN PROD_HASHTAG PH ON P.PROD_ID = PH.PROD_ID
+                 LEFT JOIN HASHTAG H ON PH.HASHTAG_ID = H.HASHTAG_ID
+        WHERE P.PROD_ID = #{PROD_ID}
+    </select>
+
+
+    <!-- 관리자 페이지 상품 삭제-->
+    <!--나중에 관리자도 확인해야함 WRITER AND로 집어넣고 하드코딩으로 박아놓은 다음 해보기-->
+    <delete id="deleteProductHashtag" parameterType="int">
+        DELETE
+        FROM PROD_HASHTAG
+        WHERE PROD_ID = #{PROD_ID};
+    </delete>
+    <delete id="deleteProductOpt" parameterType="int">
+        DELETE
+        FROM PROD_OPT
+        WHERE PROD_ID = #{PROD_ID};
+    </delete>
+    <delete id="deleteProductDc" parameterType="int">
+        DELETE
+        FROM PROD_DC
+        WHERE PROD_ID = #{PROD_ID};
+    </delete>
+    <delete id="deleteFile" parameterType="int">
+        DELETE
+        FROM FILE
+        WHERE PROD_ID = #{PROD_ID};
+    </delete>
+    <delete id="deleteProductFinal" parameterType="int">
+        DELETE
+        FROM PROD
+        WHERE PROD_ID = #{PROD_ID};
     </delete>
 
-    <!--관리자 상품목록 전체 상품 개수-->
-    <select id="count" resultType="int">
-    SELECT count(*) FROM PROD
-    </select>
+
+
+    <!-- 관리자 상품 등록-->
+    <insert id="insertProduct"  parameterType="RegisterDto" keyProperty="PROD_ID, DC_YN" keyColumn="PROD_ID, DC_YN" useGeneratedKeys="true">
+        INSERT INTO PROD
+        (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  NEW_YN, PROD_STUS,
+         OPT_YN,  DC_YN, MAI_YN, UPD_DTM)
+        VALUES
+            (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},
+             #{NEW_YN}, #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});
+    </insert>
+
+
+<!--        <insert id="insertDiscount" parameterType="RegisterDto">-->
+<!--            INSERT INTO PROD_DC-->
+<!--            (PROD_DC_ID, PROD_ID,  DC_TYP, DC_RATE, DC_AMT)-->
+<!--            VALUES-->
+<!--                (#{PROD_DC_ID}, #{PROD_ID},#{DC_TYP}, #{DC_RATE}, #{DC_AMT});-->
+<!--        </insert>-->
+
+<!--    <insert id="insertFile" parameterType="RegisterDto">-->
+<!--        INSERT INTO FILE-->
+<!--        (PROD_FILE_ID, PROD_ID, FILE_NM, PATH, KIND)-->
+<!--        VALUES (#{PROD_FILE_ID}, #{PROD_ID},#{PATH}, #{KIND})-->
+<!--    </insert>-->
+
+
+    <!--    <insert id="insertDiscount" parameterType="RegisterDto">-->
+<!--        INSERT INTO PROD_DC-->
+<!--        (PROD_DC_ID,  DC_TYP, DC_RATE, DC_AMT, DC_PRICE, BGN_DTM,-->
+<!--         END_DTM, DC_STUS)-->
+<!--        VALUES-->
+<!--            (#{PROD_DC_ID}, #{DC_TYP}, #{DC_RATE}, #{DC_AMT}, #{DC_PRICE}, #{BGN_DTM},#{END_DTM}, #{DC_STUS});-->
+<!--    </insert>-->
+
+
+
+
+    <!--    <insert id="insertOption" parameterType="ProductOptionDto">-->
+<!--        INSERT INTO OPT-->
+<!--            (OPT_NM, OPT_VAL)-->
+<!--        VALUES (#{OPT_NM}, #{OPT_VAL})-->
+<!--    </insert>-->
+
+
+
+
+
+<!--        <insert id="insertHashtag" parameterType="ProductHashtagDto">-->
+<!--        INSERT INTO HASHTAG-->
+<!--            (HASHTAG_NM)-->
+<!--        VALUES (#{HASHTAG_NM})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertFile" parameterType="ProductFileDto">-->
+<!--        INSERT INTO FILE-->
+<!--            (FILE_NM, PATH, KIND, REG_DTM)-->
+<!--        VALUES (#{FILE_NM}, #{PATH}, #{KIND}, #{REG_DTM})-->
+<!--    </insert>-->
+
+
+
+<!--    &lt;!&ndash;관리자 상품 수정 업데이트 &ndash;&gt;-->
+
+
+    <update id="updateProduct" parameterType="RegisterDto">
+        UPDATE PROD
+        SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},
+            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},
+            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}
+        WHERE PROD_ID = #{PROD_ID};
+    </update>
+
+    <!--    <update id="updateProduct" parameterType="RegisterDto">-->
+<!--        UPDATE PROD SET-->
+<!--                        CATE_CD = #{CATE_CD},-->
+<!--                        AMT = #{AMT},-->
+<!--                        PROD_NM = #{PROD_NM},-->
+<!--&#45;&#45;                         REP_IMG = #{REP_IMG},-->
+<!--                        PROD_DESC = #{PROD_DESC},-->
+<!--                        DC_YN = #{DC_YN},-->
+<!--                        MAI_YN = #{MAI_YN},-->
+<!--                        NEW_YN = #{NEW_YN},-->
+<!--&#45;&#45;                         OPT_YN = #{ OPT_YN },-->
+<!--                        PROD_STUS = #{PROD_STUS}-->
+<!--&#45;&#45;                         UPD_DTM =#{ UPD_DTM}-->
+<!--        WHERE PROD_ID = #{PROD_ID}-->
+<!--    </update>-->
+
+<!--    <update id="updateDiscount" parameterType="ProductDCDto">-->
+<!--        UPDATE PROD_DC SET-->
+<!--                           DC_TYP = #{dcTyp},-->
+<!--                           DC_RATE = #{dcRate},-->
+<!--                           DC_AMT = #{dcAmt}-->
+<!--        WHERE PROD_DC_ID = #{PROD_DC_ID}-->
+<!--    </update>-->
+
+<!--    <update id="updateOption" parameterType="ProductOptionDto">-->
+<!--        UPDATE OPT SET-->
+<!--                       OPT_NM = #{optNm},-->
+<!--                       OPT_VAL = #{optVal}-->
+<!--        WHERE OPT_ID = #{OPT_ID}-->
+<!--    </update>-->
+
+<!--    <update id="updateHashtag" parameterType="ProductHashtagDto">-->
+<!--        UPDATE HASHTAG SET-->
+<!--            HASHTAG_NM = #{hashtagNm}-->
+<!--        WHERE HASHTAG_ID = #{HASHTAG_ID}-->
+<!--    </update>-->
+
+<!--    <update id="updateFile" parameterType="ProductFileDto">-->
+<!--        UPDATE FILE SET-->
+<!--                        FILE_NM = #{fileNm},-->
+<!--                        PATH = #{path},-->
+<!--                        KIND = #{kind},-->
+<!--                        REG_DTM = #{regDtm}-->
+<!--                        UPD_DTM =#{updDtm}-->
+<!--        WHERE FILE_ID = #{FILE_ID}-->
+<!--    </update>-->
+
+
+
 
 </mapper>

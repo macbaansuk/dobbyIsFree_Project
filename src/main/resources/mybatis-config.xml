@@ -25,9 +25,6 @@
         <typeAlias alias="SearchCondition" type="com.dobby.project.soo.SearchCondition"/>
 
 
-        <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
-        <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
-        <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
 
         <!--    hwa    -->
         <typeAlias alias="CartDto" type="com.dobby.project.hwa.cart.CartDto"/>
@@ -40,6 +37,27 @@
         <typeAlias alias="PointDto" type="com.dobby.project.hwa.order.PointDto"/>
         <typeAlias alias="ProdCntDto" type="com.dobby.project.hwa.orderList.ProdCntDto"/>
         <typeAlias alias="OrdProdInfoDto" type="com.dobby.project.hwa.orderList.OrdProdInfoDto"/>
+
+
+
+
+
+
+
+
+
+
+        <!--    sun    -->
+        <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
+        <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
+        <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
+        <typeAlias alias="TotalDto" type="com.dobby.project.sun.domain.TotalDto"/>
+        <typeAlias alias="ProductOptionDto" type="com.dobby.project.sun.domain.ProductOptionDto"/>
+        <typeAlias alias="ProductHashtagDto" type="com.dobby.project.sun.domain.ProductHashtagDto"/>
+        <typeAlias alias="ProductFileDto" type="com.dobby.project.sun.domain.ProductFileDto"/>
+        <typeAlias alias="RegisterDto" type="com.dobby.project.sun.domain.RegisterDto"/>
+
+
 
     </typeAliases>
 

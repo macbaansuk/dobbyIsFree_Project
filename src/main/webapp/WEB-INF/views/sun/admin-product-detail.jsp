@@ -20,16 +20,16 @@
 
 <section class="contents">
     <div class="product-topview">
-        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
+        <img src="${adminProdRead.rep_img}" alt="상품 상세이미지">
 
 
         <div class="product-detail">
-            <h2>${productDetail.PROD_NM}</h2>
-            <p> ${productDetail.PROD_DESC}</p>
+            <h2>${adminProdRead.prod_nm}</h2>
+            <p> ${adminProdRead.prod_desc}</p>
 
             <div class="star-wrap">
                 <i class="fas fa-star"></i>
-                <span class="star-rating">${productDetail.AVG_ASCR} (${productDetail.REVW_NCNT})</span>
+                <span class="star-rating">${adminProdRead.avg_ascr} (${adminProdRead.revw_ncnt})</span>
             </div>
 
 
@@ -43,19 +43,19 @@
                 <dl>
                     <dt>판매가</dt>
                     <c:choose>
-                        <c:when test="${productDetail.DC_YN == 'N'}">
-                            <strong class="discount-price">${productDetail.AMT}원</strong>
+                        <c:when test="${adminProdRead.dc_yn == 'N'}">
+                            <strong class="discount-price">${adminProdRead.amt}원</strong>
                             <span class="original-price"></span>
                             <span class="discount-rate"></span>
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="dc" items="${Products_DC}">
-                                <c:if test="${productDetail.PROD_ID == dc.PROD_ID}">
-                                    <strong class="discount-price">${dc.DC_PRICE}원</strong>
-                                    <span class="discount-rate">${dc.DC_RATE}%</span>
+                                <c:if test="${adminProdRead.prod_id == dc.prod_id}">
+                                    <strong class="discount-price">${dc.dc_price}원</strong>
+                                    <span class="discount-rate">${dc.dc_rate}%</span>
                                 </c:if>
                             </c:forEach>
-                            <span class="original-price">${productDetail.AMT}</span>
+                            <span class="original-price">${adminProdRead.amt}</span>
                         </c:otherwise>
                     </c:choose>
                 </dl>
@@ -81,9 +81,9 @@
                         </dt>
                         <dd>
                             <div class="quantity">
-                                <button id="minus">-</button>
+                                <button id="minus" disabled>-</button>
                                 <input id="quantity" type="text" value="1" readonly>
-                                <button id="plus">+</button>
+                                <button id="plus" disabled>+</button>
                             </div>
                         </dd>
 
@@ -101,43 +101,6 @@
                 </div>
 
 
-
-                <script>
-                    $(document).ready(function () {
-                        const price = parseInt($('.discount-price').text());
-                        let quantity = parseInt($('#quantity').val());
-                        let total = price * quantity;
-                        updateTotal(total);
-
-                        // 총 금액 업데이트
-                        function updateTotal(newTotal) {
-                            $('div.product-purchase p:last-child span').text(newTotal.toLocaleString() + '원');
-                        }
-
-                        // 수량 증가
-                        $('#plus').click(function () {
-                            if (quantity < 10) { // 최대 수량 10개
-                                quantity += 1;
-                                $('#quantity').val(quantity);
-                                total = price * quantity;
-                                updateTotal(total);
-                            } else {
-                                alert("최대 구매수량은 10개입니다."); // 알림창 표시
-                            }
-                        });
-                        // 수량 감소
-                        $('#minus').click(function () {
-                            if (quantity > 1) { // 최소 수량 1개
-                                quantity -= 1;
-                                $('#quantity').val(quantity);
-                                total = price * quantity;
-                                updateTotal(total);
-                            }
-                        });
-                    });
-
-
-                </script>
 
 
                 <div class="btn-wrap">
@@ -158,16 +121,6 @@
     </div>
 
     </div><!--product-topview 끝-->
-
-    <script>
-        function changeHeartIcon() {
-            $('.heart-icon i').toggleClass('fa-regular fa-solid');
-        }
-
-        $('.heart-icon').click(function() {
-            changeHeartIcon();
-        });
-    </script>
 
 
 </section>
@@ -284,6 +237,7 @@
                     </ul>
                 </div>
             </div>
+            <%--            이거 텍스트로 따로빼기--%>
 
 
         </div>
@@ -304,19 +258,29 @@
 
 <script>
     $(document).ready(function () {
+        //.tabs li클릭
         $('.tabs li').on('click', function () {
             const tabId = $(this).data('tab');
 
+            //모든 탭 current삭제
             $('.tab-link').removeClass('current');
+            //클릭 탭 current 추가
             $(this).find('.tab-link').addClass('current');
 
+            //모든 탭 active삭제
             $('.tab-content').removeClass('active');
+            //클릭 탭 active 추가
             $('#' + tabId).addClass('active');
         });
 
+        // 처음 탭에 current, active추가
         $('.tab-link:first').addClass('current');
         $('.tab-content:first').addClass('active');
     });
+
+
+
+    
 
 </script>
 
