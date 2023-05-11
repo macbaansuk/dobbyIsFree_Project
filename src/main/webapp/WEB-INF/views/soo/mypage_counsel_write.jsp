@@ -100,7 +100,7 @@
                         <tr>
                             <th id="content">내용</th>
                             <td>
-                                <textarea name="CN" placeholder="내용을 입력해 주세요.">${counselDto.CN}</textarea>
+                                <textarea name="CN" id="counselCn" placeholder="내용을 입력해 주세요.">${counselDto.CN}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -220,6 +220,18 @@
         window.open(popUrl,popName,popOption);
 
     });
+
+    $(document).ready(function() {
+        if ($("#title").val().trim() == "") {
+            alert("제목을 입력해주세요.");
+            return false;
+        }
+        if($("#counselCn").val().trim() =="") {
+            alert("내용을 입력해주세요.");
+            return false;
+        }
+    })
+
 </script>
 
 
