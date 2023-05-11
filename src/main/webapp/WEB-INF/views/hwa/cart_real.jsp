@@ -45,6 +45,13 @@
 
                             <script>
                                 $(".selectDelete_btn").click(function () {
+                                    const ckBox = $("input.chBox:checked");
+
+                                    //체크되어있지 않으면
+                                    if (ckBox.length === 0) {
+                                        alert("선택하신 목록이 없습니다.");
+                                        return;
+                                    }
                                     const confirm_val = confirm("선택한 목록을 삭제하시겠습니까?");
 
                                     if (confirm_val) {
@@ -54,6 +61,7 @@
                                         $("input[class='chBox']:checked").each(function () {
                                             checkArr.push(Number($(this).attr("data-cartId")));  // 배열에 데이터 삽입
                                         });
+
                                         console.log(checkArr)
                                         $.ajax({
                                             headers: {
@@ -344,7 +352,7 @@
 
                                                     $itemQuantity.text(updatedProdQuantity);
                                                     $itemTotal.text(updatedProdTotal + " 원");
-                                                    $itemPoints.text(updatedProdPoints + " P");
+                                                    $itemPoints.text(updatedProdPoints.toLocaleString() + " P");
 
                                                     setTotalInfo();
                                                 }

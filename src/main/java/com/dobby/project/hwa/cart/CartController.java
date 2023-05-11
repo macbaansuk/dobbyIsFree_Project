@@ -149,7 +149,8 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
         map.put("prod_amt", String.format("%,d", prodAmt)); // json -> 문자열 변환
         map.put("prod_quantity", String.valueOf(prodQuantity));
         map.put("prod_total", String.format("%,d", prodTotal));
-        map.put("prod_points", String.valueOf(prodPoints));
+        map.put("prod_points", String.format("%,d",prodPoints));
+//        map.put("prod_points", String.valueOf(prodPoints));
 
 
         return ResponseEntity.ok(map);  //이렇게 delete 수정
