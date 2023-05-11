@@ -28,6 +28,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<SortDto> Cate_Products_DC() throws Exception {
+        return session.selectList("Cate_Products_DC");
+    }
+
+    @Override
     public ProductDto getProductById(int id) throws Exception {
         return session.selectOne(namespace + "getProductById", id);
     }
@@ -53,42 +58,28 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "count");
     }
 
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort) {
-//        HashMap<String, Object> params = new HashMap<>();
-//        params.put("CATE_CD", CATE_CD);
-//        params.put("sort", sort);
-//        return session.selectList("getProductsByCategoryAndSort", params);
-//    }
-
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort) {
-//        HashMap<String, Object> params = new HashMap<>();
-//        params.put("category", CATE_CD);
-//        params.put("sort", sort);
-//        return session.selectList("getProductsByCategoryAndSort", params);
-//    }
-
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(Map<String, Object> map) {
-//        return session.selectList("getProductsByCategoryAndSort", map);
-//    }
-
     @Override
-    public List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort){
+    public List<SortDto> getProductsByCategoryAndSort(int category, String sort){
         Map<String, Object> map = new HashMap<>();
         map.put("category", category);
         map.put("sort", sort);
         return session.selectList("getProductsByCategoryAndSort", map);
     }
+//
+//
+//    @Override
+//    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort){
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("category", category);
+//        map.put("sort", sort);
+//        return session.selectList("getProductsByCategoryAndSort", map);
+//    }
 
     @Override
     public TotalDto getAdminProductsById(Integer id) {
         return session.selectOne("getAdminProductsById", id);
     }
 
-
-    //관리자 상품 삭제
     @Override
     public int deleteProductOpt(Integer id) {
         return session.delete(namespace + "deleteProductOpt", id);
@@ -115,7 +106,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
 
-    //    @Override
+//    @Override
 //    public void insertProduct(ProductDto productDto) {
 //        session.insert("insertProduct",productDto);
 //    }
@@ -139,6 +130,23 @@ public class ProductDaoImpl implements ProductDao {
     public void updateProduct(RegisterDto registerDto) {
         session.update("updateProduct",registerDto);
     }
+
+    //    @Override
+//    public void insertOption(ProductOptionDto productOptionDto) {
+//        session.insert("insertOption", productOptionDto);
+
+//    }
+
+
+//    @Override
+//    public void insertHashtag(ProductHashtagDto productHashtagDto) {
+//             session.insert("insertHashtag", productHashtagDto);
+//
+//    }
+//    @Override
+//    public void insertFile(ProductFileDto productFileDto) {
+//        session.insert("insertFile", productFileDto);
+//    }
 
 
 }

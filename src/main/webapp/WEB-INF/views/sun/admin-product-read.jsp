@@ -57,9 +57,9 @@
             <h2>상품 관리</h2>
             <ul class="admin-ul">
                 <li class="on"><a href="#" onfocus="this.blur();">상품 관리</a></li>
-                    <ul>
-                        <li><a href="/admin/product/list" onfocus="this.blur();">상품목록</a></li>
-                    </ul>
+                <ul>
+                    <li><a href="/admin/product/list" onfocus="this.blur();">상품목록</a></li>
+                </ul>
 
             </ul>
         </div><!-- //admin-left// -->
@@ -68,11 +68,11 @@
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
             <div class="content">
 
-<%--                <form id="productForm">--%>
-                 <form id="productForm" action="<c:url value='/admin/product/modify'/>" method="POST">
+                <%--                <form id="productForm">--%>
+                <form id="productForm" action="<c:url value='/admin/product/modify'/>" method="POST">
 
-                     <table class="product-table">
-<%--                        <input type="hidden" name="prod_id" value="${read.prod_id}">--%>
+                    <table class="product-table">
+                        <%--                        <input type="hidden" name="prod_id" value="${read.prod_id}">--%>
                         <thead>
                         <tr>
                             <th colspan="2">상품 정보</th>
@@ -87,10 +87,10 @@
                                 <label for="product-status">상품 상태</label>
                             </td>
                             <td>
-                                <select id="product-status" name="prod_stus" >
-                                    <option value="판매대기" ${read.prod_stus == '판매대기' ? 'selected' : ''}>판매대기</option>
-                                    <option value="판매" ${read.prod_stus == '판매' ? 'selected' : ''}>판매</option>
-                                    <option value="판매안함" ${read.prod_stus== '판매안함' ? 'selected' : ''}>판매안함</option>
+                                <select id="product-status" name="PROD_STUS" >
+                                    <option value="판매대기" ${read.PROD_STUS == '판매대기' ? 'selected' : ''}>판매대기</option>
+                                    <option value="판매" ${read.PROD_STUS == '판매' ? 'selected' : ''}>판매</option>
+                                    <option value="판매안함" ${read.PROD_STUS== '판매안함' ? 'selected' : ''}>판매안함</option>
                                 </select>
 
 
@@ -104,11 +104,11 @@
                                 <label for="category">카테고리</label>
                             </td>
                             <td>
-                                <select id="category" name="cate_cd" >
-                                    <option value=1 ${read.cate_cd == 1 ? 'selected' : ''}>스킨케어</option>
-                                    <option value=2 ${read.cate_cd == 2 ? 'selected' : ''}>메이크업</option>
-                                    <option value=3 ${read.cate_cd == 3 ? 'selected' : ''}>남성</option>
-                                    <option value=4 ${read.cate_cd == 4 ? 'selected' : ''}>헤어/바디</option>
+                                <select id="category" name="CATE_CD" >
+                                    <option value=1 ${read.CATE_CD == 1 ? 'selected' : ''}>스킨케어</option>
+                                    <option value=2 ${read.CATE_CD == 2 ? 'selected' : ''}>메이크업</option>
+                                    <option value=3 ${read.CATE_CD == 3 ? 'selected' : ''}>남성</option>
+                                    <option value=4 ${read.CATE_CD == 4 ? 'selected' : ''}>헤어/바디</option>
                                 </select>
 
 
@@ -119,7 +119,7 @@
                                 <label for="product-name">상품명</label>
                             </td>
                             <td>
-                                <input type="text" id="product-name" name="prod_nm" value="${read.prod_nm}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="text" id="product-name" name="PROD_NM" value="${read.PROD_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +127,7 @@
                                 <label for="product-description">상품 설명</label>
                             </td>
                             <td>
-                                <textarea id="product-description" name="prod_desc" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>${read.prod_desc}</textarea>
+                                <textarea id="product-description" name="PROD_DESC" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>${read.PROD_DESC}</textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -143,10 +143,10 @@
                                 <label>신상품 여부</label>
                             </td>
                             <td>
-                                    <input type="radio" id="new-use" name="new_yn" value="Y" ${ read.new_yn == 'Y' ? 'checked' :'' } >
-                                    <label for="new-use">사용</label>
-                                    <input type="radio" id="new-not-use" name="new_yn" value="N" ${ read.new_yn == 'N' ? 'checked' :'' } >
-                                    <label for="new-not-use">사용 안함</label>
+                                <input type="radio" id="new-use" name="NEW_YN" value="Y" ${ read.NEW_YN == 'Y' ? 'checked' :'' } >
+                                <label for="new-use">사용</label>
+                                <input type="radio" id="new-not-use" name="NEW_YN" value="N" ${ read.NEW_YN == 'N' ? 'checked' :'' } >
+                                <label for="new-not-use">사용 안함</label>
 
                             </td>
                         </tr>
@@ -155,41 +155,41 @@
                                 <label>메인진열 여부</label>
                             </td>
                             <td>
-                                <input type="radio" id="main-use" name="mai_yn" value="Y" ${read.mai_yn == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-use" name="MAI_YN" value="Y" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
                                 <label for="main-use">사용</label>
-                                <input type="radio" id="main-not-use" name="mai_yn" value="N" ${read.mai_yn == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-not-use" name="MAI_YN" value="N" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
                                 <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
-<%--                        <tr>--%>
-<%--                            <td>--%>
-<%--                                <label>옵션 사용</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <input type="radio" id="option-use"  name="option-availability" value="use" ${read.OPT_YN=='Y' ? 'checked' : ''} >--%>
-<%--                                <label for="option-use">사용</label>--%>
-<%--                                <input type="radio" id="option-not-use" name="option-availability" value="not-use" ${read.OPT_YN =='N' ? 'checked' : ''} >--%>
-<%--                                <label for="option-not-use">사용 안함</label>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td>--%>
+                        <%--                                <label>옵션 사용</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <input type="radio" id="option-use"  name="option-availability" value="use" ${read.OPT_YN=='Y' ? 'checked' : ''} >--%>
+                        <%--                                <label for="option-use">사용</label>--%>
+                        <%--                                <input type="radio" id="option-not-use" name="option-availability" value="not-use" ${read.OPT_YN =='N' ? 'checked' : ''} >--%>
+                        <%--                                <label for="option-not-use">사용 안함</label>--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
 
 
-<%--                        <tr class="option-row" style="display: none;">--%>
-<%--                            <td>--%>
-<%--                                <label for="option-name">옵션명</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <input type="text" id="option-name" name="option-name"  value="${read.OPT_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr class="option-row" style="display: none;">--%>
-<%--                            <td>--%>
-<%--                                <label for="option-value">옵션값</label>--%>
-<%--                            </td>--%>
-<%--                            <td colspan="3">--%>
-<%--                                <input type="text" id="option-value" name="option-value" value="${read.OPT_VAL}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
+                        <%--                        <tr class="option-row" style="display: none;">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="option-name">옵션명</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <input type="text" id="option-name" name="option-name"  value="${read.OPT_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr class="option-row" style="display: none;">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="option-value">옵션값</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td colspan="3">--%>
+                        <%--                                <input type="text" id="option-value" name="option-value" value="${read.OPT_VAL}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
 
 
                         <thead>
@@ -202,99 +202,99 @@
                                 <label for="price">가격</label>
                             </td>
                             <td>
-                                <input type="number" id="price" name="amt" value="${read.amt}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="number" id="price" name="AMT" value="${read.AMT}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
                             </td>
                         </tr>
-<%--                        <tr>--%>
-<%--                            <td>--%>
-<%--                                <label>할인 여부</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <input type="radio" id="discount-use" name="discount-availability" value="use" ${read.DC_YN=='Y' ? 'checked' : ''} >--%>
-<%--                                <label for="discount-use">할인 적용</label>--%>
-<%--                                <input type="radio" id="discount-not-use" name="discount-availability" value="not-use" ${read.DC_YN=='N' ? 'checked' : ''} >--%>
-<%--                                <label for="discount-not-use">할인 적용 안함</label>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td>--%>
+                        <%--                                <label>할인 여부</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <input type="radio" id="discount-use" name="discount-availability" value="use" ${read.DC_YN=='Y' ? 'checked' : ''} >--%>
+                        <%--                                <label for="discount-use">할인 적용</label>--%>
+                        <%--                                <input type="radio" id="discount-not-use" name="discount-availability" value="not-use" ${read.DC_YN=='N' ? 'checked' : ''} >--%>
+                        <%--                                <label for="discount-not-use">할인 적용 안함</label>--%>
 
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr class="discount-row">--%>
-<%--                            <td>--%>
-<%--                                <label for="discount-rate">할인율</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <input type="number" id="discount-rate" name="discount-rate" value="${read.DC_RATE}">--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr class="discount-row">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="discount-rate">할인율</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <input type="number" id="discount-rate" name="discount-rate" value="${read.DC_RATE}">--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
 
-<%--                        <tr class="discount-row">--%>
-<%--                            <td>--%>
-<%--                                <label for="discount-amount">할인 금액</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <input type="number" id="discount-amount" name="discount-amount" value="${read.DC_AMT}" >--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr class="discount-row">--%>
-<%--                            <td>--%>
-<%--                                <label for="discount-start">할인 시작일</label>--%>
-<%--                            </td>--%>
-<%--                            <td colspan="3">--%>
-<%--                                <input type="date" autocomplete="off" id="discount-start" name="discount-period" value="${read.BGN_DTM}">--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr class="discount-row">--%>
-<%--                            <td>--%>
-<%--                                <label for="discount-end">할인 종료일</label>--%>
-<%--                            </td>--%>
-<%--                            <td colspan="3">--%>
-<%--                                <input type="date" autocomplete="off" id="discount-end" name="discount-period" value="${read.END_DTM}" >--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-
-
-
-<%--                        <thead>--%>
-<%--                        <tr>--%>
-<%--                            <th colspan="2">상품 이미지</th>--%>
-<%--                        </tr>--%>
-<%--                        </thead>--%>
-<%--                        <tr>--%>
-<%--                            <td>--%>
-<%--                                <label>대표 이미지</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <img id="main-image-preview" src="${read.REP_IMG}" alt="${read.PROD_NM}">--%>
-<%--                            </td>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-
-<%--                        <tr>--%>
-<%--                            <td>--%>
-<%--                                <label>상세정보 이미지</label>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <img id="detail-image-preview" src="${read.PATH}" alt="${read.PROD_NM}상세이미지">--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
+                        <%--                        <tr class="discount-row">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="discount-amount">할인 금액</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <input type="number" id="discount-amount" name="discount-amount" value="${read.DC_AMT}" >--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr class="discount-row">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="discount-start">할인 시작일</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td colspan="3">--%>
+                        <%--                                <input type="date" autocomplete="off" id="discount-start" name="discount-period" value="${read.BGN_DTM}">--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr class="discount-row">--%>
+                        <%--                            <td>--%>
+                        <%--                                <label for="discount-end">할인 종료일</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td colspan="3">--%>
+                        <%--                                <input type="date" autocomplete="off" id="discount-end" name="discount-period" value="${read.END_DTM}" >--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
 
 
-<%--                        <thead>--%>
-<%--                        <tr>--%>
-<%--                            <th colspan="2">해시태그</th>--%>
-<%--                        </tr>--%>
-<%--                        </thead>--%>
-<%--                        <tr>--%>
-<%--                            <td><label for="hashtag">해시태그</label></td>--%>
-<%--                            <td colspan="3">--%>
-<%--                                <input type="text" id="hashtag" name="hashtag" placeholder="예: #스킨케어 #메이크업" value="${read.HASHTAG_NM}">--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
+
+                        <%--                        <thead>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <th colspan="2">상품 이미지</th>--%>
+                        <%--                        </tr>--%>
+                        <%--                        </thead>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td>--%>
+                        <%--                                <label>대표 이미지</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <img id="main-image-preview" src="${read.REP_IMG}" alt="${read.PROD_NM}">--%>
+                        <%--                            </td>--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+
+                        <%--                        <tr>--%>
+                        <%--                            <td>--%>
+                        <%--                                <label>상세정보 이미지</label>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <img id="detail-image-preview" src="${read.PATH}" alt="${read.PROD_NM}상세이미지">--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
+
+
+                        <%--                        <thead>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <th colspan="2">해시태그</th>--%>
+                        <%--                        </tr>--%>
+                        <%--                        </thead>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td><label for="hashtag">해시태그</label></td>--%>
+                        <%--                            <td colspan="3">--%>
+                        <%--                                <input type="text" id="hashtag" name="hashtag" placeholder="예: #스킨케어 #메이크업" value="${read.HASHTAG_NM}">--%>
+                        <%--                            </td>--%>
+                        <%--                        </tr>--%>
                     </table>
                     <div class="form-btnWrap" style="text-align: center;">
-<%--                        <button class="form-btn" type="submit" id="registerBtn">등록하기</button>--%>
+                        <%--                        <button class="form-btn" type="submit" id="registerBtn">등록하기</button>--%>
 
                         <button class="form-btn" type="submit" id="modifyBtn">수정하기</button>
-<%--                        <button class="form-btn" type="button" id="previewBtn">미리보기</button>--%>
+                        <%--                        <button class="form-btn" type="button" id="previewBtn">미리보기</button>--%>
                         <button class="form-btn" type="button" id="listBtn" >목록으로</button>
                     </div>
                 </form>
@@ -306,6 +306,24 @@
                     $('#listBtn').on("click",function (){
                         location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
                     });
+                    // $('#modifyBtn').on("click", function(event){
+                    //     event.preventDefault(); // 폼 제출을 막기 위해 사용
+                    //
+                    //     // 모든 입력 필드의 'readonly' 속성을 제거
+                    //     $('input[type="text"], input[type="number"], textarea').removeAttr('readonly');
+                    //
+                    //     // 라디오 버튼과 체크 박스를 수정 가능하도록 변경
+                    //     $('input[type="checkbox"], input[type="radio"]').prop('disabled', false);
+                    //
+                    //     // select 항목도 수정 가능하도록 변경
+                    //     $('select').prop('disabled', false);
+                    //
+                    //     // '수정하기' 버튼을 '저장하기' 버튼으로 변경
+                    //     $(this).text('저장하기').off('click').on('click', function(){
+                    //         // 여기에 폼 제출 로직을 추가
+                    //         $('#product-form').submit();
+                    //     });
+                    // });
 
 
                     $('#modifyBtn').on("click",function (event){
@@ -316,11 +334,11 @@
 
                         // 모든 입력 필드를 수정 가능하게 만듦
                         $('input, select, textarea').prop('readonly', false);
-                        $('input[type="radio"]').off('click');
+                        $('input[type="checkbox"], input[type="radio"]').off('click');
                         $('select').off('mousedown');
 
                         // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가
-                        $('input[name="opt_yn"]').on("change", function () {
+                        $('input[name="OPT_YN"]').on("change", function () {
                             const option = $(".option-row");
                             if ($("#option-use").is(":checked")) {
                                 option.show();
@@ -329,7 +347,7 @@
                             }
                         });
 
-                        $('input[name="dc_yn"]').on("change", function () {
+                        $('input[name="DC_YN"]').on("change", function () {
                             const discount = $(".discount-row");
                             if ($("#discount-use").is(":checked")) {
                                 discount.show();

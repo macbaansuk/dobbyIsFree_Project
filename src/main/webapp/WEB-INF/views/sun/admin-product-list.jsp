@@ -140,22 +140,22 @@
                             <c:forEach var="P" items="${adminProductList}">
                                 <tr>
                                     <!--  상품 아이디 -->
-                                    <td class="nb_id">${P.prod_id}</td>
+                                    <td class="nb_id">${P.PROD_ID}</td>
                                     <!--  카테고리 -->
-                                    <td class="ttl">${P.cate_nm}</td>
+                                    <td class="ttl">${P.CATE_NM}</td>
                                     <!--  상품명 -->
-                                    <td class="bbs_cate"> <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>"><img src="${P.rep_img}" alt="상품 이미지" align="middle"> ${P.PROD_NM}</a></td>
+                                    <td class="bbs_cate"> <a href="<c:url value="/admin/product/read?id=${P.PROD_ID}&page=${page}&pageSize=${pageSize}"/>"><img src="${P.REP_IMG}" alt="상품 이미지" align="middle"> ${P.PROD_NM}</a></td>
                                     <!--  가격-->
 
-                                    <td class="wrtr">${P.amt}</td>
+                                    <td class="wrtr">${P.AMT}</td>
                                     <!--  상태 -->
-                                    <td class="stus">${P.prod_stus}</td>
+                                    <td class="stus">${P.PROD_STUS}</td>
                                     <!--  등록일시 -->
-                                    <td class="reg_dtm"><fmt:formatDate value="${P.reg_dtm}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
+                                    <td class="reg_dtm"><fmt:formatDate value="${P.REG_DTM}" pattern="yyyy-MM-dd " type="date"/></td>
                                     <!--  수정, 삭제버튼 -->
                                     <td>
 <%--                                        <button id="modifyBtn" type="submit">수정</button>--%>
-                                        <button id="removeBtn" type="button" onclick="deleteProduct(${P.prod_id})">삭제</button>
+                                        <button id="removeBtn" type="button" onclick="deleteProduct(${P.PROD_ID})">삭제</button>
                                     </td>
                                 </tr>
                             </c:forEach>

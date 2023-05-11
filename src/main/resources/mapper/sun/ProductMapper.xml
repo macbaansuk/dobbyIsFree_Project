@@ -42,6 +42,27 @@
         WHERE P.DC_YN = 'Y';
     </select>
 
+
+    <select id="Cate_Products_DC" resultType="SortDto">
+        SELECT P.PROD_ID,
+               P.PROD_NM,
+               P.AMT,
+               PD.DC_TYP,
+               PD.DC_RATE,
+               PD.DC_AMT,
+               (CASE
+                    WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
+                    WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
+                    ELSE P.AMT
+                   END) AS dc_price
+        FROM Prod AS P
+                 LEFT JOIN
+             Prod_DC AS PD
+             ON
+                 P.PROD_ID = PD.PROD_ID
+        WHERE P.DC_YN = 'Y';
+    </select>
+
     <!-- 상품 아이디로 상품 상세 불러오기 -->
     <select id="getProductById" parameterType="int" resultType="ProductDto">
         SELECT *
@@ -61,7 +82,27 @@
 
 
     <!--카테고리별 상품 목록페이지 정렬 버튼 구현 -->
-    <select id="getProductsByCategoryAndSort" parameterType="map" resultType="ProductDCDto">
+<!--    <select id="getProductsByCategoryAndSort" parameterType="map" resultType="ProductDCDto">-->
+<!--        SELECT P.*,-->
+<!--        PD.DC_RATE,-->
+<!--        PD.DC_TYP,-->
+<!--        (CASE-->
+<!--        WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)-->
+<!--        WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT-->
+<!--        ELSE P.AMT-->
+<!--        END) AS DC_PRICE-->
+<!--        FROM PROD P-->
+<!--        LEFT JOIN Prod_DC AS PD-->
+<!--        ON P.PROD_ID = PD.PROD_ID-->
+<!--        WHERE P.CATE_CD = #{category}-->
+<!--        ORDER BY-->
+<!--        <choose>-->
+<!--            <when test="sort == 'latest'">P.REG_DTM DESC</when>-->
+<!--            <when test="sort == 'highest_price'">DC_PRICE DESC</when>-->
+<!--            <when test="sort == 'lowest_price'">DC_PRICE ASC</when>-->
+<!--        </choose>-->
+<!--    </select>-->
+    <select id="getProductsByCategoryAndSort" parameterType="map" resultType="SortDto">
         SELECT P.*,
         PD.DC_RATE,
         PD.DC_TYP,
@@ -69,7 +110,7 @@
         WHEN PD.DC_TYP = 'percentage' THEN P.AMT * (1 - PD.DC_RATE / 100)
         WHEN PD.DC_TYP = 'fixed' THEN P.AMT - PD.DC_AMT
         ELSE P.AMT
-        END) AS DC_PRICE
+        END) AS dc_price
         FROM PROD P
         LEFT JOIN Prod_DC AS PD
         ON P.PROD_ID = PD.PROD_ID
@@ -77,8 +118,8 @@
         ORDER BY
         <choose>
             <when test="sort == 'latest'">P.REG_DTM DESC</when>
-            <when test="sort == 'highest_price'">DC_PRICE DESC</when>
-            <when test="sort == 'lowest_price'">DC_PRICE ASC</when>
+            <when test="sort == 'highest_price'">dc_price DESC</when>
+            <when test="sort == 'lowest_price'">dc_price ASC</when>
         </choose>
     </select>
 
@@ -121,29 +162,29 @@
     <delete id="deleteProductFinal" parameterType="int">
         DELETE
         FROM PROD
-        WHERE PROD_ID = #{PROD_ID};
+        WHERE PROD_ID = #{id};
     </delete>
 
 
     <delete id="deleteProductHashtag" parameterType="int">
         DELETE
         FROM PROD_HASHTAG
-        WHERE PROD_ID = #{PROD_ID};
+        WHERE PROD_ID = #{id};
     </delete>
     <delete id="deleteProductOpt" parameterType="int">
         DELETE
         FROM PROD_OPT
-        WHERE PROD_ID = #{PROD_ID};
+        WHERE PROD_ID = #{id};
     </delete>
     <delete id="deleteProductDc" parameterType="int">
         DELETE
         FROM PROD_DC
-        WHERE PROD_ID = #{PROD_ID};
+        WHERE PROD_ID = #{id};
     </delete>
     <delete id="deleteFile" parameterType="int">
         DELETE
         FROM FILE
-        WHERE PROD_ID = #{PROD_ID};
+        WHERE PROD_ID = #{id};
     </delete>
 
 

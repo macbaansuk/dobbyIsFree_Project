@@ -4,464 +4,443 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class TotalDto {
-    private Integer prod_id;
-    private String cate_cd;
-    private Integer amt;
-    private String prod_nm;
-    private String rep_img;
-    private Integer avg_ascr;
-    private Integer revw_ncnt;
-    private Integer inv_qty;
-    private String new_yn;
-    private String prod_stus;
-    private String opt_yn;
-    private String prod_desc;
-    private String dc_yn;
-    private String mai_yn;
-    private String fgift_yn;
-    private Date upd_dtm;
-    private Date reg_dtm;
-    private String notice;
-    private Date sle_bgn_dtm;
-    private Date sle_end_dtm;
+    private Integer PROD_ID;
+    private Integer CATE_CD;
+    private Integer AMT;
+    private String PROD_NM;
+    private String REP_IMG;
+    private Integer AVG_ASCR;
+    private Integer REWV_NCNT;
+    private Integer INV_QTY;
+    private String NEW_YN;
+    private String PROD_STUS;
+    private String OPT_YN;
+    private String PROD_DESC;
+    private String DC_YN;
+    private String MAI_YN;
+    private String FGIFT_YN;
+    private Date UPD_DTM;
+    private Date REG_DTM;
+    private String NOTICE;
+    private Date SLE_BGN_DTM;
+    private Date SLE_END_DTM;
 
+    private Integer PROD_DC_ID;
+    private String DC_TYP;
+    private Integer DC_RATE;
+    private Integer DC_AMT;
+    private Integer DC_PRICE;
+    private Date BGN_DTM;
+    private Date END_DTM;
+    private String DC_STUS;
 
+    private Integer OPT_ID;
+    private String OPT_NM;
+    private String OPT_VAL;
+    private String OPT_STUS;
 
-    private Integer prod_dc_id;
-    private String dc_typ;
-    private Integer dc_rate;
-    private Integer dc_amt;
-    private Integer dc_price;
-    private Date bgn_dtm;
-    private Date end_dtm;
-    private String dc_stus;
+    private Integer HASHTAG_ID;
+    private String HASHTAG_NM;
 
-
-    private Integer opt_id;
-    private String opt_nm;
-    private String opt_val;
-    private String opt_stus;
-
-
-    private Integer hashtag_id;
-    private String hashtag_nm;
-
-
-    private Integer prod_file_id;
-    private String file_nm;
-    private String path;
-    private String kind;
-
-
+    private Integer PROD_FILE_ID;
+    private String FILE_NM;
+    private String PATH;
+    private String KIND;
 
 
     public TotalDto() {
     }
 
+    public TotalDto(Integer PROD_ID, Integer CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REWV_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, Integer PROD_DC_ID, String DC_TYP, Integer DC_RATE, Integer DC_AMT, Integer DC_PRICE, Date BGN_DTM, Date END_DTM, String DC_STUS, Integer OPT_ID, String OPT_NM, String OPT_VAL, String OPT_STUS, Integer HASHTAG_ID, String HASHTAG_NM, Integer PROD_FILE_ID, String FILE_NM, String PATH, String KIND) {
 
-    public TotalDto(Integer prod_id, String cate_cd, Integer amt, String prod_nm, String rep_img, Integer avg_ascr, Integer revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String prod_desc, String dc_yn, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm, String notice, Date sle_bgn_dtm, Date sle_end_dtm, Integer prod_dc_id, String dc_typ, Integer dc_rate, Integer dc_amt, Integer dc_price, Date bgn_dtm, Date end_dtm, String dc_stus, Integer opt_id, String opt_nm, String opt_val, String opt_stus, Integer hashtag_id, String hashtag_nm,Integer prod_file_id, String file_nm, String path, String kind) {
-
-        this.prod_id = prod_id;
-        this.cate_cd = cate_cd;
-        this.amt = amt;
-        this.prod_nm = prod_nm;
-        this.rep_img = rep_img;
-        this.avg_ascr = avg_ascr;
-        this.revw_ncnt = revw_ncnt;
-        this.inv_qty = inv_qty;
-        this.new_yn = new_yn;
-        this.prod_stus = prod_stus;
-        this.opt_yn = opt_yn;
-        this.prod_desc = prod_desc;
-        this.dc_yn = dc_yn;
-        this.mai_yn = mai_yn;
-        this.fgift_yn = fgift_yn;
-        this.upd_dtm = upd_dtm;
-        this.reg_dtm = reg_dtm;
-        this.notice = notice;
-        this.sle_bgn_dtm = sle_bgn_dtm;
-        this.sle_end_dtm = sle_end_dtm;
-        this.prod_dc_id = prod_dc_id;
-        this.dc_typ = dc_typ;
-        this.dc_rate = dc_rate;
-        this.dc_amt = dc_amt;
-        this.dc_price = dc_price;
-        this.bgn_dtm = bgn_dtm;
-        this.end_dtm = end_dtm;
-        this.dc_stus = dc_stus;
-        this.opt_id = opt_id;
-        this.opt_nm = opt_nm;
-        this.opt_val = opt_val;
-        this.opt_stus = opt_stus;
-        this.hashtag_id = hashtag_id;
-        this.hashtag_nm = hashtag_nm;
-        this.prod_file_id = prod_file_id;
-        this.file_nm = file_nm;
-        this.path = path;
-        this.kind = kind;
+        this.PROD_ID = PROD_ID;
+        this.CATE_CD = CATE_CD;
+        this.AMT = AMT;
+        this.PROD_NM = PROD_NM;
+        this.REP_IMG = REP_IMG;
+        this.AVG_ASCR = AVG_ASCR;
+        this.REWV_NCNT = REWV_NCNT;
+        this.INV_QTY = INV_QTY;
+        this.NEW_YN = NEW_YN;
+        this.PROD_STUS = PROD_STUS;
+        this.OPT_YN = OPT_YN;
+        this.PROD_DESC = PROD_DESC;
+        this.DC_YN = DC_YN;
+        this.MAI_YN = MAI_YN;
+        this.FGIFT_YN = FGIFT_YN;
+        this.UPD_DTM = UPD_DTM;
+        this.REG_DTM = REG_DTM;
+        this.NOTICE = NOTICE;
+        this.SLE_BGN_DTM = SLE_BGN_DTM;
+        this.SLE_END_DTM = SLE_END_DTM;
+        this.PROD_DC_ID = PROD_DC_ID;
+        this.DC_TYP = DC_TYP;
+        this.DC_RATE = DC_RATE;
+        this.DC_AMT = DC_AMT;
+        this.DC_PRICE = DC_PRICE;
+        this.BGN_DTM = BGN_DTM;
+        this.END_DTM = END_DTM;
+        this.DC_STUS = DC_STUS;
+        this.OPT_ID = OPT_ID;
+        this.OPT_NM = OPT_NM;
+        this.OPT_VAL = OPT_VAL;
+        this.OPT_STUS = OPT_STUS;
+        this.HASHTAG_ID = HASHTAG_ID;
+        this.HASHTAG_NM = HASHTAG_NM;
+        this.PROD_FILE_ID = PROD_FILE_ID;
+        this.FILE_NM = FILE_NM;
+        this.PATH = PATH;
+        this.KIND = KIND;
     }
 
-
-    public Integer getProd_id() {
-        return prod_id;
+    public Integer getPROD_ID() {
+        return PROD_ID;
     }
 
-    public void setProd_id(Integer prod_id) {
-        this.prod_id = prod_id;
+    public void setPROD_ID(Integer PROD_ID) {
+        this.PROD_ID = PROD_ID;
     }
 
-    public String getCate_cd() {
-        return cate_cd;
+    public Integer getCATE_CD() {
+        return CATE_CD;
     }
 
-    public void setCate_cd(String cate_cd) {
-        this.cate_cd = cate_cd;
+    public void setCATE_CD(Integer CATE_CD) {
+        this.CATE_CD = CATE_CD;
     }
 
-    public Integer getAmt() {
-        return amt;
+    public Integer getAMT() {
+        return AMT;
     }
 
-    public void setAmt(Integer amt) {
-        this.amt = amt;
+    public void setAMT(Integer AMT) {
+        this.AMT = AMT;
     }
 
-    public String getProd_nm() {
-        return prod_nm;
+    public String getPROD_NM() {
+        return PROD_NM;
     }
 
-    public void setProd_nm(String prod_nm) {
-        this.prod_nm = prod_nm;
+    public void setPROD_NM(String PROD_NM) {
+        this.PROD_NM = PROD_NM;
     }
 
-    public String getRep_img() {
-        return rep_img;
+    public String getREP_IMG() {
+        return REP_IMG;
     }
 
-    public void setRep_img(String rep_img) {
-        this.rep_img = rep_img;
+    public void setREP_IMG(String REP_IMG) {
+        this.REP_IMG = REP_IMG;
     }
 
-    public Integer getAvg_ascr() {
-        return avg_ascr;
+    public Integer getAVG_ASCR() {
+        return AVG_ASCR;
     }
 
-    public void setAvg_ascr(Integer avg_ascr) {
-        this.avg_ascr = avg_ascr;
+    public void setAVG_ASCR(Integer AVG_ASCR) {
+        this.AVG_ASCR = AVG_ASCR;
     }
 
-    public Integer getRevw_ncnt() {
-        return revw_ncnt;
+    public Integer getREWV_NCNT() {
+        return REWV_NCNT;
     }
 
-    public void setRevw_ncnt(Integer revw_ncnt) {
-        this.revw_ncnt = revw_ncnt;
+    public void setREWV_NCNT(Integer REWV_NCNT) {
+        this.REWV_NCNT = REWV_NCNT;
     }
 
-    public Integer getInv_qty() {
-        return inv_qty;
+    public Integer getINV_QTY() {
+        return INV_QTY;
     }
 
-    public void setInv_qty(Integer inv_qty) {
-        this.inv_qty = inv_qty;
+    public void setINV_QTY(Integer INV_QTY) {
+        this.INV_QTY = INV_QTY;
     }
 
-    public String getNew_yn() {
-        return new_yn;
+    public String getNEW_YN() {
+        return NEW_YN;
     }
 
-    public void setNew_yn(String new_yn) {
-        this.new_yn = new_yn;
+    public void setNEW_YN(String NEW_YN) {
+        this.NEW_YN = NEW_YN;
     }
 
-    public String getProd_stus() {
-        return prod_stus;
+    public String getPROD_STUS() {
+        return PROD_STUS;
     }
 
-    public void setProd_stus(String prod_stus) {
-        this.prod_stus = prod_stus;
+    public void setPROD_STUS(String PROD_STUS) {
+        this.PROD_STUS = PROD_STUS;
     }
 
-    public String getOpt_yn() {
-        return opt_yn;
+    public String getOPT_YN() {
+        return OPT_YN;
     }
 
-    public void setOpt_yn(String opt_yn) {
-        this.opt_yn = opt_yn;
+    public void setOPT_YN(String OPT_YN) {
+        this.OPT_YN = OPT_YN;
     }
 
-    public String getProd_desc() {
-        return prod_desc;
+    public String getPROD_DESC() {
+        return PROD_DESC;
     }
 
-    public void setProd_desc(String prod_desc) {
-        this.prod_desc = prod_desc;
+    public void setPROD_DESC(String PROD_DESC) {
+        this.PROD_DESC = PROD_DESC;
     }
 
-    public String getDc_yn() {
-        return dc_yn;
+    public String getDC_YN() {
+        return DC_YN;
     }
 
-    public void setDc_yn(String dc_yn) {
-        this.dc_yn = dc_yn;
+    public void setDC_YN(String DC_YN) {
+        this.DC_YN = DC_YN;
     }
 
-    public String getMai_yn() {
-        return mai_yn;
+    public String getMAI_YN() {
+        return MAI_YN;
     }
 
-    public void setMai_yn(String mai_yn) {
-        this.mai_yn = mai_yn;
+    public void setMAI_YN(String MAI_YN) {
+        this.MAI_YN = MAI_YN;
     }
 
-    public String getFgift_yn() {
-        return fgift_yn;
+    public String getFGIFT_YN() {
+        return FGIFT_YN;
     }
 
-    public void setFgift_yn(String fgift_yn) {
-        this.fgift_yn = fgift_yn;
+    public void setFGIFT_YN(String FGIFT_YN) {
+        this.FGIFT_YN = FGIFT_YN;
     }
 
-    public Date getUpd_dtm() {
-        return upd_dtm;
+    public Date getUPD_DTM() {
+        return UPD_DTM;
     }
 
-    public void setUpd_dtm(Date upd_dtm) {
-        this.upd_dtm = upd_dtm;
+    public void setUPD_DTM(Date UPD_DTM) {
+        this.UPD_DTM = UPD_DTM;
     }
 
-    public Date getReg_dtm() {
-        return reg_dtm;
+    public Date getREG_DTM() {
+        return REG_DTM;
     }
 
-    public void setReg_dtm(Date reg_dtm) {
-        this.reg_dtm = reg_dtm;
+    public void setREG_DTM(Date REG_DTM) {
+        this.REG_DTM = REG_DTM;
     }
 
-    public String getNotice() {
-        return notice;
+    public String getNOTICE() {
+        return NOTICE;
     }
 
-    public void setNotice(String notice) {
-        this.notice = notice;
+    public void setNOTICE(String NOTICE) {
+        this.NOTICE = NOTICE;
     }
 
-    public Date getSle_bgn_dtm() {
-        return sle_bgn_dtm;
+    public Date getSLE_BGN_DTM() {
+        return SLE_BGN_DTM;
     }
 
-    public void setSle_bgn_dtm(Date sle_bgn_dtm) {
-        this.sle_bgn_dtm = sle_bgn_dtm;
+    public void setSLE_BGN_DTM(Date SLE_BGN_DTM) {
+        this.SLE_BGN_DTM = SLE_BGN_DTM;
     }
 
-    public Date getSle_end_dtm() {
-        return sle_end_dtm;
+    public Date getSLE_END_DTM() {
+        return SLE_END_DTM;
     }
 
-    public void setSle_end_dtm(Date sle_end_dtm) {
-        this.sle_end_dtm = sle_end_dtm;
+    public void setSLE_END_DTM(Date SLE_END_DTM) {
+        this.SLE_END_DTM = SLE_END_DTM;
     }
 
-    public Integer getProd_dc_id() {
-        return prod_dc_id;
+    public Integer getPROD_DC_ID() {
+        return PROD_DC_ID;
     }
 
-    public void setProd_dc_id(Integer prod_dc_id) {
-        this.prod_dc_id = prod_dc_id;
+    public void setPROD_DC_ID(Integer PROD_DC_ID) {
+        this.PROD_DC_ID = PROD_DC_ID;
     }
 
-    public String getDc_typ() {
-        return dc_typ;
+    public String getDC_TYP() {
+        return DC_TYP;
     }
 
-    public void setDc_typ(String dc_typ) {
-        this.dc_typ = dc_typ;
+    public void setDC_TYP(String DC_TYP) {
+        this.DC_TYP = DC_TYP;
     }
 
-    public Integer getDc_rate() {
-        return dc_rate;
+    public Integer getDC_RATE() {
+        return DC_RATE;
     }
 
-    public void setDc_rate(Integer dc_rate) {
-        this.dc_rate = dc_rate;
+    public void setDC_RATE(Integer DC_RATE) {
+        this.DC_RATE = DC_RATE;
     }
 
-    public Integer getDc_amt() {
-        return dc_amt;
+    public Integer getDC_AMT() {
+        return DC_AMT;
     }
 
-    public void setDc_amt(Integer dc_amt) {
-        this.dc_amt = dc_amt;
+    public void setDC_AMT(Integer DC_AMT) {
+        this.DC_AMT = DC_AMT;
     }
 
-    public Integer getDc_price() {
-        return dc_price;
+    public Integer getDC_PRICE() {
+        return DC_PRICE;
     }
 
-    public void setDc_price(Integer dc_price) {
-        this.dc_price = dc_price;
+    public void setDC_PRICE(Integer DC_PRICE) {
+        this.DC_PRICE = DC_PRICE;
     }
 
-    public Date getBgn_dtm() {
-        return bgn_dtm;
+    public Date getBGN_DTM() {
+        return BGN_DTM;
     }
 
-    public void setBgn_dtm(Date bgn_dtm) {
-        this.bgn_dtm = bgn_dtm;
+    public void setBGN_DTM(Date BGN_DTM) {
+        this.BGN_DTM = BGN_DTM;
     }
 
-    public Date getEnd_dtm() {
-        return end_dtm;
+    public Date getEND_DTM() {
+        return END_DTM;
     }
 
-    public void setEnd_dtm(Date end_dtm) {
-        this.end_dtm = end_dtm;
+    public void setEND_DTM(Date END_DTM) {
+        this.END_DTM = END_DTM;
     }
 
-    public String getDc_stus() {
-        return dc_stus;
+    public String getDC_STUS() {
+        return DC_STUS;
     }
 
-    public void setDc_stus(String dc_stus) {
-        this.dc_stus = dc_stus;
+    public void setDC_STUS(String DC_STUS) {
+        this.DC_STUS = DC_STUS;
     }
 
-    public Integer getOpt_id() {
-        return opt_id;
+    public Integer getOPT_ID() {
+        return OPT_ID;
     }
 
-    public void setOpt_id(Integer opt_id) {
-        this.opt_id = opt_id;
+    public void setOPT_ID(Integer OPT_ID) {
+        this.OPT_ID = OPT_ID;
     }
 
-    public String getOpt_nm() {
-        return opt_nm;
+    public String getOPT_NM() {
+        return OPT_NM;
     }
 
-    public void setOpt_nm(String opt_nm) {
-        this.opt_nm = opt_nm;
+    public void setOPT_NM(String OPT_NM) {
+        this.OPT_NM = OPT_NM;
     }
 
-    public String getOpt_val() {
-        return opt_val;
+    public String getOPT_VAL() {
+        return OPT_VAL;
     }
 
-    public void setOpt_val(String opt_val) {
-        this.opt_val = opt_val;
+    public void setOPT_VAL(String OPT_VAL) {
+        this.OPT_VAL = OPT_VAL;
     }
 
-    public String getOpt_stus() {
-        return opt_stus;
+    public String getOPT_STUS() {
+        return OPT_STUS;
     }
 
-    public void setOpt_stus(String opt_stus) {
-        this.opt_stus = opt_stus;
+    public void setOPT_STUS(String OPT_STUS) {
+        this.OPT_STUS = OPT_STUS;
     }
 
-    public Integer getHashtag_id() {
-        return hashtag_id;
+    public Integer getHASHTAG_ID() {
+        return HASHTAG_ID;
     }
 
-    public void setHashtag_id(Integer hashtag_id) {
-        this.hashtag_id = hashtag_id;
+    public void setHASHTAG_ID(Integer HASHTAG_ID) {
+        this.HASHTAG_ID = HASHTAG_ID;
     }
 
-    public String getHashtag_nm() {
-        return hashtag_nm;
+    public String getHASHTAG_NM() {
+        return HASHTAG_NM;
     }
 
-    public void setHashtag_nm(String hashtag_nm) {
-        this.hashtag_nm = hashtag_nm;
+    public void setHASHTAG_NM(String HASHTAG_NM) {
+        this.HASHTAG_NM = HASHTAG_NM;
     }
-
 
-    public Integer getProd_file_id() {
-        return prod_file_id;
+    public Integer getPROD_FILE_ID() {
+        return PROD_FILE_ID;
     }
 
-    public void setProd_file_id(Integer prod_file_id) {
-        this.prod_file_id = prod_file_id;
+    public void setPROD_FILE_ID(Integer PROD_FILE_ID) {
+        this.PROD_FILE_ID = PROD_FILE_ID;
     }
 
-    public String getFile_nm() {
-        return file_nm;
+    public String getFILE_NM() {
+        return FILE_NM;
     }
 
-    public void setFile_nm(String file_nm) {
-        this.file_nm = file_nm;
+    public void setFILE_NM(String FILE_NM) {
+        this.FILE_NM = FILE_NM;
     }
 
-    public String getPath() {
-        return path;
+    public String getPATH() {
+        return PATH;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setPATH(String PATH) {
+        this.PATH = PATH;
     }
 
-    public String getKind() {
-        return kind;
+    public String getKIND() {
+        return KIND;
     }
 
-    public void setKind(String kind) {
-        this.kind = kind;
+    public void setKIND(String KIND) {
+        this.KIND = KIND;
     }
 
     @Override
     public String toString() {
         return "TotalDto{" +
-                "prod_id=" + prod_id +
-                ", cate_cd='" + cate_cd + '\'' +
-                ", amt=" + amt +
-                ", prod_nm='" + prod_nm + '\'' +
-                ", rep_img='" + rep_img + '\'' +
-                ", avg_ascr=" + avg_ascr +
-                ", revw_ncnt=" + revw_ncnt +
-                ", inv_qty=" + inv_qty +
-                ", new_yn='" + new_yn + '\'' +
-                ", prod_stus='" + prod_stus + '\'' +
-                ", opt_yn='" + opt_yn + '\'' +
-                ", prod_desc='" + prod_desc + '\'' +
-                ", dc_yn='" + dc_yn + '\'' +
-                ", mai_yn='" + mai_yn + '\'' +
-                ", fgift_yn='" + fgift_yn + '\'' +
-                ", upd_dtm=" + upd_dtm +
-                ", reg_dtm=" + reg_dtm +
-                ", notice='" + notice + '\'' +
-                ", sle_bgn_dtm=" + sle_bgn_dtm +
-                ", sle_end_dtm=" + sle_end_dtm +
-                ", prod_dc_id=" + prod_dc_id +
-                ", dc_typ='" + dc_typ + '\'' +
-                ", dc_rate=" + dc_rate +
-                ", dc_amt=" + dc_amt +
-                ", dc_price=" + dc_price +
-                ", bgn_dtm=" + bgn_dtm +
-                ", end_dtm=" + end_dtm +
-                ", dc_stus='" + dc_stus + '\'' +
-                ", opt_id=" + opt_id +
-                ", opt_nm='" + opt_nm + '\'' +
-                ", opt_val='" + opt_val + '\'' +
-                ", opt_stus='" + opt_stus + '\'' +
-                ", hashtag_id=" + hashtag_id +
-                ", hashtag_nm='" + hashtag_nm + '\'' +
-                "prod_file_id=" + prod_file_id +
-                ", file_nm='" + file_nm + '\'' +
-                ", path='" + path + '\'' +
-                ", kind='" + kind + '\'' +
+                "PROD_ID=" + PROD_ID +
+                ", CATE_CD='" + CATE_CD + '\'' +
+                ", AMT=" + AMT +
+                ", PROD_NM='" + PROD_NM + '\'' +
+                ", REP_IMG='" + REP_IMG + '\'' +
+                ", AVG_ASCR=" + AVG_ASCR +
+                ", REWV_NCNT=" + REWV_NCNT +
+                ", INV_QTY=" + INV_QTY +
+                ", NEW_YN='" + NEW_YN + '\'' +
+                ", PROD_STUS='" + PROD_STUS + '\'' +
+                ", OPT_YN='" + OPT_YN + '\'' +
+                ", PROD_DESC='" + PROD_DESC + '\'' +
+                ", DC_YN='" + DC_YN + '\'' +
+                ", MAI_YN='" + MAI_YN + '\'' +
+                ", FGIFT_YN='" + FGIFT_YN + '\'' +
+                ", UPD_DTM=" + UPD_DTM +
+                ", REG_DTM=" + REG_DTM +
+                ", NOTICE='" + NOTICE + '\'' +
+                ", SLE_BGN_DTM=" + SLE_BGN_DTM +
+                ", SLE_END_DTM=" + SLE_END_DTM +
+                ", PROD_DC_ID=" + PROD_DC_ID +
+                ", DC_TYP='" + DC_TYP + '\'' +
+                ", DC_RATE=" + DC_RATE +
+                ", DC_AMT=" + DC_AMT +
+                ", DC_PRICE=" + DC_PRICE +
+                ", BGN_DTM=" + BGN_DTM +
+                ", END_DTM=" + END_DTM +
+                ", DC_STUS='" + DC_STUS + '\'' +
+                ", OPT_ID=" + OPT_ID +
+                ", OPT_NM='" + OPT_NM + '\'' +
+                ", OPT_VAL='" + OPT_VAL + '\'' +
+                ", OPT_STUS='" + OPT_STUS + '\'' +
+                ", HASHTAG_ID=" + HASHTAG_ID +
+                ", HASHTAG_NM='" + HASHTAG_NM + '\'' +
+                ", PROD_FILE_ID=" + PROD_FILE_ID +
+                ", FILE_NM='" + FILE_NM + '\'' +
+                ", PATH='" + PATH + '\'' +
+                ", KIND='" + KIND + '\'' +
                 '}';
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TotalDto totalDto = (TotalDto) o;
-        return Objects.equals(prod_id, totalDto.prod_id);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(prod_id);
-    }
 }

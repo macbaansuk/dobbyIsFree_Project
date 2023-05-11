@@ -24,16 +24,16 @@
 
 <section class="contents">
     <div class="product-topview">
-        <img src="${productDetail.rep_img}" alt="상품 상세이미지">
+        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
 
 
         <div class="product-detail">
-            <h2>${productDetail.prod_nm}</h2>
-            <p> ${productDetail.prod_desc}</p>
+            <h2>${productDetail.PROD_NM}</h2>
+            <p> ${productDetail.PROD_DESC}</p>
 
             <div class="star-wrap">
                 <i class="fas fa-star"></i>
-                <span class="star-rating">${productDetail.avg_ascr} (${productDetail.revw_ncnt})</span>
+                <span class="star-rating">${productDetail.AVG_ASCR} (${productDetail.REVW_NCNT})</span>
             </div>
 
 
@@ -47,19 +47,19 @@
                 <dl>
                     <dt>판매가</dt>
                     <c:choose>
-                        <c:when test="${productDetail.dc_yn == 'N'}">
-                            <strong class="discount-price">${productDetail.amt}원</strong>
+                        <c:when test="${productDetail.DC_YN == 'N'}">
+                            <strong class="discount-price">${productDetail.AMT}원</strong>
                             <span class="original-price"></span>
                             <span class="discount-rate"></span>
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="dc" items="${Products_DC}">
-                                <c:if test="${productDetail.prod_id == dc.prod_id}">
-                                    <strong class="discount-price">${dc.dc_price}원</strong>
-                                    <span class="discount-rate">${dc.dc_rate}%</span>
+                                <c:if test="${productDetail.PROD_ID == dc.PROD_ID}">
+                                    <strong class="discount-price">${dc.DC_PRICE}원</strong>
+                                    <span class="discount-rate">${dc.DC_RATE}%</span>
                                 </c:if>
                             </c:forEach>
-                            <span class="original-price">${productDetail.amt}</span>
+                            <span class="original-price">${productDetail.AMT}</span>
                         </c:otherwise>
                     </c:choose>
                 </dl>
@@ -103,7 +103,6 @@
                             </span>
                     </p>
                 </div>
-
 
 
                 <script>
@@ -150,7 +149,7 @@
                     </button>
 
                     <span>
-                            <button type="button" onclick="insertA(${productDetail.prod_id})">장바구니</button>
+                            <button type="button" onclick="insertA(${productDetail.PROD_ID})">장바구니</button>
                         </span>
                     <span>
                             <button type="button" onclick="order()">바로구매</button>
@@ -192,7 +191,7 @@
 
         //바로구매
         function order() {
-            const productId = ${productDetail.prod_id};
+            const productId = ${productDetail.PROD_ID};
             const quantity = parseInt($('#quantity').val());
 
             const form = $('<form>').attr('method', 'POST').attr('action', '/order/direct');
