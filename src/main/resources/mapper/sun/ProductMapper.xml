@@ -116,7 +116,15 @@
 
 
     <!-- 관리자 페이지 상품 삭제-->
+
     <!--나중에 관리자도 확인해야함 WRITER AND로 집어넣고 하드코딩으로 박아놓은 다음 해보기-->
+    <delete id="deleteProductFinal" parameterType="int">
+        DELETE
+        FROM PROD
+        WHERE PROD_ID = #{PROD_ID};
+    </delete>
+
+
     <delete id="deleteProductHashtag" parameterType="int">
         DELETE
         FROM PROD_HASHTAG

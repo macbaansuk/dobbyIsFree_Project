@@ -246,9 +246,9 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach var="DC" items="${Products_DC}">
-                                            <c:if test="${P.PROD_ID == DC.PROD_ID}">
-                                                <strong class="discount-price">${DC.DC_PRICE}</strong>
-                                                <span class="discount-rate">${DC.DC_RATE}%</span>
+                                            <c:if test="${P.PROD_ID == DC.prod_id}">
+                                                <strong class="discount-price">${DC.dc_price}</strong>
+                                                <span class="discount-rate">${DC.dc_rate}%</span>
                                             </c:if>
                                         </c:forEach>
                                         <span class="original-price">${P.AMT}</span>

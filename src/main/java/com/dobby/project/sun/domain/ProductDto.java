@@ -5,7 +5,27 @@ import java.util.Objects;
 
 
 public class ProductDto {
-    private Integer PROD_ID;
+
+    private Integer prod_id;
+    private String cate_cd;
+    private Integer amt;
+    private String prod_nm;
+    private String rep_img;
+    private Integer avg_ascr;
+    private Integer revw_ncnt;
+    private Integer inv_qty;
+    private String new_yn;
+    private String prod_stus;
+    private String opt_yn;
+    private String prod_desc;
+    private String dc_yn;
+    private String mai_yn;
+    private String fgift_yn;
+    private Date upd_dtm;
+    private Date reg_dtm;
+
+
+    private Integer prod_id;
     private Integer CATE_CD;
     private Integer AMT;
     private String PROD_NM;
