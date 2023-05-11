@@ -143,7 +143,7 @@
                                         <div class="row deliverySel"  id="chkWrapper" style="display: none">
                                             <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox"   name="isAddNewChk" id="isAddNewChk"  readonly=""  checked="checked"> <span>배송지 목록에 추가</span></label>
                                             <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" ㄴ > <span>기본 배송지로 등록</span></label>
-                                            <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
+<%--                                            <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>--%>
                                         </div>
 
 

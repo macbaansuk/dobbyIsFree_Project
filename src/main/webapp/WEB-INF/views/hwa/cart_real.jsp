@@ -574,7 +574,6 @@
 
 
     $(document).ready(function () {
-
         setTotalInfo();
     });
 
