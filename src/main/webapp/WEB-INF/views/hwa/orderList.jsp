@@ -4,15 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="../mypage-header.jsp"/>
 
-  <title>주문내역</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-        crossorigin="anonymous" />
-  <link rel="stylesheet" href="/css/hwa/orderList.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/hwa/orderList.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
+
 
       <div class="sub-content mypage-content" ><!--*style="min-height: 1094px;"*-->
         <!-- 멤버십 카드 관리 -->
@@ -102,49 +101,49 @@
             </thead>
 
             <tbody>
-              <c:forEach items="${ordDto}" var="orderList">
-            <tr>
+            <c:forEach items="${ordDto}" var="orderList">
+              <tr>
 
-              <td class="ordDtm" data-ord-dtm="${orderList.ORD_DTM}">
-              </td>
+                <td class="ordDtm" data-ord-dtm="${orderList.ORD_DTM}">
+                </td>
 
-              <td>
-                <a href="javascript:void(0)">
-                  ${orderList.ORD_ID}
-                </a>
-              </td>
-
-              <td class="left">
-                <c:forEach items="${ordProdDto}" var="ordProdDto">
-                  <c:choose>
-                    <c:when test="${ordProdDto.ORD_ID eq orderList.ORD_ID}">
-                  <a href="/orderDetail?orderId=${ordProdDto.ORD_ID}">
-                ${ordProdDto.PROD_NM}
-                      <c:forEach items="${pcDto}" var="pcDto">
-                        <c:if test="${pcDto.ORD_ID eq orderList.ORD_ID}">
-                          <c:set var="pdCnt" value="${pcDto.prod_Cnt}" />
-                          <fmt:parseNumber var="fmtCnt" type="number" value="${pdCnt}" />
-                          <c:if test="${fmtCnt != 1 && fmtCnt gt 0}">
-                            외 ${fmtCnt}건
-                          </c:if>
-                        </c:if>
-                      </c:forEach>
+                <td>
+                  <a href="javascript:void(0)">
+                      ${orderList.ORD_ID}
                   </a>
-                    </c:when>
-                  </c:choose>
-                </c:forEach>
-              </td>
+                </td>
 
-              <td><fmt:formatNumber pattern="###,###,###" value="${orderList.SETL_AMT}"/>원</td>
-              <td>
-                주문접수
-              </td>
-              <td class="btn1">
-              </td>
-              <td class="btn1">
-              </td>
-            </tr>
-              </c:forEach>
+                <td class="left">
+                  <c:forEach items="${ordProdDto}" var="ordProdDto">
+                    <c:choose>
+                      <c:when test="${ordProdDto.ORD_ID eq orderList.ORD_ID}">
+                        <a href="/orderDetail?orderId=${ordProdDto.ORD_ID}">
+                            ${ordProdDto.PROD_NM}
+                          <c:forEach items="${pcDto}" var="pcDto">
+                            <c:if test="${pcDto.ORD_ID eq orderList.ORD_ID}">
+                              <c:set var="pdCnt" value="${pcDto.prod_Cnt}" />
+                              <fmt:parseNumber var="fmtCnt" type="number" value="${pdCnt}" />
+                              <c:if test="${fmtCnt != 1 && fmtCnt gt 0}">
+                                외 ${fmtCnt}건
+                              </c:if>
+                            </c:if>
+                          </c:forEach>
+                        </a>
+                      </c:when>
+                    </c:choose>
+                  </c:forEach>
+                </td>
+
+                <td><fmt:formatNumber pattern="###,###,###" value="${orderList.SETL_AMT}"/>원</td>
+                <td>
+                  주문접수
+                </td>
+                <td class="btn1">
+                </td>
+                <td class="btn1">
+                </td>
+              </tr>
+            </c:forEach>
 
 
 
@@ -153,7 +152,7 @@
         </div>
         <!-- paging -->
 
-<%--        <div class="paging"><span class="num on"><a href="javascript:void(0);">1</a></span></div>--%>
+        <%--        <div class="paging"><span class="num on"><a href="javascript:void(0);">1</a></span></div>--%>
 
         <!-- //paging -->
         <div class="helpWrap">
@@ -178,20 +177,20 @@
 <script>
   $(document).ready(function() {
 
-  <%--  $(".ordDtm").each(function (index, element) {--%>
+    <%--  $(".ordDtm").each(function (index, element) {--%>
 
-  <%--  let date = new Date('${ordDto.ORD_DTM}');// Mon May 08 2023 00:58:34 GMT+0900 (한국 표준시)--%>
-  <%--  // let date6 =  date.toDateString();  //Mon May 08 2023--%>
-  <%--  // let date7 =  date.toISOString();   //2023-05-07T15:58:34.000Z--%>
-  <%--  let date8 =  date.toLocaleDateString(); // 2023. 5. 8.--%>
-  <%--  // let date9 = date.toLocaleDateString().padStart(2,'0'); //2023. 5. 8.--%>
-  <%--  let date10 = date.toString(); //2023. 5. 8.--%>
+    <%--  let date = new Date('${ordDto.ORD_DTM}');// Mon May 08 2023 00:58:34 GMT+0900 (한국 표준시)--%>
+    <%--  // let date6 =  date.toDateString();  //Mon May 08 2023--%>
+    <%--  // let date7 =  date.toISOString();   //2023-05-07T15:58:34.000Z--%>
+    <%--  let date8 =  date.toLocaleDateString(); // 2023. 5. 8.--%>
+    <%--  // let date9 = date.toLocaleDateString().padStart(2,'0'); //2023. 5. 8.--%>
+    <%--  let date10 = date.toString(); //2023. 5. 8.--%>
 
 
-  <%--  console.log('date8',date8);--%>
-  <%--  console.log('date0',date10);--%>
-  <%--  document.getElementById('ordDtm').textContent = date8;--%>
-  <%--});--%>
+    <%--  console.log('date8',date8);--%>
+    <%--  console.log('date0',date10);--%>
+    <%--  document.getElementById('ordDtm').textContent = date8;--%>
+    <%--});--%>
 
 
     $(".ordDtm").each(function (index, element) {

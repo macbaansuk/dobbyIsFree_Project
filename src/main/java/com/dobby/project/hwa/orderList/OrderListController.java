@@ -82,7 +82,6 @@ public class OrderListController {
 
 
      return "hwa/orderList";
-//     return "hwa/orderPart";
  }
 
 @GetMapping("/orderDetail")
