@@ -190,6 +190,8 @@
                                             $('#dlvRequest1').on('click', function() {
                                                 console.log("신규입력 클릭확인")
 
+                                                document.getElementById("dlvNmTxt").value = '';
+                                                document.getElementById("dlvRequest1").value = '';
                                                 document.getElementById("dlvRequest1").value = '';
                                                 document.getElementById("rcvNmTxt").value = '';
                                                 document.getElementById("ordzipTxt").value = '';
@@ -874,6 +876,7 @@
 </div>
 
 <script>
+
     // 이니스프리 select script
     let selActive = function() {
         let target = event.currentTarget || event.srcElement;
@@ -1125,64 +1128,68 @@
 
     //------------------------------------------------------------------------------------------
     //결제 API
-    $("#payBtn").click(function() {
+$("#payBtn").click(function() {
         console.log('버튼클릭확인');
-
-        let zipDlvPay =  document.getElementById('ordzipTxt').value;
-        let Addr1stDlvPay =  document.getElementById('dlvAddr1stTxt').value;
-        let totPurPrcTxt =  parseInt(document.getElementById('totPurPrcTxt').textContent.replace(/,/g, ""));
-
-        console.log("결제 우편 ",typeof zipDlvPay);
-        console.log("결제 주소",typeof Addr1stDlvPay);
-        console.log("결제 금액",typeof totPurPrcTxt);
-        console.log("결제 금액 최종값", totPurPrcTxt);
-
-        // input();
+        let agreeChk = document.getElementById('payWayProvision');
+        if(agreeChk.checked){ //동의여부 체크해야만
 
 
-        IMP.init('imp21837643');
-        IMP.request_pay({
-            pg : 'html5_inicis.INIpayTest',  //pg사 - kg이니시스
-            pay_method : 'card',       //결제방법 - 카드
-            // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
-            merchant_uid : orderId,  //주문아이디
-            // name : '주문명:결제테스트', //주문명
-            name : '도비스프리 결제',
-            // amount :  totPurPrcTxt, //상품가격 - Number()
-            amount :  100, //상품가격  -----**********test 용 100원************
-            buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
-            buyer_name : '${mbrDto.MBR_NM}',     //주문자
-            buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
-            buyer_addr : Addr1stDlvPay,            //주문자 우편번호
-            buyer_postcode :zipDlvPay        //주문자 기본주소
-        }, function(rsp) {  //-------콜백함수
-            let result = '';
-            if ( rsp.success ) {
-                let msg ='';
-                result ='0';
-            } else {
-                // let msg = '결제에 실패하였습니다.';
-                msg = '결제에 실패하였습니다.';
-                msg +=  rsp.error_msg;
-                result ='1';
-            }
-            if(result==='0') {
-                // msg = '결제가 완료되었습니다.';
-                // msg += '고유ID : ' + rsp.imp_uid;  //가맹점번호
-                // msg += '상점 거래ID : ' + rsp.merchant_uid;
-                // msg += '결제 금액 : ' + rsp.paid_amount;
-                // msg += '카드 승인번호 : ' + rsp.apply_num;
-                input();
+            let zipDlvPay =  document.getElementById('ordzipTxt').value;
+            let Addr1stDlvPay =  document.getElementById('dlvAddr1stTxt').value;
+            let totPurPrcTxt =  parseInt(document.getElementById('totPurPrcTxt').textContent.replace(/,/g, ""));
 
-                alert("결제가 성공하였습니다")
-            }
-            alert(msg);
-        });//rsp
-    }); //payBtn click
+            console.log("결제 우편 ",typeof zipDlvPay);
+            console.log("결제 주소",typeof Addr1stDlvPay);
+            console.log("결제 금액",typeof totPurPrcTxt);
+            console.log("결제 금액 최종값", totPurPrcTxt);
+
+            // input();
 
 
+            IMP.init('imp21837643');
+            IMP.request_pay({
+                pg : 'html5_inicis.INIpayTest',  //pg사 - kg이니시스
+                pay_method : 'card',       //결제방법 - 카드
+                // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
+                merchant_uid : orderId,  //주문아이디
+                // name : '주문명:결제테스트', //주문명
+                name : '도비스프리 결제',
+                // amount :  totPurPrcTxt, //상품가격 - Number()
+                amount :  100, //상품가격  -----**********test 용 100원************
+                buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
+                buyer_name : '${mbrDto.MBR_NM}',     //주문자
+                buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
+                buyer_addr : Addr1stDlvPay,            //주문자 우편번호
+                buyer_postcode :zipDlvPay        //주문자 기본주소
+            }, function(rsp) {  //-------콜백함수
+                let result = '';
+                if ( rsp.success ) {
+                    let msg ='';
+                    result ='0';
+                } else {
+                    // let msg = '결제에 실패하였습니다.';
+                    msg = '결제에 실패하였습니다.';
+                    msg +=  rsp.error_msg;
+                    result ='1';
+                }
+                if(result==='0') {
+                    // msg = '결제가 완료되었습니다.';
+                    // msg += '고유ID : ' + rsp.imp_uid;  //가맹점번호
+                    // msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    // msg += '결제 금액 : ' + rsp.paid_amount;
+                    // msg += '카드 승인번호 : ' + rsp.apply_num;
+                    input();
 
-    //결제시 전달되는 정보
+                    alert("결제가 성공하였습니다")
+                }
+                alert(msg);
+            });//rsp
+
+    } else{ //체크 X면
+            alert("동의하셔야 결제할 수 있습니다")
+            return false;
+    }
+}); //payBtn click
 
 
 

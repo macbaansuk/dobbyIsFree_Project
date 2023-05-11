@@ -362,6 +362,7 @@
         </div>
     </div>
 
+    <jsp:include page="footer.jsp"/>
     <script>
         //장바구니 모달창
         $(document).ready(function() {
@@ -381,8 +382,6 @@
         });
     </script>
 
-
-    <jsp:include page="footer.jsp"/>
 
 </body>
 </html>
