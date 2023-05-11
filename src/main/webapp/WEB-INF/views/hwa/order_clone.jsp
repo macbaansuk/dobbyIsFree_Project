@@ -36,9 +36,10 @@
                 <input type="hidden" id="pageFl" value="orderRenewal">
                 <!-- 주문 배송 정보 -->
 
+                <form id="ordForm" onsubmit="return false;">
                 <section>
                     <h3 class="subTitle2">주문/배송정보</h3>
-                    <form id="orderInfoForm" name="orderInfoForm" method="POST" onsubmit="return false;" novalidate="novalidate">
+<%--                    <form id="orderInfoForm" name="orderInfoForm" method="POST" onsubmit="return false;" novalidate="novalidate">--%>
                         <input type="hidden" id="recentlyAddrNoDefaultListCnt" value="1">
                         <div class="tableTypeWrite">
                             <div id="ordererForm">
@@ -55,13 +56,13 @@
                                 <tr>
                                     <th scope="row"><span class="required" aria-required="true">필수입력</span> 주문자</th>
                                     <td>
-                                        <input type="text" name="ordNmTxt" id="ordNmTxt" maxlength="10" class="inputTxt altPosition" title="이름입력" style="width: 21%;" value="${mbrDto.MBR_NM}">
+                                        <input type="text" required name="ordNmTxt" id="ordNmTxt" maxlength="10" class="inputTxt altPosition" title="이름입력" style="width: 21%;" value="${mbrDto.MBR_NM}">
                                         <p class="inputAlt"></p>
                                     </td>
                                 </tr>
                                 <!-- 연락처 -->
                                 <tr>
-                                    <th scope="row"><span class="required" aria-required="true">필수입력</span> 연락처</th>
+                                    <th scope="row"><span  class="required" aria-required="true">필수입력</span> 연락처</th>
                                     <td>
                                         <div class="selectArea" style="width: 21%;">
                                             <button class="selTit" type="button" title="휴대전화번호 첫번째 선택" id="ordMblNo1"  onclick="selActive();">010</button>
@@ -94,9 +95,9 @@
                                             </ul>
                                         </div>
                                         <span class="hyphen">-</span>
-                                        <input type="text" name="ordMblNo2" id="ordMblNo2" class="inputTxt checkNum" style="width: 22%;" value="6868" maxlength="4" title="휴대전화번호 두번째">
+                                        <input type="text" required name="ordMblNo2" id="ordMblNo2" class="inputTxt checkNum" style="width: 22%;" value="6868" maxlength="4" title="휴대전화번호 두번째">
                                         <span class="hyphen">-</span>
-                                        <input type="text" name="ordMblNo3" id="ordMblNo3" class="inputTxt checkNum altPosition" style="width: 22%;" value="9854" maxlength="4" title="휴대전화번호 세번째">
+                                        <input type="text" required name="ordMblNo3" id="ordMblNo3" class="inputTxt checkNum altPosition" style="width: 22%;" value="9854" maxlength="4" title="휴대전화번호 세번째">
                                         <p class="inputAlt"></p>
                                     </td>
                                 </tr>
@@ -468,7 +469,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+<%--                    </form>--%>
                 </section>
 
 
@@ -782,7 +783,7 @@
                     <!-- //품절 시 환불 방법 -->
                 </div>
                 <!-- //상품 정보 -->
-
+                </form><!--ordForm -->
 
             </div>
             <!-- 결제 금액 정보 -->
@@ -1041,6 +1042,7 @@
 
     //input태그
             function input(){
+
                 let ordForm = $("<form>").attr('method', 'POST').attr('action', '/order/done'); //폼생성
 
                 let ordNmTxtVal = $('#ordNmTxt').val(); //주문자
@@ -1118,20 +1120,116 @@
                 console.log('기본배송치체크',isAddDefaultChkVal);
                 let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddDefaultChkVal).appendTo(ordForm);
 
+
+                // if (ordNmTxtVal.trim() === "") { // Check if the value is empty or contains only whitespace
+                //     alert('Please enter the ID.');
+                //     $('#ordNmTxt').focus();
+                //     return false;
+                // }
                 $(document.body).append(ordForm);
                 ordForm.submit();
+
             } //input()
 
+    function submit() {
 
+    }
 
 
 
     //------------------------------------------------------------------------------------------
     //결제 API
 $("#payBtn").click(function() {
-        console.log('버튼클릭확인');
+    // function validation() {
+        let ordNmTxt = document.getElementById("ordNmTxt").value.trim(); //주문자
+        let ordMblNo2 = document.getElementById("ordMblNo2").value.trim(); //연락처2
+        let ordMblNo3 = document.getElementById("ordMblNo3").value.trim(); //연락처2
+        let emailTxt = document.getElementById("emailTxt").value.trim(); //주문자 이메일
+        let dlvNmTxt = document.getElementById("dlvNmTxt").value.trim(); // 배송지명
+        let rcvNmTxt = document.getElementById("rcvNmTxt").value.trim(); //수령인
+        let ordzipTxt = document.getElementById("ordzipTxt").value.trim(); //우편번호
+        let dlvAddr1stTxt = document.getElementById("dlvAddr1stTxt").value.trim(); //기본주소
+        let mblNo2 = document.getElementById("mblNo2").value.trim(); //수령인 연락처2
+        let mblNo3 = document.getElementById("mblNo3").value.trim(); //연락처3
+        let bank = document.getElementById("bank").textContent; //은행
+        let bankLabel = document.querySelector("label[for='bankCd00']").textContent;//은행 li(0)
+        let tempAccNo = document.getElementById("tempAccNo").value.trim(); //계좌
+        let tempDpoSiTr = document.getElementById("tempDpoSiTr").value.trim(); //예금주
+
+
+    // }
+
+
+
+    console.log('버튼클릭확인');
         let agreeChk = document.getElementById('payWayProvision');
         if(agreeChk.checked){ //동의여부 체크해야만
+            if (ordNmTxt === "") {
+                alert('주문자 이름을 입력해주세요');
+                $('#ordNmTxt').focus();
+                return false;
+            }
+
+            if (ordMblNo2 === "") {
+                alert('전화번호를 입력해주세요');
+                $('#ordMblNo2').focus();
+                return false;
+            }
+            if (ordMblNo3 === "") {
+                alert('전화번호를 입력해주세요');
+                $('#ordMblNo3').focus();
+                return false;
+            }
+            if (emailTxt === "") {
+                alert('이메일을 입력해주세요');
+                $('#emailTxt').focus();
+                return false;
+            }
+            if (dlvNmTxt === "") {
+                alert('배송지명을 입력해주세요');
+                $('#dlvNmTxt').focus();
+                return false;
+            }
+            if (rcvNmTxt === "") {
+                alert('받으실분을 입력해주세요');
+                $('#rcvNmTxt').focus();
+                return false;
+            }
+            if (ordzipTxt === "") {
+                alert('우편번호를 입력해주세요');
+                $('#ordzipTxt').focus();
+                return false;
+            }
+            if (dlvAddr1stTxt === "") {
+                alert('주소를 입력해주세요');
+                $('#ordNmTxt').focus();
+                return false;
+            }
+            if (mblNo2 === "") {
+                alert('받으실분 연락처를 입력해주세요');
+                $('#mblNo2').focus();
+                return false;
+            }
+            if (mblNo3 === "") {
+                alert('받으실분 연락처를 입력해주세요');
+                $('#mblNo3').focus();
+                return false;
+            }
+            if (bank === bankLabel) {
+                alert('환불받으실 은행을 선택해주세요');
+                // $('#bank').focus();
+                return false;
+            }
+            if (tempAccNo === "") {
+                alert('환불받으실 계좌번호를 입력해주세요');
+                $('#tempAccNo').focus();
+                return false;
+            }
+            if (tempDpoSiTr === "") {
+                alert('환불받으실 계좌의 예금자명을 입력해주세요');
+                $('#tempDpoSiTr').focus();
+                return false;
+            }
 
 
             let zipDlvPay =  document.getElementById('ordzipTxt').value;
@@ -1143,7 +1241,7 @@ $("#payBtn").click(function() {
             console.log("결제 금액",typeof totPurPrcTxt);
             console.log("결제 금액 최종값", totPurPrcTxt);
 
-            // input();
+            input();
 
 
             IMP.init('imp21837643');
@@ -1178,7 +1276,7 @@ $("#payBtn").click(function() {
                     // msg += '상점 거래ID : ' + rsp.merchant_uid;
                     // msg += '결제 금액 : ' + rsp.paid_amount;
                     // msg += '카드 승인번호 : ' + rsp.apply_num;
-                    input();
+                    // input();
 
                     alert("결제가 성공하였습니다")
                 }
