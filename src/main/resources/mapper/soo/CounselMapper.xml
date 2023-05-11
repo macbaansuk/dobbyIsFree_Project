@@ -86,6 +86,7 @@
                  LEFT JOIN `dobbyisfree`.BBS_CATEGORY BC ON C.CATE_ID = BC.CATE_ID
                  LEFT JOIN `dobbyisfree`.PROD P ON C.PROD_ID = P.PROD_ID
         ORDER BY C.CNSL_ID DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
     <!--  1:1 상담 답변 작성 + 게시물 상태 업데이트  -->

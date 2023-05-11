@@ -42,20 +42,21 @@ public class AdminCounselController {
         // 로그인 체크 유무 코드
         if (session.getAttribute("admin") == null) {
             rattr.addFlashAttribute("msg", "login_ERR");
-            return "redirect:/admin";
+            return "redirect:/admin/login";
         } else {
             try {
                 int totalCnt = counselService.getCountAllCounsel();
                 m.addAttribute("totalCnt", totalCnt);
 
                 PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
+
                 Map<String, Object> map = new HashMap<>();
                 map.put("offset", (page - 1) * pageSize);
                 map.put("pageSize", pageSize);
 
                 List<CounselAnswerDto> list = counselService.getAllList(map);
                 m.addAttribute("list", list);
-                m.addAttribute("ph", pageHandler);
+                m.addAttribute("ph1", pageHandler);
 
                 System.out.println("adminCounselList = " + m);
             } catch (Exception e) {

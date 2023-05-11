@@ -187,15 +187,15 @@
                             </table>
                             <!-- 페이징 -->
                             <div class="paging">
-                                <c:if test="${ph.showPrev}">
+                                <c:if test="${ph1.showPrev}">
                                 <a class="page">
-                                    <a href="<c:url value="/admin/counsel/list?page=${ph.beginPage-1}" />">&lt;</a>
+                                    <a href="<c:url value="/admin/counsel/list?page=${ph1.beginPage-1}" />">&lt;</a>
                                     </c:if>
-                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                    <c:forEach var="i" begin="${ph1.beginPage}" end="${ph1.endPage}">
                                     <a href="<c:url value="/admin/counsel/list?page=${i}" />">${i}</a>
                                     </c:forEach>
-                                    <c:if test="${ph.showNext}">
-                                    <a href="<c:url value="/admin/counsel/list?page=${ph.endPage+1}" />">&gt;</a>
+                                    <c:if test="${ph1.showNext}">
+                                    <a href="<c:url value="/admin/counsel/list?page=${ph1.endPage+1}" />">&gt;</a>
                                     </c:if>
                             </div>
                         </div>
@@ -210,12 +210,13 @@
 </div>
 </body>
 <script>
-    $(document).ready(function () {
+
+    $(document).ready(function() {
         // 일단, 답변 감추기
         $(".questionCont").hide();
 
         // 제목을 클릭
-        $("td.title").click(function () {
+        $("td.title").click(function() {
             // 클릭한 제목의 부모 tr을 찾는다
             var parentTr = $(this).closest("tr");
 
@@ -233,10 +234,9 @@
     });
 
 
-
     let msg = "${msg}";
     if (msg=="login_ERR") alert("로그인 정보를 다시 확인해주세요.");
-    }
+
 </script>
 
 </html>

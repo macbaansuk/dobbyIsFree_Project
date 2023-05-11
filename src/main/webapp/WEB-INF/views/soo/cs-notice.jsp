@@ -108,7 +108,7 @@
                     </table>
 
                     <div>
-                        <button type="button"><a href="/admin/notice/list">관리자 페이지</a></button>
+                        <button type="button"><a href="/admin/main">관리자 페이지</a></button>
                     </div>
 
                 </div>
