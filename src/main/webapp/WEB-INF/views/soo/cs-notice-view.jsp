@@ -38,7 +38,7 @@
                 <ul>
                     <li><a href="#"><span>FAQ</span></a></li>
                     <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>
-                    <li><a href="/cs/counsel"><span>1:1 상담</span></a></li>
+                    <li><a href="/cs/counsel/main"><span>1:1 상담</span></a></li>
                 </ul>
             </nav>
 

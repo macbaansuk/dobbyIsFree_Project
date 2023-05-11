@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/css/hoon/jquery/jquery-ui.min.js"></script>
 
-            <h2>1:1 상담내역</h2>
+            <h3 id="pagetitle">1:1 상담내역</h3>
 
             <div class="tab">
                 <ul class="cate">

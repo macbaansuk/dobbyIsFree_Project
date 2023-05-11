@@ -107,9 +107,9 @@
 
                     </table>
 
-                    <div>
-                        <button type="button"><a href="/admin/main">관리자 페이지</a></button>
-                    </div>
+<%--                    <div>--%>
+<%--                        <button type="button"><a href="/admin/main">관리자 페이지</a></button>--%>
+<%--                    </div>--%>
 
                 </div>
                 <!-- 페이징 -->
@@ -197,7 +197,7 @@
     const counselBtn = document.querySelector('#C');
 
     faqBtn.addEventListener('click', function() {
-        window.location.href = '/cs/faq/list'; // 링크 주소 입력
+        window.location.href = '#'; // 링크 주소 입력
     });
 
     noticeBtn.addEventListener('click', function() {

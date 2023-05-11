@@ -101,23 +101,25 @@
 
                             <label for="catelist">카테고리</label>  <!-- '<label>' 태그와 연결된 입력 요소의 id와 'for' 속성 값이 일치해야한다. -->
                             <!-- select 태그에서는 readonly 대신 "disabled" 사용해야 변경 불가능 -->
-                            <select id="catelist" name="CATE_ID" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : "" }>
+                            <select id="catelist" name="CATE_ID" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : "" } onclick="showCateOptions()">
                                 <!-- 수정할 때 DB에 저장 된 option이 선택되어 있으려면 삼항연산자로 조건을 줘야한다 -->
-                                <option value="N01" ${noticeDto.CATE_ID == 'N01' ? 'selected' : ''}>고객 센터</option>
-                                <option value="N02" ${noticeDto.CATE_ID == 'N02' ? 'selected' : ''}>매장 공지</option>
-                                <option value="N03" ${noticeDto.CATE_ID == 'N03' ? 'selected' : ''}>배송 공지</option>
-                                <option value="N04" ${noticeDto.CATE_ID == 'N04' ? 'selected' : ''}>쇼핑몰 공지</option>
-                                <option value="N05" ${noticeDto.CATE_ID == 'N05' ? 'selected' : ''}>이벤트 공지</option>
+                                <option class="category" value="" selected>선택하세요</option>
+                                <option class="category" value="N01" ${noticeDto.CATE_ID == 'N01' ? 'selected' : ''}>고객 센터</option>
+                                <option class="category" value="N02" ${noticeDto.CATE_ID == 'N02' ? 'selected' : ''}>매장 공지</option>
+                                <option class="category" value="N03" ${noticeDto.CATE_ID == 'N03' ? 'selected' : ''}>배송 공지</option>
+                                <option class="category" value="N04" ${noticeDto.CATE_ID == 'N04' ? 'selected' : ''}>쇼핑몰 공지</option>
+                                <option class="category" value="N05" ${noticeDto.CATE_ID == 'N05' ? 'selected' : ''}>이벤트 공지</option>
                             </select>
                         </div>
 
                         <div class="form-group"> <!--게시물 상태-->
                             <label for="statuslist">상태</label>
-                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : ""}>
-                                <option value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
-                                <option value="비공개" ${noticeDto.STUS == '비공개' ? 'selected' : ''}>비공개</option>
-                                <option value="수정중" ${noticeDto.STUS == '수정중' ? 'selected' : ''}>수정중</option>
-                                <option value="삭제예정" ${noticeDto.STUS == '삭제예정' ? 'selected' : ''}>삭제예정</option>
+                            <select id="statuslist" name="STUS" style="height: 30px; width: 150px;" ${mode=="read"? "disabled" : ""} onclick="showStusOptions()">
+                                <option class="status" value="" selected>선택하세요</option>
+                                <option class="status" value="게시중" ${noticeDto.STUS == '게시중' ? 'selected' : ''}>게시중</option>
+                                <option class="status" value="비공개" ${noticeDto.STUS == '비공개' ? 'selected' : ''}>비공개</option>
+                                <option class="status" value="수정중" ${noticeDto.STUS == '수정중' ? 'selected' : ''}>수정중</option>
+                                <option class="status" value="삭제예정" ${noticeDto.STUS == '삭제예정' ? 'selected' : ''}>삭제예정</option>
                             </select>
                         </div>
 
@@ -125,16 +127,22 @@
 
                         <div class="form-group">
                             <label for="writer">작성자</label>  <%--  mode=read일때 readonly로  --%>
-                            <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  작성자를 입력해 주세요.">
+                            <input type="text" id="writer" name="WRTR" value="${noticeDto.WRTR}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="작성자를 입력해 주세요.">
                         </div>
                         <div class="form-group">
                             <label for="title">제목</label>
-                            <input type="text" id="title" name="TTL" value="${noticeDto.TTL}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  제목을 입력해 주세요.">
+                            <input type="text" id="title" name="TTL" value="${noticeDto.TTL}" ${mode=="read"? "readonly='readonly'" : ""} placeholder="제목을 입력해 주세요.">
                         </div>
                         <div class="form-group">
                             <label for="content">내용</label>
-                            <textarea id="content" name="CN" ${mode=="read"? "readonly='readonly'" : ""} placeholder="  내용을 입력해 주세요."
-                                      style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>
+<%--                            <textarea id="content" placeholder="  내용을 입력해 주세요." name="CN" ${mode=="read"? "readonly='readonly'" : ""}--%>
+<%--                                      style="height: 400px; max-height: 5000px;">${noticeDto.CN} </textarea>--%>
+                            <textarea id="content" name="CN" ${mode=="read"? "readonly='readonly'" : ""}
+                                      style="height: 400px; max-height: 5000px;"
+                                      placeholder="내용을 입력해 주세요.">${noticeDto.CN}</textarea>
+
+
+
                         </div>
 
                             <div class="listBtm" style="text-align: right;">
@@ -263,7 +271,43 @@
                     return false;
                 }
             });
+
     });
+
+    function showCateOptions() {
+        // 셀렉트 박스의 옵션 목록을 보이게 함
+        document.getElementById("catelist").size = "1";
+
+        // "선택하세요" 옵션 숨김 처리
+        document.querySelector("#catelist option[value='']").style.display = "none";
+
+        // 옵션을 선택하면 옵션 목록을 다시 숨김 처리하고 선택한 옵션으로 대체
+        document.getElementById("catelist").onchange = function () {
+            document.getElementById("catelist").size = "1";
+        };
+    }
+
+    document.getElementById("catelist").onchange = function () {
+        document.getElementById("catelist").size = "1";
+    };
+
+
+    function showStusOptions() {
+        // 셀렉트 박스의 옵션 목록을 보이게 함
+        document.getElementById("statuslist").size = "1";
+
+        // "선택하세요" 옵션 숨김 처리
+        document.querySelector("#statuslist option[value='']").style.display = "none";
+
+        // 옵션을 선택하면 옵션 목록을 다시 숨김 처리하고 선택한 옵션으로 대체
+        document.getElementById("statuslist").onchange = function () {
+            document.getElementById("statuslist").size = "1";
+        };
+    }
+
+    document.getElementById("statuslist").onchange = function () {
+        document.getElementById("statuslist").size = "1";
+    };
 </script>
 </body>
 </html>
