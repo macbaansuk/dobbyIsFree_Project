@@ -841,6 +841,8 @@ totalPayment .orderPrice .totalPrice {
     width: 320px;
     padding-top: 18px;
     background: #fff;
+    position: sticky;
+    top: 0;
 }
 .orderContents .totalPayment {
     position: absolute;

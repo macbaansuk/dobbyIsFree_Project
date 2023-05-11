@@ -141,7 +141,7 @@
                                         <!-- 배송지목록에 추가, 기본배송지로 등록 -->
                                         <div class="row deliverySel"  id="chkWrapper" style="display: none">
                                             <label class="inputChk addNewDiv" for="isAddNewChk"> <input type="checkbox"   name="isAddNewChk" id="isAddNewChk"  readonly=""  checked="checked"> <span>배송지 목록에 추가</span></label>
-                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" > <span>기본 배송지로 등록</span></label>
+                                            <label class="inputChk" for="isAddDefaultChk"> <input type="checkbox" name="isAddDefaultChk" id="isAddDefaultChk" ㄴ > <span>기본 배송지로 등록</span></label>
                                             <button type="button" class="btnType7s" id="cancelManualAddDlvAddr">입력취소</button>
                                         </div>
 
@@ -280,7 +280,7 @@
 
                                         <!-- 받으실 분 -->
                                         <div class="row">
-                                            <label for="rcvNmTxt" class="titLabel"><span class="required" aria-required="true">필수입력</span> 받으실 분</label>
+                                            <label for="rcvNmTxt" class="titLabel"><span class="required" aria-required="true" required>필수입력</span> 받으실 분</label>
                                             <label class="inputChk" for="addOrdererInfo"><input type="checkbox" id="addOrdererInfo"> <span>주문자 정보와 동일</span></label>
                                             <input type="text" name="rcvNmTxt" id="rcvNmTxt" maxlength="10" class="inputTxt dlvInput" style="width:90%;margin-top:4px;"  placeholder="최대 10자 까지 입력 가능"  >
                                             <p class="inputAlt"></p>
