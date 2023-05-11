@@ -16,8 +16,7 @@
         <div class="admin-left">
             <h2>쇼핑몰관리</h2>
             <ul  class="admin-ul">
-<%--                --%>
-                <li class="on"><a href="#" onfocus="this.blur();">운영정보설정</a></li>
+
                 <li class="on"><a href="#" onfocus="this.blur();">상품관리</a>
                     <ul>
                         <li><a href="#" onfocus="this.blur();">상품목록</a></li>
@@ -45,15 +44,6 @@
                     <ul>
                         <li><a href="#" onfocus="this.blur();">주문목록</a></li>
                     </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">개별취소요청</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">세금계산서</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#" onfocus="this.blur();">현금영수증</a></li>
-                    </ul>
                 </li>
                 <li class="on"><a href="#" onfocus="this.blur();">통계분석</a>
                     <ul>
@@ -65,7 +55,7 @@
                 </li>
                 <li class="on"><a href="#" onfocus="this.blur();">쿠폰관리</a></li>
                 <li class="on"><a href="#" onfocus="this.blur();">적립금관리</a></li>
-                <li class="on"><a href="#" onfocus="this.blur();">가격비교사이트</a></li>
+
             </ul>
 
         </div><!-- //admin-left// -->
