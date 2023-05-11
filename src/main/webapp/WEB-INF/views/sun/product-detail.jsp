@@ -105,7 +105,6 @@
                 </div>
 
 
-
                 <script>
                     $(document).ready(function () {
                         const price = parseInt($('.discount-price').text());

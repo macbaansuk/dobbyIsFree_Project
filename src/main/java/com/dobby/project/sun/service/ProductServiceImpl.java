@@ -27,6 +27,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<SortDto> Cate_Products_DC() throws Exception {
+        return productDao.Cate_Products_DC();
+    }
+
+    @Override
     public ProductDto getProductById(int id) throws Exception {
         return productDao.getProductById(id);
     }
@@ -47,13 +52,13 @@ public class ProductServiceImpl implements ProductService {
     public int getCount() throws Exception {
         return productDao.count();
     }
-
 //    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort) {
-//        return productDao.getProductsByCategoryAndSort(CATE_CD, sort);
-//    }
-
-    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort) {
+//    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort) {
+//        return productDao.getProductsByCategoryAndSort(category, sort);
+//   }
+//
+    @Override
+    public List<SortDto> getProductsByCategoryAndSort(int category, String sort) {
         return productDao.getProductsByCategoryAndSort(category, sort);
     }
 
