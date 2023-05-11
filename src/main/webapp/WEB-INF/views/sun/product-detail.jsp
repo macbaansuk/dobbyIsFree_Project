@@ -395,7 +395,8 @@
 
         continueShoppingBtn.addEventListener('click', function() {
             cartModal.style.display = 'none';
-            location.href='/';
+            location.href='/product/productDetail/${productDetail.PROD_ID}';
+<%--            ${productDetail.PROD_ID}--%>
         });
 
         goToCartBtn.addEventListener('click', function() {
