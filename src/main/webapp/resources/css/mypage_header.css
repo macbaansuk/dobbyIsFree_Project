@@ -5,17 +5,52 @@
     font-style: normal;
 }
 
-p {
+/*body {*/
+/*    font-family: "나눔바른고딕OTF", "돋움";*/
+/*}*/
+
+
+#user_grade {
+    display: flex;
+    align-items: center;
+}
+
+
+#container {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#menu {
+    padding: 30px 20px 20px 20px;
+    border-right: 1px solid rgba(231, 230, 230, 0.673);
+    margin-left: 200px;
+}
+
+#menu p  {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #777777;
+    width: 110px;
+    text-align: left;
+}
+#menu a {
+    text-decoration: none;
+    color: #777777;
+}
+
+#user_grade p {
     text-align: center;
     font-size: 17px;
 }
 
-h2 {
+#user_grade h2 {
     padding: 15px;
     font-style: normal;
 }
 .mypage-img2{
-    margin-left: 300px;
+    margin-left: 200px;
 }
 
 .grade {
@@ -36,16 +71,26 @@ h2 {
 #member {
     height: 80px;
     background: rgba(231, 230, 230, 0.673);
+    height: 100px;
 }
 
 #user_grade {
     margin-left: 18%;
     margin-right: 18%;
-    width: 100%;
     height: 100%;
 }
+
 
 #page_point {
     height: 30px;
     padding-left: 17%;
+}
+#page {
+    display: inline-block;
+    margin-top: 30px;
+    min-height: 600px;
+    margin-right: 100px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 1100px;
 }
