@@ -145,9 +145,9 @@
     <span><a href="/cs/notice/list">고객센터</a></span>
     <span><a href="<%=move%>"><%=login_out%></a></span>
     <span><a href="/register">회원가입</a></span>
-    <span><a href="/mypage">마이페이지</a></span>
+    <span><a href="/mypage/counsel/list" onclick="return checkLogin()">마이페이지</a></span>
     <span><a href="/cart" onclick="return checkLogin()">장바구니</a></span>
-    <span id="cart_cnt"><a href="/order/list">000</a></span>
+<%--    <span id="cart_cnt"><a href="/order/list">000</a></span>--%>
   </div>
   <div id="logo_search_box">
     <h1>
@@ -174,13 +174,15 @@
 
 
     <script> //장바구니 로그인체크
+
+
       function checkLogin() {
         let isLoggedIn = <%=session != null && session.getAttribute("MBR_ID") != null %> ;
         console.log('로그인여부',isLoggedIn);
         if (isLoggedIn === true) {
           return true;
         } else {
-          alert('장바구니를 이용하려면 로그인 해주세요');
+          alert('로그인후 이용해주세요');
           console.log('비로그인 장바구니');
           return false;
         }
