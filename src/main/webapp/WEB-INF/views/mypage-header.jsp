@@ -48,15 +48,13 @@
         #container {
             display: flex;
             flex-direction: row;
-            /*margin-right: 12%;*/
-            /*margin-left: 12%;*/
+
         }
 
         #menu {
-            padding: 30px 0 20px 20px;
-
+            padding: 30px 20px 20px 20px;
             border-right: 1px solid rgba(231, 230, 230, 0.673);
-            margin-left: 250px;
+            margin-left: 200px;
         }
 
         #menu p  {
@@ -64,6 +62,7 @@
             margin-bottom: 30px;
             color: #777777;
             width: 110px;
+            text-align: left;
         }
         #menu a {
             text-decoration: none;
@@ -79,7 +78,7 @@
             min-height: 600px;
             margin-right: 100px;
             margin-left: 30px;
-            /*width: 1000px;*/
+            width: 1100px;
         }
 
 
@@ -93,14 +92,14 @@
     <div id="mypageTop">
         <div id="member">
             <div id="user_grade">
-                <img src="../img/ming/myPage_ming/welcomegrade.png"style="width: 50px" class="mypage-img1">
+                <img src="/img/ming/myPage_ming/welcomegrade.png"style="width: 50px" class="mypage-img1">
                 <h2>
                     ${MBR_ID}님은 <em class="grade">웰컴</em> 회원입니다.
                 </h2>
                 <span></span>
-                <img src="../img/ming/myPage_ming/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
+                <img src="/img/ming/myPage_ming/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
                 <p>보유쿠폰 <em class="info">2장</em> </p>
-                <img src="../img/ming/myPage_ming/point_icon.png"style="width: 75px" class="mypage-img3">
+                <img src="/img/ming/myPage_ming/point_icon.png"style="width: 75px" class="mypage-img3">
                 <p>보유포인트 <em class="info">3000p</em> </p>
             </div>
         </div>

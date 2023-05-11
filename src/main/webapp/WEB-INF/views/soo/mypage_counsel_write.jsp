@@ -6,16 +6,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<link rel="stylesheet" href="/css/soo/mypage_counsel_write.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/css/hoon/jquery/jquery-ui.min.js"></script>
 
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/soo/mypage_counsel_write.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <h2>1:1 상담내역</h2>
+
             <div class="tab">
                 <ul class="cate">
                     <li id="W">
@@ -60,8 +57,8 @@
                 <div class="tableForm">
                     <table>
                         <colgroup>
-                            <col style="width: 25%" />
-                            <col style="width: 75%" />
+                            <col style="width: 20%" />
+                            <col style="width: 80%" />
                         </colgroup>
 
                         <tbody>

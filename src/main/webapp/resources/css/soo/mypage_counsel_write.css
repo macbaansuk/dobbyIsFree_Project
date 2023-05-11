@@ -91,6 +91,7 @@ a {
 /* 테이블 */
 table {
     padding: 20px 0 0 0;
+    width: 100%;
 }
 
 tr {

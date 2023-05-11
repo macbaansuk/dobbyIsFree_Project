@@ -84,10 +84,10 @@
         <table>
           <caption>1:1 상담내역</caption>
           <colgroup>
-            <col style="width: 80px;">
-            <col style="width: 500px;">
-            <col style="width: 200px;">
-            <col style="width: 120px;">
+            <col style="width: 10%;">
+            <col style="width: 50%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
           </colgroup>
           <thead>
           <tr>
