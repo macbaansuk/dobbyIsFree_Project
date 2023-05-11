@@ -104,8 +104,8 @@
             padding: 6px 8px;
             vertical-align: middle !important;
             letter-spacing: 0;
-            width: 93px !important;
-            height: 29px !important;
+            width: 80px !important;
+            height: 15px !important;
 
         }
 
@@ -296,8 +296,10 @@
                                 <div class="title">
                                     <h2>쇼핑몰 현황 </h2>
                                 </div>
+
+                                <%-- Ajax로 변경할 부분 시작 --%>
                                 <div class="mTab typeNav mallStauts">
-                                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                                    <ul class="tab-menu ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
                                         <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabMallStatus1" id="tabMallStatus1Button" >일별 매출 현황</a></li>
                                         <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus2" >주문처리 현황</a></li>
                                         <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus3">회원/적립금 현황</a></li>
@@ -306,9 +308,8 @@
                                 </div>
 
 
-
                                 <!-- 일별 매출 현황 탭 -->
-                                <div id="tabMallStatus1" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                <div id="tabMallStatus1" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
                                     <div class="mallArea">
                                         <div class="gFlow graph">
                                             <span class="gSingleSide gDouble txtLess" id="eMainSalesDailyChartUnit">단위/만원</span>
@@ -317,7 +318,7 @@
                                             <%--라인 챠트--%>
                                             <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                                 <!--차트가 그려질 부분-->
-                                                <canvas id="myChartLine"></canvas>
+                                                <canvas class="myChartLine"></canvas>
                                             </div>
 
 
@@ -403,6 +404,328 @@
                     </div> <!-- mallArea 끝-->
                 </div> <!-- tabMallStatus1 끝-->
                 <!-- //일별 매출 현황 탭 -->
+                                <!-- 주문처리 현황 -->
+                                <div id="tabMallStatus2" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom ">
+                                    <div class="mallArea">
+                                        <div class="mBoard">
+                                            <table border="1" summary="">
+                                                <caption>주문처리 현황</caption>
+                                                <colgroup>
+                                                    <col style="width:10%;">
+                                                </colgroup>
+
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">날짜</th>
+                                                    <th scope="col">입금전</th>
+                                                    <th scope="col">배송준비중</th>
+                                                    <th scope="col">배송대기중</th>
+                                                    <th scope="col">배송중</th>
+                                                    <th scope="col">배송완료</th>
+                                                    <th scope="col">취소</th>
+                                                    <th scope="col">교환</th>
+                                                    <th scope="col">반품</th>
+                                                    <th scope="col"><strong>주문합계</strong></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="right">
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle1">05월 03일</th>
+                                                    <td id="payWaitOrderCount1">0건</td>
+                                                    <td id="shipReadyOrderCount1">0건</td>
+                                                    <td id="shipWaitOrderCount1">0건</td>
+                                                    <td id="shippingOrderCount1">0건</td>
+                                                    <td id="shipendOrderCount1">0건</td>
+                                                    <td id="cancelOrderCount1">0건</td>
+                                                    <td id="changeOrderCount1">0건</td>
+                                                    <td id="returnOrderCount1">0건</td>
+                                                    <td id="totalOrderCount1">0건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle2">05월 04일</th>
+                                                    <td id="payWaitOrderCount2">0건</td>
+                                                    <td id="shipReadyOrderCount2">0건</td>
+                                                    <td id="shipWaitOrderCount2">0건</td>
+                                                    <td id="shippingOrderCount2">0건</td>
+                                                    <td id="shipendOrderCount2">0건</td>
+                                                    <td id="cancelOrderCount2">0건</td>
+                                                    <td id="changeOrderCount2">0건</td>
+                                                    <td id="returnOrderCount2">0건</td>
+                                                    <td id="totalOrderCount2">0건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle3">05월 05일</th>
+                                                    <td id="payWaitOrderCount3">0건</td>
+                                                    <td id="shipReadyOrderCount3">0건</td>
+                                                    <td id="shipWaitOrderCount3">0건</td>
+                                                    <td id="shippingOrderCount3">0건</td>
+                                                    <td id="shipendOrderCount3">0건</td>
+                                                    <td id="cancelOrderCount3">0건</td>
+                                                    <td id="changeOrderCount3">0건</td>
+                                                    <td id="returnOrderCount3">0건</td>
+                                                    <td id="totalOrderCount3">0건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle4">05월 06일</th>
+                                                    <td id="payWaitOrderCount4">0건</td>
+                                                    <td id="shipReadyOrderCount4">0건</td>
+                                                    <td id="shipWaitOrderCount4">0건</td>
+                                                    <td id="shippingOrderCount4">0건</td>
+                                                    <td id="shipendOrderCount4">0건</td>
+                                                    <td id="cancelOrderCount4">0건</td>
+                                                    <td id="changeOrderCount4">0건</td>
+                                                    <td id="returnOrderCount4">0건</td>
+                                                    <td id="totalOrderCount4">0건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle5">05월 07일</th>
+                                                    <td id="payWaitOrderCount5">0건</td>
+                                                    <td id="shipReadyOrderCount5">0건</td>
+                                                    <td id="shipWaitOrderCount5">0건</td>
+                                                    <td id="shippingOrderCount5">0건</td>
+                                                    <td id="shipendOrderCount5">0건</td>
+                                                    <td id="cancelOrderCount5">0건</td>
+                                                    <td id="changeOrderCount5">0건</td>
+                                                    <td id="returnOrderCount5">0건</td>
+                                                    <td id="totalOrderCount5">0건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row" id="orderCountTitle6">05월 08일</th>
+                                                    <td id="payWaitOrderCount6">0건</td>
+                                                    <td id="shipReadyOrderCount6">0건</td>
+                                                    <td id="shipWaitOrderCount6">0건</td>
+                                                    <td id="shippingOrderCount6">0건</td>
+                                                    <td id="shipendOrderCount6">0건</td>
+                                                    <td id="cancelOrderCount6">0건</td>
+                                                    <td id="changeOrderCount6">0건</td>
+                                                    <td id="returnOrderCount6">0건</td>
+                                                    <td id="totalOrderCount6">0건</td>
+                                                </tr>
+                                                <tr class="em">
+                                                    <th scope="row" id="orderCountTitleToday">05월 09일 (금일)</th>
+                                                    <td id="payWaitOrderCountToday">0건</td>
+                                                    <td id="shipReadyOrderCountToday">0건</td>
+                                                    <td id="shipWaitOrderCountToday">0건</td>
+                                                    <td id="shippingOrderCountToday">0건</td>
+                                                    <td id="shipendOrderCountToday">0건</td>
+                                                    <td id="cancelOrderCountToday">0건</td>
+                                                    <td id="changeOrderCountToday">0건</td>
+                                                    <td id="returnOrderCountToday">0건</td>
+                                                    <td id="totalOrderCountToday">0건</td>
+                                                </tr>
+                                                <tr class="total">
+                                                    <th scope="row" id="orderCountTitleTotal"><strong>합계</strong></th>
+                                                    <td id="payWaitOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="shipReadyOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="shipWaitOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="shippingOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="shipendOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="cancelOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="changeOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="returnOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="totalOrderCountTotal"><strong>0</strong>건</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //주문처리 현황 -->
+
+
+                                <!-- 회원/적립금 현황 -->
+                                <div id="tabMallStatus3" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                    <div class="mallArea">
+                                        <div class="gFlow graph">
+                                            <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/명</span>
+                                            <%-- 라인 챠트--%>
+                                            <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
+                                                <!--차트가 그려질 부분-->
+                                                <canvas class="myChartLine2"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="gReverse">
+                                            <div class="mBoard">
+                                                <table border="1" summary="" id="viewMemberCountMileage">
+                                                    <caption>회원/적립금 현황</caption>
+                                                    <colgroup>
+                                                        <col style="width:22%;">
+                                                        <col style="width:39%;">
+                                                        <col style="width:39%;">
+                                                    </colgroup>
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">날짜</th>
+                                                        <th scope="col">신규 회원 가입 현황(누적)</th>
+                                                        <th scope="col">적립금 적용 현황(누적)</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="right">
+
+                                                    <tr class=""><td>05월 03일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class=""><td>05월 04일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class=""><td>05월 05일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class=""><td>05월 06일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class=""><td>05월 07일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class=""><td>05월 08일</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class="em"><td>05월 09일 (금일)</td>
+                                                        <td>0 명</td>
+                                                        <td>0 원</td>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td><strong>합계</strong></td>
+                                                        <td><strong>0</strong> 명</td>
+                                                        <td><strong>0</strong> 원</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //회원/적립금 현황 -->
+
+
+
+
+                                <!-- 게시물 현황 -->
+                                <div id="tabMallStatus5" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                    <div class="mallArea">
+                                        <div class="mBoard">
+                                            <table border="1" summary="">
+                                                <caption>게시물 현황</caption>
+                                                <colgroup>
+                                                    <col span="9" style="width:auto;"><!-- 참고 : 항목 개수에 따라 span 값 변경 -->
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">날짜</th>
+                                                    <th scope="col">공지사항</th>
+                                                    <th scope="col">뉴스/이벤트</th>
+                                                    <th scope="col">이용안내 FAQ</th>
+                                                    <th scope="col">상품 사용후기</th>
+                                                    <th scope="col">자유게시판</th>
+                                                    <th scope="col">상품 Q&amp;A</th>
+                                                    <th scope="col">자료실</th>
+                                                    <th scope="col">갤러리</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody class="right">
+                                                <tr class="">
+                                                    <th scope="row">05월 03일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 04일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 05일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 06일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 07일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 08일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <th scope="row">05월 09일</th>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                    <td>0 건</td>
+                                                </tr>
+
+                                                <tr class="total">
+                                                    <th scope="row"><strong>합계</strong></th>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                    <td><strong>0</strong> 건</td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //게시물 현황 -->
             </div>
             </div>
 
@@ -411,328 +734,7 @@
             <!-- //일별 매출 현황 탭 -->
 
 
-<%--            <!-- 주문처리 현황 -->--%>
-<%--            <div id="tabMallStatus2" class="tabMallStatus">--%>
-<%--                <div class="mallArea">--%>
-<%--                    <div class="mBoard">--%>
-<%--                        <table border="1" summary="">--%>
-<%--                            <caption>주문처리 현황</caption>--%>
-<%--                            <colgroup>--%>
-<%--                                <col style="width:10%;">--%>
-<%--                            </colgroup>--%>
 
-<%--                            <thead>--%>
-<%--                            <tr>--%>
-<%--                                <th scope="col">날짜</th>--%>
-<%--                                <th scope="col">입금전</th>--%>
-<%--                                <th scope="col">배송준비중</th>--%>
-<%--                                <th scope="col">배송대기중</th>--%>
-<%--                                <th scope="col">배송중</th>--%>
-<%--                                <th scope="col">배송완료</th>--%>
-<%--                                <th scope="col">취소</th>--%>
-<%--                                <th scope="col">교환</th>--%>
-<%--                                <th scope="col">반품</th>--%>
-<%--                                <th scope="col"><strong>주문합계</strong></th>--%>
-<%--                            </tr>--%>
-<%--                            </thead>--%>
-<%--                            <tbody class="right">--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle1">05월 03일</th>--%>
-<%--                                <td id="payWaitOrderCount1">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount1">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount1">0건</td>--%>
-<%--                                <td id="shippingOrderCount1">0건</td>--%>
-<%--                                <td id="shipendOrderCount1">0건</td>--%>
-<%--                                <td id="cancelOrderCount1">0건</td>--%>
-<%--                                <td id="changeOrderCount1">0건</td>--%>
-<%--                                <td id="returnOrderCount1">0건</td>--%>
-<%--                                <td id="totalOrderCount1">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle2">05월 04일</th>--%>
-<%--                                <td id="payWaitOrderCount2">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount2">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount2">0건</td>--%>
-<%--                                <td id="shippingOrderCount2">0건</td>--%>
-<%--                                <td id="shipendOrderCount2">0건</td>--%>
-<%--                                <td id="cancelOrderCount2">0건</td>--%>
-<%--                                <td id="changeOrderCount2">0건</td>--%>
-<%--                                <td id="returnOrderCount2">0건</td>--%>
-<%--                                <td id="totalOrderCount2">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle3">05월 05일</th>--%>
-<%--                                <td id="payWaitOrderCount3">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount3">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount3">0건</td>--%>
-<%--                                <td id="shippingOrderCount3">0건</td>--%>
-<%--                                <td id="shipendOrderCount3">0건</td>--%>
-<%--                                <td id="cancelOrderCount3">0건</td>--%>
-<%--                                <td id="changeOrderCount3">0건</td>--%>
-<%--                                <td id="returnOrderCount3">0건</td>--%>
-<%--                                <td id="totalOrderCount3">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle4">05월 06일</th>--%>
-<%--                                <td id="payWaitOrderCount4">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount4">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount4">0건</td>--%>
-<%--                                <td id="shippingOrderCount4">0건</td>--%>
-<%--                                <td id="shipendOrderCount4">0건</td>--%>
-<%--                                <td id="cancelOrderCount4">0건</td>--%>
-<%--                                <td id="changeOrderCount4">0건</td>--%>
-<%--                                <td id="returnOrderCount4">0건</td>--%>
-<%--                                <td id="totalOrderCount4">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle5">05월 07일</th>--%>
-<%--                                <td id="payWaitOrderCount5">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount5">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount5">0건</td>--%>
-<%--                                <td id="shippingOrderCount5">0건</td>--%>
-<%--                                <td id="shipendOrderCount5">0건</td>--%>
-<%--                                <td id="cancelOrderCount5">0건</td>--%>
-<%--                                <td id="changeOrderCount5">0건</td>--%>
-<%--                                <td id="returnOrderCount5">0건</td>--%>
-<%--                                <td id="totalOrderCount5">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row" id="orderCountTitle6">05월 08일</th>--%>
-<%--                                <td id="payWaitOrderCount6">0건</td>--%>
-<%--                                <td id="shipReadyOrderCount6">0건</td>--%>
-<%--                                <td id="shipWaitOrderCount6">0건</td>--%>
-<%--                                <td id="shippingOrderCount6">0건</td>--%>
-<%--                                <td id="shipendOrderCount6">0건</td>--%>
-<%--                                <td id="cancelOrderCount6">0건</td>--%>
-<%--                                <td id="changeOrderCount6">0건</td>--%>
-<%--                                <td id="returnOrderCount6">0건</td>--%>
-<%--                                <td id="totalOrderCount6">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="em">--%>
-<%--                                <th scope="row" id="orderCountTitleToday">05월 09일 (금일)</th>--%>
-<%--                                <td id="payWaitOrderCountToday">0건</td>--%>
-<%--                                <td id="shipReadyOrderCountToday">0건</td>--%>
-<%--                                <td id="shipWaitOrderCountToday">0건</td>--%>
-<%--                                <td id="shippingOrderCountToday">0건</td>--%>
-<%--                                <td id="shipendOrderCountToday">0건</td>--%>
-<%--                                <td id="cancelOrderCountToday">0건</td>--%>
-<%--                                <td id="changeOrderCountToday">0건</td>--%>
-<%--                                <td id="returnOrderCountToday">0건</td>--%>
-<%--                                <td id="totalOrderCountToday">0건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="total">--%>
-<%--                                <th scope="row" id="orderCountTitleTotal"><strong>합계</strong></th>--%>
-<%--                                <td id="payWaitOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="shipReadyOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="shipWaitOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="shippingOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="shipendOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="cancelOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="changeOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="returnOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                                <td id="totalOrderCountTotal"><strong>0</strong>건</td>--%>
-<%--                            </tr>--%>
-<%--                            </tbody>--%>
-<%--                        </table>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- //주문처리 현황 -->--%>
-
-
-<%--            <!-- 회원/적립금 현황 -->--%>
-<%--            <div id="tabMallStatus3" class="tabMallStatus">--%>
-<%--                <div class="mallArea">--%>
-<%--                    <div class="gFlow graph">--%>
-<%--                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/명</span>--%>
-<%--                         <%--라인 챠트--%>
-<%--                <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">--%>
-<%--                    <!--차트가 그려질 부분-->--%>
-<%--                    <canvas id="myChartBar"></canvas>--%>
-<%--                </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="gReverse">--%>
-<%--                        <div class="mBoard">--%>
-<%--                            <table border="1" summary="" id="viewMemberCountMileage">--%>
-<%--                                <caption>회원/적립금 현황</caption>--%>
-<%--                                <colgroup>--%>
-<%--                                    <col style="width:22%;">--%>
-<%--                                    <col style="width:39%;">--%>
-<%--                                    <col style="width:39%;">--%>
-<%--                                </colgroup>--%>
-<%--                                <thead>--%>
-<%--                                <tr>--%>
-<%--                                    <th scope="col">날짜</th>--%>
-<%--                                    <th scope="col">신규 회원 가입 현황(누적)</th>--%>
-<%--                                    <th scope="col">적립금 적용 현황(누적)</th>--%>
-<%--                                </tr>--%>
-<%--                                </thead>--%>
-<%--                                <tbody class="right">--%>
-
-<%--                                <tr class=""><td>05월 03일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class=""><td>05월 04일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class=""><td>05월 05일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class=""><td>05월 06일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class=""><td>05월 07일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class=""><td>05월 08일</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class="em"><td>05월 09일 (금일)</td>--%>
-<%--                                    <td>0 명</td>--%>
-<%--                                    <td>0 원</td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class="total">--%>
-<%--                                    <td><strong>합계</strong></td>--%>
-<%--                                    <td><strong>0</strong> 명</td>--%>
-<%--                                    <td><strong>0</strong> 원</td>--%>
-<%--                                </tr>--%>
-<%--                                </tbody>--%>
-<%--                            </table>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- //회원/적립금 현황 -->--%>
-
-
-
-
-<%--            <!-- 게시물 현황 -->--%>
-<%--            <div id="tabMallStatus5" class="tabMallStatus">--%>
-<%--                <div class="mallArea">--%>
-<%--                    <div class="mBoard">--%>
-<%--                        <table border="1" summary="">--%>
-<%--                            <caption>게시물 현황</caption>--%>
-<%--                            <colgroup>--%>
-<%--                                <col span="9" style="width:auto;"><!-- 참고 : 항목 개수에 따라 span 값 변경 -->--%>
-<%--                            </colgroup>--%>
-<%--                            <thead>--%>
-<%--                            <tr>--%>
-<%--                                <th scope="col">날짜</th>--%>
-<%--                                <th scope="col">공지사항</th>--%>
-<%--                                <th scope="col">뉴스/이벤트</th>--%>
-<%--                                <th scope="col">이용안내 FAQ</th>--%>
-<%--                                <th scope="col">상품 사용후기</th>--%>
-<%--                                <th scope="col">자유게시판</th>--%>
-<%--                                <th scope="col">상품 Q&amp;A</th>--%>
-<%--                                <th scope="col">자료실</th>--%>
-<%--                                <th scope="col">갤러리</th>--%>
-<%--                            </tr>--%>
-<%--                            </thead>--%>
-
-<%--                            <tbody class="right">--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 03일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 04일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 05일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 06일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 07일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 08일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-<%--                            <tr class="">--%>
-<%--                                <th scope="row">05월 09일</th>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                                <td>0 건</td>--%>
-<%--                            </tr>--%>
-
-<%--                            <tr class="total">--%>
-<%--                                <th scope="row"><strong>합계</strong></th>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                                <td><strong>0</strong> 건</td>--%>
-<%--                            </tr>--%>
-
-<%--                            </tbody>--%>
-<%--                        </table>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-            <!-- //게시물 현황 -->
                 <!-- 쇼핑몰 현황2 시작 -->
 <%--            <div class="title">--%>
 <%--                <h2>쇼핑몰 현황</h2>--%>
@@ -769,9 +771,73 @@
 <%--</div>--%>
 
 <script >
+
+    $(document).ready(function() {
+        // 초기화 // 이거 복습하고 다시 만들어보기
+        $('.tabMallStatus').hide(); // 모든 탭 내용을 숨김
+        $('.tabMallStatus:first').show(); // 첫 번째 탭 내용을 보임
+        $('.tab-menu li:first').addClass('active'); // 첫 번째 탭 메뉴에 active 클래스 추가
+
+        // 탭 메뉴 클릭 이벤트 처리
+        $('.tab-menu li').click(function() {
+            $('.tab-menu li').removeClass('active'); // 모든 탭 메뉴에서 active 클래스 제거
+            $(this).addClass('active'); // 클릭한 탭 메뉴에 active 클래스 추가
+            $('.tabMallStatus').hide(); // 모든 탭 내용을 숨김
+            var activeTab = $(this).find('a').attr('href'); // 클릭한 탭 메뉴의 href 속성 값을 가져옴
+            $(activeTab).fadeIn(); // 해당 탭 내용을 보임
+            return false;
+        });
+    });
+
+
+    let  showList = function() {
+        //서버에 전달할 검색어와 옵션을 변수에 담는다.
+
+
+        $('.test').empty(); // 쇼핑몰 현황을 비운다.
+
+        $.ajax({
+            type: 'PATCH',
+            url: "/admin/main/status",
+            contentType : 'application/json',
+
+            data: JSON.stringify({
+
+                // JSON으로 보낼 값을 넣는다.
+                // page : page,
+                // pageSize: pageSize,
+
+
+            }),
+            // traditional: true, // 배열 형태의 데이터를 전송할 때 필요한 옵션
+            success: function (data) {
+                console.log(data);
+                processListData(data);// 화면에 출력하는 함수
+
+            },
+            error: function () {
+                // 에러 시 처리할 코드
+            }
+        });
+    }
+
+    function processListData(data) {
+
+        $('.center').html(toHtml(data.list)); // 서버에서 전달받은 무언가를 보여준다.
+
+    }
+
+<%--  그래프 불러오기  --%>
     let context = document
-        .getElementById('myChartLine')
+    .querySelector('.myChartLine')
         .getContext('2d');
+
+    let context2 = document
+        .querySelector('.myChartLine2')
+        .getContext('2d');
+//     let context = document
+//         .getElementById('myChartLine')
+//         .getContext('2d');
 
     // let context2 = document
     //     .getElementById('myChartBar')
@@ -814,16 +880,7 @@
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1 //경계선 굵기
-                }/* ,
-                {
-                    label: 'test2',
-                    fill: false,
-                    data: [
-                        8, 34, 12, 24
-                    ],
-                    backgroundColor: 'rgb(157, 109, 12)',
-                    borderColor: 'rgb(157, 109, 12)'
-                } */
+                }
             ]
         },
         options: {
@@ -840,10 +897,8 @@
     });
 
 
-
-
-    let myChartBar = new Chart(context2, {
-        type: 'bar', // 차트의 형태
+    let myChartLine2 = new Chart(context2, {
+        type: 'line', // 차트의 형태
         data: { // 차트에 들어갈 데이터
             labels: [
                 //x 축
@@ -875,16 +930,7 @@
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1 //경계선 굵기
-                }/* ,
-                {
-                    label: 'test2',
-                    fill: false,
-                    data: [
-                        8, 34, 12, 24
-                    ],
-                    backgroundColor: 'rgb(157, 109, 12)',
-                    borderColor: 'rgb(157, 109, 12)'
-                } */
+                }
             ]
         },
         options: {
@@ -901,66 +947,124 @@
     });
 
 
-        let myChart3 = new Chart(context3, {
-            type: 'pie', // 차트의 형태
-            data: { // 차트에 들어갈 데이터
-                labels: [
-                    //x 축
-                    '1','2','3','4','5','6','7'
-                ],
-                datasets: [
-                    { //데이터
-                        label: 'test1', //차트 제목
-                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
-                        data: [
-                            21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
-                        ],
-                        backgroundColor: [
-                            //색상
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            //경계선 색상
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1 //경계선 굵기
-                    }/* ,
-                    {
-                        label: 'test2',
-                        fill: false,
-                        data: [
-                            8, 34, 12, 24
-                        ],
-                        backgroundColor: 'rgb(157, 109, 12)',
-                        borderColor: 'rgb(157, 109, 12)'
-                    } */
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }
-                    ]
-                }
-            }
-        });
+    // let myChartBar = new Chart(context2, {
+    //     type: 'bar', // 차트의 형태
+    //     data: { // 차트에 들어갈 데이터
+    //         labels: [
+    //             //x 축
+    //             '1','2','3','4','5','6','7'
+    //         ],
+    //         datasets: [
+    //             { //데이터
+    //                 label: 'test1', //차트 제목
+    //                 fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+    //                 data: [
+    //                     21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
+    //                 ],
+    //                 backgroundColor: [
+    //                     //색상
+    //                     'rgba(255, 99, 132, 0.2)',
+    //                     'rgba(54, 162, 235, 0.2)',
+    //                     'rgba(255, 206, 86, 0.2)',
+    //                     'rgba(75, 192, 192, 0.2)',
+    //                     'rgba(153, 102, 255, 0.2)',
+    //                     'rgba(255, 159, 64, 0.2)'
+    //                 ],
+    //                 borderColor: [
+    //                     //경계선 색상
+    //                     'rgba(255, 99, 132, 1)',
+    //                     'rgba(54, 162, 235, 1)',
+    //                     'rgba(255, 206, 86, 1)',
+    //                     'rgba(75, 192, 192, 1)',
+    //                     'rgba(153, 102, 255, 1)',
+    //                     'rgba(255, 159, 64, 1)'
+    //                 ],
+    //                 borderWidth: 1 //경계선 굵기
+    //             }/* ,
+    //             {
+    //                 label: 'test2',
+    //                 fill: false,
+    //                 data: [
+    //                     8, 34, 12, 24
+    //                 ],
+    //                 backgroundColor: 'rgb(157, 109, 12)',
+    //                 borderColor: 'rgb(157, 109, 12)'
+    //             } */
+    //         ]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [
+    //                 {
+    //                     ticks: {
+    //                         beginAtZero: true
+    //                     }
+    //                 }
+    //             ]
+    //         }
+    //     }
+    // });
+    //
+    //
+    //     let myChart3 = new Chart(context3, {
+    //         type: 'pie', // 차트의 형태
+    //         data: { // 차트에 들어갈 데이터
+    //             labels: [
+    //                 //x 축
+    //                 '1','2','3','4','5','6','7'
+    //             ],
+    //             datasets: [
+    //                 { //데이터
+    //                     label: 'test1', //차트 제목
+    //                     fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+    //                     data: [
+    //                         21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
+    //                     ],
+    //                     backgroundColor: [
+    //                         //색상
+    //                         'rgba(255, 99, 132, 0.2)',
+    //                         'rgba(54, 162, 235, 0.2)',
+    //                         'rgba(255, 206, 86, 0.2)',
+    //                         'rgba(75, 192, 192, 0.2)',
+    //                         'rgba(153, 102, 255, 0.2)',
+    //                         'rgba(255, 159, 64, 0.2)'
+    //                     ],
+    //                     borderColor: [
+    //                         //경계선 색상
+    //                         'rgba(255, 99, 132, 1)',
+    //                         'rgba(54, 162, 235, 1)',
+    //                         'rgba(255, 206, 86, 1)',
+    //                         'rgba(75, 192, 192, 1)',
+    //                         'rgba(153, 102, 255, 1)',
+    //                         'rgba(255, 159, 64, 1)'
+    //                     ],
+    //                     borderWidth: 1 //경계선 굵기
+    //                 }/* ,
+    //                 {
+    //                     label: 'test2',
+    //                     fill: false,
+    //                     data: [
+    //                         8, 34, 12, 24
+    //                     ],
+    //                     backgroundColor: 'rgb(157, 109, 12)',
+    //                     borderColor: 'rgb(157, 109, 12)'
+    //                 } */
+    //             ]
+    //         },
+    //         options: {
+    //             scales: {
+    //                 yAxes: [
+    //                     {
+    //                         ticks: {
+    //                             beginAtZero: true
+    //                         }
+    //                     }
+    //                 ]
+    //             }
+    //         }
+    //     });
 
 </script>
-
 
         <jsp:include page="../admin_footer.jsp"/>
 
