@@ -34,7 +34,12 @@ public interface CounselService {
     // 전체 1:1 상담 목록 + 답변 조회
     List<CounselAnswerDto> getAllList(Map map) throws Exception;
 
-    // 답변 작성 + 1:1 상담 게시물 상태 업데이트
-    void writeAnswer(AnswerDto answerDto, CounselDto counselDto) throws Exception;
+    // 답변 작성
+    void writeAnswer(AnswerDto answerDto) throws Exception;
 
+    // 1:1 상담 답변 후 상태 업데이트
+    int modifyCounselStatus(CounselDto counselDto) throws Exception;
+
+    // 답변작성 상태 업데이트 동시
+    void writeAnswerAndModifyStatus(AnswerDto answerDto, CounselDto counselDto) throws Exception;
 }

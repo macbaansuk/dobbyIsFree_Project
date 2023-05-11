@@ -50,10 +50,9 @@ public class CounselServiceImpl implements CounselService {
     }
 
     @Override// 회원별 1:1 상담 게시물 삭제
-    public int removeCounsel(Integer cnslId) throws Exception{
+    public int removeCounsel(Integer cnslId) throws Exception {
         return counselDao.deleteCounsel(cnslId);
     }
-
 
     //여기부터 관리자 페이지
     @Override // 전체 상담 + 답변 목록 조회
@@ -61,27 +60,30 @@ public class CounselServiceImpl implements CounselService {
         return counselDao.selectAllList(map);
     }
 
-//    @Override // 답변 작성
-//        @Transactional
-//        public void writeAnswer(AnswerDto answerDto, Integer cnslId) throws Exception {
-//            counselDao.insertAnswer(answerDto);
-//            counselDao.updateCounselStatus(cnslId);
-//
-//    }
-
-
-
     @Override   // 답변 작성
+    public void writeAnswer(AnswerDto answerDto) throws Exception {
+        counselDao.insertAnswer(answerDto);
+    }
+
+    @Override // 1:1 상담 답변 후 상태 업데이트
+    public int modifyCounselStatus(CounselDto counselDto) throws Exception {
+        return counselDao.updateCounselStatus(counselDto);
+    }
+
+
+    @Override   // 답변 작성 + 상태 업데이트
     @Transactional(rollbackFor = Exception.class)
-    public void writeAnswer(AnswerDto answerDto, CounselDto counselDto) throws Exception {
-        // 답변 등록
+    public void writeAnswerAndModifyStatus(AnswerDto answerDto, CounselDto counselDto) throws Exception {
         counselDao.insertAnswer(answerDto);
 
-        // 1:1 상담 상태 업데이트
-        counselDto.setCNSL_ID(answerDto.getCSNL_ID());
-        counselDto.setSTUS("처리완료");
-        counselDto.setANS_YN("Y");
-        counselDao.updateCounselStatus(counselDto);
+        // CNSL_ID를 이용하여 CounselDto 조회
+        CounselDto originalCounsel = counselDao.getCounselByCNSL_ID(answerDto.getCNSL_ID());
+
+        // 처리상태와 답변여부 변경
+        originalCounsel.setSTUS(counselDto.getSTUS());
+        originalCounsel.setANS_YN(counselDto.getANS_YN());
+
+        counselDao.updateCounselStatus(originalCounsel);
+
     }
 }
-

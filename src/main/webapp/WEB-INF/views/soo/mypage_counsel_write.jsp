@@ -256,44 +256,6 @@
         });
     });
 
-    //
-    //     function openModal() {
-    //     $('#myModal').modal('show');
-    // }
-
-
-    // 제품찾기 팝업창
-    <%--$('#prodSearchBtn').on("click", function(e) {--%>
-    <%--    e.preventDefault();--%>
-
-    <%--    let popUrl = "/mypage/counsel/write/prodPop";--%>
-    <%--    let popOption = "width=400px,height=400px,top=300px,left=300px,scrollbars=yes";--%>
-    <%--    let popName = "제품 찾기";--%>
-
-    <%--    let prodId = document.getElementById('prodId_input').value;--%>
-    <%--    let url = `${popUrl}?prodId=${encodeURIComponent(prodId)}`;--%>
-
-    <%--    window.open(url, popName, popOption);--%>
-    <%--});--%>
-
-
-
-
-
-
-
-    <%--    $('#prodSearchBtn').on("click", function(e) {--%>
-    <%--    e.preventDefault();--%>
-
-    <%--    let popUrl = "/mypage/counsel/write/prodPop";--%>
-    <%--    let popOption = "width=400px,height=400px,top=300px,left=300px,scrollbars=yes";--%>
-    <%--    let popName = "제품 찾기";--%>
-    <%--    window.open(`${popUrl}?prodId=${encodeURIComponent(document.getElementById('prodId_input').value)}`, popName, popOption);--%>
-    <%--});--%>
-
-
-
-
 
 </script>
 

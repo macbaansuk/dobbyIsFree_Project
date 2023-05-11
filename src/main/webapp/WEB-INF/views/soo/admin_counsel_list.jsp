@@ -130,10 +130,10 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach var="counsel" items="${list}">
-
+<%--                                <form name="answerForm" method="post" action="/admin/counsel/write">--%>
                                     <tr class="question">
                                         <!-- 1:1 상담 번호(rownum) -->
-                                        <td class="no">${counsel.CNSL_ID}</td>
+                                        <td class="no" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</td>
                                         <!-- 카테고리 -->
                                         <td class="category">${counsel.CATE_NM}</td>
                                         <!-- 제목 -->
@@ -155,7 +155,7 @@
                                         <td></td>
                                         <td colspan="3">
                                             <!-- 제품명 추가 -->
-                                            <div class="prod">[제품명] ${counsel.PROD_NM}</div>
+                                            <div class="prod">[제품명] 수퍼 화산송이 모공 마스크 ${counsel.PROD_NM}</div>
                                             <!-- 문의내용 -->
                                             <div class="questionC">
                                                     ${counsel.CN}
@@ -167,14 +167,17 @@
                                                     RE: ${counsel.TTL}
                                                 </span>
                                                 <!-- answer 작성 -->
-                                                <form name="answerForm" method="post">
+                                                <form id="answerForm_${counsel.CNSL_ID}" method="post"  >
                                                     <span class="answerCont">
-                                                    <textarea class="answertext" type="text" name="answerContent" >${counsel.CONTENT}</textarea>
-                                                </span>
+                                                        <textarea class="answertext" type="text" name="CONTENT"
+                                                            ${counsel.STUS eq '처리완료' ? 'readonly' : ''}>${counsel.CONTENT}</textarea>
+                                                    </span>
                                                     <span class="btn">
-                                                        <input type="hidden" name="cnslId" value="${counsel.CNSL_ID}">
-                                                    <button id="regBtn" type="submit">답변등록</button>
-                                                </span>
+                                                        <p style="display: none;" name="CNSL_ID" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</p>
+<%--                                                        <button id="regBtn" type="submit">답변등록</button>--%>
+                                                            <button id="regBtn" type="button" onclick="submitAnswer(${counsel.CNSL_ID}, $('#answerForm_${counsel.CNSL_ID} textarea').val())">답변등록</button>
+
+                                                    </span>
                                                 </form>
 
                                             </div>
@@ -187,15 +190,15 @@
                             </table>
                             <!-- 페이징 -->
                             <div class="paging">
-                                <c:if test="${ph1.showPrev}">
+                                <c:if test="${ph.showPrev}">
                                 <a class="page">
-                                    <a href="<c:url value="/admin/counsel/list?page=${ph1.beginPage-1}" />">&lt;</a>
+                                    <a href="<c:url value="/admin/counsel/list?page=${ph.beginPage-1}" />">&lt;</a>
                                     </c:if>
-                                    <c:forEach var="i" begin="${ph1.beginPage}" end="${ph1.endPage}">
+                                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
                                     <a href="<c:url value="/admin/counsel/list?page=${i}" />">${i}</a>
                                     </c:forEach>
-                                    <c:if test="${ph1.showNext}">
-                                    <a href="<c:url value="/admin/counsel/list?page=${ph1.endPage+1}" />">&gt;</a>
+                                    <c:if test="${ph.showNext}">
+                                    <a href="<c:url value="/admin/counsel/list?page=${ph.endPage+1}" />">&gt;</a>
                                     </c:if>
                             </div>
                         </div>
@@ -232,6 +235,34 @@
             }
         });
     });
+
+
+    // 답변 등록 성공
+    function submitAnswer(CNSL_ID, CONTENT) {
+
+        if(CONTENT==""){
+            alert("답변을 입력해주세요");
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/counsel/write',
+            data: {
+                'CNSL_ID': CNSL_ID,
+                'CONTENT': CONTENT
+            },
+            success: function () {
+                location.reload();
+                alert('답변이 등록되었습니다.');
+            },
+            error: function () {
+                alert('답변 등록에 실패했습니다. 다시 시도해주세요.');
+            }
+        });
+    }
+
+
 
 
     let msg = "${msg}";
