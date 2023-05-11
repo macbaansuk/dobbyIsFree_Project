@@ -25,14 +25,14 @@
 
     <div class="product-header">
         <div class="product-text">
-            <h2 class="product-title">${productList[0].CATE_NM}</h2> <!--list 객체 사용-->
+            <h2 class="product-title">${productList[0].cate_nm}</h2> <!--list 객체 사용-->
             <div class="product-desc">
 
-                <pre>${productList[0].CATE_DESC}</pre>
+                <pre>${productList[0].cate_desc}</pre>
             </div>
         </div>
 
-        <img src="${productList[0].CATE_REP_IMG}" alt="${productList[0].CATE_NM} 메인사진"/>
+        <img src="${productList[0].cate_rep_img}" alt="${productList[0].cate_nm} 메인사진"/>
 
     </div>
 
@@ -63,27 +63,27 @@
         <div id="productlist" class="product-list">
             <c:forEach var="p" items="${productList}">
                 <div class="product">
-                    <a href="/product/productdetail/${p.PROD_ID}">
+                    <a href="/product/productdetail/${p.prod_id}">
                         <div class="product-img">
-                            <img src="${p.REP_IMG}" alt="메인 상품 이미지">
+                            <img src="${p.rep_img}" alt="메인 상품 이미지">
                         </div>
                         <div class="product-info">
-                            <span class="product-name">${p.PROD_NM}</span>
+                            <span class="product-name">${p.prod_nm}</span>
                             <p class="price">
                                 <c:choose>
-                                    <c:when test="${p.DC_YN == 'N'}">
-                                        <strong class="discount-price">${p.AMT}</strong>
+                                    <c:when test="${p.dc_yn == 'N'}">
+                                        <strong class="discount-price">${p.amt}</strong>
                                         <span class="original-price"></span>
                                         <span class="discount-rate"></span>
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach var="dc" items="${Products_DC}">
-                                            <c:if test="${p.PROD_ID == dc.prod_id}">
+                                            <c:if test="${p.prod_id == dc.prod_id}">
                                                 <strong class="discount-price">${dc.dc_price}</strong>
                                                 <span class="discount-rate">${dc.dc_rate}%</span>
                                             </c:if>
                                         </c:forEach>
-                                        <span class="original-price">${p.AMT}</span>
+                                        <span class="original-price">${p.amt}</span>
                                     </c:otherwise>
                                 </c:choose>
                             </p>
@@ -92,14 +92,14 @@
                     <div class="star-wrap">
                         <div class="starcnt">
                             <i class="fas fa-star"></i>
-                            <span class="star-rating">${p.AVG_ASCR} (${p.REVW_NCNT})</span>
+                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
                         </div>
                         <div class="icons">
                     <span class="heart-icon">
                         <i class="fa-regular fa-heart"></i>
                     </span>
                             <span class="cart-icon">
-                        <i onclick="insertA(${p.PROD_ID})" class="fa-solid fa-cart-shopping"></i>
+                        <i onclick="insertA(${p.prod_id})" class="fa-solid fa-cart-shopping"></i>
                     </span>
                         </div>
                     </div>

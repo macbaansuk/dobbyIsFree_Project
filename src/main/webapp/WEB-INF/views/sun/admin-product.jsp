@@ -64,38 +64,33 @@
         <div class="admin-container">
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
             <div class="content">
-
                 <form id="productForm" enctype="multipart/form-data" method="post">
                     <table class="product-table">
-<%--                        <input type="hidden" name="PROD_ID" value="${productDto.PROD_ID}">--%>
+                        <%--<input type="hidden" name="PROD_ID" value="${productDto.prod_id}">--%>
                         <thead>
                         <tr>
                             <th colspan="2">상품 정보</th>
                         </tr>
                         </thead>
                         <tbody>
-
                         <tr>
-
                             <td>
                                 <label for="product-status">상품 상태</label>
                             </td>
                             <td>
-                                <select id="product-status" name="PROD_STUS">
+                                <select id="product-status" name="prod_stus">
                                     <option value="판매대기">판매대기</option>
                                     <option value="판매" selected>판매</option>
                                     <option value="판매안함">판매안함</option>
                                 </select>
                             </td>
                         </tr>
-
-
                         <tr>
                             <td>
                                 <label for="category">카테고리</label>
                             </td>
                             <td>
-                                <select id="category" name="CATE_CD">
+                                <select id="category" name="cate_cd">
                                     <option value=1>스킨케어</option>
                                     <option value=2>메이크업</option>
                                     <option value=3>남성</option>
@@ -108,7 +103,7 @@
                                 <label for="product-name">상품명</label>
                             </td>
                             <td>
-                                <input type="text" id="product-name" name="PROD_NM" required>
+                                <input type="text" id="product-name" name="prod_nm" required>
                             </td>
                         </tr>
                         <tr>
@@ -116,12 +111,10 @@
                                 <label for="product-description">상품 설명</label>
                             </td>
                             <td>
-                                <textarea id="product-description" name="PROD_DESC" required></textarea>
+                                <textarea id="product-description" name="prod_desc" required></textarea>
                             </td>
                         </tr>
                         </tbody>
-
-
                         <thead>
                         <tr>
                             <th colspan="2">상품 옵션</th>
@@ -132,23 +125,23 @@
                                 <label>신상품 여부</label>
                             </td>
                             <td>
-<%--                                <input type="checkbox" id="new-product" name="NEW_YN">--%>
-                                <input type="radio" id="new-use" name="NEW_YN" value="Y">
+                                <%--<input type="checkbox" id="new-product" name="new_yn">--%>
+                                <input type="radio" id="new-use" name="new_yn" value="Y">
                                 <label for="new-use">사용</label>
-                                <input type="radio" id="new-not-use" name="NEW_YN" value="N" checked>
+                                <input type="radio" id="new-not-use" name="new_yn" value="N" checked>
                                 <label for="new-not-use">사용 안함</label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label >메인진열 여부</label>
+                                <label>메인진열 여부</label>
                             </td>
                             <td>
-<%--                                <input type="checkbox" id="main-display" name="MAI_YN" >--%>
-                                <input type="radio" id="main-use" name="MAI_YN" value="Y">
+                                <%--<input type="checkbox" id="main-display" name="mai_yn">--%>
+                                <input type="radio" id="main-use" name="mai_yn" value="Y">
                                 <label for="main-use">사용</label>
-                                <input type="radio" id="main-not-use" name="MAI_YN" value="N" checked>
-                                <label for="main-not-use">사용 안함</label>
+                                    <input type="radio" id="main-not-use" name="mai_yn" value="N" checked>
+                                    <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
 <%--                        <tr>--%>
@@ -193,7 +186,7 @@
                                 <label for="price">가격</label>
                             </td>
                             <td>
-                                <input type="number" id="price" name="AMT" required>
+                                <input type="number" id="price" name="amt" required>
                             </td>
                         </tr>
 <%--                        <tr>--%>
@@ -296,7 +289,7 @@
                     });
 
                     // 할인 여부 라디오 버튼 클릭 이벤트 핸들러
-                    $('input[name="DC_YN"]').on('click', function() {
+                    $('input[name="dc_yn"]').on('click', function() {
                         // 할인 적용을 선택한 경우
                         if ($('#discount-use').is(':checked')) {
                             // 할인 관련 입력란 활성화

@@ -6,102 +6,81 @@ import java.util.Date;
 
 public class ProductFileDto {
 
-        private Integer PROD_FILE_ID;
-        private Integer PROD_ID;
-        private String FILE_NM;
-        private String PATH;
-        private String KIND;
-        private Date REG_DTM;
-        private Date UPD_DTM;
-        private MultipartFile PROD_IMG;
+    private Integer prod_file_id;
+    private Integer prod_id;
+    private String file_nm;
+    private String path;
+    private String kind;
+    private Date reg_dtm;
+    private Date upd_dtm;
 
-    public MultipartFile getPROD_IMG() {
-        return PROD_IMG;
+
+    public Integer getProd_file_id() {
+        return prod_file_id;
     }
 
-    public void setPROD_IMG(MultipartFile PROD_IMG) {
-        this.PROD_ID = PROD_ID;
+    public void setProd_file_id(Integer prod_file_id) {
+        this.prod_file_id = prod_file_id;
     }
 
-    public ProductFileDto() {
+    public Integer getProd_id() {
+        return prod_id;
     }
 
-    public ProductFileDto(Integer PROD_FILE_ID, Integer PROD_ID, String FILE_NM, String PATH, String KIND, Date REG_DTM, Date UPD_DTM) {
-        this.PROD_FILE_ID = PROD_FILE_ID;
-        this.PROD_ID = PROD_ID;
-        this.FILE_NM = FILE_NM;
-        this.PATH = PATH;
-        this.KIND = KIND;
-        this.REG_DTM = REG_DTM;
-        this.UPD_DTM = UPD_DTM;
+    public void setProd_id(Integer prod_id) {
+        this.prod_id = prod_id;
     }
 
-    public Integer getPROD_FILE_ID() {
-        return PROD_FILE_ID;
+    public String getFile_nm() {
+        return file_nm;
     }
 
-    public void setPROD_FILE_ID(Integer PROD_FILE_ID) {
-        this.PROD_FILE_ID = PROD_FILE_ID;
+    public void setFile_nm(String file_nm) {
+        this.file_nm = file_nm;
     }
 
-    public Integer getPROD_ID() {
-        return PROD_ID;
+    public String getPath() {
+        return path;
     }
 
-    public void setPROD_ID(Integer PROD_ID) {
-        this.PROD_ID = PROD_ID;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public String getFILE_NM() {
-        return FILE_NM;
+    public String getKind() {
+        return kind;
     }
 
-    public void setFILE_NM(String FILE_NM) {
-        this.FILE_NM = FILE_NM;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
-    public String getPATH() {
-        return PATH;
+    public Date getReg_dtm() {
+        return reg_dtm;
     }
 
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
+    public void setReg_dtm(Date reg_dtm) {
+        this.reg_dtm = reg_dtm;
     }
 
-    public String getKIND() {
-        return KIND;
+    public Date getUpd_dtm() {
+        return upd_dtm;
     }
 
-    public void setKIND(String KIND) {
-        this.KIND = KIND;
-    }
-
-    public Date getREG_DTM() {
-        return REG_DTM;
-    }
-
-    public void setREG_DTM(Date REG_DTM) {
-        this.REG_DTM = REG_DTM;
-    }
-
-    public Date getUPD_DTM() {
-        return UPD_DTM;
-    }
-
-    public void setUPD_DTM(Date UPD_DTM) {
-        this.UPD_DTM = UPD_DTM;
+    public void setUpd_dtm(Date upd_dtm) {
+        this.upd_dtm = upd_dtm;
     }
 
     @Override
     public String toString() {
         return "ProductFileDto{" +
-                "PROD_FILE_ID=" + PROD_FILE_ID +
-                ", PROD_ID=" + PROD_ID +
-                ", FILE_NM='" + FILE_NM + '\'' +
-                ", PATH='" + PATH + '\'' +
-                ", KIND='" + KIND + '\'' +
-                ", REG_DTM=" + REG_DTM +
-                ", UPD_DTM=" + UPD_DTM +
+                "prod_file_id=" + prod_file_id +
+                ", prod_id=" + prod_id +
+                ", file_nm='" + file_nm + '\'' +
+                ", path='" + path + '\'' +
+                ", kind='" + kind + '\'' +
+                ", reg_dtm=" + reg_dtm +
+                ", upd_dtm=" + upd_dtm +
                 '}';
     }
 }

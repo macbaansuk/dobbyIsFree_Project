@@ -231,27 +231,27 @@
         <div class="product-list">
             <c:forEach var="P" items="${ProductsMain}">
                 <div class="product">
-                    <a href="/product/productDetail/${P.PROD_ID}">
+                    <a href="/product/productDetail/${P.prod_id}">
                         <div class="product-img">
-                            <img src="${P.REP_IMG}" alt="메인 상품 이미지">
+                            <img src="${P.rep_img}" alt="메인 상품 이미지">
                         </div>
                         <div class="product-info">
-                            <span class="product-name">${P.PROD_NM}</span>
+                            <span class="product-name">${P.prod_nm}</span>
                             <p class="price">
                                 <c:choose>
-                                    <c:when test="${P.DC_YN == 'N'}">
-                                        <strong class="discount-price">${P.AMT}</strong>
+                                    <c:when test="${P.dc_yn == 'N'}">
+                                        <strong class="discount-price">${P.amt}</strong>
                                         <span class="original-price"></span>
                                         <span class="discount-rate"></span>
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach var="DC" items="${Products_DC}">
-                                            <c:if test="${P.PROD_ID == DC.prod_id}">
+                                            <c:if test="${P.prod_id == DC.prod_id}">
                                                 <strong class="discount-price">${DC.dc_price}</strong>
                                                 <span class="discount-rate">${DC.dc_rate}%</span>
                                             </c:if>
                                         </c:forEach>
-                                        <span class="original-price">${P.AMT}</span>
+                                        <span class="original-price">${P.amt}</span>
                                     </c:otherwise>
                                 </c:choose>
                             </p>
@@ -260,14 +260,14 @@
                     <div class="star-wrap">
                         <div class="starCnt">
                             <i class="fas fa-star"></i>
-                            <span class="star-rating">${P.AVG_ASCR} (${P.REVW_NCNT})</span>
+                            <span class="star-rating">${P.avg_ascr} (${P.revw_ncnt})</span>
                         </div>
                         <div class="icons">
                     <span class="heart-icon">
                         <i class="fa-regular fa-heart"></i>
                     </span>
                             <span class="cart-icon">
-                        <i onclick="insertA(${P.PROD_ID})" class="fa-solid fa-cart-shopping"></i>
+                        <i onclick="insertA(${P.prod_id})" class="fa-solid fa-cart-shopping"></i>
                     </span>
                         </div>
                     </div>

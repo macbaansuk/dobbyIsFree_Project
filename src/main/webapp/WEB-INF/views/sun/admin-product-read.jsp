@@ -87,10 +87,10 @@
                                 <label for="product-status">상품 상태</label>
                             </td>
                             <td>
-                                <select id="product-status" name="PROD_STUS" >
-                                    <option value="판매대기" ${read.PROD_STUS == '판매대기' ? 'selected' : ''}>판매대기</option>
-                                    <option value="판매" ${read.PROD_STUS == '판매' ? 'selected' : ''}>판매</option>
-                                    <option value="판매안함" ${read.PROD_STUS== '판매안함' ? 'selected' : ''}>판매안함</option>
+                                <select id="product-status" name="prod_stus" >
+                                    <option value="판매대기" ${read.prod_stus == '판매대기' ? 'selected' : ''}>판매대기</option>
+                                    <option value="판매" ${read.prod_stus == '판매' ? 'selected' : ''}>판매</option>
+                                    <option value="판매안함" ${read.prod_stus== '판매안함' ? 'selected' : ''}>판매안함</option>
                                 </select>
 
 
@@ -104,11 +104,11 @@
                                 <label for="category">카테고리</label>
                             </td>
                             <td>
-                                <select id="category" name="CATE_CD" >
-                                    <option value=1 ${read.CATE_CD == 1 ? 'selected' : ''}>스킨케어</option>
-                                    <option value=2 ${read.CATE_CD == 2 ? 'selected' : ''}>메이크업</option>
-                                    <option value=3 ${read.CATE_CD == 3 ? 'selected' : ''}>남성</option>
-                                    <option value=4 ${read.CATE_CD == 4 ? 'selected' : ''}>헤어/바디</option>
+                                <select id="category" name="cate_cd" >
+                                    <option value=1 ${read.cate_cd == 1 ? 'selected' : ''}>스킨케어</option>
+                                    <option value=2 ${read.cate_cd == 2 ? 'selected' : ''}>메이크업</option>
+                                    <option value=3 ${read.cate_cd == 3 ? 'selected' : ''}>남성</option>
+                                    <option value=4 ${read.cate_cd == 4 ? 'selected' : ''}>헤어/바디</option>
                                 </select>
 
 
@@ -119,7 +119,7 @@
                                 <label for="product-name">상품명</label>
                             </td>
                             <td>
-                                <input type="text" id="product-name" name="PROD_NM" value="${read.PROD_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="text" id="product-name" name="prod_nm" value="${read.prod_nm}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +127,7 @@
                                 <label for="product-description">상품 설명</label>
                             </td>
                             <td>
-                                <textarea id="product-description" name="PROD_DESC" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>${read.PROD_DESC}</textarea>
+                                <textarea id="product-description" name="prod_desc" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>${read.prod_desc}</textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -143,10 +143,9 @@
                                 <label>신상품 여부</label>
                             </td>
                             <td>
-<%--                                <input type="checkbox" id="new-product" name="new-product"  ${ read.NEW_YN == 'Y' ? 'checked' :'' } >--%>
-                                    <input type="radio" id="new-use" name="NEW_YN" value="Y" ${ read.NEW_YN == 'Y' ? 'checked' :'' } >
+                                    <input type="radio" id="new-use" name="new_yn" value="Y" ${ read.new_yn == 'Y' ? 'checked' :'' } >
                                     <label for="new-use">사용</label>
-                                    <input type="radio" id="new-not-use" name="NEW_YN" value="N" ${ read.NEW_YN == 'N' ? 'checked' :'' } >
+                                    <input type="radio" id="new-not-use" name="new_yn" value="N" ${ read.new_yn == 'N' ? 'checked' :'' } >
                                     <label for="new-not-use">사용 안함</label>
 
                             </td>
@@ -156,10 +155,9 @@
                                 <label>메인진열 여부</label>
                             </td>
                             <td>
-<%--                                <input type="checkbox" id="main-display"  name="main-display"  ${read.MAI_YN == 'Y' ? 'checked' :'' } >--%>
-                                <input type="radio" id="main-use" name="MAI_YN" value="Y" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-use" name="mai_yn" value="Y" ${read.mai_yn == 'Y' ? 'checked' :'' }>
                                 <label for="main-use">사용</label>
-                                <input type="radio" id="main-not-use" name="MAI_YN" value="N" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-not-use" name="mai_yn" value="N" ${read.mai_yn == 'Y' ? 'checked' :'' }>
                                 <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
@@ -204,7 +202,7 @@
                                 <label for="price">가격</label>
                             </td>
                             <td>
-                                <input type="number" id="price" name="AMT" value="${read.AMT}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="number" id="price" name="amt" value="${read.amt}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
                             </td>
                         </tr>
 <%--                        <tr>--%>
@@ -308,24 +306,6 @@
                     $('#listBtn').on("click",function (){
                         location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
                     });
-                    // $('#modifyBtn').on("click", function(event){
-                    //     event.preventDefault(); // 폼 제출을 막기 위해 사용
-                    //
-                    //     // 모든 입력 필드의 'readonly' 속성을 제거
-                    //     $('input[type="text"], input[type="number"], textarea').removeAttr('readonly');
-                    //
-                    //     // 라디오 버튼과 체크 박스를 수정 가능하도록 변경
-                    //     $('input[type="checkbox"], input[type="radio"]').prop('disabled', false);
-                    //
-                    //     // select 항목도 수정 가능하도록 변경
-                    //     $('select').prop('disabled', false);
-                    //
-                    //     // '수정하기' 버튼을 '저장하기' 버튼으로 변경
-                    //     $(this).text('저장하기').off('click').on('click', function(){
-                    //         // 여기에 폼 제출 로직을 추가
-                    //         $('#product-form').submit();
-                    //     });
-                    // });
 
 
                     $('#modifyBtn').on("click",function (event){
@@ -336,11 +316,11 @@
 
                         // 모든 입력 필드를 수정 가능하게 만듦
                         $('input, select, textarea').prop('readonly', false);
-                        $('input[type="checkbox"], input[type="radio"]').off('click');
+                        $('input[type="radio"]').off('click');
                         $('select').off('mousedown');
 
                         // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가
-                        $('input[name="OPT_YN"]').on("change", function () {
+                        $('input[name="opt_yn"]').on("change", function () {
                             const option = $(".option-row");
                             if ($("#option-use").is(":checked")) {
                                 option.show();
@@ -349,7 +329,7 @@
                             }
                         });
 
-                        $('input[name="DC_YN"]').on("change", function () {
+                        $('input[name="dc_yn"]').on("change", function () {
                             const discount = $(".discount-row");
                             if ($("#discount-use").is(":checked")) {
                                 discount.show();

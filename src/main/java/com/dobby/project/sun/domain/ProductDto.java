@@ -24,198 +24,186 @@ public class ProductDto {
     private Date upd_dtm;
     private Date reg_dtm;
 
-
-    private Integer prod_id;
-    private Integer CATE_CD;
-    private Integer AMT;
-    private String PROD_NM;
-    private String REP_IMG;
-    private Integer AVG_ASCR;
-    private Integer REVW_NCNT;
-    private Integer INV_QTY;
-    private String NEW_YN;
-    private String PROD_STUS;
-    private String OPT_YN;
-    private String PROD_DESC;
-    private String DC_YN;
-    private String MAI_YN;
-    private Date UPD_DTM;
-    private Date REG_DTM;
-
-
     public ProductDto() {
     }
 
-    public ProductDto(Integer PROD_ID, Integer CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
+    public ProductDto(Integer prod_id, String cate_cd, Integer amt, String prod_nm, String rep_img, Integer avg_ascr, Integer revw_ncnt, Integer inv_qty, String new_yn, String prod_stus, String opt_yn, String prod_desc, String dc_yn, String mai_yn, String fgift_yn, Date upd_dtm, Date reg_dtm) {
 
-        this.PROD_ID = PROD_ID;
-        this.CATE_CD = CATE_CD;
-        this.AMT = AMT;
-        this.PROD_NM = PROD_NM;
-        this.REP_IMG = REP_IMG;
-        this.AVG_ASCR = AVG_ASCR;
-        this.REVW_NCNT = REVW_NCNT;
-        this.INV_QTY = INV_QTY;
-        this.NEW_YN = NEW_YN;
-        this.PROD_STUS = PROD_STUS;
-        this.OPT_YN = OPT_YN;
-        this.PROD_DESC = PROD_DESC;
-        this.DC_YN = DC_YN;
-        this.MAI_YN = MAI_YN;
-        this.UPD_DTM = UPD_DTM;
-        this.REG_DTM = REG_DTM;
-
+        this.prod_id = prod_id;
+        this.cate_cd = cate_cd;
+        this.amt = amt;
+        this.prod_nm = prod_nm;
+        this.rep_img = rep_img;
+        this.avg_ascr = avg_ascr;
+        this.revw_ncnt = revw_ncnt;
+        this.inv_qty = inv_qty;
+        this.new_yn = new_yn;
+        this.prod_stus = prod_stus;
+        this.opt_yn = opt_yn;
+        this.prod_desc = prod_desc;
+        this.dc_yn = dc_yn;
+        this.mai_yn = mai_yn;
+        this.fgift_yn = fgift_yn;
+        this.upd_dtm = upd_dtm;
+        this.reg_dtm = reg_dtm;
     }
 
-    public Integer getPROD_ID() {
-        return PROD_ID;
+    public Integer getProd_id() {
+        return prod_id;
     }
 
-    public void setPROD_ID(Integer PROD_ID) {
-        this.PROD_ID = PROD_ID;
+    public void setProd_id(Integer prod_id) {
+        this.prod_id = prod_id;
     }
 
-    public Integer getCATE_CD() {
-        return CATE_CD;
+    public String getCate_cd() {
+        return cate_cd;
     }
 
-    public void setCATE_CD(Integer CATE_CD) {
-        this.CATE_CD = CATE_CD;
+    public void setCate_cd(String cate_cd) {
+        this.cate_cd = cate_cd;
     }
 
-    public Integer getAMT() {
-        return AMT;
+    public Integer getAmt() {
+        return amt;
     }
 
-    public void setAMT(Integer AMT) {
-        this.AMT = AMT;
+    public void setAmt(Integer amt) {
+        this.amt = amt;
     }
 
-    public String getPROD_NM() {
-        return PROD_NM;
+    public String getProd_nm() {
+        return prod_nm;
     }
 
-    public void setPROD_NM(String PROD_NM) {
-        this.PROD_NM = PROD_NM;
+    public void setProd_nm(String prod_nm) {
+        this.prod_nm = prod_nm;
     }
 
-    public String getREP_IMG() {
-        return REP_IMG;
+    public String getRep_img() {
+        return rep_img;
     }
 
-    public void setREP_IMG(String REP_IMG) {
-        this.REP_IMG = REP_IMG;
+    public void setRep_img(String rep_img) {
+        this.rep_img = rep_img;
     }
 
-    public Integer getAVG_ASCR() {
-        return AVG_ASCR;
+    public Integer getAvg_ascr() {
+        return avg_ascr;
     }
 
-    public void setAVG_ASCR(Integer AVG_ASCR) {
-        this.AVG_ASCR = AVG_ASCR;
+    public void setAvg_ascr(Integer avg_ascr) {
+        this.avg_ascr = avg_ascr;
     }
 
-    public Integer getREVW_NCNT() {
-        return REVW_NCNT;
+    public Integer getRevw_ncnt() {
+        return revw_ncnt;
     }
 
-    public void setREVW_NCNT(Integer REVW_NCNT) {
-        this.REVW_NCNT = REVW_NCNT;
+    public void setRevw_ncnt(Integer revw_ncnt) {
+        this.revw_ncnt = revw_ncnt;
     }
 
-    public Integer getINV_QTY() {
-        return INV_QTY;
+    public Integer getInv_qty() {
+        return inv_qty;
     }
 
-    public void setINV_QTY(Integer INV_QTY) {
-        this.INV_QTY = INV_QTY;
+    public void setInv_qty(Integer inv_qty) {
+        this.inv_qty = inv_qty;
     }
 
-    public String getNEW_YN() {
-        return NEW_YN;
+    public String getNew_yn() {
+        return new_yn;
     }
 
-    public void setNEW_YN(String NEW_YN) {
-        this.NEW_YN = NEW_YN;
+    public void setNew_yn(String new_yn) {
+        this.new_yn = new_yn;
     }
 
-    public String getPROD_STUS() {
-        return PROD_STUS;
+    public String getProd_stus() {
+        return prod_stus;
     }
 
-    public void setPROD_STUS(String PROD_STUS) {
-        this.PROD_STUS = PROD_STUS;
+    public void setProd_stus(String prod_stus) {
+        this.prod_stus = prod_stus;
     }
 
-    public String getOPT_YN() {
-        return OPT_YN;
+    public String getOpt_yn() {
+        return opt_yn;
     }
 
-    public void setOPT_YN(String OPT_YN) {
-        this.OPT_YN = OPT_YN;
+    public void setOpt_yn(String opt_yn) {
+        this.opt_yn = opt_yn;
     }
 
-    public String getPROD_DESC() {
-        return PROD_DESC;
+    public String getProd_desc() {
+        return prod_desc;
     }
 
-    public void setPROD_DESC(String PROD_DESC) {
-        this.PROD_DESC = PROD_DESC;
+    public void setProd_desc(String prod_desc) {
+        this.prod_desc = prod_desc;
     }
 
-    public String getDC_YN() {
-        return DC_YN;
+    public String getDc_yn() {
+        return dc_yn;
     }
 
-    public void setDC_YN(String DC_YN) {
-        this.DC_YN = DC_YN;
+    public void setDc_yn(String dc_yn) {
+        this.dc_yn = dc_yn;
     }
 
-    public String getMAI_YN() {
-        return MAI_YN;
+    public String getMai_yn() {
+        return mai_yn;
     }
 
-    public void setMAI_YN(String MAI_YN) {
-        this.MAI_YN = MAI_YN;
+    public void setMai_yn(String mai_yn) {
+        this.mai_yn = mai_yn;
     }
 
-
-    public Date getUPD_DTM() {
-        return UPD_DTM;
+    public String getFgift_yn() {
+        return fgift_yn;
     }
 
-    public void setUPD_DTM(Date UPD_DTM) {
-        this.UPD_DTM = UPD_DTM;
+    public void setFgift_yn(String fgift_yn) {
+        this.fgift_yn = fgift_yn;
     }
 
-    public Date getREG_DTM() {
-        return REG_DTM;
+    public Date getUpd_dtm() {
+        return upd_dtm;
     }
 
-    public void setREG_DTM(Date REG_DTM) {
-        this.REG_DTM = REG_DTM;
+    public void setUpd_dtm(Date upd_dtm) {
+        this.upd_dtm = upd_dtm;
     }
 
+    public Date getReg_dtm() {
+        return reg_dtm;
+    }
+
+    public void setReg_dtm(Date reg_dtm) {
+        this.reg_dtm = reg_dtm;
+    }
 
     @Override
     public String toString() {
         return "ProductDto{" +
-                "PROD_ID=" + PROD_ID +
-                ", CATE_CD='" + CATE_CD + '\'' +
-                ", AMT=" + AMT +
-                ", PROD_NM='" + PROD_NM + '\'' +
-                ", REP_IMG='" + REP_IMG + '\'' +
-                ", AVG_ASCR=" + AVG_ASCR +
-                ", REVW_NCNT=" + REVW_NCNT +
-                ", INV_QTY=" + INV_QTY +
-                ", NEW_YN='" + NEW_YN + '\'' +
-                ", PROD_STUS='" + PROD_STUS + '\'' +
-                ", OPT_YN='" + OPT_YN + '\'' +
-                ", PROD_DESC='" + PROD_DESC + '\'' +
-                ", DC_YN='" + DC_YN + '\'' +
-                ", MAI_YN='" + MAI_YN + '\'' +
-                ", UPD_DTM=" + UPD_DTM +
-                ", REG_DTM=" + REG_DTM +
+                "prod_id=" + prod_id +
+                ", cate_cd='" + cate_cd + '\'' +
+                ", amt=" + amt +
+                ", prod_nm='" + prod_nm + '\'' +
+                ", rep_img='" + rep_img + '\'' +
+                ", avg_ascr=" + avg_ascr +
+                ", revw_ncnt=" + revw_ncnt +
+                ", inv_qty=" + inv_qty +
+                ", new_yn='" + new_yn + '\'' +
+                ", prod_stus='" + prod_stus + '\'' +
+                ", opt_yn='" + opt_yn + '\'' +
+                ", prod_desc='" + prod_desc + '\'' +
+                ", dc_yn='" + dc_yn + '\'' +
+                ", mai_yn='" + mai_yn + '\'' +
+                ", fgift_yn='" + fgift_yn + '\'' +
+                ", upd_dtm=" + upd_dtm +
+                ", reg_dtm=" + reg_dtm +
                 '}';
     }
 
@@ -224,13 +212,11 @@ public class ProductDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDto that = (ProductDto) o;
-        return Objects.equals(PROD_ID, that.PROD_ID);
+        return Objects.equals(prod_id, that.prod_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(PROD_ID);
+        return Objects.hash(prod_id);
     }
-
-
 }

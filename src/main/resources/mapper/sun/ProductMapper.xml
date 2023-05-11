@@ -145,11 +145,7 @@
         FROM FILE
         WHERE PROD_ID = #{PROD_ID};
     </delete>
-    <delete id="deleteProductFinal" parameterType="int">
-        DELETE
-        FROM PROD
-        WHERE PROD_ID = #{PROD_ID};
-    </delete>
+
 
 
 

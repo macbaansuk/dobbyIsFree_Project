@@ -75,7 +75,7 @@ public class ProductDaoImpl implements ProductDao {
 //    }
 
     @Override
-    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort){
+    public List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort){
         Map<String, Object> map = new HashMap<>();
         map.put("category", category);
         map.put("sort", sort);
