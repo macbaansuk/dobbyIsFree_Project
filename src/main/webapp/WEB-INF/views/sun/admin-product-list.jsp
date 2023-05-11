@@ -151,7 +151,7 @@
                                     <!--  상태 -->
                                     <td class="stus">${P.PROD_STUS}</td>
                                     <!--  등록일시 -->
-                                    <td class="reg_dtm"><fmt:formatDate value="${P.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
+                                    <td class="reg_dtm"><fmt:formatDate value="${P.REG_DTM}" pattern="yyyy-MM-dd " type="date"/></td>
                                     <!--  수정, 삭제버튼 -->
                                     <td>
 <%--                                        <button id="modifyBtn" type="submit">수정</button>--%>
