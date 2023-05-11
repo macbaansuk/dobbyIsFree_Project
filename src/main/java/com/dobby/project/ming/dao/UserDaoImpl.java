@@ -43,6 +43,10 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace+"count");
     }
     @Override
+    public String memberDbcheck(String id) throws Exception {
+        return session.selectOne(namespace+"memberDbcheck", id);
+    }
+    @Override
     public void deleteAll() {
     }
 }

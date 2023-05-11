@@ -17,7 +17,7 @@ public interface UserDao {
     int insertUser(User user) throws Exception;
     int updateUser(User user) throws Exception;
     int count() throws Exception;
-
+    String memberDbcheck(String id) throws Exception;
     List<UserDto> selectPage(Map map) throws Exception;
     List<UserDto> memberList() throws Exception;
 

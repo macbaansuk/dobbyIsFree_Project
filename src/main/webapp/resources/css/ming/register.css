@@ -617,11 +617,15 @@ caption {
 .id_input_re_1{
     color : green;
     display : none;
+    font-size: 15px;
+    padding: 15px
 }
 /* 중복아이디 존재하는 경우 */
 .id_input_re_2{
     color : red;
     display : none;
+    font-size: 15px;
+    padding: 15px
 }
 
 .new-privercy-contract .contract-tbl th div {
