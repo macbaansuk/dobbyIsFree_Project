@@ -18,6 +18,7 @@
 
 
 
+
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -162,7 +163,27 @@
                         dataType: 'json'
                     });
                 });
-            });
+
+
+
+
+
+                //모달창 스크립트
+                let continueShoppingBtn = document.getElementById('shopping-btn');
+                let goToCartBtn = document.getElementById('cart-btn');
+                let cartModal = document.getElementById('cart-modal');
+
+                continueShoppingBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href='/product/productDetail/${productDetail.PROD_ID}';
+                    <%--            ${productDetail.PROD_ID}--%>
+                });
+
+                goToCartBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href='/cart';
+                });
+            });//document.ready
 
 
 
@@ -574,31 +595,14 @@
             //     });
             // });
 
-
-            //장바구니 모달창
-                let continueShoppingBtn = document.getElementById('shopping-btn');
-                let goToCartBtn = document.getElementById('cart-btn');
-                let cartModal = document.getElementById('cart-modal');
-
-                continueShoppingBtn.addEventListener('click', function() {
-                    cartModal.style.display = 'none';
-                    location.href="/";
-                });
-
-                goToCartBtn.addEventListener('click', function() {
-                    cartModal.style.display = 'none';
-                    location.href="/cart";
-                });
-            });//ready function()
-
-
-
         </script>
     </div>
 
 
 </section>
 
+
+<jsp:include page="../footer.jsp"/>
 <!--모달창 -->
 <div class="modal" id="cart-modal">
     <div class="modal-content">
@@ -609,8 +613,8 @@
         </div>
     </div>
 </div>
-
 <script>
+    //모달창 불러오기
     function cartsc(){
         document.getElementById('cart-modal').style.display = 'block';
     }
@@ -627,9 +631,6 @@
             type: "POST",
             success: function (data) {
                 cartsc()
-                // if (data == 1) {
-                // location.href='/cart'
-                // }
             },
             error: function () {
                 alert('장바구니를 이용하시려면 로그인 해주세요');
@@ -637,9 +638,6 @@
             }
         });<!--ajax -->
     }
-
 </script>
-
-<jsp:include page="../footer.jsp"/>
 </body>
 </html>
