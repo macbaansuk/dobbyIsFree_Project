@@ -63,7 +63,7 @@
         <div id="productlist" class="product-list">
             <c:forEach var="p" items="${productList}">
                 <div class="product">
-                    <a href="/product/productdetail/${p.prod_id}">
+                    <a href="/product/productDetail/${p.prod_id}">
                         <div class="product-img">
                             <img src="${p.rep_img}" alt="메인 상품 이미지">
                         </div>
@@ -121,7 +121,7 @@
 
                             data.forEach(function (p) {
                                 var productdiv = $('<div class="product"></div>');
-                                var productlink = $('<a>').attr('href', '/product/productdetail/' + p.prod_id);
+                                var productlink = $('<a>').attr('href', '/product/productDetail/' + p.prod_id);
 
                                 var productimgdiv = $('<div class="product-img"></div>').append($('<img>').attr({'src':p.rep_img , 'alt': p.prod_nm}));
                                 var productinfodiv = $('<div class="product-info"></div>').append($('<span class="product-name"></span>').text(p.prod_nm));
