@@ -13,9 +13,32 @@
   <link rel="stylesheet" href="./css/ming/register.css"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $('.id_input').on("propertychange change keyup paste input", function(){
-      console.log("id input 작동 테스트");
-    });
+    function doublecheck() {
+        if($("#id").val()=='') {
+          alert("아이디를 입력하세요");
+          $("#id").focus();
+          return;
+        }
+      var id=$("#id").val();
+        $.ajax({
+          url: "/register/dbCheck",
+          type: "POST",
+          data: {"id" : id},
+          success : dbCheck,  //함수(callback)
+          error : function(){ alert("error"); }
+        });
+    }
+    function dbCheck(data){
+      if(data !="NO"){
+        $("#id").focus();
+        $('.id_input_re_2').css("display","inline-block");
+        $('.id_input_re_1').css("display", "none");
+      }else{
+        $("#id").focus();
+        $('.id_input_re_1').css("display","inline-block");
+        $('.id_input_re_2').css("display", "none");
+      }
+    }
 
     $(document).ready(function() {
       //전체 선택 시
@@ -50,7 +73,7 @@
 
       const form = document.querySelector('.form');
 
-      form.addEventListener('submit', function(event) {
+      form.addEventListener('submit', function (event) {
         // event.preventDefault();
         // alert("addEventListener")
         const bd = document.querySelector('#BD').value;
@@ -61,19 +84,10 @@
       var emailValue = $("#email2").val();
 
       // email 옵션값이 변경될 때마다 emailValue 변수 업데이트
-      $("#email2").on("change", function() {
+      $("#email2").on("change", function () {
         emailValue = $(this).val();
         $("#email3").val(emailValue);
       });
-
-      /* form.addEventListener('submit', function(event) {
-           // event.preventDefault();
-           // alert("addEventListener")
-           const bd = document.querySelector('#BD').value;
-           const emailForm = document.querySelector('#EMAIL').value;
-           submitForm();
-
-       });*/
 
       function submitForm() {
         // alert("submitForm() is called")
@@ -85,7 +99,7 @@
 
 
         let email1 = document.querySelector('input[name="email1"]').value;
-        let email = email1+"@"+$("#email3").val();
+        let email = email1 + "@" + $("#email3").val();
 
         document.querySelector('#EMAIL').value = email;
         let em = document.querySelector('#EMAIL'); //#EMAIL 값 확인
@@ -136,9 +150,10 @@
           <div class="col-cell">
             <input type="text" name="MBR_ID" id="id" value="" class="MS_input_txt normal-input" size="10"
                    maxlength="40" />
+            <input type="button" class="cbtn form" value=중복확인 onclick="doublecheck()">
             <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
             <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
-            <!-- <a href="javascript:userid_check('id');" class="cbtn form">중복확인</a> -->
+            <!--<a href="javascript:userid_check('id');" class="cbtn form">중복확인</a>-->
           </div>
         </td>
       </tr>
@@ -776,31 +791,45 @@
 <script>
   function formCheck(frm) {
     var msg ='';
+    const PWD = frm.PWD.value.trim();
+    const PWDRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,16}$/;
 
     if(frm.MBR_NM.value.trim()==='') {
       setMessage('⚠️이름을 입력해야 합니다.', frm.MBR_NM);
       return false;
-    }
 
+    }
     if(frm.MBR_ID.value.trim()==='') {
       setMessage('⚠️아이디를 입력해야 합니다.', frm.MBR_ID);
       return false;
     }
-
     if(0<frm.MBR_ID.value.length && frm.MBR_ID.value.length<3) {
       setMessage('⚠️아이디의 길이는 3글자 이상이어야 합니다.', frm.MBR_ID);
       return false;
     }
 
-    if(frm.PWD.value.trim()==='') {
+    if (PWD === '') {
+      setMessage('⚠️비밀번호를 입력해야 합니다.', frm.MBR_ID);
+      return false;
+    }
+
+    if (PWD.length < 8 || PWD.length > 16) {
+      setMessage('⚠️ 비밀번호는 8~16자여야 합니다.', frm.PWD);
+      return false;
+    }
+
+    if (!PWDRegex.test(PWD)) {
+      setMessage('⚠️비밀번호는 영문자/숫자의 조합이 포함되어야 합니다.', frm.PWD);
+      return false;
+    }
+    /*if(frm.PWD.value.trim()==='') {
       setMessage('⚠️비밀번호를 입력해야 합니다.', frm.MBR_ID);
       return false;
     }
 
     if(frm.PWD.value.length<8) {
       setMessage('⚠️비밀번호의 길이는 8글자 이상이어야 합니다.', frm.PWD);
-      return false;
-    }
+      return false;*/
 
     if(frm.BD.value.trim()==='') {
       setMessage('⚠️생년월일을 입력해야 합니다.', frm.BD);
