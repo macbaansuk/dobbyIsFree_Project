@@ -23,12 +23,6 @@
         FROM member_info
     </sql>
 
-    <!--  <select id="selectPage" parameterType="map" resultType="UserDto">
-          <include refid="selectFromUser"/>
-          ORDER BY SUBS_DTM ASC, MBR_ID ASC
-          LIMIT #{offset}, #{pageSize}
-      </select>-->
-
     <insert id="insertUser" parameterType="UserDto">
         INSERT INTO member_info
             (MBR_NM, MBR_ID, PWD, BD, SEX, EMAIL, MPNO, AGRE_YN)
@@ -51,6 +45,10 @@
     <delete id="deleteUser" parameterType="String">
         DELETE FROM member_info WHERE MBR_ID = #{MBR_ID}
     </delete>
+
+    <select id="memberDbcheck" resultType="String" parameterType="String">
+        select MBR_ID from member_info where MBR_ID=#{MBR_ID}
+    </select>
 
     <delete id="deleteAll">
         DELETE FROM member_info

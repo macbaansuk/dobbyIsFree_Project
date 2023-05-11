@@ -2,12 +2,14 @@ package com.dobby.project.ming.controller;
 
 import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.dobby.project.ming.dao.UserDao;
 import com.dobby.project.ming.domain.User;
-import com.dobby.project.ming.domain.UserDto;
 import com.dobby.project.ming.domain.UserValidator;
+import com.dobby.project.ming.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,19 @@ public class RegisterController {
             }
         }
         return "ming/registerForm";
+    }
+
+    @PostMapping("register/dbCheck")
+    public String dbCheck(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String dbcheck=userDao.memberDbcheck(id);
+        String idDouble="NO";
+
+        if (dbcheck!=null) {
+            idDouble="YES";
+        }
+        response.getWriter().print(idDouble);
+        return null;
     }
 
     private boolean isValid(User user) {

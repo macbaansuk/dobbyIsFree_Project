@@ -26,7 +26,10 @@ public class UserDaoImplTest {
         assertTrue(userDto.getMBR_ID().equals("test1"));
     }
 
+    @Test
+    public void memberDbcheck() throws Exception {
 
+    }
     /*@Test
     public void deleteUser() {
     }
