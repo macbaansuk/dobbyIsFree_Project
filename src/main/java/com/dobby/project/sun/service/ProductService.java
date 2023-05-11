@@ -14,6 +14,8 @@ public interface ProductService {
     //상품 할인만
     List<ProductDCDto> Products_DC() throws Exception;
 
+    List<SortDto> Cate_Products_DC() throws Exception;
+
     //상품상세로 상품 아이디로 넘기기
     ProductDto getProductById(int id) throws Exception;
 
@@ -31,8 +33,8 @@ public interface ProductService {
     int getCount() throws Exception;
 
     // 상품 카테로리 페이지 정렬버튼
-//    List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort);
-    List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort);
+    List<SortDto> getProductsByCategoryAndSort(int category, String sort);
+//    List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort);
 
 
     //관리자 페이지 상품 읽기

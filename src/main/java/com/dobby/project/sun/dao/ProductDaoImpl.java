@@ -28,6 +28,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<SortDto> Cate_Products_DC() throws Exception {
+        return session.selectList("Cate_Products_DC");
+    }
+
+    @Override
     public ProductDto getProductById(int id) throws Exception {
         return session.selectOne(namespace + "getProductById", id);
     }
@@ -53,21 +58,22 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "count");
     }
 
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(Integer CATE_CD, String sort) {
-//        HashMap<String, Object> params = new HashMap<>();
-//        params.put("CATE_CD", CATE_CD);
-//        params.put("sort", sort);
-//        return session.selectList("getProductsByCategoryAndSort", params);
-//    }
-
     @Override
-    public List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("category", category);
-        params.put("sort", sort);
-        return session.selectList("getProductsByCategoryAndSort", params);
+    public List<SortDto> getProductsByCategoryAndSort(int category, String sort){
+        Map<String, Object> map = new HashMap<>();
+        map.put("category", category);
+        map.put("sort", sort);
+        return session.selectList("getProductsByCategoryAndSort", map);
     }
+//
+//
+//    @Override
+//    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort){
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("category", category);
+//        map.put("sort", sort);
+//        return session.selectList("getProductsByCategoryAndSort", map);
+//    }
 
     @Override
     public TotalDto getAdminProductsById(Integer id) {

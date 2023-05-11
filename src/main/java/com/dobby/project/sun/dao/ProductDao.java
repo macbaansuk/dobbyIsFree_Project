@@ -12,6 +12,7 @@ public interface ProductDao {
 
     //상품 할인만
     List<ProductDCDto> Products_DC()throws Exception;
+    List<SortDto> Cate_Products_DC()throws Exception;
 
     //상품상세로 상품 아이디로 넘기기
     ProductDto getProductById(int id) throws Exception;
@@ -28,7 +29,9 @@ public interface ProductDao {
     // 게시물 전체 개수
     int count() throws Exception;
     //상품 목록 정렬버튼
-    List<ProductDCDto> getProductsByCategoryAndSort(Integer category, String sort);
+//    List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort);
+    List<SortDto> getProductsByCategoryAndSort(int category, String sort);
+
 
     //관리자 상품 읽어오기
     TotalDto getAdminProductsById(Integer id);
@@ -40,11 +43,7 @@ public interface ProductDao {
     int deleteProductFinal(Integer id);
     int deleteProductHashtag(Integer id);
 
-//    int insertProduct(ProductDto productDto);
-//    int insertDiscount(ProductDCDto productDCDto);
-//    int insertOption(ProductOptionDto productOptionDto);
-//    int insertHashtag(ProductHashtagDto productHashtagDto);
-//    int insertFile(ProductFileDto productFileDto);
+
 
 //    void insertProduct(ProductDto productDto);
     void insertProduct(RegisterDto registerDto);

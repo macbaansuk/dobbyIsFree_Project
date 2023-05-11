@@ -59,6 +59,7 @@
         <typeAlias alias="ProductHashtagDto" type="com.dobby.project.sun.domain.ProductHashtagDto"/>
         <typeAlias alias="ProductFileDto" type="com.dobby.project.sun.domain.ProductFileDto"/>
         <typeAlias alias="RegisterDto" type="com.dobby.project.sun.domain.RegisterDto"/>
+        <typeAlias alias="SortDto" type="com.dobby.project.sun.domain.SortDto"/>
 
 
 
