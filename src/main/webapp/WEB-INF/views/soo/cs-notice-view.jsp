@@ -24,9 +24,9 @@
 <div id="container">
 
     <!-- location -->
-    <div class="location">
-        홈 > 고객센터 > 공지사항
-    </div>
+<%--    <div class="location">--%>
+<%--        홈 > 고객센터 > 공지사항--%>
+<%--    </div>--%>
     <section id="contents">
         <div>
             <h2 class="page_title">고객센터</h2>
@@ -36,7 +36,7 @@
             <!-- 게시판카테고리 -->
             <nav class="tab">
                 <ul>
-                    <li><a href="/cs/faq/list"><span>FAQ</span></a></li>
+                    <li><a href="#"><span>FAQ</span></a></li>
                     <li class="tab-notice"><a href="/cs/notice/list"><span>공지사항</span></a></li>
                     <li><a href="/cs/counsel"><span>1:1 상담</span></a></li>
                 </ul>

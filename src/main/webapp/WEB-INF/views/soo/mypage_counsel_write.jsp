@@ -70,23 +70,23 @@
                             <th scope="col"><span class="required"></span>상담구분</th>
                             <td class="">
                                 <select name="CATE_ID" id="counList"  onclick="showOptions()">
-                                    <option value="" selected>선택하세요</option>
-                                    <option value="C01" ${counselDto.CATE_ID == 'C01' ? 'selected' : ''}>상품문의</option>
-                                    <option value="C02" ${counselDto.CATE_ID == 'C02' ? 'selected' : ''}>주문문의</option>
-                                    <option value="C03" ${counselDto.CATE_ID == 'C03' ? 'selected' : ''}>결제문의</option>
-                                    <option value="C04" ${counselDto.CATE_ID == 'C04' ? 'selected' : ''}>배송문의</option>
-                                    <option value="C05" ${counselDto.CATE_ID == 'C05' ? 'selected' : ''}>취소문의</option>
-                                    <option value="C06" ${counselDto.CATE_ID == 'C06' ? 'selected' : ''}>반품문의</option>
-                                    <option value="C07" ${counselDto.CATE_ID == 'C07' ? 'selected' : ''}>교환문의</option>
-                                    <option value="C08" ${counselDto.CATE_ID == 'C08' ? 'selected' : ''}>기타문의</option>
+                                    <option class="category" value="" selected>선택하세요</option>
+                                    <option class="category" value="C01" ${counselDto.CATE_ID == 'C01' ? 'selected' : ''}>상품문의</option>
+                                    <option class="category" value="C02" ${counselDto.CATE_ID == 'C02' ? 'selected' : ''}>주문문의</option>
+                                    <option class="category" value="C03" ${counselDto.CATE_ID == 'C03' ? 'selected' : ''}>결제문의</option>
+                                    <option class="category" value="C04" ${counselDto.CATE_ID == 'C04' ? 'selected' : ''}>배송문의</option>
+                                    <option class="category" value="C05" ${counselDto.CATE_ID == 'C05' ? 'selected' : ''}>취소문의</option>
+                                    <option class="category" value="C06" ${counselDto.CATE_ID == 'C06' ? 'selected' : ''}>반품문의</option>
+                                    <option class="category" value="C07" ${counselDto.CATE_ID == 'C07' ? 'selected' : ''}>교환문의</option>
+                                    <option class="category" value="C08" ${counselDto.CATE_ID == 'C08' ? 'selected' : ''}>기타문의</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th>문의제품</th>
                             <td>
-                                <button id="prodSearchBtn" >제품 찾기</button>
-                                <input id="prodName_input" name="prodName"  readonly>
+                                <button id="prodSearchBtn" onclick="openModal()">제품 찾기</button>
+                                <input id="prodName_input" name="prodName" value="${counselDto.PROD_ID}"  readonly>
                                 <input id="prodId_input" name="prodId" type="hidden">
                             </td>
                         </tr>
@@ -122,11 +122,11 @@
                                 <p class="push">
                                     <span>답변결과를 SMS로 받으시겠습니까? </span>
                                     <label>
-                                        <input type="radio" name="RX" value="Y">
+                                        <input type="radio" class="sns" name="RX" value="Y">
                                         <span>예</span>
                                     </label>
                                     <label>
-                                        <input type="radio" name="RX" value="N">
+                                        <input type="radio" class="sns" name="RX" value="N">
                                         <span>아니오</span>
                                     </label>
                                 </p>
@@ -203,34 +203,97 @@
             let form = $("#writeForm");
             form.attr("action", "/mypage/counsel/write");
             form.attr("method", "post");
+
+            const selectElement = document.querySelector('#counList');
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+            if (selectedOption.value === '') {
+                alert('상담구분을 선택해주세요.');
+            }
+
+            if ($("#title").val().trim() == "") {
+                alert("제목을 입력해주세요.");
+                return false;
+            }
+            if($("#counselCn").val().trim() =="") {
+                alert("내용을 입력해주세요.");
+                return false;
+            }
+            const isSelected = document.querySelector('.sns:checked');
+            if (!isSelected) {
+                alert("SMS 수신여부를 선택해주세요.");
+                return false;
+            }
+
+
             form.submit();
+            alert("1:1 상담이 등록되었습니다.")
         })
 
+
+
     });
+
+    function receiveProductData(prodId, prodName) {
+        // 선택한 제품 ID와 이름을 부모창의 input 요소에 설정
+        document.getElementById("prodId_input").value = prodId;
+        document.getElementById("prodName_input").value = prodName;
+    }
+
+    $(document).ready(function() {
+        // 제품찾기 버튼 클릭 시 팝업창 열기
+        $('#prodSearchBtn').on("click",function(e){
+            e.preventDefault();
+            let popUrl = "/mypage/counsel/write/prodPop";
+            let popOption = "width = 400px, height=400px, top=300px, left=300px, scrollbars=yes";
+            let popName = "제품 찾기";
+
+            // 자식창 열기
+            let popup = window.open(popUrl,popName,popOption);
+
+            // 자식창에서 전달된 데이터 처리
+            window.receiveProductData = receiveProductData;
+        });
+    });
+
+    //
+    //     function openModal() {
+    //     $('#myModal').modal('show');
+    // }
 
 
     // 제품찾기 팝업창
-    $('#prodSearchBtn').on("click",function(e){ // 제품찾기 버튼 클릭하면
+    <%--$('#prodSearchBtn').on("click", function(e) {--%>
+    <%--    e.preventDefault();--%>
 
-        e.preventDefault(); // 이벤트의 기본 동작을 막음, 버튼 클릭시에만 이벤트 발생
+    <%--    let popUrl = "/mypage/counsel/write/prodPop";--%>
+    <%--    let popOption = "width=400px,height=400px,top=300px,left=300px,scrollbars=yes";--%>
+    <%--    let popName = "제품 찾기";--%>
 
-        let popUrl = "/mypage/counsel/write/prodPop";   // 팝업창 url
-        let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-        let popName = "제품 찾기"   // 팝업창 이름
-        window.open(popUrl,popName,popOption);
+    <%--    let prodId = document.getElementById('prodId_input').value;--%>
+    <%--    let url = `${popUrl}?prodId=${encodeURIComponent(prodId)}`;--%>
 
-    });
+    <%--    window.open(url, popName, popOption);--%>
+    <%--});--%>
 
-    $(document).ready(function() {
-        if ($("#title").val().trim() == "") {
-            alert("제목을 입력해주세요.");
-            return false;
-        }
-        if($("#counselCn").val().trim() =="") {
-            alert("내용을 입력해주세요.");
-            return false;
-        }
-    })
+
+
+
+
+
+
+    <%--    $('#prodSearchBtn').on("click", function(e) {--%>
+    <%--    e.preventDefault();--%>
+
+    <%--    let popUrl = "/mypage/counsel/write/prodPop";--%>
+    <%--    let popOption = "width=400px,height=400px,top=300px,left=300px,scrollbars=yes";--%>
+    <%--    let popName = "제품 찾기";--%>
+    <%--    window.open(`${popUrl}?prodId=${encodeURIComponent(document.getElementById('prodId_input').value)}`, popName, popOption);--%>
+    <%--});--%>
+
+
+
+
 
 </script>
 

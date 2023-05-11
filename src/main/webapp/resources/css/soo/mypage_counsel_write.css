@@ -196,8 +196,10 @@ button {
     width: 120px;
 }
 
-#prodName{
+#prodName_input{
     border: none;
+    height: 30px;
+    width: 200px;
 }
 
 .hyphen {

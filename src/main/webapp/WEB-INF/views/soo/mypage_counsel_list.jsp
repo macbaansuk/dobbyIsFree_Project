@@ -122,7 +122,7 @@
             <td></td>
             <td colspan="2">
               <!-- 제품명 추가 -->
-              <div class="prod">[제품명] ${counsel.PROD_NM}</div>
+              <div class="prod">[제품명] 수퍼 화산송이 모공 마스크 ${counsel.PROD_NM}</div>
               <!-- 문의내용 -->
               <div class="questionC">
                   ${counsel.CN}
