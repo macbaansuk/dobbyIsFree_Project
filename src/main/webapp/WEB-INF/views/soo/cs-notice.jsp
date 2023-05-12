@@ -27,9 +27,9 @@
 <div id="container">
 
     <!-- location -->
-    <div class="location">
-        홈 > 고객센터 > 공지사항
-    </div>
+<%--    <div class="location">--%>
+<%--        홈 > 고객센터 > 공지사항--%>
+<%--    </div>--%>
     <section id="contents">
         <div>
             <h2 class="page_title">고객센터</h2>
@@ -40,7 +40,7 @@
             <nav class="bbsList">
                 <ul class="cate1">
                     <li id="F">
-                        <a href="/cs/faq/list"><span>FAQ</span></a>
+                        <a href="#"><span>FAQ</span></a>
                     </li>
                     <li id="N">
                         <a href="/cs/notice/list"><span>공지사항</span></a>
@@ -107,9 +107,9 @@
 
                     </table>
 
-                    <div>
-                        <button type="button"><a href="/admin/notice/list">관리자 페이지</a></button>
-                    </div>
+<%--                    <div>--%>
+<%--                        <button type="button"><a href="/admin/main">관리자 페이지</a></button>--%>
+<%--                    </div>--%>
 
                 </div>
                 <!-- 페이징 -->
@@ -197,7 +197,7 @@
     const counselBtn = document.querySelector('#C');
 
     faqBtn.addEventListener('click', function() {
-        window.location.href = '/cs/faq/list'; // 링크 주소 입력
+        window.location.href = '#'; // 링크 주소 입력
     });
 
     noticeBtn.addEventListener('click', function() {

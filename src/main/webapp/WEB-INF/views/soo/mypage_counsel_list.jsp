@@ -11,7 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/css/hoon/jquery/jquery-ui.min.js"></script>
 
-      <h2>1:1 상담내역</h2>
+      <h3 id="pagetitle">1:1 상담내역</h3>
 
       <div class="tab">
         <ul class="cate">
@@ -127,6 +127,8 @@
               <div class="questionC">
                   ${counsel.CN}
               </div>
+              <%--  답변이 달려있을 때만 보여주기   --%>
+              <c:if test="${not empty counsel.CONTENT}">
               <div class="answer">
                       <span class="reTitle">
                         <span class="reBtn">답변</span>
@@ -134,17 +136,14 @@
                         RE: ${counsel.TTL}
                       </span>
                 <!-- answer 내용 -->
-                <div class="answerCont">
-                    ${counsel.CONTENT}
-                    </div>
+                <div class="answerCont">${counsel.CONTENT}</div>
               </div>
+              </c:if>
               <!-- answer 날짜 -->
               <div class="answerDate">
-<%--                <fmt:formatDate value="${counsel.REGISTER_DTM}" pattern="yyyy-MM-dd" type="date"/>--%>
               </div>
             </td>
           </tr>
-<%--            </c:if>--%>
           </c:forEach>
           </tbody>
         </table>
