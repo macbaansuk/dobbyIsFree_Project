@@ -265,18 +265,31 @@
                                                         <label>대표 이미지</label>
                                                     </td>
                                                     <td>
-<%--                                                        <img id="main-image-preview" src="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>" alt="${read.PROD_NM}이미지">--%>
+
 
                                                         <img id="main-image-preview" src="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>" alt="${read.PROD_NM}이미지">
-<%--                                                        <input type="file" id="main-image-input" name="file" style="display: none;">--%>
-                                                        <input type="file" id="main-image-input" name="file" >
-                                                        <button type="button" id="main-image-change-button">Change Image</button>
+                                                        <button type="button" id="main-image-change-button">이미지 수정</button>
+                                                        <input type="file" id="main-image-input" name="file" style="display: none;">
                                                         <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">
+
+
+
+                                                    <%--                                                        <input type="file" id="main-image-input" name="file">--%>
+<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
+<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
+
+
+
+
+<%--                                                        <input type="file" id="main-image-input" name="file" style="display: none;">--%>
+<%--                                                        <input type="file" id="main-image-input" name="file" >--%>
+<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
+<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
                                                     </td>
 
 
-                                                    </td>
-                                                    </td>
+
+
                                                 </tr>
 
                         <%--                        <tr>--%>
@@ -398,54 +411,48 @@
                     <%--$('#previewBtn').on("click",function (){--%>
                     <%--    location.href="<c:url value='/admin/product/read/${id}'/>";--%>
                     <%--});--%>
-                    <%--$('#registerBtn').on("click",function (){--%>
-                    <%--   let form =$('#product-form');--%>
-                    <%--   form.attr("action","<c:url value='/admin/product/register'/>");--%>
-                    <%--   form.attr("method","post");--%>
-                    <%--   form.submit();--%>
+
+
+                    <%--$(document).ready(function() {--%>
+                    <%--    var mode = '${mode}';--%>
+
+                    <%--    if (mode === 'read') {--%>
+                    <%--        $('input[type="checkbox"], input[type="radio"]').on('click', function(event) {--%>
+                    <%--            event.preventDefault();--%>
+                    <%--        });--%>
+
+                    <%--        $('select').on('mousedown', function(event) {--%>
+                    <%--            event.preventDefault();--%>
+                    <%--        });--%>
+                    <%--    }--%>
+
+                    <%--    if (mode === 'register') {--%>
+                    <%--        $("input[name='option-availability']").on("change", function () {--%>
+                    <%--            const option = $(".option-row");--%>
+                    <%--            if ($("#option-use").is(":checked")) {--%>
+                    <%--                option.show();--%>
+                    <%--            } else {--%>
+                    <%--                option.hide();--%>
+                    <%--            }--%>
+                    <%--        });--%>
+
+                    <%--        $("input[name='discount-availability']").on("change", function () {--%>
+                    <%--            const discount = $(".discount-row");--%>
+                    <%--            if ($("#discount-use").is(":checked")) {--%>
+                    <%--                discount.show();--%>
+                    <%--            } else {--%>
+                    <%--                discount.hide();--%>
+                    <%--            }--%>
+                    <%--        });--%>
+
+                    <%--        // 초기 상태--%>
+                    <%--        if ($("#discount-use").is(":checked")) {--%>
+                    <%--            $(".discount-row").show();--%>
+                    <%--        } else {--%>
+                    <%--            $(".discount-row").hide();--%>
+                    <%--        }--%>
+                    <%--    }--%>
                     <%--});--%>
-
-
-                    $(document).ready(function() {
-                        var mode = '${mode}';
-
-                        if (mode === 'read') {
-                            $('input[type="checkbox"], input[type="radio"]').on('click', function(event) {
-                                event.preventDefault();
-                            });
-
-                            $('select').on('mousedown', function(event) {
-                                event.preventDefault();
-                            });
-                        }
-
-                        if (mode === 'register') {
-                            $("input[name='option-availability']").on("change", function () {
-                                const option = $(".option-row");
-                                if ($("#option-use").is(":checked")) {
-                                    option.show();
-                                } else {
-                                    option.hide();
-                                }
-                            });
-
-                            $("input[name='discount-availability']").on("change", function () {
-                                const discount = $(".discount-row");
-                                if ($("#discount-use").is(":checked")) {
-                                    discount.show();
-                                } else {
-                                    discount.hide();
-                                }
-                            });
-
-                            // 초기 상태
-                            if ($("#discount-use").is(":checked")) {
-                                $(".discount-row").show();
-                            } else {
-                                $(".discount-row").hide();
-                            }
-                        }
-                    });
 
 
 
