@@ -31,7 +31,7 @@
 
         <div class="btnWrap">
             <span><a href="/" class="btnType6l">홈으로</a></span>
-            <span ><a href="/mypage/counsel/list" class="btnType3l" style="color: white">마이페이지</a></span>
+            <span ><a href="/order/list" class="btnType3l" style="color: white">마이페이지</a></span>
         </div>
         <div class="orderComHelper">
             <p>

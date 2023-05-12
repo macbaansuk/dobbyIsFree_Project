@@ -1250,8 +1250,8 @@ $("#payBtn").click(function() {
                 merchant_uid : orderId,  //주문아이디
                 // name : '주문명:결제테스트', //주문명
                 name : '도비스프리 결제',
-                // amount :  totPurPrcTxt, //상품가격 - Number()
-                amount :  100, //상품가격  -----**********test 용 100원************
+                amount :  totPurPrcTxt, //상품가격 - Number()
+                // amount :  100, //상품가격  -----**********test 용 100원************
                 buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
                 buyer_name : '${mbrDto.MBR_NM}',     //주문자
                 buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
