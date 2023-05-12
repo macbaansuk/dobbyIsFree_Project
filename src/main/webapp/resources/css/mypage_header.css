@@ -52,13 +52,17 @@
 .mypage-img2{
     margin-left: 200px;
 }
+.mypage-img3{
+    margin-left: 40px;
+}
+
 
 .grade {
     font-weight: bold;
     color: #12B560;
 }
 
-.info {
+.classinfo {
     font-weight: bold;
     color: #12B560;
 

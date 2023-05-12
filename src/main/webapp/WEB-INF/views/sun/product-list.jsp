@@ -175,7 +175,7 @@
 
                 continueShoppingBtn.addEventListener('click', function() {
                     cartModal.style.display = 'none';
-                    location.href='product/list/${p.prod_id}';
+                    location.href='/product/list/${p.prod_id}';
                     <%--            ${productDetail.PROD_ID}--%>
                 });
 
