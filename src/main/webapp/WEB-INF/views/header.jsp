@@ -42,6 +42,8 @@
     * {
       margin: 0;
       padding: 0;
+      font-family: "나눔바른고딕OTF", "돋움";
+
     }
 
     #login_menu span a {text-decoration: none; color: #777777;}
@@ -121,7 +123,7 @@
       border: 2px solid #d9d9d9;
     }
 
-    #search_box input[type="text"] {
+    #search_box #searchinput {
       width: 300px;
       height: 30px;
       font-size: 15px;
@@ -155,7 +157,7 @@
         <img src="/img/main/logo.png" width="250px" />
       </a>
       <div id="search_box">
-        <input type="text" placeholder="  검색어를 입력하세요.">
+        <input id="searchinput" type="text" placeholder="  검색어를 입력하세요.">
         <img src="/img/main/search.png" />
       </div>
     </h1>

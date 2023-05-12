@@ -23,7 +23,7 @@
                 <strong>도움이 필요하세요?</strong>
                 <span class="helpBtn">
                     <a href="/cs/notice/list" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
-                    <a href="" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
+                    <a href="/mypage/counsel/write" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
                 </span>
             </p>
         </div>
@@ -549,139 +549,137 @@
 
 
                 <!-- 쿠폰확인 & 포인트적립 -->
-                <section id="cpnPt">
+<%--                <section id="cpnPt">--%>
 
-                    <h3 class="subTitle2">쿠폰/포인트 적용</h3>
-
-
-                    <div class="tableTypeWrite typeline basicOrderCoupon">
-                        <table>
-                            <caption>쿠폰/포인트 적용</caption>
-                            <colgroup>
-                                <col style="width:214px;">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                            <tr id="userCouponList" class="">
-                                <th scope="row">쿠폰 <span class="ftColor3">(사용 가능한 쿠폰 <span class="ftColor7" id="couponAllCnt">7장</span>)</span></th>
-                                <td>
-                                    <div class="selectArea" style="width: 75%;">
-                                        <button type="button" class="selTit" onclick="selActive();" id="btnSelCoupon">쿠폰을 선택하세요.</button>
-                                        <ul class="selList" id="cpnSelList" style="display: none;">
-                                            <li $cpnseq="" $prdseq="" $cpnclcd="" $cpntpcd="" $cpnnm="" $cpnno="" $cpnprc="" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="" $maxordamt="" $cpnprctp="" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="" $unitprc="" $prdrwrdprdpmtnafl="" $amtrwrdprdpmtnafl="" $btyptpmtnafl="" $btyptusenafl="" $idx="" $cdnm="" $cpnclnm="" $cpnorderby="" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="">
-                                                <input type="radio" name="couponSeq" id="" value="" $cpnclcd="" $cpnorderby="" $useablecpnyn="" $webyn="" $mobileyn="" $appyn="" $extradctypeyn="">
-                                                <label for=""><span class="couponName">쿠폰을 선택하세요.</span><em></em></label>
-                                            </li>
-                                            <li $cpnseq="8751" $prdseq="0" $cpnclcd="CT03" $cpntpcd="CT0301" $cpnnm="신규 가입 기념 무료 배송 쿠폰" $cpnno="MjMwMzA5MjAyNjE3MDQ0NDY=" $cpnprc="0" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="ST50" $mxdcamt="0" $maxordamt="0" $cpnprctp="2" $prdnm="" $webyn="Y" $mobileyn="Y" $appyn="Y" $stdatetime="2023-03-09 00:00" $enddatetime="2023-05-08 23:59" $unitprc="0" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="N" $btyptusenafl="N" $idx="0" $cdnm="배송비무료쿠폰" $cpnclnm="" $cpnorderby="0" $useablecpnyn="Y" $inmprdcatcpntpcd="1" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="N" $sktusecpnonlyyn="N" id="MjMwMzA5MjAyNjE3MDQ0NDY=" style="display: block;">
-                                                <input type="radio" name="couponSeq" id="userCoupon0" value="MjMwMzA5MjAyNjE3MDQ0NDY=" $cpnclcd="CT03" $cpnorderby="0" $useablecpnyn="Y" $webyn="Y" $mobileyn="Y" $appyn="Y" $extradctypeyn="" disabled="">
-                                                <label for="userCoupon0"><span class="couponName">[사용불가][배송비무료쿠폰] 신규 가입 기념 무료 배송 쿠폰 (1원 이상 구매시 사용가능)</span><em>0%</em></label>
-                                            </li><li $cpnseq="7414" $prdseq="0" $cpnclcd="CT03" $cpntpcd="CT0301" $cpnnm="[전등급혜택] 최초1회 무료배송" $cpnno="MjMwMzA5MjAyNjE3MDcyNTA=" $cpnprc="0" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="ST50" $mxdcamt="0" $maxordamt="0" $cpnprctp="2" $prdnm="" $webyn="Y" $mobileyn="Y" $appyn="Y" $stdatetime="2023-03-09 00:00" $enddatetime="2023-06-07 23:59" $unitprc="0" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="N" $btyptusenafl="N" $idx="0" $cdnm="배송비무료쿠폰" $cpnclnm="" $cpnorderby="1" $useablecpnyn="Y" $inmprdcatcpntpcd="1" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="N" $sktusecpnonlyyn="N" id="MjMwMzA5MjAyNjE3MDcyNTA=" style="display: block;">
-                                            <input type="radio" name="couponSeq" id="userCoupon1" value="MjMwMzA5MjAyNjE3MDcyNTA=" $cpnclcd="CT03" $cpnorderby="1" $useablecpnyn="Y" $webyn="Y" $mobileyn="Y" $appyn="Y" $extradctypeyn="" disabled="">
-                                            <label for="userCoupon1"><span class="couponName">[사용불가][배송비무료쿠폰] [전등급혜택] 최초1회 무료배송 (1원 이상 구매시 사용가능)</span><em>0%</em></label>
-                                        </li><li $cpnseq="21050049" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]1만원이상 2천원할인" $cpnno="21050049" $cpnprc="2000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="2000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="10000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="6" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050049" style="display: block;">
-                                            <input type="radio" name="couponSeq" id="userCoupon6" value="21050049" $cpnclcd="posCoupon" $cpnorderby="6" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">
-                                            <label for="userCoupon6"><span class="couponName">[온 · 오프 통합쿠폰] [신규]1만원이상 2천원할인</span><em>-2000 원</em></label>
-                                        </li><li $cpnseq="21050050" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]2만원이상 5천원할인" $cpnno="21050050" $cpnprc="5000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="5000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="20000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="7" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050050" style="display: block;">
-                                            <input type="radio" name="couponSeq" id="userCoupon7" value="21050050" $cpnclcd="posCoupon" $cpnorderby="7" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">
-                                            <label for="userCoupon7"><span class="couponName">[온 · 오프 통합쿠폰] [신규]2만원이상 5천원할인</span><em>-5000 원</em></label>
-                                        </li><li $cpnseq="21050051" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]3만원이상 1만원할인" $cpnno="21050051" $cpnprc="10000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="10000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="30000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="8" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050051" style="display: block;">
-                                            <input type="radio" name="couponSeq" id="userCoupon8" value="21050051" $cpnclcd="posCoupon" $cpnorderby="8" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">
-                                            <label for="userCoupon8"><span class="couponName">[온 · 오프 통합쿠폰] [신규]3만원이상 1만원할인</span><em>-10000 원</em></label>
-                                        </li></ul>
-                                    </div>
-
-                                    <ul class="selCouponList" id="selUserCouponList">
-                                        <li style="display:none;">
-                                            <span></span>
-                                            <button type="button" class="btnDel" $cpnno="" $cpnclcd="">삭제</button>
-                                        </li>
-                                    </ul>
-                                    <ul class="selCouponList" id="dlvCouponList">
-                                        <li style="display:none;">
-                                            <span></span>
-                                            <button type="button" class="btnDel" $cpnno="" $cpnclcd="">삭제</button>
-                                        </li>
-                                    </ul>
-                                    <ul class="selCouponList" id="prdCouponList" style="display: none;">
-                                        <li style="display:none;">
-                                            <span></span>
-                                        </li>
-                                    </ul>
-                                    <ul class="bulListType2" id="cpnNotice">
-                                        <li>쿠폰은 조건에 따라 적용이 되지 않을 수 있습니다.</li>
-                                        <li>쿠폰 사용 후, 최종 결제 금액에 대하여 적립금이 산정/적립 됩니다. (적립금 사용분 및 배송비제외) </li>
-                                        <li>쿠폰 사용 요건에 따라 사은품이 지급되지 않을 수 있습니다. 최종 주문 완료 후, &lt;마이페이지-주문내역-사은품 목록&gt;에서사은품 내역을 반드시 확인해주세요. </li>
-                                    </ul>
-                                </td>
-                            </tr>
+<%--                    <h3 class="subTitle2">쿠폰/포인트 적용</h3>--%>
 
 
+<%--                    <div class="tableTypeWrite typeline basicOrderCoupon">--%>
+<%--                        <table>--%>
+<%--                            <caption>쿠폰/포인트 적용</caption>--%>
+<%--                            <colgroup>--%>
+<%--                                <col style="width:214px;">--%>
+<%--                                <col>--%>
+<%--                            </colgroup>--%>
+<%--                            <tbody>--%>
+<%--                            <tr id="userCouponList" class="">--%>
+<%--                                <th scope="row">쿠폰 <span class="ftColor3">(사용 가능한 쿠폰 <span class="ftColor7" id="couponAllCnt">7장</span>)</span></th>--%>
+<%--                                <td>--%>
+<%--                                    <div class="selectArea" style="width: 75%;">--%>
+<%--                                        <button type="button" class="selTit" onclick="selActive();" id="btnSelCoupon">쿠폰을 선택하세요.</button>--%>
+<%--                                        <ul class="selList" id="cpnSelList" style="display: none;">--%>
+<%--                                            <li $cpnseq="" $prdseq="" $cpnclcd="" $cpntpcd="" $cpnnm="" $cpnno="" $cpnprc="" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="" $maxordamt="" $cpnprctp="" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="" $unitprc="" $prdrwrdprdpmtnafl="" $amtrwrdprdpmtnafl="" $btyptpmtnafl="" $btyptusenafl="" $idx="" $cdnm="" $cpnclnm="" $cpnorderby="" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="">--%>
+<%--                                                <input type="radio" name="couponSeq" id="" value="" $cpnclcd="" $cpnorderby="" $useablecpnyn="" $webyn="" $mobileyn="" $appyn="" $extradctypeyn="">--%>
+<%--                                                <label for=""><span class="couponName">쿠폰을 선택하세요.</span><em></em></label>--%>
+<%--                                            </li>--%>
+<%--                                            <li $cpnseq="8751" $prdseq="0" $cpnclcd="CT03" $cpntpcd="CT0301" $cpnnm="신규 가입 기념 무료 배송 쿠폰" $cpnno="MjMwMzA5MjAyNjE3MDQ0NDY=" $cpnprc="0" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="ST50" $mxdcamt="0" $maxordamt="0" $cpnprctp="2" $prdnm="" $webyn="Y" $mobileyn="Y" $appyn="Y" $stdatetime="2023-03-09 00:00" $enddatetime="2023-05-08 23:59" $unitprc="0" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="N" $btyptusenafl="N" $idx="0" $cdnm="배송비무료쿠폰" $cpnclnm="" $cpnorderby="0" $useablecpnyn="Y" $inmprdcatcpntpcd="1" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="N" $sktusecpnonlyyn="N" id="MjMwMzA5MjAyNjE3MDQ0NDY=" style="display: block;">--%>
+<%--                                                <input type="radio" name="couponSeq" id="userCoupon0" value="MjMwMzA5MjAyNjE3MDQ0NDY=" $cpnclcd="CT03" $cpnorderby="0" $useablecpnyn="Y" $webyn="Y" $mobileyn="Y" $appyn="Y" $extradctypeyn="" disabled="">--%>
+<%--                                                <label for="userCoupon0"><span class="couponName">[사용불가][배송비무료쿠폰] 신규 가입 기념 무료 배송 쿠폰 (1원 이상 구매시 사용가능)</span><em>0%</em></label>--%>
+<%--                                            </li><li $cpnseq="7414" $prdseq="0" $cpnclcd="CT03" $cpntpcd="CT0301" $cpnnm="[전등급혜택] 최초1회 무료배송" $cpnno="MjMwMzA5MjAyNjE3MDcyNTA=" $cpnprc="0" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="ST50" $mxdcamt="0" $maxordamt="0" $cpnprctp="2" $prdnm="" $webyn="Y" $mobileyn="Y" $appyn="Y" $stdatetime="2023-03-09 00:00" $enddatetime="2023-06-07 23:59" $unitprc="0" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="N" $btyptusenafl="N" $idx="0" $cdnm="배송비무료쿠폰" $cpnclnm="" $cpnorderby="1" $useablecpnyn="Y" $inmprdcatcpntpcd="1" $inmprdcatcd1="" $extradctypeyn="" $catcd="" $skttdaycpnyn="N" $sktusecpnonlyyn="N" id="MjMwMzA5MjAyNjE3MDcyNTA=" style="display: block;">--%>
+<%--                                            <input type="radio" name="couponSeq" id="userCoupon1" value="MjMwMzA5MjAyNjE3MDcyNTA=" $cpnclcd="CT03" $cpnorderby="1" $useablecpnyn="Y" $webyn="Y" $mobileyn="Y" $appyn="Y" $extradctypeyn="" disabled="">--%>
+<%--                                            <label for="userCoupon1"><span class="couponName">[사용불가][배송비무료쿠폰] [전등급혜택] 최초1회 무료배송 (1원 이상 구매시 사용가능)</span><em>0%</em></label>--%>
+<%--                                        </li><li $cpnseq="21050049" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]1만원이상 2천원할인" $cpnno="21050049" $cpnprc="2000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="2000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="10000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="6" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050049" style="display: block;">--%>
+<%--                                            <input type="radio" name="couponSeq" id="userCoupon6" value="21050049" $cpnclcd="posCoupon" $cpnorderby="6" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">--%>
+<%--                                            <label for="userCoupon6"><span class="couponName">[온 · 오프 통합쿠폰] [신규]1만원이상 2천원할인</span><em>-2000 원</em></label>--%>
+<%--                                        </li><li $cpnseq="21050050" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]2만원이상 5천원할인" $cpnno="21050050" $cpnprc="5000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="5000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="20000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="7" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050050" style="display: block;">--%>
+<%--                                            <input type="radio" name="couponSeq" id="userCoupon7" value="21050050" $cpnclcd="posCoupon" $cpnorderby="7" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">--%>
+<%--                                            <label for="userCoupon7"><span class="couponName">[온 · 오프 통합쿠폰] [신규]2만원이상 5천원할인</span><em>-5000 원</em></label>--%>
+<%--                                        </li><li $cpnseq="21050051" $prdseq="0" $cpnclcd="posCoupon" $cpntpcd="" $cpnnm="[신규]3만원이상 1만원할인" $cpnno="21050051" $cpnprc="10000" cpnprctp="" $pritemnm="" $pritemseqstr="" $dctpcd="" $mxdcamt="10000" $maxordamt="0" $cpnprctp="1" $prdnm="" $webyn="" $mobileyn="" $appyn="" $stdatetime="" $enddatetime="2023-05-08" $unitprc="30000" $prdrwrdprdpmtnafl="N" $amtrwrdprdpmtnafl="N" $btyptpmtnafl="Y" $btyptusenafl="Y" $idx="0" $cdnm="" $cpnclnm="" $cpnorderby="8" $useablecpnyn="" $inmprdcatcpntpcd="" $inmprdcatcd1="" $extradctypeyn="N" $catcd="" $skttdaycpnyn="" $sktusecpnonlyyn="" id="21050051" style="display: block;">--%>
+<%--                                            <input type="radio" name="couponSeq" id="userCoupon8" value="21050051" $cpnclcd="posCoupon" $cpnorderby="8" $useablecpnyn="undefined" $webyn="undefined" $mobileyn="undefined" $appyn="undefined" $extradctypeyn="">--%>
+<%--                                            <label for="userCoupon8"><span class="couponName">[온 · 오프 통합쿠폰] [신규]3만원이상 1만원할인</span><em>-10000 원</em></label>--%>
+<%--                                        </li></ul>--%>
+<%--                                    </div>--%>
+
+<%--                                    <ul class="selCouponList" id="selUserCouponList">--%>
+<%--                                        <li style="display:none;">--%>
+<%--                                            <span></span>--%>
+<%--                                            <button type="button" class="btnDel" $cpnno="" $cpnclcd="">삭제</button>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                    <ul class="selCouponList" id="dlvCouponList">--%>
+<%--                                        <li style="display:none;">--%>
+<%--                                            <span></span>--%>
+<%--                                            <button type="button" class="btnDel" $cpnno="" $cpnclcd="">삭제</button>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                    <ul class="selCouponList" id="prdCouponList" style="display: none;">--%>
+<%--                                        <li style="display:none;">--%>
+<%--                                            <span></span>--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                    <ul class="bulListType2" id="cpnNotice">--%>
+<%--                                        <li>쿠폰은 조건에 따라 적용이 되지 않을 수 있습니다.</li>--%>
+<%--                                        <li>쿠폰 사용 후, 최종 결제 금액에 대하여 적립금이 산정/적립 됩니다. (적립금 사용분 및 배송비제외) </li>--%>
+<%--                                        <li>쿠폰 사용 요건에 따라 사은품이 지급되지 않을 수 있습니다. 최종 주문 완료 후, &lt;마이페이지-주문내역-사은품 목록&gt;에서사은품 내역을 반드시 확인해주세요. </li>--%>
+<%--                                    </ul>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
 
 
-                            <!--공병수거 id 추가 -->
-                            <tr class="btPtUseTr" id="btPtUseTr">
-                                <th scope="row">적립금</th>
-                                <td>
-                                    <div class="beautyPoint">
-                                        사용가능 <strong><span id="canUseBtPt">0</span></strong> P &nbsp;/&nbsp; 보유 <strong><span id="myBtPtTxt">0</span></strong> P
 
-                                        <input type="text" class="inputTxt" name="totalUseBtPt" id="totalUseBtPt" value="0"> p
-                                        <button type="button" class="btnType7m" name="useAllBtPt" id="useAllBtPt">모두사용</button>
 
-                                    </div>
-                                </td>
-                            </tr>
+<%--                            <tr class="btPtUseTr" id="btPtUseTr">--%>
+<%--                                <th scope="row">적립금</th>--%>
+<%--                                <td>--%>
+<%--                                    <div class="beautyPoint">--%>
+<%--                                        사용가능 <strong><span id="canUseBtPt">0</span></strong> P &nbsp;/&nbsp; 보유 <strong><span id="myBtPtTxt">0</span></strong> P--%>
 
-                            <!-- [ARC] 배송비 - 뷰티포인트 결제-->
-                            <tr id="totDlvPrcTr" style="display: none">
-                                <th scope="row">배송비</th>
-                                <td>
-                                    <div class="beautyPoint">
-                                        <label class="inputChk" for="deliveryCost"><input type="checkbox" id="deliveryCost"><span>적립금 사용</span></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- //[ARC] 배송비 - 뷰티포인트 결제 -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tableTypeWrite typeline abcCampaignChk" style="display:none;">
-                        <table>
-                            <caption>쿠폰/포인트 적용</caption>
-                            <colgroup>
-                                <col style="width:214px;">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th scope="row">연계 구매 프로모션</th>
-                                <td>
-                                    <ul class="selCouponList">
-                                        <li id="abcBnfTxt"></li>
-                                    </ul>
-                                    <ul class="bulListType2">
-                                        <li>연계 구매 프로모션 적용 시 장바구니에서 쿠폰적용이 불가합니다.</li>
-                                        <li>할인 쿠폰 사용을 원할 경우 연계 구매 프로모션 상품을 제외하고 분할 주문을 해주세요.</li>
-                                        <li>프로모션 제품에 뷰티포인트 사용 시 연계구매 프로모션이 적용되지 않습니다.</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr class="okPtChk_abc">
-                                <th scope="row">OK캐쉬백 포인트 사용<button type="button" class="btnTooltip" onclick="tooltip('okcashbagPointUseInfo');">자세히 보기</button></th>
-                                <td>
-                                    <button type="button" class="btnType7s" id="chkOkPt_abc">포인트 조회</button>
-                                    <div class="okcashbagPoint">
-                                        <input type="text" name="okPtUse" class="inputTxt checkNum" id="okPtUse" value=""><span>P /</span><span class="point" id="schOkPt_abc">0 P</span>
-                                        <button type="button" class="btnType7s chkOkPt2 okPointBtn_abc" id="chkOkPt2_abc">포인트 재조회</button>
-                                        <button type="button" class="btnType3s okPtCancel okPointBtn_abc" id="okPtCancel_abc" style="display: none;">취소</button>
-                                        <button type="button" class="btnType3s okPointBtn">적용</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+<%--                                        <input type="text" class="inputTxt" name="totalUseBtPt" id="totalUseBtPt" value="0"> p--%>
+<%--                                        <button type="button" class="btnType7m" name="useAllBtPt" id="useAllBtPt">모두사용</button>--%>
+
+<%--                                    </div>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+
+<%--                            <!-- [ARC] 배송비 - 뷰티포인트 결제-->--%>
+<%--                            <tr id="totDlvPrcTr" style="display: none">--%>
+<%--                                <th scope="row">배송비</th>--%>
+<%--                                <td>--%>
+<%--                                    <div class="beautyPoint">--%>
+<%--                                        <label class="inputChk" for="deliveryCost"><input type="checkbox" id="deliveryCost"><span>적립금 사용</span></label>--%>
+<%--                                    </div>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                    <div class="tableTypeWrite typeline abcCampaignChk" style="display:none;">--%>
+<%--                        <table>--%>
+<%--                            <caption>쿠폰/포인트 적용</caption>--%>
+<%--                            <colgroup>--%>
+<%--                                <col style="width:214px;">--%>
+<%--                                <col>--%>
+<%--                            </colgroup>--%>
+<%--                            <tbody>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="row">연계 구매 프로모션</th>--%>
+<%--                                <td>--%>
+<%--                                    <ul class="selCouponList">--%>
+<%--                                        <li id="abcBnfTxt"></li>--%>
+<%--                                    </ul>--%>
+<%--                                    <ul class="bulListType2">--%>
+<%--                                        <li>연계 구매 프로모션 적용 시 장바구니에서 쿠폰적용이 불가합니다.</li>--%>
+<%--                                        <li>할인 쿠폰 사용을 원할 경우 연계 구매 프로모션 상품을 제외하고 분할 주문을 해주세요.</li>--%>
+<%--                                        <li>프로모션 제품에 뷰티포인트 사용 시 연계구매 프로모션이 적용되지 않습니다.</li>--%>
+<%--                                    </ul>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+<%--                            <tr class="okPtChk_abc">--%>
+<%--                                <th scope="row">OK캐쉬백 포인트 사용<button type="button" class="btnTooltip" onclick="tooltip('okcashbagPointUseInfo');">자세히 보기</button></th>--%>
+<%--                                <td>--%>
+<%--                                    <button type="button" class="btnType7s" id="chkOkPt_abc">포인트 조회</button>--%>
+<%--                                    <div class="okcashbagPoint">--%>
+<%--                                        <input type="text" name="okPtUse" class="inputTxt checkNum" id="okPtUse" value=""><span>P /</span><span class="point" id="schOkPt_abc">0 P</span>--%>
+<%--                                        <button type="button" class="btnType7s chkOkPt2 okPointBtn_abc" id="chkOkPt2_abc">포인트 재조회</button>--%>
+<%--                                        <button type="button" class="btnType3s okPtCancel okPointBtn_abc" id="okPtCancel_abc" style="display: none;">취소</button>--%>
+<%--                                        <button type="button" class="btnType3s okPointBtn">적용</button>--%>
+<%--                                    </div>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                </section>--%>
 
 
 
@@ -1241,7 +1239,7 @@ $("#payBtn").click(function() {
             console.log("결제 금액",typeof totPurPrcTxt);
             console.log("결제 금액 최종값", totPurPrcTxt);
 
-            input();
+            // input();
 
 
             IMP.init('imp21837643');
@@ -1252,8 +1250,8 @@ $("#payBtn").click(function() {
                 merchant_uid : orderId,  //주문아이디
                 // name : '주문명:결제테스트', //주문명
                 name : '도비스프리 결제',
-                // amount :  totPurPrcTxt, //상품가격 - Number()
-                amount :  100, //상품가격  -----**********test 용 100원************
+                amount :  totPurPrcTxt, //상품가격 - Number()
+                // amount :  100, //상품가격  -----**********test 용 100원************
                 buyer_email : '${mbrDto.EMAIL}',     //주문자 이메일
                 buyer_name : '${mbrDto.MBR_NM}',     //주문자
                 buyer_tel :  '${mbrDto.MPNO}',       //주문자연락처
@@ -1276,7 +1274,7 @@ $("#payBtn").click(function() {
                     // msg += '상점 거래ID : ' + rsp.merchant_uid;
                     // msg += '결제 금액 : ' + rsp.paid_amount;
                     // msg += '카드 승인번호 : ' + rsp.apply_num;
-                    // input();
+                    input();
 
                     alert("결제가 성공하였습니다")
                 }
