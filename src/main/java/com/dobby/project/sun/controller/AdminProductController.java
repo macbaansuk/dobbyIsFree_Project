@@ -166,64 +166,73 @@ public class AdminProductController {
 //    }
 
 
-    String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
-
-    @PostMapping("/modify")
-    public String modify(RegisterDto registerDto, @RequestParam("file") MultipartFile file) {
-        try {
-
-//            productService.modify(registerDto);
-            String oldFilePath = uploadFolder + registerDto.getOldFilePath();
-            File oldFile = new File(oldFilePath);
-
-            // 이미지 파일이 제출되었는지 확인
-            if (!file.isEmpty()) {
-                // 기존 파일이 존재하면 삭제
-                if (oldFile.exists()) {
-                    oldFile.delete();
-                }
-
-                String uploadedFileName = uploadFile(file);
-                registerDto.setREP_IMG(uploadedFileName);
-                productService.modify(registerDto);
-            } else {
-                // 이미지 파일이 제출되지 않았다면 기존 파일명을 사용
-                registerDto.setREP_IMG(oldFile.getName());
-                productService.modify(registerDto);
-            }
 
 
-            return "redirect:/admin/product/list";
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "/sun/admin-product-read";
-        }
-    }
 
-    private String uploadFile(MultipartFile file) throws IOException {
-        String fileRealName = file.getOriginalFilename();
-        long size = file.getSize();
 
-        System.out.println("파일명 : "  + fileRealName);
-        System.out.println("용량크기(byte) : " + size);
 
-        String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 
-        UUID uuid = UUID.randomUUID();
-        System.out.println("uuid = " + uuid);
-        String[] uuids = uuid.toString().split("-");
 
-        String uniqueName = uuids[0];
-        System.out.println("생성된 고유문자열 uniqueName = " + uniqueName);
-        System.out.println("확장자명 fileExtension = " + fileExtension);
-
-        File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
-        file.transferTo(saveFile);
-
-        return uniqueName + fileExtension;
-    }
-
+//
+//    String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+//
+//    @PostMapping("/modify")
+//    public String modify(RegisterDto registerDto, @RequestParam("file") MultipartFile file) {
+//        try {
+//
+////            productService.modify(registerDto);
+//            String oldFilePath = uploadFolder + registerDto.getOldFilePath();
+//            File oldFile = new File(oldFilePath);
+//
+//            // 이미지 파일이 제출되었는지 확인
+//            if (!file.isEmpty()) {
+//                // 기존 파일이 존재하면 삭제
+//                if (oldFile.exists()) {
+//                    oldFile.delete();
+//                }
+//
+//                String uploadedFileName = uploadFile(file);
+//                registerDto.setREP_IMG(uploadedFileName);
+//                productService.modify(registerDto);
+//            } else {
+//                // 이미지 파일이 제출되지 않았다면 기존 파일명을 사용
+//                registerDto.setREP_IMG(oldFile.getName());
+//                productService.modify(registerDto);
+//            }
+//
+//
+//            return "redirect:/admin/product/list";
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "/sun/admin-product-read";
+//        }
+//    }
+//
+//    private String uploadFile(MultipartFile file) throws IOException {
+//        String fileRealName = file.getOriginalFilename();
+//        long size = file.getSize();
+//
+//        System.out.println("파일명 : "  + fileRealName);
+//        System.out.println("용량크기(byte) : " + size);
+//
+//        String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+//
+//        UUID uuid = UUID.randomUUID();
+//        System.out.println("uuid = " + uuid);
+//        String[] uuids = uuid.toString().split("-");
+//
+//        String uniqueName = uuids[0];
+//        System.out.println("생성된 고유문자열 uniqueName = " + uniqueName);
+//        System.out.println("확장자명 fileExtension = " + fileExtension);
+//
+//        File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+//        file.transferTo(saveFile);
+//
+//        return uniqueName + fileExtension;
+//    }
+//
 
 
 

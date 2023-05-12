@@ -161,7 +161,10 @@
                                     <td class="reg_dtm"><fmt:formatDate value="${P.reg_dtm}" pattern="yyyy-MM-dd " type="date"/></td>
                                     <!--  수정, 삭제버튼 -->
                                     <td>
-<%--                                        <button id="modifyBtn" type="submit">수정</button>--%>
+
+
+<%--                                        <button id="modifyBtn" type="button">수정</button>--%>
+
                                         <button id="removeBtn" type="button" onclick="deleteProduct(${P.prod_id})">삭제</button>
                                     </td>
                                 </tr>
@@ -205,6 +208,8 @@
                                 });
                             }
                       }
+
+
 
 
                         let msg = "${msg}";
