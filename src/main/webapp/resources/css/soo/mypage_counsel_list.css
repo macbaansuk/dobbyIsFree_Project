@@ -164,6 +164,7 @@ caption {
 .questionC {
     margin-bottom: 20px;
     font-size: 14px;
+    word-break: break-all;
 }
 
 .prod{
@@ -174,6 +175,7 @@ caption {
     color: #222222;
     font-size: 15px;
     margin: 10px 0 10px 0;
+    word-break: break-all;
 }
 
 .reBtn {
@@ -187,6 +189,7 @@ caption {
 }
 .answerCont{
     font-size: 14px;
+    word-break: break-all;
 }
 .answerDate{
     margin-top: 10px;

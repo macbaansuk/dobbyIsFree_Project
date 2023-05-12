@@ -3,6 +3,7 @@ package com.dobby.project.soo;
 import java.util.Date;
 
 public class CounselAnswerDto {
+
     private Integer CNSL_ID;
     private String MBR_ID;
     private Integer PROD_ID;
@@ -23,11 +24,7 @@ public class CounselAnswerDto {
     private String RMK;
 
     public CounselAnswerDto(){}
-
-    public CounselAnswerDto(Integer CNSL_ID, String MBR_ID, Integer PROD_ID, String PROD_NM, String CATE_ID,
-                            String CATE_NM, String BBS_ID, String TTL, String CN, String RX, Date REG_DTM,
-                            String STUS, String ANS_YN, Integer ANS_ID, String CONTENT, String WRTR, Date REGISTER_DTM,
-                            String RMK) {
+    public CounselAnswerDto(Integer CNSL_ID, String MBR_ID, Integer PROD_ID, String PROD_NM, String CATE_ID, String CATE_NM, String BBS_ID, String TTL, String CN, String RX, Date REG_DTM, String STUS, String ANS_YN, Integer ANS_ID, String CONTENT, String WRTR, Date REGISTER_DTM, String RMK) {
         this.CNSL_ID = CNSL_ID;
         this.MBR_ID = MBR_ID;
         this.PROD_ID = PROD_ID;
@@ -47,6 +44,8 @@ public class CounselAnswerDto {
         this.REGISTER_DTM = REGISTER_DTM;
         this.RMK = RMK;
     }
+
+
 
     public Integer getCNSL_ID() {
         return CNSL_ID;
@@ -160,7 +159,9 @@ public class CounselAnswerDto {
         this.ANS_ID = ANS_ID;
     }
 
-    public String getCONTENT() { return CONTENT; }
+    public String getCONTENT() {
+        return CONTENT;
+    }
 
     public void setCONTENT(String CONTENT) {
         this.CONTENT = CONTENT;
@@ -174,12 +175,12 @@ public class CounselAnswerDto {
         this.WRTR = WRTR;
     }
 
-    public Date getA_REG_DTM() {
+    public Date getREGISTER_DTM() {
         return REGISTER_DTM;
     }
 
-    public void setA_REG_DTM(Date A_REG_DTM) {
-        this.REGISTER_DTM = A_REG_DTM;
+    public void setREGISTER_DTM(Date REGISTER_DTM) {
+        this.REGISTER_DTM = REGISTER_DTM;
     }
 
     public String getRMK() {
@@ -193,7 +194,7 @@ public class CounselAnswerDto {
     @Override
     public String toString() {
         return "CounselAnswerDto{" +
-                "CNSL_ID=" + CNSL_ID +
+                " CNSL_ID=" + CNSL_ID +
                 ", MBR_ID='" + MBR_ID + '\'' +
                 ", PROD_ID=" + PROD_ID +
                 ", PROD_NM='" + PROD_NM + '\'' +
