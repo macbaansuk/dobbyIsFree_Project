@@ -352,7 +352,7 @@ button, input, optgroup, select, textarea {
 .ftColor1 {
     color: #12b560 !important;
 }
-h1, h2, h3, h4, h5, strong, b, th {
+th {
     font-weight: normal;
     font-family: '나눔바른고딕OTF', '돋움';
 }
@@ -364,7 +364,7 @@ h1, h2, h3, h4, h5, strong, b, th {
     margin-left: -1px;
 }
 table {
-    width: 1100px;
+    width: 100%;
     border-collapse: collapse;
     border: 0;
     table-layout: fixed;
