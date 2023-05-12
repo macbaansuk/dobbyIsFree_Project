@@ -198,18 +198,21 @@
                                 <input type="number" id="price" name="AMT" required>
                             </td>
                         </tr>
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>할인 여부</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="radio" id="discount-use" name="DC_YN" value="Y">--%>
-                        <%--                                <label for="discount-use">할인 적용</label>--%>
-                        <%--                                <input type="radio" id="discount-not-use" name="DC_YN" value="N" checked>--%>
-                        <%--                                <label for="discount-not-use">할인 적용 안함</label>--%>
-                        <%--                                <!-- 기본값 checked -->--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+
+                            <tr>
+                                <td>
+                                    <label>할인 여부</label>
+                                </td>
+                                <td>
+                                    <input type="radio" id="discount-use" name="DC_YN" value="Y">
+                                    <label for="discount-use">할인 적용</label>
+                                    <input type="radio" id="discount-not-use" name="DC_YN" value="N" checked>
+                                    <label for="discount-not-use">할인 적용 안함</label>
+                                    <!-- 기본값 checked -->
+                                </td>
+                            </tr>
+
+
                         <%--                        <tr class="discount-row">--%>
                         <%--                            <td>--%>
                         <%--                                <label for="discount-rate">할인율</label>--%>

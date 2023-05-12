@@ -67,7 +67,7 @@
                 <div class="product">
                     <a href="/product/productDetail/${p.prod_id}">
                         <div class="product-img">
-                            <img src="${p.rep_img}" alt="메인 상품 이미지">
+                            <img src="/img/sun/product-image/${p.rep_img}" alt="메인 상품 이미지">
                         </div>
                         <div class="product-info">
                             <span class="product-name">${p.prod_nm}</span>
@@ -125,7 +125,7 @@
                                 var productdiv = $('<div class="product"></div>');
                                 var productlink = $('<a>').attr('href', '/product/productDetail/' + p.prod_id);
 
-                                var productimgdiv = $('<div class="product-img"></div>').append($('<img>').attr({'src':p.rep_img , 'alt': p.prod_nm}));
+                                var productimgdiv = $('<div class="product-img"></div>').append($('<img>').attr({'src': '/img/sun/product-img/' + p.rep_img, 'alt': p.prod_nm}));
                                 var productinfodiv = $('<div class="product-info"></div>').append($('<span class="product-name"></span>').text(p.prod_nm));
 
                                 var priceelement = $('<p class="price"></p>');
@@ -143,10 +143,10 @@
                                 //         .append('<span class="original-price">' + p.amt + '</span>');
                                 // }
                                     // p.dc_price 또는 p.dc_rate 가 null이 아닌 경우에만 추가
-                                    if(discountprice == null ) {
-                                        priceelement.append('<strong class="discount-price">' + '' + '</strong>')
-                                            .append('<span class="discount-rate">' + '' + '%</span>')
-                                            .append('<span class="original-price">' + p.amt + '</span>');
+                                    if(discountrate == null ) {
+                                        priceelement.append('<strong class="discount-price">' + p.amt + '</strong>')
+                                            .append('<span class="discount-rate">' + '' + '</span>')
+                                            .append('<span class="original-price">' + '' + '</span>');
                                     }else{
                                             priceelement.append('<strong class="discount-price">' + discountprice + '</strong>')
                                                 .append('<span class="discount-rate">' + discountrate + '%</span>')
