@@ -22,9 +22,9 @@
 <jsp:include page="../header.jsp" />
 <div id="container">
   <!-- location -->
-  <div class="location">
-    홈 > 고객센터 > 1:1 상담
-  </div>
+<%--  <div class="location">--%>
+<%--    홈 > 고객센터 > 1:1 상담--%>
+<%--  </div>--%>
   <section id="contents">
     <div>
       <h2 class="page_title">고객센터</h2>
@@ -35,7 +35,7 @@
       <nav class="bbsList">
         <ul class="cate1">
           <li id="F">
-            <a href="/cs/faq/list"><span>FAQ</span></a>
+            <a href="#"><span>FAQ</span></a>
           </li>
           <li id="N">
             <a href="/cs/notice/list"><span>공지사항</span></a>
@@ -60,7 +60,7 @@
             <br>
             먼저 확인 해보시겠어요?
             <br>
-            <a href="/cs/faq/list" class="link">전체보기 ></a>
+            <a href="#" class="link">전체보기 ></a>
           </p>
           <section class="qnaRecom">
             <h3 class="subTitle2">추천 FAQ</h3>
@@ -97,7 +97,7 @@
   const counselBtn = document.querySelector('#C');
 
   faqBtn.addEventListener('click', function() {
-    window.location.href = '/cs/faq/list'; // 링크 주소 입력
+    window.location.href = '#'; // 링크 주소 입력
   });
 
   noticeBtn.addEventListener('click', function() {

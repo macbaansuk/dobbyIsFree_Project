@@ -139,7 +139,7 @@ public class AdminNoticeController {
         // 로그인 체크 유무 코드
         if (session.getAttribute("admin") == null) {
             rattr.addFlashAttribute("msg", "login_ERR");
-            return "redirect:/admin";
+            return "redirect:/admin/login";
         } else {
             try {
                 int totalCnt = noticeService.getCount();

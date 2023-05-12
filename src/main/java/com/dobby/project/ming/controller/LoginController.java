@@ -43,6 +43,7 @@ public class LoginController {
 
         HttpSession session = req.getSession();
         session.setAttribute("MBR_ID", MBR_ID);
+        session.setMaxInactiveInterval(1800);
         if (saveid) {
             Cookie c = new Cookie("MBR_ID", MBR_ID);
             resp.addCookie(c);

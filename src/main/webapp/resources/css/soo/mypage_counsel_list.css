@@ -1,8 +1,14 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "나눔바른고딕OTF", "돋움";
+
 }
 
+#pagetitle{
+    font-size: 25px;
+    font-weight: 400;
+}
 
 .tab {
     padding: 20px 0 10px 0;
@@ -91,6 +97,7 @@ a {
 
 .tableHeadTxt {
     font-size: 15px;
+    margin: 15px 0 10px 0;
 }
 
 .sub-ftColor7 {
@@ -119,7 +126,7 @@ caption {
 }
 .counselList table {
     width: 100%;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 100px 0;
     border-collapse: collapse;
 }
 
@@ -157,6 +164,7 @@ caption {
 .questionC {
     margin-bottom: 20px;
     font-size: 14px;
+    word-break: break-all;
 }
 
 .prod{
@@ -167,6 +175,7 @@ caption {
     color: #222222;
     font-size: 15px;
     margin: 10px 0 10px 0;
+    word-break: break-all;
 }
 
 .reBtn {
@@ -180,6 +189,7 @@ caption {
 }
 .answerCont{
     font-size: 14px;
+    word-break: break-all;
 }
 .answerDate{
     margin-top: 10px;

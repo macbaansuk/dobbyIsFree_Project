@@ -130,10 +130,10 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach var="counsel" items="${list}">
-
+<%--                                <form name="answerForm" method="post" action="/admin/counsel/write">--%>
                                     <tr class="question">
                                         <!-- 1:1 상담 번호(rownum) -->
-                                        <td class="no">${counsel.CNSL_ID}</td>
+                                        <td class="no" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</td>
                                         <!-- 카테고리 -->
                                         <td class="category">${counsel.CATE_NM}</td>
                                         <!-- 제목 -->
@@ -155,7 +155,7 @@
                                         <td></td>
                                         <td colspan="3">
                                             <!-- 제품명 추가 -->
-                                            <div class="prod">[제품명] ${counsel.PROD_NM}</div>
+                                            <div class="prod">[제품명] 수퍼 화산송이 모공 마스크 ${counsel.PROD_NM}</div>
                                             <!-- 문의내용 -->
                                             <div class="questionC">
                                                     ${counsel.CN}
@@ -167,14 +167,17 @@
                                                     RE: ${counsel.TTL}
                                                 </span>
                                                 <!-- answer 작성 -->
-                                                <form name="answerForm" method="post">
+                                                <form id="answerForm_${counsel.CNSL_ID}" method="post"  >
                                                     <span class="answerCont">
-                                                    <textarea class="answertext" type="text" name="answerContent" >${counsel.CONTENT}</textarea>
-                                                </span>
+                                                        <textarea class="answertext" type="text" name="CONTENT"
+                                                            ${counsel.STUS eq '처리완료' ? 'readonly' : ''}>${counsel.CONTENT}</textarea>
+                                                    </span>
                                                     <span class="btn">
-                                                        <input type="hidden" name="cnslId" value="${counsel.CNSL_ID}">
-                                                    <button id="regBtn" type="submit">답변등록</button>
-                                                </span>
+                                                        <p style="display: none;" name="CNSL_ID" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</p>
+<%--                                                        <button id="regBtn" type="submit">답변등록</button>--%>
+                                                            <button id="regBtn" type="button" onclick="submitAnswer(${counsel.CNSL_ID}, $('#answerForm_${counsel.CNSL_ID} textarea').val())">답변등록</button>
+
+                                                    </span>
                                                 </form>
 
                                             </div>
@@ -210,12 +213,13 @@
 </div>
 </body>
 <script>
-    $(document).ready(function () {
+
+    $(document).ready(function() {
         // 일단, 답변 감추기
         $(".questionCont").hide();
 
         // 제목을 클릭
-        $("td.title").click(function () {
+        $("td.title").click(function() {
             // 클릭한 제목의 부모 tr을 찾는다
             var parentTr = $(this).closest("tr");
 
@@ -233,10 +237,37 @@
     });
 
 
+    // 답변 등록 성공
+    function submitAnswer(CNSL_ID, CONTENT) {
+
+        if(CONTENT==""){
+            alert("답변을 입력해주세요");
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/counsel/write',
+            data: {
+                'CNSL_ID': CNSL_ID,
+                'CONTENT': CONTENT
+            },
+            success: function () {
+                location.reload();
+                alert('답변이 등록되었습니다.');
+            },
+            error: function () {
+                alert('답변 등록에 실패했습니다. 다시 시도해주세요.');
+            }
+        });
+    }
+
+
+
 
     let msg = "${msg}";
     if (msg=="login_ERR") alert("로그인 정보를 다시 확인해주세요.");
-    }
+
 </script>
 
 </html>
