@@ -26,7 +26,10 @@ public interface CounselDao {
     //여기부터 관리자 페이지
     List<CounselAnswerDto> selectAllList(Map map) throws Exception; // 전체 1:1 상담 목록 불러오기 (COUNSEL+ANSWER JOIN)
 
-    int insertAnswer(AnswerDto answerDto) throws Exception; // 답변 작성
+    void insertAnswer(AnswerDto answerDto) throws Exception; // 답변 작성
 
     int updateCounselStatus(CounselDto counselDto) throws Exception;   // 1:1 상담 게시물 상태 업데이트
+
+    CounselDto getCounselByCNSL_ID(Integer CNSL_ID) throws Exception;   // 상담번호로 해당 Dto 가져오기
+
 }

@@ -34,25 +34,32 @@ public class CounselController {
     }
 
     @GetMapping("/mypage/counsel/write") // 1:1 상담 작성 폼(글쓰기)
-    public String counselWriteForm(Model m, HttpServletRequest request) throws Exception {
+    public String counselWriteForm(Model m, HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 
-        // 로그인 체크
-        // session에 저장된게 없을 때
-        HttpSession session = request.getSession();
-        // 로그인되어 있지 않으면
-        if (session == null || session.getAttribute("MBR_ID") == null) {
-            // 이전 페이지 정보를 세션에 저장
-            session.setAttribute("toURL", "/mypage/counsel/write");
-            return "redirect:/login"; // 로그인 페이지로 이동
+
+            // 로그인 체크
+            // session에 저장된게 없을 때
+            HttpSession session = request.getSession();
+            // 로그인되어 있지 않으면
+            if (session == null || session.getAttribute("MBR_ID") == null) {
+                // 이전 페이지 정보를 세션에 저장
+                session.setAttribute("toURL", "/mypage/counsel/write");
+                return "redirect:/login"; // 로그인 페이지로 이동
+            }
+            // 회원 이름, 전화번호 미리 불러오기
+            // 세션에서 MBR_ID를 가져옴
+            String mbrId = (String) session.getAttribute("MBR_ID");
+
+            try {
+            // 회원 이름, 전화번호 미리 불러오기
+            MemberDto memberDto = counselService.getMember(mbrId);
+            m.addAttribute("memberDto", memberDto);
+            System.out.println("memberDto="+m);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+                return "redirect:/mypage/counsel/write";
         }
-        // 회원 이름, 전화번호 미리 불러오기
-        // 세션에서 MBR_ID를 가져옴
-        String mbrId = (String) session.getAttribute("MBR_ID");
-
-        // 회원 이름, 전화번호 미리 불러오기
-        MemberDto memberDto = counselService.getMember(mbrId);
-        m.addAttribute("memberDto", memberDto);
-        System.out.println("memberDto="+m);
 
         return "soo/mypage_counsel_write";
     }
