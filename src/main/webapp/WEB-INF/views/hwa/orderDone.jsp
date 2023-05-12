@@ -14,7 +14,7 @@
                 <strong style="font-weight: bold">도움이 필요하세요?</strong>
                 <span class="helpBtn">
                     <a href="/cs/notice/list" target="_blank" class="btnType1s"><span>FAQ</span></a> <!-- 고객센터, FAQ URL 추가 -->
-                    <a href="" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
+                    <a href="/mypage/counsel/write" target="_blank" class="btnType1s"><span>1:1</span> 고객상담</a>
                 </span>
             </p>
         </div>
