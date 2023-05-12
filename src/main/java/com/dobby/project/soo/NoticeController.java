@@ -59,7 +59,6 @@ public class NoticeController {
             // pageHandler 객체 생성
             PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
 
-
             Map<String, Object> map = new HashMap<>();
             // offset => 조회를 시작할 위치 지정
             map.put("offset", (page-1)*pageSize);
@@ -79,7 +78,3 @@ public class NoticeController {
         return "soo/cs-notice";
     }
 }
-
-
-
-

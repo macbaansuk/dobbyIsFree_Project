@@ -86,22 +86,16 @@
                  LEFT JOIN `dobbyisfree`.BBS_CATEGORY BC ON C.CATE_ID = BC.CATE_ID
                  LEFT JOIN `dobbyisfree`.PROD P ON C.PROD_ID = P.PROD_ID
         ORDER BY C.CNSL_ID DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
 
-    <!--  1:1 상담 답변 작성 + 게시물 상태 업데이트  -->
-<!--    <insert id="insertAnswer" parameterType="AnswerDto">-->
-<!--        INSERT INTO ANSWER (CNSL_ID, CONTENT, WRTR)-->
-<!--        VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});-->
-<!--        UPDATE `dobbyisfree`.COUNSEL-->
-<!--        SET STUS='처리완료', ANS_YN='Y'-->
-<!--        WHERE CNSL_ID=#{CNSL_ID};-->
-<!--    </insert>-->
 
     <!--  1:1 상담 답변 등록  -->
     <insert id="insertAnswer" parameterType="AnswerDto">
-        INSERT INTO `dobbyisfree`.ANSWER (CNSL_ID, CONTENT, WRTR)
-        VALUES (#{CNSL_ID}, #{CONTENT}, #{WRTR});
+        INSERT INTO `dobbyisfree`.ANSWER (CNSL_ID, CONTENT)
+        VALUES (#{CNSL_ID}, #{CONTENT});
     </insert>
+
 
     <!--  게시물 상태 업데이트, 1:1 상담 답변 등록 후에 -->
     <update id="updateCounselStatus" parameterType="CounselDto">
@@ -110,7 +104,11 @@
         WHERE CNSL_ID=#{CNSL_ID};
     </update>
 
-
-
+    <!--  상담번호로 해당 Dto 가져오기  -->
+    <select id="getCounselByCNSL_ID" parameterType="int" resultType="CounselDto">
+        SELECT *
+        FROM `dobbyisfree`.COUNSEL
+        WHERE CNSL_ID = #{CNSL_ID};
+    </select>
 
 </mapper>

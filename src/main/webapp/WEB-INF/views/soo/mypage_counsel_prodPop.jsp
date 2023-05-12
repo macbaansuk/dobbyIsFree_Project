@@ -8,6 +8,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
+<style>
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    a:visited {
+        text-decoration: none;
+        color: black;
+    }
+
+    table{
+        margin: 0 auto;
+        display: block;
+    }
+
+    .paging {
+        margin-top: 15px;
+        text-align: center;
+    }
+    #prodnum {
+        text-align: center;
+    }
+</style>
 <body>
 <div class="list">
 <table>
@@ -26,12 +49,12 @@
     <c:forEach var="prod" items="${prodList}">
         <tr>
             <!-- 제품 번호  -->
-            <td>
+            <td id="prodnum">
                 <c:out value="${prod.PROD_ID}"></c:out>
             </td>
             <!-- 제품 이름  -->
             <td>
-                <a class="prodData" href='<c:out value="${prod.PROD_ID}"/>' data-name='<c:out value="${prod.PROD_NM}"/>'>
+                <a href="#" class="prodData" data-id='<c:out value="${prod.PROD_ID}"/>' data-name='<c:out value="${prod.PROD_NM}"/>'>
                     <c:out value="${prod.PROD_NM}"></c:out>
                 </a>
             </td>
@@ -39,6 +62,7 @@
     </c:forEach>
     </tbody>
 </table>
+
 <!-- 페이징 -->
 <div class="paging">
     <c:if test="${ph.showPrev}">
@@ -58,22 +82,22 @@
 <script>
     /* 제품 선택 및 팝업창 닫기 */
     // 제품이름 클릭
-    $(".prodData").on("click", function(e){
 
+
+
+
+    $(document).on("click", ".prodData", function(e) { // 제품명을 클릭하면
         e.preventDefault();
-        // 제품아이디, 이름 변수에 담기
-        let prodId = $(this).attr("href");
-        let prodName= $(this).data("name");
-        // let displayProdName = "[문의제품] " + prodName;
-        console.log(prodId);
-        // $(opener.document).find("#prodId_input").val(prodId);
-        // $(opener.document).find("#prodName_input").val(prodName);
-        $(opener.document).find("#prodId_input").attr('value', prodId);
-        $(opener.document).find("#prodName_input").attr('value', prodName);
-        console.log($(opener.document).find("#prodId_input").val());
-        console.log($(opener.document).find("#prodName_input").val());
-        window.close();
+        var prodId = $(this).data("id"); // 선택한 제품 ID
+        var prodName = $(this).data("name"); // 선택한 제품 이름
 
+        // 선택한 제품 ID와 이름을 부모창으로 전달
+        window.opener.document.getElementById("prodId_input").value = prodId;
+        window.opener.document.getElementById("prodName_input").value = prodName;
+
+        // 팝업창 닫기
+        window.close();
     });
+
 </script>
 </html>

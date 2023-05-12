@@ -65,11 +65,11 @@
 }
 
 #mypageTop {
-    height: 150px;
+    /*height: 150px;*/
 }
 
 #member {
-    height: 80px;
+    /*height: 80px;*/
     background: rgba(231, 230, 230, 0.673);
     height: 100px;
 }

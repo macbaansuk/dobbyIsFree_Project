@@ -58,13 +58,20 @@ public class CounselDaoImpl implements CounselDao {
         return session.selectList(namespace+"selectAllList", map);
     }
 
-    @Override // 답변 작성
-    public int insertAnswer(AnswerDto answerDto) throws Exception {
-        return session.insert(namespace+"insertAnswer", answerDto);
+
+    @Override   // 답변 작성
+    public void insertAnswer(AnswerDto answerDto) {
+        session.insert("insertAnswer", answerDto);
     }
 
     @Override   // 1:1 상담 상태 업데이트
     public int updateCounselStatus(CounselDto counselDto) throws Exception {
         return session.update(namespace+"updateCounselStatus", counselDto);
+    }
+
+
+    @Override   // 상담번호로 해당 Dto 가져오기
+    public CounselDto getCounselByCNSL_ID(Integer CNSL_ID) throws Exception {
+        return session.selectOne(namespace + "getCounselByCNSL_ID", CNSL_ID);
     }
 }
