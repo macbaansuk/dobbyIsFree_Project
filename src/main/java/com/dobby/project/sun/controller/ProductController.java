@@ -40,24 +40,6 @@ public class ProductController {
         return "sun/product-detail";
     }
 
-//    @GetMapping("/list/{category}") //상품 카테고리별 목록페이지
-//    public String category(@PathVariable("category") int category, Model model) throws Exception {
-//        System.out.println("카테고리 들어가자");
-//        List<ProductCateDto> productList = productService.getProductList(category);
-//        List<ProductDCDto> Products_DC = productService.Products_DC();
-//        int countProducts = productService.countProducts(category); //사이즈써서 PRODUCTLIST.SIZE()
-//
-//        System.out.println("카테고리 다음단계");
-//        model.addAttribute("productList", productList);
-//        model.addAttribute("Products_DC", Products_DC);
-//        model.addAttribute("countProducts", countProducts);
-//
-//        System.out.println("productList = " + productList);
-//
-//
-//        return "sun/product-list";
-//    }//할인이랑 상품이랑 하나로 합칠 수 있을듯
-
 
     @GetMapping("/list/{category}") //상품 카테고리별 목록페이지
     public String category(@PathVariable("category") int category, Model model) throws Exception {
@@ -84,10 +66,9 @@ public class ProductController {
         return productService.getProductsByCategoryAndSort(category, sort);
     }
 
-//    @GetMapping("/list/{category}/ajax")
-//    @ResponseBody
-//    public List<ProductDCDto> productListAjax(@PathVariable("category") Integer category, @RequestParam(value = "sort", required = false) String sort) {
-//        return productService.getProductsByCategoryAndSort(category, sort);
-//    }
+
+
+
+
 
 }

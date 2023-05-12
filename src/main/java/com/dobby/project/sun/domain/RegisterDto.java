@@ -1,5 +1,7 @@
 package com.dobby.project.sun.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
 
 public class RegisterDto {
@@ -8,6 +10,10 @@ public class RegisterDto {
     private Integer AMT;
     private String PROD_NM;
     private String REP_IMG;
+
+    private  MultipartFile file;
+    private  String oldFilePath;
+
     private Integer AVG_ASCR;
     private Integer REVW_NCNT;
     private Integer INV_QTY;
@@ -74,6 +80,28 @@ public class RegisterDto {
     public void setREP_IMG(String REP_IMG) {
         this.REP_IMG = REP_IMG;
     }
+
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public String getOldFilePath() {
+        return oldFilePath;
+    }
+
+    public void setOldFilePath(String oldFilePath) {
+        this.oldFilePath = oldFilePath;
+    }
+
+
+
+
+
 
     public Integer getAVG_ASCR() {
         return AVG_ASCR;
@@ -268,6 +296,7 @@ public class RegisterDto {
                 ", AMT=" + AMT +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
+                ", file=" + file +
                 ", AVG_ASCR=" + AVG_ASCR +
                 ", REVW_NCNT=" + REVW_NCNT +
                 ", INV_QTY=" + INV_QTY +

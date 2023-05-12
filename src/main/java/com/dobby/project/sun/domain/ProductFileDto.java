@@ -13,15 +13,6 @@ public class ProductFileDto {
         private String KIND;
         private Date REG_DTM;
         private Date UPD_DTM;
-        private MultipartFile PROD_IMG;
-
-    public MultipartFile getPROD_IMG() {
-        return PROD_IMG;
-    }
-
-    public void setPROD_IMG(MultipartFile PROD_IMG) {
-        this.PROD_ID = PROD_ID;
-    }
 
     public ProductFileDto() {
     }

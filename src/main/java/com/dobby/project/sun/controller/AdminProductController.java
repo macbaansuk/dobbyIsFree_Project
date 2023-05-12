@@ -58,28 +58,6 @@ public class AdminProductController {
     }
 
 
-    //수정된 게시물 저장
-    @PostMapping("/modify")
-    public String Modify(RegisterDto registerDto) {
-        try {
-            System.out.println("수정 하자 ");
-            productService.modify(registerDto);
-            System.out.println("수정 완료 ");
-//            model.addAttribute("register", register);
-            return "redirect:/admin/product/list";
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            System.out.println("수정 실패");
-
-            return "/sun/admin-product-read";
-        }
-    }
-
-
-
 
     //상품 등록 작성 빈화면
     @GetMapping("/register")
@@ -88,239 +66,173 @@ public class AdminProductController {
         System.out.println("등록 저장 빈화면 가자");
 
         return "/sun/admin-product";
+
+
+
     }
 
     @PostMapping("/register")
-//    public String register(RegisterDto registerDto, @RequestParam("REP_IMG") MultipartFile mainImage, @RequestParam("PATH") MultipartFile detailImage, HttpServletRequest request) {
-    public String register(RegisterDto registerDto) {
+    public String register(RegisterDto registerDto, @RequestParam("file") MultipartFile file) {
         try {
-//            // 이미지 파일 저장
-//            String mainImagePath = saveImage(mainImage, request);
-//            String detailImagePath = saveImage(detailImage, request);
-//
-//            if (mainImagePath != null) {
-//                registerDto.setREP_IMG(mainImagePath);
-//            }
-//            if (detailImagePath != null) {
-//                registerDto.setPATH(detailImagePath);
-//            }
 
-            // 상품 정보 및 이미지 저장
-            productService.register(registerDto);
+            String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+            long size = file.getSize(); //파일 사이즈
 
+            System.out.println("파일명 : "  + fileRealName);
+            System.out.println("용량크기(byte) : " + size);
+
+            //서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+
+
+            UUID uuid = UUID.randomUUID();
+            System.out.println("uuid = " + uuid);
+            String[] uuids = uuid.toString().split("-");
+
+            String uniqueName = uuids[0];
+            System.out.println("생성된 고유문자열 uniqueName = " + uniqueName);
+            System.out.println("확장자명 fileExtension = " + fileExtension);
+
+            File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+            try {
+                file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+                registerDto.setREP_IMG(uniqueName + fileExtension); // 고유한 파일명과 확장자를 DTO의 REP_IMG 필드에 저장
+                // 이거 추가한거임
+
+                productService.register(registerDto); // 데이터베이스에 이미지 경로를 포함하여 값을 저장
+
+
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             return "redirect:/admin/product/list";
         } catch (Exception e) {
             // 예외 처리
             e.printStackTrace();
             return "/sun/admin-product";
-//            return "error";
         }
     }
 
-//    private String saveImage(MultipartFile image, HttpServletRequest request) throws IOException, IOException {
-//        if (image != null && !image.isEmpty()) {
-////            String uploadDir = request.getServletContext().getRealPath("/upload/");
-//            String uploadDir = "C:\\Users\\doswp\\Desktop\\pic";
-//            String originalFileName = image.getOriginalFilename();
-//            String saveFileName = UUID.randomUUID().toString() + "_" + originalFileName;
-//
-//            File file = new File(uploadDir, saveFileName);
-//            image.transferTo(file);
-//
-//            return "/upload/" + saveFileName;
-//        }
-//
-//        return null;
-//    }
 
-//        상품 등록한거 저장
-//    @PostMapping("/register")
-////    public String register(RedirectAttributes rattr, Model model, ProductDto productDto, ProductDCDto productDCDto, ProductOptionDto productOptionDto, ProductHashtagDto productHashtagDto, ProductFileDto productFileDto) {
-////    public String register(RedirectAttributes rattr, Model model,ProductDto productDto) {
-//    public String register(RedirectAttributes rattr, Model model,RegisterDto registerDto, MultipartFile imgFile) {
-//        System.out.println("등록저장 가자");
+    //수정된 게시물 저장
+
+//    @PostMapping("/modify")
+//    public String modify(RegisterDto registerDto, @RequestParam("file") MultipartFile file) {
+//        try {
 //
+//            String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+//            long size = file.getSize(); //파일 사이즈
+//
+//            System.out.println("파일명 : "  + fileRealName);
+//            System.out.println("용량크기(byte) : " + size);
+//
+//            //서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+//            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+////            String uploadFolder = "C:\\upload";
+//            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+//
+//
+//            UUID uuid = UUID.randomUUID();
+//            System.out.println("uuid = " + uuid);
+//            String[] uuids = uuid.toString().split("-");
+//
+//            String uniqueName = uuids[0];
+//            System.out.println("생성된 고유문자열 uniqueName = " + uniqueName);
+//            System.out.println("확장자명 fileExtension = " + fileExtension);
+//
+//            File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
 //            try {
-////                productService.register(productDto);
-//                productService.register(registerDto, imgFile);
-////                    throw new Exception("Write failed.");
-//                model.addAttribute("registerDto",registerDto);
-//                System.out.println("register = " +registerDto);
+//                file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+//                registerDto.setREP_IMG(uniqueName + fileExtension); // 고유한 파일명과 확장자를 DTO의 REP_IMG 필드에 저장
+//                // 이거 추가한거임
 //
-//                rattr.addFlashAttribute("msg", "WRT_OK");
-//                return "redirect:/admin/product/list";
-//            } catch (Exception e) {
-////                model.addAttribute("productDto",productDto);
-//                System.out.println("register = " +registerDto);
+//                productService.modify(registerDto);
 //
-//                model.addAttribute("registerDto",registerDto);
-////                System.out.println("productDto = " +productDto);
-//                System.out.println("register = " +registerDto);
-//
-//                return "/sun/admin-product";
-//            }
-//
-//        }
-
-
-    //    상품 등록한거 저장
-//    @PostMapping("/register")
-////    public String register(RedirectAttributes rattr, Model model, ProductDto productDto, ProductDCDto productDCDto, ProductOptionDto productOptionDto, ProductHashtagDto productHashtagDto, ProductFileDto productFileDto) {
-////    public String register(RedirectAttributes rattr, Model model,ProductDto productDto) {
-//    public String register(RedirectAttributes rattr, Model model,RegisterDto registerDto) {
-//        System.out.println("등록저장 가자");
-//
-//            try {
-////                productService.register(productDto);
-//                productService.register(registerDto);
-////                    throw new Exception("Write failed.");
-//                model.addAttribute("registerDto",registerDto);
-//                System.out.println("register = " +registerDto);
-//
-//                rattr.addFlashAttribute("msg", "WRT_OK");
-//                return "redirect:/admin/product/list";
-//            } catch (Exception e) {
-////                model.addAttribute("productDto",productDto);
-//                System.out.println("register = " +registerDto);
-//
-//                model.addAttribute("registerDto",registerDto);
-////                System.out.println("productDto = " +productDto);
-//                System.out.println("register = " +registerDto);
-//
-//                return "/sun/admin-product";
-//            }
-//
-//        }
-//        @PostMapping("/register")
-////    public String register(RedirectAttributes rattr, Model model, ProductDto productDto, ProductDCDto productDCDto, ProductOptionDto productOptionDto, ProductHashtagDto productHashtagDto, ProductFileDto productFileDto) {
-////    public String register(RedirectAttributes rattr, Model model,ProductDto productDto) {
-//    public String register(RedirectAttributes rattr, Model model,RegisterDto registerDto, MultipartFile mainImg , MultipartFile detailImg
-//                         ) {
-//        System.out.println("등록저장 가자");
-//
-//            try {
-//
-//
-//
-////
-////                productService.register(productDto);
-//                productService.register(registerDto, repImg, detailImgs);
-////                    throw new Exception("Write failed.");
-//                model.addAttribute("registerDto",registerDto);
-//                System.out.println("register = " +registerDto);
-//
-//                rattr.addFlashAttribute("msg", "WRT_OK");
-//                return "redirect:/admin/product/list";
-//            } catch (Exception e) {
-////                model.addAttribute("productDto",productDto);
-//                System.out.println("register = " +registerDto);
-//
-//                model.addAttribute("registerDto",registerDto);
-////                System.out.println("productDto = " +productDto);
-//                System.out.println("register = " +registerDto);
-//
-//                return "/sun/admin-product";
-//            }
-//
-//        }
-//
-//    @PostMapping("/register")
-//    @ResponseBody
-//    public String addProduct(@RequestBody RegisterDto registerDto) throws Exception {
-//        // 전송받은 데이터를 이용하여 데이터베이스에 새로운 상품 추가
-//        boolean result = productService.register(registerDto);
-//
-//        if (result) {
-//            // 성공적으로 상품이 등록되었을 경우
-//            return "success";
-//        } else {
-//            // 상품 등록에 실패했을 경우
-//            return "fail";
-//        }
-//    }
-
-
-
-//    상품 등록한거 저장
-//    @PostMapping("/register")
-////    public String register(RedirectAttributes rattr, Model model, ProductDto productDto, ProductDCDto productDCDto, ProductOptionDto productOptionDto, ProductHashtagDto productHashtagDto, ProductFileDto productFileDto) {
-//    public String register(RedirectAttributes rattr, Model model, ProductDto productDto ,ProductOptionDto productOptionDto) {
-//        System.out.println("등록저장 가자");
-//
-//
-//
-//            try {
-//                if (productService.register(productDto,productOptionDto) != 1)
-//                    throw new Exception("Write failed.");
-//
-//                rattr.addFlashAttribute("msg", "WRT_OK");
-//                return "redirect:/admin/product/list";
-//            } catch (Exception e) {
-//                model.addAttribute("productDto", productDto);
-//                System.out.println("productDto = " + productDto);
-//
-//                return "/sun/admin-product";
-//            }
-//
-//        }
-
-//        @PostMapping("/register")
-//        public String registerProduct(Model model,ProductDCDto productDCDto, ProductDto productDto, ProductOptionDto productOptionDto, RedirectAttributes redirectAttributes) {
-////
-////
-////              MultipartFile productImage = productFileDto.getPROD_IMG();
-////            String fileName = productImage.getOriginalFilename();
-////            File file = new File("C:/images/" + fileName);
-//            try {
-//                        System.out.println("등록저장 가자");
-//
-////                productImage.transferTo(file);
-////                productFileDto.setFILE_NM(fileName);
-//                productService.register(productDto,  productOptionDto,productDCDto);
-//
-//
-//
-//                redirectAttributes.addFlashAttribute("message", "상품 등록 성공");
-//            } catch (Exception e) {
+//            } catch (IllegalStateException e) {
 //                e.printStackTrace();
-//                redirectAttributes.addFlashAttribute("message", "상품 등록 실패");
-//
-//
+//            } catch (IOException e) {
+//                e.printStackTrace();
 //            }
+//
 //            return "redirect:/admin/product/list";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "/sun/admin-product-read";
 //        }
-//@PostMapping("/register")
-//public String registerProduct(@ModelAttribute ProductDto productDto,
-//                              @ModelAttribute ProductDCDto productDCDto,
-//                              @ModelAttribute ProductHashtagDto productHashtagDto,
-//                              @ModelAttribute ProductOptionDto productOptionDto,
-//                              RedirectAttributes redirectAttributes) {
-//    try {
-//        productService.register(productDto, productDCDto, productOptionDto, productHashtagDto);
-//        redirectAttributes.addFlashAttribute("message", "상품 등록 성공");
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//        redirectAttributes.addFlashAttribute("message", "상품 등록 실패");
 //    }
-//    return "redirect:/admin/product/list";
-//}
 
 
 
 
-//                productService.registerProduct(productDto);
-//                productService.registerDiscount(productDCDto);
-//                productService.registerHashtag(productHashtagDto);
-//                productService.registerFile(productFileDto);
-//                productService.registerOption(productOptionDto);
-//       model.addAttribute("productDto", productDto);
-//                System.out.println("productDto = " + productDto);
-//                System.out.println("productHashtagDto = " + productHashtagDto);
-//                System.out.println("productDCDto = " + productDCDto);
-//                System.out.println("productHashtagDto = " + productHashtagDto);
-//                System.out.println("productOptionDto = " + productOptionDto);
 
+
+
+
+
+
+//
+//    String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+//
+//    @PostMapping("/modify")
+//    public String modify(RegisterDto registerDto, @RequestParam("file") MultipartFile file) {
+//        try {
+//
+////            productService.modify(registerDto);
+//            String oldFilePath = uploadFolder + registerDto.getOldFilePath();
+//            File oldFile = new File(oldFilePath);
+//
+//            // 이미지 파일이 제출되었는지 확인
+//            if (!file.isEmpty()) {
+//                // 기존 파일이 존재하면 삭제
+//                if (oldFile.exists()) {
+//                    oldFile.delete();
+//                }
+//
+//                String uploadedFileName = uploadFile(file);
+//                registerDto.setREP_IMG(uploadedFileName);
+//                productService.modify(registerDto);
+//            } else {
+//                // 이미지 파일이 제출되지 않았다면 기존 파일명을 사용
+//                registerDto.setREP_IMG(oldFile.getName());
+//                productService.modify(registerDto);
+//            }
+//
+//
+//            return "redirect:/admin/product/list";
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "/sun/admin-product-read";
+//        }
+//    }
+//
+//    private String uploadFile(MultipartFile file) throws IOException {
+//        String fileRealName = file.getOriginalFilename();
+//        long size = file.getSize();
+//
+//        System.out.println("파일명 : "  + fileRealName);
+//        System.out.println("용량크기(byte) : " + size);
+//
+//        String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+//
+//        UUID uuid = UUID.randomUUID();
+//        System.out.println("uuid = " + uuid);
+//        String[] uuids = uuid.toString().split("-");
+//
+//        String uniqueName = uuids[0];
+//        System.out.println("생성된 고유문자열 uniqueName = " + uniqueName);
+//        System.out.println("확장자명 fileExtension = " + fileExtension);
+//
+//        File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+//        file.transferTo(saveFile);
+//
+//        return uniqueName + fileExtension;
+//    }
+//
 
 
 
@@ -356,7 +268,7 @@ public class AdminProductController {
         // 로그인 체크 유무 코드
         if (session.getAttribute("admin") == null) {
             rattr.addFlashAttribute("msg", "login_ERR");
-            return "redirect:/admin";
+            return "redirect:/admin/login";
         } else { // 본인 페이지 원래 코드
 
 

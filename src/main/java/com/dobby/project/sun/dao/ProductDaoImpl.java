@@ -65,15 +65,6 @@ public class ProductDaoImpl implements ProductDao {
         map.put("sort", sort);
         return session.selectList("getProductsByCategoryAndSort", map);
     }
-//
-//
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort){
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("category", category);
-//        map.put("sort", sort);
-//        return session.selectList("getProductsByCategoryAndSort", map);
-//    }
 
     @Override
     public TotalDto getAdminProductsById(Integer id) {
@@ -106,11 +97,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
 
-//    @Override
-//    public void insertProduct(ProductDto productDto) {
-//        session.insert("insertProduct",productDto);
-//    }
-//
+
     @Override
     public void insertProduct(RegisterDto registerDto) {
         session.insert("insertProduct", registerDto);

@@ -69,7 +69,7 @@
             <div class="content">
 
                 <%--                <form id="productForm">--%>
-                <form id="productForm" action="<c:url value='/admin/product/modify'/>" method="POST">
+                <form id="productForm" action="<c:url value='/admin/product/modify'/>" enctype="multipart/form-data" method="POST">
 
                     <table class="product-table">
                         <%--                        <input type="hidden" name="prod_id" value="${read.prod_id}">--%>
@@ -161,6 +161,8 @@
                                 <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
+
+
                         <%--                        <tr>--%>
                         <%--                            <td>--%>
                         <%--                                <label>옵션 사용</label>--%>
@@ -253,20 +255,42 @@
 
 
 
-                        <%--                        <thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <th colspan="2">상품 이미지</th>--%>
-                        <%--                        </tr>--%>
-                        <%--                        </thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>대표 이미지</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <img id="main-image-preview" src="${read.REP_IMG}" alt="${read.PROD_NM}">--%>
-                        <%--                            </td>--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="2">상품 이미지</th>
+                                                </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td>
+                                                        <label>대표 이미지</label>
+                                                    </td>
+                                                    <td>
+
+
+                                                        <img id="main-image-preview" src="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>" alt="${read.PROD_NM}이미지">
+                                                        <button type="button" id="main-image-change-button">이미지 수정</button>
+                                                        <input type="file" id="main-image-input" name="file" style="display: none;">
+                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">
+
+
+
+                                                    <%--                                                        <input type="file" id="main-image-input" name="file">--%>
+<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
+<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
+
+
+
+
+<%--                                                        <input type="file" id="main-image-input" name="file" style="display: none;">--%>
+<%--                                                        <input type="file" id="main-image-input" name="file" >--%>
+<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
+<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
+                                                    </td>
+
+
+
+
+                                                </tr>
 
                         <%--                        <tr>--%>
                         <%--                            <td>--%>
@@ -306,25 +330,6 @@
                     $('#listBtn').on("click",function (){
                         location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
                     });
-                    // $('#modifyBtn').on("click", function(event){
-                    //     event.preventDefault(); // 폼 제출을 막기 위해 사용
-                    //
-                    //     // 모든 입력 필드의 'readonly' 속성을 제거
-                    //     $('input[type="text"], input[type="number"], textarea').removeAttr('readonly');
-                    //
-                    //     // 라디오 버튼과 체크 박스를 수정 가능하도록 변경
-                    //     $('input[type="checkbox"], input[type="radio"]').prop('disabled', false);
-                    //
-                    //     // select 항목도 수정 가능하도록 변경
-                    //     $('select').prop('disabled', false);
-                    //
-                    //     // '수정하기' 버튼을 '저장하기' 버튼으로 변경
-                    //     $(this).text('저장하기').off('click').on('click', function(){
-                    //         // 여기에 폼 제출 로직을 추가
-                    //         $('#product-form').submit();
-                    //     });
-                    // });
-
 
                     $('#modifyBtn').on("click",function (event){
                         event.preventDefault();  // 이벤트의 기본 동작을 중지
@@ -373,13 +378,28 @@
                         // "수정하기" 버튼의 텍스트를 "수정완료"로 변경
                         $(this).text("수정완료");
 
+
+
+                        $('#main-image-change-button').on('click', function() {
+                            $('#main-image-input').click();
+                        });
+
+                        $('#main-image-input').on('change', function() {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('#main-image-preview').attr('src', e.target.result);
+                            };
+                            reader.readAsDataURL(this.files[0]);
+                        });
+
+
+
                         // "수정완료" 버튼 클릭 시, form을 제출하도록 이벤트 핸들러 변경
                         $(this).off('click').on('click', function() {
-                            // $('#product-form').submit();
-                            // $('#productForm').submit();
 
                             let form = $("#productForm");
                             form.attr("action", "<c:url value='/admin/product/modify'/>");
+                            form.attr("enctype", "multipart/form-data");
                             form.attr("method", "post");
                             form.submit();
                         });
@@ -391,114 +411,53 @@
                     <%--$('#previewBtn').on("click",function (){--%>
                     <%--    location.href="<c:url value='/admin/product/read/${id}'/>";--%>
                     <%--});--%>
-                    <%--$('#registerBtn').on("click",function (){--%>
-                    <%--   let form =$('#product-form');--%>
-                    <%--   form.attr("action","<c:url value='/admin/product/register'/>");--%>
-                    <%--   form.attr("method","post");--%>
-                    <%--   form.submit();--%>
+
+
+                    <%--$(document).ready(function() {--%>
+                    <%--    var mode = '${mode}';--%>
+
+                    <%--    if (mode === 'read') {--%>
+                    <%--        $('input[type="checkbox"], input[type="radio"]').on('click', function(event) {--%>
+                    <%--            event.preventDefault();--%>
+                    <%--        });--%>
+
+                    <%--        $('select').on('mousedown', function(event) {--%>
+                    <%--            event.preventDefault();--%>
+                    <%--        });--%>
+                    <%--    }--%>
+
+                    <%--    if (mode === 'register') {--%>
+                    <%--        $("input[name='option-availability']").on("change", function () {--%>
+                    <%--            const option = $(".option-row");--%>
+                    <%--            if ($("#option-use").is(":checked")) {--%>
+                    <%--                option.show();--%>
+                    <%--            } else {--%>
+                    <%--                option.hide();--%>
+                    <%--            }--%>
+                    <%--        });--%>
+
+                    <%--        $("input[name='discount-availability']").on("change", function () {--%>
+                    <%--            const discount = $(".discount-row");--%>
+                    <%--            if ($("#discount-use").is(":checked")) {--%>
+                    <%--                discount.show();--%>
+                    <%--            } else {--%>
+                    <%--                discount.hide();--%>
+                    <%--            }--%>
+                    <%--        });--%>
+
+                    <%--        // 초기 상태--%>
+                    <%--        if ($("#discount-use").is(":checked")) {--%>
+                    <%--            $(".discount-row").show();--%>
+                    <%--        } else {--%>
+                    <%--            $(".discount-row").hide();--%>
+                    <%--        }--%>
+                    <%--    }--%>
                     <%--});--%>
 
 
-                    $(document).ready(function() {
-                        var mode = '${mode}';
-
-                        if (mode === 'read') {
-                            $('input[type="checkbox"], input[type="radio"]').on('click', function(event) {
-                                event.preventDefault();
-                            });
-
-                            $('select').on('mousedown', function(event) {
-                                event.preventDefault();
-                            });
-                        }
-
-                        if (mode === 'register') {
-                            $("input[name='option-availability']").on("change", function () {
-                                const option = $(".option-row");
-                                if ($("#option-use").is(":checked")) {
-                                    option.show();
-                                } else {
-                                    option.hide();
-                                }
-                            });
-
-                            $("input[name='discount-availability']").on("change", function () {
-                                const discount = $(".discount-row");
-                                if ($("#discount-use").is(":checked")) {
-                                    discount.show();
-                                } else {
-                                    discount.hide();
-                                }
-                            });
-
-                            // 초기 상태
-                            if ($("#discount-use").is(":checked")) {
-                                $(".discount-row").show();
-                            } else {
-                                $(".discount-row").hide();
-                            }
-                        }
-                    });
 
 
 
-
-                    // // 달력 넣기
-                    // $(function() {
-                    //     $( "input[name='publeYear']" ).datepicker();
-                    // });
-
-                    //설정
-                    // $.datepicker.setDefaults({
-                    //     dateFormat: 'yy-mm-dd',
-                    //     prevText: '이전 달',
-                    //     nextText: '다음 달',
-                    //     monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                    //     monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                    //     dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                    //     dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                    //     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                    //     showMonthAfterYear: true,
-                    //     yearSuffix: '년'
-                    // });
-                    //
-                    // $(function() {
-                    //     $("input[name='publeYear']").datepicker();
-                    // });
-
-                    // const config = {
-                    //     dateFormat: 'yy-mm-dd',
-                    //     showOn : "button",
-                    //     buttonText:"날짜 선택",
-                    //     prevText: '이전 달',
-                    //     nextText: '다음 달',
-                    //     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                    //     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                    //     dayNames: ['일','월','화','수','목','금','토'],
-                    //     dayNamesShort: ['일','월','화','수','목','금','토'],
-                    //     dayNamesMin: ['일','월','화','수','목','금','토'],
-                    //     yearSuffix: '년',
-                    //     changeMonth: true,
-                    //     changeYear: true
-                    // }
-                    //
-                    // //캘린더
-                    // $(function() {
-                    //     $( "input[name='publeYear']" ).datepicker(config);
-                    // });
-
-                    // if ($("#discount-use").is(":checked")) {
-                    //     $(".discount-row").show();
-                    // } else {
-                    //     $(".discount-row").hide();
-                    // }
-                    //
-                    // if ($("#option-use").is(":checked")) {
-                    //     $(".option-row").show();
-                    // } else {
-                    //     $(".option-row").hide();
-                    // }
-                    //
 
 
 
