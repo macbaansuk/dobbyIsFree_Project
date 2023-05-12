@@ -13,7 +13,9 @@ a {
     text-decoration: none;
 }
 
-
+.gdsInfo span{
+    margin-bottom: 5px;
+}
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -185,10 +187,20 @@ section#content div.gdsInfo .delete {
     text-align: right;
 }
 .cartDelBtn{
-    font-size: 18px;
-    padding: 5px 10px;
-    border: 1px solid #a7a7a7;
-    background: #eee;
+    /*font-size: 18px;*/
+    /*padding: 5px 10px;*/
+    /*border: 1px solid #a7a7a7;*/
+    /*background: #eee;*/
+    height: 40px;
+    line-height: 40px;
+    padding: 0 12px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    font-family: "나눔바른고딕OTF","돋움"
+
+
 }
 
 
@@ -215,10 +227,20 @@ section#content div.gdsInfo .delete {
 }
 
 .delBtn button {
-    font-size: 18px;
-    padding: 5px 10px;
+    /*font-size: 18px;*/
+    /*padding: 5px 10px;*/
+    /*border: 1px solid #a7a7a7;*/
+    /*background: #eee;*/
+
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    background: #f3f3f3;
+    color: #000;
+    font-size: 14px;
     border: 1px solid #a7a7a7;
-    background: #eee;
+    text-align: center;
+    font-family: "나눔바른고딕OTF","돋움"
 }
 
 .checkBox {
@@ -423,11 +445,24 @@ section#content div.gdsInfo .delete {
     background-color: #fff;
 }
 .btn.small {
-    padding: 0 15px;
-    height: 40px;
-    line-height: 38px;
-    font-size: 16px;
+    /*padding: 0 14px;*/
+    /*height: 40px;*/
+    /*line-height: 38px;*/
+    /*font-size: 16px;*/
     /* font-weight: 400; */
+
+
+    border: 1px solid #a7a7a7;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 12.7px;
+    background: #f3f3f3;
+    color: #000;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    font-family: "나눔바른고딕OTF","돋움"
+
 }
 /*변경 버튼 끝*/
 
