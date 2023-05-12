@@ -86,16 +86,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void register(RegisterDto registerDto) {
         productDao.insertProduct(registerDto);
-//
-//        // 할인 정보 저장
-//        if ("Y".equals(registerDto.getDC_YN())) {
-//            productDao.insertDiscount(registerDto);
-//        }
-//
-//        // 이미지 파일 정보 저장
-//        if (registerDto.getPATH() != null) {
-//            productDao.insertFile(registerDto);
-//        }
+
+
     }
 
     @Override

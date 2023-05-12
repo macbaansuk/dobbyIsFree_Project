@@ -253,6 +253,7 @@
         <div id="tab1" class="tab-content active">
 
             <img src="https://via.placeholder.com/600x800" alt="상세정보 이미지"/>
+            <img src="${}" alt="상세정보 이미지"/>
 
         </div>
         <div id="tab2" class="tab-content">

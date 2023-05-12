@@ -45,7 +45,6 @@ public interface ProductDao {
 
 
 
-//    void insertProduct(ProductDto productDto);
     void insertProduct(RegisterDto registerDto);
     void insertDiscount(RegisterDto registerDto);
     void insertFile(RegisterDto registerDto);
@@ -53,8 +52,9 @@ public interface ProductDao {
     void updateProduct(RegisterDto registerDto);
 
 
+
+
 //    void insertHashtag(ProductHashtagDto productHashtagDto);
-//    void insertFile(ProductFileDto productFileDto);
 //    void insertFile(ProductFileDto productFileDto);
 //    void insertOption(ProductOptionDto productOptionDto);
 }

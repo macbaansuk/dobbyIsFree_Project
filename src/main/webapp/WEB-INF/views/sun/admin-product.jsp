@@ -65,8 +65,10 @@
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
             <div class="content">
 
-                <form id="productForm" enctype="multipart/form-data" method="post">
-                    <table class="product-table">
+<%--                <form id="productForm" enctype="multipart/form-data" method="post">--%>
+    <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post">
+
+    <table class="product-table">
                         <%--                        <input type="hidden" name="PROD_ID" value="${productDto.PROD_ID}">--%>
                         <thead>
                         <tr>
@@ -244,29 +246,29 @@
                         <%--                        </tr>--%>
 
 
-                        <%--                        <thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <th colspan="2">상품 이미지</th>--%>
-                        <%--                        </tr>--%>
-                        <%--                        </thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="imgFile">대표 이미지</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="file" id="imgFile" name="REP_IMG">--%>
-                        <%--                                <!-- 꼭 요구되는 사항 required -->--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="2">상품 이미지</th>
+                                                </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td>
+                                                        <label for="imgFile">대표 이미지</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" id="imgFile" name="file">
+                                                        <!-- 꼭 요구되는 사항 required -->
+                                                    </td>
+                                                </tr>
 
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="detailImage">상세정보 이미지</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="file" id="detailImage" name="PATH" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+<%--                                                <tr>--%>
+<%--                                                    <td>--%>
+<%--                                                        <label for="detailImage">상세정보 이미지</label>--%>
+<%--                                                    </td>--%>
+<%--                                                    <td>--%>
+<%--                                                        <input type="file" id="detailImage" name="PATH" >--%>
+<%--                                                    </td>--%>
+<%--                                                </tr>--%>
 
 
                         <%--                        <thead>--%>
@@ -288,12 +290,12 @@
                 </form>
 
                 <script>
-                    $('#registerBtn').on("click",function (){
-                        let form =$('#productForm');
-                        form.attr("action","<c:url value='/admin/product/register'/>");
-                        form.attr("method","post");
-                        form.submit();
-                    });
+                    <%--$('#registerBtn').on("click",function (){--%>
+                    <%--    let form =$('#productForm');--%>
+                    <%--    form.attr("action","<c:url value='/admin/product/register'/>");--%>
+                    <%--    form.attr("method","post");--%>
+                    <%--    form.submit();--%>
+                    <%--});--%>
 
                     // 할인 여부 라디오 버튼 클릭 이벤트 핸들러
                     $('input[name="DC_YN"]').on('click', function() {
@@ -308,56 +310,7 @@
                     });
 
 
-                    // $('#registerBtn').on('click', function(event) {
-                    //     event.preventDefault(); // 폼 전송 방지
-                    //
-                    //     // 입력된 값을 가져옴
-                    //     var prodStus = $('#product-status').val();
-                    //     var cateCd = $('#category').val();
-                    //     var prodNm = $('#product-name').val();
-                    //     var prodDesc = $('#product-description').val();
-                    //     var newYN = $('input[name="NEW_YN"]:checked').val();
-                    //     var maiYN = $('input[name="MAI_YN"]:checked').val();
-                    //     var amt = $('#price').val();
-                    //     var dcYN = $('input[name="DC_YN"]:checked').val();
-                    //     var dcRate = $('#discount-rate').val();
-                    //     var dcAmt = $('#discount-amount').val();
-                    //     var bgnDtm = $('#discount-period').val();
-                    //     var endDtm = $('#discount-end').val();
-                    //
-                    //     // 서버로 전송할 데이터 객체 생성
-                    //     var data = {
-                    //         PROD_STUS: prodStus,
-                    //         CATE_CD: parseInt(cateCd),
-                    //         PROD_NM: prodNm,
-                    //         PROD_DESC: prodDesc,
-                    //         NEW_YN: newYN,
-                    //         MAI_YN: maiYN,
-                    //         AMT: parseInt(amt),
-                    //         DC_YN: dcYN,
-                    //         DC_RATE: parseInt(dcRate),
-                    //         DC_AMT: parseInt(dcAmt),
-                    //         BGN_DTM: bgnDtm,
-                    //         END_DTM: endDtm
-                    //     };
-                    //
-                    //     // AJAX 요청 전송
-                    //     $.ajax({
-                    //         url: '/admin/product/register',
-                    //         type: 'POST',
-                    //         data: JSON.stringify(data),
-                    //         contentType: 'application/json',
-                    //         success: function() {
-                    //             // 성공적으로 상품이 등록되었을 경우
-                    //             alert('상품이 성공적으로 등록되었습니다.');
-                    //         },
-                    //         error: function() {
-                    //             // 상품 등록에 실패했을 경우
-                    //             alert('상품 등록에 실패하였습니다.');
-                    //         }
-                    //     });
-                    // });
-                    //
+
 
 
                     $('#listBtn').on("click",function (){
