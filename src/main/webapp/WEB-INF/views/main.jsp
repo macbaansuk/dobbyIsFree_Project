@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
-    <link rel="stylesheet" href="./css/hwa/modal.css"/>
+    <link rel="stylesheet" href="/css/hwa/modal.css"/><!--모달창-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
 
 
@@ -307,9 +307,6 @@
                     type: "POST",
                     success: function (data) {
                         cartsc()
-                        // if (data == 1) {
-                        // location.href='/cart'
-                        // }
                     },
                     error: function () {
                         alert('장바구니를 이용하시려면 로그인 해주세요');
@@ -351,18 +348,21 @@
 
         <%-- 멤버십 끝 --%>
     </div>
-    <!--모달창 -->
-    <div class="modal" id="cart-modal">
-        <div class="modal-content">
-            <h2>장바구니에 상품이 담겼습니다</h2>
-            <div class="modal-buttons">
-                <button id="shopping-btn">쇼핑 계속하기</button>
-                <button id="cart-btn">장바구니로 이동</button>
-            </div>
-        </div>
-    </div>
+
 
     <jsp:include page="footer.jsp"/>
+
+
+        <!--모달창 -->
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <h2>장바구니에 상품이 담겼습니다</h2>
+                <div class="modal-buttons">
+                    <button id="shopping-btn">쇼핑 계속하기</button>
+                    <button id="cart-btn">장바구니로 이동</button>
+                </div>
+            </div>
+        </div>
     <script>
         //장바구니 모달창
         $(document).ready(function() {

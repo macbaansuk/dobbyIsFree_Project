@@ -12,6 +12,8 @@
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/hwa/modal.css"/><!--모달창-->
+
 
 
 
@@ -161,7 +163,27 @@
                         dataType: 'json'
                     });
                 });
-            });
+
+
+
+
+
+                //모달창 스크립트
+                let continueShoppingBtn = document.getElementById('shopping-btn');
+                let goToCartBtn = document.getElementById('cart-btn');
+                let cartModal = document.getElementById('cart-modal');
+
+                continueShoppingBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href='product/list/${p.prod_id}';
+                    <%--            ${productDetail.PROD_ID}--%>
+                });
+
+                goToCartBtn.addEventListener('click', function() {
+                    cartModal.style.display = 'none';
+                    location.href='/cart';
+                });
+            });//document.ready
 
 
 
@@ -581,5 +603,41 @@
 
 
 <jsp:include page="../footer.jsp"/>
+<!--모달창 -->
+<div class="modal" id="cart-modal">
+    <div class="modal-content">
+        <h2>장바구니에 상품이 담겼습니다</h2>
+        <div class="modal-buttons">
+            <button id="shopping-btn">쇼핑 계속하기</button>
+            <button id="cart-btn">장바구니로 이동</button>
+        </div>
+    </div>
+</div>
+<script>
+    //모달창 불러오기
+    function cartsc(){
+        document.getElementById('cart-modal').style.display = 'block';
+    }
+    function insertA (productNumber) {
+        console.log(productNumber)
+        console.log("insert함수실행")
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            contentType: "application/json; charset=utf-8",
+            url: "/cart/"+ productNumber,
+            type: "POST",
+            success: function (data) {
+                cartsc()
+            },
+            error: function () {
+                alert('장바구니를 이용하시려면 로그인 해주세요');
+
+            }
+        });<!--ajax -->
+    }
+</script>
 </body>
 </html>

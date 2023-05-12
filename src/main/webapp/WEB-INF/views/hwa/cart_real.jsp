@@ -45,6 +45,13 @@
 
                             <script>
                                 $(".selectDelete_btn").click(function () {
+                                    const ckBox = $("input.chBox:checked");
+
+                                    //체크되어있지 않으면
+                                    if (ckBox.length === 0) {
+                                        alert("선택하신 목록이 없습니다.");
+                                        return;
+                                    }
                                     const confirm_val = confirm("선택한 목록을 삭제하시겠습니까?");
 
                                     if (confirm_val) {
@@ -54,6 +61,7 @@
                                         $("input[class='chBox']:checked").each(function () {
                                             checkArr.push(Number($(this).attr("data-cartId")));  // 배열에 데이터 삽입
                                         });
+
                                         console.log(checkArr)
                                         $.ajax({
                                             headers: {
@@ -128,8 +136,7 @@
 
                                             <fmt:formatNumber pattern="###,###,###" value="${prod_fee}"/> 원 </span> <br/>
                                         <span class="bold" data-cartId="${cartProdDto.CART_ID}"  >구입 수량</span>
-                                        <span class ="prodQty"  data-info="prod_quantity">
-                                            ${cartProdDto.PROD_INDV_QTY}</span>
+
 
                                     <div class="spinner small"> <!-- 수량 조절 버튼 -->
                                         <button type="button" class="btn-amount minus modifyBtn" title="수량감소"
@@ -143,9 +150,7 @@
                                         </button>
                                     </div><!-- 수량 조절 버튼  end-->
                                     <!-- 변경 버튼 -->
-                                    <a href="javascript:void(0);" class="btn small slightly modifyConfirmBtn"
-                                       data-cartId="${cartProdDto.CART_ID}">변경</a>  <!-- void return false로 해서 onclick () -->
-
+                                    <br>
 
                                     <script>
 
@@ -180,49 +185,7 @@
 
                                         //-----------------------------------------------------------------------------------수량 수정 버튼
 
-                                        $(".modifyConfirmBtn").off().on("click", function () { //변경 버튼 클릭시
-                                            let cartId = $(this).prev(".spinner").find("button.plus").data("cartid");
-                                            let quantity = $(this).prev(".spinner").find("input").val();
-                                            let $gdsInfo = $(this).closest('.gdsInfo'); // 변경버튼 해당하는 .gdsInfo 영역
 
-                                                console.log("quantity",quantity);
-                                            $.ajax({
-                                                url: "/cart/update",
-                                                type: "POST",
-                                                data: {
-                                                    cartId: cartId,
-                                                    quantity: quantity
-                                                },
-                                                success: function (response) {  //reponse에서 받아서 처리하는 함수로 만들어서 교체
-                                                    console.log('response',response);
-                                                    // 업데이트된 장바구니 상품 정보로 화면 갱신
-                                                    let updatedData = response; // JSON.parse(response) 대신 response 사용(서버에서 이미 JSON으로 보냄)
-
-                                                    // 구입 수량, 최종 가격, 적립 포인트
-                                                    let $itemQuantity = $gdsInfo.find("span[data-info='prod_quantity']");
-                                                    let $itemTotal = $gdsInfo.find("span[data-info='prod_total']");
-                                                    let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
-
-                                                    quantity = updatedData.prod_inv_qty;
-                                                    console.log('구입수량 input', quantity);
-                                                    let updatedProdQuantity = updatedData.prod_quantity; // 구입 수량
-                                                    let updatedProdTotal = updatedData.prod_total;  //최종 가격
-                                                    let updatedProdPoints = updatedData.prod_points;  //적립 포인트
-
-                                                    console.log('수량',updatedData.prod_quantity)
-                                                    console.log('가격',updatedData.prod_total)
-                                                    console.log('포인트',updatedData.prod_points)
-
-
-
-                                                    $itemQuantity.text(updatedProdQuantity);
-                                                    $itemTotal.text(updatedProdTotal + " 원");
-                                                    $itemPoints.text(updatedProdPoints + " P");
-
-                                                    setTotalInfo();
-                                                }
-                                            }); // ajax
-                                        }); //onclick
 
 
                                     </script>
@@ -230,14 +193,15 @@
 
 
                                     <span  class="prod_total price-data bold" data-price="${prod_total}">최종 가격</span>
-                                    <span  data-info="prod_total">
+                                    <span id="prod_total" data-info="prod_total">
                                         <c:set var="prod_total" value="${cartProdDto.PROD_INDV_QTY * prod_fee}"/>
                                         <fmt:formatNumber pattern="###,###,###" value="${prod_total}"/>원</span> <br/>
                                     <span  class="point point-data bold" data-point="${point}" >적립 포인트</span>
-                                    <span data-info="prod_points" >
+                                    <span id="prod_points" data-info="prod_points" >
                                     <c:set var="point" value="${prod_total  * 0.01 }"/>
                                     <fmt:formatNumber pattern="###,###,###" value="${point}"/> P</span>
-
+                                    <span class ="prodQty"  data-info="prod_quantity" style="visibility: hidden">
+                                            ${cartProdDto.PROD_INDV_QTY}</span>
                                 </div><!--상품 정보 end -->
 
                                     <div class="delete">  <!-- 삭제 버튼 -->
@@ -287,6 +251,117 @@
                                             }
                                         </script>
                                     </div>  <!-- 삭제 버튼 end -->
+                                <!-- 변경 버튼 -->
+                                <a href="javascript:void(0);" class="btn small slightly modifyConfirmBtn"
+                                   data-cartId="${cartProdDto.CART_ID}">변경</a>  <!-- void return false로 해서 onclick () -->
+
+                                    <script>
+                                        // $(".modifyConfirmBtn").off().on("click", function () { //변경 버튼 클릭시
+                                        //     // let cartId = $(this).prev(".spinner").find("button.plus").data("cartid");
+                                        //     // let quantity = $(this).prev(".spinner").find("input").val();
+                                        //     let cartId = $(this).closest('.cart_info').find(".spinner button.plus").data("cartid");
+                                        //     let quantity = $(this).closest('.cart_info').find(".spinner input").val();
+                                        //
+                                        //     let $gdsInfo = $(this).closest('.gdsInfo'); // 변경버튼 해당하는 .gdsInfo 영역
+                                        //
+                                        //     console.log("quantity",quantity);
+                                        //     $.ajax({
+                                        //         url: "/cart/update",
+                                        //         type: "POST",
+                                        //         data: {
+                                        //             cartId: cartId,
+                                        //             quantity: quantity
+                                        //         },
+                                        //         success: function (response) {  //reponse에서 받아서 처리하는 함수로 만들어서 교체
+                                        //             console.log('response',response);
+                                        //             // 업데이트된 장바구니 상품 정보로 화면 갱신
+                                        //             let updatedData = response; // JSON.parse(response) 대신 response 사용(서버에서 이미 JSON으로 보냄)
+                                        //
+                                        //             // 구입 수량, 최종 가격, 적립 포인트
+                                        //             let $itemQuantity = $gdsInfo.find("span[data-info='prod_quantity']");
+                                        //             let $itemTotal = $gdsInfo.find("span[data-info='prod_total']");
+                                        //             let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
+                                        //
+                                        //             quantity = updatedData.prod_inv_qty;
+                                        //             console.log('구입수량 input', quantity);
+                                        //             let updatedProdQuantity = updatedData.prod_quantity; // 구입 수량
+                                        //             let updatedProdTotal = updatedData.prod_total;  //최종 가격
+                                        //             let updatedProdPoints = updatedData.prod_points;  //적립 포인트
+                                        //
+                                        //             console.log('수량',updatedData.prod_quantity)
+                                        //             console.log('가격',updatedData.prod_total)
+                                        //             console.log('포인트',updatedData.prod_points)
+                                        //
+                                        //
+                                        //
+                                        //             // $itemQuantity.text(updatedProdQuantity);
+                                        //             // console.log('ㅇㅇ',$itemQuantity);
+                                        //             // $itemTotal.text(updatedProdTotal + " 원");
+                                        //             // console.log('ㅇㅇ1',$itemTotal);
+                                        //             //
+                                        //             // $itemPoints.text(updatedProdPoints + " P");
+                                        //             // console.log('ㅇㅇ2',$itemPoints);
+                                        //             // $(".cart-li").each(function (index, element) {
+                                        //             $("#prod_total").text(updatedProdTotal);
+                                        //             $("#prod_points").text(updatedProdPoints);
+                                        //             // });
+                                        //
+                                        //
+                                        //             setTotalInfo();
+                                        //         }
+                                        //     }); // ajax
+                                        // }); //onclick
+
+
+
+                                        $(".modifyConfirmBtn").off().on("click", function () {
+                                            let $modifyBtn = $(this);
+                                            let $li = $modifyBtn.closest(".cart-li");
+                                            let $gdsInfo = $li.find(".gdsInfo");
+                                            let cartId = $modifyBtn.closest('.cart_info').find(".spinner button.plus").data("cartid");
+                                            let quantity = $modifyBtn.closest('.cart_info').find(".spinner input").val();
+
+                                            console.log("quantity", quantity);
+
+                                            $.ajax({
+                                                url: "/cart/update",
+                                                type: "POST",
+                                                data: {
+                                                    cartId: cartId,
+                                                    quantity: quantity
+                                                },
+                                                success: function (response) {
+                                                    console.log('response', response);
+
+                                                    let updatedData = response;
+
+                                                    let $itemQuantity = $gdsInfo.find("span[data-info='prod_quantity']");
+                                                    let $itemTotal = $gdsInfo.find("span[data-info='prod_total']");
+                                                    let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
+
+                                                    quantity = updatedData.prod_inv_qty;
+                                                    console.log('구입수량 input', quantity);
+
+                                                    let updatedProdQuantity = updatedData.prod_quantity;
+                                                    let updatedProdTotal = updatedData.prod_total;
+                                                    let updatedProdPoints = updatedData.prod_points;
+
+                                                    console.log('수량', updatedData.prod_quantity)
+                                                    console.log('가격', updatedData.prod_total)
+                                                    console.log('포인트', updatedData.prod_points)
+
+                                                    $itemQuantity.text(updatedProdQuantity);
+                                                    $itemTotal.text(updatedProdTotal + " 원");
+                                                    $itemPoints.text(updatedProdPoints.toLocaleString() + " P");
+
+                                                    setTotalInfo();
+                                                }
+                                            });
+                                        });
+
+
+
+                                    </script>
 
                                 <!-- 사용자가 고칠수 있기 때문에 hidden을 쓰지 않아야 한다 -->
 <%--                                <input type="hidden" class="individual_total_sum_input" value="${total_sum}">--%>
@@ -456,6 +531,7 @@
 
                 DC = $(element).find(".individual_DC_YN_input").val();  //할인 여부
                 prodQty =  parseInt($(element).find(".prodQty").text());  // 구입 수량 /  코드 한줄로 합침
+                console.log('prodQty',prodQty);
                 amt =  parseInt($(element).find(".amt").text().replace(/,/g, ""));  //개당(1) 가격 ,  (,) 쉼표-> 빈문자열로 대체
                 console.log('상품가',amt);
 
@@ -498,7 +574,6 @@
 
 
     $(document).ready(function () {
-
         setTotalInfo();
     });
 
