@@ -255,7 +255,7 @@
                                     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabMallStatus1" id="tabMallStatus1Button" >주간 매출 현황</a></li>
                                     <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus2" >요일별 평균 매출 현황</a></li>
                                     <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus3" >이번달 매출 현황</a></li>
-                                    <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus4" >1년 월별 매출 현황</a></li>
+                                    <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus4" >연간 월별 매출 현황</a></li>
                                 </ul>
                             </div>
 
@@ -268,9 +268,9 @@
 
 
                                         <%--라인 챠트--%>
-                                        <div style="width: 460px; height: 480px; overflow-y: hidden;overflow-clip-margin: content-box; ">
+                                        <div style="width: 460px; height: 260px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                             <!--차트가 그려질 부분-->
-                                            <canvas class="myChartPie"></canvas>
+                                            <canvas class="myChartLine"></canvas>
                                         </div>
 
                                         <div class="gSingleSide">
@@ -505,13 +505,13 @@
                                         <%-- 라인 챠트--%>
                                         <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                             <!--차트가 그려질 부분-->
-                                            <canvas class="myChartBar"></canvas>
+                                            <canvas class="myChartBar3"></canvas>
                                         </div>
                                     </div>
                                     <div class="gReverse">
                                         <div class="mBoard">
                                             <table border="1" summary="" id="viewMemberCountMileage4">
-                                                <caption>1년 월별 매출 현황</caption>
+                                                <caption>연간 월별 매출 현황</caption>
                                                 <colgroup>
                                                     <col style="width:22%;">
                                                     <col style="width:39%;">
@@ -575,15 +575,6 @@
             </div>
         </div>
 
-        <%--<div style="width: 900px; height: 900px;">--%>
-        <%--    <!--차트가 그려질 부분-->--%>
-        <%--    <canvas id="myChartBar"></canvas>--%>
-        <%--</div>--%>
-
-        <%--<div style="width: 900px; height: 900px;">--%>
-        <%--    <!--차트가 그려질 부분-->--%>
-        <%--    <canvas id="myChartPie"></canvas>--%>
-        <%--</div>--%>
 
         <script >
 
@@ -644,7 +635,7 @@
 
             <%--  그래프 불러오기  --%>
             let context = document
-                .querySelector('.myChartPie')
+                .querySelector('.myChartLine')
                 .getContext('2d');
 
             let context2 = document
@@ -660,50 +651,29 @@
                 .getContext('2d');
 
 
-            //     let context = document
-            //         .getElementById('myChartLine')
-            //         .getContext('2d');
-
-            // let context2 = document
-            //     .getElementById('myChartBar')
-            //     .getContext('2d');
-            //
-            // let context3 = document
-            //     .getElementById('myChartPie')
-            //     .getContext('2d');
-
             let myChartLine = new Chart(context, {
-                type: 'pie', // 차트의 형태
+                type: 'line', // 차트의 형태
                 data: { // 차트에 들어갈 데이터
                     labels: [
                         //x 축
-                        '그린티 세럼','그린티 크림','시카 앰플','인행싱 앰플','비자 시카밤','화산송이 마스크'
+                        '14','15', '16','17','18','19','20'
                     ],
                     datasets: [
                         { //데이터
-                            label: 'test1', //차트 제목
+                            label: '주간 매출', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                40,20,12,18,7,3 //x축 label에 대응되는 데이터 값
+                                5,0,0,0,0,0,0 //x축 label에 대응되는 데이터 값
                             ],
-                            backgroundColor: [
+                            backgroundColor:
                                 //색상
                                 'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
+
+
+                            borderColor:
                                 //경계선 색상
                                 'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
+
                             borderWidth: 1 //경계선 굵기
                         }
                     ]
@@ -714,7 +684,7 @@
                             {
                                 ticks: {
                                     beginAtZero: true,
-                                    display : false
+
                                 }
                             }
                         ]
@@ -723,19 +693,19 @@
             });
 
 
-            let myChartLine2 = new Chart(context2, {
+            let myChartBar = new Chart(context2, {
                 type: 'bar', // 차트의 형태
                 data: { // 차트에 들어갈 데이터
                     labels: [
                         //x 축
-                        '스킨케어','메이크업','남성','헤어/바디'
+                        '일','월','화','수','목','금','토'
                     ],
                     datasets: [
                         { //데이터
-                            label: '주간 매출 현황', //차트 제목
+                            label: '요일별 평균 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                42,38,7,12 //x축 label에 대응되는 데이터 값
+                                25,20,18,13,20,30,17 //x축 label에 대응되는 데이터 값
                             ],
                             backgroundColor: [
                                 //색상
@@ -774,21 +744,85 @@
 
 
             let myChartLine3 = new Chart(context3, {
+                type: 'line', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        '1일', '2일', '3일', '4일', '5일', '6일', '7일',
+                        '8일', '9일', '10일', '11일', '12일', '13일', '14일',
+                        '15일', '16일', '17일', '18일', '19일', '20일', '21일',
+                        '22일', '23일', '24일', '25일', '26일', '27일', '28일',
+                        '29일', '30일', '31일'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: '연간 월별 매출 현황', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                0,0,0,0,0,0,0, //x축 label에 대응되는 데이터 값
+                                0,0,0,0,0,0,0,
+                                20,0,0,0,0,0,0,
+                                0,0,0,0,0,0,0,
+                                0,0,0,
+                            ],
+                            backgroundColor:
+                            //색상
+                                'rgba(255, 99, 132, 0.2)',
+
+
+                            borderColor:
+                            //경계선 색상
+                                'rgba(255, 99, 132, 1)',
+
+                            borderWidth: 1 //경계선 굵기
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                callback: function(value) {
+                                    return '';
+                                }
+                            }
+                        }],
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+
+            let myChartBar3 = new Chart(context4, {
                 type: 'bar', // 차트의 형태
                 data: { // 차트에 들어갈 데이터
                     labels: [
                         //x 축
-                        '스킨케어','메이크업','남성','헤어/바디'
+                        '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+                        '8월', '9월', '10월', '11월', '12월',
                     ],
                     datasets: [
                         { //데이터
                             label: '주간 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                42,38,7,12 //x축 label에 대응되는 데이터 값
+                                0,0,0,12,20,0,0,0,0,0,0,
+                                0,0,0,0,0,0,0,//x축 label에 대응되는 데이터 값
                             ],
                             backgroundColor: [
                                 //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -803,50 +837,7 @@
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1 //경계선 굵기
-                        }
-                    ]
-                },
-                options: {
-                    scales: {
-                        yAxes: [
-                            {
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }
-                        ]
-                    }
-                }
-            });
-
-            let myChartLine4 = new Chart(context4, {
-                type: 'bar', // 차트의 형태
-                data: { // 차트에 들어갈 데이터
-                    labels: [
-                        //x 축
-                        '스킨케어','메이크업','남성','헤어/바디'
-                    ],
-                    datasets: [
-                        { //데이터
-                            label: '주간 매출 현황', //차트 제목
-                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
-                            data: [
-                                42,38,7,12 //x축 label에 대응되는 데이터 값
-                            ],
-                            backgroundColor: [
-                                //색상
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                //경계선 색상
+                                'rgba(255, 159, 64, 1)',
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
