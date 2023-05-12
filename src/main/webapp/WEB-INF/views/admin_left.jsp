@@ -45,12 +45,12 @@
                         <li><a href="#" onfocus="this.blur();">주문목록</a></li>
                     </ul>
                 </li>
-                <li class="on"><a href="#" onfocus="this.blur();">통계분석</a>
+                <li class="on"><a href="/admin/statistics/sales" onfocus="this.blur();">통계분석</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">매출통계분석</a></li>
+                        <li><a href="/admin/statistics/sales" onfocus="this.blur();">매출통계분석</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">상품통계분석</a></li>
+                        <li><a href="/admin/statistics/product" onfocus="this.blur();">상품통계분석</a></li>
                     </ul>
                 </li>
                 <li class="on"><a href="#" onfocus="this.blur();">쿠폰관리</a></li>

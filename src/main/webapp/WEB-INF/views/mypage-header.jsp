@@ -31,9 +31,9 @@
                 </h2>
                 <span></span>
                 <img src="/img/ming/myPage_ming/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
-                <p>보유쿠폰 <em class="info">2장</em> </p>
+                <p>보유쿠폰 <em class="classinfo">2장</em> </p>
                 <img src="/img/ming/myPage_ming/point_icon.png"style="width: 75px" class="mypage-img3">
-                <p>보유포인트 <em class="info">3000p</em> </p>
+                <p>보유포인트 <em class="classinfo">3000p</em> </p>
             </div>
         </div>
     </div>
