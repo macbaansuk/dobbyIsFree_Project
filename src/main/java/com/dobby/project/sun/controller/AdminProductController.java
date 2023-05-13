@@ -83,7 +83,8 @@ public class AdminProductController {
 
             //서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
             String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+//            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image\\";
+            String uploadFolder = "C:\\Users\\leemi\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\product-image";
 
 
             UUID uuid = UUID.randomUUID();
