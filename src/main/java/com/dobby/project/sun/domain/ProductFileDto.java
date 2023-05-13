@@ -8,24 +8,12 @@ public class ProductFileDto {
 
         private Integer PROD_FILE_ID;
         private Integer PROD_ID;
-        private String FILE_NM;
-        private String PATH;
+        private String FILE_PATH;
         private String KIND;
         private Date REG_DTM;
         private Date UPD_DTM;
 
-    public ProductFileDto() {
-    }
 
-    public ProductFileDto(Integer PROD_FILE_ID, Integer PROD_ID, String FILE_NM, String PATH, String KIND, Date REG_DTM, Date UPD_DTM) {
-        this.PROD_FILE_ID = PROD_FILE_ID;
-        this.PROD_ID = PROD_ID;
-        this.FILE_NM = FILE_NM;
-        this.PATH = PATH;
-        this.KIND = KIND;
-        this.REG_DTM = REG_DTM;
-        this.UPD_DTM = UPD_DTM;
-    }
 
     public Integer getPROD_FILE_ID() {
         return PROD_FILE_ID;
@@ -43,20 +31,13 @@ public class ProductFileDto {
         this.PROD_ID = PROD_ID;
     }
 
-    public String getFILE_NM() {
-        return FILE_NM;
+
+    public String getFILE_PATH() {
+        return FILE_PATH;
     }
 
-    public void setFILE_NM(String FILE_NM) {
-        this.FILE_NM = FILE_NM;
-    }
-
-    public String getPATH() {
-        return PATH;
-    }
-
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
+    public void setFILE_PATH(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
     }
 
     public String getKIND() {
@@ -88,8 +69,7 @@ public class ProductFileDto {
         return "ProductFileDto{" +
                 "PROD_FILE_ID=" + PROD_FILE_ID +
                 ", PROD_ID=" + PROD_ID +
-                ", FILE_NM='" + FILE_NM + '\'' +
-                ", PATH='" + PATH + '\'' +
+                ", FILE_PATH='" + FILE_PATH + '\'' +
                 ", KIND='" + KIND + '\'' +
                 ", REG_DTM=" + REG_DTM +
                 ", UPD_DTM=" + UPD_DTM +

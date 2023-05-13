@@ -134,7 +134,6 @@
                                 <label>신상품 여부</label>
                             </td>
                             <td>
-                                <%--                                <input type="checkbox" id="new-product" name="NEW_YN">--%>
                                 <input type="radio" id="new-use" name="NEW_YN" value="Y">
                                 <label for="new-use">사용</label>
                                 <input type="radio" id="new-not-use" name="NEW_YN" value="N" checked>
@@ -146,7 +145,7 @@
                                 <label >메인진열 여부</label>
                             </td>
                             <td>
-                                <%--                                <input type="checkbox" id="main-display" name="MAI_YN" >--%>
+
                                 <input type="radio" id="main-use" name="MAI_YN" value="Y">
                                 <label for="main-use">사용</label>
                                 <input type="radio" id="main-not-use" name="MAI_YN" value="N" checked>
@@ -264,14 +263,14 @@
                                                     </td>
                                                 </tr>
 
-<%--                                                <tr>--%>
-<%--                                                    <td>--%>
-<%--                                                        <label for="detailImage">상세정보 이미지</label>--%>
-<%--                                                    </td>--%>
-<%--                                                    <td>--%>
-<%--                                                        <input type="file" id="detailImage" name="PATH" >--%>
-<%--                                                    </td>--%>
-<%--                                                </tr>--%>
+                                                <tr>
+                                                    <td>
+                                                        <label for="detailImage">상세정보 이미지</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" id="detailImage" name="detailFile" >
+                                                    </td>
+                                                </tr>
 
 
                         <%--                        <thead>--%>
@@ -293,12 +292,6 @@
                 </form>
 
                 <script>
-                    <%--$('#registerBtn').on("click",function (){--%>
-                    <%--    let form =$('#productForm');--%>
-                    <%--    form.attr("action","<c:url value='/admin/product/register'/>");--%>
-                    <%--    form.attr("method","post");--%>
-                    <%--    form.submit();--%>
-                    <%--});--%>
 
                     // 할인 여부 라디오 버튼 클릭 이벤트 핸들러
                     $('input[name="DC_YN"]').on('click', function() {
@@ -312,42 +305,13 @@
                         }
                     });
 
-
-
-
-
                     $('#listBtn').on("click",function (){
                         location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
                     });
 
 
 
-                    // $(document).ready(function () {
-                    //     $("input[name='OPT_YN']").on("change", function () {
-                    //
-                    //         const option = $(".option-row");
-                    //
-                    //         if ($("#option-use").is(":checked")) {
-                    //             option.show();
-                    //         } else {
-                    //             option.hide();
-                    //         }
-                    //     });
-                    // });
-                    //                     $(document).ready(function () {
-                    //                         $("input[name='DC_YN']").on("change", function () {
-                    //
-                    //                             const discount = $(".discount-row");
-                    //
-                    //                             if ($("#discount-use").is(":checked")) {
-                    //                                 discount.show();
-                    //                             } else {
-                    //                                 discount.hide();
-                    //                             }
-                    //                         });
-                    //                         $(".discount-row").hide();
-                    // // 이상하게 할인부분만 새로고침해도 안숨겨져있음 흠 이거 적용하면 숨겨짐
-                    //                     });
+
                 </script>
             </div>
         </div>

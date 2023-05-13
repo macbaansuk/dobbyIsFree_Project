@@ -12,6 +12,7 @@ public class RegisterDto {
     private String REP_IMG;
 
     private  MultipartFile file;
+    private  MultipartFile detailFile;
     private  String oldFilePath;
 
     private Integer AVG_ASCR;
@@ -36,7 +37,7 @@ public class RegisterDto {
 
     private Integer PROD_FILE_ID;
     private String FILE_NM;
-    private String PATH;
+    private String FILE_PATH;
     private String KIND;
 
 
@@ -88,6 +89,15 @@ public class RegisterDto {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+
+    public MultipartFile getDetailFile() {
+        return detailFile;
+    }
+
+    public void setDetailFile(MultipartFile detailFile) {
+        this.detailFile = detailFile;
     }
 
     public String getOldFilePath() {
@@ -272,12 +282,12 @@ public class RegisterDto {
         this.FILE_NM = FILE_NM;
     }
 
-    public String getPATH() {
-        return PATH;
+    public String getFILE_PATH() {
+        return FILE_PATH;
     }
 
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
+    public void setFILE_PATH(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
     }
 
     public String getKIND() {
@@ -297,6 +307,8 @@ public class RegisterDto {
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
                 ", file=" + file +
+                ", detailFile=" + detailFile +
+                ", oldFilePath='" + oldFilePath + '\'' +
                 ", AVG_ASCR=" + AVG_ASCR +
                 ", REVW_NCNT=" + REVW_NCNT +
                 ", INV_QTY=" + INV_QTY +
@@ -318,7 +330,7 @@ public class RegisterDto {
                 ", DC_STUS='" + DC_STUS + '\'' +
                 ", PROD_FILE_ID=" + PROD_FILE_ID +
                 ", FILE_NM='" + FILE_NM + '\'' +
-                ", PATH='" + PATH + '\'' +
+                ", FILE_PATH='" + FILE_PATH + '\'' +
                 ", KIND='" + KIND + '\'' +
                 '}';
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,13 @@ public class ProductServiceImpl implements ProductService {
     public ProductDto getProductById(int id) throws Exception {
         return productDao.getProductById(id);
     }
+
+    @Override
+    public ProductFileDto getDetailImage(int id) {
+        return productDao.getDetailImage(id);
+    }
+
+
     @Override
     public List<ProductCateDto> getProductList(int category) throws Exception {
         return productDao.getProductList(category);
@@ -52,11 +60,7 @@ public class ProductServiceImpl implements ProductService {
     public int getCount() throws Exception {
         return productDao.count();
     }
-//    @Override
-//    public List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort) {
-//        return productDao.getProductsByCategoryAndSort(category, sort);
-//   }
-//
+
     @Override
     public List<SortDto> getProductsByCategoryAndSort(int category, String sort) {
         return productDao.getProductsByCategoryAndSort(category, sort);
@@ -83,116 +87,52 @@ public class ProductServiceImpl implements ProductService {
         return rowCnt;
     }
 
+
     @Override
-    public void register(RegisterDto registerDto) {
-        productDao.insertProduct(registerDto);
-
-
+    public String getImgPath(Integer id) {
+        return productDao.getImgPath(id);
     }
 
     @Override
-    public void modify(RegisterDto registerDto) {
-         productDao.updateProduct(registerDto);
+    public String getDetailImgPath(Integer id) {
+        return productDao.getDetailImgPath(id);
     }
 
 
+    @Override
+    @Transactional
+    public int register(TotalDto totalDto) {
+        productDao.insertProduct(totalDto);
+        int prod_id = totalDto.getPROD_ID();
+        System.out.println("prod_id = " + prod_id);
+
+        totalDto.setPROD_ID(prod_id);
+        productDao.insertDetailFile(totalDto);
+        return prod_id;
+    }
+
+    @Override
+    @Transactional
+    public int modify(TotalDto totalDto) {
+        int result = productDao.updateProduct(totalDto);
+        totalDto.setPROD_ID(totalDto.getPROD_ID());
+        result += productDao.updateDetailFile(totalDto);
+
+        return result;
+    }
+
 //    @Override
-////    public int register(ProductDto productDto, ProductDCDto productDCDto, ProductOptionDto productOptionDto, ProductHashtagDto productHashtagDto, ProductFileDto productFileDto) throws Exception {
-//    public int register(ProductDto productDto) throws Exception {
-////        int rowCnt = 0;
-////        rowCnt +=productDao.insertProduct(productDto);
-////        rowCnt +=productDao.insertDiscount(productDCDto);
-////        rowCnt +=productDao.insertOption(productOptionDto);
-////        rowCnt +=productDao.insertHashtag(productHashtagDto);
-////        rowCnt +=productDao.insertFile(productFileDto);
-////
-////        return rowCnt;
-////        int productId = productDao.insertProduct(productDto);
-////        productDao.insertDiscount(productDCDto);
-////        productDao.insertOption(productOptionDto);
-////        productDao.insertHashtag(productHashtagDto);
-////        productDao.insertFile(productFileDto);
-////
-////        return productId;
+//    @Transactional
+//    public int modify(ProductDto productDto,ProductFileDto productFileDto) {
+//        int prod_id = productDao.updateProduct(productDto);
+//        System.out.println("update prod_id = " + prod_id);
 //
-//        return productDao.insertProduct(productDto);
+//        productFileDto.setPROD_ID(prod_id);
+//        productDao.updateDetailFile(productFileDto);
+//
+//        return prod_id;
 //    }
 
-
-//    @Override
-////    @Transactional
-////    public void register(ProductDto productDto) throws Exception {
-//    public void register(RegisterDto registerDto, MultipartFile repImg, MultipartFile[] detailImgs) throws Exception {
-//
-////        productDao.insertProduct(productDto);
-//        productDao.insertProduct(registerDto);
-//        productDao.insertDiscount(registerDto);
-//
-//        for (MultipartFile detailImg : detailImgs) {
-//            RegisterDto file = new RegisterDto();
-//            file.setPROD_ID(registerDto.getPROD_ID());
-//            file.setFILE_NM(detailImg.getOriginalFilename());
-//            file.setPATH("파일경로");
-//            file.setKIND("상세");
-//            productDao.insertFile(file);
-////        productDao.insertOption(productOptionDto);
-////        productDao.insertDiscount(registerDto);
-////        productDao.insertHashtag(productHashtagDto);
-////        productDao.insertFile(productFileDto);
-////
-////        if ("Y".equals(registerDto.getDC_YN())) {
-////            productDao.insertDiscount(registerDto);
-////        }
-//        }
-//    }
-
-
-    // 이미지가 저장될 경로
-//    private String uploadPath = "C:\\Users\\doswp\\Desktop\\pic";
-//
-//    @Override
-//    public void register(RegisterDto registerDto, MultipartFile repImg, MultipartFile[] detailImgs) throws IOException, IOException {
-//        // 대표 이미지 파일 저장
-//        String repImgFileName = repImg.getOriginalFilename();
-//        File repImgFile = new File(uploadPath, repImgFileName);
-//        repImg.transferTo(repImgFile);
-//
-//        registerDto.setREP_IMG(repImgFileName);
-//        productDao.insertProduct(registerDto);
-//        productDao.insertDiscount(registerDto);
-//
-//        // 상세 정보 이미지 파일 저장
-//        for (MultipartFile detailImg : detailImgs) {
-//            String detailImgFileName = detailImg.getOriginalFilename();
-//            File detailImgFile = new File(uploadPath, detailImgFileName);
-//            detailImg.transferTo(detailImgFile);
-//
-//            RegisterDto file = new RegisterDto();
-//            file.setPROD_ID(registerDto.getPROD_ID());
-//            file.setFILE_NM(detailImgFileName);
-//            file.setPATH(uploadPath);
-//            file.setKIND("상세");
-//            productDao.insertFile(file);
-//        }
-//    }
-//
-
-
-//    private String uploadPath = "C:\\Users\\doswp\\Desktop\\pic";
-//
-//    @Override
-//    public void register(RegisterDto registerDto, MultipartFile imgFile) throws Exception {
-//        productDao.insertProduct(registerDto);
-//
-//        String imageName = imgFile.getOriginalFilename();
-//        File imageFile = new File(uploadPath, imageName);
-//        imgFile.transferTo(imageFile);
-//
-//        RegisterDto productImage = new RegisterDto();
-//        productImage.setPROD_ID(registerDto.getPROD_ID());
-////        productImage.setImageNa(imageName);
-//        productDao.insertFile(productImage);
-//    }
 
 
 }

@@ -37,6 +37,11 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne(namespace + "getProductById", id);
     }
 
+    @Override
+    public ProductFileDto getDetailImage(int id) {
+        return session.selectOne("getDetailImage", id);
+    }
+
 
     @Override
     public int countProducts(Integer CATE_CD) {
@@ -97,25 +102,64 @@ public class ProductDaoImpl implements ProductDao {
     }
 
 
-
-    @Override
-    public void insertProduct(RegisterDto registerDto) {
-        session.insert("insertProduct", registerDto);
+// 상품 등록
+//    @Override
+//    public int insertProduct(RegisterDto registerDto) {
+//        return session.insert("insertProduct", registerDto);
+//    }
+//
+//    @Override
+//    public int insertDetailFile(RegisterDto registerDto) {
+//        return session.insert("insertDetailFile",registerDto);
+//    }
+   @Override
+    public int insertProduct(TotalDto totalDto) {
+        return session.insert("insertProduct",  totalDto);
     }
 
     @Override
-    public void insertDiscount(RegisterDto registerDto) {
-        session.insert("insertDiscount",registerDto);
+    public int insertDetailFile(TotalDto totalDto) {
+        return session.insert("insertDetailFile", totalDto);
+    }
+
+
+
+    //    @Override
+//    public void insertDiscount(RegisterDto registerDto) {
+//        session.insert("insertDiscount",registerDto);
+
+//    }
+
+    //상품 수정
+//    @Override
+//    public int updateProduct(ProductDto productDto) {
+//        return session.update("updateProduct",productDto);
+//    }
+//
+//    @Override
+//    public int updateDetailFile(ProductFileDto productFileDto) {
+//        return session.update("updateDetailFile", productFileDto);
+//    }
+
+    @Override
+    public int updateProduct(TotalDto totalDto) {
+        return session.update("updateProduct",totalDto);
     }
 
     @Override
-    public void insertFile(RegisterDto registerDto) {
-        session.insert("insertFile",registerDto);
+    public int updateDetailFile(TotalDto totalDto) {
+        return session.update("updateDetailFile", totalDto);
+    }
+
+
+    @Override
+    public String getImgPath(Integer id)  {
+        return session.selectOne("getImgPath", id);
     }
 
     @Override
-    public void updateProduct(RegisterDto registerDto) {
-        session.update("updateProduct",registerDto);
+    public String getDetailImgPath(Integer id) {
+        return session.selectOne("getDetailImgPath", id);
     }
 
     //    @Override

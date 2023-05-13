@@ -260,7 +260,7 @@
                     <div class="star-wrap">
                         <div class="starCnt">
                             <i class="fas fa-star"></i>
-                            <span class="star-rating">${P.AVG_ASCR} (${P.REVW_NCNT})</span>
+                            <span class="star-rating"></span>
                         </div>
                         <div class="icons">
                     <span class="heart-icon">

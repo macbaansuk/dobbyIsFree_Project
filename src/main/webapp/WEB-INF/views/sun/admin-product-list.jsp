@@ -147,8 +147,9 @@
 <%--                                    <td class="bbs_cate"> <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>"><img src="${P.rep_img}" alt="상품 이미지" align="middle"> ${P.prod_nm}</a></td>--%>
                                     <td class="bbs_cate">
                                         <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
-                                            <img src="<c:url value='/img/sun/product-image/${P.rep_img}'/>" alt=" ${P.prod_nm}상품 이미지" align="middle">
-                                                ${P.prod_nm}
+                                            <img src="${P.rep_img}?t=${timestamp}" alt=" ${P.prod_nm}상품 이미지" align="middle">
+
+                                        ${P.prod_nm}
                                         </a>
                                     </td>
 

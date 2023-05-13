@@ -24,23 +24,23 @@
 
 <section class="contents">
     <div class="product-topview">
-        <img src="/img/sun/product-image/${productDetail.REP_IMG}" alt="상품 상세이미지">
+        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
 
 
         <div class="product-detail">
             <h2>${productDetail.PROD_NM}</h2>
             <p> ${productDetail.PROD_DESC}</p>
 
-            <div class="star-wrap">
-                <i class="fas fa-star"></i>
-                <span class="star-rating">${productDetail.AVG_ASCR} (${productDetail.REVW_NCNT})</span>
-            </div>
+<%--            <div class="star-wrap">--%>
+<%--                <i class="fas fa-star"></i>--%>
+<%--                <span class="star-rating">${productDetail.AVG_ASCR} (${productDetail.REVW_NCNT})</span>--%>
+<%--            </div>--%>
 
 
-            <div class="product-hashtag">
-                <a>해시태그</a>
-                <a>해시태그</a>
-            </div>
+<%--            <div class="product-hashtag">--%>
+<%--                <a>해시태그</a>--%>
+<%--                <a>해시태그</a>--%>
+<%--            </div>--%>
 
 
             <div class="product-guide">
@@ -251,11 +251,16 @@
 
     <div class="tab-contents">
         <div id="tab1" class="tab-content active">
-
-            <img src="https://via.placeholder.com/600x800" alt="상세정보 이미지"/>
-
-
+            <c:choose>
+                <c:when test="${getDetailImage.FILE_PATH != null}">
+                    <img src="${getDetailImage.FILE_PATH}" alt="${productDetail.PROD_NM}상세정보 이미지"/>
+                </c:when>
+                <c:otherwise>
+                    <img src="https://via.placeholder.com/600x800" alt="${productDetail.PROD_NM}상세정보 이미지"/>
+                </c:otherwise>
+            </c:choose>
         </div>
+
         <div id="tab2" class="tab-content">
             <div class="product-noticeWrap">
                 <h4 class="product-noticetitle"> 배송 구매/배송안내 </h4>
@@ -346,7 +351,7 @@
 
                 <span class="product-inquirylink" >
                    <h4> 제품 문의 </h4>
-                <button type="button" class="inquiry-btn">문의하기</button>
+                <button type="button" class="inquiry-btn"><a href="/mypage/counsel/write">문의하기</a></button>
                 </span>
                 <hr>
             </div>

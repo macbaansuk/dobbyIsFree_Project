@@ -2,6 +2,7 @@ package com.dobby.project.sun.dao;
 
 import com.dobby.project.sun.domain.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public interface ProductDao {
 
     //상품상세로 상품 아이디로 넘기기
     ProductDto getProductById(int id) throws Exception;
+    ProductFileDto getDetailImage(int id);
 
     //상품 목록에서 상품 개수 세기
     int countProducts(Integer CATE_CD);
@@ -29,7 +31,6 @@ public interface ProductDao {
     // 게시물 전체 개수
     int count() throws Exception;
     //상품 목록 정렬버튼
-//    List<ProductDCDto> getProductsByCategoryAndSort(int category, String sort);
     List<SortDto> getProductsByCategoryAndSort(int category, String sort);
 
 
@@ -44,12 +45,25 @@ public interface ProductDao {
     int deleteProductHashtag(Integer id);
 
 
+    //관리자 상품 등록
+//    int insertProduct(RegisterDto registerDto);
+//    int insertDetailFile(RegisterDto registerDto);
+    int insertProduct(TotalDto totalDto);
+    int insertDetailFile(TotalDto totalDto);
 
-    void insertProduct(RegisterDto registerDto);
-    void insertDiscount(RegisterDto registerDto);
-    void insertFile(RegisterDto registerDto);
+//    void insertDiscount(RegisterDto registerDto);
+//
+    //상품 수정
+//    int updateProduct(ProductDto productDto);
+//    int updateDetailFile(ProductFileDto  productFileDto);
 
-    void updateProduct(RegisterDto registerDto);
+    int updateProduct(TotalDto totalDto);
+    int updateDetailFile(TotalDto totalDto);
+
+
+    //이미지 주소 스트링으로 받아오기
+    String getImgPath(Integer id);
+    String getDetailImgPath(Integer id);
 
 
 

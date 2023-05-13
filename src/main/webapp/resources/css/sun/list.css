@@ -38,13 +38,21 @@ button{
     margin-bottom: 30px;
 }
 
-.product-desc p{
-    font-size: 16px;
-    margin: 0;
-    width: 80%; /* 너비 설정 수정 */
-    background: rgba(255, 255, 255, 0.8); /* 배경 설정 추가 (흰색으로 반투명) */
-    word-wrap: break-word; /* 단어 줄바꿈 */
+/*pre{*/
+/*    color: #777777;*/
+/*    line-height: 1.6;*/
+/*    font-size: 14px;*/
+/*}*/
 
+.product-desc pre{
+    /*font-size: 16px;*/
+    /*margin: 0;*/
+    /*width: 80%; !* 너비 설정 수정 *!*/
+    /*background: rgba(255, 255, 255, 0.8); !* 배경 설정 추가 (흰색으로 반투명) *!*/
+    /*word-wrap: break-word; !* 단어 줄바꿈 *!*/
+    color: #777777;
+    line-height: 1.6;
+    font-size: 14px;
 }
 
 
@@ -70,25 +78,24 @@ button{
     font-size: 16px;
 }
 
-.contents{
+.contents {
     max-width: 1200px; /* 원하는 컨테이너의 최대 폭을 설정하세요 */
     margin: 0 auto; /* 왼쪽과 오른쪽 마진을 자동으로 설정하여 중앙 정렬 */
     padding: 20px; /* 필요한 경우 내용물과 컨테이너의 여백을 설정 */
+
 }
+
+
+
 
 /* ------------------ */
 .product-list {
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-between; !* 상품 사이에 동일한 공간 배치 *!*/
-    /*padding: 0 10%; !* 페이지 양옆에 20px 여백 추가 *!*/
-    /*box-sizing: border-box;*/
-    /*color: black;*/
+
     display: flex;
     flex-wrap: wrap;
-    gap: 2%;
+    gap: 5.5%;
     margin-top: 20px;
-    justify-content: space-between; /* 상품 사이에 동일한 공간 배치 */
+    justify-content: flex-start;
 }
 
 .product-row {
@@ -174,7 +181,9 @@ button{
     display: flex;
     align-items: center;
 }
-
+.starCnt{
+    padding-right: 130px;
+}
 .star-wrap i {
     color: green;
     font-size: 17px;
@@ -184,19 +193,21 @@ button{
     margin-left: 5px;
 }
 
-.star-wrap .heart-icon {
-    margin-left: auto;
-}
 
 .star-wrap .heart-icon i {
     color: #999;
     font-size: 24px;
     padding-right: 10px;
 }
+.icons .cart-icon i {
+    color: #999999;
+    font-size: 21px;
+}
 
 
 a {
     text-decoration: none; /* 밑줄 제거 */
+    color: black;
     /*color: inherit; !* 텍스트 색상을 상위 요소와 동일하게 설정 *!*/
 }
 
@@ -206,6 +217,23 @@ a:hover {
 }
 
 a:visited {
-    /*color: inherit; !* 방문한 링크 색상을 상위 요소와 동일하게 설정 *!*/
+    color: black;
     text-decoration: none;
+}
+
+
+.sort-btn {
+    border: none; /* 버튼 테두리 제거 */
+    padding: 10px 5px; /* 상하, 좌우 패딩 적용 */
+    font-size: 13px; /* 폰트 크기 설정 */
+
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    transition: background-color 0.3s ease; /* 배경색을 부드럽게 변경 */
+    background-color: white; /* 기본 배경색 설정 */
+    color: #777; /* 텍스트 색상 설정 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+}
+
+.sort-btn:hover {
+    color: black;
 }

@@ -82,7 +82,7 @@
 
     <!--상품 상세이미지 불러오기-->
     <select id="getDetailImage" parameterType="int" resultType="ProductFileDto">
-        SELECT PATH
+        SELECT FILE_PATH
         FROM FILE
         WHERE PROD_ID= #{PROD_ID} AND KIND ="상세";
     </select>
@@ -132,14 +132,10 @@
 
     <!-- 관리자 상품 읽기 상품 아이디로 -->
     <select id="getAdminProductsById" parameterType="int" resultType="TotalDto">
-        SELECT P.*, F.*, PD.*, O.*, PO.*, H.*, PH.*
+        SELECT P.*, F.*, PD.*
         FROM PROD P
                  LEFT JOIN FILE F ON P.PROD_ID = F.PROD_ID
                  LEFT JOIN PROD_DC PD ON P.PROD_ID = PD.PROD_ID
-                 LEFT JOIN PROD_OPT PO ON P.PROD_ID = PO.PROD_ID
-                 LEFT JOIN OPT O ON PO.OPT_ID = O.OPT_ID
-                 LEFT JOIN PROD_HASHTAG PH ON P.PROD_ID = PH.PROD_ID
-                 LEFT JOIN HASHTAG H ON PH.HASHTAG_ID = H.HASHTAG_ID
         WHERE P.PROD_ID = #{PROD_ID}
     </select>
 
@@ -179,7 +175,21 @@
 
 
     <!-- 관리자 상품 등록-->
-    <insert id="insertProduct"  parameterType="RegisterDto" keyProperty="PROD_ID, DC_YN" keyColumn="PROD_ID, DC_YN" useGeneratedKeys="true">
+<!--    <insert id="insertProduct"  parameterType="RegisterDto" keyProperty="PROD_ID, DC_YN" keyColumn="PROD_ID, DC_YN" useGeneratedKeys="true">-->
+<!--        INSERT INTO PROD-->
+<!--        (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  NEW_YN, PROD_STUS,-->
+<!--         OPT_YN,  DC_YN, MAI_YN, UPD_DTM)-->
+<!--        VALUES-->
+<!--            (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},-->
+<!--             #{NEW_YN}, #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});-->
+<!--    </insert>-->
+<!--    <insert id="insertDetailFile" parameterType="RegisterDto">-->
+<!--         INSERT INTO FILE-->
+<!--                (PROD_FILE_ID, PROD_ID, FILE_PATH)-->
+<!--            VALUES ( #{PROD_FILE_ID},#{PROD_ID}, #{FILE_PATH});-->
+<!--    </insert>-->
+
+    <insert id="insertProduct"  parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         INSERT INTO PROD
         (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  NEW_YN, PROD_STUS,
          OPT_YN,  DC_YN, MAI_YN, UPD_DTM)
@@ -187,6 +197,70 @@
             (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},
              #{NEW_YN}, #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});
     </insert>
+    <insert id="insertDetailFile" parameterType="TotalDto">
+        INSERT INTO FILE
+            (PROD_FILE_ID, PROD_ID, FILE_PATH)
+        VALUES ( #{PROD_FILE_ID},#{PROD_ID}, #{FILE_PATH});
+    </insert>
+
+
+    <!--이미지 주소 얻어오기-->
+    <select id="getImgPath"  parameterType="int" resultType="String">
+        SELECT REP_IMG
+        FROM PROD
+        WHERE PROD_ID=#{PROD_ID}
+    </select>
+    <select id="getDetailImgPath"  parameterType="int" resultType="String">
+        SELECT FILE_PATH
+        FROM FILE
+        WHERE PROD_ID=#{PROD_ID}
+    </select>
+
+
+    <!--관리자 상품 수정 업데이트 -->
+<!--    <update id="updateProduct" parameterType="ProductDto" >-->
+<!--        UPDATE PROD-->
+<!--        SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},-->
+<!--            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},-->
+<!--            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}-->
+<!--        WHERE PROD_ID = #{PROD_ID};-->
+<!--    </update>-->
+
+<!--    <update id="updateDetailFile" parameterType="ProductFileDto">-->
+<!--        UPDATE FILE-->
+<!--        SET FILE_PATH = #{FILE_PATH}-->
+<!--        WHERE PROD_ID = #{PROD_ID};-->
+<!--    </update>-->
+    <update id="updateProduct" parameterType="TotalDto" >
+        UPDATE PROD
+        SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},
+            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},
+            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}
+        WHERE PROD_ID = #{PROD_ID};
+    </update>
+
+    <update id="updateDetailFile" parameterType="TotalDto">
+        UPDATE FILE
+        SET FILE_PATH = #{FILE_PATH}
+        WHERE PROD_ID = #{PROD_ID};
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+    <!--    <select id="getImgPath" parameterType="int" resultMap="imageResultMap">-->
+    <!--        SELECT P.REP_IMG, F.FILE_PATH-->
+    <!--        FROM PROD P-->
+    <!--                 INNER JOIN FILE F ON P.PROD_ID = F.PROD_ID-->
+    <!--        WHERE P.PROD_ID=#{PROD_ID}-->
+    <!--    </select>-->
 
 
     <!--        <insert id="insertDiscount" parameterType="RegisterDto">-->
@@ -225,22 +299,10 @@
 <!--        VALUES (#{HASHTAG_NM})-->
 <!--    </insert>-->
 
-<!--    <insert id="insertFile" parameterType="ProductFileDto">-->
-<!--        INSERT INTO FILE-->
-<!--            (FILE_NM, PATH, KIND, REG_DTM)-->
-<!--        VALUES (#{FILE_NM}, #{PATH}, #{KIND}, #{REG_DTM})-->
-<!--    </insert>-->
 
 
 
-    <!--관리자 상품 수정 업데이트 -->
-    <update id="updateProduct" parameterType="RegisterDto">
-        UPDATE PROD
-        SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},
-            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},
-            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}
-        WHERE PROD_ID = #{PROD_ID};
-    </update>
+
 
     <!--    <update id="updateProduct" parameterType="RegisterDto">-->
 <!--        UPDATE PROD SET-->
@@ -279,15 +341,7 @@
 <!--        WHERE HASHTAG_ID = #{HASHTAG_ID}-->
 <!--    </update>-->
 
-<!--    <update id="updateFile" parameterType="ProductFileDto">-->
-<!--        UPDATE FILE SET-->
-<!--                        FILE_NM = #{fileNm},-->
-<!--                        PATH = #{path},-->
-<!--                        KIND = #{kind},-->
-<!--                        REG_DTM = #{regDtm}-->
-<!--                        UPD_DTM =#{updDtm}-->
-<!--        WHERE FILE_ID = #{FILE_ID}-->
-<!--    </update>-->
+
 
 
 
