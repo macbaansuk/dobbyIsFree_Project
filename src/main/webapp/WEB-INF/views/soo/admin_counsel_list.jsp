@@ -172,7 +172,7 @@
                                                         <textarea class="answertext" type="text" name="CONTENT"
                                                             ${counsel.STUS eq '처리완료' ? 'readonly' : ''}>${counsel.CONTENT}</textarea>
                                                     </span>
-                                                    <span class="btn">
+                                                    <span class="btn" ${counsel.STUS eq '처리완료' ? 'style="display:none;"' : ''})>
                                                         <p style="display: none;" name="CNSL_ID" value="${counsel.CNSL_ID}">${counsel.CNSL_ID}</p>
 <%--                                                        <button id="regBtn" type="submit">답변등록</button>--%>
                                                             <button id="regBtn" type="button" onclick="submitAnswer(${counsel.CNSL_ID}, $('#answerForm_${counsel.CNSL_ID} textarea').val())">답변등록</button>
