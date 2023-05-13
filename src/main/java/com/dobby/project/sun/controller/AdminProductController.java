@@ -88,7 +88,7 @@ public class AdminProductController {
                 model.addAttribute("ph", pageHandler);
                 model.addAttribute("page", page);
                 model.addAttribute("pageSize", pageSize);
-                model.addAttribute("timestamp", System.currentTimeMillis());
+//                model.addAttribute("timestamp", System.currentTimeMillis());
 
                 System.out.println("adminProductList=" + model);
 
@@ -147,32 +147,59 @@ public class AdminProductController {
     }
 
     @PostMapping("/register")
-    public String register(TotalDto totalDto) {
+    public String register(TotalDto totalDto, @RequestParam("file")MultipartFile file, @RequestParam("detailFile")MultipartFile detailFile) {
         try {
 
-            // 대표 이미지 처리
-            MultipartFile file = totalDto.getFile();
-            String fileRealName = file.getOriginalFilename();
-            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
-            UUID uuid = UUID.randomUUID();
-            String uniqueName = uuid.toString().split("-")[0];
-            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product";
+            String uploadFolder = "C:\\upload\\";
 
-            File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+            // 대표 이미지 처리
+            String fileRealName = file.getOriginalFilename();
+            long size = file.getSize(); //파일 사이즈
+
+            System.out.println("파일명 : " + fileRealName);
+            System.out.println("용량크기(byte) : " + size);
+
+            //서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
+
+            UUID uuid = UUID.randomUUID();
+            System.out.println("uuid = " + uuid);
+
+            String[] uuids = uuid.toString().split("-");
+            String uniqueName = uuids[0];
+
+            System.out.println("생성된 고유문자열 uniqueName =" + uniqueName);
+            System.out.println("확장자명 fileExtension = " + fileExtension);
+
+
+            File saveFile = new File(uploadFolder + uniqueName + fileExtension + fileRealName);
+            // 실제 파일 저장 메서드
             file.transferTo(saveFile);
-            totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+//            totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+            totalDto.setREP_IMG(uniqueName + fileExtension + fileRealName);
 
             // 상세정보 이미지 처리
-            MultipartFile detailFile = totalDto.getDetailFile();
-            String detailFileRealName = detailFile.getOriginalFilename();
-            String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
-            UUID detailUuid = UUID.randomUUID();
-            String detailUniqueName = detailUuid.toString().split("-")[0];
-            String uploadFolder2 = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product-detail";
 
-            File detailSaveFile = new File(uploadFolder2 + "\\" + detailUniqueName + detailFileExtension);
+            String detailFileRealName = detailFile.getOriginalFilename();
+            long size2 = detailFile.getSize(); //파일 사이즈
+
+            System.out.println("상세 파일명 : " + detailFileRealName);
+            System.out.println("상세 용량크기(byte) : " + size2);
+
+            String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
+
+
+            UUID detailUuid = UUID.randomUUID();
+
+            String[] uuids2 = detailUuid.toString().split("-");
+            String detailUniqueName = uuids2[0];
+
+            System.out.println("생성된 고유문자열 detailUniqueName =" + detailUniqueName);
+            System.out.println("확장자명 detailFileExtension = " + detailFileExtension);
+
+            File detailSaveFile = new File(uploadFolder + detailUniqueName + detailFileExtension + detailFileRealName);
             detailFile.transferTo(detailSaveFile);
-            totalDto.setFILE_PATH("/img/product-detail/" + detailUniqueName + detailFileExtension);
+            totalDto.setFILE_PATH(detailUniqueName + detailFileExtension + detailFileRealName);
 
             productService.register(totalDto);
 
@@ -182,6 +209,48 @@ public class AdminProductController {
             return "/sun/admin-product";
         }
     }
+
+//    }  @PostMapping("/register")
+//    public String register(TotalDto totalDto) {
+//        try {
+//
+//            // 대표 이미지 처리
+//            MultipartFile file = totalDto.getFile();
+//            String fileRealName = file.getOriginalFilename();
+//            String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
+//            UUID uuid = UUID.randomUUID();
+//            String uniqueName = uuid.toString().split("-")[0];
+////            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product";
+//            String uploadFolder = "C:\\upload";
+//
+//            File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+//            file.transferTo(saveFile);
+////            totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+//            totalDto.setREP_IMG( uniqueName + fileExtension);
+//
+//            // 상세정보 이미지 처리
+//            MultipartFile detailFile = totalDto.getDetailFile();
+//            String detailFileRealName = detailFile.getOriginalFilename();
+//            String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
+//            UUID detailUuid = UUID.randomUUID();
+//            String detailUniqueName = detailUuid.toString().split("-")[0];
+////            String uploadFolder2 = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product-detail";
+//            String uploadFolder2 = "C:\\upload";
+//
+//            File detailSaveFile = new File(uploadFolder2 + "\\" + detailUniqueName + detailFileExtension);
+//            detailFile.transferTo(detailSaveFile);
+////            totalDto.setFILE_PATH("/img/product-detail/" + detailUniqueName + detailFileExtension);
+//            totalDto.setFILE_PATH( detailUniqueName + detailFileExtension);
+//
+//            productService.register(totalDto);
+//
+//            return "redirect:/admin/product/list";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "/sun/admin-product";
+//        }
+//    }
+
     //    상품 삭제
     @PostMapping("/remove")
     public String remove( Integer id, Integer page, Integer pageSize, Model model) throws Exception {
@@ -246,12 +315,14 @@ public class AdminProductController {
                 String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
                 UUID uuid = UUID.randomUUID();
                 String uniqueName = uuid.toString().split("-")[0];
-                String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product";
+//                String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product";
+                String uploadFolder = "C:\\upload";
                 File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
                 file.transferTo(saveFile);
 
                 // DTO에 새로운 이미지 파일 경로를 설정합니다.
-                totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+//                totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+                totalDto.setREP_IMG( uniqueName + fileExtension);
             }
 
             // 상세정보 이미지 처리
@@ -272,11 +343,13 @@ public class AdminProductController {
                 String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
                 UUID detailUuid = UUID.randomUUID();
                 String detailUniqueName = detailUuid.toString().split("-")[0];
-                String uploadFolder2 = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product-detail";
+//                String uploadFolder2 = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product-detail";
+                String uploadFolder2 ="C:\\upload";
 
                 File detailSaveFile = new File(uploadFolder2 + "\\" + detailUniqueName + detailFileExtension);
                 detailFile.transferTo(detailSaveFile);
-                totalDto.setFILE_PATH("/img/product-detail/" + detailUniqueName + detailFileExtension);
+//                totalDto.setFILE_PATH("/img/product-detail/" + detailUniqueName + detailFileExtension);
+                totalDto.setFILE_PATH(detailUniqueName + detailFileExtension);
             }
 
             // 상품 정보를 수정합니다.
