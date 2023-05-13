@@ -125,7 +125,7 @@ public class LoginController {
             session.setAttribute("MBR_ID", MBR_ID);
             session.setMaxInactiveInterval(1800);
 
-            return "ming/registerSuccess";
+            return "ming/socialregisterSuccess";
         } else {
             session = request.getSession();
             session.setAttribute("MBR_ID", MBR_ID);
