@@ -69,29 +69,29 @@
                 <span class="inp">
                     <input id="EMAIL" type="text" required autocomplete="off" class="inp_text" placeholder="이메일 입력">
                     <button type="button" class="btn_del" style="display: none;">
-                    <span class="blind">삭제</span>
                     </button>
                 </span>
-    </div>
-    <div class="btn_joins bdb_n">
-        <button type="button" class="btn btn-primary" id="mail-Check-Btn">
+        <button type="button" class="btn btn-primary" id="mail-Check-Btn" style= "background-color:#F8F8F8">
             <!--<a href="javascript::" rel="opener" class="is_disabled" id="email-cert">-->
             <i class="ico i_email"></i>
-            <span>이메일 인증</span>
-            </a>
+            <span>이메일 확인</span>
+        </button>
+    </div>
+    <span class="inp_code">
+    <div class="input_form inp_email">
+                    <input id="EMAIL_code" type="password" required autocomplete="off" class="inp_text" placeholder="인증번호 6자리를 입력해주세요">
+                    <button type="button" class="btn_del" style="display: none;">
+                    </button>
+    <div class="btn_joins bdb_n">
+        <button type="button" class="btn btn-primary" id="mail-Check-Btn" style= "background-color:#F8F8F8" onclick="alert('해당 이메일로 임시 비밀번호를 전송하였습니다.')">
+            <!--<a href="javascript::" rel="opener" class="is_disabled" id="email-cert">-->
+            <i class="ico i_email"></i>
+            <span>인증번호 확인</span>
         </button>
         <%--<button type="button" class="btn btn-primary" id="mail-Check-Btn">Verify</button>--%>
     </div>
-    <div class="input_form inp_email">
-                <span class="inp_code">
-                    <input id="EMAIL_code" type="text" required autocomplete="off" class="inp_text" placeholder="인증번호 6자리를 입력해주세요">
-                    <button type="button" class="btn_del" style="display: none;">
-                    <span class="blind">삭제</span>
-                    </button>
-                </span>
-    </div>
     </form>
-    <button class="btnA btn_white btn_join_membership">
+        <button class="btnA btn_white btn_join_membership">
         <span></span>
         <span>아직 회원이 아니세요?</span>
         <em><a href="/register" style="text-decoration: none; color: #252525";>회원가입</a></em>
@@ -100,5 +100,4 @@
 </section>
 <!--container-->
 </body>
-
 </html>
