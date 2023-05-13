@@ -33,13 +33,11 @@
 <section class="container">
     <div class="page_top_area">
         <h2>고객님의 아이디 정보입니다.</h2></br>
-        <p>개인정보를 위해 일부 별표(*) 표기 됩니다.</p>
     </div>
     <div class="sec_join">
-        <p class="tit_id" style="font-size:20px;">도비스프리 통합 아이디</p>
         <div class="user_info">
             <input type="hidden" id="user_id" name="loginid" value="">
-            <strong class="st_txt">아이디  :  lms11**</strong>
+            <strong class="st_txt">아이디  :  jungsuk</strong>
         </div>
         <div class="btn_submit">
             <button type="button" id="dologin" class="btnA btn_blue">
