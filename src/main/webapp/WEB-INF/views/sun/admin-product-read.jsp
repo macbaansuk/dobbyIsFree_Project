@@ -10,7 +10,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="../../css/sun/admin-product.css"/>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
@@ -68,9 +68,8 @@
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
             <div class="content">
 
-                <%--                <form id="productForm">--%>
-                <form id="productForm" action="<c:url value='/admin/product/modify'/>" enctype="multipart/form-data" method="POST">
-
+<%--                <form id="productForm" action="<c:url value='/admin/product/modify'/>" enctype="multipart/form-data" method="POST">--%>
+                <form id="productForm">
                     <table class="product-table">
                         <%--                        <input type="hidden" name="prod_id" value="${read.prod_id}">--%>
                         <thead>
@@ -87,12 +86,11 @@
                                 <label for="product-status">상품 상태</label>
                             </td>
                             <td>
-                                <select id="product-status" name="PROD_STUS" >
+                                <select id="product-status" name="PROD_STUS">
                                     <option value="판매대기" ${read.PROD_STUS == '판매대기' ? 'selected' : ''}>판매대기</option>
                                     <option value="판매" ${read.PROD_STUS == '판매' ? 'selected' : ''}>판매</option>
                                     <option value="판매안함" ${read.PROD_STUS== '판매안함' ? 'selected' : ''}>판매안함</option>
                                 </select>
-
 
 
                             </td>
@@ -104,7 +102,7 @@
                                 <label for="category">카테고리</label>
                             </td>
                             <td>
-                                <select id="category" name="CATE_CD" >
+                                <select id="category" name="CATE_CD">
                                     <option value=1 ${read.CATE_CD == 1 ? 'selected' : ''}>스킨케어</option>
                                     <option value=2 ${read.CATE_CD == 2 ? 'selected' : ''}>메이크업</option>
                                     <option value=3 ${read.CATE_CD == 3 ? 'selected' : ''}>남성</option>
@@ -119,7 +117,8 @@
                                 <label for="product-name">상품명</label>
                             </td>
                             <td>
-                                <input type="text" id="product-name" name="PROD_NM" value="${read.PROD_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="text" id="product-name" name="PROD_NM"
+                                       value="${read.PROD_NM}" ${mode=="read"?'readonly="readonly"': ''}>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +126,8 @@
                                 <label for="product-description">상품 설명</label>
                             </td>
                             <td>
-                                <textarea id="product-description" name="PROD_DESC" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>${read.PROD_DESC}</textarea>
+                                <textarea id="product-description"
+                                          name="PROD_DESC" ${mode=="read"?'readonly="readonly"': ''}>${read.PROD_DESC}</textarea>
                             </td>
                         </tr>
                         </tbody>
@@ -143,9 +143,11 @@
                                 <label>신상품 여부</label>
                             </td>
                             <td>
-                                <input type="radio" id="new-use" name="NEW_YN" value="Y" ${ read.NEW_YN == 'Y' ? 'checked' :'' } >
+                                <input type="radio" id="new-use" name="NEW_YN"
+                                       value="Y" ${ read.NEW_YN == 'Y' ? 'checked' :'' } >
                                 <label for="new-use">사용</label>
-                                <input type="radio" id="new-not-use" name="NEW_YN" value="N" ${ read.NEW_YN == 'N' ? 'checked' :'' } >
+                                <input type="radio" id="new-not-use" name="NEW_YN"
+                                       value="N" ${ read.NEW_YN == 'N' ? 'checked' :'' } >
                                 <label for="new-not-use">사용 안함</label>
 
                             </td>
@@ -155,9 +157,11 @@
                                 <label>메인진열 여부</label>
                             </td>
                             <td>
-                                <input type="radio" id="main-use" name="MAI_YN" value="Y" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-use" name="MAI_YN"
+                                       value="Y" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
                                 <label for="main-use">사용</label>
-                                <input type="radio" id="main-not-use" name="MAI_YN" value="N" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
+                                <input type="radio" id="main-not-use" name="MAI_YN"
+                                       value="N" ${read.MAI_YN == 'Y' ? 'checked' :'' }>
                                 <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
@@ -204,102 +208,88 @@
                                 <label for="price">가격</label>
                             </td>
                             <td>
-                                <input type="number" id="price" name="AMT" value="${read.AMT}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>
+                                <input type="number" id="price" name="AMT"
+                                       value="${read.AMT}" ${mode=="read"?'readonly="readonly"': ''}>
                             </td>
                         </tr>
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>할인 여부</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="radio" id="discount-use" name="discount-availability" value="use" ${read.DC_YN=='Y' ? 'checked' : ''} >--%>
-                        <%--                                <label for="discount-use">할인 적용</label>--%>
-                        <%--                                <input type="radio" id="discount-not-use" name="discount-availability" value="not-use" ${read.DC_YN=='N' ? 'checked' : ''} >--%>
-                        <%--                                <label for="discount-not-use">할인 적용 안함</label>--%>
-
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-rate">할인율</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="number" id="discount-rate" name="discount-rate" value="${read.DC_RATE}">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-amount">할인 금액</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="number" id="discount-amount" name="discount-amount" value="${read.DC_AMT}" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-start">할인 시작일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" autocomplete="off" id="discount-start" name="discount-period" value="${read.BGN_DTM}">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-end">할인 종료일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" autocomplete="off" id="discount-end" name="discount-period" value="${read.END_DTM}" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+                        <tr>
+                            <td>
+                                <label>할인 여부</label>
+                            </td>
+                            <td>
+                                <input type="radio" id="discount-use" name="DC_YN"
+                                       value="use" ${read.DC_YN=='Y' ? 'checked' : ''} >
+                                <label for="discount-use">할인 적용</label>
+                                <input type="radio" id="discount-not-use" name="DC_YN"
+                                       value="not-use" ${read.DC_YN=='N' ? 'checked' : ''} >
+                                <label for="discount-not-use">할인 적용 안함</label>
+                            </td>
 
 
+                            <%--                        </tr>--%>
+                            <%--                        <tr class="discount-row">--%>
+                            <%--                            <td>--%>
+                            <%--                                <label for="discount-rate">할인율</label>--%>
+                            <%--                            </td>--%>
+                            <%--                            <td>--%>
+                            <%--                                <input type="number" id="discount-rate" name="discount-rate" value="${read.DC_RATE}">--%>
+                            <%--                            </td>--%>
+                            <%--                        </tr>--%>
 
-                                                <thead>
-                                                <tr>
-                                                    <th colspan="2">상품 이미지</th>
-                                                </tr>
-                                                </thead>
-                                                <tr>
-                                                    <td>
-                                                        <label>대표 이미지</label>
-                                                    </td>
-                                                    <td>
+                            <%--                        <tr class="discount-row">--%>
+                            <%--                            <td>--%>
+                            <%--                                <label for="discount-amount">할인 금액</label>--%>
+                            <%--                            </td>--%>
+                            <%--                            <td>--%>
+                            <%--                                <input type="number" id="discount-amount" name="discount-amount" value="${read.DC_AMT}" >--%>
+                            <%--                            </td>--%>
+                            <%--                        </tr>--%>
+                            <%--                        <tr class="discount-row">--%>
+                            <%--                            <td>--%>
+                            <%--                                <label for="discount-start">할인 시작일</label>--%>
+                            <%--                            </td>--%>
+                            <%--                            <td colspan="3">--%>
+                            <%--                                <input type="date" autocomplete="off" id="discount-start" name="discount-period" value="${read.BGN_DTM}">--%>
+                            <%--                            </td>--%>
+                            <%--                        </tr>--%>
+                            <%--                        <tr class="discount-row">--%>
+                            <%--                            <td>--%>
+                            <%--                                <label for="discount-end">할인 종료일</label>--%>
+                            <%--                            </td>--%>
+                            <%--                            <td colspan="3">--%>
+                            <%--                                <input type="date" autocomplete="off" id="discount-end" name="discount-period" value="${read.END_DTM}" >--%>
+                            <%--                            </td>--%>
+                            <%--                        </tr>--%>
 
 
-                                                        <img id="main-image-preview" src="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>" alt="${read.PROD_NM}이미지">
-                                                        <button type="button" id="main-image-change-button">이미지 수정</button>
-                                                        <input type="file" id="main-image-input" name="file" style="display: none;">
-                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">
+                            <thead>
+                        <tr>
+                            <th colspan="2">상품 이미지</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                <label>대표 이미지</label>
+                            </td>
+                            <td>
+                                <img id="main-image-preview" name="REP_IMG" src="<c:url value='${read.REP_IMG}'/>" alt="${read.PROD_NM}이미지">
+                                <button type="button" id="main-image-change-button">이미지 수정</button>
+                                <input type="file" id="main-image-input" name="file" style="display: none;">
+                                <input type="hidden" name="oldFilePath" value="<c:url value='${read.REP_IMG}'/>">
+                            </td>
+                        </tr>
 
-
-
-                                                    <%--                                                        <input type="file" id="main-image-input" name="file">--%>
-<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
-<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
-
-
-
-
-<%--                                                        <input type="file" id="main-image-input" name="file" style="display: none;">--%>
-<%--                                                        <input type="file" id="main-image-input" name="file" >--%>
-<%--                                                        <button type="button" id="main-image-change-button">Change Image</button>--%>
-<%--                                                        <input type="hidden" name="oldFilePath" value="<c:url value='/img/sun/product-image/${read.REP_IMG}'/>">--%>
-                                                    </td>
-
-
-
-
-                                                </tr>
-
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>상세정보 이미지</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <img id="detail-image-preview" src="${read.PATH}" alt="${read.PROD_NM}상세이미지">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+                        <tr>
+                            <td>
+                                <label>상세정보 이미지</label>
+                            </td>
+                            <td>
+                                    <img id="detail-image-preview" class ="detail-image-preview" src="${read.FILE_PATH}" alt="${read.PROD_NM}상세이미지">
+                                    <button type="button" id="detail-image-change-button">이미지 수정</button>
+                                    <input type="file" id="detail-image-input" name="detailFile" style="display: none;">
+                                    <input type="hidden" name="oldDetailFilePath" value="<c:url value='${read.FILE_PATH}'/>">
+                            </td>
+                        </tr>
 
 
                         <%--                        <thead>--%>
@@ -315,95 +305,241 @@
                         <%--                        </tr>--%>
                     </table>
                     <div class="form-btnWrap" style="text-align: center;">
-                        <%--                        <button class="form-btn" type="submit" id="registerBtn">등록하기</button>--%>
 
                         <button class="form-btn" type="submit" id="modifyBtn">수정하기</button>
-                        <%--                        <button class="form-btn" type="button" id="previewBtn">미리보기</button>--%>
-                        <button class="form-btn" type="button" id="listBtn" >목록으로</button>
+                        <%--<button class="form-btn" type="button" id="previewBtn">미리보기</button>--%>
+                        <button class="form-btn" type="button" id="listBtn">목록으로</button>
                     </div>
                 </form>
 
 
-
                 <script>
 
-                    $('#listBtn').on("click",function (){
-                        location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
-                    });
+                    $(document).ready(function() {
+                        var mode = 'read'; // 초기 모드 설정
 
-                    $('#modifyBtn').on("click",function (event){
-                        event.preventDefault();  // 이벤트의 기본 동작을 중지
-
-                        // "수정하기" 버튼을 누르면 mode를 'modify'로 변경
-                        mode = 'modify';
-
-                        // 모든 입력 필드를 수정 가능하게 만듦
-                        $('input, select, textarea').prop('readonly', false);
-                        $('input[type="checkbox"], input[type="radio"]').off('click');
-                        $('select').off('mousedown');
-
-                        // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가
-                        $('input[name="OPT_YN"]').on("change", function () {
-                            const option = $(".option-row");
-                            if ($("#option-use").is(":checked")) {
-                                option.show();
-                            } else {
-                                option.hide();
-                            }
-                        });
-
-                        $('input[name="DC_YN"]').on("change", function () {
-                            const discount = $(".discount-row");
-                            if ($("#discount-use").is(":checked")) {
-                                discount.show();
-                            } else {
-                                discount.hide();
-                            }
-                        });
-
-                        // 초기 상태 설정
-                        if ($("#option-use").is(":checked")) {
-                            $(".option-row").show();
-                        } else {
-                            $(".option-row").hide();
+                        if (mode === 'read') {
+                            $('input, select, textarea').prop('readonly', true);
+                            $('input[type="checkbox"], input[type="radio"]').on('click', false);
+                            $('select').on('mousedown', false);
                         }
 
-                        if ($("#discount-use").is(":checked")) {
-                            $(".discount-row").show();
-                        } else {
-                            $(".discount-row").hide();
-                        }
+                        $('#modifyBtn').on("click", function(event) {
+                            event.preventDefault(); // 이벤트의 기본 동작을 중지
 
+                            if (mode === 'read') {
+                                mode = 'modify'; // 모드 변경
 
-                        // "수정하기" 버튼의 텍스트를 "수정완료"로 변경
-                        $(this).text("수정완료");
+                                // 모든 입력 필드를 수정 가능하게 만듦
+                                $('input, select, textarea').prop('readonly', false);
+                                $('input[type="checkbox"], input[type="radio"]').off('click');
+                                $('select').off('mousedown');
 
+                                // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가
+                                $('input[name="DC_YN"]').on("change", function() {
+                                    const discount = $(".discount-row");
+                                    if ($("#discount-use").is(":checked")) {
+                                        discount.show();
+                                    } else {
+                                        discount.hide();
+                                    }
+                                });
 
+                                // 초기 상태 설정
+                                if ($("#discount-use").is(":checked")) {
+                                    $(".discount-row").show();
+                                } else {
+                                    $(".discount-row").hide();
+                                }
 
-                        $('#main-image-change-button').on('click', function() {
-                            $('#main-image-input').click();
-                        });
+                                // "수정하기" 버튼의 텍스트를 "수정완료"로 변경
+                                $(this).text("수정완료");
 
-                        $('#main-image-input').on('change', function() {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                                $('#main-image-preview').attr('src', e.target.result);
-                            };
-                            reader.readAsDataURL(this.files[0]);
-                        });
+                                $('#main-image-change-button').on('click', function() {
+                                    $('#main-image-input').click();
+                                });
 
+                                $('#main-image-input').on('change', function() {
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        $('#main-image-preview').attr('src', e.target.result);
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                });
 
+                                $('#detail-image-change-button').on('click', function() {
+                                    $('#detail-image-input').click();
+                                });
 
-                        // "수정완료" 버튼 클릭 시, form을 제출하도록 이벤트 핸들러 변경
-                        $(this).off('click').on('click', function() {
-
-                            let form = $("#productForm");
-                            form.attr("action", "<c:url value='/admin/product/modify'/>");
-                            form.attr("enctype", "multipart/form-data");
-                            form.attr("method", "post");
-                            form.submit();
+                                $('#detail-image-input').on('change', function() {
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        $('#detail-image-preview').attr('src', e.target.result);
+                                    };
+                                    reader.readAsDataURL(this.files[0]);
+                                });
+                            } else if (mode === 'modify') {
+                                // "수정완료" 버튼 클릭 시, form을 제출하도록 이벤트 핸들러 변경
+                                let form = $("#productForm");
+                                form.attr("action", "<c:url value='/admin/product/modify'/>");
+                                form.attr("enctype", "multipart/form-data");
+                                form.attr("method", "post");
+                                form.submit();
+                            }
                         });
                     });
+
+                    <%--if (mode==='read'){--%>
+                   <%--    $('input, select, textarea').prop('readonly', true);--%>
+                   <%--    $('input[type="checkbox"], input[type="radio"]').on('click', false);--%>
+                   <%--    $('select').on('mousedown', false);--%>
+                   <%--}--%>
+
+                   <%-- $('#listBtn').on("click", function () {--%>
+                   <%--     location.href = "<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";--%>
+                   <%-- });--%>
+
+
+                   <%-- $('#modifyBtn').on("click", function (event) {--%>
+                   <%--     event.preventDefault();  // 이벤트의 기본 동작을 중지--%>
+
+                   <%--         // "수정하기" 버튼을 누르면 mode를 'modify'로 변경--%>
+                   <%--         mode = 'modify';--%>
+
+                   <%--         // 모든 입력 필드를 수정 가능하게 만듦--%>
+                   <%--         $('input, select, textarea').prop('readonly', false);--%>
+                   <%--         $('input[type="checkbox"], input[type="radio"]').off('click');--%>
+                   <%--         $('select').off('mousedown');--%>
+
+                   <%--         // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가--%>
+                   <%--     $('input[name="DC_YN"]').on("change", function () {--%>
+                   <%--             const discount = $(".discount-row");--%>
+                   <%--             if ($("#discount-use").is(":checked")) {--%>
+                   <%--                 discount.show();--%>
+                   <%--             } else {--%>
+                   <%--                 discount.hide();--%>
+                   <%--             }--%>
+                   <%--         });--%>
+
+                   <%--         // 초기 상태 설정--%>
+                   <%--         if ($("#discount-use").is(":checked")) {--%>
+                   <%--             $(".discount-row").show();--%>
+                   <%--         } else {--%>
+                   <%--             $(".discount-row").hide();--%>
+                   <%--         }--%>
+
+                   <%--         // "수정하기" 버튼의 텍스트를 "수정완료"로 변경--%>
+                   <%--         $(this).text("수정완료");--%>
+
+                   <%--         $('#main-image-change-button').on('click', function () {--%>
+                   <%--             $('#main-image-input').click();--%>
+                   <%--         });--%>
+
+                   <%--         $('#main-image-input').on('change', function () {--%>
+                   <%--             var reader = new FileReader();--%>
+                   <%--             reader.onload = function (e) {--%>
+                   <%--                 $('#main-image-preview').attr('src', e.target.result);--%>
+                   <%--             };--%>
+                   <%--             reader.readAsDataURL(this.files[0]);--%>
+                   <%--         });--%>
+
+                   <%--         $('#detail-image-change-button').on('click', function () {--%>
+                   <%--             $('#detail-image-input').click();--%>
+                   <%--         });--%>
+
+                   <%--         $('#detail-image-input').on('change', function () {--%>
+                   <%--             var reader = new FileReader();--%>
+                   <%--             reader.onload = function (e) {--%>
+                   <%--                 $('#detail-image-preview').attr('src', e.target.result);--%>
+                   <%--             };--%>
+                   <%--             reader.readAsDataURL(this.files[0]);--%>
+                   <%--         });--%>
+
+
+                   <%--     if (mode === 'modify') {--%>
+                   <%--         // "수정완료" 버튼 클릭 시, form을 제출하도록 이벤트 핸들러 변경--%>
+                   <%--         let form = $("#productForm");--%>
+                   <%--         form.attr("action", "<c:url value='/admin/product/modify'/>");--%>
+                   <%--         form.attr("enctype", "multipart/form-data");--%>
+                   <%--         form.attr("method", "post");--%>
+                   <%--         form.submit();--%>
+                   <%--     }--%>
+                   <%-- });--%>
+
+
+                    <%--$('#modifyBtn').on("click",function (event){--%>
+                    <%--    event.preventDefault();  // 이벤트의 기본 동작을 중지--%>
+
+                    <%--    // "수정하기" 버튼을 누르면 mode를 'modify'로 변경--%>
+                    <%--    mode = 'modify';--%>
+
+                    <%--    // 모든 입력 필드를 수정 가능하게 만듦--%>
+                    <%--    $('input, select, textarea').prop('readonly', false);--%>
+                    <%--    $('input[type="checkbox"], input[type="radio"]').off('click');--%>
+                    <%--    $('select').off('mousedown');--%>
+
+                    <%--    // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가--%>
+                    <%--    $('input[name="OPT_YN"]').on("change", function () {--%>
+                    <%--        const option = $(".option-row");--%>
+                    <%--        if ($("#option-use").is(":checked")) {--%>
+                    <%--            option.show();--%>
+                    <%--        } else {--%>
+                    <%--            option.hide();--%>
+                    <%--        }--%>
+                    <%--    });--%>
+
+                    <%--    $('input[name="DC_YN"]').on("change", function () {--%>
+                    <%--        const discount = $(".discount-row");--%>
+                    <%--        if ($("#discount-use").is(":checked")) {--%>
+                    <%--            discount.show();--%>
+                    <%--        } else {--%>
+                    <%--            discount.hide();--%>
+                    <%--        }--%>
+                    <%--    });--%>
+
+                    <%--    // 초기 상태 설정--%>
+                    <%--    if ($("#option-use").is(":checked")) {--%>
+                    <%--        $(".option-row").show();--%>
+                    <%--    } else {--%>
+                    <%--        $(".option-row").hide();--%>
+                    <%--    }--%>
+
+                    <%--    if ($("#discount-use").is(":checked")) {--%>
+                    <%--        $(".discount-row").show();--%>
+                    <%--    } else {--%>
+                    <%--        $(".discount-row").hide();--%>
+                    <%--    }--%>
+
+
+                    <%--    // "수정하기" 버튼의 텍스트를 "수정완료"로 변경--%>
+                    <%--    $(this).text("수정완료");--%>
+
+
+
+                    <%--    $('#main-image-change-button').on('click', function() {--%>
+                    <%--        $('#main-image-input').click();--%>
+                    <%--    });--%>
+
+                    <%--    $('#main-image-input').on('change', function() {--%>
+                    <%--        var reader = new FileReader();--%>
+                    <%--        reader.onload = function(e) {--%>
+                    <%--            $('#main-image-preview').attr('src', e.target.result);--%>
+                    <%--        };--%>
+                    <%--        reader.readAsDataURL(this.files[0]);--%>
+                    <%--    });--%>
+
+
+
+                    <%--    // "수정완료" 버튼 클릭 시, form을 제출하도록 이벤트 핸들러 변경--%>
+                    <%--    $(this).off('click').on('click', function() {--%>
+
+                    <%--        let form = $("#productForm");--%>
+                    <%--        form.attr("action", "<c:url value='/admin/product/modify'/>");--%>
+                    <%--        form.attr("enctype", "multipart/form-data");--%>
+                    <%--        form.attr("method", "post");--%>
+                    <%--        form.submit();--%>
+                    <%--    });--%>
+                    <%--});--%>
 
 
 
@@ -453,13 +589,6 @@
                     <%--        }--%>
                     <%--    }--%>
                     <%--});--%>
-
-
-
-
-
-
-
 
 
                 </script>

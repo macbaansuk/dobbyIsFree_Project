@@ -165,7 +165,7 @@ a {text-decoration: none;}
     margin-right: 20px;
 }
 
-#removeBtn[type=submit] {
+#removeBtn[type=button] {
 
     background-color: #525252;
     color: white;

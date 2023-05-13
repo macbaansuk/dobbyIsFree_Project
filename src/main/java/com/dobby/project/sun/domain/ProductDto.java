@@ -23,29 +23,7 @@ public class ProductDto {
     private Date REG_DTM;
 
 
-    public ProductDto() {
-    }
 
-    public ProductDto(Integer PROD_ID, Integer CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REVW_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, String INV_LOC, Integer SAFE_INV, String INV_STUS_CD, Date FST_REG_DTM, String FST_REGR_DCMT_NO, Date LAST_UPD_DTM, String LAST_UPDR_DCMT_NO) {
-
-        this.PROD_ID = PROD_ID;
-        this.CATE_CD = CATE_CD;
-        this.AMT = AMT;
-        this.PROD_NM = PROD_NM;
-        this.REP_IMG = REP_IMG;
-        this.AVG_ASCR = AVG_ASCR;
-        this.REVW_NCNT = REVW_NCNT;
-        this.INV_QTY = INV_QTY;
-        this.NEW_YN = NEW_YN;
-        this.PROD_STUS = PROD_STUS;
-        this.OPT_YN = OPT_YN;
-        this.PROD_DESC = PROD_DESC;
-        this.DC_YN = DC_YN;
-        this.MAI_YN = MAI_YN;
-        this.UPD_DTM = UPD_DTM;
-        this.REG_DTM = REG_DTM;
-
-    }
 
     public Integer getPROD_ID() {
         return PROD_ID;

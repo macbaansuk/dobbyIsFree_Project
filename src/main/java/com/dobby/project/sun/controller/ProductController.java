@@ -1,10 +1,7 @@
 package com.dobby.project.sun.controller;
 
-import com.dobby.project.sun.domain.SortDto;
+import com.dobby.project.sun.domain.*;
 import com.dobby.project.sun.service.ProductService;
-import com.dobby.project.sun.domain.ProductCateDto;
-import com.dobby.project.sun.domain.ProductDCDto;
-import com.dobby.project.sun.domain.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +28,12 @@ public class ProductController {
 
         ProductDto productDetail = productService.getProductById(id);
         List<ProductDCDto> Products_DC = productService.Products_DC(); // 제품에 관한 디스카운트만
+        ProductFileDto getDetailImage = productService.getDetailImage(id);
 
 //        System.out.println("여기");
         model.addAttribute("productDetail", productDetail);
         model.addAttribute("Products_DC", Products_DC);
+        model.addAttribute("getDetailImage", getDetailImage);
 
         System.out.println("productDetail=>"+productDetail);
         return "sun/product-detail";

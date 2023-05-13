@@ -44,9 +44,10 @@ body{
 
 .product-detail p {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.7;
     margin-bottom: 20px;
     color: black;
+
 }
 
 .star-wrap {
@@ -72,18 +73,16 @@ body{
 .product-hashtag {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 40px 0px;
 }
 
 .product-hashtag a {
     display: inline-block;
-    background-color: #f2f2f2;
-    padding: 5px 10px;
     border-radius: 5px;
     font-size: 12px;
-    color: #333;
+    color: #777777;
     text-decoration: none;
-    margin-right: 5px;
+    margin-right: 25px;
 }
 
 .product-guide {
@@ -210,6 +209,7 @@ button[type="button"] {
 .product-tab{
     padding-left: 300px;
     padding-right: 300px;
+    margin-top: 70px;
 }
 .tabType {
     margin-top: 20px;
@@ -260,6 +260,7 @@ button[type="button"] {
     display: block;
     margin-top: 50px;
     margin-bottom: 100px;
+    line-height: 1.5;
 }
 
 ul {
@@ -270,32 +271,58 @@ li {
     list-style-type: none;
 }
 
-.product-noticeWrap{
+.tab-content {
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
     text-align: left;
-    margin-bottom: 50px;
-    padding: 15px;
-    line-height: 1.5;
-
 }
 
-.product-noticetitle{
-    margin-bottom: 20px;
+.product-noticeWrap {
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
 }
 
-.product-inquiry p{
-    text-align: left;
-    margin-bottom: 30px;
+.product-noticetitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.product-inquiry span{
-    text-align: right;
-    margin-top: 30px;
-}
-.product-inquiry .inquiry-btn{
-    text-align: right;
-
+.product-notice {
+    padding-left: 20px;
 }
 
+.product-noticelist {
+    list-style-type: none;
+}
+
+.product-noticelist .num {
+    font-weight: bold;
+}
+
+.product-noticelist li {
+    margin-bottom: 10px;
+}
+
+.bulListTypeNum, .bulListType3 {
+    list-style-type: none;
+    margin-left: 15px;
+}
+
+.ftColor2 {
+    color: #ff0000;
+}
+
+.product-inquirylink {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
 
 /*--------------------------------------------*/
@@ -333,4 +360,34 @@ li {
     outline: none;
     font-size: 14px;
 }
+/*------------------------------*/
 
+
+
+
+
+div#tab1{
+    background-color: white;
+    border: none;
+}
+.tab-contents #tab1 img {
+    display: block;
+    margin: auto;
+    width: 780px;
+}
+
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: white;
+    /*color: inherit; !* 텍스트 색상을 상위 요소와 동일하게 설정 *!*/
+}
+
+a:hover {
+    text-decoration: none; /* 마우스를 올렸을 때만 밑줄이 나타나게 함 */
+
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
