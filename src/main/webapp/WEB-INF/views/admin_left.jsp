@@ -40,9 +40,9 @@
                         <li><a href="#" onfocus="this.blur();">상품문의관리</a></li>
                     </ul>
                 </li>
-                <li class="on"><a href="#" onfocus="this.blur();">주문관리</a>
+                <li class="on"><a href="/admin/order" onfocus="this.blur();">주문관리</a>
                     <ul>
-                        <li><a href="#" onfocus="this.blur();">주문목록</a></li>
+                        <li><a href="/admin/order" onfocus="this.blur();">주문목록</a></li>
                     </ul>
                 </li>
                 <li class="on"><a href="/admin/statistics/sales" onfocus="this.blur();">통계분석</a>
