@@ -143,6 +143,52 @@
                         </button>
                         <button class="kakao-btn" type="button" data-key="KA" data-val="KAKAO" id="kakao-logout-btn" style="display: none"></button>
                     </div>
+                    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+                    <script>
+                        const token = document.cookie
+                            ?.split(";")
+                            .find((cookie) => cookie.startsWith("token="))
+                            ?.split("=")[1];
+
+                        console.log(token);
+
+                        Kakao.init("b4040bd0971985c1a504bc16b1bc1966");
+
+
+                        // 카카오 로그인 버튼을 클릭할 때
+                        document
+                            .querySelector("#kakao-login-btn")
+                            .addEventListener("click", function () {
+                                Kakao.Auth.authorize({
+                                    redirectUri: "http://localhost:80/kakaologin",
+                                    prompts: "login",
+                                });
+                            });
+
+                        // 로그아웃 버튼을 클릭할 때
+                        document
+                            .querySelector("#kakao-logout-btn")
+                            .addEventListener("click", function () {
+                                Kakao.Auth.logout(function () {
+                                    console.log("로그아웃 되었습니다.");
+                                    document.querySelector("#kakao-logout-btn").style.display = "none";
+                                    document.querySelector("#kakao-login-btn").style.display = "block";
+                                });
+                            });
+
+                        // 로그인 상태 변경 이벤트
+                        Kakao.Auth.createLoginButton({
+                            container: "#kakao-login-btn",
+                            success: function (authObj) {
+                                console.log(authObj);
+                                document.querySelector("#kakao-login-btn").style.display = "none";
+                                document.querySelector("#kakao-logout-btn").style.display = "block";
+                            },
+                            fail: function (err) {
+                                console.log(err);
+                            },
+                        });
+                    </script>
                     <ul class="bottom_menu">
                         <li>
                             <a href="/findID" id="search_id">아이디 찾기</a>
