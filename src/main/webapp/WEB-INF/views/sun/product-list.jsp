@@ -67,7 +67,7 @@
                 <div class="product">
                     <a href="/product/productDetail/${p.prod_id}">
                         <div class="product-img">
-                            <img src="/img/sun/product-image/${p.rep_img}" alt="메인 상품 이미지">
+                            <img src="${p.rep_img}" alt="메인 상품 이미지">
                         </div>
                         <div class="product-info">
                             <span class="product-name">${p.prod_nm}</span>
@@ -92,9 +92,9 @@
                         </div>
                     </a>
                     <div class="star-wrap">
-                        <div class="starcnt">
+                        <div class="starCnt">
                             <i class="fas fa-star"></i>
-                            <span class="star-rating">${p.avg_ascr} (${p.revw_ncnt})</span>
+                            <span class="star-rating"></span>
                         </div>
                         <div class="icons">
                     <span class="heart-icon">
@@ -125,7 +125,7 @@
                                 var productdiv = $('<div class="product"></div>');
                                 var productlink = $('<a>').attr('href', '/product/productDetail/' + p.prod_id);
 
-                                var productimgdiv = $('<div class="product-img"></div>').append($('<img>').attr({'src': '/img/sun/product-img/' + p.rep_img, 'alt': p.prod_nm}));
+                                var productimgdiv = $('<div class="product-img"></div>').append($('<img>').attr({'src':  p.rep_img, 'alt': p.prod_nm}));
                                 var productinfodiv = $('<div class="product-info"></div>').append($('<span class="product-name"></span>').text(p.prod_nm));
 
                                 var priceelement = $('<p class="price"></p>');
@@ -160,9 +160,9 @@
                                 productdiv.append(productlink);
 
                                 var starwrapdiv = $('<div class="star-wrap"></div>');
-                                var starcntdiv = $('<div class="starcnt"></div>')
+                                var starcntdiv = $('<div class="starCnt"></div>')
                                     .append('<i class="fas fa-star"></i>')
-                                    .append('<span class="star-rating">' + p.avg_ascr + ' (' + p.revw_ncnt + ')</span>');
+                                    .append('<span class="star-rating">' + '' + ' ' + '' + '</span>');
                                 var iconsdiv = $('<div class="icons"></div>')
                                     .append('<span class="heart-icon"><i class="fa-regular fa-heart"></i></span>')
                                     .append('<span class="cart-icon"><i onclick="insertA(' + p.prod_id+ ')" class="fa-solid fa-cart-shopping"></i></span>');

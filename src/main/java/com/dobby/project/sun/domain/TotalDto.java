@@ -1,5 +1,7 @@
 package com.dobby.project.sun.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -18,12 +20,8 @@ public class TotalDto {
     private String PROD_DESC;
     private String DC_YN;
     private String MAI_YN;
-    private String FGIFT_YN;
     private Date UPD_DTM;
     private Date REG_DTM;
-    private String NOTICE;
-    private Date SLE_BGN_DTM;
-    private Date SLE_END_DTM;
 
     private Integer PROD_DC_ID;
     private String DC_TYP;
@@ -34,63 +32,38 @@ public class TotalDto {
     private Date END_DTM;
     private String DC_STUS;
 
-    private Integer OPT_ID;
-    private String OPT_NM;
-    private String OPT_VAL;
-    private String OPT_STUS;
-
-    private Integer HASHTAG_ID;
-    private String HASHTAG_NM;
 
     private Integer PROD_FILE_ID;
-    private String FILE_NM;
-    private String PATH;
+    private String FILE_PATH;
     private String KIND;
 
 
-    public TotalDto() {
+    private MultipartFile file;
+    private  MultipartFile detailFile;
+    private  String oldFilePath;
+
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public TotalDto(Integer PROD_ID, Integer CATE_CD, Integer AMT, String PROD_NM, String REP_IMG, Integer AVG_ASCR, Integer REWV_NCNT, Integer INV_QTY, String NEW_YN, String PROD_STUS, String OPT_YN, String PROD_DESC, String DC_YN, String MAI_YN, String FGIFT_YN, Date UPD_DTM, Date REG_DTM, String NOTICE, Date SLE_BGN_DTM, Date SLE_END_DTM, Integer PROD_DC_ID, String DC_TYP, Integer DC_RATE, Integer DC_AMT, Integer DC_PRICE, Date BGN_DTM, Date END_DTM, String DC_STUS, Integer OPT_ID, String OPT_NM, String OPT_VAL, String OPT_STUS, Integer HASHTAG_ID, String HASHTAG_NM, Integer PROD_FILE_ID, String FILE_NM, String PATH, String KIND) {
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
-        this.PROD_ID = PROD_ID;
-        this.CATE_CD = CATE_CD;
-        this.AMT = AMT;
-        this.PROD_NM = PROD_NM;
-        this.REP_IMG = REP_IMG;
-        this.AVG_ASCR = AVG_ASCR;
-        this.REWV_NCNT = REWV_NCNT;
-        this.INV_QTY = INV_QTY;
-        this.NEW_YN = NEW_YN;
-        this.PROD_STUS = PROD_STUS;
-        this.OPT_YN = OPT_YN;
-        this.PROD_DESC = PROD_DESC;
-        this.DC_YN = DC_YN;
-        this.MAI_YN = MAI_YN;
-        this.FGIFT_YN = FGIFT_YN;
-        this.UPD_DTM = UPD_DTM;
-        this.REG_DTM = REG_DTM;
-        this.NOTICE = NOTICE;
-        this.SLE_BGN_DTM = SLE_BGN_DTM;
-        this.SLE_END_DTM = SLE_END_DTM;
-        this.PROD_DC_ID = PROD_DC_ID;
-        this.DC_TYP = DC_TYP;
-        this.DC_RATE = DC_RATE;
-        this.DC_AMT = DC_AMT;
-        this.DC_PRICE = DC_PRICE;
-        this.BGN_DTM = BGN_DTM;
-        this.END_DTM = END_DTM;
-        this.DC_STUS = DC_STUS;
-        this.OPT_ID = OPT_ID;
-        this.OPT_NM = OPT_NM;
-        this.OPT_VAL = OPT_VAL;
-        this.OPT_STUS = OPT_STUS;
-        this.HASHTAG_ID = HASHTAG_ID;
-        this.HASHTAG_NM = HASHTAG_NM;
-        this.PROD_FILE_ID = PROD_FILE_ID;
-        this.FILE_NM = FILE_NM;
-        this.PATH = PATH;
-        this.KIND = KIND;
+    public MultipartFile getDetailFile() {
+        return detailFile;
+    }
+
+    public void setDetailFile(MultipartFile detailFile) {
+        this.detailFile = detailFile;
+    }
+
+    public String getOldFilePath() {
+        return oldFilePath;
+    }
+
+    public void setOldFilePath(String oldFilePath) {
+        this.oldFilePath = oldFilePath;
     }
 
     public Integer getPROD_ID() {
@@ -128,6 +101,8 @@ public class TotalDto {
     public String getREP_IMG() {
         return REP_IMG;
     }
+
+
 
     public void setREP_IMG(String REP_IMG) {
         this.REP_IMG = REP_IMG;
@@ -205,14 +180,6 @@ public class TotalDto {
         this.MAI_YN = MAI_YN;
     }
 
-    public String getFGIFT_YN() {
-        return FGIFT_YN;
-    }
-
-    public void setFGIFT_YN(String FGIFT_YN) {
-        this.FGIFT_YN = FGIFT_YN;
-    }
-
     public Date getUPD_DTM() {
         return UPD_DTM;
     }
@@ -227,30 +194,6 @@ public class TotalDto {
 
     public void setREG_DTM(Date REG_DTM) {
         this.REG_DTM = REG_DTM;
-    }
-
-    public String getNOTICE() {
-        return NOTICE;
-    }
-
-    public void setNOTICE(String NOTICE) {
-        this.NOTICE = NOTICE;
-    }
-
-    public Date getSLE_BGN_DTM() {
-        return SLE_BGN_DTM;
-    }
-
-    public void setSLE_BGN_DTM(Date SLE_BGN_DTM) {
-        this.SLE_BGN_DTM = SLE_BGN_DTM;
-    }
-
-    public Date getSLE_END_DTM() {
-        return SLE_END_DTM;
-    }
-
-    public void setSLE_END_DTM(Date SLE_END_DTM) {
-        this.SLE_END_DTM = SLE_END_DTM;
     }
 
     public Integer getPROD_DC_ID() {
@@ -317,54 +260,6 @@ public class TotalDto {
         this.DC_STUS = DC_STUS;
     }
 
-    public Integer getOPT_ID() {
-        return OPT_ID;
-    }
-
-    public void setOPT_ID(Integer OPT_ID) {
-        this.OPT_ID = OPT_ID;
-    }
-
-    public String getOPT_NM() {
-        return OPT_NM;
-    }
-
-    public void setOPT_NM(String OPT_NM) {
-        this.OPT_NM = OPT_NM;
-    }
-
-    public String getOPT_VAL() {
-        return OPT_VAL;
-    }
-
-    public void setOPT_VAL(String OPT_VAL) {
-        this.OPT_VAL = OPT_VAL;
-    }
-
-    public String getOPT_STUS() {
-        return OPT_STUS;
-    }
-
-    public void setOPT_STUS(String OPT_STUS) {
-        this.OPT_STUS = OPT_STUS;
-    }
-
-    public Integer getHASHTAG_ID() {
-        return HASHTAG_ID;
-    }
-
-    public void setHASHTAG_ID(Integer HASHTAG_ID) {
-        this.HASHTAG_ID = HASHTAG_ID;
-    }
-
-    public String getHASHTAG_NM() {
-        return HASHTAG_NM;
-    }
-
-    public void setHASHTAG_NM(String HASHTAG_NM) {
-        this.HASHTAG_NM = HASHTAG_NM;
-    }
-
     public Integer getPROD_FILE_ID() {
         return PROD_FILE_ID;
     }
@@ -373,20 +268,12 @@ public class TotalDto {
         this.PROD_FILE_ID = PROD_FILE_ID;
     }
 
-    public String getFILE_NM() {
-        return FILE_NM;
+    public String getFILE_PATH() {
+        return FILE_PATH;
     }
 
-    public void setFILE_NM(String FILE_NM) {
-        this.FILE_NM = FILE_NM;
-    }
-
-    public String getPATH() {
-        return PATH;
-    }
-
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
+    public void setFILE_PATH(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
     }
 
     public String getKIND() {
@@ -401,7 +288,7 @@ public class TotalDto {
     public String toString() {
         return "TotalDto{" +
                 "PROD_ID=" + PROD_ID +
-                ", CATE_CD='" + CATE_CD + '\'' +
+                ", CATE_CD=" + CATE_CD +
                 ", AMT=" + AMT +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
@@ -414,12 +301,8 @@ public class TotalDto {
                 ", PROD_DESC='" + PROD_DESC + '\'' +
                 ", DC_YN='" + DC_YN + '\'' +
                 ", MAI_YN='" + MAI_YN + '\'' +
-                ", FGIFT_YN='" + FGIFT_YN + '\'' +
                 ", UPD_DTM=" + UPD_DTM +
                 ", REG_DTM=" + REG_DTM +
-                ", NOTICE='" + NOTICE + '\'' +
-                ", SLE_BGN_DTM=" + SLE_BGN_DTM +
-                ", SLE_END_DTM=" + SLE_END_DTM +
                 ", PROD_DC_ID=" + PROD_DC_ID +
                 ", DC_TYP='" + DC_TYP + '\'' +
                 ", DC_RATE=" + DC_RATE +
@@ -428,19 +311,13 @@ public class TotalDto {
                 ", BGN_DTM=" + BGN_DTM +
                 ", END_DTM=" + END_DTM +
                 ", DC_STUS='" + DC_STUS + '\'' +
-                ", OPT_ID=" + OPT_ID +
-                ", OPT_NM='" + OPT_NM + '\'' +
-                ", OPT_VAL='" + OPT_VAL + '\'' +
-                ", OPT_STUS='" + OPT_STUS + '\'' +
-                ", HASHTAG_ID=" + HASHTAG_ID +
-                ", HASHTAG_NM='" + HASHTAG_NM + '\'' +
+
                 ", PROD_FILE_ID=" + PROD_FILE_ID +
-                ", FILE_NM='" + FILE_NM + '\'' +
-                ", PATH='" + PATH + '\'' +
+                ", FILE_PATH='" + FILE_PATH + '\'' +
                 ", KIND='" + KIND + '\'' +
+                ", file=" + file +
+                ", detailFile=" + detailFile +
+                ", oldFilePath='" + oldFilePath + '\'' +
                 '}';
     }
-
-
-
 }
