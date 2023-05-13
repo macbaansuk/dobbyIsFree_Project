@@ -31,8 +31,8 @@ public class UserDaoImpl implements UserDao {
         return session.selectList(namespace+"selectPage", map);
     }
     @Override
-    public int insertUser(User user) throws Exception {
-        return session.insert(namespace+"insertUser", user);
+    public int insertUser(UserDto userDto) throws Exception {
+        return session.insert(namespace+"insertUser", userDto);
     }
     @Override
     public int updateUser(User user) throws Exception {

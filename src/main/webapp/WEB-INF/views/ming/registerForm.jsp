@@ -12,21 +12,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   <link rel="stylesheet" href="./css/ming/register.css"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
   <script>
     function doublecheck() {
-        if($("#id").val()=='') {
-          alert("아이디를 입력하세요");
-          $("#id").focus();
-          return;
-        }
+      if($("#id").val()=='') {
+        alert("아이디를 입력하세요");
+        $("#id").focus();
+        return;
+      }
       var id=$("#id").val();
-        $.ajax({
-          url: "/register/dbCheck",
-          type: "POST",
-          data: {"id" : id},
-          success : dbCheck,  //함수(callback)
-          error : function(){ alert("error"); }
-        });
+      $.ajax({
+        url: "/register/dbCheck",
+        type: "POST",
+        data: {"id" : id},
+        success : dbCheck,  //함수(callback)
+        error : function(){ alert("error"); }
+      });
     }
     function dbCheck(data){
       if(data !="NO"){
@@ -70,48 +71,30 @@
     });
 
     $(document).ready(function() {
-
       const form = document.querySelector('.form');
 
       form.addEventListener('submit', function (event) {
-        // event.preventDefault();
-        // alert("addEventListener")
         const bd = document.querySelector('#BD').value;
-        const emailForm = document.querySelector('#EMAIL').value;
         submitForm();
-      });
-      // email 옵션에서 선택한 값을 emailValue 변수에 저장
-      var emailValue = $("#email2").val();
-
-      // email 옵션값이 변경될 때마다 emailValue 변수 업데이트
-      $("#email2").on("change", function () {
-        emailValue = $(this).val();
-        $("#email3").val(emailValue);
+        formCheck();
       });
 
       function submitForm() {
-        // alert("submitForm() is called")
         let year = document.querySelector('select[name="BD-year"]').value;
         let month = document.querySelector('select[name="BD-month"]').value;
         let day = document.querySelector('select[name="BD-day"]').value;
         let bd = year + "/" + month + "/" + day;
         document.querySelector('#BD').value = bd;
-
-
-        let email1 = document.querySelector('input[name="email1"]').value;
-        let email = email1 + "@" + $("#email3").val();
-
-        document.querySelector('#EMAIL').value = email;
-        let em = document.querySelector('#EMAIL'); //#EMAIL 값 확인
       }
     });  //document.ready
   </script>
+
 </head>
 <body>
 <jsp:include page="../header.jsp" />
 <form class ="form" method="post" id="join_form" action="/register" autocomplete="off" onsubmit="return formCheck(this)">
   <!--onsubmit? 이벤트 등록하는 것/ return formCheck(this)에서 this는 form태그 자기자신을 의미-->
-  <div class="default-title__container" style="margin-bottom: 51px; margin-top: 60px;";>
+  <div class="default-title__container" style="margin-bottom: 20px; margin-top: 30px;";>
     <div class="default-title__custom">
       <h3>회원정보 입력</h3>
     </div>
@@ -128,7 +111,7 @@
   <div id="personInfo">
     <table class="person-tb">
       <colgroup>
-        <col style="width:155px;" />
+        <col style="width:160px;" />
         <col style="width:auto;" />
       </colgroup>
       <tr>
@@ -167,7 +150,7 @@
                    size="15" maxlength="20" onkeyup="check_pwd_length(this, 'password');" /> <span
                   class="idpw-info">
                         * 영문자/숫자를 혼용하여 8~16자
-                    </span>
+                  </span>
           </div>
         </td>
       </tr>
@@ -355,9 +338,9 @@
         </th>
         <td>
           <div class="col-cell email-area">
-            <input type="text" name="email1" id="email1"
+            <input type="text" name="EMAIL" id="email1"
                    class="MS_input_txt MS_input_email normal-input" size="10" maxlength="20" value="" />
-            <span>@ </span>
+           <%-- <span>@ </span>
             <span id="direct_email" style="margin-top:3px;display:inline-block">
                         <input type="text" name="email2" id="email3" class="MS_input_txt MS_input_email normal-input"
                                value="" size="15" maxlength="25" />
@@ -368,7 +351,7 @@
               <option value="jungsuk.com">jungsuk.com</option>
               <option value="naver.com">naver.com</option>
               <option value="gmail.com">gmail.com</option>
-            </select>
+            </select>--%>
             <input type="hidden" name="EMAIL" id="EMAIL">
           </div>
         </td>
@@ -381,6 +364,24 @@
           <div class="col-cell">
             <%--@declare id="join_form"--%><input placeholder="휴대폰 번호(숫자만)" type="tel" name="MPNO" form="join_form" id="etcphone" class="MS_input_tel normal-input"
                                                   size="15" maxlength="13" value="" />
+             <input type="button" id="phonecheck" class="cbtn form" value="본인인증" onclick="phonecheck()">
+              <script>
+                document.getElementById("phonecheck").addEventListener("click", function () {
+                  var IMP = window.IMP; // 생략 가능
+                  IMP.init("imp77115312"); // 예: imp00000000
+                  IMP.certification({ // param
+                    pg: 'inicis_unified.MIIiasTest',//본인인증 설정이 2개이상 되어 있는 경우 필수
+                    merchant_uid: "ORD20180131-0000011", // 주문 번호
+                  }, function (rsp) { // callback
+                    if (rsp.success) {
+                      alert("성공");
+                    } else {
+                      alert("실패");
+                      // 인증 실패 시 로직,
+                    }
+                  });
+                });
+              </script>
           </div>
         </td>
       </tr>

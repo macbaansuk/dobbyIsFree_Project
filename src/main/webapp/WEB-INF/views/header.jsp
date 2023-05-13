@@ -124,13 +124,14 @@
     }
 
     #search_box #searchinput {
-      width: 300px;
-      height: 30px;
-      font-size: 15px;
-      margin-right: 10px;
-      border: 0px;
-      outline: none;
-      padding-left: 10px;
+      width: 300px !important;
+      height: 30px !important;
+      font-size: 15px !important;
+      margin-right: 10px !important;
+      border: 0px !important;
+      outline: none !important;
+      padding-left: 10px !important;
+      text-indent: 0px !important;
     }
 
     #search_box img {
