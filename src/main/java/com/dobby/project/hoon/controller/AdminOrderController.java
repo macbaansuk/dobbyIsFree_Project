@@ -102,8 +102,8 @@ public class AdminOrderController {
             ordDto.add(ord);
 
             // 값을 문자열로 변환하여 보내줌
-            model.addAttribute("opiDto", new Gson().toJson(opiDto));
-            model.addAttribute("ordDto", new Gson().toJson(ordDto));
+            model.addAttribute("opiDto",opiDto);
+            model.addAttribute("ordDto",ordDto);
 
             return "hoon/AdminorderDetailList";
         }
