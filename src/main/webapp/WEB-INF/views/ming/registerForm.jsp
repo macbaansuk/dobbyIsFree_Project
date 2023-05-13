@@ -374,9 +374,9 @@
                     merchant_uid: "ORD20180131-0000011", // 주문 번호
                   }, function (rsp) { // callback
                     if (rsp.success) {
-                      alert("성공");
+                      alert("본인인증 성공");
                     } else {
-                      alert("실패");
+                      alert("본인인증 실패");
                       // 인증 실패 시 로직,
                     }
                   });
