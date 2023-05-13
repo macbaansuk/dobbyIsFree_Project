@@ -14,7 +14,7 @@ import java.util.*;
 public interface UserDao {
     UserDto selectUser(String MBR_ID) throws Exception;
     int deleteUser(String MBR_ID) throws Exception;
-    int insertUser(User user) throws Exception;
+    int insertUser(UserDto userDto) throws Exception;
     int updateUser(User user) throws Exception;
     int count() throws Exception;
     String memberDbcheck(String id) throws Exception;
