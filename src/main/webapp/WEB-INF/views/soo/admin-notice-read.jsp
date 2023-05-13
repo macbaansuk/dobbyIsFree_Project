@@ -209,13 +209,17 @@
                 alert("작성자를 입력해주세요.");
                 return false;
             }
+            if ($("#writer").val().length > 10) {
+                alert("작성자는 최대 10자까지 입력가능합니다.");
+                return false;
+            }
             if ($("#title").val().trim() == "") {
                 alert("제목을 입력해주세요.");
                 return false;
             }
             // 글자수를 넘겼을 때
-            if ($("#title").val().length > 50) {
-                alert("제목은 최대 50자까지 입력 가능합니다.");
+            if ($("#title").val().length > 30) {
+                alert("제목은 최대 30자까지 입력 가능합니다.");
                 $("#title").focus();    // focus() => 현재 작업하고 있는 요소를 가르키는 메서드
                 return false;
             }
@@ -244,12 +248,16 @@
                     alert("작성자를 입력해주세요.");
                     return false;
                 }
+                if ($("#writer").val().length > 10) {
+                    alert("작성자는 최대 10자까지 입력가능합니다.");
+                    return false;
+                }
                 if ($("#title").val().trim() == "") {
                     alert("제목을 입력해주세요.");
                     return false;
                 }
-                if ($("#title").val().length > 50) {
-                    alert("제목은 최대 50자까지 입력 가능합니다.");
+                if ($("#title").val().length > 30) {
+                    alert("제목은 최대 30자까지 입력 가능합니다.");
                     $("#title").focus();
                     return false;
                 }
