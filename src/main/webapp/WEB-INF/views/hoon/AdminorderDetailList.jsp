@@ -35,13 +35,13 @@
     <tbody>
     <tr>
       <th>주문번호</th>
-      <td colspan="3">20230511163371</td>
+      <td colspan="3">20230515163371</td>
     </tr>
     <tr>
       <th scope="col">주문자(아이디) / 회원등급</th>
-      <td>테스트1(20230511163371) / WELCOME</td>
+      <td>김정석(jungsuk) / WELCOME</td>
       <th scope="col">이메일</th>
-      <td>aaa@aaa.com</td>
+      <td>jungsuk@coding.com</td>
     </tr>
     <tr>
       <th scope="col">주문일</th>
@@ -143,7 +143,7 @@
               <%--                <span class="opt">제품코드: 34497</span>--%>
           </a>
         </td>
-        <td>1</td>
+        <td>2</td>
 <%--        <c:choose>--%>
 <%--          <c:when test="${opiDto.DC_YN eq 'Y'}">--%>
 <%--            <c:set var="prod_fee" value="${opiDto.PROD_AMT * 0.9}"/>--%>
@@ -163,8 +163,38 @@
         </td>
         <td></td>
 
-      </tr>
+
 <%--    </c:forEach>--%>
+    </tbody>
+    <tbody class="center">
+    <%--        추가--%>
+    <td>
+      <a href="/kr/ko/ProductView.do?prdSeq=34497">
+        <img src="/img/sun/product-image/makeup/eyebrow/eyebrow_main.jpg"  alt="" width="100px">
+      </a>
+    </td>
+    <td class="pdtCont">
+      <a href="/kr/ko/ProductView.do?prdSeq=34497" target="_blank">
+                                    <span class="name">
+                                        납작 아이브로우 펜슬
+                                    </span>
+        <%--                <span class="opt">제품코드: 34497</span>--%>
+      </a>
+    </td>
+    <td>2</td>
+
+    <td>
+      4,500원
+    </td>
+
+    <td>
+      90P
+    <td>
+      상품준비중
+    </td>
+    <td></td>
+
+    </tr>
     </tbody>
   </table>
 </div>
@@ -174,7 +204,7 @@
   <div class="orderPrice">
     <dl>
       <dt>총 주문 금액</dt>
-      <dd><span class="num">22,500</span>원</dd>
+      <dd><span class="num">54,000</span>원</dd>
     </dl>
     <dl>
       <dt>할인 및 차감금액
@@ -192,13 +222,13 @@
     <dl>
       <dt>적립 뷰티포인트</dt>
       <dd>
-        <span class="num">+225</span>P
+        <span class="num">+540</span>P
       </dd>
     </dl>
     <div class="totalPrice">
       <dl>
         <dt>최종 결제 금액</dt>
-        <dd class="total"><span class="num">22,500</span>원</dd>
+        <dd class="total"><span class="num">54,000</span>원</dd>
       </dl>
     </div>
   </div>
@@ -227,7 +257,7 @@
 
     <tr>
       <th scope="row">결제금액</th>
-      <td colspan="3">22,500원</td>
+      <td colspan="3">54,000원</td>
     </tr>
     <tr>
       <th scope="row">환불 받을 은행</th>
@@ -268,7 +298,7 @@
       <tr>
         <th scope="row">받으실 분</th>
         <td>
-          <input type="text" id="userName" class="inputTxt" name="rcvNm" value="김도비" readonly="readonly">
+          <input type="text" id="userName" class="inputTxt" name="rcvNm" value="김정석" readonly="readonly">
         </td>
       </tr>
       <tr>
@@ -310,9 +340,9 @@
             </ul>
           </div>
           <span class="hyphen">-</span>
-          <input type="text" name="mblNo2" id="mblNo2" maxlength="4" title="휴대전화번호 두번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="1234" readonly="readonly">
+          <input type="text" name="mblNo2" id="mblNo2" maxlength="4" title="휴대전화번호 두번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="3614" readonly="readonly">
           <span class="hyphen">-</span>
-          <input type="text" name="mblNo3" id="mblNo3" maxlength="4" title="휴대전화번호 세번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="4321" readonly="readonly">
+          <input type="text" name="mblNo3" id="mblNo3" maxlength="4" title="휴대전화번호 세번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="4485" readonly="readonly">
         </td>
       </tr>
       <tr>
@@ -325,7 +355,7 @@
 </form>
 
 <div class="btnWrap">
-  <a href="/order/list" class="btnType3l">목록</a>
+  <a href="#" class="btnType3l" onclick="window.close()">닫기</a>
 </div>
 
 </div><!--page-->
@@ -347,8 +377,8 @@
 
   selActive();
   // 휴대전화번호 두번째와 세번째 값 설정하기
-  document.querySelector('#mblNo2').value = '1234';
-  document.querySelector('#mblNo3').value = '4321';
+  document.querySelector('#mblNo2').value = '3614';
+  document.querySelector('#mblNo3').value = '4485';
 </script>
 </body>
 

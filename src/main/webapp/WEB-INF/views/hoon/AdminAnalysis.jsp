@@ -515,15 +515,15 @@
                                                 </tr>
                                                 <tr class="total">
                                                     <th scope="row" id="orderCountTitleTotal"><strong>합계</strong></th>
-                                                    <td id="payWaitOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="shipReadyOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="shipWaitOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="shippingOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="shipendOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="cancelOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="changeOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="returnOrderCountTotal"><strong>0</strong>건</td>
-                                                    <td id="totalOrderCountTotal"><strong>0</strong>건</td>
+                                                    <td id="payWaitOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="shipReadyOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="shipWaitOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="shippingOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="shipendOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="cancelOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="changeOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="returnOrderCountTotal"><strong>0</strong>1건</td>
+                                                    <td id="totalOrderCountTotal"><strong>0</strong>1건</td>
                                                 </tr>
                                                 </tbody>
                                             </table>

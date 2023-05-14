@@ -319,32 +319,32 @@
                                                 </tr>
                                                 <tr class="em">
                                                     <th scope="row" id="dailyCountTitleToday">05월 15일 (오늘)</th>
-                                                    <td id="dailyCountOrderPriceToday">0 원<br>(0건)</td>
-                                                    <td id="dailyCountPayedPriceToday">0 원<br>(0건)</td>
+                                                    <td id="dailyCountOrderPriceToday">54,000 원<br>(건)</td>
+                                                    <td id="dailyCountPayedPriceToday">54,000 원<br>(건)</td>
                                                     <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
                                                     <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>
-                                                    <td id="weeklyCountOrderPriceAvg">0 원<br>(0건)</td>
-                                                    <td id="weeklyCountPayedPriceAvg">0 원<br>(0건)</td>
+                                                    <td id="weeklyCountOrderPriceAvg">54,000 원<br>(건)</td>
+                                                    <td id="weeklyCountPayedPriceAvg">54,000 원<br>(건)</td>
                                                     <td id="weeklyCountRefundPriceAvg">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" id="weeklyCountOrderTotalTitle">최근 7일 합계</th>
-                                                    <td id="weeklyCountOrderPriceTotal">0 원<br>(0건)</td>
-                                                    <td id="weeklyCountPayedPriceTotal">0 원<br>(0건)</td>
+                                                    <td id="weeklyCountOrderPriceTotal">54,000 원<br>(건)</td>
+                                                    <td id="weeklyCountPayedPriceTotal">54,000 원<br>(건)</td>
                                                     <td id="weeklyCountRefundPriceTotal">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" id="monthlyCountOrderAvgTitle">최근 30일 평균</th>
-                                                    <td id="monthlyCountOrderPriceAvg">0 원<br>(0건)</td>
-                                                    <td id="monthlyCountPayedPriceAvg">0 원<br>(0건)</td>
+                                                    <td id="monthlyCountOrderPriceAvg">54,000 원<br>(건)</td>
+                                                    <td id="monthlyCountPayedPriceAvg">54,000 원<br>(건)</td>
                                                     <td id="monthlyCountRefundPriceAvg">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
                                                     <th scope="row" id="monthlyCountOrderTotalTitle">최근 30일 합계</th>
-                                                    <td id="monthlyCountOrderPriceTotal">0 원<br>(0건)</td>
-                                                    <td id="monthlyCountPayedPriceTotal">0 원<br>(0건)</td>
+                                                    <td id="monthlyCountOrderPriceTotal">54,000 원<br>(건)</td>
+                                                    <td id="monthlyCountPayedPriceTotal">54,000 원<br>(건)</td>
                                                     <td id="monthlyCountRefundPriceTotal">0 원<br>(0건)</td>
                                                 </tr>
                                                 </tbody>
@@ -361,7 +361,7 @@
                             <div id="tabMallStatus2" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
                                 <div class="mallArea">
                                     <div class="gFlow graph">
-                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/명</span>
+                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/만원</span>
                                         <%-- 라인 챠트--%>
                                         <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                             <!--차트가 그려질 부분-->
@@ -380,44 +380,44 @@
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">날짜</th>
-                                                    <th scope="col">신규 회원 가입 현황(누적)</th>
-                                                    <th scope="col">적립금 적용 현황(누적)</th>
+                                                    <th scope="col">주문</th>
+                                                    <th scope="col">결제</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="right">
 
-                                                <tr class=""><td>05월 09일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 10일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 11일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 12일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 13일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
                                                 <tr class=""><td>05월 14일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class="em"><td>05월 15일 (금일)</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>05월 15일 (오늘)</td>
+                                                    <td>54,000 원<br>(1건)</td>
+                                                    <td>54,000 원<br>(1건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 16일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 17일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 18일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 19일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class="em"><td>05월 20일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
                                                     <td><strong>합계</strong></td>
-                                                    <td><strong>0</strong> 명</td>
-                                                    <td><strong>0</strong> 원</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -431,7 +431,7 @@
                             <div id="tabMallStatus3" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
                                 <div class="mallArea">
                                     <div class="gFlow graph">
-                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/명</span>
+                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/만원</span>
                                         <%-- 라인 챠트--%>
                                         <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                             <!--차트가 그려질 부분-->
@@ -450,45 +450,46 @@
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">날짜</th>
-                                                    <th scope="col">신규 회원 가입 현황(누적)</th>
-                                                    <th scope="col">적립금 적용 현황(누적)</th>
+                                                    <th scope="col">주문</th>
+                                                    <th scope="col">결제</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="right">
 
-                                                <tr class=""><td>05월 09일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 10일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 11일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 12일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
-                                                <tr class=""><td>05월 13일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
-                                                </tr>
                                                 <tr class=""><td>05월 14일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class="em"><td>05월 15일 (금일)</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>05월 15일 (오늘)</td>
+                                                    <td>54,000 원<br>(1건)</td>
+                                                    <td>54,000 원<br>(1건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 16일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 17일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 18일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>05월 19일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class="em"><td>05월 20일</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
                                                     <td><strong>합계</strong></td>
-                                                    <td><strong>0</strong> 명</td>
-                                                    <td><strong>0</strong> 원</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
                                                 </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -501,7 +502,7 @@
                             <div id="tabMallStatus4" class="tabMallStatus ui-tabs-panel ui-widget-content ui-corner-bottom">
                                 <div class="mallArea">
                                     <div class="gFlow graph">
-                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/명</span>
+                                        <span class="gSingleSide gDouble txtLess" id="eMainMemberChartUnit">단위/만원</span>
                                         <%-- 라인 챠트--%>
                                         <div style="width: 460px; height: 278px; overflow-y: hidden;overflow-clip-margin: content-box; ">
                                             <!--차트가 그려질 부분-->
@@ -520,44 +521,65 @@
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">날짜</th>
-                                                    <th scope="col">신규 회원 가입 현황(누적)</th>
-                                                    <th scope="col">적립금 적용 현황(누적)</th>
+                                                    <th scope="col">주문</th>
+                                                    <th scope="col">결제</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="right">
 
-                                                <tr class=""><td>05월 09일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>1월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 10일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>2월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 11일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>3월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 12일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>4월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 13일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>5월<br>(이번달)</td>
+                                                    <td>54,000원<br>(1건)</td>
+                                                    <td>54,000원<br>(1건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 14일</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>6월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class="em"><td>05월 15일 (금일)</td>
-                                                    <td>0 명</td>
-                                                    <td>0 원</td>
+                                                <tr class=""><td>7월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>8월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>9월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>10월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+                                                <tr class=""><td>11월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                </tr>
+
+                                                <tr class="em"><td>12월</td>
+                                                    <td>0 원<br>(0건)</td>
+                                                    <td>0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
                                                     <td><strong>합계</strong></td>
-                                                    <td><strong>0</strong> 명</td>
-                                                    <td><strong>0</strong> 원</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
+                                                    <td><strong>54,000</strong> 원 <br><strong>(1)</strong> 건</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -663,7 +685,7 @@
                             label: '주간 매출', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                5,0,0,0,0,0,0 //x축 label에 대응되는 데이터 값
+                                0,5.4,0,0,0,0,0 //x축 label에 대응되는 데이터 값
                             ],
                             backgroundColor:
                                 //색상
@@ -705,7 +727,7 @@
                             label: '요일별 평균 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                25,20,18,13,20,30,17 //x축 label에 대응되는 데이터 값
+                                0,5.4,0,0,0,0,0 //x축 label에 대응되는 데이터 값
                             ],
                             backgroundColor: [
                                 //색상
@@ -756,12 +778,12 @@
                     ],
                     datasets: [
                         { //데이터
-                            label: '연간 월별 매출 현황', //차트 제목
+                            label: '이번달 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
                                 0,0,0,0,0,0,0, //x축 label에 대응되는 데이터 값
                                 0,0,0,0,0,0,0,
-                                20,0,0,0,0,0,0,
+                                5.4,0,0,0,0,0,0,
                                 0,0,0,0,0,0,0,
                                 0,0,0,
                             ],
@@ -809,10 +831,10 @@
                     ],
                     datasets: [
                         { //데이터
-                            label: '주간 매출 현황', //차트 제목
+                            label: '연간 월별 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                                0,0,0,12,20,0,0,0,0,0,0,
+                                0,0,0,0,5.4,0,0,0,0,0,0,
                                 0,0,0,0,0,0,0,//x축 label에 대응되는 데이터 값
                             ],
                             backgroundColor: [

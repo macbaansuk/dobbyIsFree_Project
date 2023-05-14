@@ -242,7 +242,7 @@
                     <div class="mDashboard">
                         <div class="title">
                             <h2>오늘의 할 일<div class="cTip" code="MA.20" data-gtm="DATA_today_tip"></div></h2>
-                            <p class="today"><strong>05월 15일</strong> 수요일</p>
+                            <p class="today"><strong>05월 15일</strong> 월요일</p>
                         </div>
 
                         <!-- 오늘의 할일 시작 -->
@@ -255,7 +255,9 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" rowspan="2">입금전</th>
-                                    <th scope="col" rowspan="2">배송준비중/<br>배송보류중</th>
+                                    <th scope="col" rowspan="2">상품준비중
+<%--                                        /<br>배송보류중--%>
+                                    </th>
                                     <th scope="col" rowspan="2">배송대기</th>
                                     <th scope="col" rowspan="2">배송중</th>
                                     <th scope="col">취소</th>
@@ -274,8 +276,8 @@
                                 <tr class="total">
                                     <td><a href="" target="_top" data-gtm="TODO_before_deposit"><strong><span id="no_pay_cnt">0</span></strong></a></td>
                                     <td>
-                                        <a href="" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">0/</span></strong></a>
-                                        <a href="" target="_top" data-gtm="TODO_delivery_pending"><strong><span id="product_prepare_dlv_delay">0</span></strong></a>
+                                        <a href="" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">1</span></strong></a>
+<%--                                        <a href="" target="_top" data-gtm="TODO_delivery_pending"><strong><span id="product_prepare_dlv_delay">0</span></strong></a>--%>
                                     </td>
                                     <td><a href="" target="_top" data-gtm="TODO_waiting_delivery"><strong><span id="is_shipped_w">0</span></strong></a> </td>
                                     <td><a href="" target="_top" data-gtm="TODO_shipping"><strong><span id="is_shipped_m">0</span></strong></a></td>
@@ -350,50 +352,50 @@
                                             </thead>
                                             <tbody class="right">
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle1">05월 12일</th>
+                                                <th scope="row" id="dailyCountTitle1">05월 14일</th>
                                                 <td id="dailyCountOrderPrice1">0 원<br>(0건)</td>
                                                 <td id="dailyCountPayedPrice1">0 원<br>(0건)</td>
                                                 <td id="dailyCountRefundPrice1">0 원<br>(0건)</td>
                                             </tr>
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle2">05월 13일</th>
-                                                <td id="dailyCountOrderPrice2">0 원<br>(0건)</td>
-                                                <td id="dailyCountPayedPrice2">0 원<br>(0건)</td>
+                                                <th scope="row" id="dailyCountTitle2">05월 15일(오늘)</th>
+                                                <td id="dailyCountOrderPrice2">54,000 원<br>(1건)</td>
+                                                <td id="dailyCountPayedPrice2">54,000  원<br>(1건)</td>
                                                 <td id="dailyCountRefundPrice2">0 원<br>(0건)</td>
                                             </tr>
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle3">05월 14일</th>
+                                                <th scope="row" id="dailyCountTitle3">05월 16일</th>
                                                 <td id="dailyCountOrderPrice3">0 원<br>(0건)</td>
                                                 <td id="dailyCountPayedPrice3">0 원<br>(0건)</td>
                                                 <td id="dailyCountRefundPrice3">0 원<br>(0건)</td>
                                             </tr>
                                             <tr class="em">
-                                                <th scope="row" id="dailyCountTitleToday">05월 15일 (오늘)</th>
+                                                <th scope="row" id="dailyCountTitleToday">05월 17일</th>
                                                 <td id="dailyCountOrderPriceToday">0 원<br>(0건)</td>
                                                 <td id="dailyCountPayedPriceToday">0 원<br>(0건)</td>
                                                 <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
                                             </tr>
                                             <tr class="total">
                                                 <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>
-                                                <td id="weeklyCountOrderPriceAvg">0 원<br>(0건)</td>
+                                                <td id="weeklyCountOrderPriceAvg">54,000  원<br>(1건)</td>
                                                 <td id="weeklyCountPayedPriceAvg">0 원<br>(0건)</td>
                                                 <td id="weeklyCountRefundPriceAvg">0 원<br>(0건)</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row" id="weeklyCountOrderTotalTitle">최근 7일 합계</th>
-                                                <td id="weeklyCountOrderPriceTotal">0 원<br>(0건)</td>
+                                                <td id="weeklyCountOrderPriceTotal">54,000 원<br>(1건)</td>
                                                 <td id="weeklyCountPayedPriceTotal">0 원<br>(0건)</td>
                                                 <td id="weeklyCountRefundPriceTotal">0 원<br>(0건)</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row" id="monthlyCountOrderAvgTitle">최근 30일 평균</th>
-                                                <td id="monthlyCountOrderPriceAvg">0 원<br>(0건)</td>
+                                                <td id="monthlyCountOrderPriceAvg">54,000  원<br>(1건)</td>
                                                 <td id="monthlyCountPayedPriceAvg">0 원<br>(0건)</td>
                                                 <td id="monthlyCountRefundPriceAvg">0 원<br>(0건)</td>
                                             </tr>
                                             <tr class="total">
                                                 <th scope="row" id="monthlyCountOrderTotalTitle">최근 30일 합계</th>
-                                                <td id="monthlyCountOrderPriceTotal">0 원<br>(0건)</td>
+                                                <td id="monthlyCountOrderPriceTotal">54,000  원<br>(1건)</td>
                                                 <td id="monthlyCountPayedPriceTotal">0 원<br>(0건)</td>
                                                 <td id="monthlyCountRefundPriceTotal">0 원<br>(0건)</td>
                                             </tr>
@@ -418,7 +420,7 @@
                                         <tr>
                                             <th scope="col">날짜</th>
                                             <th scope="col">입금전</th>
-                                            <th scope="col">배송준비중</th>
+                                            <th scope="col">상품준비중</th>
                                             <th scope="col">배송대기중</th>
                                             <th scope="col">배송중</th>
                                             <th scope="col">배송완료</th>
@@ -502,28 +504,28 @@
                                             <td id="totalOrderCount6">0건</td>
                                         </tr>
                                         <tr class="em">
-                                            <th scope="row" id="orderCountTitleToday">05월 15일 (금일)</th>
+                                            <th scope="row" id="orderCountTitleToday">05월 15일 (오늘)</th>
                                             <td id="payWaitOrderCountToday">0건</td>
                                             <td id="shipReadyOrderCountToday">0건</td>
-                                            <td id="shipWaitOrderCountToday">0건</td>
+                                            <td id="shipWaitOrderCountToday">1건</td>
                                             <td id="shippingOrderCountToday">0건</td>
                                             <td id="shipendOrderCountToday">0건</td>
                                             <td id="cancelOrderCountToday">0건</td>
                                             <td id="changeOrderCountToday">0건</td>
                                             <td id="returnOrderCountToday">0건</td>
-                                            <td id="totalOrderCountToday">0건</td>
+                                            <td id="totalOrderCountToday">1건</td>
                                         </tr>
                                         <tr class="total">
                                             <th scope="row" id="orderCountTitleTotal"><strong>합계</strong></th>
                                             <td id="payWaitOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="shipReadyOrderCountTotal"><strong>0</strong>건</td>
+                                            <td id="shipReadyOrderCountTotal"><strong>1</strong>건</td>
                                             <td id="shipWaitOrderCountTotal"><strong>0</strong>건</td>
                                             <td id="shippingOrderCountTotal"><strong>0</strong>건</td>
                                             <td id="shipendOrderCountTotal"><strong>0</strong>건</td>
                                             <td id="cancelOrderCountTotal"><strong>0</strong>건</td>
                                             <td id="changeOrderCountTotal"><strong>0</strong>건</td>
                                             <td id="returnOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="totalOrderCountTotal"><strong>0</strong>건</td>
+                                            <td id="totalOrderCountTotal"><strong>1</strong>건</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -562,37 +564,37 @@
                                             </thead>
                                             <tbody class="right">
 
-                                            <tr class=""><td>05월 09일</td>
-                                                <td>0 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 10일</td>
-                                                <td>0 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 11일</td>
-                                                <td>0 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 12일</td>
-                                                <td>0 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 13일</td>
-                                                <td>0 명</td>
-                                                <td>0 원</td>
-                                            </tr>
                                             <tr class=""><td>05월 14일</td>
                                                 <td>0 명</td>
                                                 <td>0 원</td>
                                             </tr>
-                                            <tr class="em"><td>05월 15일 (금일)</td>
+                                            <tr class=""><td>05월 15일 (오늘)</td>
+                                                <td>2 명</td>
+                                                <td>0 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 16일</td>
+                                                <td>0 명</td>
+                                                <td>0 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 17일</td>
+                                                <td>0 명</td>
+                                                <td>0 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 18일</td>
+                                                <td>0 명</td>
+                                                <td>0 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 19일</td>
+                                                <td>0 명</td>
+                                                <td>0 원</td>
+                                            </tr>
+                                            <tr class="em"><td>05월 20일</td>
                                                 <td>0 명</td>
                                                 <td>0 원</td>
                                             </tr>
                                             <tr class="total">
                                                 <td><strong>합계</strong></td>
-                                                <td><strong>0</strong> 명</td>
+                                                <td><strong>2</strong> 명</td>
                                                 <td><strong>0</strong> 원</td>
                                             </tr>
                                             </tbody>
@@ -613,111 +615,80 @@
                                     <table border="1" summary="">
                                         <caption>게시물 현황</caption>
                                         <colgroup>
-                                            <col span="9" style="width:auto;"><!-- 참고 : 항목 개수에 따라 span 값 변경 -->
+                                            <col span="4" style="width:auto;"><!-- 참고 : 항목 개수에 따라 span 값 변경 -->
                                         </colgroup>
                                         <thead>
                                         <tr>
                                             <th scope="col">날짜</th>
                                             <th scope="col">공지사항</th>
-                                            <th scope="col">뉴스/이벤트</th>
-                                            <th scope="col">이용안내 FAQ</th>
-                                            <th scope="col">상품 사용후기</th>
-                                            <th scope="col">자유게시판</th>
-                                            <th scope="col">상품 Q&amp;A</th>
-                                            <th scope="col">자료실</th>
-                                            <th scope="col">갤러리</th>
+                                            <th scope="col">FAQ</th>
+                                            <th scope="col">1:1상담</th>
                                         </tr>
                                         </thead>
 
                                         <tbody class="right">
                                         <tr class="">
-                                            <th scope="row">05월 08일</th>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                        </tr>
-                                        <tr class="">
-                                            <th scope="row">05월 09일</th>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                        </tr>
-                                        <tr class="">
-                                            <th scope="row">05월 11일</th>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                        </tr>
-                                        <tr class="">
-                                            <th scope="row">05월 12일</th>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                        </tr>
-                                        <tr class="">
-                                            <th scope="row">05월 13일</th>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                        </tr>
-                                        <tr class="">
                                             <th scope="row">05월 14일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
-                                            <td>0 건</td>
+
+
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 15일</th>
+                                            <th scope="row">05월 15일(오늘)</th>
+                                            <td>0 건</td>
+                                            <td>0 건</td>
+                                            <td>1건</td>
+
+
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">05월 16일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
+
+
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">05월 17일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
+
+
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">05월 18일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
+                                            <td>0 건</td>
+
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">05월 19일</th>
+                                            <td>0 건</td>
+                                            <td>0 건</td>
+                                            <td>0 건</td>
+
+
+                                        </tr>
+                                        <tr class="">
+                                            <th scope="row">05월 20일</th>
+                                            <td>0 건</td>
+                                            <td>0 건</td>
+                                            <td>0 건</td>
+
+
                                         </tr>
 
                                         <tr class="total">
                                             <th scope="row"><strong>합계</strong></th>
                                             <td><strong>0</strong> 건</td>
                                             <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
-                                            <td><strong>0</strong> 건</td>
+                                            <td><strong>1</strong> 건</td>
+
                                         </tr>
 
                                         </tbody>
@@ -852,14 +823,14 @@
         data: { // 차트에 들어갈 데이터
             labels: [
                 //x 축
-                '09','10','11','12','13','14','15'
+                '14','15','16','17','18','19','20'
             ],
             datasets: [
                 { //데이터
                     label: '일별 매출 현황', //차트 제목
                     fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                     data: [
-                        8, 34, 12, 24,11,26,30 //x축 label에 대응되는 데이터 값
+                        0, 5.4, 0, 0,0,0,0 //x축 label에 대응되는 데이터 값
                     ],
                     backgroundColor:
                         //색상
@@ -913,14 +884,14 @@
         data: { // 차트에 들어갈 데이터
             labels: [
                 //x 축
-                '1','2','3','4','5','6','7'
+                '14','15','16','17','18','19','20'
             ],
             datasets: [
                 { //데이터
                     label: '주간 신규회원', //차트 제목
                     fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                     data: [
-                        21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
+                        0,2,0,0,0,0,0 //x축 label에 대응되는 데이터 값
                     ],
                     backgroundColor:
                         //색상
@@ -944,16 +915,16 @@
                     ,
                     borderWidth: 1 //경계선 굵기
                 },
-                {
-                    label: '주간 적립금 적용',
-                    fill: false,
-                    data: [
-                        8, 34, 12, 24,11,26,30
-                    ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1 //경계선 굵기
-                }
+                // {
+                //     label: '주간 적립금 적용',
+                //     fill: false,
+                //     data: [
+                //         0, 0, 0, 0,0,0,0
+                //     ],
+                //     backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                //     borderColor: 'rgba(54, 162, 235, 1)',
+                //     borderWidth: 1 //경계선 굵기
+                // }
             ]
         },
         options: {

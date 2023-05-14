@@ -147,13 +147,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">진열상태 (미구현)</th>
+                            <th scope="row">진열상태 </th>
                             <td>
                                 <label class="gSingleLabel eSelected"><input type="radio" class="fChk eDisplayStatus" name="display" value="A" checked="&quot;checked&quot;"> 전체</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="display" value="T"> 진열함</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="display" value="F"> 진열안함</label>
                             </td>
-                            <th scope="row">판매상태 (미구현)</th>
+                            <th scope="row">판매상태 </th>
                             <td>
                                 <label class="gSingleLabel eSelected"><input type="radio" class="fChk eDisplayStatus" name="selling" value="A" checked="&quot;checked&quot;"> 전체</label>
                                 <label class="gSingleLabel"><input type="radio" class="fChk eDisplayStatus" name="selling" value="T"> 판매함</label>
@@ -518,7 +518,7 @@
 
         let page = '';
         let pageSize = '';
-        let keyword =' ';
+        let keyword ='';
         let sortType ='id_d';
         let category ='';
         let period ='';
