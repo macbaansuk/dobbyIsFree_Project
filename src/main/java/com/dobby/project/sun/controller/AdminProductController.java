@@ -150,7 +150,7 @@ public class AdminProductController {
     public String register(TotalDto totalDto, @RequestParam("file")MultipartFile file, @RequestParam("detailFile")MultipartFile detailFile) {
         try {
 
-            String uploadFolder = "C:\\upload\\";
+            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product";
 
             // 대표 이미지 처리
             String fileRealName = file.getOriginalFilename();
@@ -172,11 +172,11 @@ public class AdminProductController {
             System.out.println("확장자명 fileExtension = " + fileExtension);
 
 
-            File saveFile = new File(uploadFolder + uniqueName + fileExtension + fileRealName);
+            File saveFile = new File(uploadFolder + uniqueName + fileExtension);
             // 실제 파일 저장 메서드
             file.transferTo(saveFile);
-//            totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
-            totalDto.setREP_IMG(uniqueName + fileExtension + fileRealName);
+            totalDto.setREP_IMG("/img/product/" + uniqueName + fileExtension);
+//            totalDto.setREP_IMG(uploadFolder+uniqueName + fileExtension);
 
             // 상세정보 이미지 처리
 
@@ -197,9 +197,9 @@ public class AdminProductController {
             System.out.println("생성된 고유문자열 detailUniqueName =" + detailUniqueName);
             System.out.println("확장자명 detailFileExtension = " + detailFileExtension);
 
-            File detailSaveFile = new File(uploadFolder + detailUniqueName + detailFileExtension + detailFileRealName);
+            File detailSaveFile = new File(uploadFolder + detailUniqueName + detailFileExtension);
             detailFile.transferTo(detailSaveFile);
-            totalDto.setFILE_PATH(detailUniqueName + detailFileExtension + detailFileRealName);
+            totalDto.setFILE_PATH("/img/product/" +detailUniqueName + detailFileExtension);
 
             productService.register(totalDto);
 
