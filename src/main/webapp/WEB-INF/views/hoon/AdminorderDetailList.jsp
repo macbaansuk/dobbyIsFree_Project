@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <th scope="col">주문일</th>
-      <td>2023-05-11 14:04:35</td>
+      <td>2023-05-15</td>
       <th scope="col">결제완료일</th>
       <td></td>
     </tr>
@@ -58,26 +58,7 @@
     <tr>
       <th scope="col">주문상태</th>
       <td class="state">상품준비중</td>
-    </tr>
-      <th scope="col">결제완료일</th>
-      <td>
-      </td>
-    </tr>
-    <tr>
 
-      <th scope="col">결제방법</th>
-      <td>
-        카드결제
-      </td>
-      <th scope="col"></th>
-      <td></td>
-
-    </tr>
-    <tr>
-      <th scope="col">주문상태</th>
-      <td class="state">
-       상품준비중
-      </td>
       <th scope="col">송장번호</th>
       <td>
       </td>
@@ -306,15 +287,15 @@
         <td class="deliveryWriteWrap">
           <div class="deliveryInput">
             <div class="row">
-              <input title="우편번호" type="text" readonly="" class="inputTxt ordzipTxt" style="width:13%;" value="13561 ">
+              <input title="우편번호" type="text" readonly="" class="inputTxt ordzipTxt" style="width:13%;" value="03164 ">
 
 
             </div>
             <div class="row">
-              <input type="text" name="dlvAddr1st" class="inputTxt dlvAddr1stTxt" readonly="readonly" title="주소 입력" style="width:90%;" value="경기도 성남시 분당구 정자일로 95">
+              <input type="text" name="dlvAddr1st" class="inputTxt dlvAddr1stTxt" readonly="readonly" title="주소 입력" style="width:90%;" value="서울 종로구 종로2가 9">
             </div>
             <div class="row">
-              <input type="text" name="dlvAddr2nd" class="inputTxt dlvAddr2ndTxt" title="상세주소 입력" style="width:90%;" value="1층" readonly="readonly">
+              <input type="text" name="dlvAddr2nd" class="inputTxt dlvAddr2ndTxt" title="상세주소 입력" style="width:90%;" value="518호" readonly="readonly">
             </div>
             <div class="row">
 
@@ -340,9 +321,9 @@
             </ul>
           </div>
           <span class="hyphen">-</span>
-          <input type="text" name="mblNo2" id="mblNo2" maxlength="4" title="휴대전화번호 두번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="3614" readonly="readonly">
+          <input type="text" name="mblNo2" id="mblNo2" maxlength="4" title="휴대전화번호 두번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="1111" readonly="readonly">
           <span class="hyphen">-</span>
-          <input type="text" name="mblNo3" id="mblNo3" maxlength="4" title="휴대전화번호 세번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="4485" readonly="readonly">
+          <input type="text" name="mblNo3" id="mblNo3" maxlength="4" title="휴대전화번호 세번째" class="inputTxt" style="width:20%;vertical-align:middle;" value="2222" readonly="readonly">
         </td>
       </tr>
       <tr>
