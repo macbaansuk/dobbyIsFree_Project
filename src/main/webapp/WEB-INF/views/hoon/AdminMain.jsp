@@ -276,7 +276,7 @@
                                 <tr class="total">
                                     <td><a href="" target="_top" data-gtm="TODO_before_deposit"><strong><span id="no_pay_cnt">0</span></strong></a></td>
                                     <td>
-                                        <a href="" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">1</span></strong></a>
+                                        <a href="/admin/order" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">1</span></strong></a>
 <%--                                        <a href="" target="_top" data-gtm="TODO_delivery_pending"><strong><span id="product_prepare_dlv_delay">0</span></strong></a>--%>
                                     </td>
                                     <td><a href="" target="_top" data-gtm="TODO_waiting_delivery"><strong><span id="is_shipped_w">0</span></strong></a> </td>
