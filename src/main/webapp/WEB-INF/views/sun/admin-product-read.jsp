@@ -208,8 +208,7 @@
                                 <label for="price">가격</label>
                             </td>
                             <td>
-                                <input type="number" id="price" name="AMT"
-                                       value="${read.AMT}" ${mode=="read"?'readonly="readonly"': ''}>
+                                <input type="number" id="price" name="AMT" value="${read.AMT}" ${mode=="read"?'readonly="readonly"': ''}>
                             </td>
                         </tr>
                         <tr>

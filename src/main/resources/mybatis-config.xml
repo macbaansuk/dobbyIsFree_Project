@@ -43,15 +43,6 @@
         <typeAlias alias="ProdCntDto" type="com.dobby.project.hwa.orderList.ProdCntDto"/>
         <typeAlias alias="OrdProdInfoDto" type="com.dobby.project.hwa.orderList.OrdProdInfoDto"/>
 
-
-
-
-
-
-
-
-
-
         <!--    sun    -->
         <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
         <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
