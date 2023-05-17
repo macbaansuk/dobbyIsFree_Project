@@ -2,7 +2,6 @@ package com.dobby.project.sun.dao;
 
 import com.dobby.project.sun.domain.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +45,10 @@ public interface ProductDao {
 
 
     //관리자 상품 등록
-//    int insertProduct(RegisterDto registerDto);
-//    int insertDetailFile(RegisterDto registerDto);
-    int insertProduct(TotalDto totalDto);
-    int insertDetailFile(TotalDto totalDto);
+//    void insertProduct(RegisterDto registerDto);
+//    void insertDetailFile(RegisterDto registerDto);
+    void insertProduct(TotalDto totalDto);
+    void insertDetailFile(TotalDto totalDto);
 
 //    void insertDiscount(RegisterDto registerDto);
 //

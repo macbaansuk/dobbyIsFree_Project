@@ -144,18 +144,27 @@
                                     <!--  카테고리 -->
                                     <td class="ttl">${P.cate_nm}</td>
                                     <!--  상품명 -->
-<%--                                    <td class="bbs_cate"> <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>"><img src="${P.rep_img}" alt="상품 이미지" align="middle"> ${P.prod_nm}</a></td>--%>
                                     <td class="bbs_cate">
-                                        <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
-                                            <img src="${P.rep_img}?t=${timestamp}" alt=" ${P.prod_nm}상품 이미지" align="middle">
+                                        <c:choose>
+                                            <c:when test="${P.prod_nm == '올리브 에멜전'}">
+                                                <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
+<%--                                                    <img src="/img/sun/product-image/${P.rep_img}" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}--%>
+                                                    <img src="/img/sun/olive.gif" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
+                                                </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
+                                                    <img src="${P.rep_img}" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
+                                                </a>
+                                            </c:otherwise>
+                                        </c:choose>
 
-                                        ${P.prod_nm}
-                                        </a>
                                     </td>
 
                                     <!--  가격-->
 
-                                    <td class="wrtr">${P.amt}</td>
+<%--                                    <td class="wrtr">${P.amt}</td>--%>
+                                    <td class="wrtr"><fmt:formatNumber value="${P.amt}" groupingUsed="true" /></td>
                                     <!--  상태 -->
                                     <td class="stus">${P.prod_stus}</td>
                                     <!--  등록일시 -->
