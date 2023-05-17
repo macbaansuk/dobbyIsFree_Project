@@ -218,7 +218,7 @@
                 return false;
             }
             // 글자수를 넘겼을 때
-            if ($("#title").val().length > 30) {
+            if ($("#title").val().length > 50) {
                 alert("제목은 최대 30자까지 입력 가능합니다.");
                 $("#title").focus();    // focus() => 현재 작업하고 있는 요소를 가르키는 메서드
                 return false;
@@ -256,7 +256,7 @@
                     alert("제목을 입력해주세요.");
                     return false;
                 }
-                if ($("#title").val().length > 30) {
+                if ($("#title").val().length > 50) {
                     alert("제목은 최대 30자까지 입력 가능합니다.");
                     $("#title").focus();
                     return false;

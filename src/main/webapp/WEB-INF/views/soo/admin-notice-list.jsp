@@ -120,7 +120,6 @@
                                     <option value="삭제예정">삭제예정</option>
                                 </select>
                             </div>
-
                         </div>
                         <div class="listMid">
                             <span class="cnt">총 ${totalCnt}개</span>
@@ -168,7 +167,7 @@
                                         <!--  게시물 상태 -->
                                         <td class="stus">${Notice.STUS}</td>
                                         <!--  게시물 작성일 -->
-                                        <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd hh:mm:ss" type="date"/></td>
+                                        <td class="reg_dtm"><fmt:formatDate value="${Notice.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></td>
 
                                         <td>
                                             <!--  수정버튼 -->

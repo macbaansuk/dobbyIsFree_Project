@@ -9,16 +9,53 @@ a {text-decoration: none;}
 
 
 #catelist {
-    padding-bottom: 10px;
-}
+    margin: 5px 30px 5px 15px;
+    height: 35px;
+    width: 150px;
+    border: 1px solid #a7a7a7;
+    outline: none;
+    padding-left: 8px;
+    align-items: center;
 
+}
+#catelist option {
+    border-radius: 0;
+    outline: none;
+    border: solid 0.5px #dcdcdc;
+    padding-left: 10px;
+    align-items: center;
+
+}
 #statuslist {
-    padding-bottom: 10px;
+    margin: 5px 10px 5px 10px;
+    height: 35px;
+    width: 150px;
+    border: 1px solid #a7a7a7;
+    outline: none;
+    padding-left: 10px;
+    align-items: center;
+    border-radius: 0;
+
+}
+#statuslist option {
+    border-radius: 0;
+    outline: none;
+    border: solid 0.5px #dcdcdc;
+    padding-left: 8px;
+    align-items: center;
+}
+#statuslist option:checked {
+    background-color: lightgray;
 }
 
+.listHead {
+    display: flex;
+}
 .listHead div {
     padding-bottom: 5px;
     padding-top: 5px;
+    display: flex;
+    align-items: center;
 }
 
 
