@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,17 @@
 
 <section class="contents">
     <div class="product-topview">
-        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
+<%--        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">--%>
+        <c:choose>
+            <c:when test="${productDetail.PROD_NM == '올리브 에멜전'}">
+                     <img src="/img/sun/olive.gif" alt="상품 상세 이미지">
+            </c:when>
+            <c:otherwise>
+                <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
+            </c:otherwise>
+        </c:choose>
+
+
 
 
         <div class="product-detail">
@@ -48,18 +59,24 @@
                     <dt>판매가</dt>
                     <c:choose>
                         <c:when test="${productDetail.DC_YN == 'N'}">
-                            <strong class="discount-price">${productDetail.AMT}원</strong>
+                            <strong class="discount-price">
+                            <fmt:formatNumber value="${productDetail.AMT}" pattern="###,###.##"/>원
+                           </strong>
                             <span class="original-price"></span>
                             <span class="discount-rate"></span>
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="dc" items="${Products_DC}">
                                 <c:if test="${productDetail.PROD_ID == dc.PROD_ID}">
-                                    <strong class="discount-price">${dc.DC_PRICE}원</strong>
+                                    <strong class="discount-price">
+                                        <fmt:formatNumber value="${dc.DC_PRICE}" pattern="###,###.##"/>원
+                                    </strong>
                                     <span class="discount-rate">${dc.DC_RATE}%</span>
                                 </c:if>
                             </c:forEach>
-                            <span class="original-price">${productDetail.AMT}</span>
+                            <span class="original-price">
+                                <fmt:formatNumber value="${productDetail.AMT}" pattern="###,###.##"/>
+                            </span>
                         </c:otherwise>
                     </c:choose>
                 </dl>
@@ -107,7 +124,7 @@
 
                 <script>
                     $(document).ready(function () {
-                        const price = parseInt($('.discount-price').text());
+                        const price = parseInt($('.discount-price').text().replace(/,/g, ''));
                         let quantity = parseInt($('#quantity').val());
                         let total = price * quantity;
                         updateTotal(total);
@@ -252,6 +269,9 @@
     <div class="tab-contents">
         <div id="tab1" class="tab-content active">
             <c:choose>
+                <c:when test="${productDetail.PROD_NM=='올리브 에멜전'}">
+                    <img src="/img/sun/olive_detail.jpg" alt="${productDetail.PROD_NM}상세정보 이미지"/>
+                </c:when>
                 <c:when test="${getDetailImage.FILE_PATH != null}">
                     <img src="${getDetailImage.FILE_PATH}" alt="${productDetail.PROD_NM}상세정보 이미지"/>
                 </c:when>

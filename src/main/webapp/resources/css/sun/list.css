@@ -10,6 +10,9 @@
 button{
     font-family: "나눔바른고딕OTF", "돋움";
 }
+
+
+
 .product-header {
     position: relative;
 }
@@ -23,9 +26,12 @@ button{
     z-index: 2;
     padding: 20px;
     border-radius: 10px;
-
-
 }
+.main-content{
+    padding-left: 200px;
+}
+
+
 
 .product-header img {
     width: 100%;
@@ -38,18 +44,8 @@ button{
     margin-bottom: 30px;
 }
 
-/*pre{*/
-/*    color: #777777;*/
-/*    line-height: 1.6;*/
-/*    font-size: 14px;*/
-/*}*/
 
 .product-desc pre{
-    /*font-size: 16px;*/
-    /*margin: 0;*/
-    /*width: 80%; !* 너비 설정 수정 *!*/
-    /*background: rgba(255, 255, 255, 0.8); !* 배경 설정 추가 (흰색으로 반투명) *!*/
-    /*word-wrap: break-word; !* 단어 줄바꿈 *!*/
     color: #777777;
     line-height: 1.6;
     font-size: 14px;
@@ -93,9 +89,9 @@ button{
 
     display: flex;
     flex-wrap: wrap;
-    gap: 5.5%;
+    /*gap: 5.5%;*/
     margin-top: 20px;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .product-row {
@@ -106,7 +102,7 @@ button{
 }
 
 .product {
-    width: 250px;
+    width: 25%;
     box-sizing: border-box;
     padding: 0;
     border: none;
@@ -134,7 +130,7 @@ button{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .price {
@@ -143,7 +139,7 @@ button{
 }
 
 .price strong {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
     margin-right: 5px;
@@ -157,7 +153,7 @@ button{
 }
 
 .discount-rate {
-    font-size: 18px;
+    font-size: 16px;
     color: red;
 }
 

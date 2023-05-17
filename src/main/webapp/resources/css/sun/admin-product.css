@@ -143,10 +143,6 @@
     font-size: 0;
     cursor: none;
 }
-
-
-
-
 .Header li::before{
     content: "";
     position: absolute;
@@ -171,11 +167,6 @@
     transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
     transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
 }
-
-
-
-
-
 
 
 /* 좌측 바  */

@@ -27,10 +27,7 @@
 	<view-controller path="/" view-name="main"/>
 
 	<!-- 파일 업로드 데이터 관리 -->
-<!--	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-<!--		<beans:property name="maxUploadSize" value="10485760" />   &lt;!&ndash; Max upload size : 10MB &ndash;&gt;-->
-<!--		<beans:property name="maxInMemorySize" value="10485760" /> &lt;!&ndash; Max size of file in memory : 10MB &ndash;&gt;-->
-<!--	</beans:bean>-->
+
 	<!-- fileupload -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>

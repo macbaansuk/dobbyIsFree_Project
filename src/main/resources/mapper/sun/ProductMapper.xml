@@ -191,11 +191,11 @@
 
     <insert id="insertProduct"  parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         INSERT INTO PROD
-        (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  NEW_YN, PROD_STUS,
+        (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  PROD_STUS,
          OPT_YN,  DC_YN, MAI_YN, UPD_DTM)
         VALUES
             (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},
-             #{NEW_YN}, #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});
+            #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});
     </insert>
     <insert id="insertDetailFile" parameterType="TotalDto">
         INSERT INTO FILE

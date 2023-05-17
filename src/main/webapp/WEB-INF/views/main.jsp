@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -240,18 +241,22 @@
                             <p class="price">
                                 <c:choose>
                                     <c:when test="${P.DC_YN == 'N'}">
-                                        <strong class="discount-price">${P.AMT}</strong>
+                                        <strong class="discount-price">
+                                        <fmt:formatNumber value="${P.AMT}" pattern="###,###.##"/>
+                                        </strong>
                                         <span class="original-price"></span>
                                         <span class="discount-rate"></span>
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach var="DC" items="${Products_DC}">
                                             <c:if test="${P.PROD_ID == DC.PROD_ID}">
-                                                <strong class="discount-price">${DC.DC_PRICE}</strong>
+                                                <strong class="discount-price">
+                                                    <fmt:formatNumber value="${DC.DC_PRICE}" pattern="###,###.##"/>
+                                                </strong>
                                                 <span class="discount-rate">${DC.DC_RATE}%</span>
                                             </c:if>
                                         </c:forEach>
-                                        <span class="original-price">${P.AMT}</span>
+                                        <span class="original-price"><fmt:formatNumber value="${P.AMT}" pattern="###,###.##"/></span>
                                     </c:otherwise>
                                 </c:choose>
                             </p>
@@ -353,16 +358,16 @@
     <jsp:include page="footer.jsp"/>
 
 
-        <!--모달창 -->
-        <div class="modal" id="cart-modal">
-            <div class="modal-content">
-                <h2>장바구니에 상품이 담겼습니다</h2>
-                <div class="modal-buttons">
-                    <button id="shopping-btn">쇼핑 계속하기</button>
-                    <button id="cart-btn">장바구니로 이동</button>
-                </div>
+    <!--모달창 -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <h2>장바구니에 상품이 담겼습니다</h2>
+            <div class="modal-buttons">
+                <button id="shopping-btn">쇼핑 계속하기</button>
+                <button id="cart-btn">장바구니로 이동</button>
             </div>
         </div>
+    </div>
     <script>
         //장바구니 모달창
         $(document).ready(function() {
