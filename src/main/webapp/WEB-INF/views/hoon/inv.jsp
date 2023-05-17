@@ -10,6 +10,9 @@
 
     <style>
 
+
+    </style>
+
     </style>
 
 </head>
@@ -80,7 +83,7 @@
                                             <option value="pm_memo">메모</option>
                                             <option value="ins_user">등록아이디</option>
                                         </select>
-                                        <input type="text" class="search-input" style="width:500px;" value="${ph.sc.keyword}" name="keyword">
+                                        <input type="text" class="search-input" style="width:500px;height:25px;" value="${ph.sc.keyword}" name="keyword">
                                         <select data-placeholder="- 분류 선택 -" class="chzn-select-deselect eTrend  chzn-done" style="width:312px; display:none;" name="Trend[]" id="selPC1">
                                             <option value=""></option>
                                         </select><div id="selPC1_chzn" class="chzn-container chzn-container-single eSearchSelects" style="width: 312px; display: none;" title=""><a href="javascript:void(0)" class="chzn-single chzn-default" tabindex="-1"><span>- 분류 선택 -</span><div><b></b></div></a><div class="chzn-drop"><div class="chzn-search"><input type="text" autocomplete="off" style="display: none;"><input type="text" autocomplete="off"></div><ul class="chzn-results" style=""></ul></div></div>
@@ -116,7 +119,7 @@
                             <th scope="row">상품분류</th>
                             <td colspan="3">
                                 <div class="gSingle">
-                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="1" ${ph.sc.option=='1' ? "selected" : ""} >(대분류) 1</option> <option value="2" ${ph.sc.option=='2' ? "selected" : ""} >(대분류) 2</option> <option value="3"${ph.sc.option=='3' ? "selected" : ""} >(대분류) 3</option> <option value="4"${ph.sc.option=='4' ? "selected" : ""} >(대분류) 4</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택(미구현) -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 (미구현) -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 (미구현) -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
+                                    <select class="fSelect category eCategory" id="eCategory1" depth="1" name="category"> <option value="">- 대분류 선택 -</option> <option value="1" ${ph.sc.option=='1' ? "selected" : ""} >(대분류) 스킨케어</option> <option value="2" ${ph.sc.option=='2' ? "selected" : ""} >(대분류) 메이크업</option> <option value="3"${ph.sc.option=='3' ? "selected" : ""} >(대분류) 남성</option> <option value="4"${ph.sc.option=='4' ? "selected" : ""} >(대분류) 헤어/바디</option>  </select> <select class="fSelect category eCategory" id="eCategory2" depth="2" name="categorys[]"> <option value="">- 중분류 선택(미구현) -</option> <option value="34">(중분류) Skirts</option><option value="35">(중분류) Pants</option></select> <select class="fSelect category eCategory" id="eCategory3" depth="3" name="categorys[]"> <option value="">- 소분류 선택 (미구현) -</option> </select> <select class="fSelect category eCategory" id="eCategory4" depth="4" name="categorys[]"> <option value="">- 상세분류 선택 (미구현) -</option> </select> <input type="hidden" name="category" id="eHiddenCategory" value="27">                    <span class="gBreak">
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="sub_cate" value="T"> 하위분류 포함검색</label>--%>
 <%--                                            <label class=""><input type="checkbox" class="fChk category_sort" name="notincategory" value="T"> 분류 미등록상품 검색</label>--%>
                                         </span>
@@ -292,6 +295,7 @@
 
 <jsp:include page="../admin_footer.jsp"/>
 
+
   <script>
       //datePicker
       let calendar = $(function(){
@@ -336,6 +340,8 @@
   </script>
 
 <script>
+
+
 
     let pageHandler; // 전역변수로 담아서 다른 함수에서도 사용할 수 있다.
     let period = '';
@@ -461,7 +467,7 @@
         object.forEach(function(inv){
             tmp += '<tr>'
             tmp += '<form id="form" class="frm" action="/admin/modify" method="post">'
-            tmp += '<td rowspan="1" id="prod-id" data-prod-id="' + inv.prod_ID + '">' + inv.prod_ID + '<input type="checkbox" id="pd-check" data-prod-id="' + inv.prod_ID + '"></td>'
+            tmp += '<td rowspan="1" id="prod-id" data-prod-id="' + inv.prod_ID + '">' + inv.prod_ID +'<br>' +'<input type="checkbox" id="pd-check" data-prod-id="' + inv.prod_ID + '"></td>'
             tmp += '<td rowspan="1" class="left">'
             tmp += '<div class="gGoods gMedium" style="z-index: 0;">'
             tmp += '<div class="mOpen">'
@@ -475,7 +481,20 @@
             tmp +=  '</div>'
             tmp +=  '</td>'
             tmp +=  '<td rowspan="1" id="total-qty-'+inv.prod_ID+'" data-prod-id="'+inv.prod_ID+'">'+inv.inv_QTY+'</td>'
-            tmp +=  '<td>'+inv.cate_CD
+
+            // 카테고리 코드에 따라 문자열 변경
+            let cateText = '';
+            if (inv.cate_CD == '1') {
+                cateText = '스킨케어';
+            } else if (inv.cate_CD == '2') {
+                cateText = '메이크업';
+            } else if (inv.cate_CD == '3') {
+                cateText = '남성';
+            } else if (inv.cate_CD == '4') {
+                cateText = '헤어바디';
+            }
+
+            tmp +=  '<td>'+cateText
             tmp += '<input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">'
             tmp += '</td>'
             //
@@ -896,12 +915,43 @@
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            let opt1 = document.getElementById('opt1');
+            let opt2 = document.getElementById('opt2');
+            let opt3 = document.getElementById('opt3');
+
+            opt1.addEventListener('change', function() {
+                if (opt1.selected) {
+                    opt1.style.color = 'skyblue';
+                } else {
+                    opt1.style.color = '';
+                }
+            });
+
+            opt2.addEventListener('change', function() {
+                if (opt2.selected) {
+                    opt2.style.color = 'red';
+                } else {
+                    opt2.style.color = '';
+                }
+            });
+
+            opt3.addEventListener('change', function() {
+                if (opt3.selected) {
+                    opt3.style.color = 'orange';
+                } else {
+                    opt3.style.color = '';
+                }
+            });
+        });
     });
 
 </script>
             <script >
                 let msg = "${msg}";
                 if (msg=="login_ERR") alert("관리자 아이디로 로그인 해주세요.")
+
+
 
             </script>
 
