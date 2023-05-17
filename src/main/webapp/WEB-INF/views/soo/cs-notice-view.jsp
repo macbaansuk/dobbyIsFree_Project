@@ -56,9 +56,7 @@
                     <span class="date"><fmt:formatDate value="${noticeDto.REG_DTM}" pattern="yyyy-MM-dd" type="date"/></span>
                 </div>
                 <div class="listCont">
-                    <p>
-                        ${noticeDto.CN}
-                    </p>
+                    <textarea readonly="readonly">${noticeDto.CN}</textarea>
                 </div>
                 <div class="listBtm">
                     <button type="button" id="listBtn">목록</button>

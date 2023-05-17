@@ -29,7 +29,7 @@
         SELECT N.NB_ID, N.CATE_ID, C.CATE_NM, N.TTL, N.CN, N.WRTR, N.REG_DTM, N.UPD_DTM, N.DEL_DTM, N.VIEWS, N.STUS
         FROM `dobbyisfree`.NOTICE N, `dobbyisfree`.BBS_CATEGORY C
         WHERE N.CATE_ID = C.CATE_ID
-        ORDER BY REG_DTM DESC, NB_ID DESC
+        ORDER BY NB_ID DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 

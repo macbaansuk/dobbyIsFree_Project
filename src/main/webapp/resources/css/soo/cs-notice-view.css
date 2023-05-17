@@ -122,15 +122,23 @@ h3{
     display: block;
     padding: 20px 20px 20px 20px;
     border-bottom: 0.1px solid rgb(170, 170, 170);
-    min-height: 400px;
+    min-height: 600px;
     max-height: 1000px;
 }
 
 
-.listCont p{
+.listCont textarea{
+    width: 100%;
+    padding : 20px;
     word-wrap: break-word;
-    line-height: 2;
-
+    white-space: pre-wrap;
+    border: none;
+    outline: none;
+    height: 600px;
+    overflow: hidden;
+    resize: none;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
 .cont-img {

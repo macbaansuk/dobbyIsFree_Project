@@ -106,7 +106,7 @@
                         <tr>
                             <th>첨부파일</th>
                             <td>
-                                <button id="imgBtn">사진첨부 (최대3개)</button>
+                                <button type="button" id="imgBtn">사진첨부 (최대3개)</button>
                             </td>
                         </tr>
 
@@ -245,7 +245,7 @@
         $('#prodSearchBtn').on("click",function(e){
             e.preventDefault();
             let popUrl = "/mypage/counsel/write/prodPop";
-            let popOption = "width = 400px, height=400px, top=300px, left=300px, scrollbars=yes";
+            let popOption = "width = 500px, height=580px, top=300px, left=300px, scrollbars=yes";
             let popName = "제품 찾기";
 
             // 자식창 열기

@@ -147,7 +147,7 @@
                                         <!-- 작성일, yy-MM-dd hh:mm:ss -->
                                         <td class="regdate">
                                             <fmt:formatDate value="${counsel.REG_DTM}"
-                                                            pattern="yyyy-MM-dd hh:mm:ss" type="date" />
+                                                            pattern="yyyy-MM-dd" type="date" />
                                         </td>
                                     </tr>
                                     <tr class="questionCont">
