@@ -506,13 +506,10 @@
             tmp += '</td>'
 
             //
-            tmp += '<td>'
-            tmp += '<select class="inv-status" data-prod-id="' + inv.prod_ID + '" name="inv_status[P000000J000A]">'
-            tmp += '<option id="opt1" value="여유" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '여유' ? 'selected' : '') + '>여유</option>'
-            tmp += '<option id="opt2" value="부족" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '부족' ? 'selected' : '') + '>부족</option>'
-            tmp += '<option id="opt3" value="품절" data-prod-id="' + inv.prod_ID + '"' + (inv.inv_STUS_CD == '품절' ? 'selected' : '') + '>품절</option>'
-            tmp += '</select>'
-            tmp += '</td>'
+            tmp += '<td>';
+            tmp += '<span class="inv-status" data-prod-id="' + inv.prod_ID + '">' + inv.inv_STUS_CD + '</span>';
+            tmp += '</td>';
+
             //
             tmp += '<td>'
             tmp += '<span class="ec-use-inventory-display-item" style="display: none;">' + inv.inv_LOC + '</span>'
@@ -534,6 +531,8 @@
     }
 
     $(document).ready(function() {
+
+
 
         let page = '';
         let pageSize = '';
@@ -593,12 +592,20 @@
 
             });
 
+        $('.inv-status').each(function() {
+            let invStusCd = $(this).text().trim();
+            if (invStusCd === '부족') {
+                $(this).css('color', 'red');
+            } else if (invStusCd === '여유') {
+                $(this).css('color', 'skyblue');
+            }
+        });
 
 // 저장버튼 누를시 변경
         $('#eBtnModify').on("click", function () {
-            const code1 = $('#opt1').val(); // 여유
-            const code2 = $('#opt2').val(); // 부족
-            const code3 = $('#opt3').val(); // 품절
+            const code1 = "여유"; // 여유
+            const code2 = "부족"; // 부족
+            const code3 = "품절"; // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
 
             // 입력하던 화면으로 돌아가야함, 즉 클라이언트가 입력한 정보로 다시 showList 호출
@@ -662,6 +669,12 @@
                     invStusCd = code1;
                 } else {
                     invStusCd = code2;
+                }
+
+                if (invStusCd === code1) {
+                    $('.inv-status').css('color', 'skyblue');
+                } else if (invStusCd === code2) {
+                    $('.inv-status').css('color', 'red');
                 }
 
                 console.log('저장 page ='+page)
@@ -915,35 +928,7 @@
             showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            let opt1 = document.getElementById('opt1');
-            let opt2 = document.getElementById('opt2');
-            let opt3 = document.getElementById('opt3');
 
-            opt1.addEventListener('change', function() {
-                if (opt1.selected) {
-                    opt1.style.color = 'skyblue';
-                } else {
-                    opt1.style.color = '';
-                }
-            });
-
-            opt2.addEventListener('change', function() {
-                if (opt2.selected) {
-                    opt2.style.color = 'red';
-                } else {
-                    opt2.style.color = '';
-                }
-            });
-
-            opt3.addEventListener('change', function() {
-                if (opt3.selected) {
-                    opt3.style.color = 'orange';
-                } else {
-                    opt3.style.color = '';
-                }
-            });
-        });
     });
 
 </script>

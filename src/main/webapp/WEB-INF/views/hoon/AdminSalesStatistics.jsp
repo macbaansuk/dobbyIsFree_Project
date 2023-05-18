@@ -319,8 +319,8 @@
                                                 </tr>
                                                 <tr class="em">
                                                     <th scope="row" id="dailyCountTitleToday">05월 18일</th>
-                                                    <td id="dailyCountOrderPriceToday">54,000 원<br>(1건)</td>
-                                                    <td id="dailyCountPayedPriceToday">54,000 원<br>(1건)</td>
+                                                    <td id="dailyCountOrderPriceToday">44,000 원<br>(1건)</td>
+                                                    <td id="dailyCountPayedPriceToday">44,000 원<br>(1건)</td>
                                                     <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="total">
@@ -399,12 +399,12 @@
                                                     <td>20,000 원<br>(1건)</td>
                                                 </tr>
                                                 <tr class=""><td>05월 17일</td>
-                                                    <td>54,000 원<br>(1건)</td>
-                                                    <td>54,000 원<br>(1건)</td>
+                                                    <td>44,000 원<br>(1건)</td>
+                                                    <td>44,000 원<br>(1건)</td>
                                                 </tr>
                                                 <tr class=""><td>05월 18일</td>
-                                                    <td>54,000 원<br>(1건)</td>
-                                                    <td>54,000 원<br>(1건)</td>
+                                                    <td>44,000 원<br>(1건)</td>
+                                                    <td>44,000 원<br>(1건)</td>
                                                 </tr>
                                                 <tr class=""><td>05월 19일</td>
                                                     <td>0 원<br>(0건)</td>
@@ -476,8 +476,8 @@
                                                 </tr>
                                                 <tr class="em">
                                                     <th scope="row" id="dailyCountTitleToday3">05월 18일</th>
-                                                    <td id="dailyCountOrderPriceToday3">54,000 원<br>(1건)</td>
-                                                    <td id="dailyCountPayedPriceToday3">54,000 원<br>(1건)</td>
+                                                    <td id="dailyCountOrderPriceToday3">44,000 원<br>(1건)</td>
+                                                    <td id="dailyCountPayedPriceToday3">44,000 원<br>(1건)</td>
 
                                                 </tr>
                                                 <tr class="total">

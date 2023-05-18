@@ -35,7 +35,7 @@
     <tbody>
     <tr>
       <th>주문번호</th>
-      <td colspan="3">20230515163371</td>
+      <td colspan="3">20230518504666</td>
     </tr>
     <tr>
       <th scope="col">주문자(아이디) / 회원등급</th>
@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <th scope="col">주문일</th>
-      <td>2023-05-15</td>
+      <td>2023-05-18</td>
       <th scope="col">결제완료일</th>
       <td></td>
     </tr>
@@ -185,12 +185,12 @@
   <div class="orderPrice">
     <dl>
       <dt>총 주문 금액</dt>
-      <dd><span class="num">54,000</span>원</dd>
+      <dd><span class="num">44,000</span>원</dd>
     </dl>
     <dl>
       <dt>할인 및 차감금액
       </dt>
-      <dd><span class="num">-</span>0원</dd> <!-- 20210506 할인 및 차감금액에서 뷰포 삭제 -->
+      <dd><span class="num">-</span>10,000원</dd> <!-- 20210506 할인 및 차감금액에서 뷰포 삭제 -->
     </dl>
 
 
@@ -209,7 +209,7 @@
     <div class="totalPrice">
       <dl>
         <dt>최종 결제 금액</dt>
-        <dd class="total"><span class="num">54,000</span>원</dd>
+        <dd class="total"><span class="num">44,000</span>원</dd>
       </dl>
     </div>
   </div>
@@ -238,7 +238,7 @@
 
     <tr>
       <th scope="row">결제금액</th>
-      <td colspan="3">54,000원</td>
+      <td colspan="3">44,000원</td>
     </tr>
     <tr>
       <th scope="row">환불 받을 은행</th>

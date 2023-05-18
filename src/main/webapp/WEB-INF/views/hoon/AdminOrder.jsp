@@ -232,16 +232,16 @@
                                             <%--                                                <span class="frame eOpenOver" find="gGoods"><img src="../../img/hoon/44x44.gif" width="44" height="44" alt=""></span>--%>
                                             <%--                                            </div>--%>
                                             <p>
-                                                <a href="#" onclick="openNewWindow();">2023.05.15</a>
+                                                <a href="#" onclick="openNewWindow();">2023.05.18</a>
                                             </p>
                                             <!-- <p class="txtCode">(P000000J)</p>
                                             <input type="hidden" name="product_no_list[]" value="10"> -->
                                         </div>
                                     </td>
-                                    <td rowspan="1" id="total-qty-{{inv.prod_ID}}" data-prod-id="{{inv.prod_ID}}">20230515163371</td>
+                                    <td rowspan="1" id="total-qty-{{inv.prod_ID}}" data-prod-id="{{inv.prod_ID}}">20230518504666</td>
 
                                     <td rowspan="1" id="total-qty-{{inv.prod_ID1}}" data-prod-id="{{inv.prod_ID}}"><a href="#" onclick="openNewWindow()" >더마 그린티 프로바이오틱스 크림 외 1건</a></td>
-                                    <td>54,000원
+                                    <td>44,000원
                                         <input type="hidden" class="cate-cd" name="cate-cd" value="P000000J000A">
                                     </td>
                                     <td rowspan="1" id="total-qty-{{inv.prod_ID2}}" data-prod-id="{{inv.prod_ID}}">상품준비중</td>
