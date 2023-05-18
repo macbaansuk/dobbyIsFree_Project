@@ -392,7 +392,15 @@
                 console.log(data);
                 processListData(data);// 화면에 출력하는 함수
 
-
+// 콜백 함수 실행
+                $('.inv-status').each(function() {
+                    let invStusCd = $(this).text().trim();
+                    if (invStusCd === '부족') {
+                        $(this).css('color', 'red');
+                    } else if (invStusCd === '여유') {
+                        $(this).css('color', 'lime');
+                    }
+                });
             },
             error: function () {
                 // 에러 시 처리할 코드
@@ -592,14 +600,7 @@
 
             });
 
-        $('.inv-status').each(function() {
-            let invStusCd = $(this).text().trim();
-            if (invStusCd === '부족') {
-                $(this).css('color', 'red');
-            } else if (invStusCd === '여유') {
-                $(this).css('color', 'skyblue');
-            }
-        });
+
 
 // 저장버튼 누를시 변경
         $('#eBtnModify').on("click", function () {
@@ -607,7 +608,7 @@
             const code2 = "부족"; // 부족
             const code3 = "품절"; // 품절
         // 서버에 객체를 담아 전달할 객체배열 하나 생성
-
+            const selectedOptionValue = $('.inv-status').text().trim();
             // 입력하던 화면으로 돌아가야함, 즉 클라이언트가 입력한 정보로 다시 showList 호출
             let page = pageHandler.sc.page;
             let pageSize = $('select[name="limit"] option:selected').val();
@@ -716,6 +717,11 @@
                     console.log('저장 후 startDate ='+startDate)
                     console.log('저장 후 endDate ='+endDate)
                     showList(page, pageSize, keyword, sortType, category, period, dateField, startDate, endDate);
+
+                    // 업데이트된 데이터를 받아온 후 선택된 옵션 값 설정
+                    $('.inv-status').filter(function() {
+                        return $(this).text().trim() === selectedOptionValue;
+                    }).addClass('selected');
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);
