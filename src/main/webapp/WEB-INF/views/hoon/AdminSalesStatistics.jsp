@@ -213,6 +213,12 @@
         }
         .todayT{
             color: orangered;
+            background-color: #fafafb !important;
+        }
+
+        .todayT th{
+            color: orangered;
+            background-color: #fafafb !important;
         }
     </style>
 

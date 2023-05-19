@@ -218,6 +218,12 @@
 
         .todayT{
             color: orangered;
+            background-color: #fafafb !important;
+        }
+
+        .todayT th{
+            color: orangered;
+            background-color: #fafafb !important;
         }
 
     </style>
@@ -375,7 +381,7 @@
                                                 <td id="dailyCountPayedPrice3">20,000 원<br>(1건)</td>
                                                 <td id="dailyCountRefundPrice3">24,000 원<br>(1건)</td>
                                             </tr>
-                                            <tr class="em">
+                                            <tr class="em" >
                                                 <th scope="row" id="dailyCountTitleToday" class="todayT">05월 22일</th>
                                                 <td id="dailyCountOrderPriceToday" class="todayT">44,000 원<br>(1건)</td>
                                                 <td id="dailyCountPayedPriceToday" class="todayT">44,000 원<br>(1건)</td>
@@ -673,7 +679,7 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 19일</th>
+                                            <th scope="row">05월 23일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
@@ -681,7 +687,7 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 20일</th>
+                                            <th scope="row">05월 24일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
