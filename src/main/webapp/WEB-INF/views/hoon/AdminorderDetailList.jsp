@@ -9,7 +9,11 @@
       crossorigin="anonymous" />
 <link rel="stylesheet" href="/css/hwa/orderDetail.css"/><!-- css -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
-
+<style>
+  .print {
+    background-color: #00a2ff;
+  }
+</style>
 
 
 
@@ -337,6 +341,7 @@
 
 <div class="btnWrap">
   <a href="#" class="btnType3l" onclick="window.close()">닫기</a>
+  <a href="#" class="btnType3l print" onclick="window.close()">인쇄</a>
 </div>
 
 </div><!--page-->
