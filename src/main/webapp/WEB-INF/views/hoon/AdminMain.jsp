@@ -172,6 +172,7 @@
         }
         html:lang(ko) .mDashboard .today {
             font-size: 13px;
+            color: orangered;
         }
         .mDashboard .title h2 {
             float: left;
@@ -208,8 +209,21 @@
             clear: both;
         }
 
-        .ui-state-default.ui-tabs-selected>a {
-            color: #00BFFF;
+        .ui-tabs-nav li.ui-state-active a {
+            color: #00aaff; /* 클릭된 탭의 글자색을 하늘색(#00aaff)으로 설정 */
+        }
+        .ui-tabs-nav li:not(.ui-state-active) a {
+            color: #000000; /* 클릭되지 않은 탭의 글자색을 검은색(#000000)으로 설정 */
+        }
+
+        .todayT{
+            color: orangered;
+            background-color: #fafafb !important;
+        }
+
+        .todayT th{
+            color: orangered;
+            background-color: #fafafb !important;
         }
 
     </style>
@@ -239,7 +253,7 @@
                     <div class="mDashboard">
                         <div class="title">
                             <h2>오늘의 할 일<div class="cTip" code="MA.20" data-gtm="DATA_today_tip"></div></h2>
-                            <p class="today"><strong>05월 18일</strong> 목요일</p>
+                            <p class="today"><strong>05월 22일</strong> 월요일</p>
                         </div>
 
                         <!-- 오늘의 할일 시작 -->
@@ -271,18 +285,18 @@
                                 </thead>
                                 <tbody class="center">
                                 <tr class="total">
-                                    <td><a href="" target="_top" data-gtm="TODO_before_deposit"><strong><span id="no_pay_cnt">0</span></strong></a></td>
+                                    <td><a href="" target="_top" data-gtm="TODO_before_deposit"><strong><span id="no_pay_cnt">1</span></strong></a></td>
                                     <td>
-                                        <a href="/admin/order" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">1</span></strong></a>
+                                        <a href="/admin/order" target="_top" data-gtm="TODO_preparing_delivery"><strong><span id="is_shipped_f">2</span></strong></a>
 <%--                                        <a href="" target="_top" data-gtm="TODO_delivery_pending"><strong><span id="product_prepare_dlv_delay">0</span></strong></a>--%>
                                     </td>
-                                    <td><a href="" target="_top" data-gtm="TODO_waiting_delivery"><strong><span id="is_shipped_w">0</span></strong></a> </td>
-                                    <td><a href="" target="_top" data-gtm="TODO_shipping"><strong><span id="is_shipped_m">0</span></strong></a></td>
-                                    <td><a href="" target="_top" data-gtm="TODO_cancellation_processing"><strong><span id="canceling_count">0</span></strong></a></td>
-                                    <td><a href="" target="_top" data-gtm="TODO_exchange_processing"><strong><span id="changing_count">0</span></strong></a></td>
-                                    <td><a href="" target="_top" data-gtm="TODO_return_processing"><strong><span id="returning_count">0</span></strong></a></td>
-                                    <td><a href="" target="_top" data-gtm="TODO_before_refund"><strong><span id="before_refund">0</span></strong></a> </td>
-                                    <td><a href="#none" onclick="top.MenuAction.change('', '390', '', 'transformTreeNo');" data-gtm="TODO_post_management"><strong><span id="write_cnt">0</span></strong></a> </td>
+                                    <td><a href="" target="_top" data-gtm="TODO_waiting_delivery"><strong><span id="is_shipped_w">1</span></strong></a> </td>
+                                    <td><a href="" target="_top" data-gtm="TODO_shipping"><strong><span id="is_shipped_m">1</span></strong></a></td>
+                                    <td><a href="" target="_top" data-gtm="TODO_cancellation_processing"><strong><span id="canceling_count">2</span></strong></a></td>
+                                    <td><a href="" target="_top" data-gtm="TODO_exchange_processing"><strong><span id="changing_count">1</span></strong></a></td>
+                                    <td><a href="" target="_top" data-gtm="TODO_return_processing"><strong><span id="returning_count">1</span></strong></a></td>
+                                    <td><a href="" target="_top" data-gtm="TODO_before_refund"><strong><span id="before_refund">1</span></strong></a> </td>
+                                    <td><a href="#none" onclick="top.MenuAction.change('', '390', '', 'transformTreeNo');" data-gtm="TODO_post_management"><strong><span id="write_cnt">10</span></strong></a> </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -299,12 +313,13 @@
                         <%-- Ajax로 변경할 부분 시작 --%>
                         <div class="mTab typeNav mallStauts">
                             <ul class="tab-menu ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-                                <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabMallStatus1" id="tabMallStatus1Button" >일별 매출 현황</a></li>
-                                <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus2" >주문처리 현황</a></li>
+                                <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabMallStatus1" id="tabMallStatus1Button">일별 매출 현황</a></li>
+                                <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus2">주문처리 현황</a></li>
                                 <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus3">회원/적립금 현황</a></li>
                                 <li class="ui-state-default ui-corner-top"><a href="#tabMallStatus5" data-gtm="DATA_post_status">게시물 현황</a></li>
                             </ul>
                         </div>
+
 
 
                         <!-- 일별 매출 현황 탭 -->
@@ -324,7 +339,7 @@
 
                                     <div class="gSingleSide">
                                         <ul class="mList">
-                                            <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">2023-05-18 14:00</span> (1시간마다 업데이트)</li>
+                                            <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">2023-05-22 14:00</span> (1시간마다 업데이트)</li>
                                             <li>합계/평균에 오늘은 포함되지 않고 어제이전 데이터가 포함됩니다.</li>
                                         </ul>
                                     </div>
@@ -349,52 +364,52 @@
                                             </thead>
                                             <tbody class="right">
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle1">05월 15일</th>
+                                                <th scope="row" id="dailyCountTitle1">05월 19일</th>
                                                 <td id="dailyCountOrderPrice1">170,000 원<br>(4건)</td>
                                                 <td id="dailyCountPayedPrice1">132,000 원<br>(3건)</td>
-                                                <td id="dailyCountRefundPrice1">0 원<br>(0건)</td>
+                                                <td id="dailyCountRefundPrice1">37,000 원<br>(1건)</td>
                                             </tr>
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle2">05월 16일</th>
+                                                <th scope="row" id="dailyCountTitle2">05월 20일</th>
                                                 <td id="dailyCountOrderPrice2">150,000 원<br>(3건)</td>
                                                 <td id="dailyCountPayedPrice2">104,000  원<br>(2건)</td>
-                                                <td id="dailyCountRefundPrice2">0 원<br>(0건)</td>
+                                                <td id="dailyCountRefundPrice2">40,000 원<br>(2건)</td>
                                             </tr>
                                             <tr class="">
-                                                <th scope="row" id="dailyCountTitle3">05월 17일</th>
+                                                <th scope="row" id="dailyCountTitle3">05월 21일</th>
                                                 <td id="dailyCountOrderPrice3">50,000 원<br>(1건)</td>
                                                 <td id="dailyCountPayedPrice3">20,000 원<br>(1건)</td>
-                                                <td id="dailyCountRefundPrice3">0 원<br>(0건)</td>
+                                                <td id="dailyCountRefundPrice3">24,000 원<br>(1건)</td>
                                             </tr>
-                                            <tr class="em">
-                                                <th scope="row" id="dailyCountTitleToday">05월 18일</th>
-                                                <td id="dailyCountOrderPriceToday">44,000 원<br>(1건)</td>
-                                                <td id="dailyCountPayedPriceToday">44,000 원<br>(1건)</td>
-                                                <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
+                                            <tr class="em" >
+                                                <th scope="row" id="dailyCountTitleToday" class="todayT">05월 22일</th>
+                                                <td id="dailyCountOrderPriceToday" class="todayT">44,000 원<br>(1건)</td>
+                                                <td id="dailyCountPayedPriceToday" class="todayT">44,000 원<br>(1건)</td>
+                                                <td id="dailyCountRefundPriceToday" class="todayT">14,000 원<br>(1건)</td>
                                             </tr>
                                             <tr class="total">
                                                 <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>
                                                 <td id="weeklyCountOrderPriceAvg">474,000 원<br>(12건)</td>
                                                 <td id="weeklyCountPayedPriceAvg">327,000 원<br>(8건)</td>
-                                                <td id="weeklyCountRefundPriceAvg">0 원<br>(0건)</td>
+                                                <td id="weeklyCountRefundPriceAvg">115,000 원<br>(5건)</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row" id="weeklyCountOrderTotalTitle">최근 7일 합계</th>
                                                 <td id="weeklyCountOrderPriceTotal">474,000 원<br>(12건)</td>
                                                 <td id="weeklyCountPayedPriceTotal">327,000 원<br>(8건)</td>
-                                                <td id="weeklyCountRefundPriceTotal">0 원<br>(0건)</td>
+                                                <td id="weeklyCountRefundPriceTotal">115,000 원<br>(5건)</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row" id="monthlyCountOrderAvgTitle">최근 30일 평균</th>
                                                 <td id="monthlyCountOrderPriceAvg">474,000 원<br>(12건)</td>
                                                 <td id="monthlyCountPayedPriceAvg">327,000 원<br>(8건)</td>
-                                                <td id="monthlyCountRefundPriceAvg">0 원<br>(0건)</td>
+                                                <td id="monthlyCountRefundPriceAvg">115,000 원<br>(5건)</td>
                                             </tr>
                                             <tr class="total">
                                                 <th scope="row" id="monthlyCountOrderTotalTitle">최근 30일 합계</th>
                                                 <td id="monthlyCountOrderPriceTotal">474,000 원<br>(12건)</td>
                                                 <td id="monthlyCountPayedPriceTotal">327,000 원<br>(8건)</td>
-                                                <td id="monthlyCountRefundPriceTotal">0 원<br>(0건)</td>
+                                                <td id="monthlyCountRefundPriceTotal">115,000 원<br>(5건)</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -431,98 +446,98 @@
                                         <tr class="">
                                             <th scope="row" id="orderCountTitle1">05월 12일</th>
                                             <td id="payWaitOrderCount1">1건</td>
-                                            <td id="shipReadyOrderCount1">0건</td>
+                                            <td id="shipReadyOrderCount1">2건</td>
                                             <td id="shipWaitOrderCount1">1건</td>
-                                            <td id="shippingOrderCount1">0건</td>
-                                            <td id="shipendOrderCount1">0건</td>
-                                            <td id="cancelOrderCount1">0건</td>
-                                            <td id="changeOrderCount1">0건</td>
-                                            <td id="returnOrderCount1">0건</td>
-                                            <td id="totalOrderCount1">0건</td>
+                                            <td id="shippingOrderCount1">1건</td>
+                                            <td id="shipendOrderCount1">2건</td>
+                                            <td id="cancelOrderCount1">1건</td>
+                                            <td id="changeOrderCount1">2건</td>
+                                            <td id="returnOrderCount1">1건</td>
+                                            <td id="totalOrderCount1">14건</td>
                                         </tr>
                                         <tr class="">
                                             <th scope="row" id="orderCountTitle2">05월 13일</th>
                                             <td id="payWaitOrderCount2">1건</td>
-                                            <td id="shipReadyOrderCount2">0건</td>
+                                            <td id="shipReadyOrderCount2">1건</td>
                                             <td id="shipWaitOrderCount2">2건</td>
-                                            <td id="shippingOrderCount2">0건</td>
-                                            <td id="shipendOrderCount2">0건</td>
-                                            <td id="cancelOrderCount2">0건</td>
-                                            <td id="changeOrderCount2">0건</td>
-                                            <td id="returnOrderCount2">0건</td>
-                                            <td id="totalOrderCount2">0건</td>
+                                            <td id="shippingOrderCount2">1건</td>
+                                            <td id="shipendOrderCount2">1건</td>
+                                            <td id="cancelOrderCount2">1건</td>
+                                            <td id="changeOrderCount2">1건</td>
+                                            <td id="returnOrderCount2">1건</td>
+                                            <td id="totalOrderCount2">9건</td>
                                         </tr>
                                         <tr class="">
-                                            <th scope="row" id="orderCountTitle3">05월 14일</th>
+                                            <th scope="row" id="orderCountTitle3">05월 18일</th>
                                             <td id="payWaitOrderCount3">1건</td>
-                                            <td id="shipReadyOrderCount3">0건</td>
+                                            <td id="shipReadyOrderCount3">1건</td>
                                             <td id="shipWaitOrderCount3">2건</td>
-                                            <td id="shippingOrderCount3">0건</td>
-                                            <td id="shipendOrderCount3">0건</td>
-                                            <td id="cancelOrderCount3">0건</td>
-                                            <td id="changeOrderCount3">0건</td>
-                                            <td id="returnOrderCount3">0건</td>
-                                            <td id="totalOrderCount3">0건</td>
+                                            <td id="shippingOrderCount3">1건</td>
+                                            <td id="shipendOrderCount3">4건</td>
+                                            <td id="cancelOrderCount3">1건</td>
+                                            <td id="changeOrderCount3">2건</td>
+                                            <td id="returnOrderCount3">1건</td>
+                                            <td id="totalOrderCount3">13건</td>
                                         </tr>
                                         <tr class="">
-                                            <th scope="row" id="orderCountTitle4">05월 15일</th>
+                                            <th scope="row" id="orderCountTitle4">05월 19일</th>
                                             <td id="payWaitOrderCount4">2건</td>
-                                            <td id="shipReadyOrderCount4">0건</td>
+                                            <td id="shipReadyOrderCount4">2건</td>
                                             <td id="shipWaitOrderCount4">2건</td>
-                                            <td id="shippingOrderCount4">0건</td>
-                                            <td id="shipendOrderCount4">0건</td>
-                                            <td id="cancelOrderCount4">0건</td>
-                                            <td id="changeOrderCount4">0건</td>
-                                            <td id="returnOrderCount4">0건</td>
-                                            <td id="totalOrderCount4">0건</td>
+                                            <td id="shippingOrderCount4">1건</td>
+                                            <td id="shipendOrderCount4">1건</td>
+                                            <td id="cancelOrderCount4">1건</td>
+                                            <td id="changeOrderCount4">1건</td>
+                                            <td id="returnOrderCount4">1건</td>
+                                            <td id="totalOrderCount4">13건</td>
                                         </tr>
                                         <tr class="">
-                                            <th scope="row" id="orderCountTitle5">05월 16일</th>
+                                            <th scope="row" id="orderCountTitle5">05월 20일</th>
                                             <td id="payWaitOrderCount5">1건</td>
                                             <td id="shipReadyOrderCount5">0건</td>
                                             <td id="shipWaitOrderCount5">2건</td>
-                                            <td id="shippingOrderCount5">0건</td>
-                                            <td id="shipendOrderCount5">0건</td>
-                                            <td id="cancelOrderCount5">0건</td>
+                                            <td id="shippingOrderCount5">1건</td>
+                                            <td id="shipendOrderCount5">1건</td>
+                                            <td id="cancelOrderCount5">1건</td>
                                             <td id="changeOrderCount5">0건</td>
-                                            <td id="returnOrderCount5">0건</td>
-                                            <td id="totalOrderCount5">0건</td>
+                                            <td id="returnOrderCount5">1건</td>
+                                            <td id="totalOrderCount5">7건</td>
                                         </tr>
                                         <tr class="">
-                                            <th scope="row" id="orderCountTitle6">05월 17일</th>
-                                            <td id="payWaitOrderCount6">0건</td>
-                                            <td id="shipReadyOrderCount6">0건</td>
+                                            <th scope="row" id="orderCountTitle6">05월 21일</th>
+                                            <td id="payWaitOrderCount6">3건</td>
+                                            <td id="shipReadyOrderCount6">1건</td>
                                             <td id="shipWaitOrderCount6">1건</td>
-                                            <td id="shippingOrderCount6">0건</td>
-                                            <td id="shipendOrderCount6">0건</td>
-                                            <td id="cancelOrderCount6">0건</td>
+                                            <td id="shippingOrderCount6">2건</td>
+                                            <td id="shipendOrderCount6">1건</td>
+                                            <td id="cancelOrderCount6">1건</td>
                                             <td id="changeOrderCount6">0건</td>
-                                            <td id="returnOrderCount6">0건</td>
-                                            <td id="totalOrderCount6">0건</td>
+                                            <td id="returnOrderCount6">1건</td>
+                                            <td id="totalOrderCount6">12건</td>
                                         </tr>
                                         <tr class="em">
-                                            <th scope="row" id="orderCountTitleToday">05월 18일 (오늘)</th>
-                                            <td id="payWaitOrderCountToday">0건</td>
-                                            <td id="shipReadyOrderCountToday">1건</td>
-                                            <td id="shipWaitOrderCountToday">0건</td>
-                                            <td id="shippingOrderCountToday">0건</td>
-                                            <td id="shipendOrderCountToday">0건</td>
-                                            <td id="cancelOrderCountToday">0건</td>
-                                            <td id="changeOrderCountToday">0건</td>
-                                            <td id="returnOrderCountToday">0건</td>
-                                            <td id="totalOrderCountToday">1건</td>
+                                            <th scope="row" id="orderCountTitleToday" class="todayT" >05월 22일</th>
+                                            <td id="payWaitOrderCountToday" class="todayT">1건</td>
+                                            <td id="shipReadyOrderCountToday" class="todayT">1건</td>
+                                            <td id="shipWaitOrderCountToday" class="todayT">1건</td>
+                                            <td id="shippingOrderCountToday" class="todayT">1건</td>
+                                            <td id="shipendOrderCountToday" class="todayT">1건</td>
+                                            <td id="cancelOrderCountToday" class="todayT">1건</td>
+                                            <td id="changeOrderCountToday" class="todayT">1건</td>
+                                            <td id="returnOrderCountToday" class="todayT">1건</td>
+                                            <td id="totalOrderCountToday" class="todayT">8건</td>
                                         </tr>
                                         <tr class="total">
                                             <th scope="row" id="orderCountTitleTotal"><strong>합계</strong></th>
-                                            <td id="payWaitOrderCountTotal"><strong>6</strong>건</td>
-                                            <td id="shipReadyOrderCountTotal"><strong>1</strong>건</td>
+                                            <td id="payWaitOrderCountTotal"><strong>11</strong>건</td>
+                                            <td id="shipReadyOrderCountTotal"><strong>8</strong>건</td>
                                             <td id="shipWaitOrderCountTotal"><strong>11</strong>건</td>
-                                            <td id="shippingOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="shipendOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="cancelOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="changeOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="returnOrderCountTotal"><strong>0</strong>건</td>
-                                            <td id="totalOrderCountTotal"><strong>18</strong>건</td>
+                                            <td id="shippingOrderCountTotal"><strong>8</strong>건</td>
+                                            <td id="shipendOrderCountTotal"><strong>11</strong>건</td>
+                                            <td id="cancelOrderCountTotal"><strong>7</strong>건</td>
+                                            <td id="changeOrderCountTotal"><strong>7</strong>건</td>
+                                            <td id="returnOrderCountTotal"><strong>7</strong>건</td>
+                                            <td id="totalOrderCountTotal"><strong>43</strong>건</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -561,38 +576,38 @@
                                             </thead>
                                             <tbody class="right">
 
-                                            <tr class=""><td>05월 14일</td>
-                                                <td>3 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 15일 (오늘)</td>
-                                                <td>4 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 16일</td>
-                                                <td>2 명</td>
-                                                <td>0 원</td>
-                                            </tr>
-                                            <tr class=""><td>05월 17일</td>
-                                                <td>3 명</td>
-                                                <td>0 원</td>
-                                            </tr>
                                             <tr class=""><td>05월 18일</td>
-                                                <td>1 명</td>
-                                                <td>0 원</td>
+                                                <td>3 명</td>
+                                                <td>2,000 원</td>
                                             </tr>
                                             <tr class=""><td>05월 19일</td>
+                                                <td>4 명</td>
+                                                <td>5,000 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 20일</td>
+                                                <td>2 명</td>
+                                                <td>3,000 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 21일</td>
+                                                <td>3 명</td>
+                                                <td>1,500 원</td>
+                                            </tr>
+                                            <tr class="todayT"><td>05월 22일</td>
+                                                <td>1 명</td>
+                                                <td>1,000 원</td>
+                                            </tr>
+                                            <tr class=""><td>05월 23일</td>
                                                 <td>0 명</td>
                                                 <td>0 원</td>
                                             </tr>
-                                            <tr class="em"><td>05월 20일</td>
+                                            <tr class="em"><td>05월 24일</td>
                                                 <td>0 명</td>
                                                 <td>0 원</td>
                                             </tr>
                                             <tr class="total">
                                                 <td><strong>합계</strong></td>
                                                 <td><strong>13</strong> 명</td>
-                                                <td><strong>0</strong> 원</td>
+                                                <td><strong>13,500</strong> 원</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -625,7 +640,7 @@
 
                                         <tbody class="right">
                                         <tr class="">
-                                            <th scope="row">05월 14일</th>
+                                            <th scope="row">05월 18일</th>
                                             <td>3 건</td>
                                             <td>4 건</td>
                                             <td>1 건</td>
@@ -633,7 +648,7 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 15일(오늘)</th>
+                                            <th scope="row" class="">05월 19일</th>
                                             <td>2 건</td>
                                             <td>1 건</td>
                                             <td>1건</td>
@@ -641,7 +656,7 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 16일</th>
+                                            <th scope="row">05월 20일</th>
                                             <td>1 건</td>
                                             <td>2 건</td>
                                             <td>3 건</td>
@@ -649,22 +664,22 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 17일</th>
+                                            <th scope="row">05월 21일</th>
                                             <td>1 건</td>
                                             <td>1 건</td>
                                             <td>1 건</td>
 
 
                                         </tr>
-                                        <tr class="">
-                                            <th scope="row">05월 18일</th>
+                                        <tr class="todayT">
+                                            <th scope="row">05월 22일</th>
                                             <td>2 건</td>
                                             <td>1 건</td>
                                             <td>1 건</td>
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 19일</th>
+                                            <th scope="row">05월 23일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
@@ -672,7 +687,7 @@
 
                                         </tr>
                                         <tr class="">
-                                            <th scope="row">05월 20일</th>
+                                            <th scope="row">05월 24일</th>
                                             <td>0 건</td>
                                             <td>0 건</td>
                                             <td>0 건</td>
@@ -716,6 +731,23 @@
 
 
 <script >
+    const tabMenuItems = document.querySelectorAll('.tab-menu li');
+
+    function setActiveTab(event) {
+        // 기존에 선택된 탭의 클래스 제거
+        const activeTab = document.querySelector('.ui-tabs-selected.ui-state-active');
+        activeTab.classList.remove('ui-tabs-selected', 'ui-state-active');
+
+        // 선택한 탭에 클래스 추가
+        const clickedTab = event.target.closest('li');
+        clickedTab.classList.add('ui-tabs-selected', 'ui-state-active');
+    }
+
+    // 각 탭 메뉴에 클릭 이벤트 리스너 등록
+    tabMenuItems.forEach((item) => {
+        item.addEventListener('click', setActiveTab);
+    });
+
 
     $(document).ready(function() {
         // 초기화 // 이거 복습하고 다시 만들어보기

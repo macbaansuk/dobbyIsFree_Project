@@ -212,6 +212,16 @@
             color: #00BFFF;
         }
 
+        .todayT{
+            color: orangered;
+            background-color: #fafafb !important;
+        }
+
+        .todayT th{
+            color: orangered;
+            background-color: #fafafb !important;
+        }
+
     </style>
 
 </head>
@@ -298,28 +308,28 @@
                                                     </thead>
                                                     <tbody class="right">
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle1">05월 15일</th>
+                                                        <th scope="row" id="dailyCountTitle1">05월 19일</th>
                                                         <td id="dailyCountOrderPrice1">170,000 원<br>(4건)</td>
                                                         <td id="dailyCountPayedPrice1">132,000 원<br>(3건)</td>
                                                         <td id="dailyCountRefundPrice1">0 원<br>(0건)</td>
                                                     </tr>
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle2">05월 16일</th>
+                                                        <th scope="row" id="dailyCountTitle2">05월 20일</th>
                                                         <td id="dailyCountOrderPrice2">150,000 원<br>(3건)</td>
                                                         <td id="dailyCountPayedPrice2">104,000  원<br>(2건)</td>
                                                         <td id="dailyCountRefundPrice2">0 원<br>(0건)</td>
                                                     </tr>
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle3">05월 17일</th>
+                                                        <th scope="row" id="dailyCountTitle3">05월 21일</th>
                                                         <td id="dailyCountOrderPrice3">50,000 원<br>(1건)</td>
                                                         <td id="dailyCountPayedPrice3">20,000 원<br>(1건)</td>
                                                         <td id="dailyCountRefundPrice3">0 원<br>(0건)</td>
                                                     </tr>
                                                     <tr class="em">
-                                                        <th scope="row" id="dailyCountTitleToday">05월 18일</th>
-                                                        <td id="dailyCountOrderPriceToday">44,000 원<br>(1건)</td>
-                                                        <td id="dailyCountPayedPriceToday">44,000 원<br>(1건)</td>
-                                                        <td id="dailyCountRefundPriceToday">0 원<br>(0건)</td>
+                                                        <th scope="row" id="dailyCountTitleToday" class="todayT">05월 22일</th>
+                                                        <td id="dailyCountOrderPriceToday" class="todayT">44,000 원<br>(1건)</td>
+                                                        <td id="dailyCountPayedPriceToday" class="todayT">44,000 원<br>(1건)</td>
+                                                        <td id="dailyCountRefundPriceToday" class="todayT">0 원<br>(0건)</td>
                                                     </tr>
                                                     <tr class="total">
                                                         <th scope="row" id="weeklyCountOrderAvgTitle">최근 7일 평균</th>
@@ -384,27 +394,27 @@
                                                     <tbody class="right">
 
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle">05월 15일</th>
+                                                        <th scope="row" id="dailyCountTitle">05월 19일</th>
                                                         <td id="dailyCountOrderPrice">170,000 원<br>(4건)</td>
                                                         <td id="dailyCountPayedPrice">132,000 원<br>(3건)</td>
 
                                                     </tr>
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle11">05월 16일</th>
+                                                        <th scope="row" id="dailyCountTitle11">05월 20일</th>
                                                         <td id="dailyCountOrderPrice11">150,000 원<br>(3건)</td>
                                                         <td id="dailyCountPayedPrice11">104,000  원<br>(2건)</td>
 
                                                     </tr>
                                                     <tr class="">
-                                                        <th scope="row" id="dailyCountTitle22">05월 17일</th>
+                                                        <th scope="row" id="dailyCountTitle22">05월 21일</th>
                                                         <td id="dailyCountOrderPrice22">50,000 원<br>(1건)</td>
                                                         <td id="dailyCountPayedPrice22">20,000 원<br>(1건)</td>
 
                                                     </tr>
                                                     <tr class="em">
-                                                        <th scope="row" id="dailyCountTitleToday3">05월 18일</th>
-                                                        <td id="dailyCountOrderPriceToday3">44,000 원<br>(1건)</td>
-                                                        <td id="dailyCountPayedPriceToday3">44,000 원<br>(1건)</td>
+                                                        <th scope="row" id="dailyCountTitleToday3" class="todayT">05월 22일</th>
+                                                        <td id="dailyCountOrderPriceToday3" class="todayT">44,000 원<br>(1건)</td>
+                                                        <td id="dailyCountPayedPriceToday3" class="todayT">44,000 원<br>(1건)</td>
 
                                                     </tr>
                                                     <tr class="total">
@@ -483,7 +493,22 @@
 <%--</div>--%>
 
 <script >
+    const tabMenuItems = document.querySelectorAll('.tab-menu li');
 
+    function setActiveTab(event) {
+        // 기존에 선택된 탭의 클래스 제거
+        const activeTab = document.querySelector('.ui-tabs-selected.ui-state-active');
+        activeTab.classList.remove('ui-tabs-selected', 'ui-state-active');
+
+        // 선택한 탭에 클래스 추가
+        const clickedTab = event.target.closest('li');
+        clickedTab.classList.add('ui-tabs-selected', 'ui-state-active');
+    }
+
+    // 각 탭 메뉴에 클릭 이벤트 리스너 등록
+    tabMenuItems.forEach((item) => {
+        item.addEventListener('click', setActiveTab);
+    });
     $(document).ready(function() {
         // 초기화 // 이거 복습하고 다시 만들어보기
         $('.tabMallStatus').hide(); // 모든 탭 내용을 숨김
