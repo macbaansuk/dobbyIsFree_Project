@@ -162,6 +162,11 @@
                                             <img src="/img/sun/olive.gif" alt="메인 상품 이미지">
                                         </div>
                                     </c:when>
+                                    <c:when test="${p.prod_nm == '뉴 포맨 올인원'}">
+                                        <div class="product-img">
+                                            <img src="/img/sun/product-image/men/new_forest_men.jpg" alt="메인 상품 이미지">
+                                        </div>
+                                    </c:when>
                                     <c:otherwise>
                                         <div class="product-img">
                                             <img src="${p.rep_img}" alt="메인 상품 이미지">
