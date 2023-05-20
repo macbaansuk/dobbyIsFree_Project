@@ -192,17 +192,23 @@
     <insert id="insertProduct"  parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         INSERT INTO PROD
         (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  PROD_STUS,
-         OPT_YN,  DC_YN, MAI_YN, UPD_DTM)
+          DC_YN, MAI_YN)
         VALUES
             (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},
-            #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});
+            #{PROD_STUS},  #{DC_YN}, #{MAI_YN});
     </insert>
     <insert id="insertDetailFile" parameterType="TotalDto">
         INSERT INTO FILE
-            (PROD_FILE_ID, PROD_ID, FILE_PATH)
-        VALUES ( #{PROD_FILE_ID},#{PROD_ID}, #{FILE_PATH});
+            (PROD_ID, FILE_PATH)
+        VALUES ( #{PROD_ID}, #{FILE_PATH});
     </insert>
 
+    <insert id="insertDiscount" parameterType="TotalDto">
+         INSERT INTO PROD_DC
+             ( PROD_ID, DC_RATE)
+             VALUES
+            (#{PROD_ID}, #{DC_RATE});
+    </insert>
 
     <!--이미지 주소 얻어오기-->
     <select id="getImgPath"  parameterType="int" resultType="String">
@@ -231,116 +237,24 @@
 <!--        SET FILE_PATH = #{FILE_PATH}-->
 <!--        WHERE PROD_ID = #{PROD_ID};-->
 <!--    </update>-->
-    <update id="updateProduct" parameterType="TotalDto" >
+    <update id="updateProduct" parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         UPDATE PROD
         SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},
-            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},
-            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}
+             NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS},
+            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}
+        WHERE PROD_ID = #{PROD_ID};
+    </update>
+    <update id="updateDiscount" parameterType="TotalDto">
+        UPDATE PROD_DC SET
+            DC_RATE = #{DC_RATE}
         WHERE PROD_ID = #{PROD_ID};
     </update>
 
-    <update id="updateDetailFile" parameterType="TotalDto">
-        UPDATE FILE
-        SET FILE_PATH = #{FILE_PATH}
-        WHERE PROD_ID = #{PROD_ID};
-    </update>
-
-
-
-
-
-
-
-
-
-
-
-    <!--    <select id="getImgPath" parameterType="int" resultMap="imageResultMap">-->
-    <!--        SELECT P.REP_IMG, F.FILE_PATH-->
-    <!--        FROM PROD P-->
-    <!--                 INNER JOIN FILE F ON P.PROD_ID = F.PROD_ID-->
-    <!--        WHERE P.PROD_ID=#{PROD_ID}-->
-    <!--    </select>-->
-
-
-    <!--        <insert id="insertDiscount" parameterType="RegisterDto">-->
-<!--            INSERT INTO PROD_DC-->
-<!--            (PROD_DC_ID, PROD_ID,  DC_TYP, DC_RATE, DC_AMT)-->
-<!--            VALUES-->
-<!--                (#{PROD_DC_ID}, #{PROD_ID},#{DC_TYP}, #{DC_RATE}, #{DC_AMT});-->
-<!--        </insert>-->
-
-<!--    <insert id="insertFile" parameterType="RegisterDto">-->
-<!--        INSERT INTO FILE-->
-<!--        (PROD_FILE_ID, PROD_ID, FILE_NM, PATH, KIND)-->
-<!--        VALUES (#{PROD_FILE_ID}, #{PROD_ID},#{PATH}, #{KIND})-->
-<!--    </insert>-->
-
-
-    <!--    <insert id="insertDiscount" parameterType="RegisterDto">-->
-<!--        INSERT INTO PROD_DC-->
-<!--        (PROD_DC_ID,  DC_TYP, DC_RATE, DC_AMT, DC_PRICE, BGN_DTM,-->
-<!--         END_DTM, DC_STUS)-->
-<!--        VALUES-->
-<!--            (#{PROD_DC_ID}, #{DC_TYP}, #{DC_RATE}, #{DC_AMT}, #{DC_PRICE}, #{BGN_DTM},#{END_DTM}, #{DC_STUS});-->
-<!--    </insert>-->
-
-
-    <!--    <insert id="insertOption" parameterType="ProductOptionDto">-->
-<!--        INSERT INTO OPT-->
-<!--            (OPT_NM, OPT_VAL)-->
-<!--        VALUES (#{OPT_NM}, #{OPT_VAL})-->
-<!--    </insert>-->
-
-
-<!--        <insert id="insertHashtag" parameterType="ProductHashtagDto">-->
-<!--        INSERT INTO HASHTAG-->
-<!--            (HASHTAG_NM)-->
-<!--        VALUES (#{HASHTAG_NM})-->
-<!--    </insert>-->
-
-
-
-
-
-
-    <!--    <update id="updateProduct" parameterType="RegisterDto">-->
-<!--        UPDATE PROD SET-->
-<!--                        CATE_CD = #{CATE_CD},-->
-<!--                        AMT = #{AMT},-->
-<!--                        PROD_NM = #{PROD_NM},-->
-<!--&#45;&#45;                         REP_IMG = #{REP_IMG},-->
-<!--                        PROD_DESC = #{PROD_DESC},-->
-<!--                        DC_YN = #{DC_YN},-->
-<!--                        MAI_YN = #{MAI_YN},-->
-<!--                        NEW_YN = #{NEW_YN},-->
-<!--&#45;&#45;                         OPT_YN = #{ OPT_YN },-->
-<!--                        PROD_STUS = #{PROD_STUS}-->
-<!--&#45;&#45;                         UPD_DTM =#{ UPD_DTM}-->
-<!--        WHERE PROD_ID = #{PROD_ID}-->
+<!--    <update id="updateDetailFile" parameterType="TotalDto">-->
+<!--        UPDATE FILE-->
+<!--        SET FILE_PATH = #{FILE_PATH}-->
+<!--        WHERE PROD_ID = #{PROD_ID};-->
 <!--    </update>-->
-
-<!--    <update id="updateDiscount" parameterType="ProductDCDto">-->
-<!--        UPDATE PROD_DC SET-->
-<!--                           DC_TYP = #{dcTyp},-->
-<!--                           DC_RATE = #{dcRate},-->
-<!--                           DC_AMT = #{dcAmt}-->
-<!--        WHERE PROD_DC_ID = #{PROD_DC_ID}-->
-<!--    </update>-->
-
-<!--    <update id="updateOption" parameterType="ProductOptionDto">-->
-<!--        UPDATE OPT SET-->
-<!--                       OPT_NM = #{optNm},-->
-<!--                       OPT_VAL = #{optVal}-->
-<!--        WHERE OPT_ID = #{OPT_ID}-->
-<!--    </update>-->
-
-<!--    <update id="updateHashtag" parameterType="ProductHashtagDto">-->
-<!--        UPDATE HASHTAG SET-->
-<!--            HASHTAG_NM = #{hashtagNm}-->
-<!--        WHERE HASHTAG_ID = #{HASHTAG_ID}-->
-<!--    </update>-->
-
 
 
 

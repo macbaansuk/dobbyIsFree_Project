@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -99,39 +98,32 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+
     @Override
     @Transactional
-    public int register(TotalDto totalDto) {
+    public void register(TotalDto totalDto) {
+
         productDao.insertProduct(totalDto);
-        int prod_id = totalDto.getPROD_ID();
-        System.out.println("prod_id = " + prod_id);
 
-        totalDto.setPROD_ID(prod_id);
+
+        if ("Y".equals(totalDto.getDC_YN())) {
+            productDao.insertDiscount(totalDto);
+        }
         productDao.insertDetailFile(totalDto);
-        return prod_id;
     }
+
 
     @Override
-    @Transactional
-    public int modify(TotalDto totalDto) {
-        int result = productDao.updateProduct(totalDto);
-        totalDto.setPROD_ID(totalDto.getPROD_ID());
-        result += productDao.updateDetailFile(totalDto);
+    public void modify(TotalDto totalDto) {
+       productDao.updateProduct(totalDto);
+        System.out.println("totalDto.getDC_YN = " + totalDto.getDC_YN());
 
-        return result;
+        if ("Y".equals(totalDto.getDC_YN())) {
+            productDao.updateDiscount(totalDto);
+        }
+//       productDao.updateDetailFile(totalDto);
     }
 
-//    @Override
-//    @Transactional
-//    public int modify(ProductDto productDto,ProductFileDto productFileDto) {
-//        int prod_id = productDao.updateProduct(productDto);
-//        System.out.println("update prod_id = " + prod_id);
-//
-//        productFileDto.setPROD_ID(prod_id);
-//        productDao.updateDetailFile(productFileDto);
-//
-//        return prod_id;
-//    }
 
 
 

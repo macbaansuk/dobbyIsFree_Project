@@ -89,7 +89,7 @@
                 <c:when test="${productList[0].cate_nm== '남성'}">
                     <ul>
                         <li><a href="#">전체</a></li>
-                        <li><a href="#">스킨테어</a></li>
+                        <li><a href="#">스킨케어</a></li>
                         <li><a href="#">클렌징</a></li>
                         <li><a href="#">선케어</a></li>
                         <li><a href="#">헤어스타일링</a></li>
@@ -160,6 +160,11 @@
                                     <c:when test="${p.prod_nm == '올리브 에멜전'}">
                                         <div class="product-img">
                                             <img src="/img/sun/olive.gif" alt="메인 상품 이미지">
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${p.prod_nm == '뉴 포맨 올인원'}">
+                                        <div class="product-img">
+                                            <img src="/img/sun/product-image/men/new_forest_men.jpg" alt="메인 상품 이미지">
                                         </div>
                                     </c:when>
                                     <c:otherwise>

@@ -24,14 +24,7 @@ public class TotalDto {
     private Date REG_DTM;
 
     private Integer PROD_DC_ID;
-    private String DC_TYP;
     private Integer DC_RATE;
-    private Integer DC_AMT;
-    private Integer DC_PRICE;
-    private Date BGN_DTM;
-    private Date END_DTM;
-    private String DC_STUS;
-
 
     private Integer PROD_FILE_ID;
     private String FILE_PATH;
@@ -204,14 +197,6 @@ public class TotalDto {
         this.PROD_DC_ID = PROD_DC_ID;
     }
 
-    public String getDC_TYP() {
-        return DC_TYP;
-    }
-
-    public void setDC_TYP(String DC_TYP) {
-        this.DC_TYP = DC_TYP;
-    }
-
     public Integer getDC_RATE() {
         return DC_RATE;
     }
@@ -220,45 +205,9 @@ public class TotalDto {
         this.DC_RATE = DC_RATE;
     }
 
-    public Integer getDC_AMT() {
-        return DC_AMT;
-    }
 
-    public void setDC_AMT(Integer DC_AMT) {
-        this.DC_AMT = DC_AMT;
-    }
 
-    public Integer getDC_PRICE() {
-        return DC_PRICE;
-    }
 
-    public void setDC_PRICE(Integer DC_PRICE) {
-        this.DC_PRICE = DC_PRICE;
-    }
-
-    public Date getBGN_DTM() {
-        return BGN_DTM;
-    }
-
-    public void setBGN_DTM(Date BGN_DTM) {
-        this.BGN_DTM = BGN_DTM;
-    }
-
-    public Date getEND_DTM() {
-        return END_DTM;
-    }
-
-    public void setEND_DTM(Date END_DTM) {
-        this.END_DTM = END_DTM;
-    }
-
-    public String getDC_STUS() {
-        return DC_STUS;
-    }
-
-    public void setDC_STUS(String DC_STUS) {
-        this.DC_STUS = DC_STUS;
-    }
 
     public Integer getPROD_FILE_ID() {
         return PROD_FILE_ID;
@@ -304,13 +253,10 @@ public class TotalDto {
                 ", UPD_DTM=" + UPD_DTM +
                 ", REG_DTM=" + REG_DTM +
                 ", PROD_DC_ID=" + PROD_DC_ID +
-                ", DC_TYP='" + DC_TYP + '\'' +
+
                 ", DC_RATE=" + DC_RATE +
-                ", DC_AMT=" + DC_AMT +
-                ", DC_PRICE=" + DC_PRICE +
-                ", BGN_DTM=" + BGN_DTM +
-                ", END_DTM=" + END_DTM +
-                ", DC_STUS='" + DC_STUS + '\'' +
+
+
 
                 ", PROD_FILE_ID=" + PROD_FILE_ID +
                 ", FILE_PATH='" + FILE_PATH + '\'' +

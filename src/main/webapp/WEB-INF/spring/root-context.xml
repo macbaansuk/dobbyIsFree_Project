@@ -7,8 +7,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DriverManagerDataSource를 bean으로 등록하고, setter로 bean을 설정해준다 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<!--		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>-->
-<!--		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/dobbyisfree?useUnicode=true&amp;characterEncoding=utf8"></property>-->
+		<!--		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>-->
+		<!--		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/dobbyisfree?useUnicode=true&amp;characterEncoding=utf8"></property>-->
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/dobbyisfree?useUnicode=true&amp;characterEncoding=utf8"></property>
 		<property name="username" value="Dobby"></property>
@@ -23,9 +23,9 @@
 		<property name="basePackage" value="com.dobby.project.mapper"/>
 	</bean>
 
-<!--	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-<!--		<property name="maxUploadSize" value="10000000"/>-->
-<!--	</bean>-->
+	<!--	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+	<!--		<property name="maxUploadSize" value="10000000"/>-->
+	<!--	</bean>-->
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
@@ -33,7 +33,7 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-<!--	<tx:annotation-driven/>-->
+	<!--	<tx:annotation-driven/>-->
 	<context:component-scan base-package="com.dobby.project"/>
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
