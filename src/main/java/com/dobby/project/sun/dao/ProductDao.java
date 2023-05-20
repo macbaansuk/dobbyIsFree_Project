@@ -44,20 +44,15 @@ public interface ProductDao {
     int deleteProductHashtag(Integer id);
 
 
-    //관리자 상품 등록
-//    void insertProduct(RegisterDto registerDto);
-//    void insertDetailFile(RegisterDto registerDto);
+//    관리자 상품 등록
     void insertProduct(TotalDto totalDto);
     void insertDetailFile(TotalDto totalDto);
-
-//    void insertDiscount(RegisterDto registerDto);
+    void insertDiscount(TotalDto totalDto);
 //
     //상품 수정
-//    int updateProduct(ProductDto productDto);
-//    int updateDetailFile(ProductFileDto  productFileDto);
-
-    int updateProduct(TotalDto totalDto);
-    int updateDetailFile(TotalDto totalDto);
+    void updateProduct(TotalDto totalDto);
+    void updateDiscount(TotalDto totalDto);
+    void updateDetailFile(TotalDto totalDto);
 
 
     //이미지 주소 스트링으로 받아오기

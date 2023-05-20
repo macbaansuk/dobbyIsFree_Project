@@ -22,7 +22,7 @@
 
 <div class="admin">
 
-<%--    <jsp:include page="../admin_header.jsp"/>--%>
+    <%--    <jsp:include page="../admin_header.jsp"/>--%>
     <div class="Header">
         <a href="/admin/main">
             <span class="span1">관리자 </span>
@@ -148,8 +148,14 @@
                                         <c:choose>
                                             <c:when test="${P.prod_nm == '올리브 에멜전'}">
                                                 <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
-<%--                                                    <img src="/img/sun/product-image/${P.rep_img}" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}--%>
+                                                        <%--                                                    <img src="/img/sun/product-image/${P.rep_img}" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}--%>
                                                     <img src="/img/sun/olive.gif" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
+                                                </a>
+                                            </c:when>
+                                            <c:when test="${P.prod_nm == '뉴 포맨 올인원'}">
+                                                <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
+                                                        <%--                                                    <img src="/img/sun/product-image/${P.rep_img}" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}--%>
+                                                    <img src="/img/sun/product-image/men/new_forest_men.jpg" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
                                                 </a>
                                             </c:when>
                                             <c:otherwise>
@@ -163,7 +169,7 @@
 
                                     <!--  가격-->
 
-<%--                                    <td class="wrtr">${P.amt}</td>--%>
+                                        <%--                                    <td class="wrtr">${P.amt}</td>--%>
                                     <td class="wrtr"><fmt:formatNumber value="${P.amt}" groupingUsed="true" /></td>
                                     <!--  상태 -->
                                     <td class="stus">${P.prod_stus}</td>
@@ -173,7 +179,7 @@
                                     <td>
 
 
-<%--                                        <button id="modifyBtn" type="button">수정</button>--%>
+                                            <%--                                        <button id="modifyBtn" type="button">수정</button>--%>
 
                                         <button id="removeBtn" type="button" onclick="deleteProduct(${P.prod_id})">삭제</button>
                                     </td>
@@ -217,7 +223,7 @@
                                     }
                                 });
                             }
-                      }
+                        }
 
 
 

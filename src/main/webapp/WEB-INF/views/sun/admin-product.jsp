@@ -10,6 +10,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="../../css/sun/admin-product.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 
@@ -65,11 +66,10 @@
             <div class="admin-location">HOME &gt; 쇼핑몰관리 &gt; 상품관리 &gt; 재고관리</div>
             <div class="content">
 
-<%--                <form id="productForm" enctype="multipart/form-data" method="post">--%>
-    <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post">
+    <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post" >
+<%--    <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post" onsubmit="submitForm(event);">--%>
 
     <table class="product-table">
-                        <%--                        <input type="hidden" name="PROD_ID" value="${productDto.PROD_ID}">--%>
                         <thead>
                         <tr>
                             <th colspan="2">상품 정보</th>
@@ -212,14 +212,14 @@
                             </tr>
 
 
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-rate">할인율</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="number" id="discount-rate" name="DC_RATE">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
+                                                <tr class="discount-row">
+                                                    <td>
+                                                        <label for="discount-rate">할인율</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" id="discount-rate" name="DC_RATE">
+                                                    </td>
+                                                </tr>
 
                         <%--                        <tr class="discount-row">--%>
                         <%--                            <td>--%>
@@ -286,13 +286,13 @@
                         <%--                        </tr>--%>
                     </table>
                     <div class="form-btnWrap" style="text-align: center;">
-                        <button class="form-btn" type="submit" id="registerBtn">상품 등록</button>
+<%--                        <button class="form-btn" type="submit" id="registerBtn">상품 등록</button>--%>
+                        <button class="form-btn" type="button" id="registerBtn">상품 등록</button>
                         <button class="form-btn" type="button" id="listBtn" >목록으로</button>
                     </div>
                 </form>
 
                 <script>
-
                     // 할인 여부 라디오 버튼 클릭 이벤트 핸들러
                     $('input[name="DC_YN"]').on('click', function() {
                         // 할인 적용을 선택한 경우
@@ -305,10 +305,34 @@
                         }
                     });
 
+                    $('.discount-row').hide();
+
                     $('#listBtn').on("click",function (){
                         location.href="<c:url value='/admin/product/list'/>?page=${page}&pageSize=${pageSize}";
                     });
 
+                    $('#registerBtn').on('click', function(event) {
+                        event.preventDefault();
+
+                        // 폼 데이터 가져오기
+                        var formData = new FormData($('#productForm')[0]);
+
+                        $.ajax({
+                            type: "POST",
+                            enctype: 'multipart/form-data',
+                            url: "/admin/product/register",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            success: function(response) {
+                                // 응답 처리
+                                location.reload();
+                                alert("상품 등록완료");
+                                window.location.href = "/admin/product/list";
+                            }
+                        });
+                    });
 
 
 

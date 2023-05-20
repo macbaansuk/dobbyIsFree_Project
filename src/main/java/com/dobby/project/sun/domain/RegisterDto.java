@@ -10,13 +10,8 @@ public class RegisterDto {
     private Integer AMT;
     private String PROD_NM;
     private String REP_IMG;
-
-    private  MultipartFile file;
-    private  MultipartFile detailFile;
-    private  String oldFilePath;
-
     private Integer AVG_ASCR;
-    private Integer REVW_NCNT;
+    private Integer REWV_NCNT;
     private Integer INV_QTY;
     private String NEW_YN;
     private String PROD_STUS;
@@ -26,6 +21,7 @@ public class RegisterDto {
     private String MAI_YN;
     private Date UPD_DTM;
     private Date REG_DTM;
+
     private Integer PROD_DC_ID;
     private String DC_TYP;
     private Integer DC_RATE;
@@ -35,11 +31,15 @@ public class RegisterDto {
     private Date END_DTM;
     private String DC_STUS;
 
+
     private Integer PROD_FILE_ID;
-    private String FILE_NM;
     private String FILE_PATH;
     private String KIND;
 
+
+    private MultipartFile file;
+    private  MultipartFile detailFile;
+    private  String oldFilePath;
 
 
     public Integer getPROD_ID() {
@@ -82,37 +82,6 @@ public class RegisterDto {
         this.REP_IMG = REP_IMG;
     }
 
-
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
-
-
-    public MultipartFile getDetailFile() {
-        return detailFile;
-    }
-
-    public void setDetailFile(MultipartFile detailFile) {
-        this.detailFile = detailFile;
-    }
-
-    public String getOldFilePath() {
-        return oldFilePath;
-    }
-
-    public void setOldFilePath(String oldFilePath) {
-        this.oldFilePath = oldFilePath;
-    }
-
-
-
-
-
-
     public Integer getAVG_ASCR() {
         return AVG_ASCR;
     }
@@ -121,12 +90,12 @@ public class RegisterDto {
         this.AVG_ASCR = AVG_ASCR;
     }
 
-    public Integer getREVW_NCNT() {
-        return REVW_NCNT;
+    public Integer getREWV_NCNT() {
+        return REWV_NCNT;
     }
 
-    public void setREVW_NCNT(Integer REVW_NCNT) {
-        this.REVW_NCNT = REVW_NCNT;
+    public void setREWV_NCNT(Integer REWV_NCNT) {
+        this.REWV_NCNT = REWV_NCNT;
     }
 
     public Integer getINV_QTY() {
@@ -265,21 +234,12 @@ public class RegisterDto {
         this.DC_STUS = DC_STUS;
     }
 
-
     public Integer getPROD_FILE_ID() {
         return PROD_FILE_ID;
     }
 
     public void setPROD_FILE_ID(Integer PROD_FILE_ID) {
         this.PROD_FILE_ID = PROD_FILE_ID;
-    }
-
-    public String getFILE_NM() {
-        return FILE_NM;
-    }
-
-    public void setFILE_NM(String FILE_NM) {
-        this.FILE_NM = FILE_NM;
     }
 
     public String getFILE_PATH() {
@@ -298,6 +258,30 @@ public class RegisterDto {
         this.KIND = KIND;
     }
 
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public MultipartFile getDetailFile() {
+        return detailFile;
+    }
+
+    public void setDetailFile(MultipartFile detailFile) {
+        this.detailFile = detailFile;
+    }
+
+    public String getOldFilePath() {
+        return oldFilePath;
+    }
+
+    public void setOldFilePath(String oldFilePath) {
+        this.oldFilePath = oldFilePath;
+    }
+
     @Override
     public String toString() {
         return "RegisterDto{" +
@@ -306,11 +290,8 @@ public class RegisterDto {
                 ", AMT=" + AMT +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
-                ", file=" + file +
-                ", detailFile=" + detailFile +
-                ", oldFilePath='" + oldFilePath + '\'' +
                 ", AVG_ASCR=" + AVG_ASCR +
-                ", REVW_NCNT=" + REVW_NCNT +
+                ", REWV_NCNT=" + REWV_NCNT +
                 ", INV_QTY=" + INV_QTY +
                 ", NEW_YN='" + NEW_YN + '\'' +
                 ", PROD_STUS='" + PROD_STUS + '\'' +
@@ -329,9 +310,11 @@ public class RegisterDto {
                 ", END_DTM=" + END_DTM +
                 ", DC_STUS='" + DC_STUS + '\'' +
                 ", PROD_FILE_ID=" + PROD_FILE_ID +
-                ", FILE_NM='" + FILE_NM + '\'' +
                 ", FILE_PATH='" + FILE_PATH + '\'' +
                 ", KIND='" + KIND + '\'' +
+                ", file=" + file +
+                ", detailFile=" + detailFile +
+                ", oldFilePath='" + oldFilePath + '\'' +
                 '}';
     }
 }

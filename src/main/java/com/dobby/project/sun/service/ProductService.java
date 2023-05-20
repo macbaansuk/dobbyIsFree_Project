@@ -2,7 +2,6 @@ package com.dobby.project.sun.service;
 
 import com.dobby.project.sun.domain.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public interface ProductService {
     List<SortDto> Cate_Products_DC() throws Exception;
 
     //상품상세로 상품 아이디로 넘기기
-    ProductDto getProductById(int id) throws Exception;
+   ProductDto getProductById(int id) throws Exception;
     ProductFileDto getDetailImage(int id);
 
     ///해당 카테고리의 상품 목록 불러오기
@@ -50,10 +49,10 @@ public interface ProductService {
 
     //관리자 상품 등록
 //    int register(RegisterDto registerDto);
-    int register(TotalDto totalDto);
+//    int register(TotalDto totalDto);
+    void register(TotalDto totalDto);
 
 
     // 관리자 상품 수정
-//    int modify(ProductDto productDto, ProductFileDto productFileDto);
-    int modify(TotalDto totalDto);
+    void modify(TotalDto totalDto);
 }

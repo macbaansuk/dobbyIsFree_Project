@@ -121,35 +121,29 @@ public class ProductDaoImpl implements ProductDao {
     public void insertDetailFile(TotalDto totalDto) {
         session.insert("insertDetailFile", totalDto);
     }
-//
 
+        @Override
+    public void insertDiscount(TotalDto totalDto) {
+        session.insert("insertDiscount", totalDto);
 
-    //    @Override
-//    public void insertDiscount(RegisterDto registerDto) {
-//        session.insert("insertDiscount",registerDto);
-
-//    }
+    }
 
     //상품 수정
-//    @Override
-//    public int updateProduct(ProductDto productDto) {
-//        return session.update("updateProduct",productDto);
-//    }
-//
-//    @Override
-//    public int updateDetailFile(ProductFileDto productFileDto) {
-//        return session.update("updateDetailFile", productFileDto);
-//    }
 
     @Override
-    public int updateProduct(TotalDto totalDto) {
-        return session.update("updateProduct",totalDto);
+    public void updateProduct(TotalDto totalDto) {
+         session.update("updateProduct",totalDto);
     }
 
     @Override
-    public int updateDetailFile(TotalDto totalDto) {
-        return session.update("updateDetailFile", totalDto);
+    public void updateDiscount(TotalDto totalDto) {
+        session.update("updateDiscount", totalDto);
     }
+    @Override
+    public void updateDetailFile(TotalDto totalDto) {
+        session.update("updateDetailFile", totalDto);
+    }
+
 
 
     @Override

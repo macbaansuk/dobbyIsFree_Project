@@ -89,7 +89,7 @@
                 <c:when test="${productList[0].cate_nm== '남성'}">
                     <ul>
                         <li><a href="#">전체</a></li>
-                        <li><a href="#">스킨테어</a></li>
+                        <li><a href="#">스킨케어</a></li>
                         <li><a href="#">클렌징</a></li>
                         <li><a href="#">선케어</a></li>
                         <li><a href="#">헤어스타일링</a></li>
