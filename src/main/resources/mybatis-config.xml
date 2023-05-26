@@ -20,14 +20,14 @@
         <typeAlias alias="AdminDto" type="com.dobby.project.admin.domain.AdminDto"/>
 
         <!--    soo    -->
-        <typeAlias alias="NoticeDto"  type="com.dobby.project.soo.NoticeDto"/>
-        <typeAlias alias="CounselDto" type="com.dobby.project.soo.CounselDto"/>
-        <typeAlias alias="AnswerDto"  type="com.dobby.project.soo.AnswerDto"/>
-        <typeAlias alias="CounselAnswerDto"  type="com.dobby.project.soo.CounselAnswerDto"/>
-        <typeAlias alias="BbsFileDto" type="com.dobby.project.soo.BbsFileDto"/>
-        <typeAlias alias="MemberDto"  type="com.dobby.project.soo.MemberDto"/>
-        <typeAlias alias="ProdDto"  type="com.dobby.project.soo.ProdDto"/>
-        <typeAlias alias="SearchCondition" type="com.dobby.project.soo.SearchCondition"/>
+        <typeAlias alias="NoticeDto"  type="com.dobby.project.notice.domain.NoticeDto"/>
+        <typeAlias alias="CounselDto" type="com.dobby.project.counsel.domain.CounselDto"/>
+        <typeAlias alias="AnswerDto"  type="com.dobby.project.counsel.domain.AnswerDto"/>
+        <typeAlias alias="CounselAnswerDto"  type="com.dobby.project.counsel.domain.CounselAnswerDto"/>
+        <typeAlias alias="BbsFileDto" type="com.dobby.project.counsel.domain.BbsFileDto"/>
+        <typeAlias alias="MemberDto"  type="com.dobby.project.counsel.domain.MemberDto"/>
+        <typeAlias alias="ProdDto"  type="com.dobby.project.counsel.domain.ProdDto"/>
+        <typeAlias alias="SearchCondition" type="com.dobby.project.counsel.domain.SearchCondition"/>
 
 
 
