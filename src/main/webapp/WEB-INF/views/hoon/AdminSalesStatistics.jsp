@@ -243,7 +243,7 @@
 
         <%--컨텐츠--%>
         <div class="admin-container">
-            <div class="admin-location">HOME</div>
+            <div class="admin-location">HOME > 통계분석 > 매출통계분석</div>
             <!-- 오늘의 할일 시작 -->
             <div class="content">
                 <div class="dashboardArea">
@@ -283,7 +283,7 @@
 
                                         <div class="gSingleSide">
                                             <ul class="mList">
-                                                <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">2023-05-15 14:00</span> (1시간마다 업데이트)</li>
+                                                <li>최종 업데이트일시 : <span id="eMainSalesDailyChartRefleshTime">2023-05-25 15:00</span> (1시간마다 업데이트)</li>
                                                 <li>합계/평균에 오늘은 포함되지 않고 어제이전 데이터가 포함됩니다.</li>
                                             </ul>
                                         </div>
@@ -308,25 +308,25 @@
                                                 </thead>
                                                 <tbody class="right">
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle1">05월 19일</th>
+                                                    <th scope="row" id="dailyCountTitle1">05월 22일</th>
                                                     <td id="dailyCountOrderPrice1">170,000 원<br>(4건)</td>
                                                     <td id="dailyCountPayedPrice1">132,000 원<br>(3건)</td>
                                                     <td id="dailyCountRefundPrice1">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle2">05월 20일</th>
+                                                    <th scope="row" id="dailyCountTitle2">05월 23일</th>
                                                     <td id="dailyCountOrderPrice2">150,000 원<br>(3건)</td>
                                                     <td id="dailyCountPayedPrice2">104,000  원<br>(2건)</td>
                                                     <td id="dailyCountRefundPrice2">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle3">05월 21일</th>
+                                                    <th scope="row" id="dailyCountTitle3">05월 24일</th>
                                                     <td id="dailyCountOrderPrice3">50,000 원<br>(1건)</td>
                                                     <td id="dailyCountPayedPrice3">20,000 원<br>(1건)</td>
                                                     <td id="dailyCountRefundPrice3">0 원<br>(0건)</td>
                                                 </tr>
                                                 <tr class="em">
-                                                    <th scope="row" id="dailyCountTitleToday" class="todayT">05월 22일</th>
+                                                    <th scope="row" id="dailyCountTitleToday" class="todayT">05월 25일</th>
                                                     <td id="dailyCountOrderPriceToday" class="todayT">44,000 원<br>(1건)</td>
                                                     <td id="dailyCountPayedPriceToday" class="todayT">44,000 원<br>(1건)</td>
                                                     <td id="dailyCountRefundPriceToday" class="todayT">0 원<br>(0건)</td>
@@ -394,31 +394,31 @@
                                                 </thead>
                                                 <tbody class="right">
 
-                                                <tr class=""><td>05월 18일</td>
+                                                <tr class=""><td>05월 21일</td>
                                                     <td>170,000 원<br>(4건)</td>
                                                     <td>132,000 원<br>(3건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 19일</td>
+                                                <tr class=""><td>05월 22일</td>
                                                     <td >150,000 원<br>(3건)</td>
                                                     <td >104,000  원<br>(2건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 20일</td>
+                                                <tr class=""><td>05월 23일</td>
                                                     <td>50,000 원<br>(1건)</td>
                                                     <td>20,000 원<br>(1건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 21일</td>
+                                                <tr class=""><td>05월 24일</td>
                                                     <td>44,000 원<br>(1건)</td>
                                                     <td>44,000 원<br>(1건)</td>
                                                 </tr>
-                                                <tr class="todayT"><td>05월 22일</td>
+                                                <tr class="todayT"><td>05월 25일</td>
                                                     <td class="todayT">44,000 원<br>(1건)</td>
                                                     <td class="todayT">44,000 원<br>(1건)</td>
                                                 </tr>
-                                                <tr class=""><td>05월 23일</td>
+                                                <tr class=""><td>05월 26일</td>
                                                     <td>0 원<br>(0건)</td>
                                                     <td>0 원<br>(0건)</td>
                                                 </tr>
-                                                <tr class="em"><td>05월 24일</td>
+                                                <tr class="em"><td>05월 27일</td>
                                                     <td>0 원<br>(0건)</td>
                                                     <td>0 원<br>(0건)</td>
                                                 </tr>
@@ -465,25 +465,25 @@
                                                 <tbody class="right">
 
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle">05월 19일</th>
+                                                    <th scope="row" id="dailyCountTitle">05월 22일</th>
                                                     <td id="dailyCountOrderPrice">170,000 원<br>(4건)</td>
                                                     <td id="dailyCountPayedPrice">132,000 원<br>(3건)</td>
 
                                                 </tr>
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle11">05월 20일</th>
+                                                    <th scope="row" id="dailyCountTitle11">05월 23일</th>
                                                     <td id="dailyCountOrderPrice11">150,000 원<br>(3건)</td>
                                                     <td id="dailyCountPayedPrice11">104,000  원<br>(2건)</td>
 
                                                 </tr>
                                                 <tr class="">
-                                                    <th scope="row" id="dailyCountTitle22">05월 21일</th>
+                                                    <th scope="row" id="dailyCountTitle22">05월 24일</th>
                                                     <td id="dailyCountOrderPrice22">50,000 원<br>(1건)</td>
                                                     <td id="dailyCountPayedPrice22">20,000 원<br>(1건)</td>
 
                                                 </tr>
                                                 <tr class="em">
-                                                    <th scope="row" id="dailyCountTitleToday3" class="todayT">05월 22일</th>
+                                                    <th scope="row" id="dailyCountTitleToday3" class="todayT">05월 25일</th>
                                                     <td id="dailyCountOrderPriceToday3" class="todayT">44,000 원<br>(1건)</td>
                                                     <td id="dailyCountPayedPriceToday3" class="todayT">44,000 원<br>(1건)</td>
 
@@ -719,7 +719,7 @@
                 data: { // 차트에 들어갈 데이터
                     labels: [
                         //x 축
-                        '14','15', '16','17','18','19','20'
+                        '21','22', '23','24','25','26','27'
                     ],
                     datasets: [
                         { //데이터
@@ -735,12 +735,12 @@
                                 0 // 토 20
                             ],
                             backgroundColor:
-                                //색상
+                            //색상
                                 'rgba(255, 99, 132, 0.2)',
 
 
                             borderColor:
-                                //경계선 색상
+                            //경계선 색상
                                 'rgba(255, 99, 132, 1)',
 
                             borderWidth: 1, //경계선 굵기
@@ -775,7 +775,7 @@
                             label: '요일별 평균 매출 현황', //차트 제목
                             fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                             data: [
-                               19, //일  14
+                                19, //일  14
                                 13.2, // 월 15
                                 10.4, // 화 16
                                 12, // 수 17
@@ -838,8 +838,8 @@
                             data: [
                                 17,15,6,9,11.4,3,1.7, //x축 label에 대응되는 데이터 값
                                 17,15,9,18,5,3,10,
-                                5.4,0,0,0,0,0,0,
-                                0,0,0,0,0,0,0,
+                                5.4,5,13,2,14,3,14,
+                                12,3,5,4.4,0,0,0,
                                 0,0,0,
                             ],
                             backgroundColor:

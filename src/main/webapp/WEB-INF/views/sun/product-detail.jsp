@@ -28,7 +28,7 @@
 <%--        <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">--%>
         <c:choose>
             <c:when test="${productDetail.PROD_NM == '올리브 에멜전'}">
-                     <img src="/img/sun/olive.gif" alt="상품 상세 이미지">
+                     <img src="/img/sun/olive.jpg" alt="상품 상세 이미지">
             </c:when>
             <c:otherwise>
                 <img src="${productDetail.REP_IMG}" alt="상품 상세이미지">
@@ -420,7 +420,7 @@
 
         continueShoppingBtn.addEventListener('click', function() {
             cartModal.style.display = 'none';
-            location.href='/product/productDetail/${productDetail.PROD_ID}';
+            <%--location.href='/product/productDetail/${productDetail.PROD_ID}';--%>
 <%--            ${productDetail.PROD_ID}--%>
         });
 

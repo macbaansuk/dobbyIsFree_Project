@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
     <link rel="stylesheet" href="./css/hoon/membership.css"/>
-    <link rel="stylesheet" href="/css/hwa/modal.css"/><!--모달창-->
+    <link rel="stylesheet" href="/css/cart/modal.css"/><!--모달창-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
 
 
@@ -63,7 +63,7 @@
                                 <div class="cntWrap">
                                     <div class="inner">
                                   <span class="tag-card">
-                                        <span class="cardSt_1">24%</span>
+<%--                                        <span class="cardSt_1">10%</span>--%>
                                         <span class="cardSt_2">베스트</span>
                                   </span>
                                         <div class="name">
@@ -72,8 +72,8 @@
                                         </div>
                                         <div class="option">
                                   <span class="banner-price">
-                                      <em class="tCost">31,000</em>
-                                      <em class="tUnit">23,500</em>
+<%--                                      <em class="tCost">31,000</em>--%>
+                                      <em class="tUnit">31,000</em>
                                   </span>
                                         </div> <!-- 옵션-->
                                     </div> <!-- 이너 -->
@@ -87,17 +87,17 @@
                                 <div class="cntWrap">
                                     <div class="inner">
                                   <span class="tag-card">
-                                        <!-- <span class="cardSt_1">24%</span> -->
+                                         <span class="cardSt_1">10%</span>
                                         <span class="cardSt_2">신규</span>
                                   </span>
                                         <div class="name">
-                                            <span style="font-family:NanumSquareNeo-dEb">수분 잠금 확실히하고</span>
-                                            <span style="font-family:NanumSquareNeo-dEb">깨끗하고 촉촉한 피부로</span>
+                                            <span style="font-family:NanumSquareNeo-dEb">쫀쫀광 블랙티 앰플</span>
+                                            <span style="font-family:NanumSquareNeo-dEb; font-weight: bold">재구매율 1위</span>
                                         </div>
                                         <div class="option">
                                   <span class="banner-price">
-                                      <em class="tCost">31,000</em>
-                                      <em class="tUnit">23,500</em>
+                                      <em class="tCost">38,000</em>
+                                      <em class="tUnit">34,200</em>
                                   </span>
                                         </div> <!-- 옵션-->
                                     </div> <!-- 이너 -->
@@ -112,16 +112,17 @@
                                     <div class="inner">
                                     <span class="tag-card">
                                           <!-- <span class="cardSt_1">24%</span> -->
-                                          <span class="cardSt_2">최대30%</span>
+<%--                                          <span class="cardSt_2">최대30%</span>--%>
                                     </span>
                                         <div class="name">
-                                            <span style="font-family:NanumSquareNeo-dEb">수분 잠금 확실히하고</span>
-                                            <span style="font-family:NanumSquareNeo-dEb">깨끗하고 촉촉한 피부로</span>
+
+                                            <span style="font-family:NanumSquareNeo-dEb">피부 스트레스 진정 케어 </span>
+                                            <span style="font-family:NanumSquareNeo-dEb">고민 부위에 쓱싹</span>
                                         </div>
                                         <div class="option">
                                     <span class="banner-price">
-                                        <em class="tCost">31,000</em>
-                                        <em class="tUnit">23,500</em>
+<%--                                        <em class="tCost">31,000</em>--%>
+                                        <em class="tUnit">26,000</em>
                                     </span>
                                         </div> <!-- 옵션-->
                                     </div> <!-- 이너 -->
@@ -135,17 +136,17 @@
                                 <div class="cntWrap">
                                     <div class="inner">
                                     <span class="tag-card">
-                                          <span class="cardSt_1">25%</span>
+                                          <span class="cardSt_1">10%</span>
                                           <span class="cardSt_2">신제품</span>
                                     </span>
                                         <div class="name">
-                                            <span style="font-family:NanumSquareNeo-dEb">수분 잠금 확실히하고</span>
-                                            <span style="font-family:NanumSquareNeo-dEb">깨끗하고 촉촉한 피부로</span>
+                                            <span style="font-family:NanumSquareNeo-dEb">도비스프리 20대 판매 1위</span>
+                                            <span style="font-family:NanumSquareNeo-dEb; font-weight: bold">#깐달걀 피부결 레티놀 앰플</span>
                                         </div>
                                         <div class="option">
                                     <span class="banner-price">
-                                        <em class="tCost">31,000</em>
-                                        <em class="tUnit">23,500</em>
+                                        <em class="tCost">40,000</em>
+                                        <em class="tUnit">36,000</em>
                                     </span>
                                         </div> <!-- 옵션-->
                                     </div> <!-- 이너 -->
@@ -242,7 +243,7 @@
                                 <c:choose>
                                     <c:when test="${P.DC_YN == 'N'}">
                                         <strong class="discount-price">
-                                        <fmt:formatNumber value="${P.AMT}" pattern="###,###.##"/>
+                                            <fmt:formatNumber value="${P.AMT}" pattern="###,###.##"/>
                                         </strong>
                                         <span class="original-price"></span>
                                         <span class="discount-rate"></span>
@@ -377,7 +378,7 @@
 
             continueShoppingBtn.addEventListener('click', function() {
                 cartModal.style.display = 'none';
-                location.href="/";
+                // location.href="/";
             });
 
             goToCartBtn.addEventListener('click', function() {
