@@ -349,9 +349,6 @@
   let mblNo1 = mblNo.substring(0,3);
   let mblNo2 = mblNo.substring(3,7);
   let mblNo3 = mblNo.substring(7,11);
-  ////console.log("m1",mblNo1);
-  ////console.log("m2",mblNo2);
-  ////console.log("m3",mblNo3);
 
 
   document.getElementById("mblNo1").textContent  = mblNo1;

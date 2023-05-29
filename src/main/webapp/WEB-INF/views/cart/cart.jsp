@@ -62,7 +62,7 @@
                                             checkArr.push(Number($(this).attr("data-cartId")));  // 배열에 데이터 삽입
                                         });
 
-                                        //console.log(checkArr)
+                                        //(checkArr)
                                         $.ajax({
                                             headers: {
                                                 'Accept': 'application/json',
@@ -217,8 +217,8 @@
                                         <script>
 
                                             function deleteA(this1) { //this1 -> 클릭된 삭제 버튼
-                                                //console.log('this1',this1);
-                                                //console.log('this',this);
+                                                //('this1',this1);
+                                                //('this',this);
                                                 if (confirm("삭제하시겠습니까?")) {
                                                     const cartId = this1.dataset.cartid; //data 속성으로 cartId 찾음
                                                     $.ajax({
@@ -232,16 +232,16 @@
                                                         data: JSON.stringify({'cartIdList': [Number(cartId)]}),
                                                         dataType: 'json',
                                                         success: function (data) {
-                                                            //console.log('반환 JSON data:', data);  //{status: 'success'}
+                                                            //('반환 JSON data:', data);  //{status: 'success'}
                                                             // location.reload();
-                                                            //console.log('this1', this1);
-                                                            //console.log('closet', this1.closest('li'));
+                                                            //('this1', this1);
+                                                            //('closet', this1.closest('li'));
                                                             this1.closest('li').remove();
                                                             // alert('삭제 성공');
                                                             setTotalInfo();
                                                         },
                                                         error: function (jqXHR, textStatus, errorThrown) {
-                                                            //console.log('Error:', jqXHR, textStatus, errorThrown);
+                                                            //('Error:', jqXHR, textStatus, errorThrown);
 
                                                             // location.reload();
                                                             alert('삭제 실패');
@@ -257,14 +257,14 @@
 
                                     <script>
 
-ㄴ                                        $(".modifyConfirmBtn").off().on("click", function () {
+                                        $(".modifyConfirmBtn").off().on("click", function () {
                                             let $modifyBtn = $(this);
                                             let $li = $modifyBtn.closest(".cart-li");
                                             let $gdsInfo = $li.find(".gdsInfo");
                                             let cartId = $modifyBtn.closest('.cart_info').find(".spinner button.plus").data("cartid");
                                             let quantity = $modifyBtn.closest('.cart_info').find(".spinner input").val();
 
-                                            //console.log("quantity", quantity);
+                                            //("quantity", quantity);
 
                                             $.ajax({
                                                 url: "/cart/update",
@@ -274,7 +274,7 @@
                                                     quantity: quantity
                                                 },
                                                 success: function (response) {
-                                                    //console.log('response', response);
+                                                    //('response', response);
 
                                                     let updatedData = response;
 
@@ -283,15 +283,15 @@
                                                     let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
 
                                                     quantity = updatedData.prod_inv_qty;
-                                                    //console.log('구입수량 input', quantity);
+                                                    //('구입수량 input', quantity);
 
                                                     let updatedProdQuantity = updatedData.prod_quantity;
                                                     let updatedProdTotal = updatedData.prod_total;
                                                     let updatedProdPoints = updatedData.prod_points;
 
-                                                    //console.log('수량', updatedData.prod_quantity)
-                                                    //console.log('가격', updatedData.prod_total)
-                                                    //console.log('포인트', updatedData.prod_points)
+                                                    //('수량', updatedData.prod_quantity)
+                                                    //('가격', updatedData.prod_total)
+                                                    //('포인트', updatedData.prod_points)
 
                                                     $itemQuantity.text(updatedProdQuantity);
                                                     $itemTotal.text(updatedProdTotal + " 원");
@@ -430,21 +430,21 @@
 
                 DC = $(element).find(".individual_DC_YN_input").val();  //할인 여부
                 prodQty =  parseInt($(element).find(".prodQty").text());  // 구입 수량 /  코드 한줄로 합침
-                //console.log('prodQty',prodQty);
+                //('prodQty',prodQty);
                 amt =  parseInt($(element).find(".amt").text().replace(/,/g, ""));  //개당(1) 가격 ,  (,) 쉼표-> 빈문자열로 대체
-                //console.log('상품가',amt);
+                //('상품가',amt);
 
-                //console.log('구입수량',prodQty);
-                //console.log('DC', DC);
+                //('구입수량',prodQty);
+                //('DC', DC);
 
-                //console.log('상품개수', prodQty);
+                //('상품개수', prodQty);
                 totalOrdPrc += prodQty * amt;  // 주문금액 계산 = 수량 * 금액
                 pt = prodQty * amt * 0.01;  // 적립금 -> 금액의 1%
-                //console.log('개별 적립금', pt);
+                //('개별 적립금', pt);
 
-                //console.log('주문금액', totalOrdPrc);
+                //('주문금액', totalOrdPrc);
                 totalPt += pt;  //최종 적립금
-                //console.log('적립금', totalPt);
+                //('적립금', totalPt);
                 // 결제 예정금액
                 totalPrc += parseInt($(element).find(".individual_pdord_total_input").val());
             }
@@ -454,7 +454,7 @@
         } else {
             totalDlvCost = 2500;
         }
-        //console.log('배송비', totalDlvCost);
+        //('배송비', totalDlvCost);
 
 
         $("#totalOrdPrc").text(totalOrdPrc.toLocaleString() + "원");
@@ -466,8 +466,7 @@
     $(".chBox, #allCheck").on("change", setTotalInfo);  //체크박스 상태 변경시
     $(".modifyConfirmBtn").click(function() {
         setTotalInfo();
-        //console.log('실행');
-
+        //('실행');
     });
 
 

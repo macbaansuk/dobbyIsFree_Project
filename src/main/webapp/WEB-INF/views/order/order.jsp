@@ -101,17 +101,14 @@
                                 <!--연락처 세개로 나누는 script [010-1234-1234] -> [010] [1234] [1234] -->
                                 <script>
                                     let phoneNum = '${mbrDto.MPNO}';
-                                    //console.log('폰넘버타입',typeof phoneNum);  //number -> ${mbrDto.MPNO}를 문자열로 감싸서 string으로 변환
-                                    //console.log('폰넘버', '${mbrDto.MPNO}');  // ''문자열로 감싸야 올바른 값이 찍힌다
-                                    //console.log('폰넘버변수', phoneNum);
+                                    //('폰넘버타입',typeof phoneNum);  //number -> ${mbrDto.MPNO}를 문자열로 감싸서 string으로 변환
+                                    //('폰넘버', '${mbrDto.MPNO}');  // ''문자열로 감싸야 올바른 값이 찍힌다
 
                                     let num1 = phoneNum.substring(0,3);
                                     let num2 = phoneNum.substring(3,7);
                                     let num3 = phoneNum.substring(7,11);
 
-                                    //console.log("num1",num1)
-                                    //console.log("num2",num2)
-                                    //console.log("num3",num3)
+
 
                                     document.getElementById("ordMblNo1").value = num1;
                                     document.getElementById("ordMblNo2").value = num2;
@@ -180,7 +177,6 @@
                                             //배송지명 : 신규 입력 클릭시 입력값 처음 val로 나타내기
                                             let dlvRequest1 = document.getElementById("dlvRequest1").value;  //원래 값 변수에 저장해놓기
                                             $('#dlvRequest1').on('click', function() {
-                                                //console.log("신규입력 클릭확인")
 
                                                 document.getElementById("dlvNmTxt").value = '';
                                                 document.getElementById("dlvRequest1").value = '';
@@ -197,12 +193,8 @@
 
                                             //-----------------------배송지명 li  클릭 ----------------------------
                                             function dlvNmClick(this1){ //this1 -> 클릭된 li > input
-                                                //console.log('this1',this1);
-                                                //console.log('this',this);
 
                                                 const dlvpnId = this1.dataset.dlvpnid; //data 속성으로 dlvpnId 찾음
-                                                //console.log('dlvpnId',dlvpnId);
-                                                //console.log('dlvpnId 타입',typeof  dlvpnId);
                                                 $.ajax({
                                                     headers: {
                                                         'Accept': 'application/json',
@@ -214,7 +206,6 @@
                                                     data: JSON.stringify( Number(dlvpnId) ),
                                                     dataType: 'json',
                                                     success: function (response) {
-                                                        //console.log('jason response:', response);
 
                                                         let dlvNm = response;
 
@@ -229,21 +220,16 @@
 
                                                         let getPhoneNum = dlvNm.mblNo;
                                                         // let NgetPhoneNum = getPhoneNum* 1;  // * 1을 하니 맨첫번째자리 0이 제대로 형변환 되지 않았다.
-                                                        // let NgetPhoneNum = Number(getPhoneNum); // 어이없어 왜 형변환을 했을까 ?
+                                                        // let NgetPhoneNum = Number(getPhoneNum); //왜 형변환을 했을까 ?
                                                         // let NgetPhoneNum = parseInt(getPhoneNum);
 
                                                         // 앞자리 0일 날라가는 이유 JS에서는 첫번째가 0으로 시작하면 8진수로 취급
                                                         //parseInt("01", 10) -> 10진수 변환으로 작성하면 해결
 
 
-                                                        //console.log('배송지명 연락처',getPhoneNum);
-                                                        //console.log('배송지명 연락처',typeof getPhoneNum);
-                                                        // //console.log('배송지명 연락처 형변환',typeof getPhoneNum);
-                                                        // //console.log('배송지명 연락처 형변환 값',getPhoneNum);
-
-                                                        let getNum1 = getPhoneNum.substring(0,3); //console.log("1번째",getNum1);
-                                                        let getNum2 = getPhoneNum.substring(3,7); //console.log("2번째",getNum2);
-                                                        let getNum3 = getPhoneNum.substring(7,11); //console.log("3번째",getNum3);
+                                                        let getNum1 = getPhoneNum.substring(0,3); //("1번째",getNum1);
+                                                        let getNum2 = getPhoneNum.substring(3,7); //("2번째",getNum2);
+                                                        let getNum3 = getPhoneNum.substring(7,11); //("3번째",getNum3);
 
 
                                                         let getdlvNmTxt = dlvNm.dlvNm;
@@ -263,7 +249,7 @@
                                                         document.getElementById("mblNo3").value = getNum3;
                                                     },
                                                     error: function (jqXHR, textStatus, errorThrown) {
-                                                        //console.log('Error:', jqXHR, textStatus, errorThrown);
+                                                        //('Error:', jqXHR, textStatus, errorThrown);
                                                         alert('배송지명으로 불러오기 실패');
                                                     }
                                                 });<!--ajax -->
@@ -380,15 +366,12 @@
 
                                         <!-- 배송주소록에 등록된 연락처 세자리 자르기 -->
                                         let rcprPhoneNum = '${addressList.RCPR_MPNO}';
-                                        //console.log('폰넘버타입',typeof rcprPhoneNum);
-                                        //console.log('폰넘버', '${addressList.RCPR_MPNO}');
+                                        //('폰넘버타입',typeof rcprPhoneNum);
+                                        //('폰넘버', '${addressList.RCPR_MPNO}');
 
                                         let rcprNum1 = rcprPhoneNum.substring(0,3);
                                         let rcprNum2 = rcprPhoneNum.substring(3,7);
                                         let rcprNum3 = rcprPhoneNum.substring(7,11);
-                                        //console.log("rcprNum1",rcprNum1)
-                                        //console.log("rcprNum2",rcprNum2)
-                                        //console.log("rcprNum3",rcprNum3)
 
                                         document.getElementById("mblNo1").textContent  = rcprNum1;
                                         document.getElementById("mblNo2").value = rcprNum2;
@@ -447,9 +430,7 @@
                                     // 2. else이면  none으로
 
                                     $('input[name="dlvReqCntRadio"]').click(function() {
-                                        //console.log('배송요청사항 클릭확인')
                                         if (this.id !== 'request6') {
-                                            //console.log('this확인', this);
                                             $('.writeMsg').css('display', 'none');
                                         } else {
                                             $('.writeMsg').css('display', 'block');
@@ -936,7 +917,6 @@
             } else {
                 totalDlvCost = 2500;
             }
-            //console.log('배송비', totalDlvCost);
 
             $("#totDcCpnPrcTxt").text(dcPrc.toLocaleString());  //할인차감금액
             $("#totPurDlvPrcTxt").text(totalDlvCost.toLocaleString());  //배송비
@@ -947,9 +927,9 @@
 
         $(".pdtRow").each(function (index, element) {
             prodPrc =  parseInt($(element).find("#price").text().replace(/,/g, ""));
-            //console.log('상품가격',prodPrc);
+            //('상품가격',prodPrc);
             totalOrdPrc += prodPrc;
-            //console.log('주문금액',totalOrdPrc);
+            //('주문금액',totalOrdPrc);
         });
 
         paybox(); // 초기 값 설정
@@ -957,7 +937,7 @@
         // 쿠폰 선택
         $("input[name='couponSeq']").change(function() {
             let cpValue = $("input[name='couponSeq']:checked").val();
-            //console.log("선택한 쿠폰 값:", cpValue);
+            //("선택한 쿠폰 값:", cpValue);
             dcPrc = parseInt(cpValue);
             paybox(); // 쿠폰 값 변경 시 업데이트
         });
@@ -988,7 +968,6 @@
         return orderNum;
     }
     const orderId = order_Id();
-    //console.log("주문번호",orderId);
 
 
 
@@ -1059,17 +1038,11 @@
         let inputTotPurDlvPrcTxt = $('<input>').attr('type', 'hidden').attr('name', 'inputTotPurDlvPrcTxt').val(totPurDlvPrcTxtVal).appendTo(ordForm);//배송비
 
         let inputOrdId = $('<input>').attr('type', 'hidden').attr('name', 'inputOrdId').val(orderId).appendTo(ordForm);//주문번호
-        //console.log('inputTotPurPrcTxt',totPrdPrcTxtVal);
-        //console.log('inputTotPurPrcTxt',totPurPrcTxtVal);
-        //console.log('totDcCpnPrcTxtVal',totDcCpnPrcTxtVal);
-        //console.log('totReservePtTxtVal',totReservePtTxtVal);
-        //console.log('totPurDlvPrcTxtVal',totPurDlvPrcTxtVal);
 
         let isAddNewChkVal = document.getElementById("isAddNewChk").checked ? "Y" : "N";
         let inputIsAddNewChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddNewChk').val(isAddNewChkVal).appendTo(ordForm);
 
         let isAddDefaultChkVal = document.getElementById("isAddDefaultChk").checked ? "Y" : "N";
-        //console.log('기본배송치체크',isAddDefaultChkVal);
         let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddDefaultChkVal).appendTo(ordForm);
 
 
@@ -1106,7 +1079,6 @@
 
 
 
-        //console.log('버튼클릭확인');
         let agreeChk = document.getElementById('payWayProvision');
         if(agreeChk.checked){ //동의여부 체크해야만
             if (ordNmTxt === "") {
@@ -1181,10 +1153,7 @@
             let Addr1stDlvPay =  document.getElementById('dlvAddr1stTxt').value;
             let totPurPrcTxt =  parseInt(document.getElementById('totPurPrcTxt').textContent.replace(/,/g, ""));
 
-            //console.log("결제 우편 ",typeof zipDlvPay);
-            //console.log("결제 주소",typeof Addr1stDlvPay);
-            //console.log("결제 금액",typeof totPurPrcTxt);
-            //console.log("결제 금액 최종값", totPurPrcTxt);
+
 
             // input();
 
@@ -1239,12 +1208,13 @@
     //---------------------------------------------------------------------------------------------------------------------
     $(document).ready(function () {
         setTotalInfo();
-        coupon();
         //나중에 포인트 쿠폰 적용 클릭 이벤트시에도 결제박스계산 함수 호출하기 (나중에)
 
     });
 </script>
-
+<footer>
+    <jsp:include page="../footer.jsp"/>
+</footer>
 </body>
 </html>
 

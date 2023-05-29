@@ -171,26 +171,18 @@
 
     $(".ordDtm").each(function (index, element) {
       let ordDtm = new Date(element.getAttribute('data-ord-dtm'));
-      //console.log('ordDtm',ordDtm);
       let ordDtmFormat = ordDtm.toLocaleDateString();
-      //console.log('데이트변환',ordDtmFormat);
+      //('데이트변환',ordDtmFormat);
       let ordDtmString = ordDtmFormat.toString();
       let ord = ordDtmFormat.split('.');
       let ord1 = ord[0];
       let ord2 = ord[1];
       let ord3 = ord[2];
-      //console.log('ord1',ord1); //확인해보니 공백이있음;
-      //console.log('ord2',ord2);
-      //console.log('ord3',ord3);
+      //('ord1',ord1); //확인해보니 공백이있음;
       let ord11 = ord1.toString().trim();
       let ord22 = ord2.toString().trim().padStart(2,'0'); //trim() 추가
       let ord33 = ord3.toString().trim().padStart(2,'0');
-      //console.log('ord11',ord11);
-      //console.log('ord22',ord22);
-      //console.log('ord33',ord33)
-      //console.log('스트링',ordDtmString);
       let ordTot = ord11  +'.' + ord22 +'.'+ ord33;
-      //console.log('ordTot',ordTot);
       element.innerText = ordTot;
     });
   });
