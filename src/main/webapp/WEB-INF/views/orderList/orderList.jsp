@@ -70,11 +70,6 @@
 
 
       <div id="listArea">
-
-
-
-
-
         <p class="tableListLength">총 <strong class="ftColor1">1</strong> 건</p>
         <div class="tableType">
           <table>
@@ -108,11 +103,10 @@
                 </td>
 
                 <td>
-                  <a href="javascript:void(0)">
+<%--                  <a href="/orderDetail?orderId=${ordProdDto.ORD_ID}">--%>
                       ${orderList.ORD_ID}
-                  </a>
+<%--                  </a>--%>
                 </td>
-
                 <td class="left">
                   <c:forEach items="${ordProdDto}" var="ordProdDto">
                     <c:choose>
@@ -151,18 +145,15 @@
             </tbody>
           </table>
         </div>
-        <!-- paging -->
 
-        <%--        <div class="paging"><span class="num on"><a href="javascript:void(0);">1</a></span></div>--%>
 
-        <!-- //paging -->
         <div class="helpWrap">
           <ul class="bulListType">
             <li>주문번호와 제품명을 클릭 하시면 주문 상세 내역을 보실 수 있습니다.</li>
             <li>배송정보는 처리현황이 배송 중, 배송완료 상태에서 조회가 가능합니다.</li>
             <li>이상없이 제품을 받으셨다면 수취확인을 해주세요. 확인하지 않으실 경우 배송시작일 부터 7일이후에 자동으로 배송완료상태로 변경됩니다.</li>
             <li>온라인에서 구매내역 표기시 제품의 정상가로 표기 됩니다. (단, 등급 반영시 실제 결제가 기준으로 반영됩니다.)</li>
-            <li>등급 반영시 반품내역, 포인트 구매내역은 제외 됩니다.</li>
+            <li>등급 반영시 반품내역, 적립금 구매내역은 제외 됩니다.</li>
           </ul>
         </div>
 
@@ -178,22 +169,6 @@
 <script>
   $(document).ready(function() {
 
-    <%--  $(".ordDtm").each(function (index, element) {--%>
-
-    <%--  let date = new Date('${ordDto.ORD_DTM}');// Mon May 08 2023 00:58:34 GMT+0900 (한국 표준시)--%>
-    <%--  // let date6 =  date.toDateString();  //Mon May 08 2023--%>
-    <%--  // let date7 =  date.toISOString();   //2023-05-07T15:58:34.000Z--%>
-    <%--  let date8 =  date.toLocaleDateString(); // 2023. 5. 8.--%>
-    <%--  // let date9 = date.toLocaleDateString().padStart(2,'0'); //2023. 5. 8.--%>
-    <%--  let date10 = date.toString(); //2023. 5. 8.--%>
-
-
-    <%--  //console.log('date8',date8);--%>
-    <%--  //console.log('date0',date10);--%>
-    <%--  document.getElementById('ordDtm').textContent = date8;--%>
-    <%--});--%>
-
-
     $(".ordDtm").each(function (index, element) {
       let ordDtm = new Date(element.getAttribute('data-ord-dtm'));
       //console.log('ordDtm',ordDtm);
@@ -204,7 +179,7 @@
       let ord1 = ord[0];
       let ord2 = ord[1];
       let ord3 = ord[2];
-      //console.log('ord1',ord1); //확인해보니 공백이있음 ㅡㅡ;
+      //console.log('ord1',ord1); //확인해보니 공백이있음;
       //console.log('ord2',ord2);
       //console.log('ord3',ord3);
       let ord11 = ord1.toString().trim();

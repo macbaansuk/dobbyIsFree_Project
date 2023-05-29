@@ -32,8 +32,8 @@ public class CartController {
 //        System.out.println("session = " + session);
 
         String mbrId = (String) session.getAttribute("MBR_ID");
-//        m.addAttribute("mbrId",mbrId);
-        System.out.println("mbrId = " + mbrId);
+        m.addAttribute("mbrId",mbrId);
+//        System.out.println("mbrId = " + mbrId);
 
 
         // 장바구니에 화면에서 받아온 상품 KEY 랑 세션에서 꺼내온 사용자 KEY를 이용하여 장바구니에 넣는 로직
@@ -56,8 +56,6 @@ public class CartController {
         HttpSession session = req.getSession();
 
         String mbrId = (String) session.getAttribute("MBR_ID");
-//        System.out.println("mbrId = " + mbrId);
-
 
         List<CartProdDto> cartList = cartService.getCartItemByUserKey(mbrId);
         m.addAttribute("cartList", cartList);
@@ -95,10 +93,7 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
     Map<String,String> response = new HashMap<>();
     response.put("status","success");
 
-
-//    return ResponseEntity.ok().body(response);
     return ResponseEntity.ok(response);
-//확인요망  -> ok 일때 응답이 어떻게 나오는지
 
 }
 
@@ -155,7 +150,6 @@ public  ResponseEntity<Map<String, String>> deleteCartItem(@RequestBody DeleteDt
 
         return ResponseEntity.ok(map);  //이렇게 delete 수정
         
-        //delete 에서 return body 없이 ok로만 전송해봐
     }
 
 

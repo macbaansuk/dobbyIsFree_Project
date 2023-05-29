@@ -256,65 +256,8 @@
                                    data-cartId="${cartProdDto.CART_ID}">변경</a>  <!-- void return false로 해서 onclick () -->
 
                                     <script>
-                                        // $(".modifyConfirmBtn").off().on("click", function () { //변경 버튼 클릭시
-                                        //     // let cartId = $(this).prev(".spinner").find("button.plus").data("cartid");
-                                        //     // let quantity = $(this).prev(".spinner").find("input").val();
-                                        //     let cartId = $(this).closest('.cart_info').find(".spinner button.plus").data("cartid");
-                                        //     let quantity = $(this).closest('.cart_info').find(".spinner input").val();
-                                        //
-                                        //     let $gdsInfo = $(this).closest('.gdsInfo'); // 변경버튼 해당하는 .gdsInfo 영역
-                                        //
-                                        //     //console.log("quantity",quantity);
-                                        //     $.ajax({
-                                        //         url: "/cart/update",
-                                        //         type: "POST",
-                                        //         data: {
-                                        //             cartId: cartId,
-                                        //             quantity: quantity
-                                        //         },
-                                        //         success: function (response) {  //reponse에서 받아서 처리하는 함수로 만들어서 교체
-                                        //             //console.log('response',response);
-                                        //             // 업데이트된 장바구니 상품 정보로 화면 갱신
-                                        //             let updatedData = response; // JSON.parse(response) 대신 response 사용(서버에서 이미 JSON으로 보냄)
-                                        //
-                                        //             // 구입 수량, 최종 가격, 적립 포인트
-                                        //             let $itemQuantity = $gdsInfo.find("span[data-info='prod_quantity']");
-                                        //             let $itemTotal = $gdsInfo.find("span[data-info='prod_total']");
-                                        //             let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
-                                        //
-                                        //             quantity = updatedData.prod_inv_qty;
-                                        //             //console.log('구입수량 input', quantity);
-                                        //             let updatedProdQuantity = updatedData.prod_quantity; // 구입 수량
-                                        //             let updatedProdTotal = updatedData.prod_total;  //최종 가격
-                                        //             let updatedProdPoints = updatedData.prod_points;  //적립 포인트
-                                        //
-                                        //             //console.log('수량',updatedData.prod_quantity)
-                                        //             //console.log('가격',updatedData.prod_total)
-                                        //             //console.log('포인트',updatedData.prod_points)
-                                        //
-                                        //
-                                        //
-                                        //             // $itemQuantity.text(updatedProdQuantity);
-                                        //             // //console.log('ㅇㅇ',$itemQuantity);
-                                        //             // $itemTotal.text(updatedProdTotal + " 원");
-                                        //             // //console.log('ㅇㅇ1',$itemTotal);
-                                        //             //
-                                        //             // $itemPoints.text(updatedProdPoints + " P");
-                                        //             // //console.log('ㅇㅇ2',$itemPoints);
-                                        //             // $(".cart-li").each(function (index, element) {
-                                        //             $("#prod_total").text(updatedProdTotal);
-                                        //             $("#prod_points").text(updatedProdPoints);
-                                        //             // });
-                                        //
-                                        //
-                                        //             setTotalInfo();
-                                        //         }
-                                        //     }); // ajax
-                                        // }); //onclick
 
-
-
-                                        $(".modifyConfirmBtn").off().on("click", function () {
+ㄴ                                        $(".modifyConfirmBtn").off().on("click", function () {
                                             let $modifyBtn = $(this);
                                             let $li = $modifyBtn.closest(".cart-li");
                                             let $gdsInfo = $li.find(".gdsInfo");
@@ -400,35 +343,22 @@
                     <dl>
                         <dt>주문금액</dt>
                         <dd><span class="num" id="totalOrdPrc">
-<%--                                                        <fmt:formatNumber pattern="###,###,###" value="${total_sum}"/>--%>
                         </span></dd>
                     </dl>
                     <dl>
-                        <%--                        <c:choose>--%> <%-- 배송비 계산 -- >
-<%--                            <c:when test="${total_sum ge 20000}">--%>
-                        <%--                                <c:set var="deliveryFee" value="0"/>--%>
-                        <%--                            </c:when>--%>
-                        <%--                            <c:otherwise>--%>
-                        <%--                                <c:set var="deliveryFee" value="2500"/>--%>
-                        <%--                            </c:otherwise>--%>
-                        <%--                        </c:choose>--%>
                         <dt>배송비</dt>
                         <dd><span id="totalDlvCost">
-<%--                                                                                    <fmt:formatNumber pattern="###,###,###" value="${deliveryFee}"/>--%>
                         </span></dd>
                     </dl>
                     <dl>
                         <dt>적립 예정 포인트</dt>
                         <dd><span class="num" id="totalPt">
-                            <%--                          <fmt:formatNumber pattern="###,###,###" value="${total_point}"/> --%>
-
                         </span>&nbsp;
                         </dd>
                     </dl>
                     <dl class="totalPrice">
                         <dt>결제 예정 금액</dt>
                         <dd><span class="num" id="totalPrc">
-<%--                                                    <fmt:formatNumber pattern="###,###,###" value="${total_sum + deliveryFee }"/>원--%>
                         </span></dd>
                     </dl>
 
@@ -473,37 +403,6 @@
                     </script>
                 </c:otherwise>
             </c:choose>
-<%--            <script>--%>
-                    <!-- 장바구니가 비어있는 경우 동작하지 않아서 위에 jstl로 다시 처리 -->
-<%--                $(".ordBtn").click(function () { //주문하기 버튼 클릭시--%>
-<%--                    const checkOrdArr = [];--%>
-<%--                    const cartList = JSON.parse('${cartList}');--%>
-<%--                    $("input[class='chBox']:checked").each(function () {--%>
-<%--                        checkOrdArr.push(Number($(this).attr("data-cartId"))); //체크된 목록을 배열에 담고--%>
-<%--                    });--%>
-
-<%--                    let form = $('<form>').attr('method', 'POST').attr('action', '/order');  //form을 생성--%>
-<%--                    $.each(checkOrdArr, function(index, value) {--%>
-<%--                        let inputHidden = $('<input>').attr('type', 'hidden').attr('name', 'cartIdList').val(value);--%>
-
-<%--                        //console.log('Cart ID:', value);--%>
-
-<%--                        inputHidden.appendTo(form);--%>
-<%--                    });--%>
-
-<%--                    if(checkOrdArr.length === 0) { // 선택한 상품이 없는 경우--%>
-<%--                        alert("주문할 상품을 선택해주세요");--%>
-<%--                        return;--%>
-<%--                    }--%>
-<%--                   if(cartList.length === 0) { // 선택한 상품이 없는 경우--%>
-<%--                        alert("주문할 상품을 선택해주세요");--%>
-<%--                        return;--%>
-<%--                    }--%>
-
-<%--                    $(document.body).append(form);--%>
-<%--                         form.submit();--%>
-<%--                });--%>
-<%--            </script>--%>
 
         </div> <!--inner end-->
     </div><!--totalPayment end -->

@@ -44,9 +44,6 @@ public class OrderController {
 
         MbrDto mbrDto = orderService.getMbrInfoById(mbrId);
 
-//        System.out.println("mbrDto = " + mbrDto);
-
-
         m.addAttribute("mbrDto", mbrDto);
 
         //상품 정보 조회
@@ -72,7 +69,6 @@ public class OrderController {
                 checkedCartList.add(cart);
             }
         }
-
 
 //        System.out.println("checkedCartList = " + checkedCartList);
         m.addAttribute("orderList",checkedCartList);
@@ -108,7 +104,6 @@ public class OrderController {
     @PostMapping("/order/direct")
     public String directOrder(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity,
                               Model m, HttpServletRequest req) {
-//        System.out.println("바로구매 컨트롤러 진입");
 //        System.out.println("상품Id"+productId);
 //        System.out.println("수량"+quantity);
 
@@ -319,7 +314,6 @@ public ResponseEntity<Map<String, String>> getDlvName(@RequestBody Integer dlvNm
         //세션 삭제하기
         session.removeAttribute("checkedCartList");
         session.removeAttribute("cartList");
-
 
         return "/order/orderDone";
     }

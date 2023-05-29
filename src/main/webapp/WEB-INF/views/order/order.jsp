@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="/css/order/order.css"/><!-- css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 주소찾기 -->
-    <!-- jQuery -->
-    <%--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>--%>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>  <!--아임포트 -->
 </head>
 
@@ -39,7 +37,6 @@
                 <form id="ordForm" onsubmit="return false;">
                     <section>
                         <h3 class="subTitle2">주문/배송정보</h3>
-                        <%--                    <form id="orderInfoForm" name="orderInfoForm" method="POST" onsubmit="return false;" novalidate="novalidate">--%>
                         <input type="hidden" id="recentlyAddrNoDefaultListCnt" value="1">
                         <div class="tableTypeWrite">
                             <div id="ordererForm">
@@ -131,9 +128,6 @@
                                 </tr>
 
 
-                                <%--                                <tr class="deliverySelWrap addrSave">--%>  <!-- 무슨 html인지 몰라서 일단 주석 -->
-
-
                                 <!-- 배송지 작성 -->
                                 <tr class="deliveryWriteWrap addWrite" style="display: table-row;">
                                     <th scope="row">배송지 작성</th>
@@ -166,9 +160,6 @@
                                                 <button class="selTit" type="button" onclick="selActive();">배송지명 선택</button>
                                                 <ul class="selList">
                                                     <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio" onclick="dlvChk(this)"><label for="dlvRequest1" >신규입력</label></li>
-                                                    <%--                                                        <li><input type="radio" id="dlvRequest1" name="dlvReqCntRadio"><label for="dlvRequest1">신규입력</label></li>--%>
-                                                    <%--                                                        <li><input type="radio" id="dlvRequest2" name="dlvReqCntRadio"><label for="dlvRequest2">집</label></li>--%>
-                                                    <%--                                                        <li><input type="radio" id="dlvRequest3" name="dlvReqCntRadio"><label for="dlvRequest3">회사</label></li>--%>
 
                                                     <c:set var="loop" value="${2}" />
                                                     <c:forEach items="${dlvsList}" var="dlvsList">
@@ -223,7 +214,7 @@
                                                     data: JSON.stringify( Number(dlvpnId) ),
                                                     dataType: 'json',
                                                     success: function (response) {
-                                                        //console.log('반환 JSON data:', response);
+                                                        //console.log('jason response:', response);
 
                                                         let dlvNm = response;
 
@@ -482,16 +473,6 @@
                             <h3 class="subTitle2">주문 상품 정보</h3>
                             <div class="cartList">
                                 <ul>
-                                    <%--                                <c:forEach items="${orderList}" var="orderList">--%>
-                                    <%--                                    <c:choose>--%>
-                                    <%--                                    <c:when test="${orderList.DC_YN eq 'Y'}">--%>
-                                    <%--                                        <c:set var="prod_fee" value="${orderList.AMT * 0.9 * orderList.PROD_INDV_QTY}"/>--%>
-                                    <%--                                    </c:when>--%>
-                                    <%--                                    <c:otherwise>--%>
-                                    <%--                                        <c:set var="prod_fee" value="${orderList.AMT * orderList.PROD_INDV_QTY}"/>--%>
-                                    <%--                                    </c:otherwise>--%>
-                                    <%--                                        <c:set var="point" value="${prod_fee * 0.01}"/>--%>
-                                    <%--                                    </c:choose>--%>
 
                                     <c:forEach items="${orderList}" var="orderList">
                                         <c:set var="prod_fee" value="${orderList.AMT * orderList.PROD_INDV_QTY}"/>
@@ -504,14 +485,14 @@
                                             <div class="pdtRow">
                                                 <div class="cell pdtImg">
 
-                                                    <a href="javascript:void(0);" onclick="window.open('','_blank');">
+                                                    <a href="javascript:void(0);" >
                                                         <img  id ="pdtImg" src="${orderList.REP_IMG}" alt="상품이미지">
                                                     </a>
 
                                                 </div>
                                                 <div class="cell pdtInfo">
                                                     <div class="pdtName">
-                                                        <a href="javascript:void(0);" onclick="window.open('/kr/ko/ProductView.do?prdSeq=34662&amp;catCd01=UA','_blank');">
+                                                        <a href="javascript:void(0);">
                                                                 ${orderList.PROD_NM}
                                                         </a>
                                                     </div>
@@ -668,18 +649,6 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <%--                            <tr class="okPtChk_abc">--%>
-                                <%--                                <th scope="row">OK캐쉬백 포인트 사용<button type="button" class="btnTooltip" onclick="tooltip('okcashbagPointUseInfo');">자세히 보기</button></th>--%>
-                                <%--                                <td>--%>
-                                <%--                                    <button type="button" class="btnType7s" id="chkOkPt_abc">포인트 조회</button>--%>
-                                <%--                                    <div class="okcashbagPoint">--%>
-                                <%--                                        <input type="text" name="okPtUse" class="inputTxt checkNum" id="okPtUse" value=""><span>P /</span><span class="point" id="schOkPt_abc">0 P</span>--%>
-                                <%--                                        <button type="button" class="btnType7s chkOkPt2 okPointBtn_abc" id="chkOkPt2_abc">포인트 재조회</button>--%>
-                                <%--                                        <button type="button" class="btnType3s okPtCancel okPointBtn_abc" id="okPtCancel_abc" style="display: none;">취소</button>--%>
-                                <%--                                        <button type="button" class="btnType3s okPointBtn">적용</button>--%>
-                                <%--                                    </div>--%>
-                                <%--                                </td>--%>
-                                <%--                            </tr>--%>
                                 </tbody>
                             </table>
                         </div>
@@ -947,137 +916,7 @@
         }).open();
     }
 
-    //결제박스
-    // function setTotalInfo() {
-    //
-    //     let totalOrdPrc = 0;  //주문금액
-    //     let totalDlvCost = 0;  // 배송비
-    //     let totalPt = 0;  // 예정 적립금
-    //     let totalPrc = 0; // 최종 결제 금액
-    //     let prodPrc = 0; // 상품별 금액
-    //     let dcPrc = 0;  // 할인,차감 금액
-    //     let amt = 0; //상품별 금액
-    //     let pt = 0; //개별 적립금
-    //
-    //     $(".pdtRow").each(function (index, element) {
-    //
-    //         //장바구니와 달리 장바구니에서 최종으로 넘어온 값들이기 때문에 상품별 금액을 총 더함 = 주문금액
-    //         // @주문금액 = 총 금액 ( +=상품최종가격 );
-    //         // @배송비 = 최종 결제 금액이 2만원 이상 = 0;
-    //         // @예정적립금 = (+= point )
-    //
-    //
-    //         // prodPrc = $(element).find("#price").text();  // 상품별 가격
-    //         // //console.log('상품가격 type',typeof prodPrc); // string
-    //         // prodPrc = parseInt($(element).find("#price").text());  // string -> int
-    //         prodPrc =  parseInt($(element).find("#price").text().replace(/,/g, ""));
-    //         //console.log('상품가격',prodPrc);
-    //
-    //         totalOrdPrc += prodPrc;
-    //         //console.log('주문금액',totalOrdPrc);
-    //
-    //         // pt =  parseInt($(element).find("#point").text().replace(/,/g, ""));
-    //         // totalPt += pt;
-    //     });
-    //
-    //
-    //     //@최종결제금액 = 주문금액 - 할인/차감금액
-    //     // 아직 쿠폰 적립금이 적용안된 상태 -> 할인/차감금액 빼기 없이 주문금액으로 대체
-    //     // totalPrc = totalOrdPrc - drPrc;
-    //
-    //     //할인차감금액
-    //     // 쿠폰 선택
-    //
-    //
-    //     $(".couponSeq").click(function() {
-    //         let cpValue = $("input[name='couponSeq']:checked").val();
-    //         //console.log("선택한 쿠폰 값:", cpValue);
-    //         dcPrc = parseInt(cpValue);
-    //         totalPrc = totalOrdPrc - dcPrc;
-    //         coupon();
-    //     });
-    //
-    //
-    //
-    //
-    //     //예정적립금 = 최종결제금액  * 0.01 (할인.차감금액이 적용된 상태에서 1% 적립)
-    //     totalPt = totalPrc * 0.01;
-    //
-    //     // 주문금액 2만원이상시 배송비 무료
-    //     if (totalPrc >= 20000) {
-    //         totalDlvCost = 0;
-    //     } else {
-    //         totalDlvCost = 2500;
-    //     }
-    //     //console.log('배송비', totalDlvCost);
-    //
-    //     $("#totPrdPrcTxt").text(totalOrdPrc.toLocaleString());  //주문금액
-    //     $("#totPurDlvPrcTxt").text(totalDlvCost.toLocaleString());  //배송비
-    //     $("#totReservePtTxt").text(totalPt.toLocaleString());  //예정적립금
-    //     $("#totPurPrcTxt").text((totalPrc + totalDlvCost).toLocaleString() ); //최종결제금액
-    //     // $("#totPurPrcBtnTxt").text(totalPrc.toLocaleString()); // 결제하기
-    //
-    //
-    //     function coupon(){
-    //         totalPrc = totalOrdPrc - dcPrc;
-    //         $("#totDcCpnPrcTxt").text(drPrc.toLocaleString());
-    //         $("#totDcCpnPrcTxt").text(dcPrc.toLocaleString());  //할인차감금액
-    //         $("#totPurPrcTxt").text((totalPrc + totalDlvCost).toLocaleString()); //최종결제금액
-    //         $("#totPurPrcBtnTxt").text(totalPrc.toLocaleString()); // 결제하기 버튼
-    //     }
-    // }
-    // function setTotalInfo() {
-    //     let totalOrdPrc = 0;  //주문금액
-    //     let totalDlvCost = 0;  // 배송비
-    //     let totalPt = 0;  // 예정 적립금
-    //     let totalPrc = 0; // 최종 결제 금액
-    //     let prodPrc = 0; // 상품별 금액
-    //     let dcPrc = 0;  // 할인,차감 금액
-    //     let amt = 0; //상품별 금액
-    //     let pt = 0; //개별 적립금
-    //
-    //     $(".pdtRow").each(function (index, element) {
-    //         prodPrc =  parseInt($(element).find("#price").text().replace(/,/g, ""));
-    //         //console.log('상품가격',prodPrc);
-    //         totalOrdPrc += prodPrc;
-    //         //console.log('주문금액',totalOrdPrc);
-    //     });
-    //
-    //     //할인차감금액
-    //     // 쿠폰 선택
-    //     $(".couponSeq").click(function() {
-    //         let cpValue = $("input[name='couponSeq']:checked").val();
-    //         //console.log("선택한 쿠폰 값:", cpValue);
-    //         dcPrc = parseInt(cpValue);
-    //         totalPrc = totalOrdPrc - dcPrc;
-    //         //console.log('최종 결제 금액:', totalPrc);
-    //
-    //         // 쿠폰 적용한 결제박스 정보 업데이트
-    //         paybox();
-    //     });
-    //
-    //     function paybox() {
-    //         totalPrc = totalOrdPrc - dcPrc;  //최종결제금액 = 주문금액 - 할인/차감금액
-    //         totalPt = totalPrc * 0.01;  //적립금
-    //
-    //         if (totalPrc >= 20000) {
-    //             totalDlvCost = 0;
-    //         } else {
-    //             totalDlvCost = 2500;
-    //         }
-    //         //console.log('배송비', totalDlvCost);
-    //
-    //         $("#totDcCpnPrcTxt").text(dcPrc.toLocaleString());  //할인차감금액
-    //         $("#totPurDlvPrcTxt").text(totalDlvCost.toLocaleString());  //배송비
-    //         $("#totReservePtTxt").text(totalPt.toLocaleString());  //예정적립금
-    //         $("#totPurPrcTxt").text((totalPrc + totalDlvCost).toLocaleString()); //최종결제금액
-    //         $("#totPurPrcBtnTxt").text(totalPrc.toLocaleString()); // 결제하기 버튼
-    //     }
-    //
-    //     $("#totPrdPrcTxt").text(totalOrdPrc.toLocaleString());  //주문금액
-    // }
-    //
-    //
+
     function setTotalInfo() {
         let totalOrdPrc = 0;  //주문금액
         let totalDlvCost = 0;  // 배송비
@@ -1234,11 +1073,6 @@
         let inputIsAddDefaultChk = $('<input>').attr('type', 'hidden').attr('name', 'inputIsAddDefaultChk').val(isAddDefaultChkVal).appendTo(ordForm);
 
 
-        // if (ordNmTxtVal.trim() === "") { // Check if the value is empty or contains only whitespace
-        //     alert('Please enter the ID.');
-        //     $('#ordNmTxt').focus();
-        //     return false;
-        // }
         $(document.body).append(ordForm);
         ordForm.submit();
 
@@ -1359,9 +1193,7 @@
             IMP.request_pay({
                 pg : 'html5_inicis.INIpayTest',  //pg사 - kg이니시스
                 pay_method : 'card',       //결제방법 - 카드
-                // merchant_uid : 'merchant_' + new Date().getTime(),  //주문아이디
                 merchant_uid : orderId,  //주문아이디
-                // name : '주문명:결제테스트', //주문명
                 name : '도비스프리 결제',
                 amount :  totPurPrcTxt, //상품가격 - Number()
                 // amount :  100, //상품가격  -----**********test 용 100원************

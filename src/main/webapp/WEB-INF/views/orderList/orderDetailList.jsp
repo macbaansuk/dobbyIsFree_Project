@@ -117,16 +117,15 @@
           <c:forEach items="${opiDto}" var="opiDto">
           <tr>
             <td>
-              <a href="/kr/ko/ProductView.do?prdSeq=34497">
+              <a>
                 <img src="${opiDto.REP_IMG}"  alt="" width="100px">
               </a>
             </td>
             <td class="pdtCont">
-              <a href="/kr/ko/ProductView.do?prdSeq=34497" target="_blank">
+              <a target="_blank">
                                     <span class="name">
                                       ${opiDto.PROD_NM}
                                     </span>
-<%--                <span class="opt">제품코드: 34497</span>--%>
               </a>
             </td>
             <td>${opiDto.PROD_INDV_QTY}</td>
