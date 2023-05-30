@@ -1,6 +1,6 @@
 package com.dobby.project.product.domain;
 
-import com.dobby.project.soo.SearchCondition;
+
 
 public class PageHandler {
 
