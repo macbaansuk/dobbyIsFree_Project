@@ -69,7 +69,3 @@ If you have a question or any comment, feel free to open an issue or to DM me on
 * [이현화 Hyunhwa Lee](https://github.com/macbaansuk)
 * [윤현선 Hyunsun Yoon](https://github.com/ganadarak)
 
-
-[Kakao Developers](https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#kakaologin)
-
-[Daum 우편번호 서비스](https://postcode.map.daum.net/guide)
