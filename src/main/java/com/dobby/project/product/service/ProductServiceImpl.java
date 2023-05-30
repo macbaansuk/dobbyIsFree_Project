@@ -1,7 +1,7 @@
-package com.dobby.project.sun.service;
+package com.dobby.project.product.service;
 
-import com.dobby.project.sun.dao.ProductDao;
-import com.dobby.project.sun.domain.*;
+import com.dobby.project.product.dao.ProductDao;
+import com.dobby.project.product.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -121,7 +121,6 @@ public class ProductServiceImpl implements ProductService {
         if ("Y".equals(totalDto.getDC_YN())) {
             productDao.updateDiscount(totalDto);
         }
-//       productDao.updateDetailFile(totalDto);
     }
 
 

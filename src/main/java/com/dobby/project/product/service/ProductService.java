@@ -1,6 +1,6 @@
-package com.dobby.project.sun.service;
+package com.dobby.project.product.service;
 
-import com.dobby.project.sun.domain.*;
+import com.dobby.project.product.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -48,8 +48,6 @@ public interface ProductService {
     String getDetailImgPath(Integer id);
 
     //관리자 상품 등록
-//    int register(RegisterDto registerDto);
-//    int register(TotalDto totalDto);
     void register(TotalDto totalDto);
 
 

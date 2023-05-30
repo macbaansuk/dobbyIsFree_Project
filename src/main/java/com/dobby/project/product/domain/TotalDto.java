@@ -1,17 +1,17 @@
-package com.dobby.project.sun.domain;
+package com.dobby.project.product.domain;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
-import java.util.Objects;
 
-
-public class ProductDto {
+public class TotalDto {
     private Integer PROD_ID;
     private Integer CATE_CD;
     private Integer AMT;
     private String PROD_NM;
     private String REP_IMG;
     private Integer AVG_ASCR;
-    private Integer REVW_NCNT;
+    private Integer REWV_NCNT;
     private Integer INV_QTY;
     private String NEW_YN;
     private String PROD_STUS;
@@ -22,8 +22,41 @@ public class ProductDto {
     private Date UPD_DTM;
     private Date REG_DTM;
 
+    private Integer PROD_DC_ID;
+    private Integer DC_RATE;
+
+    private Integer PROD_FILE_ID;
+    private String FILE_PATH;
+    private String KIND;
 
 
+    private MultipartFile file;
+    private  MultipartFile detailFile;
+    private  String oldFilePath;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public MultipartFile getDetailFile() {
+        return detailFile;
+    }
+
+    public void setDetailFile(MultipartFile detailFile) {
+        this.detailFile = detailFile;
+    }
+
+    public String getOldFilePath() {
+        return oldFilePath;
+    }
+
+    public void setOldFilePath(String oldFilePath) {
+        this.oldFilePath = oldFilePath;
+    }
 
     public Integer getPROD_ID() {
         return PROD_ID;
@@ -61,6 +94,8 @@ public class ProductDto {
         return REP_IMG;
     }
 
+
+
     public void setREP_IMG(String REP_IMG) {
         this.REP_IMG = REP_IMG;
     }
@@ -73,12 +108,12 @@ public class ProductDto {
         this.AVG_ASCR = AVG_ASCR;
     }
 
-    public Integer getREVW_NCNT() {
-        return REVW_NCNT;
+    public Integer getREWV_NCNT() {
+        return REWV_NCNT;
     }
 
-    public void setREVW_NCNT(Integer REVW_NCNT) {
-        this.REVW_NCNT = REVW_NCNT;
+    public void setREWV_NCNT(Integer REWV_NCNT) {
+        this.REWV_NCNT = REWV_NCNT;
     }
 
     public Integer getINV_QTY() {
@@ -137,7 +172,6 @@ public class ProductDto {
         this.MAI_YN = MAI_YN;
     }
 
-
     public Date getUPD_DTM() {
         return UPD_DTM;
     }
@@ -154,17 +188,60 @@ public class ProductDto {
         this.REG_DTM = REG_DTM;
     }
 
+    public Integer getPROD_DC_ID() {
+        return PROD_DC_ID;
+    }
+
+    public void setPROD_DC_ID(Integer PROD_DC_ID) {
+        this.PROD_DC_ID = PROD_DC_ID;
+    }
+
+    public Integer getDC_RATE() {
+        return DC_RATE;
+    }
+
+    public void setDC_RATE(Integer DC_RATE) {
+        this.DC_RATE = DC_RATE;
+    }
+
+
+
+
+
+    public Integer getPROD_FILE_ID() {
+        return PROD_FILE_ID;
+    }
+
+    public void setPROD_FILE_ID(Integer PROD_FILE_ID) {
+        this.PROD_FILE_ID = PROD_FILE_ID;
+    }
+
+    public String getFILE_PATH() {
+        return FILE_PATH;
+    }
+
+    public void setFILE_PATH(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
+    }
+
+    public String getKIND() {
+        return KIND;
+    }
+
+    public void setKIND(String KIND) {
+        this.KIND = KIND;
+    }
 
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "TotalDto{" +
                 "PROD_ID=" + PROD_ID +
-                ", CATE_CD='" + CATE_CD + '\'' +
+                ", CATE_CD=" + CATE_CD +
                 ", AMT=" + AMT +
                 ", PROD_NM='" + PROD_NM + '\'' +
                 ", REP_IMG='" + REP_IMG + '\'' +
                 ", AVG_ASCR=" + AVG_ASCR +
-                ", REVW_NCNT=" + REVW_NCNT +
+                ", REWV_NCNT=" + REWV_NCNT +
                 ", INV_QTY=" + INV_QTY +
                 ", NEW_YN='" + NEW_YN + '\'' +
                 ", PROD_STUS='" + PROD_STUS + '\'' +
@@ -174,21 +251,18 @@ public class ProductDto {
                 ", MAI_YN='" + MAI_YN + '\'' +
                 ", UPD_DTM=" + UPD_DTM +
                 ", REG_DTM=" + REG_DTM +
+                ", PROD_DC_ID=" + PROD_DC_ID +
+
+                ", DC_RATE=" + DC_RATE +
+
+
+
+                ", PROD_FILE_ID=" + PROD_FILE_ID +
+                ", FILE_PATH='" + FILE_PATH + '\'' +
+                ", KIND='" + KIND + '\'' +
+                ", file=" + file +
+                ", detailFile=" + detailFile +
+                ", oldFilePath='" + oldFilePath + '\'' +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductDto that = (ProductDto) o;
-        return Objects.equals(PROD_ID, that.PROD_ID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(PROD_ID);
-    }
-
-
 }

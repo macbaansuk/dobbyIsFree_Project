@@ -44,15 +44,12 @@
         <typeAlias alias="OrdProdInfoDto" type="com.dobby.project.hwa.orderList.OrdProdInfoDto"/>
 
         <!--    sun    -->
-        <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
-        <typeAlias alias="ProductDCDto" type="com.dobby.project.sun.domain.ProductDCDto"/>
-        <typeAlias alias="ProductCateDto" type="com.dobby.project.sun.domain.ProductCateDto"/>
-        <typeAlias alias="TotalDto" type="com.dobby.project.sun.domain.TotalDto"/>
-        <typeAlias alias="ProductOptionDto" type="com.dobby.project.sun.domain.ProductOptionDto"/>
-        <typeAlias alias="ProductHashtagDto" type="com.dobby.project.sun.domain.ProductHashtagDto"/>
-        <typeAlias alias="ProductFileDto" type="com.dobby.project.sun.domain.ProductFileDto"/>
-        <typeAlias alias="RegisterDto" type="com.dobby.project.sun.domain.RegisterDto"/>
-        <typeAlias alias="SortDto" type="com.dobby.project.sun.domain.SortDto"/>
+        <typeAlias alias="ProductDto" type="com.dobby.project.product.domain.ProductDto"/>
+        <typeAlias alias="ProductDCDto" type="com.dobby.project.product.domain.ProductDCDto"/>
+        <typeAlias alias="ProductCateDto" type="com.dobby.project.product.domain.ProductCateDto"/>
+        <typeAlias alias="TotalDto" type="com.dobby.project.product.domain.TotalDto"/>
+        <typeAlias alias="ProductFileDto" type="com.dobby.project.product.domain.ProductFileDto"/>
+        <typeAlias alias="SortDto" type="com.dobby.project.product.domain.SortDto"/>
 
 
 

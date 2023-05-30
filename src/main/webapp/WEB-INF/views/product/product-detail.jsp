@@ -9,7 +9,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha34-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <link href="/css/sun/detail.css" rel="stylesheet" type="text/css">
+    <link href="/css/product/detail.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/css/hwa/modal.css"/><!-- 모달창 -->
@@ -42,16 +42,7 @@
             <h2>${productDetail.PROD_NM}</h2>
             <p> ${productDetail.PROD_DESC}</p>
 
-<%--            <div class="star-wrap">--%>
-<%--                <i class="fas fa-star"></i>--%>
-<%--                <span class="star-rating">${productDetail.AVG_ASCR} (${productDetail.REVW_NCNT})</span>--%>
-<%--            </div>--%>
 
-
-<%--            <div class="product-hashtag">--%>
-<%--                <a>해시태그</a>--%>
-<%--                <a>해시태그</a>--%>
-<%--            </div>--%>
 
 
             <div class="product-guide">
@@ -421,7 +412,6 @@
         continueShoppingBtn.addEventListener('click', function() {
             cartModal.style.display = 'none';
             location.href='/product/productDetail/${productDetail.PROD_ID}';
-<%--            ${productDetail.PROD_ID}--%>
         });
 
         goToCartBtn.addEventListener('click', function() {

@@ -1,6 +1,6 @@
-package com.dobby.project.sun.dao;
+package com.dobby.project.product.dao;
 
-import com.dobby.project.sun.domain.*;
+import com.dobby.project.product.domain.*;
 
 import java.util.List;
 import java.util.Map;

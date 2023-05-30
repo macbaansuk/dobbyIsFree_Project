@@ -9,7 +9,7 @@
 </head>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="../../css/sun/admin-product.css"/>
+<link rel="stylesheet" href="../../css/product/admin-product.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
@@ -67,7 +67,6 @@
             <div class="content">
 
     <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post" >
-<%--    <form id="productForm" action="<c:url value='/admin/product/register'/>" enctype="multipart/form-data" method="post" onsubmit="submitForm(event);">--%>
 
     <table class="product-table">
                         <thead>
@@ -152,36 +151,6 @@
                                 <label for="main-not-use">사용 안함</label>
                             </td>
                         </tr>
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>옵션 사용</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="radio" id="option-use" name="OPT_YN" value="Y">--%>
-                        <%--                                <label for="option-use">사용</label>--%>
-                        <%--                                <input type="radio" id="option-not-use" name="OPT_YN" value="N" checked>--%>
-                        <%--                                <label for="option-not-use">사용 안함</label>--%>
-                        <%--                                <!-- 기본값 checked -->--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-
-
-                        <%--                        <tr class="option-row" style="display: none;">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="option-name">옵션명</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="text" id="option-name" name="OPT_NM">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="option-row" style="display: none;">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="option-value">옵션값</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="text" id="option-value" name="OPT_VAL">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
 
 
                         <thead>
@@ -221,31 +190,6 @@
                                                     </td>
                                                 </tr>
 
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-amount">할인 금액</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="number" id="discount-amount" name="DC_AMT">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-period">할인 시작일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" id="discount-period" name="BGN_DTM">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-end">할인 종료일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" id="discount-end" name="END_DTM" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
 
 
                                                 <thead>
@@ -273,20 +217,8 @@
                                                 </tr>
 
 
-                        <%--                        <thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <th colspan="2">해시태그</th>--%>
-                        <%--                        </tr>--%>
-                        <%--                        </thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <td><label for="hashtag">해시태그</label></td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="text" id="hashtag" name="HASHTAG_NM" placeholder="예: #스킨케어 #메이크업">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
                     </table>
                     <div class="form-btnWrap" style="text-align: center;">
-<%--                        <button class="form-btn" type="submit" id="registerBtn">상품 등록</button>--%>
                         <button class="form-btn" type="button" id="registerBtn">상품 등록</button>
                         <button class="form-btn" type="button" id="listBtn" >목록으로</button>
                     </div>

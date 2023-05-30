@@ -1,6 +1,4 @@
-package com.dobby.project.sun.domain;
-
-import org.springframework.web.multipart.MultipartFile;
+package com.dobby.project.product.domain;
 
 import java.util.Date;
 

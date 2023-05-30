@@ -142,7 +142,6 @@
 
     <!-- 관리자 페이지 상품 삭제-->
 
-    <!--나중에 관리자도 확인해야함 WRITER AND로 집어넣고 하드코딩으로 박아놓은 다음 해보기-->
     <delete id="deleteProductFinal" parameterType="int">
         DELETE
         FROM PROD
@@ -166,6 +165,7 @@
         WHERE PROD_ID = #{id};
     </delete>
     <delete id="deleteFile" parameterType="int">
+
         DELETE
         FROM FILE
         WHERE PROD_ID = #{id};
@@ -175,19 +175,7 @@
 
 
     <!-- 관리자 상품 등록-->
-<!--    <insert id="insertProduct"  parameterType="RegisterDto" keyProperty="PROD_ID, DC_YN" keyColumn="PROD_ID, DC_YN" useGeneratedKeys="true">-->
-<!--        INSERT INTO PROD-->
-<!--        (PROD_ID, CATE_CD, PROD_NM, PROD_DESC, AMT,  REP_IMG,  NEW_YN, PROD_STUS,-->
-<!--         OPT_YN,  DC_YN, MAI_YN, UPD_DTM)-->
-<!--        VALUES-->
-<!--            (#{PROD_ID}, #{CATE_CD}, #{PROD_NM}, #{PROD_DESC}, #{AMT},  #{REP_IMG},-->
-<!--             #{NEW_YN}, #{PROD_STUS}, #{OPT_YN},  #{DC_YN}, #{MAI_YN}, #{UPD_DTM});-->
-<!--    </insert>-->
-<!--    <insert id="insertDetailFile" parameterType="RegisterDto">-->
-<!--         INSERT INTO FILE-->
-<!--                (PROD_FILE_ID, PROD_ID, FILE_PATH)-->
-<!--            VALUES ( #{PROD_FILE_ID},#{PROD_ID}, #{FILE_PATH});-->
-<!--    </insert>-->
+
 
     <insert id="insertProduct"  parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         INSERT INTO PROD
@@ -224,19 +212,7 @@
 
 
     <!--관리자 상품 수정 업데이트 -->
-<!--    <update id="updateProduct" parameterType="ProductDto" >-->
-<!--        UPDATE PROD-->
-<!--        SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},-->
-<!--            REP_IMG = #{REP_IMG}, NEW_YN = #{NEW_YN}, PROD_STUS = #{PROD_STUS}, OPT_YN = #{OPT_YN},-->
-<!--            DC_YN = #{DC_YN}, MAI_YN = #{MAI_YN}, UPD_DTM = #{UPD_DTM}-->
-<!--        WHERE PROD_ID = #{PROD_ID};-->
-<!--    </update>-->
 
-<!--    <update id="updateDetailFile" parameterType="ProductFileDto">-->
-<!--        UPDATE FILE-->
-<!--        SET FILE_PATH = #{FILE_PATH}-->
-<!--        WHERE PROD_ID = #{PROD_ID};-->
-<!--    </update>-->
     <update id="updateProduct" parameterType="TotalDto" keyProperty="PROD_ID" keyColumn="PROD_ID" useGeneratedKeys="true">
         UPDATE PROD
         SET CATE_CD = #{CATE_CD}, PROD_NM = #{PROD_NM}, PROD_DESC = #{PROD_DESC}, AMT = #{AMT},
@@ -249,13 +225,6 @@
             DC_RATE = #{DC_RATE}
         WHERE PROD_ID = #{PROD_ID};
     </update>
-
-<!--    <update id="updateDetailFile" parameterType="TotalDto">-->
-<!--        UPDATE FILE-->
-<!--        SET FILE_PATH = #{FILE_PATH}-->
-<!--        WHERE PROD_ID = #{PROD_ID};-->
-<!--    </update>-->
-
 
 
 

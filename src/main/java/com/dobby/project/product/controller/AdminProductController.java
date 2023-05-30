@@ -1,13 +1,12 @@
-package com.dobby.project.sun.controller;
+package com.dobby.project.product.controller;
 
 import com.dobby.project.hoon.domain.AdminDto;
 import com.dobby.project.soo.PageHandler;
-import com.dobby.project.sun.domain.*;
-import com.dobby.project.sun.service.ProductService;
+import com.dobby.project.product.domain.*;
+import com.dobby.project.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,12 +40,12 @@ public class AdminProductController {
             model.addAttribute("pageSize", pageSize);
             model.addAttribute("mode", "readonly");
 
-            System.out.println("totalDto = " + totalDto);
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/sun/admin-product-read";
+        return "/product/admin-product-read";
     }
 
     //상품 목록
@@ -68,7 +67,6 @@ public class AdminProductController {
                 int totalCnt = productService.getCount();
                 model.addAttribute("totalCnt", totalCnt);
 
-                System.out.println("totalCnt = " + totalCnt);
 
                 PageHandler pageHandler = new PageHandler(totalCnt, page, pageSize);
 
@@ -85,14 +83,13 @@ public class AdminProductController {
                 model.addAttribute("pageSize", pageSize);
 
 
-                System.out.println("adminProductList=" + model);
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return "sun/admin-product-list";
+            return "product/admin-product-list";
         }
     }
 
@@ -100,9 +97,9 @@ public class AdminProductController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("mode", "register");
-        System.out.println("등록 저장 빈화면 가자");
 
-        return "/sun/admin-product";
+
+        return "/product/admin-product";
 
     }
 
@@ -110,44 +107,32 @@ public class AdminProductController {
     public String register(@ModelAttribute("totalDto") TotalDto totalDto, @RequestParam("file") MultipartFile file, @RequestParam("detailFile") MultipartFile detailFile, Model model) {
 
         try {
-
-//            String uploadFolder = "C:\\upload";
-//            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\test";
-            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\test";
+            // "/img/product/product-image/" 여기에 저장되는 각자 주소 넣으면 됩니다.
+            String uploadFolder = "C:\\Users\\hntim\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\product\\product-image";
 
             // 대표 이미지 처리
             String fileRealName = file.getOriginalFilename();
-            long size = file.getSize(); //파일 사이즈
-
-            System.out.println("파일명 : " + fileRealName);
-            System.out.println("용량크기(byte) : " + size);
 
             //서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
             String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
 
             UUID uuid = UUID.randomUUID();
-            System.out.println("uuid = " + uuid);
 
             String[] uuids = uuid.toString().split("-");
             String uniqueName = uuids[0];
 
-            System.out.println("생성된 고유문자열 uniqueName =" + uniqueName);
-            System.out.println("확장자명 fileExtension = " + fileExtension);
-
-
             File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
             // 실제 파일 저장 메서드
             file.transferTo(saveFile);
-            totalDto.setREP_IMG("/img/sun/test/" + uniqueName + fileExtension);
-//            totalDto.setREP_IMG( fileRealName + fileExtension);
+            totalDto.setREP_IMG("/img/product/product-image/" + uniqueName + fileExtension);
 
             // 상세정보 이미지 처리
 
             String detailFileRealName = detailFile.getOriginalFilename();
             long size2 = detailFile.getSize(); //파일 사이즈
 
-            System.out.println("상세 파일명 : " + detailFileRealName);
-            System.out.println("상세 용량크기(byte) : " + size2);
+
+
 
             String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
 
@@ -157,19 +142,18 @@ public class AdminProductController {
             String[] uuids2 = detailUuid.toString().split("-");
             String detailUniqueName = uuids2[0];
 
-            System.out.println("생성된 고유문자열 detailUniqueName =" + detailUniqueName);
-            System.out.println("확장자명 detailFileExtension = " + detailFileExtension);
+
 
             File detailSaveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
             detailFile.transferTo(detailSaveFile);
-            totalDto.setFILE_PATH("/img/sun/test/" + detailUniqueName + detailFileExtension);
+            totalDto.setFILE_PATH("/img/product/product-image/" + detailUniqueName + detailFileExtension);
 
             productService.register(totalDto);
 
             return "redirect:/admin/product/list";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/sun/admin-product";
+            return "/product/admin-product";
 
         }
     }
@@ -192,7 +176,6 @@ public class AdminProductController {
             map.put("pageSize", pageSize);
 
 
-//        System.out.println("여기");
             model.addAttribute("adminProdRead", adminProdRead);
             model.addAttribute("Products_DC", Products_DC);
             model.addAttribute("ph", pageHandler);
@@ -201,7 +184,7 @@ public class AdminProductController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "sun/product-detail";
+        return "product/product-detail";
     }
 
 
@@ -215,18 +198,14 @@ public class AdminProductController {
             String imagePath = productService.getImgPath(id);
             String detailImagePath = productService.getDetailImgPath(id);
 
-            System.out.println("imagePath상품 삭제  = " + imagePath);
-            System.out.println("detailImagePath상품 삭제 = " + detailImagePath);
 
-//            String uploadFolder = "C:\\IdeaProjects\\dobby_real\\src\\main\\webapp\\resources";
-            String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources";
+            String uploadFolder = "C:\\Users\\hntim\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources";
 
 
             // 2. 해당 파일을 삭제한다.
             File file = new File(uploadFolder + imagePath);
             File file2 = new File(uploadFolder + detailImagePath);
 
-            System.out.println("file = " + file);
 
             if (file.exists()) {
                 file.delete();
@@ -263,12 +242,11 @@ public class AdminProductController {
             model.addAttribute("pageSize", pageSize);
 
 
-            System.out.println("totalDto수정 = " + totalDto);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/sun/admin-product-read";
+        return "/product/admin-product-read";
     }
 
 //     상품 수정
@@ -295,94 +273,9 @@ public class AdminProductController {
             model.addAttribute("page", page);
             model.addAttribute("pageSize", pageSize);
 
-            return "/sun/admin-product-read";
+            return "/product/admin-product-read";
         }
     }
-
-//    @PostMapping("/modify")
-//    public String modify(Integer id,TotalDto totalDto, @RequestParam(defaultValue = "1") Integer page,
-//                         @RequestParam(defaultValue = "10") Integer pageSize, RedirectAttributes rttr, Model model, @RequestParam(value = "file", required = false) MultipartFile file,
-//                         @RequestParam(value = "detailFile", required = false) MultipartFile detailFile) throws Exception {
-//
-//        try {
-//            // 대표 이미지 파일이 업로드되었는지 확인
-////            if (file != null && !file.isEmpty()) {
-////                // 기존 대표 이미지 파일 삭제
-//////                String imagePath = productService.getImgPath(id);
-//////                System.out.println("imagePath 상품 수정= " + imagePath);
-//////                String imagePath = totalDto.getREP_IMG();
-//////                System.out.println("imagePath 상품 수정= " + imagePath);
-////
-////                String imagePath = file.getOriginalFilename();
-////
-////                String uploadFolder = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources\\img\\sun\\test";
-////                File file_path = new File(uploadFolder + imagePath);
-////                System.out.println("file_path 대표이미지 수정= " + file_path);
-////
-////                if (file_path.exists()) {
-////                    file_path.delete();
-////                }
-////
-////                String fileRealName = file.getOriginalFilename();
-////                String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
-////                UUID uuid = UUID.randomUUID();
-////                String[] uuids = uuid.toString().split("-");
-////                String uniqueName = uuids[0];
-////                File saveFile = new File(uploadFolder + "\\img\\sun\\test\\" + uniqueName + fileExtension);
-////                file.transferTo(saveFile);
-////                totalDto.setREP_IMG("/img/sun/test/" + uniqueName + fileExtension);
-////            }
-////
-//
-////            // 상세 정보 이미지 파일이 업로드되었는지 확인
-////            if (detailFile != null && !detailFile.isEmpty()) {
-////                // 기존 상세 정보 이미지 파일 삭제
-//////                String detailImagePath = productService.getDetailImgPath(id);
-////                String detailImagePath = totalDto.getFILE_PATH();
-////
-////
-////                System.out.println("detailImagePath 상품 수정 = " + detailImagePath);
-////
-////                String uploadFolder2 = "C:\\Users\\doswp\\IdeaProjects\\dobby_clone\\src\\main\\webapp\\resources";
-////                File file_path2 = new File(uploadFolder2 + detailImagePath);
-////
-////                if (file_path2.exists()) {
-////                    file_path2.delete();
-////                }
-////
-////                // 새 상세 정보 이미지 파일 업로드
-////                String detailFileRealName = detailFile.getOriginalFilename();
-////                String detailFileExtension = detailFileRealName.substring(detailFileRealName.lastIndexOf("."));
-////                UUID detailUuid = UUID.randomUUID();
-////                String[] uuids2 = detailUuid.toString().split("-");
-////                String detailUniqueName = uuids2[0];
-////                File detailSaveFile = new File(uploadFolder2 + "\\img\\sun\\test\\" + detailUniqueName + detailFileExtension);
-////                detailFile.transferTo(detailSaveFile);
-////                totalDto.setFILE_PATH("/img/sun/test/" + detailUniqueName + detailFileExtension);
-////
-////
-//
-//            }
-//
-//            // 이미지 수정
-//            productService.modify(totalDto);
-//            rttr.addAttribute("page", page);
-//            rttr.addAttribute("pageSize", pageSize);
-//            return "redirect:/admin/product/list?page=" + page + "&pageSize=" + pageSize;
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//            model.addAttribute(totalDto);
-//            model.addAttribute("page", page);
-//            model.addAttribute("pageSize", pageSize);
-//
-//            return "/sun/admin-product-read";
-//        }
-//
-//    }
-//
 
 
 }

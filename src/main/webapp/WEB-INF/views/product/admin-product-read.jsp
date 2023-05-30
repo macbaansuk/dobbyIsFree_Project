@@ -9,7 +9,7 @@
 </head>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="../../css/sun/admin-product.css"/>
+<link rel="stylesheet" href="../../css/product/admin-product.css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
@@ -170,36 +170,6 @@
                         </tr>
 
 
-                        <%--                        <tr>--%>
-                        <%--                            <td>--%>
-                        <%--                                <label>옵션 사용</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="radio" id="option-use"  name="option-availability" value="use" ${totalDto.OPT_YN=='Y' ? 'checked' : ''} >--%>
-                        <%--                                <label for="option-use">사용</label>--%>
-                        <%--                                <input type="radio" id="option-not-use" name="option-availability" value="not-use" ${totalDto.OPT_YN =='N' ? 'checked' : ''} >--%>
-                        <%--                                <label for="option-not-use">사용 안함</label>--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-
-
-                        <%--                        <tr class="option-row" style="display: none;">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="option-name">옵션명</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="text" id="option-name" name="option-name"  value="${totalDto.OPT_NM}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="option-row" style="display: none;">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="option-value">옵션값</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="text" id="option-value" name="option-value" value="${totalDto.OPT_VAL}" ${mode=="read"?'readonly="readonly"': mode=="register"?'required':''}>--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-
 
                         <thead>
                         <tr>
@@ -239,30 +209,6 @@
                             </td>
                         </tr>
 
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-amount">할인 금액</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td>--%>
-                        <%--                                <input type="number" id="discount-amount" name="discount-amount" value="${totalDto.DC_AMT}" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-start">할인 시작일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" autocomplete="off" id="discount-start" name="discount-period" value="${totalDto.BGN_DTM}">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
-                        <%--                        <tr class="discount-row">--%>
-                        <%--                            <td>--%>
-                        <%--                                <label for="discount-end">할인 종료일</label>--%>
-                        <%--                            </td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="date" autocomplete="off" id="discount-end" name="discount-period" value="${totalDto.END_DTM}" >--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
 
 
                         <thead>
@@ -299,17 +245,6 @@
                         </tr>
 
 
-                        <%--                        <thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <th colspan="2">해시태그</th>--%>
-                        <%--                        </tr>--%>
-                        <%--                        </thead>--%>
-                        <%--                        <tr>--%>
-                        <%--                            <td><label for="hashtag">해시태그</label></td>--%>
-                        <%--                            <td colspan="3">--%>
-                        <%--                                <input type="text" id="hashtag" name="hashtag" placeholder="예: #스킨케어 #메이크업" value="${totalDto.HASHTAG_NM}">--%>
-                        <%--                            </td>--%>
-                        <%--                        </tr>--%>
                     </table>
                     <div class="form-btnWrap" style="text-align: center;">
 
@@ -362,17 +297,7 @@
                             $('input[type="checkbox"], input[type="radio"],input[type="file"]').off('click');
                             $('select').off('mousedown');
 
-                            // 옵션 사용, 할인 여부에 따른 행 표시 이벤트 핸들러를 추가
 
-
-                            // $('input[name="DC_YN"]').on("change", function () {
-                            //     const discount = $(".discount-row");
-                            //     if ($("#discount-use").is(":checked")) {
-                            //         discount.show();
-                            //     } else {
-                            //         discount.hide();
-                            //     }
-                            // });
                             $("#discount-use").on("click", function () {
                                 const discount = $(".discount-row");
                                 if ($("#discount-use").is(":checked")) {

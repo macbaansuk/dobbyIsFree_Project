@@ -1,7 +1,7 @@
-package com.dobby.project.sun.dao;
+package com.dobby.project.product.dao;
 
 
-import com.dobby.project.sun.domain.*;
+import com.dobby.project.product.domain.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -103,15 +103,6 @@ public class ProductDaoImpl implements ProductDao {
 
 
 // 상품 등록
-//    @Override
-//    public void insertProduct(RegisterDto registerDto) {
-//        session.insert("insertProduct", registerDto);
-//    }
-//
-//    @Override
-//    public void insertDetailFile(RegisterDto registerDto) {
-//        session.insert("insertDetailFile", registerDto);
-//    }
    @Override
     public void insertProduct(TotalDto totalDto) {
        session.insert("insertProduct", totalDto);
@@ -129,7 +120,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     //상품 수정
-
     @Override
     public void updateProduct(TotalDto totalDto) {
          session.update("updateProduct",totalDto);
@@ -156,22 +146,7 @@ public class ProductDaoImpl implements ProductDao {
         return session.selectOne("getDetailImgPath", id);
     }
 
-    //    @Override
-//    public void insertOption(ProductOptionDto productOptionDto) {
-//        session.insert("insertOption", productOptionDto);
 
-//    }
-
-
-//    @Override
-//    public void insertHashtag(ProductHashtagDto productHashtagDto) {
-//             session.insert("insertHashtag", productHashtagDto);
-//
-//    }
-//    @Override
-//    public void insertFile(ProductFileDto productFileDto) {
-//        session.insert("insertFile", productFileDto);
-//    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.dobby.project.sun.domain;
+package com.dobby.project.product.domain;
 
 import java.sql.Date;
 
