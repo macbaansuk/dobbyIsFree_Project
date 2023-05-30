@@ -31,7 +31,7 @@
 
 		<!-- 파일업로드 설정 시작 -->
 		<multipart-config>
-			<location>C:\\upload</location>
+			<location>C:\Users\hntim\IdeaProjects\dobby_final_final\src\main\webapp\resources\img\sun\product-image</location>
 			<max-file-size>20971520</max-file-size> <!-- 1MB * 20 -->
 			<max-request-size>41943040</max-request-size> <!-- 40MB -->
 			<file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->

@@ -215,12 +215,12 @@
                                         <div class="gGoods gMedium" style="z-index: 0;">
 
                                             <p>
-                                                <a href="#" onclick="openNewWindow();">2023.05.18</a>
+                                                <a href="#" onclick="openNewWindow();">2023.05.25</a>
                                             </p>
 
                                         </div>
                                     </td>
-                                    <td rowspan="1" id="total-qty-{{inv.prod_ID}}" data-prod-id="{{inv.prod_ID}}">20230518504666</td>
+                                    <td rowspan="1" id="total-qty-{{inv.prod_ID}}" data-prod-id="{{inv.prod_ID}}">20230525355517</td>
 
                                     <td rowspan="1" id="total-qty-{{inv.prod_ID1}}" data-prod-id="{{inv.prod_ID}}"><a href="#" onclick="openNewWindow()" >더마 그린티 프로바이오틱스 크림 외 1건</a></td>
                                     <td>44,000원
