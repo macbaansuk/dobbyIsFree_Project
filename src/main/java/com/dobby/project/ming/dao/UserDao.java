@@ -1,6 +1,6 @@
 package com.dobby.project.ming.dao;
 
-import com.dobby.project.soo.SearchCondition;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.sql.DataSource;
 import java.sql.Connection;
