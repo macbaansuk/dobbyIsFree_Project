@@ -1,9 +1,9 @@
 package com.dobby.project;
 
 
-import com.dobby.project.sun.domain.ProductDCDto;
-import com.dobby.project.sun.domain.ProductDto;
-import com.dobby.project.sun.service.ProductService;
+import com.dobby.project.product.domain.ProductDCDto;
+import com.dobby.project.product.domain.ProductDto;
+import com.dobby.project.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +26,6 @@ public class MainController {
 
         model.addAttribute("ProductsMain", ProductsMain);
         model.addAttribute("Products_DC", Products_DC);
-//        System.out.println(ProductsMain);
-//        System.out.println(Products_DC);
-
         return "main";
     }
 
