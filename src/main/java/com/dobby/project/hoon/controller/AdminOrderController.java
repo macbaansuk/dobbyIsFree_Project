@@ -2,10 +2,7 @@ package com.dobby.project.hoon.controller;
 
 import com.dobby.project.hoon.domain.AdminDto;
 import com.dobby.project.hoon.service.AdminService;
-import com.dobby.project.hwa.order.OrdDto;
-import com.dobby.project.hwa.order.OrderService;
-import com.dobby.project.hwa.orderList.OrdProdInfoDto;
-import com.google.gson.Gson;
+import com.dobby.project.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/order")

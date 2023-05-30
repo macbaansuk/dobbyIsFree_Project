@@ -39,7 +39,7 @@
     <tbody>
     <tr>
       <th>주문번호</th>
-      <td colspan="3">20230518504666</td>
+      <td colspan="3">20230525355517</td>
     </tr>
     <tr>
       <th scope="col">주문자(아이디) / 회원등급</th>
@@ -49,7 +49,7 @@
     </tr>
     <tr>
       <th scope="col">주문일</th>
-      <td>2023-05-18</td>
+      <td>2023-05-25</td>
       <th scope="col">결제완료일</th>
       <td></td>
     </tr>
@@ -205,7 +205,7 @@
 
 
     <dl>
-      <dt>적립 뷰티포인트</dt>
+      <dt>적립금</dt>
       <dd>
         <span class="num">+540</span>P
       </dd>
@@ -332,7 +332,8 @@
       </tr>
       <tr>
         <th scope="row">배송 시 요청사항</th>
-        <td><input type="text" class="inputTxt" style="width:90%;" name="dlvReqCnt" value="" readonly="readonly"></td>
+        <td><input type="text" class="inputTxt" style="width:90%;" name="dlvReqCnt" value="정석코딩 사랑합니다 ❤️ 남궁성 쌤 최고"
+ readonly="readonly"></td>
       </tr>
       </tbody>
     </table>
