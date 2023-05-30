@@ -14,10 +14,10 @@
         <!--   ming     -->
         <typeAlias alias="UserDto" type="com.dobby.project.ming.domain.UserDto"/>
 
-        <!--   YoungHoon     -->
-        <typeAlias alias="InvDto" type="com.dobby.project.hoon.domain.InvDto"/>
-        <typeAlias alias="invSearchCondition" type="com.dobby.project.hoon.domain.invSearchCondition"/>
-        <typeAlias alias="AdminDto" type="com.dobby.project.hoon.domain.AdminDto"/>
+        <!--   admin - YoungHoon     -->
+        <typeAlias alias="InvDto" type="com.dobby.project.admin.domain.InvDto"/>
+        <typeAlias alias="invSearchCondition" type="com.dobby.project.admin.domain.invSearchCondition"/>
+        <typeAlias alias="AdminDto" type="com.dobby.project.admin.domain.AdminDto"/>
 
         <!--    soo    -->
         <typeAlias alias="NoticeDto"  type="com.dobby.project.soo.NoticeDto"/>

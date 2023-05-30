@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.dobby.project.admin.dao.InvMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM prod
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM prod
+    </delete>
+
+    <delete id="deleteForAdmin" parameterType="map">
+        DELETE FROM prod WHERE PROD_ID = #{PROD_ID}
+    </delete>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM prod WHERE PROD_ID = #{PROD_ID} and PROD_NM = #{PROD_NM}
+    </delete>
+
+    <insert id="insert" parameterType="InvDto">
+        INSERT INTO prod
+            (PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,PROD_DESC,DC_YN,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO)
+        VALUES
+            (#{PROD_ID}, #{CATE_CD}, #{AMT}, #{PROD_NM}, #{REP_IMG}, #{AVG_ASCR}, #{REVW_NCNT}, #{INV_QTY}, #{NEW_YN}, #{PROD_STUS}, #{OPT_YN}, #{PROD_DESC}, #{DC_YN},  #{MAI_YN}, #{FGIFT_YN}, #{UPD_DTM}, #{REG_DTM}, #{NOTICE}, #{SLE_BGN_DTM}, #{SLE_END_DTM}, #{INV_LOC}, #{SAFE_INV}, #{INV_STUS_CD}, #{FST_REG_DTM}, #{FST_REGR_DCMT_NO}, #{LAST_UPD_DTM}, #{LAST_UPDR_DCMT_NO} )
+    </insert>
+
+    <select id="selectAll" resultType="InvDto">
+        SELECT PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,PROD_DESC,DC_YN,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO
+        FROM prod
+        ORDER BY  PROD_ID DESC
+    </select>
+
+    <sql id="selectFromProd">
+        SELECT PROD_ID,CATE_CD,AMT,PROD_NM,REP_IMG,AVG_ASCR,REVW_NCNT,INV_QTY,NEW_YN,PROD_STUS,OPT_YN,PROD_DESC,DC_YN,MAI_YN,FGIFT_YN,UPD_DTM,REG_DTM,NOTICE,SLE_BGN_DTM,SLE_END_DTM,INV_LOC,SAFE_INV,INV_STUS_CD,FST_REG_DTM,FST_REGR_DCMT_NO,LAST_UPD_DTM,LAST_UPDR_DCMT_NO
+        FROM prod
+    </sql>
+
+    <select id="select" parameterType="int" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        WHERE PROD_ID = #{PROD_ID}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        ORDER BY REG_DTM DESC, PROD_ID DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="invSearchSelectPage" parameterType="invSearchCondition" resultType="InvDto">
+        <include refid="selectFromProd"/>
+        WHERE   true
+        <choose>
+            <!-- startDate와 endDate가 모두 있거나 모두 없는 경우 -->
+            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null) ">
+                <if test="startDate != null and endDate != null">
+                    <if test="dateField == 'regist'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(REG_DTM) &gt;= #{startDate} AND DATE(REG_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(REG_DTM) = #{startDate}
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(UPD_DTM) &gt;= #{startDate} AND DATE(UPD_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(UPD_DTM) = #{startDate}
+                        </if>
+                    </if>
+                </if>
+
+                <!-- period, dateField 조건 -->
+                <if test="period != null and dateField != null">
+                    <if test="dateField == 'regist'">
+                        <if test="period > 0">
+                            AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(REG_DTM) = CURDATE()
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="period > 0">
+                            AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(UPD_DTM) = CURDATE()
+                        </if>
+                    </if>
+                </if>
+
+                <!-- keyword, category 조건 -->
+                <if test="keyword != '' and category != ''">
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                    AND CATE_CD = #{category}
+                </if>
+                <if test="keyword != '' and category == ''">
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+                <if test="keyword == '' and category != ''">
+                    AND CATE_CD = #{category}
+                </if>
+            </when>
+        </choose>
+
+
+
+
+        <choose>
+            <when test="sortType == 'regist_d'">
+                ORDER BY REG_DTM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'regist_a'">
+                ORDER BY REG_DTM, PROD_ID
+            </when>
+            <when test="sortType == 'modify_d'">
+                ORDER BY UPD_DTM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'modify_a'">
+                ORDER BY UPD_DTM, PROD_ID
+            </when>
+            <when test="sortType == 'name_d'">
+                ORDER BY PROD_NM DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'name_a'">
+                ORDER BY PROD_NM, PROD_ID
+            </when>
+            <when test="sortType == 'stock_d'">
+                ORDER BY INV_QTY DESC, PROD_ID DESC
+            </when>
+            <when test="sortType == 'stock_a'">
+                ORDER BY INV_QTY, PROD_ID
+            </when>
+            <when test="sortType == 'id_d'">
+                ORDER BY  PROD_ID DESC
+            </when>
+            <when test="sortType == 'id_a'">
+                ORDER BY PROD_ID
+            </when>
+            <otherwise>
+                ORDER BY REG_DTM DESC, PROD_ID DESC
+            </otherwise>
+        </choose>
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="invSearchResultCnt" parameterType="invSearchCondition" resultType="int">
+        SELECT count(*)
+        FROM prod
+        WHERE true
+
+        <choose>
+            <!-- startDate와 endDate가 모두 있거나 모두 없는 경우 -->
+            <when test="(startDate != null and endDate != null) or (startDate == null and endDate == null) ">
+                <if test="startDate != null and endDate != null">
+                    <if test="dateField == 'regist'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(REG_DTM) &gt;= #{startDate} AND DATE(REG_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(REG_DTM) = #{startDate}
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="startDate &lt; endDate">
+                            AND DATE(UPD_DTM) &gt;= #{startDate} AND DATE(UPD_DTM) &lt;= #{endDate}
+                        </if>
+                        <if test="startDate == endDate">
+                            AND DATE(UPD_DTM) = #{startDate}
+                        </if>
+                    </if>
+                </if>
+
+                <!-- period, dateField 조건 -->
+                <if test="period != null and dateField != null">
+                    <if test="dateField == 'regist'">
+                        <if test="period > 0">
+                            AND REG_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(REG_DTM) = CURDATE()
+                        </if>
+                    </if>
+                    <if test="dateField == 'modify'">
+                        <if test="period > 0">
+                            AND UPD_DTM &gt;= DATE_SUB(CURDATE(), INTERVAL #{period} DAY)
+                        </if>
+                        <if test="period == 0">
+                            AND DATE(UPD_DTM) = CURDATE()
+                        </if>
+                    </if>
+                </if>
+
+                <!-- keyword, category 조건 -->
+                <if test="keyword != '' and category != ''">
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                    AND CATE_CD = #{category}
+                </if>
+                <if test="keyword != '' and category == ''">
+                    AND PROD_NM LIKE CONCAT('%', #{keyword}, '%')
+                </if>
+                <if test="keyword == '' and category != ''">
+                    AND CATE_CD = #{category}
+                </if>
+            </when>
+        </choose>
+    </select>
+
+
+    <update id="InvUpdate" parameterType="InvDto">
+        UPDATE prod
+        SET INV_QTY = #{INV_QTY},
+            SAFE_INV = #{SAFE_INV},
+            INV_STUS_CD = #{INV_STUS_CD},
+            INV_LOC = #{INV_LOC},
+            UPD_DTM = #{UPD_DTM}
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+
+
+    <update id="update" parameterType="InvDto">
+        UPDATE prod
+        SET CATE_CD = #{CATE_CD},
+            AMT = #{AMT},
+            PROD_NM = #{PROD_NM},
+            REP_IMG = #{REP_IMG},
+            AVG_ASCR = #{AVG_ASCR},
+            REVW_NCNT = #{REVW_NCNT},
+            INV_QTY = #{INV_QTY},
+            NEW_YN = #{NEW_YN},
+            PROD_STUS = #{PROD_STUS},
+            OPT_YN = #{OPT_YN},
+            PROD_DESC = #{PROD_DESC},
+            DC_YN = #{DC_YN},
+
+            MAI_YN = #{MAI_YN},
+            FGIFT_YN = #{FGIFT_YN},
+            UPD_DTM = now(),
+            REG_DTM = #{REG_DTM},
+            NOTICE = #{NOTICE},
+            SLE_BGN_DTM = #{SLE_BGN_DTM},
+            SLE_END_DTM = #{SLE_END_DTM},
+            INV_LOC = #{INV_LOC},
+            SAFE_INV = #{SAFE_INV},
+            INV_STUS_CD = #{INV_STUS_CD},
+            FST_REG_DTM = #{FST_REG_DTM},
+            FST_REGR_DCMT_NO = #{FST_REGR_DCMT_NO},
+            LAST_UPD_DTM = now(),
+            LAST_UPDR_DCMT_NO = #{LAST_UPDR_DCMT_NO}
+        WHERE PROD_ID = #{PROD_ID}
+
+
+    </update>
+
+        <update id="updateCommentCnt" parameterType="map">
+        UPDATE prod
+        SET   comment_cnt = comment_cnt + #{cnt}
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE prod
+        SET   view_cnt = view_cnt + 1
+        WHERE PROD_ID = #{PROD_ID}
+    </update>
+</mapper>

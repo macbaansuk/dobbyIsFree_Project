@@ -13,8 +13,8 @@
     <!-- SWIPER 외부 라이브러리 연결-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="./css/hoon/mainBanner.css"/>
-    <link rel="stylesheet" href="./css/hoon/membership.css"/>
+    <link rel="stylesheet" href="./css/admin/mainBanner.css"/>
+    <link rel="stylesheet" href="./css/admin/membership.css"/>
     <link rel="stylesheet" href="/css/hwa/modal.css"/><!--모달창-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- ajax-->
 

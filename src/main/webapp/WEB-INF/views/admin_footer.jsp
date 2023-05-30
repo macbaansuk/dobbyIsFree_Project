@@ -6,10 +6,10 @@
 
 <html>
 <head>
-    <title>관리자 페이지1111</title>
+
 </head>
 
-<link rel="stylesheet" href="/css/hoon/admin.css"/>
+<link rel="stylesheet" href="/css/admin/admin.css"/>
 
 <body>
 

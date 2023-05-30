@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 <link rel="stylesheet" href="/css/soo/mypage_counsel_write.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/css/hoon/jquery/jquery-ui.min.js"></script>
+<script src="/css/admin/jquery/jquery-ui.min.js"></script>
 
             <h3 id="pagetitle">1:1 상담내역</h3>
 

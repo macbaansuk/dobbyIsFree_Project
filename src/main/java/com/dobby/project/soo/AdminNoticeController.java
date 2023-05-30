@@ -1,6 +1,6 @@
 package com.dobby.project.soo;
 
-import com.dobby.project.hoon.domain.AdminDto;
+import com.dobby.project.admin.domain.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

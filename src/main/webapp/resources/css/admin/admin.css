@@ -2,10 +2,6 @@
     margin: 0;
     padding: 0;
 }
-* {
-    margin: 0;
-    padding: 0;
-}
 
 .admin {
     min-width: 1450px;
@@ -143,6 +139,10 @@
     font-size: 0;
     cursor: none;
 }
+
+
+
+
 .Header li::before{
     content: "";
     position: absolute;
@@ -167,6 +167,11 @@
     transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
     transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
 }
+
+
+
+
+
 
 
 /* 좌측 바  */
@@ -349,7 +354,7 @@
 .content {
     min-height: 750px;
     min-width: 960px;
-    padding: 40px 40px 100px;
+    padding: 24px 24px 100px;
     vertical-align: top;
     box-sizing: border-box;
 }
@@ -357,6 +362,7 @@
 .content th {
     font-weight: normal;
     vertical-align: middle;
+    background-color: #fafafb;
 }
 
 .mOption th, .mOption td {
@@ -365,6 +371,7 @@
     border: 1px solid #d9dadc;
     text-align: left;
 }
+
 
 .btnSearch span, .btnModify span {
     display: inline-block;
@@ -379,10 +386,12 @@
 .mButton {
     position: relative;
     text-align: center;
+    background-color: transparent;
+    border-color: transparent;
 }
 .btnSearch span , .btnModify span {
     margin-top: 40px;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
     padding: 0 8px;
     border: 1px solid transparent;
     font-size: 12px;
@@ -394,6 +403,7 @@
     font-size: 13px;
     line-height: 34px;
     vertical-align: top;
+
 }
 
 body, code {
@@ -538,6 +548,7 @@ li {
 }
 
 table {
+    table-layout: fixed;
     width: 100%;
     border: 0;
     border-spacing: 0;
@@ -665,90 +676,67 @@ tr {
     clear: both;
 }
 
-/*.clickable {*/
-/*    cursor: pointer;*/
-/*    text-decoration: underline;*/
+.btn-write {
+    background-color: rgb(236, 236, 236); /* Blue background */
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    padding: 6px 12px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    border-radius: 5px;
+    margin-left: 30px;
+}
+.btn-write:hover {
+    text-decoration: underline;
+}
+ /*.clickable {*/
+ /*    cursor: pointer;*/
+ /*    text-decoration: underline;*/
 
-/*}*/
 
+.paging {
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.page {
+    color: black;
+    padding: 6px;
+    margin-right: 10px;
+}
+.paging-active {
+    background-color: rgb(216, 216, 216);
+    border-radius: 5px;
+    color: rgb(24, 24, 24);
+}
+.paging-container {
+    width:100%;
+    height: 70px;
+    display: flex;
+    margin-top: 50px;
+    margin : auto;
 
-/*---------------------------------*/
-.product-table {
-    background-color: white;
-    width: 70%;
-    border-collapse: collapse;
+    justify-content: center;
+    align-items: center;
+}
+.btn-write {
+    background-color: rgb(236, 236, 236); /* Blue background */
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    padding: 6px 12px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    border-radius: 5px;
+    margin-left: 30px;
+}
+.btn-write:hover {
+    text-decoration: underline;
+}
+* {
     font-family: "나눔바른고딕OTF", "돋움";
 }
-#detail-image-preview .detail-image-preview {
-    width: 100px;
-    height: 400px;
-}
+ /*}*/
 
-.product-table th {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f3f3f3;
-}
-
-.product-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.form-btnWrap {
-    display: flex;
-    /*justify-content: center;*/
-    gap: 10px;
-    padding-top: 40px;
-    margin-left: 400px;
-}
-
-.form-btn {
-    padding: 10px 20px;
-    background-color: #00a2ff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.form-btn:hover {
-    background-color: #0081c2;
-}
-.product-table th {
-    padding: 10px;
-    border-bottom: solid #947171;
-    background-color: #f3f3f3;
-    text-align: left;
-    font-size: 15px;
-}
-#product-description {
-    width: 100%;
-    height: 200px;
-}
-
-input#product-name {
-    width: 50%;
-    height: 20px;
-}
-select#category {
-    width: 20%;
-    height: 20px;
-}
-select#product-status {
-    width: 20%;
-    height: 20px;
-}
-input#price {
-    width: 50%;
-    height: 20px;
-}
-
-#main-image-preview {
-    width: 100px;
-    height: 100px;
-}
-img#detail-image-preview {
-    width: 100px;
-    height: 100px;
-}
