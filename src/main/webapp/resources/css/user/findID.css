@@ -1,0 +1,300 @@
+* {
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+.inner {
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+}
+
+.header {
+    height: 70px;
+}
+
+.headerBox {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    z-index: 100;
+    border-bottom: 2px solid #f0f0f0;
+    box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.9);
+}
+
+.headerBox h1 {
+    line-height: 70px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.headerBox .btn_prev_page {
+    position: fixed;
+    left: 60;
+    top: 0;
+    width: 70px;
+    height: 70px;
+    background: url(/img/user/findID_img/btn_title_back.png) no-repeat 0% 50%;
+    -webkit-background-size: 25px auto;
+    background-size: 25px auto;
+}
+
+body {
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #252525;
+}
+
+input,
+select,
+textarea,
+button {
+    font-family: "나눔바른고딕OTF", "돋움";
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    cursor: pointer;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-image-width: 0;
+    font-family: inherit;
+    font-weight: 400;
+    color: #252525;
+}
+
+.blind {
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 1px;
+    color: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+}
+
+.container {
+    padding: 10px 20px 40px;
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+.page_top_area {
+    width: 550px;
+    height: 65px;
+    margin: 0px auto 0px;
+    font-family: "나눔바른고딕OTF", "돋움";
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: -0.8px;
+    text-align: center;
+    color: #000;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    vertical-align: top;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.input_form {
+    margin-bottom: 13px;
+}
+
+.input_form .inp {
+    position: relative;
+    display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    padding: 0 12px;
+    width: 70%;
+    height: 50px;
+    line-height: 48px;
+    color: #252525;
+    font-size: 16px;
+    letter-spacing: -0.7px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input_form .inp .btn_del {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    background: #fff url(/img/user/findID_img/btn_textfield_delete.png) no-repeat 50% 50%;
+    -webkit-background-size: 13px auto;
+    background-size: 13px auto;
+    border-radius: 50%;
+}
+
+.btn_submit.mt20 {
+    margin-top: 20px;
+    width: 70%;
+    height: 54px;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: -0.8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn_submit {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    margin: 30px -5px 30px;
+}
+
+.btnA:disabled,
+.btnA[disabled] {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    color: #c6c6c6;
+}
+
+.btnA {
+    width: 70%;
+    height: 54px;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: -0.8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.btn_blue {
+    border: solid 1px #5c95f0;
+    background-color: #5c95f0;
+    color: #fff;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-image-width: 0;
+    font-family: inherit;
+    font-weight: 400;
+    color: #252525;
+}
+
+button:disabled {
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+
+em {
+    font-style: italic;
+}
+
+section {
+    display: block;
+}
+
+.btn_join_membership {
+    margin-top: 15px;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 14px;
+    letter-spacing: -0.7px;
+}
+
+.btn_white {
+    border: solid 1px #d3d3d3;
+    background-color: #fff;
+}
+
+.btn_join_membership em {
+    position: relative;
+    padding-right: 12px;
+    float: right;
+    font-weight: 500;
+}
+
+strong,
+em,
+b {
+    font-weight: 400;
+}
+
+.btn_join_membership {
+    margin-top: 15px;
+    padding: 0 20px;
+    height: 44px;
+    font-size: 14px;
+    letter-spacing: -0.7px;
+}
+
+.btn_join_membership span {
+    float: left;
+}
+
+.btn_join_membership em:before {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -6px;
+    width: 7px;
+    height: 12px;
+    background: url(/img/user/findID_img/icon_signup_arrow.png) no-repeat 0 0;
+    -webkit-background-size: 7px auto;
+    background-size: 7px auto;
+    content: "";
+}

@@ -11,8 +11,8 @@
     </settings>
 
     <typeAliases>
-        <!--   ming     -->
-        <typeAlias alias="UserDto" type="com.dobby.project.ming.domain.UserDto"/>
+        <!--   user     -->
+        <typeAlias alias="UserDto" type="com.dobby.project.user.domain.UserDto"/>
 
         <!--   admin - YoungHoon     -->
         <typeAlias alias="InvDto" type="com.dobby.project.admin.domain.InvDto"/>
