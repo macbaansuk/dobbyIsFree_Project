@@ -32,16 +32,16 @@
 
 
         <!--    hwa    -->
-        <typeAlias alias="CartDto" type="com.dobby.project.hwa.cart.CartDto"/>
-        <typeAlias alias="CartProdDto" type="com.dobby.project.hwa.cart.CartProdDto"/>
-        <typeAlias alias="MbrDto" type="com.dobby.project.hwa.order.MbrDto"/>
-        <typeAlias alias="DlvDto" type="com.dobby.project.hwa.order.DlvDto"/>
-        <typeAlias alias="OrdDto" type="com.dobby.project.hwa.order.OrdDto"/>
-        <typeAlias alias="OrdProdDto" type="com.dobby.project.hwa.order.OrdProdDto"/>
-        <typeAlias alias="DlvpnLogDto" type="com.dobby.project.hwa.order.DlvpnLogDto"/>
-        <typeAlias alias="PointDto" type="com.dobby.project.hwa.order.PointDto"/>
-        <typeAlias alias="ProdCntDto" type="com.dobby.project.hwa.orderList.ProdCntDto"/>
-        <typeAlias alias="OrdProdInfoDto" type="com.dobby.project.hwa.orderList.OrdProdInfoDto"/>
+        <typeAlias alias="CartDto" type="com.dobby.project.cart.dto.CartDto"/>
+        <typeAlias alias="CartProdDto" type="com.dobby.project.cart.dto.CartProdDto"/>
+        <typeAlias alias="MbrDto" type="com.dobby.project.order.dto.MbrDto"/>
+        <typeAlias alias="DlvDto" type="com.dobby.project.order.dto.DlvDto"/>
+        <typeAlias alias="OrdDto" type="com.dobby.project.order.dto.OrdDto"/>
+        <typeAlias alias="OrdProdDto" type="com.dobby.project.order.dto.OrdProdDto"/>
+        <typeAlias alias="DlvpnLogDto" type="com.dobby.project.order.dto.DlvpnLogDto"/>
+        <typeAlias alias="PointDto" type="com.dobby.project.order.dto.PointDto"/>
+        <typeAlias alias="ProdCntDto" type="com.dobby.project.orderList.dto.ProdCntDto"/>
+        <typeAlias alias="OrdProdInfoDto" type="com.dobby.project.orderList.dto.OrdProdInfoDto"/>
 
         <!--    sun    -->
         <typeAlias alias="ProductDto" type="com.dobby.project.sun.domain.ProductDto"/>
