@@ -469,7 +469,7 @@ body, code {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background: #fff url('../../img/hoon/ico_select.png') no-repeat right 7px center;
+    background: #fff url('../../img/admin/ico_select.png') no-repeat right 7px center;
 }
 
 option {

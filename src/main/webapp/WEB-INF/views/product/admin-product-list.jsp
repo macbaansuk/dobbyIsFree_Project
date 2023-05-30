@@ -124,7 +124,7 @@
                                         <c:choose>
                                             <c:when test="${P.prod_nm == '올리브 에멜전'}">
                                                 <a href="<c:url value="/admin/product/read?id=${P.prod_id}&page=${page}&pageSize=${pageSize}"/>">
-                                                    <img src="/img/sun/olive.gif" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
+                                                    <img src="/img/sun/olive.jpg" alt="${P.prod_nm} 상품 이미지" align="middle"/>${P.prod_nm}
                                                 </a>
                                             </c:when>
                                             <c:when test="${P.prod_nm == '뉴 포맨 올인원'}">

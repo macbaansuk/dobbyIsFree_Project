@@ -159,7 +159,7 @@
                                 <c:choose>
                                     <c:when test="${p.prod_nm == '올리브 에멜전'}">
                                         <div class="product-img">
-                                            <img src="/img/sun/olive.gif" alt="메인 상품 이미지">
+                                            <img src="/img/sun/olive.jpg" alt="메인 상품 이미지">
                                         </div>
                                     </c:when>
                                     <c:when test="${p.prod_nm == '뉴 포맨 올인원'}">
@@ -295,7 +295,7 @@
 
                         continueShoppingBtn.addEventListener('click', function () {
                             cartModal.style.display = 'none';
-                            location.href = '/product/list/${category}';
+                            <%--location.href = '/product/list/${category}';--%>
                             <%--            ${productDetail.PROD_ID}--%>
                         });
 
