@@ -5,7 +5,7 @@ import com.dobby.project.counsel.domain.CounselAnswerDto;
 import com.dobby.project.counsel.domain.CounselDto;
 import com.dobby.project.counsel.domain.PageHandler;
 import com.dobby.project.counsel.service.CounselService;
-import com.dobby.project.hoon.domain.AdminDto;
+import com.dobby.project.admin.domain.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

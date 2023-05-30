@@ -1,6 +1,6 @@
 package com.dobby.project.notice.controller;
 
-import com.dobby.project.hoon.domain.AdminDto;
+import com.dobby.project.admin.domain.AdminDto;
 import com.dobby.project.counsel.domain.PageHandler;
 import com.dobby.project.notice.domain.NoticeDto;
 import com.dobby.project.notice.service.NoticeService;
