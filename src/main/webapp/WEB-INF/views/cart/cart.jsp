@@ -217,8 +217,7 @@
                                         <script>
 
                                             function deleteA(this1) { //this1 -> 클릭된 삭제 버튼
-                                                //('this1',this1);
-                                                //('this',this);
+
                                                 if (confirm("삭제하시겠습니까?")) {
                                                     const cartId = this1.dataset.cartid; //data 속성으로 cartId 찾음
                                                     $.ajax({
@@ -232,16 +231,12 @@
                                                         data: JSON.stringify({'cartIdList': [Number(cartId)]}),
                                                         dataType: 'json',
                                                         success: function (data) {
-                                                            //('반환 JSON data:', data);  //{status: 'success'}
-                                                            // location.reload();
-                                                            //('this1', this1);
-                                                            //('closet', this1.closest('li'));
+
                                                             this1.closest('li').remove();
                                                             // alert('삭제 성공');
                                                             setTotalInfo();
                                                         },
                                                         error: function (jqXHR, textStatus, errorThrown) {
-                                                            //('Error:', jqXHR, textStatus, errorThrown);
 
                                                             // location.reload();
                                                             alert('삭제 실패');
@@ -264,7 +259,6 @@
                                             let cartId = $modifyBtn.closest('.cart_info').find(".spinner button.plus").data("cartid");
                                             let quantity = $modifyBtn.closest('.cart_info').find(".spinner input").val();
 
-                                            //("quantity", quantity);
 
                                             $.ajax({
                                                 url: "/cart/update",
@@ -274,7 +268,6 @@
                                                     quantity: quantity
                                                 },
                                                 success: function (response) {
-                                                    //('response', response);
 
                                                     let updatedData = response;
 
@@ -283,15 +276,11 @@
                                                     let $itemPoints = $gdsInfo.find("span[data-info='prod_points']");
 
                                                     quantity = updatedData.prod_inv_qty;
-                                                    //('구입수량 input', quantity);
 
                                                     let updatedProdQuantity = updatedData.prod_quantity;
                                                     let updatedProdTotal = updatedData.prod_total;
                                                     let updatedProdPoints = updatedData.prod_points;
 
-                                                    //('수량', updatedData.prod_quantity)
-                                                    //('가격', updatedData.prod_total)
-                                                    //('포인트', updatedData.prod_points)
 
                                                     $itemQuantity.text(updatedProdQuantity);
                                                     $itemTotal.text(updatedProdTotal + " 원");
@@ -430,22 +419,13 @@
 
                 DC = $(element).find(".individual_DC_YN_input").val();  //할인 여부
                 prodQty =  parseInt($(element).find(".prodQty").text());  // 구입 수량 /  코드 한줄로 합침
-                //('prodQty',prodQty);
                 amt =  parseInt($(element).find(".amt").text().replace(/,/g, ""));  //개당(1) 가격 ,  (,) 쉼표-> 빈문자열로 대체
-                //('상품가',amt);
 
-                //('구입수량',prodQty);
-                //('DC', DC);
 
-                //('상품개수', prodQty);
                 totalOrdPrc += prodQty * amt;  // 주문금액 계산 = 수량 * 금액
                 pt = prodQty * amt * 0.01;  // 적립금 -> 금액의 1%
-                //('개별 적립금', pt);
 
-                //('주문금액', totalOrdPrc);
                 totalPt += pt;  //최종 적립금
-                //('적립금', totalPt);
-                // 결제 예정금액
                 totalPrc += parseInt($(element).find(".individual_pdord_total_input").val());
             }
         });
@@ -454,7 +434,6 @@
         } else {
             totalDlvCost = 2500;
         }
-        //('배송비', totalDlvCost);
 
 
         $("#totalOrdPrc").text(totalOrdPrc.toLocaleString() + "원");
@@ -466,7 +445,6 @@
     $(".chBox, #allCheck").on("change", setTotalInfo);  //체크박스 상태 변경시
     $(".modifyConfirmBtn").click(function() {
         setTotalInfo();
-        //('실행');
     });
 
 
