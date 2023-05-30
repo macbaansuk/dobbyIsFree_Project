@@ -66,9 +66,7 @@ public class LoginController {
     }
 
     @RequestMapping("/findID")
-    public String findID() {
-        return "user/findID";
-    }
+    public String findID() {return "user/findID";}
 
     @RequestMapping("/findPWD")
     public String findPWD() {
