@@ -366,8 +366,6 @@
 
                                         <!-- 배송주소록에 등록된 연락처 세자리 자르기 -->
                                         let rcprPhoneNum = '${addressList.RCPR_MPNO}';
-                                        //('폰넘버타입',typeof rcprPhoneNum);
-                                        //('폰넘버', '${addressList.RCPR_MPNO}');
 
                                         let rcprNum1 = rcprPhoneNum.substring(0,3);
                                         let rcprNum2 = rcprPhoneNum.substring(3,7);
@@ -597,15 +595,6 @@
                                     </td>
                                 </tr>
 
-                                <!-- [ARC] 배송비 - 뷰티포인트 결제-->
-                                <tr id="totDlvPrcTr" style="display: none">
-                                    <th scope="row">배송비</th>
-                                    <td>
-                                        <div class="beautyPoint">
-                                            <label class="inputChk" for="deliveryCost"><input type="checkbox" id="deliveryCost"><span>적립금 사용</span></label>
-                                        </div>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -737,38 +726,11 @@
                                 <dt>할인/차감 금액</dt>
                                 <dd class="totalSale"><span class="num" id="totDcCpnPrcTxt">0</span>원</dd>
                             </dl>
-                            <div class="saleBox" style="display: none;">
-                                <dl id="cpnDcDl" style="display:none;">
-                                    <dt>쿠폰 할인</dt>
-                                    <dd><span class="num" id="cpnDcTxt"></span>원</dd>
-                                </dl>
-                                <dl id="useOkPtDl" style="display:none;">
-                                    <dt>OK캐쉬백 포인트 사용</dt>
-                                    <dd><span class="num" id="okPtDcTxt">-0</span>원</dd>
-                                </dl>
-                                <dl id="abcCampDcDl" style="display:none;">
-                                    <dt>연계 구매 프로모션 할인</dt>
-                                    <dd><span class="num" id="abcCampDcTxt">-0</span>원</dd>
-                                </dl>
-                                <dl id="promotionDcDl" style="">
-                                    <dt>프로모션 할인</dt>
-                                    <dd><span class="num" id="promotionDcTxt">-0</span>원</dd>
-                                </dl>
-                                <dl id="posGiftCardDcDl" style="display:none;">
-                                    <dt>쇼핑카드 사용</dt>
-                                    <dd><span class="num" id="posGiftCardDcTxt"></span>원</dd>
-                                </dl>
-                            </div>
-                            <dl id="useBtPtDl" style="display:none;">
-                                <dt>뷰티포인트 사용</dt>
-                                <dd><span class="num" id="totPurPtTxt">- 0</span>P</dd>
-                            </dl>
                             <dl>
                                 <dt>배송비</dt>
                                 <%--                                <dd id="totPurDlvPrcTxt" $dlvcost="2500"></dd>--%>
                                 <dd id="totalDlvTxt" $dlvcost="2500"><span class="num" id="totPurDlvPrcTxt">- 0</span>원</dd>
                             </dl>
-                            <!-- [ARC] 배송비 - 뷰티포인트 결제  -->
                             <div class="saleBox" id="dlvUseBtPtDiv" style="display: none;">
                                 <dl id="dlvUseBtPtDl">
                                     <dt>적립금 사용</dt>
@@ -776,15 +738,11 @@
                                 </dl>
                             </div>
 
-                            <!--//[ARC] 배송비 - 뷰티포인트 결제  -->
                             <dl>
                                 <dt>예정 적립금 <button type="button" class="btnTooltip" onclick="tooltip('btPointInfo3','fixed');">툴팁</button></dt>
                                 <dd><span class="num" id="totReservePtTxt"></span>P</dd>
                             </dl>
 
-                            <!-- 									<dt>적립 예정 씨드</dt> -->
-                            <!-- 									<dd><span class="num" id="totAddSeedPoint">0</span>개</dd> -->
-                            <!-- 								</dl> -->
                             <dl class="totalPrice">
                                 <dt>최종 결제 금액</dt>
                                 <dd><span class="num" id="totPurPrcTxt"></span>원</dd>
