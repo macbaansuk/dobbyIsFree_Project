@@ -2,7 +2,7 @@ package com.dobby.project.ming.dao;
 
 import com.dobby.project.ming.dao.UserDao;
 import com.dobby.project.ming.domain.*;
-import com.dobby.project.soo.SearchCondition;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
