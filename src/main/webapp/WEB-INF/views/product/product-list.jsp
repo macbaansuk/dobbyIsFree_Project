@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/d66ae73db8.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/hwa/modal.css"/><!--모달창-->
+    <link rel="stylesheet" href="/css/cart/modal.css"/><!--모달창-->
     <style>
 
 
