@@ -25,14 +25,14 @@
     <div id="mypageTop">
         <div id="member">
             <div id="user_grade">
-                <img src="/img/ming/myPage_ming/welcomegrade.png"style="width: 50px" class="mypage-img1">
+                <img src="/img/user/myPage_user/welcomegrade.png"style="width: 50px" class="mypage-img1">
                 <h2>
                     ${MBR_ID}님은 <em class="grade">웰컴</em> 회원입니다.
                 </h2>
                 <span></span>
-                <img src="/img/ming/myPage_ming/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
+                <img src="/img/user/myPage_user/coupon_icon.png" style="width: 75px" class="mypage-img2"/>
                 <p>보유쿠폰 <em class="classinfo">2장</em> </p>
-                <img src="/img/ming/myPage_ming/point_icon.png"style="width: 75px" class="mypage-img3">
+                <img src="/img/user/myPage_user/point_icon.png"style="width: 75px" class="mypage-img3">
                 <p>보유포인트 <em class="classinfo">3000p</em> </p>
             </div>
         </div>
