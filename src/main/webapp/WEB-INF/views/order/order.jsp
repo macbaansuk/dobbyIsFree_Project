@@ -595,15 +595,6 @@
                                     </td>
                                 </tr>
 
-                                <!-- [ARC] 배송비 - 뷰티포인트 결제-->
-<%--                                <tr id="totDlvPrcTr" style="display: none">--%>
-<%--                                    <th scope="row">배송비</th>--%>
-<%--                                    <td>--%>
-<%--                                        <div class="beautyPoint">--%>
-<%--                                            <label class="inputChk" for="deliveryCost"><input type="checkbox" id="deliveryCost"><span>적립금 사용</span></label>--%>
-<%--                                        </div>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
                                 </tbody>
                             </table>
                         </div>
@@ -740,7 +731,6 @@
                                 <%--                                <dd id="totPurDlvPrcTxt" $dlvcost="2500"></dd>--%>
                                 <dd id="totalDlvTxt" $dlvcost="2500"><span class="num" id="totPurDlvPrcTxt">- 0</span>원</dd>
                             </dl>
-                            <!-- [ARC] 배송비 - 뷰티포인트 결제  -->
                             <div class="saleBox" id="dlvUseBtPtDiv" style="display: none;">
                                 <dl id="dlvUseBtPtDl">
                                     <dt>적립금 사용</dt>
@@ -748,7 +738,6 @@
                                 </dl>
                             </div>
 
-                            <!--//[ARC] 배송비 - 뷰티포인트 결제  -->
                             <dl>
                                 <dt>예정 적립금 <button type="button" class="btnTooltip" onclick="tooltip('btPointInfo3','fixed');">툴팁</button></dt>
                                 <dd><span class="num" id="totReservePtTxt"></span>P</dd>
