@@ -1,5 +1,7 @@
 <div align="center">
   <img src="https://github.com/minseo4485/dobby/assets/111673838/ca3438c4-a6c6-4652-8329-fd8ed1f0374e.png" width="600"/>
+  ![로고_투명](https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/2e5baaeb-bd1b-4817-ad69-0e2e080d46e6)
+
 </div>
 
 # 도비스프리 Dobby Is Free
