@@ -1,9 +1,6 @@
 <div align="center">
-  <img src="https://github.com/minseo4485/dobby/assets/111673838/ca3438c4-a6c6-4652-8329-fd8ed1f0374e.png" width="600"/>
-  ![로고_투명](https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/2e5baaeb-bd1b-4817-ad69-0e2e080d46e6)
-
+  <img src="https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/2e5baaeb-bd1b-4817-ad69-0e2e080d46e6.png" width="900"/>
 </div>
-![로고_투명](https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/b4f54fb5-17be-4abb-ba65-f96b3a6f5a2f)
 
 # 도비스프리 Dobby Is Free
 Korea Sustainable Eco-friendly Cosmetic Brand
@@ -45,7 +42,7 @@ Therefore, we have strived to contribute to promoting K-beauty to the World by c
 
 ### **ERD**
 <div align="center">
-  <img src="https://github.com/minseo4485/dobby/assets/111673838/02c88340-e482-4ad0-834e-61f0bb2167dc.png" width="100%"/>
+  <img src="https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/cfe48397-a59e-46e5-bb17-8a63c2adf4ee).png" width="100%"/>
 </div>
 이 프로젝트의 47개의 테이블과 6개의 모듈로 이루어져 있습니다.
 This project contains 47 tables and 6 modules.
