@@ -3,6 +3,7 @@
   ![로고_투명](https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/2e5baaeb-bd1b-4817-ad69-0e2e080d46e6)
 
 </div>
+![로고_투명](https://github.com/macbaansuk/dobbyIsFree_Project/assets/129302019/b4f54fb5-17be-4abb-ba65-f96b3a6f5a2f)
 
 # 도비스프리 Dobby Is Free
 Korea Sustainable Eco-friendly Cosmetic Brand
